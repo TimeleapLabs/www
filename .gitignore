@@ -1,0 +1,13 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+/contracts/build
+
+.vercel
+.vercel_build_output
+
+.vscode
+
+/static/images/originals

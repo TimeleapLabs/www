@@ -1,0 +1,48 @@
+:root {
+  --primary-color: #ba3322;
+  --secondary-color: #134841;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  background: linear-gradient(
+    343deg,
+    rgba(105, 118, 121, 0.1) 44%,
+    rgba(33, 43, 46, 0.1) 100%
+  );
+}
+
+body * {
+  font-family: "Roboto";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Raleway";
+}
+
+a {
+  text-decoration: none;
+}
+
+svg {
+  max-height: 100%;
+}
+
+.fa-primary {
+  color: var(--primary-color);
+}
+
+.fa-secondary {
+  color: var(--secondary-color);
+}
