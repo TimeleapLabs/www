@@ -27,9 +27,17 @@
   import Network from "../icons/Network.svelte";
 
   import { scrollto } from "svelte-scrollto";
+  import { onMount } from "svelte";
 
   const launch = new Date("2021-12-12").valueOf();
   const days = Math.round((launch - new Date().valueOf()) / 86400000);
+
+  onMount(() => {
+    const { hash } = window.location;
+    if (hash) {
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+    }
+  });
 </script>
 
 <div class="page">
