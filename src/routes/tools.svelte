@@ -36,6 +36,7 @@
     // NOT IMPLEMENTED
   }
 
+  // TESTNET CONTRACT ADDRESS
   const contractAddr = "0x84a3a1364c9d4c2dbe1527f14e3126101abd4cca";
 
   const getMaxBuy = (maxBalance, balance) => {
