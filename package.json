@@ -19,5 +19,8 @@
     "svelte": "^3.42.6",
     "svelte-scrollto": "^0.2.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "ethers": "^5.5.1"
+  }
 }

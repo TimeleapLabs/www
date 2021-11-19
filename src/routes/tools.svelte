@@ -11,12 +11,60 @@
   import Sack from "../icons/Sack.svelte";
   import Coins from "../icons/Coins.svelte";
   import Calendar from "../icons/Calendar.svelte";
+  import At from "../icons/At.svelte";
+  import BinanceChainWallet from "../icons/BinanceChainWallet.svelte";
+  import MetaMask from "../icons/MetaMask.svelte";
+
+  import { ethers } from "ethers";
+  import { onMount } from "svelte";
+  import abi from "../lib/abi.js";
 
   const formatCurrency = (n) =>
-    n.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+    ethers.utils.formatUnits(n).slice(0, -16) || "0";
 
   let sellingDate = new Date().toISOString().slice(0, -14);
   let sellingAmount = 100;
+  let sellingTax = 5;
+
+  let balance = ethers.BigNumber.from(0);
+  let maxBalance = ethers.BigNumber.from(0);
+
+  let kenshi;
+  let userAddress;
+
+  $: if (kenshi && userAddress && sellingDate && sellingAmount) {
+    // NOT IMPLEMENTED
+  }
+
+  const contractAddr = "0x84a3a1364c9d4c2dbe1527f14e3126101abd4cca";
+
+  const getMaxBuy = (maxBalance, balance) => {
+    if (maxBalance.lte(balance)) {
+      return ethers.BigNumber.from(0);
+    }
+    return maxBalance.sub(balance);
+  };
+
+  let binanceChainWallet;
+  let metaMask;
+  let hasWallets;
+
+  $: hasWallets = metaMask || binanceChainWallet;
+
+  const connectWallet = async (wallet) => {
+    const provider = new ethers.providers.Web3Provider(wallet);
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    userAddress = await signer.getAddress();
+    kenshi = new ethers.Contract(contractAddr, abi, signer);
+    balance = await kenshi.balanceOf(userAddress);
+    maxBalance = await kenshi.getMaxBalance();
+  };
+
+  onMount(async () => {
+    metaMask = window.ethereum;
+    binanceChainWallet = window.BinanceChain;
+  });
 </script>
 
 <div class="page">
@@ -48,7 +96,32 @@
     </div>
   </div>
   <div class="section">
-    <h2>Stats</h2>
+    <div class="title">
+      <h2>Stats</h2>
+      {#if userAddress}
+        <div class="user">
+          <span class="icon"><At /></span>
+          <span class="red"> 0x </span>
+          <span class="green">
+            {userAddress.slice(2, 6)}...{userAddress.slice(-4)}
+          </span>
+        </div>
+      {:else if hasWallets}
+        <div class="connect">
+          Connect with
+          {#if binanceChainWallet}
+            <button on:click={() => connectWallet(binanceChainWallet)}>
+              <BinanceChainWallet />
+            </button>
+          {/if}
+          {#if metaMask}
+            <button on:click={() => connectWallet(metaMask)}>
+              <MetaMask />
+            </button>
+          {/if}
+        </div>
+      {/if}
+    </div>
     <div class="stats">
       <div class="stat">
         <span class="icon"><Wallet /></span>
@@ -56,7 +129,7 @@
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
-          {formatCurrency(100020203)}
+          {formatCurrency(balance)}
         </span>
       </div>
       <div class="stat">
@@ -74,7 +147,7 @@
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
-          {formatCurrency(371123407)}
+          {formatCurrency(maxBalance)}
         </span>
       </div>
       <div class="stat">
@@ -83,7 +156,7 @@
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
-          {formatCurrency(371123407 - 100020203)}
+          {formatCurrency(getMaxBuy(maxBalance, balance))}
         </span>
       </div>
     </div>
@@ -111,7 +184,7 @@
         <span class="icon"><Sack /></span>
         <label for="#selling-date"> Calculated Tax </label>
         <div class="spacer" />
-        <span>5% </span>
+        <span>{sellingTax}% </span>
       </div>
     </div>
   </div>
@@ -300,6 +373,36 @@
   }
   .links.spaced {
     gap: 2em;
+  }
+  .title {
+    display: flex;
+    align-items: baseline;
+    gap: 1em;
+  }
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+  .connect {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .user .icon {
+    height: 1em;
+    width: 1em;
+  }
+  .connect button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+  }
+  .connect button :global(svg) {
+    height: 1.2em;
+    width: auto;
   }
   @media (max-width: 1800px) {
     .stats {
