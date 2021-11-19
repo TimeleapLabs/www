@@ -12,6 +12,7 @@
   import Coins from "../icons/Coins.svelte";
   import Calendar from "../icons/Calendar.svelte";
   import At from "../icons/At.svelte";
+  import Arrow from "../icons/Arrow.svelte";
   import BinanceChainWallet from "../icons/BinanceChainWallet.svelte";
   import MetaMask from "../icons/MetaMask.svelte";
 
@@ -20,24 +21,31 @@
   import abi from "../lib/abi.js";
 
   const formatCurrency = (n) =>
-    ethers.utils.formatUnits(n).slice(0, -16) || "0";
+    ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
 
   let sellingDate = new Date().toISOString().slice(0, -14);
   let sellingAmount = 100;
   let sellingTax = 5;
+  let sellingTaxCalculated = 5;
 
   let balance = ethers.BigNumber.from(0);
   let maxBalance = ethers.BigNumber.from(0);
 
   let kenshi;
+  let signer;
   let userAddress;
 
   $: if (kenshi && userAddress && sellingDate && sellingAmount) {
-    // NOT IMPLEMENTED
+    const timestamp = Math.floor(new Date(sellingDate).valueOf() / 1000);
+    kenshi.getTaxPercentageAt(userAddress, timestamp).then((tax) => {
+      sellingTax = tax;
+    });
   }
 
+  $: sellingTaxCalculated = sellingAmount - (sellingAmount * sellingTax) / 100;
+
   // TESTNET CONTRACT ADDRESS
-  const contractAddr = "0x84a3a1364c9d4c2dbe1527f14e3126101abd4cca";
+  const contractAddr = "0x07FB314dB4044D14834b529b95Ab289104f2827a";
 
   const getMaxBuy = (maxBalance, balance) => {
     if (maxBalance.lte(balance)) {
@@ -55,16 +63,27 @@
   const connectWallet = async (wallet) => {
     const provider = new ethers.providers.Web3Provider(wallet);
     await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    signer = provider.getSigner();
     userAddress = await signer.getAddress();
-    kenshi = new ethers.Contract(contractAddr, abi, signer);
-    balance = await kenshi.balanceOf(userAddress);
-    maxBalance = await kenshi.getMaxBalance();
+    updateValues();
   };
+
+  const updateValues = async () => {
+    if (signer && userAddress) {
+      kenshi = new ethers.Contract(contractAddr, abi, signer);
+      balance = await kenshi.balanceOf(userAddress);
+      maxBalance = await kenshi.getMaxBalance();
+    }
+  };
+
+  const walletInterval = setInterval(updateValues, 5000);
 
   onMount(async () => {
     metaMask = window.ethereum;
     binanceChainWallet = window.BinanceChain;
+    return () => {
+      clearInterval(walletInterval);
+    };
   });
 </script>
 
@@ -185,7 +204,12 @@
         <span class="icon"><Sack /></span>
         <label for="#selling-date"> Calculated Tax </label>
         <div class="spacer" />
-        <span>{sellingTax}% </span>
+        <span class="tax-amount">
+          {sellingTax}%
+          <span class="icon"><Arrow /></span>
+          <span class="green">₭</span>
+          {sellingTaxCalculated}
+        </span>
       </div>
     </div>
   </div>
@@ -390,9 +414,23 @@
     align-items: center;
     gap: 0.5em;
   }
+  .tax-amount .icon,
   .user .icon {
     height: 1em;
     width: 1em;
+  }
+  .tax-amount .icon :global(svg) {
+    height: 1em;
+    display: flex;
+    align-items: center;
+  }
+  .tax-amount .icon {
+    margin-right: 0;
+  }
+  .tax-amount {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
   }
   .connect button {
     padding: 0;
