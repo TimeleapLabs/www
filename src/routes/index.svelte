@@ -25,6 +25,7 @@
   import Arrow from "../icons/Arrow.svelte";
   import Book from "../icons/Book.svelte";
   import Network from "../icons/Network.svelte";
+  import Tools from "../icons/Tools.svelte";
 
   import { scrollto } from "svelte-scrollto";
   import { onMount } from "svelte";
@@ -106,6 +107,10 @@
           <a href="https://docs.kenshi.io" class="button">
             <span class="icon"><Book /></span>
             Learn More
+          </a>
+          <a href="/tools" class="button">
+            <span class="icon"><Tools /></span>
+            Kenshi Tools
           </a>
           <a href="https://poocoin.com" class="button hidden">
             <span class="icon"><Chart /></span>
