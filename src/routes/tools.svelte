@@ -13,6 +13,8 @@
   import Calendar from "../icons/Calendar.svelte";
   import At from "../icons/At.svelte";
   import Arrow from "../icons/Arrow.svelte";
+  import Volume from "../icons/Volume.svelte";
+  import Reflect from "../icons/ReflectDuo.svelte";
   import BinanceChainWallet from "../icons/BinanceChainWallet.svelte";
   import MetaMask from "../icons/MetaMask.svelte";
 
@@ -182,34 +184,79 @@
     </div>
     <div class="kenshi-illustration" />
   </div>
-  <div class="section half">
-    <h2>Sales Tax Calculator</h2>
-    <div class="taxes">
-      <div class="red-devil">
-        <img src="/images/features.png" alt="Red Devil" />
+  <div class="section calculators">
+    <div class="calculator">
+      <h2>Sales Tax Calculator</h2>
+      <div class="taxes">
+        <div class="red-devil">
+          <img src="/images/features.png" alt="Red Devil" />
+        </div>
+        <div class="tax">
+          <span class="icon"><Calendar /></span>
+          <label for="#selling-date"> Date </label>
+          <div class="spacer" />
+          <input id="selling-date" type="date" bind:value={sellingDate} />
+        </div>
+        <div class="tax">
+          <span class="icon"><Coins /></span>
+          <label for="#selling-date"> Amount </label>
+          <div class="spacer" />
+          <input id="selling-amount" type="number" bind:value={sellingAmount} />
+        </div>
+        <div class="tax">
+          <span class="icon"><Sack /></span>
+          <label for="#selling-date"> Calculated Tax </label>
+          <div class="spacer" />
+          <span class="tax-amount">
+            {sellingTax}%
+            <span class="icon"><Arrow /></span>
+            <span class="green">₭</span>
+            {sellingTaxCalculated}
+          </span>
+        </div>
       </div>
-      <div class="tax">
-        <span class="icon"><Calendar /></span>
-        <label for="#selling-date"> Date </label>
-        <div class="spacer" />
-        <input id="selling-date" type="date" bind:value={sellingDate} />
-      </div>
-      <div class="tax">
-        <span class="icon"><Coins /></span>
-        <label for="#selling-date"> Amount </label>
-        <div class="spacer" />
-        <input id="selling-amount" type="number" bind:value={sellingAmount} />
-      </div>
-      <div class="tax">
-        <span class="icon"><Sack /></span>
-        <label for="#selling-date"> Calculated Tax </label>
-        <div class="spacer" />
-        <span class="tax-amount">
-          {sellingTax}%
-          <span class="icon"><Arrow /></span>
-          <span class="green">₭</span>
-          {sellingTaxCalculated}
-        </span>
+    </div>
+  </div>
+  <div class="section calculators wider">
+    <div class="guardian-illustration" />
+    <div class="samurai-illustration" />
+    <div class="calculator">
+      <h2>Reflection Calculator</h2>
+      <div class="reflections">
+        <div class="reflection">
+          <span class="icon"><Coins /></span>
+          <label for="#selling-date"> Holding </label>
+          <div class="spacer" />
+          <input id="selling-amount" type="number" bind:value={sellingAmount} />
+        </div>
+        <div class="reflection">
+          <span class="icon"><Calendar /></span>
+          <label for="#selling-date"> To Date </label>
+          <div class="spacer" />
+          <input id="selling-date" type="date" bind:value={sellingDate} />
+        </div>
+        <div class="reflection">
+          <span class="icon"><Volume /></span>
+          <label for="#selling-date"> Daily Volume </label>
+          <div class="spacer" />
+          <input id="selling-amount" type="number" bind:value={sellingAmount} />
+        </div>
+        <div class="reflection">
+          <span class="icon"><Sack /></span>
+          <label for="#selling-date"> Average Tax </label>
+          <div class="spacer" />
+          <input id="selling-amount" type="number" bind:value={sellingAmount} />
+        </div>
+        <div class="reflection">
+          <span class="icon"><Reflect /></span>
+          <label for="#selling-date"> Reflections </label>
+          <div class="spacer" />
+          <span class="tax-amount">
+            ≈
+            <span class="green">₭</span>
+            {sellingTaxCalculated}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -253,6 +300,12 @@
     gap: 2em;
     grid-template-columns: 0.5fr 1fr;
   }
+  .reflections {
+    display: grid;
+    gap: 2em;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+  }
   .red-devil {
     grid-row: 1 / span 3;
     display: flex;
@@ -263,6 +316,7 @@
     max-width: 100%;
   }
   .stat,
+  .reflection,
   .tax {
     display: flex;
     align-items: center;
@@ -281,6 +335,7 @@
     color: #000;
     box-sizing: border-box;
   }
+  .reflection .icon,
   .tax .icon,
   .stat .icon {
     height: 2em;
@@ -323,12 +378,6 @@
   a:not(.button):not(.buy a):not(.red):hover {
     color: var(--primary-color);
   }
-  a.red {
-    border-bottom: 1px solid transparent;
-  }
-  a.red:not(.back):hover {
-    border-bottom: 1px solid;
-  }
   .red {
     color: var(--primary-color);
   }
@@ -357,9 +406,18 @@
   .head + .section {
     padding-top: 2em;
   }
-  .section.half {
-    width: 50%;
-    box-sizing: border-box;
+  .section.calculators {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    position: relative;
+  }
+  .section.calculators.wider {
+    grid-template-columns: 1fr 0.5fr;
+  }
+  .calculator {
+    display: flex;
+    flex-direction: column;
   }
   .head {
     padding: 0em 3em;
@@ -443,6 +501,29 @@
     height: 1.2em;
     width: auto;
   }
+  .samurai-illustration {
+    background: url(/images/samurai.png);
+    background-size: cover;
+    position: absolute;
+    height: 1200px;
+    width: 800px;
+    left: -300px;
+    top: -400px;
+    z-index: -1;
+    filter: grayscale(1) contrast(0);
+    transform: rotate(33deg);
+    opacity: 0.1;
+  }
+  .guardian-illustration {
+    background: url(/images/guardian.png);
+    background-size: cover;
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    right: 0;
+    bottom: 0px;
+    z-index: -1;
+  }
   @media (max-width: 1800px) {
     .stats {
       grid-template-columns: 1fr 1fr 1fr;
@@ -456,9 +537,6 @@
   @media (max-width: 1350px) {
     .stats {
       grid-template-columns: 1fr 1fr;
-    }
-    .section.half {
-      width: 100%;
     }
     .taxes {
       align-items: center;
