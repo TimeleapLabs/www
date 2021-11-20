@@ -548,6 +548,12 @@
       height: 100%;
       top: 10%;
     }
+    .section.calculators {
+      grid-template-columns: 1fr 0.5fr;
+    }
+    .reflections {
+      grid-template-columns: 1fr;
+    }
   }
   @media (max-width: 960px) {
     .stats {
@@ -570,6 +576,19 @@
     }
     .stats {
       grid-template-columns: 1fr;
+    }
+    .section.calculators.wider,
+    .section.calculators {
+      grid-template-columns: 1fr;
+    }
+    .red-devil img {
+      max-width: 60%;
+    }
+    .reflections {
+      grid-template-columns: 1fr;
+    }
+    .guardian-illustration {
+      filter: grayscale(1) opacity(0.1);
     }
   }
   @media (max-width: 600px) {
