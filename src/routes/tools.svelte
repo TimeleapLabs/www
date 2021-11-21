@@ -62,7 +62,13 @@
 
   $: hasWallets = metaMask || binanceChainWallet;
 
+  const switchChain = async (wallet, chainId) => {
+    const provider = new ethers.providers.Web3Provider(wallet);
+    await provider.send("wallet_switchEthereumChain", [{ chainId }]);
+  };
+
   const connectWallet = async (wallet) => {
+    await switchChain(wallet, "0x61");
     const provider = new ethers.providers.Web3Provider(wallet);
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
