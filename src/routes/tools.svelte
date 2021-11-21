@@ -13,6 +13,7 @@
   import Calendar from "../icons/Calendar.svelte";
   import At from "../icons/At.svelte";
   import Arrow from "../icons/Arrow.svelte";
+  import Circulation from "../icons/Circulation.svelte";
   import Volume from "../icons/Volume.svelte";
   import Reflect from "../icons/ReflectDuo.svelte";
   import BinanceChainWallet from "../icons/BinanceChainWallet.svelte";
@@ -85,6 +86,42 @@
   };
 
   const walletInterval = setInterval(updateValues, 5000);
+
+  let holding = 1000000;
+  let dailyVolume = 1000000000;
+  let circulation = 100000000000000;
+  let toDate = new Date(new Date().valueOf() + 86400000)
+    .toISOString()
+    .slice(0, -14);
+  let averageTax = 10;
+  let reflections = 0;
+
+  const estimateReflections = () => {
+    const days = (new Date(toDate).valueOf() - new Date().valueOf()) / 86400;
+    if (days < 1) return 0;
+    const traded = dailyVolume * days;
+    let distributed = 0;
+    let max = traded / 100;
+    let balance = holding;
+    let total = circulation;
+    while (distributed < traded) {
+      const tx = Math.min(
+        Math.floor(Math.random() * max),
+        traded - distributed
+      );
+      distributed += tx;
+      const reward = ((tx - tx / 100) * averageTax) / 200;
+      const share = (balance / total) * reward;
+      total += tx;
+      balance += share;
+    }
+    return balance - holding;
+  };
+
+  $: if (holding && circulation && toDate && dailyVolume && averageTax) {
+    reflections = estimateReflections();
+    reflections = Math.floor(reflections * 100) / 100;
+  }
 
   onMount(async () => {
     metaMask = window.ethereum;
@@ -233,25 +270,31 @@
           <span class="icon"><Coins /></span>
           <label for="#selling-date"> Holding </label>
           <div class="spacer" />
-          <input id="selling-amount" type="number" bind:value={sellingAmount} />
+          <input id="selling-amount" type="number" bind:value={holding} />
         </div>
         <div class="reflection">
           <span class="icon"><Calendar /></span>
           <label for="#selling-date"> To Date </label>
           <div class="spacer" />
-          <input id="selling-date" type="date" bind:value={sellingDate} />
+          <input id="selling-date" type="date" bind:value={toDate} />
         </div>
         <div class="reflection">
           <span class="icon"><Volume /></span>
           <label for="#selling-date"> Daily Volume </label>
           <div class="spacer" />
-          <input id="selling-amount" type="number" bind:value={sellingAmount} />
+          <input id="selling-amount" type="number" bind:value={dailyVolume} />
+        </div>
+        <div class="reflection">
+          <span class="icon"><Circulation /></span>
+          <label for="#selling-date"> Circulation </label>
+          <div class="spacer" />
+          <input id="selling-amount" type="number" bind:value={circulation} />
         </div>
         <div class="reflection">
           <span class="icon"><Sack /></span>
           <label for="#selling-date"> Average Tax </label>
           <div class="spacer" />
-          <input id="selling-amount" type="number" bind:value={sellingAmount} />
+          <input id="selling-amount" type="number" bind:value={averageTax} />
         </div>
         <div class="reflection">
           <span class="icon"><Reflect /></span>
@@ -260,7 +303,7 @@
           <span class="tax-amount">
             ≈
             <span class="green">₭</span>
-            {sellingTaxCalculated}
+            {reflections}
           </span>
         </div>
       </div>
@@ -451,6 +494,9 @@
     outline: none;
     margin-right: -0.75em;
     width: 132px;
+  }
+  .reflections input {
+    width: 50%;
   }
   .links {
     font-size: 1.2em;
