@@ -108,7 +108,7 @@
             <span class="icon"><Book /></span>
             Learn More
           </a>
-          <a href="/tools" class="button">
+          <a href="/tools" class="button hidden">
             <span class="icon"><Tools /></span>
             Kenshi Tools
           </a>
@@ -241,7 +241,7 @@
         <span class="icon"><Cut /></span>
         <span class="title">Sales Tax</span>
         <span class="spacer" />
-        <span class="value">5% to 50%</span>
+        <span class="value">+5%</span>
       </div>
       <div class="tokenomic">
         <span class="icon"><Reward /></span>

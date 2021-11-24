@@ -16,6 +16,7 @@
   import Circulation from "../icons/Circulation.svelte";
   import Volume from "../icons/Volume.svelte";
   import Reflect from "../icons/ReflectDuo.svelte";
+  import Treasure from "../icons/Treasure.svelte";
   import BinanceChainWallet from "../icons/BinanceChainWallet.svelte";
   import MetaMask from "../icons/MetaMask.svelte";
 
@@ -23,8 +24,11 @@
   import { onMount } from "svelte";
   import abi from "../lib/abi.js";
 
-  const formatCurrency = (n) =>
+  const formatKenshi = (n) =>
     ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
+
+  const formatUSD = (n) =>
+    (Math.floor(n * 100) / 100).toString().replace(/(?=\.\d{2})\d+/, "");
 
   let sellingDate = new Date().toISOString().slice(0, -14);
   let sellingAmount = 100;
@@ -33,6 +37,8 @@
 
   let balance = ethers.BigNumber.from(0);
   let maxBalance = ethers.BigNumber.from(0);
+  let treasury = ethers.BigNumber.from(0);
+  let walletWorth = 0;
 
   let kenshi;
   let signer;
@@ -49,6 +55,17 @@
 
   // TESTNET CONTRACT ADDRESS
   const contractAddr = "0x07FB314dB4044D14834b529b95Ab289104f2827a";
+  const treasuryAddr = "0x2eF7F40A0826651d46BAD74d4A67919Db17404e5";
+
+  const getPrice = async () => {
+    return 1.8e-9;
+    /* const price = await fetch(
+      `https://api.pancakeswap.info/api/v2/tokens/${contractAddr}`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => resp.data?.price);
+    return price || 1.8e-9; */
+  };
 
   const getMaxBuy = (maxBalance, balance) => {
     if (maxBalance.lte(balance)) {
@@ -81,7 +98,9 @@
     if (signer && userAddress) {
       kenshi = new ethers.Contract(contractAddr, abi, signer);
       balance = await kenshi.balanceOf(userAddress);
+      treasury = await kenshi.balanceOf(treasuryAddr);
       maxBalance = await kenshi.getMaxBalance();
+      walletWorth = eval(balance.div(BigInt(1e18))._hex) * (await getPrice());
     }
   };
 
@@ -194,7 +213,7 @@
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
-          {formatCurrency(balance)}
+          {formatKenshi(balance)}
         </span>
       </div>
       <div class="stat">
@@ -203,7 +222,7 @@
         <span class="spacer" />
         <span>
           <span class="green">$</span>
-          123
+          {formatUSD(walletWorth)}
         </span>
       </div>
       <div class="stat">
@@ -212,7 +231,7 @@
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
-          {formatCurrency(maxBalance)}
+          {formatKenshi(maxBalance)}
         </span>
       </div>
       <div class="stat">
@@ -221,7 +240,16 @@
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
-          {formatCurrency(getMaxBuy(maxBalance, balance))}
+          {formatKenshi(getMaxBuy(maxBalance, balance))}
+        </span>
+      </div>
+      <div class="stat">
+        <span class="icon"><Treasure /></span>
+        <span> Treasury </span>
+        <span class="spacer" />
+        <span>
+          <span class="green">₭</span>
+          {formatKenshi(treasury)}
         </span>
       </div>
     </div>
