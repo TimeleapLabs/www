@@ -313,12 +313,12 @@
           Launch website
         </li>
         <li>
-          <span class="icon"><Pending /></span>
-          2000 holders
+          <span class="icon"><Done /></span>
+          Social media groups
         </li>
         <li>
           <span class="icon"><Pending /></span>
-          Social media groups
+          2000 holders
         </li>
         <li>
           <span class="icon"><Pending /></span>
@@ -327,10 +327,6 @@
         <li>
           <span class="icon"><Pending /></span>
           Register company
-        </li>
-        <li>
-          <span class="icon"><Pending /></span>
-          Auditing
         </li>
       </ul>
     </div>
