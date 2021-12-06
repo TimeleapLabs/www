@@ -26,11 +26,15 @@
   import Book from "../icons/Book.svelte";
   import Network from "../icons/Network.svelte";
   import Tools from "../icons/Tools.svelte";
+  import BinaryLock from "../icons/BinaryLock.svelte";
+  import Liquid from "../icons/Liquid.svelte";
+  import Code from "../icons/Code.svelte";
+  import Shield from "../icons/Shield.svelte";
 
   import { scrollto } from "svelte-scrollto";
   import { onMount } from "svelte";
 
-  const launch = new Date("2021-12-12").valueOf();
+  const launch = new Date("2021-12-19").valueOf();
   const days = Math.round((launch - new Date().valueOf()) / 86400000);
 
   onMount(() => {
@@ -57,9 +61,9 @@
                 </div>
               </div>
             </a>
+            <a use:scrollto={"#services"} href="#roadmap">Services</a>
             <a use:scrollto={"#tokenomics"} href="#tokenomics">Tokenomics</a>
             <a href="https://docs.kenshi.io">Whitepaper</a>
-            <a use:scrollto={"#roadmap"} href="#roadmap">Roadmap</a>
           </div>
           <div class="spacer" />
           <div class="links">
@@ -85,7 +89,7 @@
             <span class="icon">
               <Fire />
             </span>
-            <span> Per Transaction Burns </span>
+            <span> Automatic Burns </span>
           </div>
           <div class="highlight">
             <span class="icon">
@@ -142,6 +146,69 @@
     </div>
   </div>
 
+  <div class="section" id="services">
+    <div class="section-head">
+      <h2>Services</h2>
+      <a href="http://docs.kenshi.io/services" class="read-more">
+        Read More <span class="icon"><Arrow /></span>
+      </a>
+    </div>
+    <div class="services">
+      <div class="service">
+        <div class="title">
+          <span class="icon"><BinaryLock /></span>
+          Locker
+        </div>
+        <span class="content">
+          Use the Kenshi Locker to lock your liquidity or vest any other tokens
+          for a set period of time.
+        </span>
+        <a href="/locker" class="green read-more">
+          Start now <span class="icon"><Arrow /></span>
+        </a>
+      </div>
+      <div class="service">
+        <div class="title">
+          <span class="icon"><Liquid /></span>
+          Liquidity Bootstrapping
+        </div>
+        <span class="content">
+          Want to launch your token but lack initial liquidity? Use the Kenshi
+          LBP tool to boost your liquidity fast.
+        </span>
+        <a href="/liquidity-bootstrapping" class="green read-more">
+          Learn more <span class="icon"><Arrow /></span>
+        </a>
+      </div>
+      <div class="service">
+        <div class="title">
+          <span class="icon"><Code /></span>
+          Smart Contract Development
+        </div>
+        <span class="content">
+          Kenshi offers custom token development and related services with high
+          development standards at a competitive cost!
+        </span>
+        <a href="/development" class="green read-more">
+          See what we do <span class="icon"><Arrow /></span>
+        </a>
+      </div>
+      <div class="service">
+        <div class="title">
+          <span class="icon"><Shield /></span>
+          Security Audits
+        </div>
+        <span class="content">
+          Kenshi developers and security experts review your smart contract for
+          bugs and security issues, helping you find and resolve them all!
+        </span>
+        <a href="/audits" class="green read-more">
+          See an example <span class="icon"><Arrow /></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <div class="section">
     <div class="samurai-illustration" />
     <div class="section-head">
@@ -173,7 +240,7 @@
       <div class="feature">
         <div class="title">
           <span class="icon"><Flame /></span>
-          Per transaction burns
+          Automatic burns
         </div>
         <span class="content">
           1% of the tokens in every transaction are burned and are taken out of
@@ -206,7 +273,7 @@
       <div class="feature">
         <div class="title">
           <span class="icon"><Gauge /></span>
-          Adjustable Max Balance
+          Max Balance
         </div>
         <span class="content">
           There's an adjustable upper limit for how many tokens a wallet can
@@ -404,7 +471,7 @@
     height: 1200px;
     width: 800px;
     left: -300px;
-    top: 0px;
+    top: -300px;
     z-index: -1;
     filter: grayscale(1) contrast(0);
     transform: rotate(33deg);
@@ -656,16 +723,24 @@
     grid-template-columns: 0.5fr 1fr 1fr;
     gap: 4em;
   }
+  .services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+  }
+  .service,
   .feature {
     display: flex;
     flex-direction: column;
     gap: 1em;
   }
+  .service .content,
   .feature .content {
     font-size: 1.5em;
     font-weight: 300;
     line-height: 1.5em;
   }
+  .service .title,
   .feature .title {
     font-size: 2em;
     display: flex;
@@ -673,6 +748,7 @@
     gap: 0.5em;
     color: var(--primary-color);
   }
+  .service .icon,
   .feature .icon {
     height: 1em;
     width: 1em;
@@ -757,6 +833,7 @@
   a:not(.button):not(.buy a):not(.red):hover {
     color: var(--primary-color);
   }
+  .service a.green,
   .feature a.green {
     display: flex;
     align-self: flex-start;
@@ -827,6 +904,7 @@
     .hero .links:first-of-type a:not(:first-of-type) {
       display: none;
     }
+    .services,
     .investments,
     .tokenomics,
     .features {
@@ -921,6 +999,7 @@
       flex-wrap: wrap;
       gap: 1em;
     }
+    .services,
     .investments,
     .tokenomics,
     .features {
@@ -928,9 +1007,7 @@
       padding: 1em;
       gap: 2em;
     }
-    .read-more {
-      display: none !important;
-    }
+
     .milestone ul {
       padding: 1em;
       grid-template-columns: 1fr 1fr;

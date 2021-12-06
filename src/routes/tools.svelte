@@ -22,7 +22,7 @@
 
   import { ethers } from "ethers";
   import { onMount } from "svelte";
-  import abi from "../lib/abi.js";
+  import abi from "../lib/abi/kenshi.js";
 
   const formatKenshi = (n) =>
     ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
@@ -165,9 +165,9 @@
             </div>
           </div>
         </a>
+        <a href="/#services">Services</a>
         <a href="/#tokenomics">Tokenomics</a>
         <a href="https://docs.kenshi.io">Whitepaper</a>
-        <a href="/#roadmap">Roadmap</a>
       </div>
       <div class="spacer" />
       <div class="links">
