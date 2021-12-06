@@ -11,7 +11,7 @@ export async function post(request) {
   const db = await getDB();
   const collection = db.collection("contact-messages");
 
-  const ip = request.headers["x-forwarded-for"];
+  const ip = request.headers["x-forwarded-for"] || "localhost";
   const last = await collection.findOne({ ip }, { sort: { time: -1 } });
 
   if (last?.time && new Date() - last.time < 5000) {
@@ -24,6 +24,7 @@ export async function post(request) {
     topic,
     subject,
     body,
+    ip,
     time: new Date(),
   });
 
