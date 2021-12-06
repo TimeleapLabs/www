@@ -4,26 +4,74 @@
 
   export let topic = "";
   export let subject = "";
+
+  let name;
+  let email;
+  let body;
+
+  let message;
+  let disable = undefined;
+  let hideForm = false;
+
+  const submitMessage = () => {
+    disable = true;
+    if (!body) {
+      message = "Please write your message first";
+      disable = undefined;
+      return;
+    }
+    if (!name) {
+      message = "We need to know your name!";
+      disable = undefined;
+      return;
+    }
+    if (!email) {
+      message = "We need your email to be able to contact you back!";
+      disable = undefined;
+      return;
+    }
+    if (!subject) {
+      message = "Please enter a subject for your message";
+      disable = undefined;
+      return;
+    }
+    if (!topic) {
+      message = "Please choose one of the possible topics";
+      disable = undefined;
+      return;
+    }
+    message = "";
+    contact(subject, body, name, topic, email);
+    hideForm = true;
+  };
 </script>
 
-<div class="contact-form">
-  <input type="text" placeholder="Name" />
-  <input type="text" placeholder="Email" />
-  <input type="text" placeholder="Subject" bind:value={subject} />
-  <div class="select-wrapper">
-    <select bind:value={topic}>
-      <option disabled value=""> Select Topic </option>
-      <option value="devel"> Development </option>
-      <option value="audit"> Security Audits </option>
-      <option value="locker"> Locker Service </option>
-      <option value="lbp"> Liquidity Bootstrapping </option>
-      <option value="token"> Kenshi Token </option>
-      <option value="other"> Other </option>
-    </select>
-    <div class="chevron"><ChevronDown /></div>
+{#if !hideForm}
+  {#if message}
+    <div class="message">{message}</div>
+  {/if}
+  <div class="contact-form">
+    <input type="text" placeholder="Name" bind:value={name} />
+    <input type="text" placeholder="Email" bind:value={email} />
+    <input type="text" placeholder="Subject" bind:value={subject} />
+    <div class="select-wrapper">
+      <select bind:value={topic}>
+        <option disabled value=""> Select Topic </option>
+        <option value="devel"> Development </option>
+        <option value="audit"> Security Audits </option>
+        <option value="locker"> Locker Service </option>
+        <option value="lbp"> Liquidity Bootstrapping </option>
+        <option value="token"> Kenshi Token </option>
+        <option value="other"> Other </option>
+      </select>
+      <div class="chevron"><ChevronDown /></div>
+    </div>
+    <textarea placeholder="Your message" rows="5" bind:value={body} />
+    <button on:click={submitMessage} disabled={disable}>Send</button>
   </div>
-  <textarea placeholder="Your message" rows="5" />
-</div>
+{:else}
+  We've received your message and will contact you as soon as possible!
+{/if}
 
 <style>
   .contact-form {
@@ -73,6 +121,29 @@
     height: 1em;
     width: 1em;
     pointer-events: none;
+  }
+  button {
+    font-size: 1.25em;
+    padding: 0.75em 1.5em;
+    background: #000;
+    color: #fff;
+    border-radius: 3em;
+    font-family: "Raleway";
+    display: inline-flex;
+    align-items: center;
+    transition: cubic-bezier(0.39, 0.575, 0.565, 1) all 0.3s;
+    border: none;
+    outline: none;
+    max-width: 160px;
+    justify-content: center;
+    cursor: pointer;
+  }
+  button:hover {
+    background: var(--primary-color);
+  }
+  .message {
+    color: var(--primary-color);
+    padding: 0em 1em 2em;
   }
   @media (max-width: 760px) {
     .contact-form {
