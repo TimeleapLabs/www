@@ -41,8 +41,15 @@
       return;
     }
     message = "";
-    contact(subject, body, name, topic, email);
-    hideForm = true;
+    contact(subject, body, name, topic, email).then((resp) => {
+      if (resp.status === 200) {
+        hideForm = true;
+      } else {
+        message =
+          "There was an issue sending your message, please try again later";
+        disable = undefined;
+      }
+    });
   };
 </script>
 

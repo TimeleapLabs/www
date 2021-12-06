@@ -18,15 +18,18 @@ export async function post(request) {
     return { status: 401 };
   }
 
-  await collection.insertOne({
-    name,
-    email,
-    topic,
-    subject,
-    body,
-    ip,
-    time: new Date(),
-  });
-
-  return { status: 200 };
+  try {
+    await collection.insertOne({
+      name,
+      email,
+      topic,
+      subject,
+      body,
+      ip,
+      time: new Date(),
+    });
+    return { status: 200 };
+  } catch (error) {
+    return { status: 500 };
+  }
 }
