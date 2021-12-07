@@ -38,6 +38,13 @@
   let lockerCreator;
   let price = ethers.BigNumber.from(0);
   let acceptedTerms = true;
+  let address = "";
+
+  const manage = () => {
+    if (address) {
+      goto(`/locker/manage/${address}`);
+    }
+  };
 
   $: hasWallets = metaMask || binanceChainWallet;
 
@@ -159,6 +166,20 @@
           See an example <Arrow />
         </a>
       </div>
+      <div>
+        <p>
+          To manage a locker, put the locker address in the field below and
+          press on the Go button!
+        </p>
+        <div class="manage">
+          <input
+            type="text"
+            placeholder="Locker address"
+            bind:value={address}
+          />
+          <button on:click={manage}>Go</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="section creator">
@@ -262,6 +283,52 @@
   }
   a:not(.button):not(.buy a):not(.red):hover {
     color: var(--primary-color);
+  }
+  .manage {
+    display: flex;
+    gap: 1em;
+    margin-top: 2em;
+  }
+  .manage button {
+    font-size: 1.25em;
+    padding: 0.5em 1em;
+    background: #000;
+    color: #fff;
+    border-radius: 3em;
+    font-family: "Raleway";
+    display: inline-flex;
+    align-items: center;
+    transition: cubic-bezier(0.39, 0.575, 0.565, 1) all 0.3s;
+    border: none;
+    outline: none;
+    max-width: 160px;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .manage input {
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 40px 4px rgb(0 0 0 / 10%);
+    border-radius: 1.5em;
+    padding: 1em 2em;
+    align-items: center;
+    background: linear-gradient(
+      166deg,
+      rgba(105, 118, 121, 0.2) 44%,
+      rgba(33, 43, 46, 0.2) 100%
+    );
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(32px);
+    color: #000;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    flex: 1;
+  }
+  button:hover {
+    background: var(--primary-color);
   }
   .red {
     color: var(--primary-color);
