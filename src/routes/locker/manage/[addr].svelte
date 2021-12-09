@@ -280,7 +280,7 @@
             </div>
           </div>
           <div class="buttons">
-            <button on:click={lockTokens}> Lock </button>
+            <button on:click={lockTokens}> Send to locker </button>
             <div class="spacer" />
             — Or —
             <div class="spacer" />
