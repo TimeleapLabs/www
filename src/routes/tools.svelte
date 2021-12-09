@@ -22,7 +22,9 @@
 
   import { ethers } from "ethers";
   import { onMount } from "svelte";
+
   import abi from "../lib/abi/kenshi.js";
+  import { wallet } from "src/stores/wallet";
 
   const formatKenshi = (n) =>
     ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
@@ -85,6 +87,11 @@
     await provider.send("wallet_switchEthereumChain", [{ chainId }]);
   };
 
+  const selectWallet = async (chosenWallet) => {
+    $wallet = chosenWallet;
+    return connectWallet($wallet);
+  };
+
   const connectWallet = async (wallet) => {
     await switchChain(wallet, "0x61");
     const provider = new ethers.providers.Web3Provider(wallet);
@@ -93,6 +100,8 @@
     userAddress = await signer.getAddress();
     updateValues();
   };
+
+  $: if ($wallet) connectWallet($wallet);
 
   const updateValues = async () => {
     if (signer && userAddress) {
@@ -194,12 +203,12 @@
         <div class="connect">
           Connect with
           {#if binanceChainWallet}
-            <button on:click={() => connectWallet(binanceChainWallet)}>
+            <button on:click={() => selectWallet(binanceChainWallet)}>
               <BinanceChainWallet />
             </button>
           {/if}
           {#if metaMask}
-            <button on:click={() => connectWallet(metaMask)}>
+            <button on:click={() => selectWallet(metaMask)}>
               <MetaMask />
             </button>
           {/if}
