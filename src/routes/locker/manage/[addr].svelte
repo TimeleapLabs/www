@@ -21,6 +21,7 @@
 
   import abi from "src/lib/abi/locker.js";
   import bep20 from "src/lib/abi/bep20.js";
+  import { wallet } from "src/stores/wallet";
 
   let kenshi;
   let signer;
@@ -62,6 +63,11 @@
     await provider.send("wallet_switchEthereumChain", [{ chainId }]);
   };
 
+  const selectWallet = async (chosenWallet) => {
+    $wallet = chosenWallet;
+    return connectWallet($wallet);
+  };
+
   const connectWallet = async (wallet) => {
     await switchChain(wallet, "0x61");
     const provider = new ethers.providers.Web3Provider(wallet);
@@ -70,6 +76,8 @@
     userAddress = await signer.getAddress();
     updateValues();
   };
+
+  $: if ($wallet) connectWallet($wallet);
 
   const updateValues = async () => {
     locker = new ethers.Contract(contractAddr, abi, signer);
@@ -162,12 +170,12 @@
         <div class="connect">
           Connect with
           {#if binanceChainWallet}
-            <button on:click={() => connectWallet(binanceChainWallet)}>
+            <button on:click={() => selectWallet(binanceChainWallet)}>
               <BinanceChainWallet />
             </button>
           {/if}
           {#if metaMask}
-            <button on:click={() => connectWallet(metaMask)}>
+            <button on:click={() => selectWallet(metaMask)}>
               <MetaMask />
             </button>
           {/if}
