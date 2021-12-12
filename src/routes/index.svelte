@@ -406,18 +406,17 @@
       <div class="member">
         <div class="avatar">
           <img src="/images/dev.png" alt="Pouya" />
+          <div class="title">
+            <div class="role">Founder</div>
+            <div class="name">Pouya</div>
+          </div>
         </div>
         <div class="content">
-          <div class="role">Founder</div>
-          <div class="name">Pouya</div>
           <div class="bio">
-            <p>Software developer with a passion for distributed systems</p>
             <p>
-              Feel free to check my
-              <a href="https://www.linkedin.com/in/pouya-eghbali">LinkedIn</a>
-              or
-              <a href="https://github.com/pouya-eghbali">GitHub</a>
-              profile to learn more about me and my experience.
+              Entrepreneur, developer and innovator in the field of distributed
+              and decentralized systems. Fouder at Kenshi, Clio programming
+              language, and CTO at Equip.
             </p>
           </div>
           <div class="links">
@@ -427,6 +426,50 @@
             <a href="https://www.linkedin.com/in/pouya-eghbali">
               <LinkedIn />
             </a>
+          </div>
+        </div>
+      </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="/images/nat.jpeg" alt="Nathalie" />
+          <div class="title">
+            <div class="role">Cofounder</div>
+            <div class="name">Nathalie</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="bio">
+            <p>
+              I'm a data science professional with over 8 years of experience in
+              applying my analytical skills to solving problems in a diverse
+              range of industries.
+            </p>
+          </div>
+          <div class="links">
+            <a href="https://github.com/iDmple"> <Github /> </a>
+            <a href="https://www.linkedin.com/in/nathaliecasati">
+              <LinkedIn />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="/images/kev.jpg" alt="Nathalie" />
+          <div class="title">
+            <div class="role">Cofounder</div>
+            <div class="name">Kevin</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="bio">
+            <p>
+              Full-stack developer, passionate about crypto, cybersecurity and
+              DeFi!
+            </p>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Dirdmaster"> <Github /> </a>
           </div>
         </div>
       </div>
@@ -769,18 +812,29 @@
     display: flex;
     gap: 1em;
   }
+  .team {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 960px;
+    gap: 3em;
+  }
   .team img {
-    height: 200px;
-    border-radius: 1em;
+    height: 64px;
+    border-radius: 0.5em;
     box-shadow: 0px 0px 40px 4px rgb(0 0 0 / 10%);
     border: 1px solid rgb(0 0 0 / 10%);
   }
+  .member .avatar {
+    display: flex;
+    gap: 1em;
+  }
   .member {
     display: flex;
-    gap: 4em;
+    flex-direction: column;
   }
   .member .content {
     flex: 1;
+    gap: 1em;
   }
   .member .role {
     font-size: 2em;
@@ -892,6 +946,11 @@
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
+  @media (max-width: 1600px) {
+    .team-guardian-illustration {
+      filter: opacity(0.1);
+    }
+  }
   @media (max-width: 1500px) {
     .page {
       padding: 0;
@@ -952,6 +1011,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .team {
+      grid-template-columns: 1fr;
     }
   }
   @media (max-width: 600px) {
