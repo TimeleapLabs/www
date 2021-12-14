@@ -31,6 +31,8 @@
   import Code from "../icons/Code.svelte";
   import Shield from "../icons/Shield.svelte";
 
+  import ContactForm from "../components/ContactForm.svelte";
+
   import { scrollto } from "svelte-scrollto";
   import { onMount } from "svelte";
 
@@ -400,7 +402,6 @@
   </div>
 
   <div class="section no-overflow">
-    <div class="team-guardian-illustration" />
     <h2>Team</h2>
     <div class="team">
       <div class="member">
@@ -414,9 +415,9 @@
         <div class="content">
           <div class="bio">
             <p>
-              Entrepreneur, developer and innovator in the field of distributed
-              and decentralized systems. Fouder at Kenshi, Clio programming
-              language, and CTO at Equip.
+              Entrepreneur, developer and innovator with a passion for
+              distributed and decentralized systems. Fouder at Kenshi, Clio
+              programming language, and CTO at Equip.
             </p>
           </div>
           <div class="links">
@@ -453,7 +454,7 @@
           </div>
         </div>
       </div>
-      <div class="member">
+      <!--div class="member">
         <div class="avatar">
           <img src="/images/kev.jpg" alt="Nathalie" />
           <div class="title">
@@ -472,7 +473,19 @@
             <a href="https://github.com/Dirdmaster"> <Github /> </a>
           </div>
         </div>
-      </div>
+      </div-->
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="team-guardian-illustration" />
+    <h2>Contact us</h2>
+    <div class="contact-details">
+      Use the form below to contact us, or send an email to
+      <a href="mailto:hi@kenshi.io">hi@kenshi.io</a>.
+    </div>
+    <div class="contact-form">
+      <ContactForm />
     </div>
   </div>
 
@@ -493,6 +506,12 @@
 <div class="bar" />
 
 <style>
+  .contact-form {
+    max-width: 720px;
+  }
+  .contact-details {
+    margin-bottom: 2em;
+  }
   .page {
     padding: 1em 6em;
     position: relative;
@@ -946,11 +965,6 @@
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
-  @media (max-width: 1600px) {
-    .team-guardian-illustration {
-      filter: opacity(0.1);
-    }
-  }
   @media (max-width: 1500px) {
     .page {
       padding: 0;
@@ -978,23 +992,8 @@
     .samurai-robot img {
       max-width: 80%;
     }
-  }
-  @media (max-width: 960px) {
     .team-guardian-illustration {
-      height: 350px;
-      width: 350px;
-    }
-  }
-  @media (max-width: 900px) {
-    .team-guardian-illustration {
-      height: 300px;
-      width: 300px;
-    }
-  }
-  @media (max-width: 840px) {
-    .team-guardian-illustration {
-      height: 240px;
-      width: 240px;
+      filter: opacity(0.1);
     }
   }
   @media (max-width: 800px) {
@@ -1021,6 +1020,10 @@
       padding: 0;
     }
     .section {
+      padding: 1em;
+    }
+    .contact-details,
+    .contact-form {
       padding: 1em;
     }
     .intro {
