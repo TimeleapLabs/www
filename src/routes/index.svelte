@@ -454,7 +454,7 @@
           </div>
         </div>
       </div>
-      <!--div class="member">
+      <div class="member">
         <div class="avatar">
           <img src="/images/kev.jpg" alt="Nathalie" />
           <div class="title">
@@ -473,7 +473,7 @@
             <a href="https://github.com/Dirdmaster"> <Github /> </a>
           </div>
         </div>
-      </div-->
+      </div>
     </div>
   </div>
 
@@ -833,8 +833,7 @@
   }
   .team {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 960px;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 3em;
   }
   .team img {
@@ -971,6 +970,9 @@
     }
   }
   @media (max-width: 1250px) {
+    .team {
+      grid-template-columns: 1fr 1fr;
+    }
     .investment-token .content {
       width: 100%;
     }
@@ -1013,6 +1015,7 @@
     }
     .team {
       grid-template-columns: 1fr;
+      gap: 1em;
     }
   }
   @media (max-width: 600px) {
@@ -1081,12 +1084,7 @@
     .member {
       flex-direction: column;
       gap: 1em;
-      padding: 1.5em;
-    }
-    .member .avatar img {
-      height: 100px;
-      width: 100px;
-      border-radius: 1em;
+      padding: 1em;
     }
     .member .content .links {
       margin-top: 1em;
