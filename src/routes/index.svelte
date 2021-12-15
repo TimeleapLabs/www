@@ -465,8 +465,10 @@
         <div class="content">
           <div class="bio">
             <p>
-              Full-stack developer, passionate about crypto, cybersecurity and
-              DeFi!
+              I'm a full-stack developer who has been growing online businesses
+              for the last 3 years. I'm proficient in design, marketing and
+              deploying complex infrastructures. When I'm not working, I roast
+              coffee for fun.
             </p>
           </div>
           <div class="links">
