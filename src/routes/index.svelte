@@ -31,6 +31,8 @@
   import Code from "../icons/Code.svelte";
   import Shield from "../icons/Shield.svelte";
 
+  import ContactForm from "../components/ContactForm.svelte";
+
   import { scrollto } from "svelte-scrollto";
   import { onMount } from "svelte";
 
@@ -400,24 +402,22 @@
   </div>
 
   <div class="section no-overflow">
-    <div class="team-guardian-illustration" />
     <h2>Team</h2>
     <div class="team">
       <div class="member">
         <div class="avatar">
           <img src="/images/dev.png" alt="Pouya" />
+          <div class="title">
+            <div class="role">Founder</div>
+            <div class="name">Pouya</div>
+          </div>
         </div>
         <div class="content">
-          <div class="role">Founder</div>
-          <div class="name">Pouya</div>
           <div class="bio">
-            <p>Software developer with a passion for distributed systems</p>
             <p>
-              Feel free to check my
-              <a href="https://www.linkedin.com/in/pouya-eghbali">LinkedIn</a>
-              or
-              <a href="https://github.com/pouya-eghbali">GitHub</a>
-              profile to learn more about me and my experience.
+              Entrepreneur, developer and innovator with a passion for
+              distributed and decentralized systems. Fouder at Kenshi, Clio
+              programming language, and CTO at Equip.
             </p>
           </div>
           <div class="links">
@@ -430,6 +430,64 @@
           </div>
         </div>
       </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="/images/nat.jpeg" alt="Nathalie" />
+          <div class="title">
+            <div class="role">Cofounder</div>
+            <div class="name">Nathalie</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="bio">
+            <p>
+              I'm a data science professional with over 8 years of experience in
+              applying my analytical skills to solving problems in a diverse
+              range of industries.
+            </p>
+          </div>
+          <div class="links">
+            <a href="https://github.com/iDmple"> <Github /> </a>
+            <a href="https://www.linkedin.com/in/nathaliecasati">
+              <LinkedIn />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="/images/kev.jpg" alt="Nathalie" />
+          <div class="title">
+            <div class="role">Cofounder</div>
+            <div class="name">Kevin</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="bio">
+            <p>
+              I'm a full-stack developer who has been growing online businesses
+              for the last 3 years. I'm proficient in design, marketing and
+              deploying complex infrastructures. When I'm not working, I roast
+              coffee for fun.
+            </p>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Dirdmaster"> <Github /> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="team-guardian-illustration" />
+    <h2>Contact us</h2>
+    <div class="contact-details">
+      Use the form below to contact us, or send an email to
+      <a href="mailto:hi@kenshi.io">hi@kenshi.io</a>.
+    </div>
+    <div class="contact-form">
+      <ContactForm />
     </div>
   </div>
 
@@ -450,6 +508,12 @@
 <div class="bar" />
 
 <style>
+  .contact-form {
+    max-width: 720px;
+  }
+  .contact-details {
+    margin-bottom: 2em;
+  }
   .page {
     padding: 1em 6em;
     position: relative;
@@ -634,7 +698,8 @@
   .highlights .highlight .icon {
     height: 2em;
     width: 2em;
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: 1fr;
     color: var(--primary-color);
     align-items: center;
     justify-content: center;
@@ -716,7 +781,7 @@
   }
   .button .icon {
     margin-right: 0.5em;
-    display: flex;
+    display: grid;
   }
   .features {
     display: grid;
@@ -769,18 +834,28 @@
     display: flex;
     gap: 1em;
   }
+  .team {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3em;
+  }
   .team img {
-    height: 200px;
-    border-radius: 1em;
+    height: 64px;
+    border-radius: 0.5em;
     box-shadow: 0px 0px 40px 4px rgb(0 0 0 / 10%);
     border: 1px solid rgb(0 0 0 / 10%);
   }
+  .member .avatar {
+    display: flex;
+    gap: 1em;
+  }
   .member {
     display: flex;
-    gap: 4em;
+    flex-direction: column;
   }
   .member .content {
     flex: 1;
+    gap: 1em;
   }
   .member .role {
     font-size: 2em;
@@ -898,6 +973,9 @@
     }
   }
   @media (max-width: 1250px) {
+    .team {
+      grid-template-columns: 1fr 1fr;
+    }
     .investment-token .content {
       width: 100%;
     }
@@ -919,23 +997,8 @@
     .samurai-robot img {
       max-width: 80%;
     }
-  }
-  @media (max-width: 960px) {
     .team-guardian-illustration {
-      height: 350px;
-      width: 350px;
-    }
-  }
-  @media (max-width: 900px) {
-    .team-guardian-illustration {
-      height: 300px;
-      width: 300px;
-    }
-  }
-  @media (max-width: 840px) {
-    .team-guardian-illustration {
-      height: 240px;
-      width: 240px;
+      filter: opacity(0.1);
     }
   }
   @media (max-width: 800px) {
@@ -953,12 +1016,20 @@
       align-items: center;
       justify-content: center;
     }
+    .team {
+      grid-template-columns: 1fr;
+      gap: 1em;
+    }
   }
   @media (max-width: 600px) {
     .page {
       padding: 0;
     }
     .section {
+      padding: 1em;
+    }
+    .contact-details,
+    .contact-form {
       padding: 1em;
     }
     .intro {
@@ -1016,12 +1087,7 @@
     .member {
       flex-direction: column;
       gap: 1em;
-      padding: 1.5em;
-    }
-    .member .avatar img {
-      height: 100px;
-      width: 100px;
-      border-radius: 1em;
+      padding: 1em;
     }
     .member .content .links {
       margin-top: 1em;
