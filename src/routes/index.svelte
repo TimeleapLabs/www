@@ -698,7 +698,8 @@
   .highlights .highlight .icon {
     height: 2em;
     width: 2em;
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: 1fr;
     color: var(--primary-color);
     align-items: center;
     justify-content: center;
@@ -780,7 +781,7 @@
   }
   .button .icon {
     margin-right: 0.5em;
-    display: flex;
+    display: grid;
   }
   .features {
     display: grid;
