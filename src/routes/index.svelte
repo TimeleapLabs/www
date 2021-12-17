@@ -456,7 +456,7 @@
       </div>
       <div class="member">
         <div class="avatar">
-          <img src="/images/kev.jpg" alt="Nathalie" />
+          <img src="/images/kev.jpg" alt="Kevin" />
           <div class="title">
             <div class="role">Cofounder</div>
             <div class="name">Kevin</div>
