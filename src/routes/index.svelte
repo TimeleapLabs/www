@@ -140,7 +140,11 @@
           <div class="buy">
             <a href="#presale">
               <span class="icon"><Time /></span>
-              Opening trades in {days} day{days > 1 ? "s" : ""}
+              {#if days}
+                Opening trades in {days} day{days > 1 ? "s" : ""}
+              {:else}
+                Opening trades in less than a day!
+              {/if}
             </a>
           </div>
         </div>

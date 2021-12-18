@@ -56,7 +56,7 @@
   $: sellingTaxCalculated = sellingAmount - (sellingAmount * sellingTax) / 100;
 
   // TESTNET CONTRACT ADDRESS
-  const contractAddr = "0x07FB314dB4044D14834b529b95Ab289104f2827a";
+  const contractAddr = "0xcEe3c725aB1c1393765F7f29257fa5800A8D461f";
   const treasuryAddr = "0x2eF7F40A0826651d46BAD74d4A67919Db17404e5";
 
   const getPrice = async () => {

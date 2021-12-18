@@ -14,30 +14,29 @@
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
 
-  import abi from "../../lib/abi/deployer.js";
+  import abi from "src/lib/abi/deployer.js";
+  import kenshiAbi from "src/lib/abi/kenshi.js";
 
   const formatBNB = (n) =>
+    ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
+
+  const formatKenshi = (n) =>
     ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
 
   let kenshi;
   let signer;
   let userAddress;
 
-  $: if (kenshi && userAddress && sellingDate && sellingAmount) {
-    const timestamp = Math.floor(new Date(sellingDate).valueOf() / 1000);
-    kenshi.getTaxPercentageAt(userAddress, timestamp).then((tax) => {
-      sellingTax = tax;
-    });
-  }
-
   // TESTNET CONTRACT ADDRESS
-  const contractAddr = "0x04857127bfee2bB710DEDbBd75c096acD40A736D";
+  const contractAddr = "0x11d45EeE5479b1b26a8B88b7BD22b47A645483B2";
+  const kenshiAddr = "0xcEe3c725aB1c1393765F7f29257fa5800A8D461f";
 
   let binanceChainWallet;
   let metaMask;
   let hasWallets;
   let lockerCreator;
   let price = ethers.BigNumber.from(0);
+  let priceInKenshi = ethers.BigNumber.from(0);
   let acceptedTerms = true;
   let address = "";
 
@@ -73,6 +72,9 @@
   const updateValues = async () => {
     lockerCreator = new ethers.Contract(contractAddr, abi, signer);
     price = await lockerCreator.getPrice();
+    priceInKenshi = await lockerCreator.getPriceInKenshi();
+    listenToPriceChanges();
+    kenshi = new ethers.Contract(kenshiAddr, kenshiAbi, signer);
   };
 
   const waitForLockerCreation = (hash) => {
@@ -84,8 +86,24 @@
     });
   };
 
+  const listenToPriceChanges = () => {
+    lockerCreator.on("PriceChanged", async (newPrice) => {
+      price = newPrice;
+    });
+    lockerCreator.on("PriceInKenshiChanged", async (newPrice) => {
+      priceInKenshi = newPrice;
+    });
+  };
+
   const create = async () => {
     const call = await lockerCreator.newLocker({ value: price });
+    const [lockerAddr] = await waitForLockerCreation(call.hash);
+    goto(`/locker/manage/${lockerAddr}`);
+  };
+
+  const createWithKenshi = async () => {
+    await kenshi.approve(contractAddr, priceInKenshi);
+    const call = await lockerCreator.newLockerPayInKenshi();
     const [lockerAddr] = await waitForLockerCreation(call.hash);
     goto(`/locker/manage/${lockerAddr}`);
   };
@@ -215,11 +233,18 @@
               terms of service
             </a>.
           </label>
-          {#if acceptedTerms}
-            <button on:click={create}> Create - {formatBNB(price)} BNB </button>
-          {:else}
-            <button disabled> Please accept TOS first </button>
-          {/if}
+          <div class="buttons">
+            {#if acceptedTerms}
+              <button on:click={create}>
+                Create - {formatBNB(price)} BNB
+              </button>
+              <button on:click={createWithKenshi}>
+                Create - {formatKenshi(priceInKenshi)} Kenshi
+              </button>
+            {:else}
+              <button disabled> Please accept TOS first </button>
+            {/if}
+          </div>
         </div>
       {/if}
     </div>
@@ -454,8 +479,11 @@
   label {
     display: block;
   }
-  label + button {
+  .buttons {
     margin-top: 2em;
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
   }
   .create-form button {
     font-size: 1em;

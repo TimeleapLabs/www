@@ -14,6 +14,8 @@
   import Wallet from "src/icons/Wallet.svelte";
   import Coins from "src/icons/Coins.svelte";
   import Circulation from "src/icons/Circulation.svelte";
+  import ThumbsDown from "src/icons/ThumbsDown.svelte";
+  import ThumbsUp from "src/icons/ThumbsUp.svelte";
 
   import { ethers } from "ethers";
   import { onMount } from "svelte";
@@ -21,6 +23,7 @@
 
   import abi from "src/lib/abi/locker.js";
   import bep20 from "src/lib/abi/bep20.js";
+  import deployerAbi from "src/lib/abi/deployer";
   import { wallet } from "src/stores/wallet";
 
   let kenshi;
@@ -36,6 +39,7 @@
 
   // TESTNET CONTRACT ADDRESS
   const contractAddr = $page.params.addr;
+  const deployerAddr = "0x11d45EeE5479b1b26a8B88b7BD22b47A645483B2";
 
   let binanceChainWallet;
   let metaMask;
@@ -43,6 +47,7 @@
   let locker;
   let lock;
   let owner;
+  let isKenshiLocker;
 
   let newLockDate;
   let tokenAddr = "";
@@ -85,6 +90,8 @@
     lock = new Date(timestamp * 1000);
     owner = await locker.getOwner();
     newLockDate = lock.toISOString().slice(0, -14);
+    const deployer = new ethers.Contract(deployerAddr, deployerAbi, signer);
+    isKenshiLocker = await deployer.isKenshiLocker(contractAddr);
   };
 
   const copy = (text) => () => navigator.clipboard.writeText(text);
@@ -217,6 +224,22 @@
         <h2>Locker Details</h2>
       </div>
       <div class="locker-infos">
+        <div class="locker-info glass">
+          <span class="icon">
+            {#if isKenshiLocker}
+              <ThumbsUp />
+            {:else}
+              <ThumbsDown />
+            {/if}
+          </span>
+          Validity
+          <div class="spacer" />
+          {#if isKenshiLocker}
+            <span class="green"> Verified Kenshi Locker</span>
+          {:else}
+            <span class="red"> Not Kenshi Locker!</span>
+          {/if}
+        </div>
         <div class="locker-info glass">
           <span class="icon"><Calendar /></span>
           Unlock Date
