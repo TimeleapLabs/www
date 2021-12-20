@@ -420,7 +420,7 @@
           <div class="bio">
             <p>
               Entrepreneur, developer and innovator with a passion for
-              distributed and decentralized systems. Fouder at Kenshi, Clio
+              distributed and decentralized systems. Founder at Kenshi, Clio
               programming language, and CTO at Equip.
             </p>
           </div>
