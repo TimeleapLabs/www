@@ -976,7 +976,7 @@
   .section {
     position: relative;
   }
-  .head .vertical-logo:not(.chart .logo) {
+  .head .vertical-logo {
     margin-left: -0.5em;
   }
   .hidden {
