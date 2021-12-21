@@ -30,20 +30,37 @@
   import Liquid from "../icons/Liquid.svelte";
   import Code from "../icons/Code.svelte";
   import Shield from "../icons/Shield.svelte";
+  import Contract from "src/icons/Contract.svelte";
+  import Copy from "src/icons/Copy.svelte";
 
   import ContactForm from "../components/ContactForm.svelte";
 
   import { scrollto } from "svelte-scrollto";
   import { onMount } from "svelte";
 
-  const launch = new Date("2021-12-19").valueOf();
-  const days = Math.round((launch - new Date().valueOf()) / 86400000);
+  const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
+  let price = 0;
+
+  const setPrice = async () => {
+    const currentPrice = await fetch(
+      `https://api.pancakeswap.info/api/v2/tokens/${contractAddr}`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => resp.data?.price);
+    const priceForK = currentPrice * 1000 || price;
+    price = priceForK.toString().replace(/(?<=\.\d{8})\d+/, "");
+  };
 
   onMount(() => {
     const { hash } = window.location;
     if (hash) {
       document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
     }
+    const interval = setInterval(setPrice, 15000);
+    setPrice();
+    return () => {
+      clearInterval(interval);
+    };
   });
 </script>
 
@@ -114,7 +131,7 @@
             <span class="icon"><Book /></span>
             Learn More
           </a>
-          <a href="/tools" class="button hidden">
+          <a href="/tools" class="button">
             <span class="icon"><Tools /></span>
             Kenshi Tools
           </a>
@@ -136,15 +153,15 @@
           <div class="logo textual">
             <img src="/images/kenshi.textual.svg" alt="Kenshi" />
           </div>
-          <div class="price">Initial DEX Offering</div>
+          <div class="price">${price} for 1K₭</div>
           <div class="buy">
-            <a href="#presale">
-              <span class="icon"><Time /></span>
-              {#if days > 0}
-                Opening trades in {days} day{days > 1 ? "s" : ""}
-              {:else}
-                Opening trades in less than a day!
-              {/if}
+            <a
+              href="https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784"
+            >
+              <span class="icon">
+                <img src="/images/bunny.png" alt="PancakeSwap" />
+              </span>
+              Buy on PancakeSwap!
             </a>
           </div>
         </div>
@@ -647,10 +664,11 @@
     height: 100%;
   }
   .buy a .icon {
-    font-size: 2.5em;
+    font-size: 1em;
     display: flex;
     align-items: center;
     padding-left: 0.2em;
+    height: 100%;
   }
   .spacer {
     flex: 1;
@@ -689,7 +707,7 @@
     padding: 0.5em 0 0.75em;
   }
   .highlights {
-    margin-top: 3em;
+    margin-top: 2em;
     display: flex;
     gap: 2em;
     flex-wrap: wrap;
@@ -960,7 +978,7 @@
   .section {
     position: relative;
   }
-  .head .logo {
+  .head .logo:not(.chart .logo) {
     margin-left: -0.5em;
   }
   .hidden {

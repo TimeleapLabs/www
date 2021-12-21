@@ -27,10 +27,10 @@
   import { wallet } from "src/stores/wallet";
 
   const formatKenshi = (n) =>
-    ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
+    ethers.utils.formatUnits(n).replace(/(?<=\.\d{2})\d+/, "");
 
   const formatUSD = (n) =>
-    (Math.floor(n * 100) / 100).toString().replace(/(?=\.\d{2})\d+/, "");
+    (Math.floor(n * 100) / 100).toString().replace(/(?<=\.\d{2})\d+/, "");
 
   let sellingDate = new Date().toISOString().slice(0, -14);
   let sellingAmount = 100;
@@ -55,18 +55,17 @@
 
   $: sellingTaxCalculated = sellingAmount - (sellingAmount * sellingTax) / 100;
 
-  // TESTNET CONTRACT ADDRESS
-  const contractAddr = "0xcEe3c725aB1c1393765F7f29257fa5800A8D461f";
-  const treasuryAddr = "0x2eF7F40A0826651d46BAD74d4A67919Db17404e5";
+  // MAINNET CONTRACT ADDRESS
+  const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
+  const treasuryAddr = "0xD59321c8266534dac369F0eFABDD5b815F1a5eb6";
 
   const getPrice = async () => {
-    return 1.8e-9;
-    /* const price = await fetch(
+    const price = await fetch(
       `https://api.pancakeswap.info/api/v2/tokens/${contractAddr}`
     )
       .then((resp) => resp.json())
       .then((resp) => resp.data?.price);
-    return price || 1.8e-9; */
+    return price || 1.8e-9;
   };
 
   const getMaxBuy = (maxBalance, balance) => {
@@ -93,7 +92,7 @@
   };
 
   const connectWallet = async (wallet) => {
-    await switchChain(wallet, "0x61");
+    await switchChain(wallet, "0x38");
     const provider = new ethers.providers.Web3Provider(wallet);
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
@@ -245,7 +244,7 @@
       </div>
       <div class="stat">
         <span class="icon"><CreditCard /></span>
-        <span> Max Buy </span>
+        <span> Possible to Buy </span>
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
