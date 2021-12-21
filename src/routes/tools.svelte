@@ -53,7 +53,7 @@
     });
   }
 
-  $: sellingTaxCalculated = sellingAmount - (sellingAmount * sellingTax) / 100;
+  $: sellingTaxCalculated = (sellingAmount * sellingTax) / 100;
 
   // MAINNET CONTRACT ADDRESS
   const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
