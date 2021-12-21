@@ -30,8 +30,6 @@
   import Liquid from "../icons/Liquid.svelte";
   import Code from "../icons/Code.svelte";
   import Shield from "../icons/Shield.svelte";
-  import Contract from "src/icons/Contract.svelte";
-  import Copy from "src/icons/Copy.svelte";
 
   import ContactForm from "../components/ContactForm.svelte";
 
