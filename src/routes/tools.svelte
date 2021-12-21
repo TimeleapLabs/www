@@ -26,11 +26,15 @@
   import abi from "../lib/abi/kenshi.js";
   import { wallet } from "src/stores/wallet";
 
+  const addThousandSep = (n) => parseFloat(n).toLocaleString("en-US");
+
   const formatKenshi = (n) =>
-    ethers.utils.formatUnits(n).replace(/(?<=\.\d{2})\d+/, "");
+    addThousandSep(ethers.utils.formatUnits(n).replace(/(?<=\.\d{2})\d+/, ""));
 
   const formatUSD = (n) =>
-    (Math.floor(n * 100) / 100).toString().replace(/(?<=\.\d{2})\d+/, "");
+    addThousandSep(
+      (Math.floor(n * 100) / 100).toString().replace(/(?<=\.\d{2})\d+/, "")
+    );
 
   let sellingDate = new Date().toISOString().slice(0, -14);
   let sellingAmount = 100;
