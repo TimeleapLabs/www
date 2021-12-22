@@ -35,10 +35,16 @@
   const formatUSD = (n) =>
     addThousandSep(withDecimals((Math.floor(n * 100) / 100).toString(), 2));
 
+  let sellingAmountText = "100";
+
   let sellingDate = new Date().toISOString().slice(0, -14);
   let sellingAmount = 100;
   let sellingTax = 5;
   let sellingTaxCalculated = 5;
+
+  $: if (sellingAmountText) {
+    sellingAmount = parseFloat(sellingAmountText.replace(/\D/g, ""));
+  }
 
   let balance = ethers.BigNumber.from(0);
   let maxBalance = ethers.BigNumber.from(0);
@@ -117,6 +123,15 @@
 
   const walletInterval = setInterval(updateValues, 5000);
 
+  let addThousandsSep = (e) => {
+    const n = parseFloat(e.target.value.replace(/\D/g, ""));
+    e.target.value = n.toLocaleString("en-US");
+  };
+
+  let holdingText = "100,000,000";
+  let dailyVolumeText = "1,000,000,000";
+  let circulationText = "100,000,000,000,000";
+
   let holding = 1000000;
   let dailyVolume = 1000000000;
   let circulation = 100000000000000;
@@ -125,6 +140,18 @@
     .slice(0, -14);
   let averageTax = 10;
   let reflections = 0;
+
+  $: if (holdingText) {
+    holding = parseFloat(holdingText.replace(/\D/g, ""));
+  }
+
+  $: if (dailyVolumeText) {
+    dailyVolume = parseFloat(holdingText.replace(/\D/g, ""));
+  }
+
+  $: if (circulationText) {
+    circulation = parseFloat(circulationText.replace(/\D/g, ""));
+  }
 
   const estimateReflections = () => {
     const days = (new Date(toDate).valueOf() - new Date().valueOf()) / 86400;
@@ -283,7 +310,12 @@
           <span class="icon"><Coins /></span>
           <label for="#selling-date"> Amount </label>
           <div class="spacer" />
-          <input id="selling-amount" type="number" bind:value={sellingAmount} />
+          <input
+            id="selling-amount"
+            type="text"
+            bind:value={sellingAmountText}
+            on:keyup={addThousandsSep}
+          />
         </div>
         <div class="tax">
           <span class="icon"><Sack /></span>
@@ -293,7 +325,7 @@
             {sellingTax}%
             <span class="icon"><Arrow /></span>
             <span class="green">₭</span>
-            {sellingTaxCalculated}
+            {sellingTaxCalculated.toLocaleString("en-US")}
           </span>
         </div>
       </div>
@@ -307,9 +339,14 @@
       <div class="reflections">
         <div class="reflection">
           <span class="icon"><Coins /></span>
-          <label for="#selling-date"> Holding </label>
+          <label for="#holding"> Holding </label>
           <div class="spacer" />
-          <input id="selling-amount" type="number" bind:value={holding} />
+          <input
+            id="holding"
+            type="text"
+            bind:value={holdingText}
+            on:keyup={addThousandsSep}
+          />
         </div>
         <div class="reflection">
           <span class="icon"><Calendar /></span>
@@ -319,30 +356,40 @@
         </div>
         <div class="reflection">
           <span class="icon"><Volume /></span>
-          <label for="#selling-date"> Daily Volume </label>
+          <label for="#volume"> Daily Volume </label>
           <div class="spacer" />
-          <input id="selling-amount" type="number" bind:value={dailyVolume} />
+          <input
+            id="volume"
+            type="text"
+            bind:value={dailyVolumeText}
+            on:keyup={addThousandsSep}
+          />
         </div>
         <div class="reflection">
           <span class="icon"><Circulation /></span>
-          <label for="#selling-date"> Circulation </label>
+          <label for="#circulation"> Circulation </label>
           <div class="spacer" />
-          <input id="selling-amount" type="number" bind:value={circulation} />
+          <input
+            id="circulation"
+            type="text"
+            bind:value={circulationText}
+            on:keyup={addThousandsSep}
+          />
         </div>
         <div class="reflection">
           <span class="icon"><Sack /></span>
-          <label for="#selling-date"> Average Tax </label>
+          <label for="#average-tax"> Average Tax </label>
           <div class="spacer" />
-          <input id="selling-amount" type="number" bind:value={averageTax} />
+          <input id="average-tax" type="number" bind:value={averageTax} />
         </div>
         <div class="reflection">
           <span class="icon"><Reflect /></span>
-          <label for="#selling-date"> Reflections </label>
+          <label for="#reflections"> Reflections </label>
           <div class="spacer" />
           <span class="tax-amount">
             ≈
             <span class="green">₭</span>
-            {reflections}
+            {reflections.toLocaleString("en-US")}
           </span>
         </div>
       </div>
