@@ -157,9 +157,9 @@
             <a
               href="https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784"
             >
-              <span class="icon">
+              <div class="icon">
                 <img src="/images/bunny.png" alt="PancakeSwap" />
-              </span>
+              </div>
               Buy on PancakeSwap!
             </a>
           </div>
