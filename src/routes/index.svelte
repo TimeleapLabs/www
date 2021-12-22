@@ -35,6 +35,7 @@
 
   import { scrollto } from "svelte-scrollto";
   import { onMount } from "svelte";
+  import { withDecimals } from "src/lib/decimals";
 
   const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
   let price = 0;
@@ -46,7 +47,7 @@
       .then((resp) => resp.json())
       .then((resp) => resp.data?.price);
     const priceForK = currentPrice * 1000 || price;
-    price = priceForK.toString().replace(/(?<=\.\d{8})\d+/, "");
+    price = withDecimals(priceForK.toString(), 8);
   };
 
   onMount(() => {
