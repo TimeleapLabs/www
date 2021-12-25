@@ -204,7 +204,11 @@
           If it's your first time visiting this page, make sure to copy your
           contract address so you can manage it later.
         </p>
-        <a href="/locker/manage" class="red" target="_blank">
+        <a
+          href="https://docs.kenshi.io/services/locker.html"
+          class="red"
+          target="_blank"
+        >
           Learn more <Arrow />
         </a>
       </div>
