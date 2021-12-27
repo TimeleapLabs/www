@@ -16,6 +16,9 @@
   import Circulation from "src/icons/Circulation.svelte";
   import ThumbsDown from "src/icons/ThumbsDown.svelte";
   import ThumbsUp from "src/icons/ThumbsUp.svelte";
+  import PullRequest from "src/icons/PullRequest.svelte";
+  import External from "src/icons/External.svelte";
+  import { Jumper } from "svelte-loading-spinners";
 
   import { ethers } from "ethers";
   import { onMount } from "svelte";
@@ -37,9 +40,9 @@
     });
   }
 
-  // TESTNET CONTRACT ADDRESS
+  // MAINNET CONTRACT ADDRESS
   const contractAddr = $page.params.addr;
-  const deployerAddr = "0x11d45EeE5479b1b26a8B88b7BD22b47A645483B2";
+  const deployerAddr = "0xaADa8d6030c590b2F7c8a0c6Eb102AE424E5413b";
 
   let binanceChainWallet;
   let metaMask;
@@ -48,11 +51,14 @@
   let lock;
   let owner;
   let isKenshiLocker;
+  let lockerVersion;
 
   let newLockDate;
   let tokenAddr = "";
   let amount = 0;
   let tokenName = "Token";
+  let tokens = [];
+  let loadingTokens = true;
 
   $: if (tokenAddr && signer) {
     const token = new ethers.Contract(tokenAddr, bep20, signer);
@@ -74,7 +80,7 @@
   };
 
   const connectWallet = async (wallet) => {
-    await switchChain(wallet, "0x61");
+    await switchChain(wallet, "0x38");
     const provider = new ethers.providers.Web3Provider(wallet);
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
@@ -84,6 +90,14 @@
 
   $: if ($wallet) connectWallet($wallet);
 
+  const getLockedTokens = async () => {
+    const req = await fetch(`/api/balance/${contractAddr}`);
+    if (req.status === 200) {
+      return await req.json();
+    }
+    return [];
+  };
+
   const updateValues = async () => {
     locker = new ethers.Contract(contractAddr, abi, signer);
     const timestamp = await locker.getLock();
@@ -92,11 +106,13 @@
     newLockDate = lock.toISOString().slice(0, -14);
     const deployer = new ethers.Contract(deployerAddr, deployerAbi, signer);
     isKenshiLocker = await deployer.isKenshiLocker(contractAddr);
+    lockerVersion = await locker.getVersion();
+    tokens = await getLockedTokens();
+    loadingTokens = false;
   };
 
   const copy = (text) => () => navigator.clipboard.writeText(text);
-  const bscScan = (addr) =>
-    `https://testnet.bscscan.com/address/${addr}#tokentxns`;
+  const bscScan = (addr) => `https://bscscan.com/address/${addr}#tokentxns`;
 
   const setNewLockDate = async () => {
     const date = Math.floor(new Date(newLockDate).valueOf() / 1000);
@@ -125,6 +141,15 @@
     const decimals = await token.decimals();
     const amountWithDecimals = getAmountWithDecimals(decimals, amount);
     await locker.withdraw(tokenAddr, owner, amountWithDecimals);
+  };
+
+  const formatBEP20 = (n) => {
+    const [lhs, rhs = ""] = ethers.utils.formatUnits(n).split(".");
+    return [lhs, rhs.slice(0, 2)].filter(Boolean).join(".");
+  };
+
+  const toPercentage = (lhs, rhs) => {
+    return ((100 * parseInt(lhs)) / parseInt(rhs)).toFixed(2);
   };
 
   onMount(async () => {
@@ -164,7 +189,7 @@
   <div class="section manager">
     <div class="samurai-illustration" />
     <div class="title">
-      <h2>Manage Locker</h2>
+      <h2>View Locker</h2>
       {#if userAddress}
         <div class="user">
           <span class="icon"><At /></span>
@@ -245,8 +270,14 @@
           {/if}
         </div>
         <div class="locker-info glass">
+          <span class="icon"><PullRequest /></span>
+          Locker Version
+          <span class="spacer" />
+          {lockerVersion}
+        </div>
+        <div class="locker-info glass">
           <span class="icon"><Calendar /></span>
-          Unlock Date
+          Unlocks
           <span class="spacer" />
           {lock.toLocaleDateString(undefined, {
             year: "numeric",
@@ -268,6 +299,44 @@
           <Copy />
         </div>
       </div>
+      <div class="title locked">
+        <h2>Locked Tokens</h2>
+      </div>
+      {#if tokens?.length}
+        <div class="locked-infos">
+          {#each tokens as token}
+            <div class="locked-info glass">
+              <div class="locked-token">
+                <div class="name">{token.display_name} ({token.symbol})</div>
+                <div class="amount">
+                  {formatBEP20(token.balance)}
+                  locked -
+                  {toPercentage(token.balance, token.total_supply)}% of total
+                </div>
+              </div>
+              <a
+                class="external"
+                href="https://bscscan.com/token/{token.token_address}"
+              >
+                <External />
+              </a>
+            </div>
+          {/each}
+        </div>
+      {:else if loadingTokens}
+        <div class="loading">
+          <Jumper
+            size="42"
+            color="var(--primary-color)"
+            unit="px"
+            duration="1s"
+          />
+          Loading locked tokens...
+        </div>
+      {:else}
+        No tokens found.
+      {/if}
+
       {#if owner === userAddress}
         <div class="admin">
           <h2>Admin</h2>
@@ -334,6 +403,11 @@
 <div class="bar" />
 
 <style>
+  .loading {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+  }
   .glass {
     display: flex;
     align-items: center;
@@ -408,6 +482,9 @@
   }
   a:not(.button):not(.buy a):not(.red):hover {
     color: var(--primary-color);
+  }
+  .external {
+    margin-left: 1em;
   }
   .red {
     color: var(--primary-color);
@@ -527,6 +604,24 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 2em;
   }
+  .title.locked {
+    margin-top: 4em;
+  }
+  .locked-infos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2em;
+    max-width: 720px;
+  }
+  .locked-token {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    flex: 1;
+  }
+  .locked-token .amount {
+    text-align: right;
+  }
   .lock-or-withdraw .icon,
   .change-date .icon,
   .locker-info .icon {
@@ -609,6 +704,9 @@
     }
   }
   @media (max-width: 1200px) {
+    .samurai-illustration {
+      top: 200px;
+    }
     .locker-description {
       grid-template-columns: 1fr 1fr;
     }
@@ -632,6 +730,12 @@
     }
   }
   @media (max-width: 860px) {
+    .samurai-illustration {
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 600px;
+      max-width: 90%;
+    }
     .navbar .links:first-of-type a:not(:first-of-type) {
       display: none;
     }
@@ -649,6 +753,15 @@
     }
     .buttons {
       width: 100%;
+    }
+    .locked-token {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1em;
+      flex: 1;
+    }
+    .locked-token .amount {
+      text-align: left;
     }
   }
   @media (max-width: 600px) {
@@ -673,7 +786,14 @@
       padding: 2em;
     }
     h2 {
-      margin-bottom: 0.5em !important;
+      margin-bottom: 1em !important;
+      font-size: 2em !important;
+    }
+    .guardian-illustration {
+      width: 90%;
+      background-size: contain;
+      background-position: 0 60px;
+      background-repeat: no-repeat;
     }
   }
 </style>

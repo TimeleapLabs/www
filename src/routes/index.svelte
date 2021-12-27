@@ -441,12 +441,12 @@
             </p>
           </div>
           <div class="links">
-            <a href="https://twitter.com/pouya_eghbali"> <Twitter /> </a>
-            <a href="https://pouyae.medium.com"> <Medium /> </a>
-            <a href="https://github.com/pouya-eghbali"> <Github /> </a>
             <a href="https://www.linkedin.com/in/pouya-eghbali">
               <LinkedIn />
             </a>
+            <a href="https://github.com/pouya-eghbali"> <Github /> </a>
+            <a href="https://pouyae.medium.com"> <Medium /> </a>
+            <a href="https://twitter.com/pouya_eghbali"> <Twitter /> </a>
           </div>
         </div>
       </div>
@@ -454,23 +454,24 @@
         <div class="avatar">
           <img src="/images/nat.jpeg" alt="Nathalie" />
           <div class="title">
-            <div class="role">Cofounder</div>
+            <div class="role">Co-founder</div>
             <div class="name">Nathalie</div>
           </div>
         </div>
         <div class="content">
           <div class="bio">
             <p>
-              I'm a data science professional with over 8 years of experience in
-              applying my analytical skills to solving problems in a diverse
-              range of industries.
+              Data science professional with over 12 years of experience in
+              applying machine learning and cryptography in a diverse range of
+              industries. She previously worked at IBM Research and holds
+              multiple patents for her scientific work.
             </p>
           </div>
           <div class="links">
-            <a href="https://github.com/iDmple"> <Github /> </a>
             <a href="https://www.linkedin.com/in/nathaliecasati">
               <LinkedIn />
             </a>
+            <a href="https://github.com/iDmple"> <Github /> </a>
           </div>
         </div>
       </div>
@@ -478,20 +479,23 @@
         <div class="avatar">
           <img src="/images/kev.jpg" alt="Kevin" />
           <div class="title">
-            <div class="role">Cofounder</div>
+            <div class="role">Co-founder</div>
             <div class="name">Kevin</div>
           </div>
         </div>
         <div class="content">
           <div class="bio">
             <p>
-              I'm a full-stack developer who has been growing online businesses
-              for the last 3 years. I'm proficient in design, marketing and
-              deploying complex infrastructures. When I'm not working, I roast
-              coffee for fun.
+              Full-stack developer with a passion for cybersecurity and
+              crypto-assets. He has been growing online businesses for the last
+              3 years and is proficient in design, marketing and deploying
+              complex infrastructures.
             </p>
           </div>
           <div class="links">
+            <a href="https://www.linkedin.com/in/kevin-aguilar-5445211b4/">
+              <LinkedIn />
+            </a>
             <a href="https://github.com/Dirdmaster"> <Github /> </a>
           </div>
         </div>

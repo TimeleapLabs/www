@@ -121,6 +121,19 @@ export default [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "addr",
+        type: "address",
+      },
+    ],
+    name: "migrateLocker",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "newLocker",
     outputs: [],
@@ -163,6 +176,32 @@ export default [
       },
     ],
     name: "setKenshiAddr",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "locker",
+        type: "address",
+      },
+    ],
+    name: "setLockerRegistryAddr",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "migrations",
+        type: "address",
+      },
+    ],
+    name: "setMigrationRegistryAddr",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

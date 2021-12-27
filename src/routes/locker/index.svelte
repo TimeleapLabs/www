@@ -28,8 +28,8 @@
   let userAddress;
 
   // TESTNET CONTRACT ADDRESS
-  const contractAddr = "0x11d45EeE5479b1b26a8B88b7BD22b47A645483B2";
-  const kenshiAddr = "0xcEe3c725aB1c1393765F7f29257fa5800A8D461f";
+  const contractAddr = "0xaADa8d6030c590b2F7c8a0c6Eb102AE424E5413b";
+  const kenshiAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
 
   let binanceChainWallet;
   let metaMask;
@@ -59,7 +59,7 @@
   };
 
   const connectWallet = async (wallet) => {
-    await switchChain(wallet, "0x61");
+    await switchChain(wallet, "0x38");
     const provider = new ethers.providers.Web3Provider(wallet);
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
@@ -186,7 +186,7 @@
           status of your locked tokens.
         </p>
         <a
-          href="/locker/manage/0x155BB668D9AD13A00fDF929a3540B6172e57d06a"
+          href="/locker/manage/0xe570334989Fa3b77C6f1cFbc2D1909D4255bA1f6"
           class="red"
         >
           See an example <Arrow />
@@ -212,14 +212,6 @@
     <div class="guardian-illustration" />
     <div class="create">
       <h2>Locker Creator</h2>
-      <p class="red warning">
-        <b>
-          Important note: We're testing out the locker functionality and all
-          lockers created on this page are created on the BSC testnet. Please do
-          not send any mainnet tokens to these lockers or else they'll be lost
-          forever.
-        </b>
-      </p>
       {#if !userAddress}
         <div class="message red">
           Please connect with your wallet to continue.

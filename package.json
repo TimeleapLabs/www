@@ -17,12 +17,14 @@
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
     "svelte": "^3.42.6",
+    "svelte-loading-spinners": "^0.1.7",
     "svelte-scrollto": "^0.2.0"
   },
   "type": "module",
   "dependencies": {
     "dotenv": "^10.0.0",
     "ethers": "^5.5.1",
-    "mongodb": "^4.2.1"
+    "mongodb": "^4.2.1",
+    "node-fetch": "^3.1.0"
   }
 }
