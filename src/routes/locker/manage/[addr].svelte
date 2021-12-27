@@ -763,6 +763,10 @@
     .buttons {
       width: 100%;
     }
+    .locked-info {
+      border-radius: 1.5em;
+      padding: 1em;
+    }
     .locked-token {
       display: grid;
       grid-template-columns: 1fr;
