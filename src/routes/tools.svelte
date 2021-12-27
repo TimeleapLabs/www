@@ -92,7 +92,9 @@
 
   const switchChain = async (wallet, chainId) => {
     const provider = new ethers.providers.Web3Provider(wallet);
-    await provider.send("wallet_switchEthereumChain", [{ chainId }]);
+    if (wallet != binanceChainWallet) {
+      await provider.send("wallet_switchEthereumChain", [{ chainId }]);
+    }
   };
 
   const selectWallet = async (chosenWallet) => {
