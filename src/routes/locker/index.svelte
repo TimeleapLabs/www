@@ -21,7 +21,9 @@
     ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
 
   const formatKenshi = (n) =>
-    ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
+    parseFloat(
+      ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "")
+    ).toLocaleString("en-US");
 
   let kenshi;
   let signer;
@@ -144,66 +146,73 @@
   </div>
   <div class="section spacer">
     <div class="samurai-illustration" />
-    <div class="title">
-      <h2>Locker</h2>
-      {#if userAddress}
-        <div class="user">
-          <span class="icon"><At /></span>
-          <span class="red"> 0x </span>
-          <span class="green">
-            {userAddress.slice(2, 6)}...{userAddress.slice(-4)}
-          </span>
-        </div>
-      {:else if hasWallets}
-        <div class="connect">
-          Connect with
-          {#if binanceChainWallet}
-            <button on:click={() => selectWallet(binanceChainWallet)}>
-              <BinanceChainWallet />
-            </button>
-          {/if}
-          {#if metaMask}
-            <button on:click={() => selectWallet(metaMask)}>
-              <MetaMask />
-            </button>
-          {/if}
-        </div>
-      {/if}
-    </div>
-    <div class="locker-description">
+    <div class="split">
       <div>
-        <p>
-          Kenshi Lockers can be used to lock any tokens on the Binance Smart
-          Chain. You can use this service to lock your liquidity pool tokens or
-          to vest team allocations and investor shares.
-        </p>
-        <!--a href="/locker/manage" class="red"> Manage Locker <Arrow /> </a-->
+        <div class="title">
+          <h2>Locker</h2>
+          {#if userAddress}
+            <div class="user">
+              <span class="icon"><At /></span>
+              <span class="red"> 0x </span>
+              <span class="green">
+                {userAddress.slice(2, 6)}...{userAddress.slice(-4)}
+              </span>
+            </div>
+          {:else if hasWallets}
+            <div class="connect">
+              Connect with
+              {#if binanceChainWallet}
+                <button on:click={() => selectWallet(binanceChainWallet)}>
+                  <BinanceChainWallet />
+                </button>
+              {/if}
+              {#if metaMask}
+                <button on:click={() => selectWallet(metaMask)}>
+                  <MetaMask />
+                </button>
+              {/if}
+            </div>
+          {/if}
+        </div>
+        <div class="locker-description">
+          <div>
+            <p>
+              Kenshi Lockers can be used to lock any tokens on the Binance Smart
+              Chain. You can use this service to lock your liquidity pool tokens
+              or to vest team allocations and investor shares.
+            </p>
+            <!--a href="/locker/manage" class="red"> Manage Locker <Arrow /> </a-->
+          </div>
+          <div>
+            <p>
+              Kenshi Lockers provide an easy to use mechanism for locking your
+              tokens, as well as a dedicated page for your clients to check the
+              status of your locked tokens.
+            </p>
+            <a
+              href="/locker/manage/0xe570334989Fa3b77C6f1cFbc2D1909D4255bA1f6"
+              class="red"
+            >
+              See an example <Arrow />
+            </a>
+          </div>
+        </div>
       </div>
       <div>
-        <p>
-          Kenshi Lockers provide an easy to use mechanism for locking your
-          tokens, as well as a dedicated page for your clients to check the
-          status of your locked tokens.
-        </p>
-        <a
-          href="/locker/manage/0xe570334989Fa3b77C6f1cFbc2D1909D4255bA1f6"
-          class="red"
-        >
-          See an example <Arrow />
-        </a>
-      </div>
-      <div>
-        <p>
-          To manage a locker, put the locker address in the field below and
-          press on the Go button!
-        </p>
-        <div class="manage">
-          <input
-            type="text"
-            placeholder="Locker address"
-            bind:value={address}
-          />
-          <button on:click={manage}>Go</button>
+        <h2>Manage Locker</h2>
+        <div class="manage-locker">
+          <p>
+            To manage a locker, put the locker address in the field below and
+            press on the Go button!
+          </p>
+          <div class="manage">
+            <input
+              type="text"
+              placeholder="Locker address"
+              bind:value={address}
+            />
+            <button on:click={manage}>Go</button>
+          </div>
         </div>
       </div>
     </div>
@@ -218,6 +227,10 @@
         </div>
       {:else}
         <div class="create-form">
+          <p>
+            Once you create the locker, it's yours forever. Adding tokens,
+            relocking or extending the unlock time are free of charge.
+          </p>
           <label>
             <input type="checkbox" bind:checked={acceptedTerms} />
             I accept the Kenshi Locker
@@ -231,7 +244,7 @@
                 Create - {formatBNB(price)} BNB
               </button>
               <button on:click={createWithKenshi}>
-                Create - {formatKenshi(priceInKenshi)} Kenshi
+                Create - {formatKenshi(priceInKenshi)} KENSHI
               </button>
             {:else}
               <button disabled> Please accept TOS first </button>
@@ -259,9 +272,13 @@
 
 <style>
   .locker-description {
-    display: grid;
-    gap: 2em;
-    grid-template-columns: 1fr 1fr 1fr;
+    max-width: 960px;
+    font-size: 1.2em;
+    font-weight: 200;
+    line-height: 1.25em;
+  }
+  .locker-description p:first-of-type {
+    margin-top: 0;
   }
   .locker-description a {
     display: inline-flex;
@@ -295,6 +312,14 @@
   }
   .spacer {
     flex: 1;
+  }
+  .manage-locker {
+    max-width: 640px;
+  }
+  .split {
+    display: flex;
+    gap: 4em;
+    flex-wrap: wrap;
   }
   a {
     font-family: "Raleway";
@@ -509,17 +534,22 @@
     }
   }
   @media (max-width: 1350px) {
+    .guardian-illustration {
+      filter: grayscale(1) opacity(0.1);
+    }
   }
   @media (max-width: 1200px) {
+    .samurai-illustration {
+      height: 800px;
+      width: 600px;
+      top: 100px;
+    }
   }
   @media (max-width: 960px) {
   }
   @media (max-width: 860px) {
     .navbar .links:first-of-type a:not(:first-of-type) {
       display: none;
-    }
-    .guardian-illustration {
-      filter: grayscale(1) opacity(0.1);
     }
     .locker-description {
       grid-template-columns: 1fr 1fr;

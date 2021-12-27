@@ -18,8 +18,9 @@
   import ThumbsUp from "src/icons/ThumbsUp.svelte";
   import PullRequest from "src/icons/PullRequest.svelte";
   import External from "src/icons/External.svelte";
-  import { Jumper } from "svelte-loading-spinners";
+  import BinaryLock from "src/icons/BinaryLock.svelte";
 
+  import { Jumper } from "svelte-loading-spinners";
   import { ethers } from "ethers";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
@@ -247,9 +248,11 @@
         </a>
       </div>
       <div>
-        <p class="green glass copy" on:click={copy(contractAddr)}>
-          {contractAddr}
+        <p class="glass copy contract-addr" on:click={copy(contractAddr)}>
+          <BinaryLock />
+          Address
           <span class="spacer" />
+          <span class="trim-address">{contractAddr}</span>
           <Copy />
         </p>
       </div>
@@ -416,6 +419,14 @@
     display: flex;
     gap: 1em;
     align-items: center;
+  }
+  .contract-addr {
+    gap: 0.5em;
+  }
+  .trim-address {
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .glass {
     display: flex;
