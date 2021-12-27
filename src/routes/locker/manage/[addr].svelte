@@ -85,20 +85,31 @@
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
     userAddress = await signer.getAddress();
-    updateValues();
+    updateValues(signer);
   };
 
-  $: if ($wallet) connectWallet($wallet);
+  const connectNoWallet = async () => {
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://bsc-dataseed.binance.org/"
+    );
+    updateValues(provider);
+  };
+
+  $: if ($wallet) {
+    connectWallet($wallet);
+  }
 
   const getLockedTokens = async () => {
-    const req = await fetch(`/api/balance/${contractAddr}`);
+    const req = await fetch(
+      `${window.location.origin}/api/balance/${contractAddr}`
+    );
     if (req.status === 200) {
       return await req.json();
     }
     return [];
   };
 
-  const updateValues = async () => {
+  const updateValues = async (signer) => {
     locker = new ethers.Contract(contractAddr, abi, signer);
     const timestamp = await locker.getLock();
     lock = new Date(timestamp * 1000);
@@ -155,6 +166,7 @@
   onMount(async () => {
     metaMask = window.ethereum;
     binanceChainWallet = window.BinanceChain;
+    connectNoWallet();
   });
 </script>
 
@@ -216,10 +228,7 @@
     </div>
     <div class="locker-description">
       <div>
-        <p>
-          Connect with your wallet in order to manage the locker or get details
-          of the locker.
-        </p>
+        <p>Connect with your wallet in order to manage the locker.</p>
         <a href="/locker" class="red">
           Create your own locker <Arrow />
         </a>
@@ -248,7 +257,7 @@
   </div>
   <div class="section spacer details">
     <div class="guardian-illustration" />
-    {#if userAddress && lock && owner}
+    {#if lock && owner}
       <div class="title">
         <h2>Locker Details</h2>
       </div>
