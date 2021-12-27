@@ -201,7 +201,7 @@
   <div class="section manager">
     <div class="samurai-illustration" />
     <div class="title">
-      <h2>View Locker</h2>
+      <h2>Manage Locker</h2>
       {#if userAddress}
         <div class="user">
           <span class="icon"><At /></span>
