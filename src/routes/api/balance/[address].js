@@ -2,8 +2,11 @@ import deployerAbi from "src/lib/abi/deployer";
 import bep20Abi from "src/lib/abi/bep20";
 import cakeAbi from "src/lib/abi/cake";
 import { ethers } from "ethers";
+import dotenv from "dotenv";
 
-const moralis = process.env.MORALIS;
+dotenv.config();
+
+const moralis = process.env["MORALIS"];
 const JSONRPC = "https://bsc-dataseed.binance.org/";
 const deployerAddr = "0xaADa8d6030c590b2F7c8a0c6Eb102AE424E5413b";
 
