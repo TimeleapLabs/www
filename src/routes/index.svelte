@@ -461,9 +461,9 @@
         <div class="content">
           <div class="bio">
             <p>
-              CEO at Nidecker Group and Equip. Entrepreneur in sport & tech.
-              Partner to awesome startups & Relentless optimist. Growing
-              internationally +10 brands.
+              CEO at Nidecker Group, LPS and Equip. Entrepreneur in sport &
+              tech. Partner to awesome startups & relentless optimist. Growing
+              internationally +10 brands with a team 100+ people.
             </p>
           </div>
           <div class="links">
