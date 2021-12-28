@@ -30,6 +30,7 @@
   import Liquid from "../icons/Liquid.svelte";
   import Code from "../icons/Code.svelte";
   import Shield from "../icons/Shield.svelte";
+  import Instagram from "src/icons/Instagram.svelte";
 
   import ContactForm from "../components/ContactForm.svelte";
 
@@ -452,6 +453,32 @@
       </div>
       <div class="member">
         <div class="avatar">
+          <img src="/images/henry.jpg" alt="Henry" />
+          <div class="title">
+            <div class="role">Co-founder</div>
+            <div class="name">Henry</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="bio">
+            <p>
+              CEO at Nidecker Group and Equip. Entrepreneur in sport & tech.
+              Partner to awesome startups & Relentless optimist. Growing
+              internationally +10 brands.
+            </p>
+          </div>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/henry-nidecker-5836191">
+              <LinkedIn />
+            </a>
+            <a href="https://www.instagram.com/hnidecker/?hl=en">
+              <Instagram />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="member">
+        <div class="avatar">
           <img src="/images/nat.jpeg" alt="Nathalie" />
           <div class="title">
             <div class="role">Co-founder</div>
@@ -861,7 +888,7 @@
   }
   .team {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 3em;
   }
   .team img {
