@@ -30,7 +30,6 @@
   import Liquid from "../icons/Liquid.svelte";
   import Code from "../icons/Code.svelte";
   import Shield from "../icons/Shield.svelte";
-  import Instagram from "src/icons/Instagram.svelte";
 
   import ContactForm from "../components/ContactForm.svelte";
 
@@ -470,9 +469,6 @@
           <div class="links">
             <a href="https://www.linkedin.com/in/henry-nidecker-5836191">
               <LinkedIn />
-            </a>
-            <a href="https://www.instagram.com/hnidecker/?hl=en">
-              <Instagram />
             </a>
           </div>
         </div>
