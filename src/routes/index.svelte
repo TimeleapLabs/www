@@ -422,7 +422,7 @@
   </div>
 
   <div class="section no-overflow">
-    <h2>Team</h2>
+    <h2>Founding Team</h2>
     <div class="team">
       <div class="member">
         <div class="avatar">
