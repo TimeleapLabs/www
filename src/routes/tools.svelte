@@ -278,7 +278,7 @@
       </div>
       <div class="stat copy" on:click={copyNumber(balance)}>
         <span class="icon"><Balance /></span>
-        <span> Max Balance </span>
+        <span> Max </span>
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
@@ -287,7 +287,7 @@
       </div>
       <div class="stat copy" on:click={copyNumber(balance)}>
         <span class="icon"><CreditCard /></span>
-        <span> Possible to Buy </span>
+        <span> Buy </span>
         <span class="spacer" />
         <span>
           <span class="green">₭</span>
