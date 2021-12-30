@@ -90,12 +90,14 @@
   };
 
   const create = async () => {
+    toast.push("Creating wallet,<br>Please wait...");
     const call = await lockerCreator.newLocker({ value: price });
     const [lockerAddr] = await waitForLockerCreation(call.hash);
     goto(`/locker/manage/${lockerAddr}`);
   };
 
   const createWithKenshi = async () => {
+    toast.push("Creating wallet,<br>Please wait...");
     await kenshi.approve(contractAddr, priceInKenshi);
     const call = await lockerCreator.newLockerPayInKenshi();
     const [lockerAddr] = await waitForLockerCreation(call.hash);
