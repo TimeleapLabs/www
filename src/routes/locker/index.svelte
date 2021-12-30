@@ -14,7 +14,7 @@
   import ConnectButton from "src/components/ConnectButton.svelte";
 
   import { ethers } from "ethers";
-  import { onMount } from "svelte";
+  import { toast } from "@zerodevx/svelte-toast";
   import { goto } from "$app/navigation";
 
   const formatBNB = (n) =>
