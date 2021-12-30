@@ -17,15 +17,15 @@
   import Volume from "../icons/Volume.svelte";
   import Reflect from "../icons/ReflectDuo.svelte";
   import Treasure from "../icons/Treasure.svelte";
-  import BinanceChainWallet from "../icons/BinanceChainWallet.svelte";
-  import MetaMask from "../icons/MetaMask.svelte";
 
   import { ethers } from "ethers";
   import { onMount } from "svelte";
+  import { toast } from "@zerodevx/svelte-toast";
 
   import abi from "../lib/abi/kenshi.js";
   import { wallet } from "src/stores/wallet";
   import { withDecimals } from "src/lib/decimals";
+  import ConnectButton from "src/components/ConnectButton.svelte";
 
   const addThousandSep = (n) => parseFloat(n).toLocaleString("en-US");
 
@@ -34,6 +34,14 @@
 
   const formatUSD = (n) =>
     addThousandSep(withDecimals((Math.floor(n * 100) / 100).toString(), 2));
+
+  const copy = (text) => navigator.clipboard.writeText(text);
+
+  const copyNumber = (n) => () => {
+    const formatted = ethers.utils.formatUnits(n);
+    copy(formatted);
+    toast.push("Copied to clipboard");
+  };
 
   let sellingAmountText = "100";
 
@@ -47,6 +55,7 @@
   }
 
   let balance = ethers.BigNumber.from(0);
+  let userReflections = ethers.BigNumber.from(0);
   let maxBalance = ethers.BigNumber.from(0);
   let treasury = ethers.BigNumber.from(0);
   let walletWorth = 0;
@@ -84,27 +93,16 @@
     return maxBalance.sub(balance);
   };
 
-  let binanceChainWallet;
-  let metaMask;
-  let hasWallets;
-
-  $: hasWallets = metaMask || binanceChainWallet;
-
   const switchChain = async (wallet, chainId) => {
-    const provider = new ethers.providers.Web3Provider(wallet);
-    if (wallet != window?.BinanceChain) {
-      await provider.send("wallet_switchEthereumChain", [{ chainId }]);
-    }
-  };
-
-  const selectWallet = async (chosenWallet) => {
-    $wallet = chosenWallet;
-    return connectWallet($wallet);
+    const provider = new ethers.providers.Web3Provider(wallet.provider);
+    await provider
+      .send("wallet_switchEthereumChain", [{ chainId }])
+      .catch(() => {});
   };
 
   const connectWallet = async (wallet) => {
     await switchChain(wallet, "0x38");
-    const provider = new ethers.providers.Web3Provider(wallet);
+    const provider = new ethers.providers.Web3Provider(wallet.provider);
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
     userAddress = await signer.getAddress();
@@ -113,6 +111,8 @@
 
   $: if ($wallet) connectWallet($wallet);
 
+  let gettingTransfers = false;
+
   const updateValues = async () => {
     if (signer && userAddress) {
       kenshi = new ethers.Contract(contractAddr, abi, signer);
@@ -120,6 +120,22 @@
       treasury = await kenshi.balanceOf(treasuryAddr);
       maxBalance = await kenshi.getMaxBalance();
       walletWorth = eval(balance.div(BigInt(1e18))._hex) * (await getPrice());
+      if (!gettingTransfers) {
+        gettingTransfers = true;
+        const url = `http://localhost:3000/api/transfers/${userAddress}`;
+        const req = await fetch(url);
+        const transfers = await req.json();
+        const total = transfers.reduce((total, transfer) => {
+          if (transfer.to === userAddress) {
+            return total + BigInt(transfer.amount);
+          }
+          if (transfer.from === userAddress) {
+            return total - BigInt(transfer.amount);
+          }
+        }, 0n);
+        userReflections = balance.sub(ethers.BigNumber.from(total));
+        gettingTransfers = false;
+      }
     }
   };
 
@@ -183,8 +199,6 @@
   }
 
   onMount(async () => {
-    metaMask = window.ethereum;
-    binanceChainWallet = window.BinanceChain;
     return () => {
       clearInterval(walletInterval);
     };
@@ -220,7 +234,7 @@
     </div>
   </div>
   <div class="section">
-    <div class="title">
+    <div class="title has-button">
       <h2>Stats</h2>
       {#if userAddress}
         <div class="user">
@@ -230,24 +244,12 @@
             {userAddress.slice(2, 6)}...{userAddress.slice(-4)}
           </span>
         </div>
-      {:else if hasWallets}
-        <div class="connect">
-          Connect with
-          {#if binanceChainWallet}
-            <button on:click={() => selectWallet(binanceChainWallet)}>
-              <BinanceChainWallet />
-            </button>
-          {/if}
-          {#if metaMask}
-            <button on:click={() => selectWallet(metaMask)}>
-              <MetaMask />
-            </button>
-          {/if}
-        </div>
+      {:else}
+        <ConnectButton />
       {/if}
     </div>
     <div class="stats">
-      <div class="stat">
+      <div class="stat copy" on:click={copyNumber(balance)}>
         <span class="icon"><Wallet /></span>
         <span> Balance </span>
         <span class="spacer" />
@@ -265,7 +267,16 @@
           {formatUSD(walletWorth)}
         </span>
       </div>
-      <div class="stat">
+      <div class="stat copy" on:click={copyNumber(balance)}>
+        <span class="icon"><Reflect /></span>
+        <span> Reflections </span>
+        <span class="spacer" />
+        <span>
+          <span class="green">₭</span>
+          {formatKenshi(userReflections)}
+        </span>
+      </div>
+      <div class="stat copy" on:click={copyNumber(balance)}>
         <span class="icon"><Balance /></span>
         <span> Max Balance </span>
         <span class="spacer" />
@@ -274,7 +285,7 @@
           {formatKenshi(maxBalance)}
         </span>
       </div>
-      <div class="stat">
+      <div class="stat copy" on:click={copyNumber(balance)}>
         <span class="icon"><CreditCard /></span>
         <span> Possible to Buy </span>
         <span class="spacer" />
@@ -283,7 +294,7 @@
           {formatKenshi(getMaxBuy(maxBalance, balance))}
         </span>
       </div>
-      <div class="stat">
+      <div class="stat copy" on:click={copyNumber(balance)}>
         <span class="icon"><Treasure /></span>
         <span> Treasury </span>
         <span class="spacer" />
@@ -415,6 +426,9 @@
 <div class="bar" />
 
 <style>
+  .copy {
+    cursor: copy;
+  }
   .kenshi-illustration {
     background: url(/images/kenshi.png);
     background-size: contain;
@@ -599,18 +613,17 @@
   }
   .title {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 1em;
+    margin-bottom: 2em;
+  }
+  .title h2 {
+    margin-bottom: 0.15em;
   }
   .user {
     display: flex;
     align-items: center;
     gap: 0.25em;
-  }
-  .connect {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
   }
   .tax-amount .icon,
   .user .icon {
@@ -629,17 +642,6 @@
     display: flex;
     gap: 0.5em;
     align-items: center;
-  }
-  .connect button {
-    padding: 0;
-    border: none;
-    background: transparent;
-    display: flex;
-    align-items: center;
-  }
-  .connect button :global(svg) {
-    height: 1.2em;
-    width: auto;
   }
   .samurai-illustration {
     background: url(/images/samurai.png);
@@ -758,7 +760,7 @@
     .taxes .red-devil {
       max-width: 80%;
     }
-    h2 {
+    h2:not(.has-button h2) {
       margin-bottom: 0.5em !important;
     }
     .section h2 {

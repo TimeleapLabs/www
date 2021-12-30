@@ -11,17 +11,20 @@
   "devDependencies": {
     "@sveltejs/adapter-vercel": "^1.0.0-next.31",
     "@sveltejs/kit": "next",
+    "@zerodevx/svelte-toast": "^0.6.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
+    "rollup-plugin-polyfill-node": "^0.8.0",
     "svelte": "^3.42.6",
     "svelte-loading-spinners": "^0.1.7",
     "svelte-scrollto": "^0.2.0"
   },
   "type": "module",
   "dependencies": {
+    "bnc-onboard": "^1.37.0",
     "dotenv": "^10.0.0",
     "ethers": "^5.5.1",
     "mongodb": "^4.2.1",

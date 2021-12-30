@@ -1,5 +1,8 @@
 import vercel from "@sveltejs/adapter-vercel";
+import nodePolyfills from "rollup-plugin-polyfill-node";
 import path from "path";
+
+const MODE = process.env.NODE_ENV;
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,9 +11,35 @@ const config = {
     target: "#svelte",
     adapter: vercel(),
     vite: {
+      plugins: [
+        // ↓ Have to check the mode here because this cant run on build
+        MODE === "development"
+          ? nodePolyfills({
+              include: [
+                "node_modules/**/*.js",
+                new RegExp("node_modules/.vite/.*js"),
+              ],
+            })
+          : "",
+      ],
+      build: {
+        rollupOptions: {
+          plugins: [
+            // ↓ Needed for build
+            nodePolyfills(),
+          ],
+        },
+        // ↓ Needed for build
+        commonjsOptions: {
+          transformMixedEsModules: true,
+        },
+      },
       resolve: {
         alias: {
           src: path.resolve("./src"),
+          // ↓ see https://github.com/vitejs/vite/issues/6085
+          "@ensdomains/address-encoder":
+            "@ensdomains/address-encoder/lib/index.umd.js",
         },
       },
     },
