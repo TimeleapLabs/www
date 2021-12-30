@@ -6,8 +6,6 @@
   import Reddit from "src/icons/Reddit.svelte";
   import At from "src/icons/At.svelte";
   import Arrow from "src/icons/Arrow.svelte";
-  import BinanceChainWallet from "src/icons/BinanceChainWallet.svelte";
-  import MetaMask from "src/icons/MetaMask.svelte";
   import Copy from "src/icons/Copy.svelte";
   import Calendar from "src/icons/Calendar.svelte";
   import UserGear from "src/icons/UserGear.svelte";
@@ -29,6 +27,9 @@
   import bep20 from "src/lib/abi/bep20.js";
   import deployerAbi from "src/lib/abi/deployer";
   import { wallet } from "src/stores/wallet";
+  import { toast } from "@zerodevx/svelte-toast";
+
+  import ConnectButton from "src/components/ConnectButton.svelte";
 
   let kenshi;
   let signer;
@@ -45,9 +46,6 @@
   const contractAddr = $page.params.addr;
   const deployerAddr = "0xaADa8d6030c590b2F7c8a0c6Eb102AE424E5413b";
 
-  let binanceChainWallet;
-  let metaMask;
-  let hasWallets;
   let locker;
   let lock;
   let owner;
@@ -68,23 +66,16 @@
     });
   }
 
-  $: hasWallets = metaMask || binanceChainWallet;
-
   const switchChain = async (wallet, chainId) => {
-    const provider = new ethers.providers.Web3Provider(wallet);
-    if (wallet != window?.BinanceChain) {
-      await provider.send("wallet_switchEthereumChain", [{ chainId }]);
-    }
-  };
-
-  const selectWallet = async (chosenWallet) => {
-    $wallet = chosenWallet;
-    return connectWallet($wallet);
+    const provider = new ethers.providers.Web3Provider(wallet.provider);
+    await provider
+      .send("wallet_switchEthereumChain", [{ chainId }])
+      .catch(() => {});
   };
 
   const connectWallet = async (wallet) => {
     await switchChain(wallet, "0x38");
-    const provider = new ethers.providers.Web3Provider(wallet);
+    const provider = new ethers.providers.Web3Provider(wallet.provider);
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
     userAddress = await signer.getAddress();
@@ -125,7 +116,10 @@
     loadingTokens = false;
   };
 
-  const copy = (text) => () => navigator.clipboard.writeText(text);
+  const copy = (text) => () => {
+    navigator.clipboard.writeText(text);
+    toast.push("Copied to clipboard");
+  };
   const bscScan = (addr) => `https://bscscan.com/address/${addr}#tokentxns`;
 
   const setNewLockDate = async () => {
@@ -167,8 +161,6 @@
   };
 
   onMount(async () => {
-    metaMask = window.ethereum;
-    binanceChainWallet = window.BinanceChain;
     connectNoWallet();
   });
 </script>
@@ -203,7 +195,7 @@
   </div>
   <div class="section manager">
     <div class="samurai-illustration" />
-    <div class="title">
+    <div class="title has-button">
       <h2>Manage Locker</h2>
       {#if userAddress}
         <div class="user">
@@ -213,20 +205,8 @@
             {userAddress.slice(2, 6)}...{userAddress.slice(-4)}
           </span>
         </div>
-      {:else if hasWallets}
-        <div class="connect">
-          Connect with
-          {#if binanceChainWallet}
-            <button on:click={() => selectWallet(binanceChainWallet)}>
-              <BinanceChainWallet />
-            </button>
-          {/if}
-          {#if metaMask}
-            <button on:click={() => selectWallet(metaMask)}>
-              <MetaMask />
-            </button>
-          {/if}
-        </div>
+      {:else}
+        <ConnectButton />
       {/if}
     </div>
     <div class="locker-description">
@@ -429,6 +409,7 @@
     max-width: 240px;
     overflow: hidden;
     text-overflow: ellipsis;
+    word-break: keep-all;
   }
   .glass {
     display: flex;
@@ -565,34 +546,23 @@
   }
   .title {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 1em;
+    margin-bottom: 2em;
     flex-wrap: wrap;
+  }
+  .title h2 {
+    margin-bottom: 0.15em;
   }
   .user {
     display: flex;
     align-items: center;
     gap: 0.25em;
   }
-  .connect {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-  }
+
   .user .icon {
     height: 1em;
     width: 1em;
-  }
-  .connect button {
-    padding: 0;
-    border: none;
-    background: transparent;
-    display: flex;
-    align-items: center;
-  }
-  .connect button :global(svg) {
-    height: 1.2em;
-    width: auto;
   }
   .samurai-illustration {
     background: url(/images/samurai.png);
@@ -791,6 +761,9 @@
     }
   }
   @media (max-width: 600px) {
+    .trim-address {
+      max-width: 140px;
+    }
     .navbar {
       justify-content: flex-start;
       flex-wrap: wrap;
@@ -811,7 +784,7 @@
     .section {
       padding: 2em;
     }
-    h2 {
+    h2:not(.has-button h2) {
       margin-bottom: 1em !important;
       font-size: 2em !important;
     }

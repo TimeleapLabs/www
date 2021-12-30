@@ -1,6 +1,12 @@
 :root {
   --primary-color: #ba3322;
   --secondary-color: #134841;
+
+  --toastBorderRadius: 5px;
+  --toastBackground: #ddd;
+  --toastColor: #333;
+  --toastPadding: 0 1em;
+  --toastBarHeight: 0;
 }
 
 html,
