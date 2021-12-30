@@ -27,6 +27,7 @@
   import bep20 from "src/lib/abi/bep20.js";
   import deployerAbi from "src/lib/abi/deployer";
   import { wallet } from "src/stores/wallet";
+  import { toast } from "@zerodevx/svelte-toast";
 
   import ConnectButton from "src/components/ConnectButton.svelte";
 
@@ -115,7 +116,10 @@
     loadingTokens = false;
   };
 
-  const copy = (text) => () => navigator.clipboard.writeText(text);
+  const copy = (text) => () => {
+    navigator.clipboard.writeText(text);
+    toast.push("Copied to clipboard");
+  };
   const bscScan = (addr) => `https://bscscan.com/address/${addr}#tokentxns`;
 
   const setNewLockDate = async () => {
