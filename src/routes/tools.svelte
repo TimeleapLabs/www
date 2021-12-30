@@ -595,7 +595,7 @@
     box-shadow: 0px 0px 16px 4px rgb(0 0 0 / 10%);
     outline: none;
     margin-right: -0.75em;
-    width: 132px;
+    max-width: 144px;
   }
   .reflections input {
     width: 50%;

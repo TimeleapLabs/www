@@ -111,7 +111,7 @@
         <div class="content">
           Your audit is on us! We give you a high quality service and generate a
           high quality audit for your project. You can check a sample audit
-          <a href="/audit" class="red">here</a>.
+          <a href="/audits" class="red">here</a>.
         </div>
       </div>
     </div>
