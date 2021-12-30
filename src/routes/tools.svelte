@@ -122,7 +122,7 @@
       walletWorth = eval(balance.div(BigInt(1e18))._hex) * (await getPrice());
       if (!gettingTransfers) {
         gettingTransfers = true;
-        const url = `http://localhost:3000/api/transfers/${userAddress}`;
+        const url = `${window.location.origin}/api/transfers/${userAddress}`;
         const req = await fetch(url);
         const transfers = await req.json();
         const total = transfers.reduce((total, transfer) => {
