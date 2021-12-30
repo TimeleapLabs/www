@@ -486,9 +486,6 @@
   .create-form button:not(:disabled):hover {
     background: var(--primary-color);
   }
-  .warning {
-    max-width: 720px;
-  }
   @media (max-width: 1800px) {
   }
   @media (max-width: 1500px) {

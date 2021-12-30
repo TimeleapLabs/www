@@ -132,7 +132,7 @@
           if (transfer.from === userAddress) {
             return total - BigInt(transfer.amount);
           }
-        }, 0n);
+        }, BigInt(0));
         userReflections = balance.sub(ethers.BigNumber.from(total));
         gettingTransfers = false;
       }
