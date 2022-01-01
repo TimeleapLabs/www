@@ -161,7 +161,7 @@
   };
 
   onMount(async () => {
-    connectNoWallet();
+    if (!$wallet) connectNoWallet();
   });
 </script>
 
