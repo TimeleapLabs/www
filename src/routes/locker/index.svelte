@@ -246,7 +246,7 @@
               checked
               bind:group={paymentMethod}
             />
-            Lock {formatKenshi(priceInKenshi)} KENSHI for +1 year
+            Lock {formatKenshi(priceInKenshi)} KENSHI for minimum 1 year
           </label>
           <label>
             <input
