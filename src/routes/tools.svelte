@@ -287,7 +287,7 @@
       </div>
       <div
         class="stat copy"
-        on:click={() => copyNumber(getMaxBuy(maxBalance, balance))}
+        on:click={() => copyNumber(getMaxBuy(maxBalance, balance))()}
       >
         <span class="icon"><CreditCard /></span>
         <span> Buy </span>
