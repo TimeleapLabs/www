@@ -8,7 +8,7 @@ dotenv.config();
 
 const moralis = process.env["MORALIS"];
 const JSONRPC = "https://bsc-dataseed.binance.org/";
-const deployerAddr = "0xaADa8d6030c590b2F7c8a0c6Eb102AE424E5413b";
+const deployerAddr = "0xC4f80aEffF6dAD28E0616E77C6D9ef66ac4d5Ef7";
 
 const getDisplayName = async (provider, token) => {
   if (token.symbol === "Cake-LP") {
