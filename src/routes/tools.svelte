@@ -267,7 +267,7 @@
           {formatUSD(walletWorth)}
         </span>
       </div>
-      <div class="stat copy" on:click={copyNumber(balance)}>
+      <div class="stat copy" on:click={copyNumber(userReflections)}>
         <span class="icon"><Reflect /></span>
         <span> Reflections </span>
         <span class="spacer" />
@@ -276,7 +276,7 @@
           {formatKenshi(userReflections)}
         </span>
       </div>
-      <div class="stat copy" on:click={copyNumber(balance)}>
+      <div class="stat copy" on:click={copyNumber(maxBalance)}>
         <span class="icon"><Balance /></span>
         <span> Max </span>
         <span class="spacer" />
@@ -285,7 +285,10 @@
           {formatKenshi(maxBalance)}
         </span>
       </div>
-      <div class="stat copy" on:click={copyNumber(balance)}>
+      <div
+        class="stat copy"
+        on:click={() => copyNumber(getMaxBuy(maxBalance, balance))}
+      >
         <span class="icon"><CreditCard /></span>
         <span> Buy </span>
         <span class="spacer" />
@@ -294,7 +297,7 @@
           {formatKenshi(getMaxBuy(maxBalance, balance))}
         </span>
       </div>
-      <div class="stat copy" on:click={copyNumber(balance)}>
+      <div class="stat copy" on:click={copyNumber(treasury)}>
         <span class="icon"><Treasure /></span>
         <span> Treasury </span>
         <span class="spacer" />
