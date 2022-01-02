@@ -41,7 +41,14 @@
       return;
     }
     message = "";
-    contact(subject, body, name, topic, email).then((resp) => {
+    grecaptcha.ready(async () => {
+      const token = await grecaptcha.execute(
+        "6LcFm-UdAAAAAA2HsCcTFj7dA_okrJlKKoYR0rKf",
+        {
+          action: "submit",
+        }
+      );
+      const resp = await contact(subject, body, name, topic, email, token);
       if (resp.status === 200) {
         hideForm = true;
       } else {
@@ -76,11 +83,22 @@
     <textarea placeholder="Your message" rows="5" bind:value={body} />
     <button on:click={submitMessage} disabled={disable}>Send</button>
   </div>
+  <p>
+    This site is protected by reCAPTCHA and the Google
+    <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+    <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+  </p>
 {:else}
   We've received your message and will contact you as soon as possible!
 {/if}
 
 <style>
+  a {
+    color: var(--primary-color);
+  }
+  p {
+    padding: 0.5em;
+  }
   .contact-form {
     display: grid;
     grid-template-columns: 1fr 1fr;

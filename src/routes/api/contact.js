@@ -1,10 +1,27 @@
 import { getDB } from "$lib/mongo";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const secret = process.env["RECAPTCHA_SECRET"];
+
+console.log({ secret });
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function post(request) {
-  const { subject, body, topic, name, email } = request.body;
+  const { subject, body, topic, name, email, token } = request.body;
 
-  if (!subject || !body || !topic || !email || !name) {
+  if (!subject || !body || !topic || !email || !name || !token) {
+    return { status: 401 };
+  }
+
+  const captchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`;
+  const captchaReq = await fetch(captchaUrl, {
+    method: "POST",
+  });
+  const captchaRes = await captchaReq.json();
+
+  if (!captchaRes.success || captchaReq.score < 0.5) {
     return { status: 401 };
   }
 

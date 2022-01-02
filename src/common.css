@@ -52,3 +52,7 @@ svg {
 .fa-secondary {
   color: var(--secondary-color);
 }
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
