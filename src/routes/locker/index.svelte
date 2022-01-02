@@ -7,15 +7,19 @@
   import At from "../../icons/At.svelte";
   import Arrow from "../../icons/Arrow.svelte";
 
-  import { wallet } from "../../stores/wallet";
   import abi from "src/lib/abi/deployer.js";
   import kenshiAbi from "src/lib/abi/kenshi.js";
 
   import ConnectButton from "src/components/ConnectButton.svelte";
+  import { onboard } from "$lib/onboard";
+  import { wallet } from "../../stores/wallet";
 
+  import { onMount } from "svelte";
   import { ethers } from "ethers";
   import { toast } from "@zerodevx/svelte-toast";
   import { goto } from "$app/navigation";
+
+  import Moon from "svelte-loading-spinners/dist/Moon.svelte";
 
   const formatBNB = (n) =>
     ethers.utils.formatUnits(n).replace(/(?=\.\d{2})\d+/, "");
@@ -28,6 +32,7 @@
   let kenshi;
   let signer;
   let userAddress;
+  let paymentMethod = "kenshi";
 
   // TESTNET CONTRACT ADDRESS
   const contractAddr = "0xaADa8d6030c590b2F7c8a0c6Eb102AE424E5413b";
@@ -58,17 +63,24 @@
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
     userAddress = await signer.getAddress();
-    updateValues();
+    updateValues(signer);
   };
 
   $: if ($wallet) connectWallet($wallet);
 
-  const updateValues = async () => {
-    lockerCreator = new ethers.Contract(contractAddr, abi, signer);
+  const connectNoWallet = async () => {
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://bsc-dataseed.binance.org/"
+    );
+    updateValues(provider);
+  };
+
+  const updateValues = async (provider) => {
+    lockerCreator = new ethers.Contract(contractAddr, abi, provider);
     price = await lockerCreator.getPrice();
     priceInKenshi = await lockerCreator.getPriceInKenshi();
     listenToPriceChanges();
-    kenshi = new ethers.Contract(kenshiAddr, kenshiAbi, signer);
+    kenshi = new ethers.Contract(kenshiAddr, kenshiAbi, provider);
   };
 
   const waitForLockerCreation = (hash) => {
@@ -89,20 +101,38 @@
     });
   };
 
+  let creating = false;
+
   const create = async () => {
     toast.push("Creating wallet,<br>Please wait...");
-    const call = await lockerCreator.newLocker({ value: price });
-    const [lockerAddr] = await waitForLockerCreation(call.hash);
-    goto(`/locker/manage/${lockerAddr}`);
+    try {
+      creating = true;
+      const call = await lockerCreator.newLocker({ value: price });
+      const [lockerAddr] = await waitForLockerCreation(call.hash);
+      goto(`/locker/manage/${lockerAddr}`);
+    } catch (error) {
+      creating = false;
+    }
   };
+
+  let creatingWithKenshi = false;
 
   const createWithKenshi = async () => {
     toast.push("Creating wallet,<br>Please wait...");
-    await kenshi.approve(contractAddr, priceInKenshi);
-    const call = await lockerCreator.newLockerPayInKenshi();
-    const [lockerAddr] = await waitForLockerCreation(call.hash);
-    goto(`/locker/manage/${lockerAddr}`);
+    try {
+      creatingWithKenshi = true;
+      await kenshi.approve(contractAddr, priceInKenshi);
+      const call = await lockerCreator.newLockerVestKenshi();
+      const [lockerAddr] = await waitForLockerCreation(call.hash);
+      goto(`/locker/manage/${lockerAddr}`);
+    } catch (error) {
+      creatingWithKenshi = false;
+    }
   };
+
+  onMount(() => {
+    if (!$wallet) connectNoWallet();
+  });
 </script>
 
 <div class="page">
@@ -198,37 +228,71 @@
     <div class="guardian-illustration" />
     <div class="create">
       <h2>Locker Creator</h2>
-      {#if !userAddress}
-        <div class="message red">
-          Please connect with your wallet to continue.
-        </div>
-      {:else}
-        <div class="create-form">
-          <p>
-            Once you create the locker, it's yours forever. Adding tokens,
-            relocking or extending the unlock time are free of charge.
-          </p>
+      <div class="create-form">
+        <p>
+          You can choose to pay in BNB, or get a liquidity locker for free by
+          locking a specific amount of Kenshi.
+        </p>
+        <p>
+          Once you create the locker, it's yours forever. Adding tokens,
+          relocking or extending the unlock time are free of charge.
+        </p>
+        <div class="form">
           <label>
+            <input
+              type="radio"
+              name="payment-method"
+              value="kenshi"
+              checked
+              bind:group={paymentMethod}
+            />
+            Lock {formatKenshi(priceInKenshi)} KENSHI for minimum 1 year
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="payment-method"
+              value="bnb"
+              bind:group={paymentMethod}
+            />
+            Pay with {formatBNB(price)} BNB
+          </label>
+          <label class="terms">
             <input type="checkbox" bind:checked={acceptedTerms} />
             I accept the Kenshi Locker
             <a href="https://docs.kenshi.io/services/locker.html" class="red">
               terms of service
             </a>.
           </label>
-          <div class="buttons">
-            {#if acceptedTerms}
-              <button on:click={create}>
-                Create - {formatBNB(price)} BNB
-              </button>
-              <button on:click={createWithKenshi}>
-                Create - {formatKenshi(priceInKenshi)} KENSHI
+        </div>
+        <div class="buttons">
+          {#if !userAddress}
+            <button on:click={() => onboard.walletSelect()}>
+              Connect Wallet
+            </button>
+          {:else if acceptedTerms}
+            {#if paymentMethod === "bnb"}
+              <button on:click={create} disabled={creating}>
+                {#if creating}
+                  <Moon size="16" /> Creating
+                {:else}
+                  Create - {formatBNB(price)} BNB
+                {/if}
               </button>
             {:else}
-              <button disabled> Please accept TOS first </button>
+              <button on:click={createWithKenshi} disabled={creatingWithKenshi}>
+                {#if creatingWithKenshi}
+                  <Moon size="16" /> Creating
+                {:else}
+                  Create - {formatKenshi(priceInKenshi)} KENSHI
+                {/if}
+              </button>
             {/if}
-          </div>
+          {:else}
+            <button disabled> Please accept TOS first </button>
+          {/if}
         </div>
-      {/if}
+      </div>
     </div>
   </div>
   <div class="section footer">
@@ -248,6 +312,15 @@
 <div class="bar" />
 
 <style>
+  .form {
+    margin-top: 2em;
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+  }
+  .terms {
+    margin-top: 0.5em;
+  }
   .locker-description {
     max-width: 960px;
     font-size: 1.2em;
@@ -466,6 +539,14 @@
     display: flex;
     gap: 1em;
     flex-wrap: wrap;
+  }
+  .create-form {
+    font-size: 1.2em;
+    font-weight: 200;
+    line-height: 1.25em;
+  }
+  .create-form p {
+    max-width: 720px;
   }
   .create-form button {
     font-size: 1em;

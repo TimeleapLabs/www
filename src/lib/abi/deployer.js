@@ -102,6 +102,19 @@ export default [
     type: "function",
   },
   {
+    inputs: [],
+    name: "getVersion",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -136,14 +149,26 @@ export default [
   {
     inputs: [],
     name: "newLocker",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
     stateMutability: "payable",
     type: "function",
   },
   {
     inputs: [],
-    name: "newLockerPayInKenshi",
-    outputs: [],
+    name: "newLockerVestKenshi",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },

@@ -44,7 +44,7 @@
 
   // MAINNET CONTRACT ADDRESS
   const contractAddr = $page.params.addr;
-  const deployerAddr = "0xaADa8d6030c590b2F7c8a0c6Eb102AE424E5413b";
+  const deployerAddr = "0xC4f80aEffF6dAD28E0616E77C6D9ef66ac4d5Ef7";
 
   let locker;
   let lock;
@@ -161,7 +161,7 @@
   };
 
   onMount(async () => {
-    connectNoWallet();
+    if (!$wallet) connectNoWallet();
   });
 </script>
 
