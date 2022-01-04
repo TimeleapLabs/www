@@ -126,7 +126,7 @@
   const waitForApproval = async (addr, amount) => {
     let retries = 6; // wait 30 seconds before giving up
     while (retries--) {
-      const approval = getApproval(addr);
+      const approval = await getApproval(addr);
       if (approval.gte(amount)) return;
       await sleep(5000);
     }
@@ -142,6 +142,7 @@
       const [lockerAddr] = await waitForLockerCreation(call.hash);
       goto(`/locker/manage/${lockerAddr}`);
     } catch (error) {
+      console.error(error);
       creatingWithKenshi = false;
     }
   };
