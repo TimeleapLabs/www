@@ -5,8 +5,6 @@ dotenv.config();
 
 const secret = process.env["RECAPTCHA_SECRET"];
 
-console.log({ secret });
-
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function post(request) {
   const { subject, body, topic, name, email, token } = request.body;
