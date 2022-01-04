@@ -35,7 +35,7 @@
   let paymentMethod = "kenshi";
 
   // TESTNET CONTRACT ADDRESS
-  const contractAddr = "0xaADa8d6030c590b2F7c8a0c6Eb102AE424E5413b";
+  const contractAddr = "0xC4f80aEffF6dAD28E0616E77C6D9ef66ac4d5Ef7";
   const kenshiAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
 
   let lockerCreator;
