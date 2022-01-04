@@ -117,11 +117,27 @@
 
   let creatingWithKenshi = false;
 
+  const getApproval = async (addr) => {
+    return await kenshi.allowance(addr, contractAddr);
+  };
+
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const waitForApproval = async (addr, amount) => {
+    let retries = 6; // wait 30 seconds before giving up
+    while (retries--) {
+      const approval = getApproval(addr);
+      if (approval.gte(amount)) return;
+      await sleep(5000);
+    }
+  };
+
   const createWithKenshi = async () => {
     toast.push("Creating wallet,<br>Please wait...");
     try {
       creatingWithKenshi = true;
       await kenshi.approve(contractAddr, priceInKenshi);
+      await waitForApproval(userAddress, priceInKenshi);
       const call = await lockerCreator.newLockerVestKenshi();
       const [lockerAddr] = await waitForLockerCreation(call.hash);
       goto(`/locker/manage/${lockerAddr}`);
