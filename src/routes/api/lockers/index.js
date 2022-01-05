@@ -35,8 +35,6 @@ const sync = async () => {
     fromBlock + 2500
   );
 
-  console.log({ fromBlock });
-
   const lockers = events.map((event) => {
     return {
       address: event.args[0],

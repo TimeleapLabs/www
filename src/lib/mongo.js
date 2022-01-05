@@ -9,10 +9,21 @@ const options = {
   useNewUrlParser: true,
 };
 
-const connection = new MongoClient(uri, options);
-const clientPromise = connection.connect();
+const connect = async (retries = 5) => {
+  while (retries--) {
+    try {
+      const connection = new MongoClient(uri, options);
+      const client = await connection.connect();
+      return client;
+    } catch (error) {
+      if (!retries) {
+        throw error;
+      }
+    }
+  }
+};
 
 export const getDB = async () => {
-  const client = await clientPromise;
+  const client = await connect();
   return client.db(process.env["DB_NAME"]);
 };
