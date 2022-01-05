@@ -18,7 +18,6 @@ const wallets = [
     walletName: "walletConnect",
     rpc: { [networkId]: rpcUrl },
     preferred: true,
-    bridge: "https://bridge.walletconnect.org",
   },
   { walletName: "trezor", appUrl, email, rpcUrl },
   { walletName: "ledger", rpcUrl },
@@ -32,8 +31,8 @@ export const onboard = Onboard({
   dappId,
   networkId,
   subscriptions: {
-    wallet: (selectedWallet) => {
-      onboard.walletCheck();
+    wallet: async (selectedWallet) => {
+      await onboard.walletCheck();
       wallet.set(selectedWallet);
     },
   },
