@@ -66,17 +66,8 @@
     });
   }
 
-  const switchChain = async (wallet, chainId) => {
-    const provider = new ethers.providers.Web3Provider(wallet.provider);
-    await provider
-      .send("wallet_switchEthereumChain", [{ chainId }])
-      .catch(() => {});
-  };
-
   const connectWallet = async (wallet) => {
-    await switchChain(wallet, "0x38");
     const provider = new ethers.providers.Web3Provider(wallet.provider);
-    await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
     userAddress = await signer.getAddress();
     updateValues(signer);
@@ -89,9 +80,7 @@
     updateValues(provider);
   };
 
-  $: if ($wallet) {
-    connectWallet($wallet);
-  }
+  $: if ($wallet && $wallet.provider) connectWallet($wallet);
 
   const getLockedTokens = async () => {
     const req = await fetch(
