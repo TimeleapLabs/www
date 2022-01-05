@@ -100,7 +100,7 @@
     updateValues();
   };
 
-  $: if ($wallet) connectWallet($wallet);
+  $: if ($wallet && $wallet.provider) connectWallet($wallet);
 
   let gettingTransfers = false;
 

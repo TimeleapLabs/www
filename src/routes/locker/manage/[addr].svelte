@@ -80,9 +80,7 @@
     updateValues(provider);
   };
 
-  $: if ($wallet) {
-    connectWallet($wallet);
-  }
+  $: if ($wallet && $wallet.provider) connectWallet($wallet);
 
   const getLockedTokens = async () => {
     const req = await fetch(

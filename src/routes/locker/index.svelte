@@ -57,7 +57,7 @@
     updateValues(signer);
   };
 
-  $: if ($wallet) connectWallet($wallet);
+  $: if ($wallet && $wallet.provider) connectWallet($wallet);
 
   const connectNoWallet = async () => {
     const provider = new ethers.providers.JsonRpcProvider(
