@@ -33,7 +33,9 @@ export const onboard = Onboard({
   subscriptions: {
     wallet: async (selectedWallet) => {
       await onboard.walletCheck();
-      wallet.set(selectedWallet);
+      setTimeout(() => {
+        wallet.set(selectedWallet);
+      }, 100);
     },
   },
   walletSelect: {
