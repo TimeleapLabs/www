@@ -379,7 +379,7 @@
       </div>
     </div>
     <div class="spacer" />
-    <div class="copyright">Copyright © 2021 - Kenshi</div>
+    <div class="copyright">Copyright © {new Date().getFullYear()} - Kenshi</div>
   </div>
 </div>
 
