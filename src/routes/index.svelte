@@ -410,7 +410,7 @@
           2000 holders
         </li>
         <li>
-          <span class="icon"><Pending /></span>
+          <span class="icon"><Done /></span>
           Get listed on CMC
         </li>
         <li>
