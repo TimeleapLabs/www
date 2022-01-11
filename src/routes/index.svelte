@@ -330,7 +330,11 @@
         <span class="icon"><Cut /></span>
         <span class="title">Sales Tax</span>
         <span class="spacer" />
-        <span class="value">+5%</span>
+        <span class="value">
+          <a href="https://docs.kenshi.io/features/variable-tax.html" class="read-more">
+            Read More <span class="icon"><Arrow /></span>
+          </a>
+        </span>
       </div>
       <div class="tokenomic">
         <span class="icon"><Reward /></span>
@@ -764,6 +768,15 @@
     display: grid;
     gap: 2em;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .tokenomics .read-more{
+    display: flex;
+    align-items: center;
+  }
+  .tokenomics .read-more > .icon{
+    display: flex;
+    justify-content: center;
+    margin-right: unset;
   }
   .tokenomic {
     display: flex;
