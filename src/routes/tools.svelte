@@ -26,6 +26,7 @@
   import { wallet } from "src/stores/wallet";
   import { withDecimals } from "src/lib/decimals";
   import ConnectButton from "src/components/ConnectButton.svelte";
+  import { Jumper } from "svelte-loading-spinners";
 
   const addThousandSep = (n) => parseFloat(n).toLocaleString("en-US");
 
@@ -102,7 +103,7 @@
 
   $: if ($wallet && $wallet.provider) connectWallet($wallet);
 
-  let gettingTransfers = false;
+  let gettingReflections = false;
 
   const updateValues = async () => {
     if (signer && userAddress) {
@@ -111,21 +112,13 @@
       treasury = await kenshi.balanceOf(treasuryAddr);
       maxBalance = await kenshi.getMaxBalance();
       walletWorth = eval(balance.div(BigInt(1e18))._hex) * (await getPrice());
-      if (!gettingTransfers) {
-        gettingTransfers = true;
-        const url = `${window.location.origin}/api/transfers/${userAddress}`;
+      if (!gettingReflections) {
+        gettingReflections = true;
+        const url = `${window.location.origin}/api/reflections/${userAddress}`;
         const req = await fetch(url);
-        const transfers = await req.json();
-        const total = transfers.reduce((total, transfer) => {
-          if (transfer.to === userAddress) {
-            return total + BigInt(transfer.amount);
-          }
-          if (transfer.from === userAddress) {
-            return total - BigInt(transfer.amount);
-          }
-        }, BigInt(0));
-        userReflections = balance.sub(ethers.BigNumber.from(total));
-        gettingTransfers = false;
+        const text = await req.text();
+        userReflections = ethers.BigNumber.from(text);
+        gettingReflections = false;
       }
     }
   };
@@ -244,7 +237,7 @@
         <span class="icon"><Wallet /></span>
         <span> Balance </span>
         <span class="spacer" />
-        <span>
+        <span class="trim-number">
           <span class="green">₭</span>
           {formatKenshi(balance)}
         </span>
@@ -253,7 +246,7 @@
         <span class="icon"><Dollar /></span>
         <span> Wallet Worth </span>
         <span class="spacer" />
-        <span>
+        <span class="trim-number">
           <span class="green">$</span>
           {formatUSD(walletWorth)}
         </span>
@@ -262,16 +255,20 @@
         <span class="icon"><Reflect /></span>
         <span> Reflections </span>
         <span class="spacer" />
-        <span>
-          <span class="green">₭</span>
-          {formatKenshi(userReflections)}
+        <span class="trim-number">
+          {#if userAddress && userReflections.toString() === "0" && gettingReflections}
+            <Jumper size="32" color="var(--primary-color)" />
+          {:else}
+            <span class="green">₭</span>
+            {formatKenshi(userReflections)}
+          {/if}
         </span>
       </div>
       <div class="stat copy" on:click={copyNumber(maxBalance)}>
         <span class="icon"><Balance /></span>
-        <span> Max </span>
+        <span> Max Balance </span>
         <span class="spacer" />
-        <span>
+        <span class="trim-number">
           <span class="green">₭</span>
           {formatKenshi(maxBalance)}
         </span>
@@ -281,9 +278,9 @@
         on:click={() => copyNumber(getMaxBuy(maxBalance, balance))()}
       >
         <span class="icon"><CreditCard /></span>
-        <span> Buy </span>
+        <span> Can Buy </span>
         <span class="spacer" />
-        <span>
+        <span class="trim-number">
           <span class="green">₭</span>
           {formatKenshi(getMaxBuy(maxBalance, balance))}
         </span>
@@ -292,7 +289,7 @@
         <span class="icon"><Treasure /></span>
         <span> Treasury </span>
         <span class="spacer" />
-        <span>
+        <span class="trim-number">
           <span class="green">₭</span>
           {formatKenshi(treasury)}
         </span>
@@ -487,6 +484,7 @@
     width: 2em;
     color: var(--primary-color);
     margin-right: 1em;
+    display: flex;
   }
   .navbar {
     display: flex;
@@ -659,6 +657,12 @@
     right: 0;
     bottom: 0px;
     z-index: -1;
+  }
+  .trim-number {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 50%;
   }
   @media (max-width: 1800px) {
     .stats {

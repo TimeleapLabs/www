@@ -69,13 +69,40 @@ export async function get(request) {
 
   const db = await getDB();
   const collection = db.collection("transfers");
+  const reflections = db.collection("reflections");
+
+  const cache = await reflections.findOne({ address });
+
+  const query = {
+    $or: [{ from: address }, { to: address }],
+    ...(cache ? { blockNumber: { $gt: cache.blockNumber } } : {}),
+  };
+
+  const uncached = await collection.find(query).toArray();
+
+  const totalUncached = uncached.reduce((total, transfer) => {
+    if (transfer.to === address) {
+      return total + BigInt(transfer.amount);
+    }
+    if (transfer.from === address) {
+      return total - BigInt(transfer.amount);
+    }
+  }, BigInt(0));
+
+  const total = cache ? BigInt(cache.amount) + totalUncached : totalUncached;
+  const blockNumber = uncached.reduce(
+    (max, { blockNumber }) => Math.max(max, blockNumber),
+    cache?.blockNumber || 0
+  );
+
+  await reflections.updateOne(
+    { address },
+    { $set: { blockNumber, amount: total.toString() } },
+    { upsert: true }
+  );
 
   return {
     status: 200,
-    body: await collection
-      .find({
-        $or: [{ from: address }, { to: address }],
-      })
-      .toArray(),
+    body: total.toString(),
   };
 }
