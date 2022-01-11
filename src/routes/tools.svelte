@@ -114,10 +114,11 @@
       walletWorth = eval(balance.div(BigInt(1e18))._hex) * (await getPrice());
       if (!gettingReflections) {
         gettingReflections = true;
-        const url = `${window.location.origin}/api/reflections/${userAddress}`;
+        const url = `${window.location.origin}/api/transfers/${userAddress}`;
         const req = await fetch(url);
         const text = await req.text();
-        userReflections = ethers.BigNumber.from(text);
+        const total = ethers.BigNumber.from(text);
+        userReflections = balance.sub(total);
         gettingReflections = false;
       }
     }
