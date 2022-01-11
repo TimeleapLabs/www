@@ -37,7 +37,7 @@
   import { onMount } from "svelte";
   import { withDecimals } from "src/lib/decimals";
 
-  const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
+  const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a84";
   let price = 0;
 
   const setPrice = async () => {
@@ -330,7 +330,14 @@
         <span class="icon"><Cut /></span>
         <span class="title">Sales Tax</span>
         <span class="spacer" />
-        <span class="value">+5%</span>
+        <span class="value">
+          <a
+            href="https://docs.kenshi.io/features/variable-tax.html"
+            class="read-more"
+          >
+            Read More <span class="icon"><Arrow /></span>
+          </a>
+        </span>
       </div>
       <div class="tokenomic">
         <span class="icon"><Reward /></span>
@@ -764,6 +771,15 @@
     display: grid;
     gap: 2em;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .tokenomics .read-more {
+    display: flex;
+    align-items: center;
+  }
+  .tokenomics .read-more > .icon {
+    display: flex;
+    justify-content: center;
+    margin-right: unset;
   }
   .tokenomic {
     display: flex;
