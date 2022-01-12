@@ -387,7 +387,7 @@
       <div class="investment">
         <div class="icon"><Droplet /></div>
         A small percentage of each transaction (currently 2%) is invested on implementing
-        and maintining the Kenshi projects. You can check out
+        and maintaining the Kenshi projects. You can check out
         <a href="https://docs.kenshi.io/investment/profits.html" class="red">
           this page
         </a> to learn how the profits are distributed back to the holders.
