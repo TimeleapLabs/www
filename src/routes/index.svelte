@@ -37,7 +37,7 @@
   import { onMount } from "svelte";
   import { withDecimals } from "src/lib/decimals";
 
-  const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a84";
+  const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
   let price = 0;
 
   const setPrice = async () => {
