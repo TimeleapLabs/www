@@ -16,7 +16,9 @@ export async function get(request) {
 
   for (const { address } of wallets) {
     const isKenshiLocker = await lockersCollection.findOne({ address });
-    if (isKenshiLocker) lockers.push(address);
+    if (isKenshiLocker) {
+      lockers.push(address);
+    }
   }
 
   return {
