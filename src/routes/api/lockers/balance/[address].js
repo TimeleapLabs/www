@@ -25,7 +25,9 @@ const getDisplayName = async (provider, symbol, token) => {
 
 const getTokenInfo = async (provider, contract) => {
   const db = await getDB();
+
   const collection = db.collection("tokenInfo");
+  await collection.createIndex({ token: 1 });
 
   const cache = await collection.findOne({ token: contract.address });
 

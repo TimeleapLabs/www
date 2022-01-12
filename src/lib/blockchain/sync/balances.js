@@ -13,6 +13,9 @@ export const sync = async (address) => {
   const lockers = db.collection("lockers");
   const parameters = db.collection("walletTokensParameters");
 
+  await collection.createIndex({ token: 1, address: 1 });
+  await parameters.createIndex({ name: 1, address: 1 });
+
   const provider = new ethers.providers.JsonRpcProvider(JSONRPC);
 
   const lastSyncedBlock = await parameters.findOne({

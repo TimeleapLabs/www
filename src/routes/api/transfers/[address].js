@@ -13,6 +13,8 @@ const sync = async () => {
   const collection = db.collection("transfers");
   const parameters = db.collection("parameters");
 
+  await collection.createIndex({ from: 1, to: 1 });
+
   const provider = new ethers.providers.JsonRpcProvider(
     "https://bsc-dataseed.binance.org/"
   );
@@ -70,6 +72,8 @@ export async function get(request) {
   const db = await getDB();
   const collection = db.collection("transfers");
   const cacheCollection = db.collection("cachedTransfers");
+
+  await cacheCollection.createIndex({ address: 1 });
 
   const cache = await cacheCollection.findOne({ address });
 
