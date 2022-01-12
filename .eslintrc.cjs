@@ -13,4 +13,7 @@ module.exports = {
     es2017: true,
     node: true,
   },
+  rules: {
+    "no-unused-vars": [2, { args: "after-used", argsIgnorePattern: "^_" }],
+  },
 };

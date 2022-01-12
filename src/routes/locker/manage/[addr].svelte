@@ -66,10 +66,14 @@
     });
   }
 
+  let interval;
+
   const connectWallet = async (wallet) => {
     const provider = new ethers.providers.Web3Provider(wallet.provider);
     signer = provider.getSigner();
     userAddress = await signer.getAddress();
+    clearInterval(interval);
+    interval = setInterval(getLockedTokens, 60 * 1000, signer);
     updateValues(signer);
   };
 
@@ -77,6 +81,8 @@
     const provider = new ethers.providers.JsonRpcProvider(
       "https://bsc-dataseed.binance.org/"
     );
+    clearInterval(interval);
+    interval = setInterval(getLockedTokens, 60 * 1000, provider);
     updateValues(provider);
   };
 
@@ -84,7 +90,7 @@
 
   const getLockedTokens = async () => {
     const req = await fetch(
-      `${window.location.origin}/api/balance/${contractAddr}`
+      `${window.location.origin}/api/lockers/balance/${contractAddr}`
     );
     if (req.status === 200) {
       return await req.json();
@@ -151,6 +157,9 @@
 
   onMount(async () => {
     if (!$wallet) connectNoWallet();
+    return () => {
+      clearInterval(interval);
+    };
   });
 </script>
 
@@ -290,16 +299,16 @@
           {#each tokens as token}
             <div class="locked-info glass">
               <div class="locked-token">
-                <div class="name">{token.display_name} ({token.symbol})</div>
+                <div class="name">{token.name} ({token.symbol})</div>
                 <div class="amount">
                   {formatBEP20(token.balance)}
                   locked -
-                  {toPercentage(token.balance, token.total_supply)}% of total
+                  {toPercentage(token.balance, token.supply)}% of total
                 </div>
               </div>
               <a
                 class="external"
-                href="https://bscscan.com/token/{token.token_address}"
+                href="https://bscscan.com/token/{token.token}"
               >
                 <External />
               </a>
