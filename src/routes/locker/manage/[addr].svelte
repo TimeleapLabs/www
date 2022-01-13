@@ -98,6 +98,15 @@
     return [];
   };
 
+  let syncing = false;
+
+  const sync = async () => {
+    if (syncing) return;
+    syncing = true;
+    await fetch(`${window.location.origin}/api/lockers/sync/${contractAddr}`);
+    syncing = false;
+  };
+
   const updateValues = async (signer) => {
     locker = new ethers.Contract(contractAddr, abi, signer);
     const timestamp = await locker.getLock();
@@ -157,8 +166,10 @@
 
   onMount(async () => {
     if (!$wallet) connectNoWallet();
+    const syncInterval = setInterval(sync, 5000);
     return () => {
       clearInterval(interval);
+      clearInterval(syncInterval);
     };
   });
 </script>
