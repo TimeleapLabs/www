@@ -59,7 +59,7 @@ export const sync = async (address) => {
 
   await parameters.updateOne(
     { name: "lastSyncedBlock", address },
-    { $set: { blockNumber: fromBlock + 1000 } },
+    { $set: { blockNumber: fromBlock + 2500 } },
     { upsert: true }
   );
 };
