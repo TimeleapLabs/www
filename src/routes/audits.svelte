@@ -157,6 +157,51 @@
     </div>
   </div>
   <div class="section footer">
+    <div class="footer-links">
+      <a href="/">
+        <div class="vertical-logo">
+          <div class="logo">
+            <img src="/images/kenshi.round.png" alt="Kenshi" />
+          </div>
+          <div class="logo textual">
+            <img src="/images/kenshi.textual.svg" alt="Kenshi" />
+          </div>
+        </div>
+      </a>
+      <div class="footer-links--externals">
+        <ul>
+          <li><strong>Liquidity Locked</strong></li>
+          <li>
+            <a
+              href="https://mudra.website/?certificate=yes&type=0&lp=0x65ef7833898c4a0df62bf150bbaba2718876adf3"
+              >Mudra Lockers</a
+            >
+          </li>
+          <li>
+            <a href="/locker/manage/0xe570334989Fa3b77C6f1cFbc2D1909D4255bA1f6"
+              >Kenshi Lockers</a
+            >
+          </li>
+        </ul>
+        <ul>
+          <li><strong>Links</strong></li>
+          <li>
+            <a
+              href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
+              >Chart</a
+            >
+          </li>
+          <li>
+            <a href="https://www.coingecko.com/en/coins/kenshi">CoinGecko</a>
+          </li>
+          <li>
+            <a href="https://coinmarketcap.com/currencies/kenshi/"
+              >CoinMarketCap</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="made-with">
       Made with ❤️ by awesome people
       <div class="contact">
@@ -283,6 +328,23 @@
     padding-bottom: 1em;
     flex-wrap: wrap;
   }
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .footer-links--externals {
+    display: flex;
+  }
+  .footer-links--externals > ul {
+    list-style: none;
+  }
+  .footer-links--externals > ul > li {
+    text-align: right;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+  }
   .links {
     font-size: 1.2em;
     display: flex;
@@ -403,6 +465,24 @@
     }
     h2 {
       margin-bottom: 0.5em !important;
+    }
+    .footer-links {
+      flex-direction: column;
+      margin-bottom: 1em;
+    }
+    .footer-links .vertical-logo {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    .footer-links--externals {
+      width: 100%;
+      justify-content: space-evenly;
+    }
+    .footer-links--externals > ul {
+      padding: 0;
+    }
+    .footer-links--externals > ul > li {
+      text-align: center;
     }
   }
 </style>
