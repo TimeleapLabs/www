@@ -52,7 +52,10 @@ export const sync = async () => {
   }
 
   await parameters.updateOne(
-    { name: "lastLockerSyncedBlock" },
+    {
+      name: "lastLockerSyncedBlock",
+      $or: [{ blockNumber }, { blockNumber: { $exists: false } }],
+    },
     { $set: { blockNumber: fromBlock + 2500 } },
     { upsert: true }
   );
