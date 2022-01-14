@@ -73,7 +73,7 @@
     signer = provider.getSigner();
     userAddress = await signer.getAddress();
     clearInterval(interval);
-    interval = setInterval(getLockedTokens, 60 * 1000, signer);
+    interval = setInterval(updateValues, 60 * 1000, signer);
     updateValues(signer);
   };
 
@@ -82,7 +82,7 @@
       "https://bsc-dataseed.binance.org/"
     );
     clearInterval(interval);
-    interval = setInterval(getLockedTokens, 60 * 1000, provider);
+    interval = setInterval(updateValues, 60 * 1000, provider);
     updateValues(provider);
   };
 
@@ -107,17 +107,22 @@
     syncing = false;
   };
 
+  let updating = false;
+
   const updateValues = async (signer) => {
+    if (updating) return;
+    updating = true;
     locker = new ethers.Contract(contractAddr, abi, signer);
     const timestamp = await locker.getLock();
     lock = new Date(timestamp * 1000);
     owner = await locker.getOwner();
-    newLockDate = lock.toISOString().slice(0, -14);
+    newLockDate = newLockDate || lock.toISOString().slice(0, -14);
     const deployer = new ethers.Contract(deployerAddr, deployerAbi, signer);
     isKenshiLocker = await deployer.isKenshiLocker(contractAddr);
     lockerVersion = await locker.getVersion();
     tokens = await getLockedTokens();
     loadingTokens = false;
+    updating = false;
   };
 
   const copy = (text) => () => {
