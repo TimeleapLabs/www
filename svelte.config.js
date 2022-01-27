@@ -1,4 +1,4 @@
-import vercel from "@sveltejs/adapter-vercel";
+import adapter from "@sveltejs/adapter-node";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 import path from "path";
 
@@ -9,7 +9,7 @@ const config = {
   kit: {
     // hydrate the <div id="svelte"> element in src/app.html
     target: "#svelte",
-    adapter: vercel(),
+    adapter: adapter(),
     vite: {
       plugins: [
         // ↓ Have to check the mode here because this cant run on build
