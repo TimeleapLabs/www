@@ -64,7 +64,7 @@
   ],
   "placementConstraints": [],
   "memory": "2048",
-  "taskRoleArn": null,
+  "taskRoleArn": "arn:aws:iam::679428145363:role/ecs-www-role",
   "family": "kenshi-www-td",
   "pidMode": null,
   "requiresCompatibilities": ["FARGATE"],
