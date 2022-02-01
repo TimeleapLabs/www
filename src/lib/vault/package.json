@@ -1,0 +1,18 @@
+{
+  "name": "@kenshi.io/vault",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws4": "^1.11.0",
+    "node-fetch": "^3.2.0",
+    "node-vault": "^0.9.22"
+  },
+  "type": "module"
+}

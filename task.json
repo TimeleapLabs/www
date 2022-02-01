@@ -1,10 +1,9 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::679428145363:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::679428145363:role/ecs-www-role",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
-      "environmentFiles": null,
       "logConfiguration": {
         "logDriver": "awslogs",
         "secretOptions": null,
@@ -20,6 +19,12 @@
           "hostPort": 3000,
           "protocol": "tcp",
           "containerPort": 3000
+        }
+      ],
+      "environmentFiles": [
+        {
+          "value": "arn:aws:s3:::kenshi-www-env/www.env",
+          "type": "s3"
         }
       ],
       "command": null,
