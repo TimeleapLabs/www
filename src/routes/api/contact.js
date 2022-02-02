@@ -1,6 +1,6 @@
 import { getDB } from "$lib/mongo";
 import dotenv from "dotenv";
-import { get } from "./env";
+import { get } from "$lib/env";
 
 dotenv.config();
 
