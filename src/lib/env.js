@@ -5,10 +5,10 @@ let secrets;
 
 export const get = async (key) => {
   if (!secrets) {
-    await ecsLogin();
+    await ecsLogin(undefined, "vault.kenshi.io");
     const response = await vault.read("kv/data/kenshi/secrets/ecs/www/env");
     console.log(response);
-    secrets = response.data;
+    secrets = response.data.data;
   }
 
   return secrets[key];

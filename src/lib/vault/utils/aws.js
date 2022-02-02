@@ -3,12 +3,11 @@ import { sign } from "./sign.js";
 import { headersToGoStyle } from "./go.js";
 import { base64 } from "./base64.js";
 
-export const getSignedAWSLoginConfig = (role, id, options) => {
-  const signedRequest = sign(id, options);
+export const getSignedAWSLoginConfig = (id, credentials) => {
+  const signedRequest = sign(id, credentials);
   const headers = headersToGoStyle(signedRequest.headers);
 
   return {
-    role,
     iam_http_request_method: "POST",
     iam_request_url: base64(STS_URL),
     iam_request_body: base64(STS_BODY),
