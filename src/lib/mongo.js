@@ -18,7 +18,6 @@ const connect = async (retries = 5) => {
   while (retries--) {
     try {
       const uri = await get("MONGODB_URI");
-      console.log("mongodb uri", uri);
       const connection = new MongoClient(uri, options);
       const client = await connection.connect();
       cachedClient = client;
