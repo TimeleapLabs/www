@@ -8,7 +8,7 @@ export const getInstanceData = async () => {
   const credentials = await getCredentials();
 
   return {
-    role: credentials.RoleArn,
+    role: credentials.RoleArn.split(":").pop().split("/").pop(),
     credentials,
   };
 };
