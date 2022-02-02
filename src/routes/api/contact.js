@@ -5,8 +5,9 @@ import { get } from "$lib/env";
 dotenv.config();
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function post(request) {
-  const { subject, body, topic, name, email, token } = request.body;
+export async function post({ request }) {
+  const requestBody = await request.json();
+  const { subject, body, topic, name, email, token } = requestBody;
 
   if (!subject || !body || !topic || !email || !name || !token) {
     return { status: 401 };
@@ -26,7 +27,7 @@ export async function post(request) {
   const db = await getDB();
   const collection = db.collection("contact-messages");
 
-  const ip = request.headers["x-forwarded-for"] || "localhost";
+  const ip = request.headers.get("x-forwarded-for") || "localhost";
   const last = await collection.findOne({ ip }, { sort: { time: -1 } });
 
   if (last?.time && new Date() - last.time < 5000) {
