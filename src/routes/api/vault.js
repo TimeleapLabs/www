@@ -5,7 +5,7 @@ import { vault } from "@kenshi.io/vault";
 export async function get() {
   console.log("trying to get the secrets");
   await ecsLogin();
-  const secret = await vault.read("kv/data/kenshi/secrets/ecs/www/test");
+  const secret = await vault.read("kv/data/kenshi/secrets/ecs/www/env");
   console.log("here is the sekret komrad", secret);
   return { status: 200 };
 }
