@@ -5,10 +5,9 @@ export const sign = (awsServerId, credentials) => {
   const request = {
     service: "sts",
     body: STS_BODY,
-    ...credentials,
+    headers: {},
   };
   if (awsServerId) {
-    request.headers = request.headers || {};
     request.headers["X-Vault-AWS-IAM-Server-ID"] = awsServerId;
   }
   return aws4.sign(request, credentials);
