@@ -1,9 +1,8 @@
 import { getDB } from "$lib/mongo";
 import dotenv from "dotenv";
+import { get } from "./env";
 
 dotenv.config();
-
-const secret = process.env["RECAPTCHA_SECRET"];
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function post(request) {
@@ -13,6 +12,7 @@ export async function post(request) {
     return { status: 401 };
   }
 
+  const secret = await get("RECAPTCHA_SECRET");
   const captchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`;
   const captchaReq = await fetch(captchaUrl, {
     method: "POST",
