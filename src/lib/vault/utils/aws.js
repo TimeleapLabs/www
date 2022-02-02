@@ -5,7 +5,7 @@ import { base64 } from "./base64.js";
 
 export const getSignedAWSLoginConfig = (role, id, options) => {
   const signedRequest = sign(id, options);
-  const headers = signedRequest.headers; //headersToGoStyle(signedRequest.headers);
+  const headers = headersToGoStyle(signedRequest.headers);
 
   return {
     role,
