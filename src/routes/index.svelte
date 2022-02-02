@@ -58,8 +58,6 @@
     const interval = setInterval(setPrice, 15000);
     setPrice();
 
-    fetch("/api/vault");
-
     return () => {
       clearInterval(interval);
     };
