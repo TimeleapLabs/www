@@ -4,13 +4,21 @@ import { STS_BODY } from "../meta/constants.js";
 export const signWithServerId = (awsServerId, options = {}) =>
   aws4.sign({
     service: "sts",
+    region: "eu-central-1",
+    doNotModifyHeaders: false,
     headers: { "X-Vault-AWS-IAM-Server-ID": awsServerId },
     body: STS_BODY,
     ...options,
   });
 
 export const signNoServerId = (options = {}) =>
-  aws4.sign({ service: "sts", body: STS_BODY, ...options });
+  aws4.sign({
+    service: "sts",
+    region: "eu-central-1",
+    doNotModifyHeaders: false,
+    body: STS_BODY,
+    ...options,
+  });
 
 export const sign = (awsServerId, options) =>
   awsServerId
