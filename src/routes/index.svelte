@@ -85,7 +85,10 @@
         oracles.
       </div>
       <div class="buttons">
-        <a href="https://docs.kenshi.io/services/vrf" class="button solid">
+        <a
+          href="https://docs.kenshi.io/services/vrf/index.html"
+          class="button solid"
+        >
           <span>Docs <External /></span>
         </a>
         <a
@@ -109,7 +112,7 @@
       </div>
       <div class="buttons">
         <a
-          href="https://docs.kenshi.io/services/deep-index"
+          href="https://docs.kenshi.io/services/deep-index/index.html"
           class="button solid"
         >
           <span>Docs <External /></span>
@@ -138,12 +141,15 @@
       <h3>Liquidity Bootstrapping</h3>
       <Arrow />
     </a>
-    <a href="https://docs.kenshi.io/services/audits" class="product">
+    <a href="https://docs.kenshi.io/services/audits/index.html" class="product">
       <Shield />
       <h3>Security Audits</h3>
       <Arrow />
     </a>
-    <a href="https://docs.kenshi.io/services/development" class="product">
+    <a
+      href="https://docs.kenshi.io/services/development/index.html"
+      class="product"
+    >
       <Code />
       <h3>Blockchain Development</h3>
       <Arrow />
@@ -342,7 +348,10 @@
           <p>Never worry about infrastructure again, we've got you covered.</p>
         </div>
         <div class="buttons">
-          <a class="button" href="https://docs.kenshi.io/services/deep-index">
+          <a
+            class="button"
+            href="https://docs.kenshi.io/services/deep-index/index.html"
+          >
             <span>Start today <ChevronRight /></span>
           </a>
         </div>

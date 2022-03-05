@@ -237,20 +237,22 @@
               <div class="product">
                 <h3>Deep Index</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/services/deep-index/sync">
+                  <Link
+                    href="https://docs.kenshi.io/services/deep-index/sync/index.html"
+                  >
                     <DB />Indexing
                   </Link>
                 </div>
                 <div>
                   <Link
-                    href="https://docs.kenshi.io/services/deep-index/webhook"
+                    href="https://docs.kenshi.io/services/deep-index/webhook/index.html"
                   >
                     <CloudSensor />Reverse API
                   </Link>
                 </div>
                 <div>
                   <Link
-                    href="https://docs.kenshi.io/services/deep-index/graphql"
+                    href="https://docs.kenshi.io/services/deep-index/graphql/index.html"
                   >
                     <D20 />GraphQL
                   </Link>
@@ -259,7 +261,7 @@
               <div class="product">
                 <h3>Oracles</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/services/vrf">
+                  <Link href="https://docs.kenshi.io/services/vrf/index.html">
                     <Shuffle />VRF
                   </Link>
                 </div>
@@ -272,12 +274,16 @@
               <div class="product">
                 <h3>Services</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/services/audits">
+                  <Link
+                    href="https://docs.kenshi.io/services/audits/index.html"
+                  >
                     <Shield />Security Audits
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://docs.kenshi.io/services/development">
+                  <Link
+                    href="https://docs.kenshi.io/services/development/index.html"
+                  >
                     <Code />Blockchain Development
                   </Link>
                 </div>
@@ -406,7 +412,7 @@
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://docs.kenshi.io/features">
+                  <Link href="https://docs.kenshi.io/features/index.html">
                     <ListCheck /> Features
                   </Link>
                 </div>

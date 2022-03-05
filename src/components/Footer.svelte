@@ -37,18 +37,26 @@
       <Link href="https://t.me/kenshi_developers" target="_blank"
         >Developers chat
       </Link>
-      <Link href="https://docs.kenshi.io/services/vrf">Getting randomness</Link>
-      <Link href="https://docs.kenshi.io/services/deep-index/graphql">
+      <Link href="https://docs.kenshi.io/services/vrf/index.html">
+        Getting randomness
+      </Link>
+      <Link
+        href="https://docs.kenshi.io/services/deep-index/graphql/index.html"
+      >
         Deep Index: GraphQL
       </Link>
-      <Link href="https://docs.kenshi.io/services/deep-index/webhook">
+      <Link
+        href="https://docs.kenshi.io/services/deep-index/webhook/index.html"
+      >
         Deep Index: Reverse-API
       </Link>
     </div>
     <div class="list">
       <h3>Products</h3>
-      <Link href="https://docs.kenshi.io/services/vrf">VRF</Link>
-      <Link href="https://docs.kenshi.io/services/deep-index">Deep Index</Link>
+      <Link href="https://docs.kenshi.io/services/vrf/index.html">VRF</Link>
+      <Link href="https://docs.kenshi.io/services/deep-index/index.html">
+        Deep Index
+      </Link>
       <Link href="https://docs.kenshi.io/services/locker.html">Lockers</Link>
       <Link href="https://docs.kenshi.io/services/lbp.html">
         Liquidity Bootstrapping
