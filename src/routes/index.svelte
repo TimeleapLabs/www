@@ -1,1251 +1,1127 @@
 <script>
-  import Medium from "../icons/Medium.svelte";
-  import Telegram from "../icons/Telegram.svelte";
-  import Twitter from "../icons/Twitter.svelte";
-  import Github from "../icons/Github.svelte";
-  import Reddit from "../icons/Reddit.svelte";
-  import LinkedIn from "../icons/LinkedIn.svelte";
-  import Whale from "../icons/Whale.svelte";
-  import Fire from "../icons/Fire.svelte";
-  import Reflect from "../icons/Reflect.svelte";
-  import Supply from "../icons/Supply.svelte";
-  import Reward from "../icons/Reward.svelte";
-  import Rewards from "../icons/Rewards.svelte";
-  import Chart from "../icons/Chart.svelte";
-  import Lock from "../icons/Lock.svelte";
-  import Hold from "../icons/Hold.svelte";
-  import Droplet from "../icons/Droplet.svelte";
-  import Cut from "../icons/Cut.svelte";
-  import Flame from "../icons/Flame.svelte";
-  import Time from "../icons/Time.svelte";
-  import Dollar from "../icons/Dollar.svelte";
-  import Gauge from "../icons/Gauge.svelte";
-  import Pending from "../icons/Pending.svelte";
-  import Done from "../icons/Done.svelte";
-  import Arrow from "../icons/Arrow.svelte";
-  import Book from "../icons/Book.svelte";
-  import Network from "../icons/Network.svelte";
-  import Tools from "../icons/Tools.svelte";
-  import BinaryLock from "../icons/BinaryLock.svelte";
-  import Liquid from "../icons/Liquid.svelte";
-  import Code from "../icons/Code.svelte";
-  import Shield from "../icons/Shield.svelte";
+  import Navbar from "src/components/Navbar.svelte";
+  import Footer from "src/components/Footer.svelte";
+  import Card from "src/components/Card.svelte";
 
-  import ContactForm from "../components/ContactForm.svelte";
+  import VR from "src/icons/VR.svelte";
+  import Dice from "src/icons/Dice.svelte";
+  import Gamepad from "src/icons/Gamepad.svelte";
+  import Slot from "src/icons/Slot.svelte";
+  import Shuffle from "src/icons/Shuffle.svelte";
 
-  import { scrollto } from "svelte-scrollto";
-  import { onMount } from "svelte";
-  import { withDecimals } from "src/lib/decimals";
+  import DB from "src/icons/DB.svelte";
+  import D20 from "src/icons/D20.svelte";
+  import Magnify from "src/icons/Magnify.svelte";
+  import CloudSensor from "src/icons/CloudSensor.svelte";
 
-  const contractAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
-  let price = 0;
+  import ChevronRight from "src/icons/ChevronRight.svelte";
+  import External from "src/icons/External.svelte";
+  import Arrow from "src/icons/Arrow.svelte";
 
-  const setPrice = async () => {
-    const currentPrice = await fetch(
-      `https://api.pancakeswap.info/api/v2/tokens/${contractAddr}`
-    )
-      .then((resp) => resp.json())
-      .then((resp) => resp.data?.price);
-    const priceForK = currentPrice * 1000 || price;
-    price = withDecimals(priceForK.toString(), 8);
-  };
+  import BinaryLock from "src/icons/BinaryLock.svelte";
+  import LiquidUp from "src/icons/LiquidUp.svelte";
+  import Shield from "src/icons/Shield.svelte";
+  import Code from "src/icons/Code.svelte";
 
-  onMount(() => {
-    const { hash } = window.location;
-    if (hash) {
-      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
-    }
-    const interval = setInterval(setPrice, 15000);
-    setPrice();
+  import LayerPlus from "src/icons/LayerPlus.svelte";
+  import Infinity from "src/icons/Infinity.svelte";
+  import Bolt from "src/icons/Bolt.svelte";
+  import CheckDouble from "src/icons/CheckDouble.svelte";
+  import BellOn from "src/icons/BellOn.svelte";
+  import ChartNetwork from "src/icons/ChartNetwork.svelte";
+  import Link from "src/icons/Link.svelte";
 
-    fetch("/api/vault");
-
-    return () => {
-      clearInterval(interval);
-    };
-  });
+  import Gist from "src/components/Gist.svelte";
 </script>
 
-<div class="page">
-  <div class="head">
-    <div class="hero">
-      <div class="main">
-        <div class="navbar">
-          <div class="links spaced">
-            <a href="/">
-              <div class="vertical-logo">
-                <div class="logo">
-                  <img src="/images/kenshi.round.png" alt="Kenshi" />
-                </div>
-                <div class="logo textual">
-                  <img src="/images/kenshi.textual.svg" alt="Kenshi" />
-                </div>
-              </div>
-            </a>
-            <a use:scrollto={"#services"} href="#roadmap">Services</a>
-            <a use:scrollto={"#tokenomics"} href="#tokenomics">Tokenomics</a>
-            <a href="https://docs.kenshi.io">Whitepaper</a>
-          </div>
-          <div class="spacer" />
-          <div class="links">
-            <a href="https://t.me/kenshi_token"> <Telegram /> </a>
-            <a href="https://twitter.com/kenshi_token"> <Twitter /> </a>
-            <a href="https://blog.kenshi.io"> <Medium /> </a>
-            <a href="https://www.reddit.com/r/kenshi_token/"> <Reddit /> </a>
-            <a href="https://github.com/kenshi-token"> <Github /> </a>
-          </div>
-        </div>
-        <div class="intro">
-          <h1>Kenshi</h1>
-          is an investment token.
-        </div>
-        <div class="highlights">
-          <div class="highlight">
-            <span class="icon">
-              <Reflect />
-            </span>
-            <span> Reflections </span>
-          </div>
-          <div class="highlight">
-            <span class="icon">
-              <Fire />
-            </span>
-            <span> Automatic Burns </span>
-          </div>
-          <div class="highlight">
-            <span class="icon">
-              <Whale />
-            </span>
-            <span> Whale-proof </span>
-          </div>
-        </div>
-        <div class="investment-token">
-          <h2>What is an investment token?</h2>
-          <div class="content">
-            An investment token, in terms of <span class="red">Kenshi</span>,
-            <br />
-            is a token that invests a small portion of each transaction, distributing
-            back the earned profits to the holders.
-          </div>
-        </div>
-        <div class="buttons">
-          <a href="https://docs.kenshi.io" class="button">
-            <span class="icon"><Book /></span>
-            Learn More
-          </a>
-          <a href="/tools" class="button">
-            <span class="icon"><Tools /></span>
-            Kenshi Tools
-          </a>
-          <a href="https://poocoin.com" class="button hidden">
-            <span class="icon"><Chart /></span>
-            View Charts
-          </a>
-          <a href="https://unicrypt.com" class="button hidden">
-            <span class="icon"><Lock /></span>
-            Liquidity Locked
-          </a>
-        </div>
-      </div>
-      <div class="chart-wrap">
-        <div class="chart">
-          <div class="logo">
-            <img src="/images/kenshi.png" alt="Kenshi" />
-          </div>
-          <div class="logo textual">
-            <img src="/images/kenshi.textual.svg" alt="Kenshi" />
-          </div>
-          <div class="price">${price} for 1K₭</div>
-          <div class="buy">
-            <a
-              href="https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784"
-            >
-              <div class="icon">
-                <img src="/images/bunny.png" alt="PancakeSwap" />
-              </div>
-              Buy on PancakeSwap!
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<Navbar />
 
-  <div class="section" id="services">
-    <div class="section-head">
-      <h2>Services</h2>
-      <a href="http://docs.kenshi.io/services" class="read-more">
-        Read More <span class="icon"><Arrow /></span>
+<!-- Hero -->
+
+<div class="hero">
+  <div class="content">
+    <img src="/images/kenshi.logo.long.png" alt="Kenshi" class="logo" />
+    <div class="motto">Cutting-edge tech for your blockchain projects</div>
+    <div class="buttons">
+      <a
+        class="button solid"
+        href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
+        target="_blank"
+      >
+        <span>View charts <External /></span>
+      </a>
+      <a class="button" href="http://docs.kenshi.io/">
+        <span>Read the docs <ChevronRight /></span>
       </a>
     </div>
-    <div class="services">
-      <div class="service">
-        <div class="title">
-          <span class="icon"><BinaryLock /></span>
-          Locker
-        </div>
-        <span class="content">
-          Use the Kenshi Locker to lock your liquidity or vest any other tokens
-          for a set period of time.
-        </span>
-        <a href="/locker" class="green read-more">
-          Start now <span class="icon"><Arrow /></span>
-        </a>
-      </div>
-      <div class="service">
-        <div class="title">
-          <span class="icon"><Liquid /></span>
-          Liquidity Bootstrapping
-        </div>
-        <span class="content">
-          Want to launch your token but lack initial liquidity? Use the Kenshi
-          LBP tool to boost your liquidity fast.
-        </span>
-        <a href="/liquidity-bootstrapping" class="green read-more">
-          Learn more <span class="icon"><Arrow /></span>
-        </a>
-      </div>
-      <div class="service">
-        <div class="title">
-          <span class="icon"><Code /></span>
-          Smart Contract Development
-        </div>
-        <span class="content">
-          Kenshi offers custom token development and related services with high
-          development standards at a competitive cost!
-        </span>
-        <a href="/development" class="green read-more">
-          See what we do <span class="icon"><Arrow /></span>
-        </a>
-      </div>
-      <div class="service">
-        <div class="title">
-          <span class="icon"><Shield /></span>
-          Security Audits
-        </div>
-        <span class="content">
-          Kenshi developers and security experts review your smart contract for
-          bugs and security issues, helping you find and resolve them all!
-        </span>
-        <a href="/audits" class="green read-more">
-          See an example <span class="icon"><Arrow /></span>
-        </a>
-      </div>
-    </div>
   </div>
-
-  <div class="section">
-    <div class="samurai-illustration" />
-    <div class="section-head">
-      <h2>Features</h2>
-      <a href="http://docs.kenshi.io/features" class="read-more">
-        Read More <span class="icon"><Arrow /></span>
-      </a>
-    </div>
-    <div class="features">
-      <div class="samurai-robot">
-        <img src="/images/features.png" alt="Samurai Robot" />
-      </div>
-      <div class="feature">
-        <div class="title">
-          <span class="icon"><Rewards /></span>
-          Reflections
-        </div>
-        <span class="content">
-          2% of the tokens in each transaction are distributed back to the
-          holders, giving a passive income to those loyal to the project.
-        </span>
-        <a
-          href="http://docs.kenshi.io/features/reflections.html"
-          class="green read-more"
-        >
-          Calculate how much you'll get <span class="icon"><Arrow /></span>
-        </a>
-      </div>
-      <div class="feature">
-        <div class="title">
-          <span class="icon"><Flame /></span>
-          Automatic burns
-        </div>
-        <span class="content">
-          1% of the tokens in every transaction are burned and are taken out of
-          circulation forever. This goes on until 50% of the total supply is
-          burned.
-        </span>
-        <a
-          href="http://docs.kenshi.io/features/burns.html"
-          class="green read-more"
-        >
-          Learn why this is good <span class="icon"><Arrow /></span>
-        </a>
-      </div>
-      <div class="feature">
-        <div class="title">
-          <span class="icon"><Time /></span>
-          Variable Tax Rates
-        </div>
-        <span class="content">
-          The longer you hold onto your tokens the less tax you'll pay when you
-          sell. Those who want to manipulate the market face an early sale fine.
-        </span>
-        <a
-          href="https://docs.kenshi.io/features/variable-tax.html"
-          class="green read-more"
-        >
-          Read More <span class="icon"><Arrow /></span>
-        </a>
-      </div>
-      <div class="feature">
-        <div class="title">
-          <span class="icon"><Gauge /></span>
-          Max Balance
-        </div>
-        <span class="content">
-          There's an adjustable upper limit for how many tokens a wallet can
-          hold. This is to prevent unfair advantage for early buyers.
-        </span>
-        <a
-          href="https://docs.kenshi.io/features/max-balance.html"
-          class="green read-more"
-        >
-          Read More <span class="icon"><Arrow /></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="section" id="tokenomics">
-    <div class="guardian-illustration" />
-    <div class="section-head">
-      <h2>Tokenomics</h2>
-      <a href="https://docs.kenshi.io/tokenomics.html" class="read-more">
-        Read More <span class="icon"><Arrow /></span>
-      </a>
-    </div>
-    <div class="tokenomics">
-      <div class="tokenomic">
-        <span class="icon"><Supply /></span>
-        <span class="title">Supply</span>
-        <span class="spacer" />
-        <span class="value">10 Trillion</span>
-      </div>
-      <div class="tokenomic">
-        <span class="icon"><Cut /></span>
-        <span class="title">Sales Tax</span>
-        <span class="spacer" />
-        <span class="value">
-          <a
-            href="https://docs.kenshi.io/features/variable-tax.html"
-            class="read-more"
-          >
-            Read More <span class="icon"><Arrow /></span>
-          </a>
-        </span>
-      </div>
-      <div class="tokenomic">
-        <span class="icon"><Reward /></span>
-        <span class="title">Reflected</span>
-        <span class="spacer" />
-        <span class="value">2%</span>
-      </div>
-      <div class="tokenomic">
-        <span class="icon"><Fire /></span>
-        <span class="title">Burned</span>
-        <span class="spacer" />
-        <span class="value">1%</span>
-      </div>
-      <div class="tokenomic">
-        <span class="icon"><Dollar /></span>
-        <span class="title">Invested</span>
-        <span class="spacer" />
-        <span class="value">2%</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-head">
-      <h2>Investments</h2>
-      <a href="https://docs.kenshi.io/investment/index.html" class="read-more">
-        Read More <span class="icon"><Arrow /></span>
-      </a>
-    </div>
-    <div class="investments">
-      <div class="investment">
-        <div class="icon"><Hold /></div>
-        Starting from phase two of the roadmap, holders will enjoy the profits earned
-        from Kenshi projects. You can
-        <a
-          href="https://docs.kenshi.io/investment/projects/index.html"
-          class="red">check here</a
-        > to learn more about the current projects and those we've planned for the
-        future.
-      </div>
-      <div class="investment">
-        <div class="icon"><Network /></div>
-        Kenshi projects will mainly focus on blockchain technology and distributed
-        systems. As a tech company, we might look into expanding our operations into
-        further areas to provide more profits to the holders.
-      </div>
-      <div class="investment">
-        <div class="icon"><Droplet /></div>
-        A small percentage of each transaction (currently 2%) is invested on implementing
-        and maintaining the Kenshi projects. You can check out
-        <a href="https://docs.kenshi.io/investment/profits.html" class="red">
-          this page
-        </a> to learn how the profits are distributed back to the holders.
-      </div>
-    </div>
-  </div>
-
-  <div class="section" id="roadmap">
-    <div class="section-head">
-      <h2>Current Milestone</h2>
-      <a href="https://docs.kenshi.io/milestone.html" class="read-more">
-        Read More <span class="icon"><Arrow /></span>
-      </a>
-    </div>
-    <div class="milestone">
-      <ul>
-        <li>
-          <span class="icon"><Done /></span>
-          Launch website
-        </li>
-        <li>
-          <span class="icon"><Done /></span>
-          Social media groups
-        </li>
-        <li>
-          <span class="icon"><Pending /></span>
-          2000 holders
-        </li>
-        <li>
-          <span class="icon"><Done /></span>
-          Get listed on CMC
-        </li>
-        <li>
-          <span class="icon"><Pending /></span>
-          Register company
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section no-overflow">
-    <h2>Founding Team</h2>
-    <div class="team">
-      <div class="member">
-        <div class="avatar">
-          <img src="/images/dev.png" alt="Pouya" />
-          <div class="title">
-            <div class="role">Founder</div>
-            <div class="name">Pouya</div>
-          </div>
-        </div>
-        <div class="content">
-          <div class="bio">
-            <p>
-              Entrepreneur, developer and innovator with a passion for
-              distributed and decentralized systems. Founder at Kenshi, Clio
-              programming language, and CTO at Equip.
-            </p>
-          </div>
-          <div class="links">
-            <a href="https://www.linkedin.com/in/pouya-eghbali">
-              <LinkedIn />
-            </a>
-            <a href="https://github.com/pouya-eghbali"> <Github /> </a>
-            <a href="https://pouyae.medium.com"> <Medium /> </a>
-            <a href="https://twitter.com/pouya_eghbali"> <Twitter /> </a>
-          </div>
-        </div>
-      </div>
-      <div class="member">
-        <div class="avatar">
-          <img src="/images/henry.jpg" alt="Henry" />
-          <div class="title">
-            <div class="role">Co-founder</div>
-            <div class="name">Henry</div>
-          </div>
-        </div>
-        <div class="content">
-          <div class="bio">
-            <p>
-              CEO at Nidecker Group, LPS and Equip. Entrepreneur in sport &
-              tech. Partner to awesome startups & relentless optimist. Growing
-              internationally +10 brands with a team 100+ people.
-            </p>
-          </div>
-          <div class="links">
-            <a href="https://www.linkedin.com/in/henry-nidecker-5836191">
-              <LinkedIn />
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="member">
-        <div class="avatar">
-          <img src="/images/nat.jpeg" alt="Nathalie" />
-          <div class="title">
-            <div class="role">Co-founder</div>
-            <div class="name">Nathalie</div>
-          </div>
-        </div>
-        <div class="content">
-          <div class="bio">
-            <p>
-              Data science professional with over 12 years of experience in
-              applying machine learning and cryptography in a diverse range of
-              industries. She previously worked at IBM Research and holds
-              multiple patents for her scientific work.
-            </p>
-          </div>
-          <div class="links">
-            <a href="https://www.linkedin.com/in/nathaliecasati">
-              <LinkedIn />
-            </a>
-            <a href="https://github.com/iDmple"> <Github /> </a>
-          </div>
-        </div>
-      </div>
-      <div class="member">
-        <div class="avatar">
-          <img src="/images/kev.jpg" alt="Kevin" />
-          <div class="title">
-            <div class="role">Co-founder</div>
-            <div class="name">Kevin</div>
-          </div>
-        </div>
-        <div class="content">
-          <div class="bio">
-            <p>
-              Full-stack developer with a passion for cybersecurity and
-              crypto-assets. He has been growing online businesses for the last
-              3 years and is proficient in design, marketing and deploying
-              complex infrastructures.
-            </p>
-          </div>
-          <div class="links">
-            <a href="https://www.linkedin.com/in/kevin-aguilar-5445211b4/">
-              <LinkedIn />
-            </a>
-            <a href="https://github.com/Dirdmaster"> <Github /> </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="team-guardian-illustration" />
-    <h2>Contact us</h2>
-    <div class="contact-details">
-      Use the form below to contact us, or send an email to
-      <a href="mailto:hi@kenshi.io">hi@kenshi.io</a>.
-    </div>
-    <div class="contact-form">
-      <ContactForm />
-    </div>
-  </div>
-  <div class="section footer">
-    <div class="footer-links">
-      <a href="/">
-        <div class="vertical-logo">
-          <div class="logo">
-            <img src="/images/kenshi.round.png" alt="Kenshi" />
-          </div>
-          <div class="logo textual">
-            <img src="/images/kenshi.textual.svg" alt="Kenshi" />
-          </div>
-        </div>
-      </a>
-      <div class="footer-links--externals">
-        <ul>
-          <li><strong>Liquidity Locked</strong></li>
-          <li>
-            <a
-              href="https://mudra.website/?certificate=yes&type=0&lp=0x65ef7833898c4a0df62bf150bbaba2718876adf3"
-              >Mudra Lockers</a
-            >
-          </li>
-          <li>
-            <a href="/locker/manage/0xe570334989Fa3b77C6f1cFbc2D1909D4255bA1f6"
-              >Kenshi Lockers</a
-            >
-          </li>
-        </ul>
-        <ul>
-          <li><strong>Links</strong></li>
-          <li>
-            <a
-              href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
-              >Chart</a
-            >
-          </li>
-          <li>
-            <a href="https://www.coingecko.com/en/coins/kenshi">CoinGecko</a>
-          </li>
-          <li>
-            <a href="https://coinmarketcap.com/currencies/kenshi/"
-              >CoinMarketCap</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="made-with">
-      Made with ❤️ by awesome people
-      <div class="contact">
-        Contact us on
-        <a href="https://t.me/kenshi_token">Telegram</a> or
-        <a href="https://twitter.com/kenshi_token">Twitter</a>, we're friendly!
-      </div>
-    </div>
-    <div class="spacer" />
-    <div class="copyright">Copyright © {new Date().getFullYear()} - Kenshi</div>
+  <div class="graphics">
+    <img src="/images/kenshi.png" alt="Kenshi Samurai" />
   </div>
 </div>
 
-<div class="bar" />
+<div class="products">
+  <div class="mask">
+    <img src="/images/mask.png" alt="Mask" />
+  </div>
+  <div class="start">
+    <h2>Start using Kenshi <br /> for your awesome products.</h2>
+    <div class="content">
+      From development to deployment and further, Kenshi is on your side.
+    </div>
+  </div>
+  <div class="products-list">
+    <div class="product">
+      <div class="usecases">
+        <Shuffle />
+        <VR />
+        <Dice />
+        <Gamepad />
+        <Slot />
+      </div>
+      <h2>VRF Oracle</h2>
+      <div class="description">
+        Implement dynamic NFTs, games, lotteries and more with Kenshi VRF
+        oracles.
+      </div>
+      <div class="buttons">
+        <a href="https://docs.kenshi.io/services/vrf" class="button solid">
+          <span>Docs <External /></span>
+        </a>
+        <a
+          href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
+          class="button"
+        >
+          <span>Learn more <ChevronRight /></span>
+        </a>
+      </div>
+    </div>
+    <div class="product">
+      <div class="usecases">
+        <D20 />
+        <DB />
+        <Magnify />
+        <CloudSensor />
+      </div>
+      <h2>Deep Index</h2>
+      <div class="description">
+        Sync, search, query, and consume blockchain data that matters.
+      </div>
+      <div class="buttons">
+        <a
+          href="https://docs.kenshi.io/services/deep-index"
+          class="button solid"
+        >
+          <span>Docs <External /></span>
+        </a>
+        <a
+          href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
+          class="button"
+        >
+          <span>Learn more <ChevronRight /></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="discover">
+  <h2>Discover all of Kenshi.</h2>
+  <div class="products-list">
+    <a href="https://docs.kenshi.io/services/locker.html" class="product">
+      <BinaryLock />
+      <h3>Liquidity Lockers</h3>
+      <Arrow />
+    </a>
+    <a href="https://docs.kenshi.io/services/lbp.html" class="product">
+      <LiquidUp />
+      <h3>Liquidity Bootstrapping</h3>
+      <Arrow />
+    </a>
+    <a href="https://docs.kenshi.io/services/audits" class="product">
+      <Shield />
+      <h3>Security Audits</h3>
+      <Arrow />
+    </a>
+    <a href="https://docs.kenshi.io/services/development" class="product">
+      <Code />
+      <h3>Blockchain Development</h3>
+      <Arrow />
+    </a>
+  </div>
+</div>
+
+<div class="cards">
+  <Card padding={false}>
+    <div class="card-inner community">
+      <div class="graphics">
+        <img src="/images/token.png" alt="Kenshi Token" />
+      </div>
+      <div class="content">
+        <h2>The Token</h2>
+        <div>
+          Looking for the ₭enshi token? The Kenshi token is a frictionless yield
+          token that can provide a passive income to its holders, and that is
+          also used to pay for the Kenshi services.
+        </div>
+        <div class="spacer" />
+        <div class="buttons">
+          <a
+            href="https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784"
+            class="button solid"
+            target="_blank"
+          >
+            <span>Buy <External /></span>
+          </a>
+          <a
+            href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
+            class="button solid"
+            target="_blank"
+          >
+            <span>Charts <External /></span>
+          </a>
+          <a href="https://docs.kenshi.io/tokenomics.html" class="button">
+            <span>Learn more <ChevronRight /></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </Card>
+  <Card padding={false}>
+    <div class="card-inner community">
+      <div class="graphics">
+        <img src="/images/pfp.png" alt="Kenshi Telegram" />
+      </div>
+      <div class="content">
+        <h2>Community</h2>
+        <div>
+          Join the Kenshi communities to talk tech, partake in early adopter
+          programs, get help with one of our services, or to get the latest
+          Kenshi news.
+        </div>
+        <div class="spacer" />
+        <div class="buttons">
+          <a
+            href="https://t.me/kenshi_token"
+            class="button solid"
+            target="_blank"
+          >
+            <span>Telegram <External /></span>
+          </a>
+          <a
+            href="https://twitter.com/kenshi_token"
+            class="button solid"
+            target="_blank"
+          >
+            <span>Twitter <External /></span>
+          </a>
+          <a href="https://docs.kenshi.io/community.html" class="button">
+            <span>More <ChevronRight /></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </Card>
+</div>
+
+<div class="getting-started">
+  <div class="guides">
+    <div class="guide">
+      <div class="description">
+        <h2>Getting started is easy.</h2>
+        <h3>Use VRF to get randomness.</h3>
+        <div class="content">
+          <p>
+            The Kenshi Verifiable Random Function (VRF) oracle can generate and
+            verify pseudorandom numbers to be used by smart contracts on-chain.
+          </p>
+          <p>
+            Enjoy a responsive VRF solution on Binance Smart Chain, Polygon and
+            Fantom chains.
+          </p>
+        </div>
+        <div class="spacer" />
+        <div class="spacer" />
+        <h4>Learn how to get a random number</h4>
+        <div class="buttons">
+          <a
+            href="https://remix.ethereum.org/#url=https://raw.githubusercontent.com/kenshi-token/d20/master/contracts/D20.sol"
+            class="button solid"
+            target="_blank"
+          >
+            <span>Remix <External /></span>
+          </a>
+          <a
+            href="https://github.com/kenshi-token?q=vrf&type=all&language=&sort="
+            class="button solid"
+            target="_blank"
+          >
+            <span>Github <External /></span>
+          </a>
+          <a
+            href="https://docs.kenshi.io/services/vrf/index.html"
+            class="button"
+          >
+            <span>Docs <ChevronRight /></span>
+          </a>
+        </div>
+      </div>
+      <div class="sample">
+        <Gist src="pouya-eghbali/2aba0069fa0cd8eded3c0df4d966232e" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="deep-index">
+  <div class="mask">
+    <img src="/images/mask.elephant.png" alt="Mask" />
+  </div>
+  <div class="usages">
+    <div class="title">
+      <h2>All in one blockchain data solution.</h2>
+    </div>
+    <div class="grid">
+      <div class="usage">
+        <h3>Push notifications for the blockchain</h3>
+        <div class="graphics">
+          <BellOn />
+          <Link />
+          <ChartNetwork />
+        </div>
+        <div class="description">
+          <p>
+            Receive blockchain events directly on your AWS Lambda functions or
+            HTTP reverse API endpoints.
+          </p>
+          <p>Focus on your product, we provide the data.</p>
+        </div>
+        <div class="buttons">
+          <a
+            class="button solid"
+            href="https://github.com/kenshi-token?q=reverse-api+OR+graphql&type=public&language=&sort="
+            target="_blank"
+          >
+            <span>View examples <External /></span>
+          </a>
+        </div>
+      </div>
+      <div class="usage">
+        <h3>Never miss an event again</h3>
+        <div class="graphics">
+          <Bolt />
+          <CheckDouble />
+        </div>
+        <div class="description">
+          <p>
+            Kenshi scans each block multiple times to make sure no event is
+            missed.
+          </p>
+          <p>Reliability for your services is key, you can count on us.</p>
+        </div>
+        <div class="buttons">
+          <a
+            class="button solid"
+            href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
+          >
+            <span>Learn more <External /></span>
+          </a>
+        </div>
+      </div>
+      <div class="usage">
+        <h3>Fully managed, scales to infinity</h3>
+        <div class="graphics">
+          <LayerPlus />
+          <Infinity />
+        </div>
+        <div class="description">
+          <p>
+            Kenshi is a highly available, managed serverless solution that
+            scales to infinity.
+          </p>
+          <p>Never worry about infrastructure again, we've got you covered.</p>
+        </div>
+        <div class="buttons">
+          <a class="button" href="https://docs.kenshi.io/services/deep-index">
+            <span>Start today <ChevronRight /></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="resources">
+  <div class="grid">
+    <a href="https://github.com/kenshi-token" target="_blank">
+      <Card padding={false}>
+        <div class="card-button">
+          <div class="graphics">
+            <img src="/images/pfp/github.png" alt="Kenshi Github" />
+          </div>
+          <div class="content">
+            <div class="vendor">
+              <h3>Github</h3>
+              <div class="spacer" />
+              <External />
+            </div>
+            <div class="text">Check Kenshi GitHub repositories</div>
+          </div>
+        </div>
+      </Card>
+    </a>
+    <a href="https://www.npmjs.com/org/kenshi.io" target="_blank">
+      <Card padding={false}>
+        <div class="card-button">
+          <div class="graphics">
+            <img src="/images/pfp/npm.png" alt="Kenshi NPM" />
+          </div>
+          <div class="content">
+            <div class="vendor">
+              <h3>NPM</h3>
+              <div class="spacer" />
+              <External />
+            </div>
+            <div class="text">See all Kenshi NPM packages</div>
+          </div>
+        </div>
+      </Card>
+    </a>
+    <a href="https://blog.kenshi.io" target="_blank">
+      <Card padding={false}>
+        <div class="card-button">
+          <div class="graphics">
+            <img src="/images/pfp/medium.png" alt="Kenshi Blog" />
+          </div>
+          <div class="content">
+            <div class="vendor">
+              <h3>Medium</h3>
+              <div class="spacer" />
+              <External />
+            </div>
+            <div class="text">Read Kenshi blog articles</div>
+          </div>
+        </div>
+      </Card>
+    </a>
+    <a href="https://t.me/kenshi_developers" target="_blank">
+      <Card padding={false}>
+        <div class="card-button">
+          <div class="graphics">
+            <img src="/images/pfp/telegram.png" alt="Kenshi Telegram" />
+          </div>
+          <div class="content">
+            <div class="vendor">
+              <h3>Telegram</h3>
+              <div class="spacer" />
+              <External />
+            </div>
+            <div class="text">Join Kenshi developers chat</div>
+          </div>
+        </div>
+      </Card>
+    </a>
+    <a href="https://docs.kenshi.io" target="_blank">
+      <Card padding={false}>
+        <div class="card-button">
+          <div class="graphics">
+            <img src="/images/pfp/docs.png" alt="Kenshi Docs" />
+          </div>
+          <div class="content">
+            <div class="vendor">
+              <h3>Docs</h3>
+              <div class="spacer" />
+              <External />
+            </div>
+            <div class="text">Read Kenshi documentation</div>
+          </div>
+        </div>
+      </Card>
+    </a>
+  </div>
+  <div class="details">
+    <h2>Developer resources</h2>
+    <div>
+      Find examples, tools and documents for integrating the Kenshi products and
+      services into your projects.
+    </div>
+  </div>
+</div>
+
+<div class="articles">
+  <h2>Latest articles</h2>
+  <div class="grid">
+    <div class="article">
+      <Card padding={false}>
+        <div class="article-inner">
+          <img src="/images/medium/vrf.png" alt="Kenshi VRF" />
+          <div class="padded">
+            <h3>Introducing the Kenshi VRF oracles.</h3>
+            <div class="content">
+              VRFs play an important role in the blockchain, as the blockchain
+              lacks the native functionality to securely generate random numbers
+              due to its deterministic nature...
+            </div>
+            <div class="buttons">
+              <a
+                class="button solid"
+                href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
+              >
+                <span>Read article <External /></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+    <div class="article">
+      <Card padding={false}>
+        <div class="article-inner">
+          <img
+            src="/images/medium/kenshi-deep-index.png"
+            alt="Kenshi Deep Index"
+          />
+          <div class="padded">
+            <h3>Introducing the Kenshi Deep Indexing Service.</h3>
+            <div class="content">
+              Information published on the blockchain is publicly available and
+              accessible by anyone who needs it. However, traversing the event
+              logs and searching for specific events is not an easy task...
+            </div>
+            <div class="buttons">
+              <a
+                href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
+                class="button solid"
+              >
+                <span>Read article <External /></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </div>
+</div>
+
+<Footer />
 
 <style>
-  .contact-form {
-    max-width: 720px;
-  }
-  .contact-details {
-    margin-bottom: 2em;
-  }
-  .page {
-    padding: 1em 6em;
-    position: relative;
-    overflow-x: hidden;
-  }
-  .samurai-robot {
-    grid-row: 1 / span 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .samurai-robot img {
-    max-width: 100%;
-  }
-  .samurai-illustration {
-    background: url(/images/samurai.png);
-    background-size: cover;
-    position: absolute;
-    height: 1200px;
-    width: 800px;
-    left: -300px;
-    top: -300px;
-    z-index: -1;
-    filter: grayscale(1) contrast(0);
-    transform: rotate(33deg);
-    opacity: 0.1;
-  }
-  .guardian-illustration {
-    background: url(/images/guardian.png);
-    background-size: cover;
-    position: absolute;
-    height: 1200px;
-    width: 800px;
-    right: -300px;
-    top: 0px;
-    z-index: -1;
-    filter: grayscale(1) contrast(1);
-    transform: rotate(-33deg);
-    opacity: 0.05;
-  }
-  .team-guardian-illustration {
-    background: url(/images/guardian.png);
-    background-size: cover;
-    position: absolute;
-    height: 400px;
-    width: 400px;
-    right: 0;
-    bottom: 0px;
-    z-index: -1;
-  }
-  .no-overflow {
-    overflow: hidden;
-  }
-  .head {
-    box-sizing: border-box;
-    min-height: 100vh;
+  .products {
     position: relative;
   }
-  .vertical-logo {
-    display: flex;
-    align-items: center;
+  .mask {
+    position: absolute;
+    z-index: -1;
+    height: 960px;
+    top: -74%;
+    padding: 0;
+    opacity: 0.6;
+  }
+  .mask img {
+    height: 100%;
   }
   .hero {
+    padding: 6em;
+    gap: 6em;
     display: flex;
-    padding: 3em;
-    gap: 4em;
-  }
-  .hero .chart .logo.textual img {
-    width: 280px;
-    max-width: 100%;
-    margin: 1em 0 2em 0;
-  }
-  .vertical-logo img {
-    height: 4em;
-  }
-  .vertical-logo .logo.textual {
-    margin-left: 1em;
-  }
-  .vertical-logo .logo.textual img {
-    height: 2em;
-  }
-  .hero .price {
-    margin-bottom: 3em;
-  }
-  .main {
-    flex: 1;
-  }
-  .chart {
-    box-shadow: 0px 0px 40px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 3em;
-    padding: 1em;
-    padding-bottom: 2em;
     align-items: center;
     justify-content: center;
+    height: calc(100vh - 66px);
+    box-sizing: border-box;
+    flex-wrap: wrap;
+  }
+  .hero .content {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
     flex-direction: column;
-    background: linear-gradient(
-      166deg,
-      rgba(105, 118, 121, 0.2) 44%,
-      rgba(33, 43, 46, 0.2) 100%
-    );
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(32px);
-    color: #000;
+    gap: 6em;
+    flex: 3;
   }
-  .chart .logo img {
-    width: 20em;
-  }
-  .buy {
-    z-index: 2;
-    font-family: "Raleway";
-  }
-  .buy a {
-    display: inline-flex;
-    color: #000;
-    height: 4em;
-    border-radius: 3em;
-    box-shadow: 0px 0px 40px 4px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    justify-content: center;
-    padding: 0.5em;
-    gap: 1em;
-    padding-right: 2em;
-  }
-  .buy a img {
+  .hero .graphics {
+    flex: 2;
     height: 100%;
+    min-width: 300px;
   }
-  .buy a .icon {
-    font-size: 1em;
+  .hero .graphics img {
+    width: 540px;
+    max-width: 80%;
+    height: 100%;
+    object-fit: contain;
+  }
+  @media only screen and (max-width: 640px) {
+    .hero .content {
+      gap: 3em;
+    }
+    .hero .content .motto {
+      font-size: 2em;
+    }
+    .hero {
+      padding: 1em;
+      padding-top: 2em;
+      gap: 4em;
+      height: auto;
+      align-items: center;
+    }
+    .hero .buttons {
+      justify-content: center;
+    }
+    .hero .graphics {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .hero .logo {
+    width: 440px;
+    max-width: 90%;
+  }
+  .hero .motto {
+    font-size: 3em;
+    max-width: 90%;
+    font-family: "Frank";
+    text-align: center;
+    font-weight: 500;
+  }
+  .buttons {
     display: flex;
-    align-items: center;
-    padding-left: 0.2em;
-    height: 100%;
+    gap: 1em;
+    flex-wrap: wrap;
   }
   .spacer {
     flex: 1;
   }
-  .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  a {
-    font-family: "Raleway";
-    color: #000;
-  }
-  a :global(svg) {
-    width: 1em;
-  }
-  .main .links {
-    font-size: 1.2em;
-    display: flex;
-    gap: 0.5em;
-    align-items: center;
-    margin-bottom: 1em;
-    margin-left: 0.5em;
-  }
-  .links.spaced {
-    gap: 2em;
-  }
-  .intro h1 {
-    display: inline;
+  a.button {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.5em 1em;
+    background: transparent;
     font-size: 1em;
-    font-family: "Roboto";
-    color: var(--primary-color);
-  }
-  .intro {
-    font-size: 4em;
-    padding: 0.5em 0 0.75em;
-  }
-  .highlights {
-    margin-top: 2em;
-    display: flex;
-    gap: 2em;
-    flex-wrap: wrap;
-  }
-  .highlights .highlight {
+    border-radius: 0.5em;
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 0.75em;
   }
-  .highlights .highlight .icon {
-    height: 2em;
-    width: 2em;
-    display: grid;
-    grid-template-columns: 1fr;
-    color: var(--primary-color);
-    align-items: center;
-    justify-content: center;
-  }
-  .section {
-    padding: 3em 3em 3em 3em;
-  }
-  .section h2 {
-    font-size: 3em;
-    margin-top: 0;
-    margin-bottom: 1em;
-  }
-  .tokenomics {
-    display: grid;
-    gap: 2em;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  }
-  .tokenomics .read-more {
-    display: flex;
-    align-items: center;
-  }
-  .tokenomics .read-more > .icon {
-    display: flex;
-    justify-content: center;
-    margin-right: unset;
-  }
-  .tokenomic {
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 0px 40px 4px rgb(0 0 0 / 10%);
-    border-radius: 3em;
-    padding: 1em 2em;
-    align-items: center;
-    background: linear-gradient(
-      166deg,
-      rgba(105, 118, 121, 0.2) 44%,
-      rgba(33, 43, 46, 0.2) 100%
-    );
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(32px);
-    color: #000;
-    box-sizing: border-box;
-  }
-  .tokenomic .icon {
-    height: 2em;
-    width: 2em;
-    color: var(--primary-color);
-    margin-right: 1em;
-  }
-  .investment-token {
-    padding-top: 2em;
-    font-size: 2em;
-  }
-  .investment-token h2 {
-    font-size: 1.5em;
-  }
-  .investment-token .content {
-    width: 60%;
-    font-weight: 300;
-    line-height: 1.5em;
-  }
-  .red {
-    color: var(--primary-color);
-  }
-  .green {
-    color: var(--secondary-color);
-  }
-  .head .buttons {
-    margin-top: 4em;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2em;
-  }
-  .button {
-    font-size: 1.25em;
-    padding: 0.75em 1.5em;
-    background: #000;
+  a.button.solid {
     color: #fff;
-    border-radius: 3em;
-    font-family: "Raleway";
-    display: inline-flex;
-    align-items: center;
-    transition: cubic-bezier(0.39, 0.575, 0.565, 1) all 0.3s;
+    background: #000;
+    border: none;
+    font-size: 1em;
   }
-  .button:hover {
-    background: var(--primary-color);
+  a.button :global(svg) {
+    height: 0.8em;
+    fill: currentColor;
   }
-  .button .icon {
-    margin-right: 0.5em;
+  a.button.solid :global(.fa-secondary) {
+    fill: #fff !important;
+  }
+  a.button.solid :global(.fa-primary) {
+    fill: #fff !important;
+  }
+  .cards {
     display: grid;
-  }
-  .features {
-    display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 4em;
+    padding: 4em;
   }
-  .services {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2em;
+  @media only screen and (max-width: 640px) {
+    .cards {
+      padding: 2em 1em;
+      gap: 2em;
+    }
+    .cards .card-inner .buttons {
+      justify-content: flex-start;
+    }
   }
-  .service,
-  .feature {
+  .card-inner {
     display: flex;
-    flex-direction: column;
-    gap: 1em;
-  }
-  .service .content,
-  .feature .content {
-    font-size: 1.5em;
-    font-weight: 300;
-    line-height: 1.5em;
-  }
-  .service .title,
-  .feature .title {
-    font-size: 2em;
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    color: var(--primary-color);
-  }
-  .service .icon,
-  .feature .icon {
-    height: 1em;
-    width: 1em;
-    display: inline-block;
-  }
-  .milestone .icon {
-    height: 1em;
-    width: 1em;
-    display: inline-block;
-  }
-  .milestone ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 4em;
-  }
-  .milestone ul li {
-    display: flex;
-    gap: 1em;
-  }
-  .team {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 3em;
   }
-  .team img {
-    height: 64px;
-    border-radius: 0.5em;
-    box-shadow: 0px 0px 40px 4px rgb(0 0 0 / 10%);
-    border: 1px solid rgb(0 0 0 / 10%);
-  }
-  .member .avatar {
-    display: flex;
+  .card-inner .content {
     gap: 1em;
-  }
-  .member {
+    text-align: left;
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
   }
-  .member .content {
-    flex: 1;
-    gap: 1em;
-  }
-  .member .role {
-    font-size: 2em;
-    font-family: "Raleway";
-    color: var(--primary-color);
-  }
-  .member .name {
-    font-size: 1.4em;
-    font-family: "Roboto";
-    font-weight: 300;
-    color: var(--secondary-color);
-    margin-bottom: 1em;
-  }
-  p {
-    margin-bottom: 0.25em;
-    margin-top: 0.25em;
-  }
-  .member .links {
+  .card-inner h2 {
     font-size: 1.5em;
-    display: flex;
-    align-items: center;
-    gap: 1em;
+    color: #111;
+    margin-bottom: 0;
   }
-  .member .content {
-    display: flex;
-    flex-direction: column;
-  }
-  .member .bio {
-    flex: 1;
-  }
-  .footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding-top: 2em;
-    display: flex;
-    align-items: center;
-    padding-bottom: 1em;
+  .card-inner .buttons {
+    align-items: flex-end;
+    justify-content: end;
+    width: 100%;
     flex-wrap: wrap;
   }
-  .footer-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  .card-inner img {
+    max-width: 100%;
   }
-  .footer-links--externals {
-    display: flex;
-  }
-  .footer-links--externals > ul {
-    list-style: none;
-  }
-  .footer-links--externals > ul > li {
-    text-align: right;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-  }
-  .investments {
+  .discover {
+    padding: 2em 4em;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 4em;
-    font-size: 1.4em;
-    font-weight: 300;
-    line-height: 1.5em;
   }
-  a {
-    transition: cubic-bezier(0.39, 0.575, 0.565, 1) all 0.3s;
+  @media only screen and (max-width: 640px) {
+    .discover {
+      padding: 2em 1em;
+      gap: 2em;
+    }
   }
-  a:not(.button):not(.buy a):not(.red):hover {
-    color: var(--primary-color);
+  .discover h2 {
+    font-size: 2em;
+    margin: 0;
   }
-  .service a.green,
-  .feature a.green {
+  .discover .products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2em;
+    padding: 0;
+  }
+  .discover .product {
     display: flex;
-    align-self: flex-start;
-    align-items: flex-end;
-    gap: 0.35em;
-  }
-  a.red {
-    border-bottom: 1px solid transparent;
-  }
-  a.red:hover {
-    border-bottom: 1px solid;
-  }
-  .investments .icon {
-    height: 2em;
-    margin-bottom: 1em;
-  }
-  .section-head {
-    display: flex;
-  }
-  .section-head .icon {
-    height: 1em;
-    display: block;
-    width: 1em;
-  }
-  .section-head .read-more {
-    display: inline-flex;
-    gap: 0.35em;
-    margin-left: 1em;
-    color: var(--primary-color);
+    gap: 0.75em;
+    flex-direction: row;
     align-items: center;
-    height: 4em;
-    opacity: 0;
-    transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 0.2s;
+    color: #000;
   }
-  .section-head:hover .read-more {
-    opacity: 1;
+  .discover .product h3 {
+    margin: 0;
   }
-  .bar {
-    height: 4px;
+  .discover .product :global(svg) {
+    height: 1.25em;
+  }
+  .discover a:hover {
+    color: var(--primary-color);
+  }
+  .discover a:hover :global(svg) {
+    fill: var(--primary-color);
+  }
+  .community {
+    gap: 0;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  @media only screen and (max-width: 1200px) {
+    .community {
+      gap: 0;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+  .community h2 {
+    margin: 0;
+  }
+  .community .graphics {
+    height: 100%;
+  }
+  .community img {
+    height: 100%;
     width: 100%;
-    background: url(/images/square.jpg);
-    background-size: 20%;
-    opacity: 0.4;
+    object-fit: cover;
   }
-  .section {
+  .community .content {
+    padding: 2em;
+  }
+  @media only screen and (max-width: 600px) {
+    .community .buttons {
+      font-size: 0.9em;
+    }
+    .community .graphics {
+      max-height: 242px;
+    }
+  }
+  .products {
+    padding: 4em;
+    padding-bottom: 2em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  @media only screen and (max-width: 640px) {
+    .products {
+      padding: 2em 1em;
+    }
+    .products .start h2 {
+      margin-top: 0.75em;
+    }
+  }
+  .products .products-list {
+    display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .products > div {
+    padding: 1em;
+  }
+  @media only screen and (max-width: 640px) {
+    .products > div {
+      padding: 0;
+    }
+  }
+  .product .description {
+    flex: 1;
+  }
+  .product .usecases {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 5fr;
+    gap: 1em;
+    align-items: center;
+  }
+  .product .usecases :global(svg) {
+    max-height: 1.5em;
+  }
+  .product {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+  }
+  .product .buttons {
+    margin-top: 2em;
+    flex-wrap: wrap;
+  }
+  .start h2 {
+    margin-top: 0;
+    font-size: 2em;
+  }
+  .articles {
+    padding: 4em;
+  }
+  @media only screen and (max-width: 640px) {
+    .articles {
+      padding: 2em 1em;
+    }
+  }
+  .articles h2 {
+    font-size: 2em;
+  }
+  .articles .grid {
+    margin-top: 4em;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(280px, calc((100% - 6em) / 4))
+    );
+    gap: 2em;
+  }
+  @media only screen and (max-width: 500px) {
+    .articles .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .articles .article img {
+    max-width: 100%;
+  }
+  .article-inner {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+  }
+  .articles .article {
+    gap: 1em;
+    display: flex;
+    flex-direction: column;
+  }
+  .article h3 {
+    margin-top: 0;
+  }
+  .article .buttons {
+    display: flex;
+    justify-content: start;
+    margin-top: 2.5em;
+    flex-wrap: wrap;
+  }
+  .article .padded {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .article .padded .content {
+    flex: 1;
+  }
+  .padded {
+    padding: 2em;
+  }
+  @media only screen and (max-width: 640px) {
+    .padded {
+      padding: 1em;
+    }
+  }
+  .getting-started {
+    padding: 4em;
+  }
+  @media only screen and (max-width: 640px) {
+    .getting-started {
+      padding: 2em 0.5em;
+    }
+    .getting-started h2,
+    .getting-started h3 {
+      margin-top: 0;
+    }
+    .getting-started .description {
+      padding: 0 0.5em;
+    }
+  }
+  .guides {
+    display: flex;
+    gap: 4em;
+    width: 100%;
+    flex-direction: column;
+  }
+  .guide {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, calc(50% - 2em)));
+    gap: 4em;
+  }
+  @media screen and (max-width: 1320px) {
+    .guide {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 100%));
+      gap: 4em;
+    }
+    .guide .sample {
+      padding: 0.5em;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .guide {
+      gap: 2.5em;
+    }
+  }
+  .guides h2 {
+    font-size: 2em;
+  }
+  .guide .description {
+    display: flex;
+    flex-direction: column;
+  }
+  .guide .content {
+    width: 80%;
+    line-height: 1.2em;
+    color: #222;
+  }
+  @media screen and (max-width: 1200px) {
+    .guide .content {
+      width: 100%;
+    }
+  }
+  .guide .sample {
+    height: 444px;
+  }
+  .resources {
+    padding: 4em;
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    gap: 4em;
+  }
+  @media only screen and (max-width: 640px) {
+    .resources {
+      padding: 2em 1em;
+    }
+  }
+  .resources h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    margin-top: 0;
+  }
+  .resources .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2em;
+    justify-content: right;
+  }
+  .resources .grid .vendor h3 {
+    margin: 0;
+  }
+  @media only screen and (max-width: 800px) {
+    .resources .details {
+      grid-row: 1;
+    }
+    .resources {
+      grid-template-columns: 1fr;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  @media only screen and (max-width: 990px) {
+    .mask {
+      display: none;
+    }
+  }
+  .card-button {
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    height: 100%;
+  }
+  .card-button .graphics img {
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+  }
+  .card-button .content {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  .card-button .vendor {
+    display: flex;
+    align-items: center;
+  }
+  .card-button :global(svg) {
+    height: 1em;
+  }
+  .resources a {
+    color: #111;
+  }
+  .deep-index {
+    padding: 4em;
     position: relative;
   }
-  .head .logo:not(.chart .logo):not(.textual) {
-    margin-left: -0.5em;
-  }
-  .hidden {
-    display: none !important;
-  }
-  @media (max-width: 1700px) {
-    .tokenomics {
-      grid-template-columns: 1fr 1fr 1fr;
+  @media only screen and (max-width: 640px) {
+    .deep-index {
+      padding: 2em 1em;
     }
   }
-  @media (max-width: 1500px) {
-    .page {
-      padding: 0;
+  .deep-index h2 {
+    font-size: 2em;
+  }
+  .deep-index .mask {
+    right: 0em;
+  }
+  .usages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4em;
+  }
+  .usages .grid {
+    grid-column: span 3;
+    display: grid;
+    gap: 4em;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  @media only screen and (max-width: 800px) {
+    .usages .grid {
+      grid-column: span 2;
     }
   }
-  @media (max-width: 1250px) {
-    .team {
-      grid-template-columns: 1fr 1fr;
+  @media only screen and (max-width: 600px) {
+    .usages {
+      gap: 0;
     }
-    .investment-token .content {
-      width: 100%;
-    }
-    .hero .links:first-of-type a:not(:first-of-type) {
-      display: none;
-    }
-    .services,
-    .investments,
-    .tokenomics,
-    .features {
-      grid-template-columns: 1fr 1fr;
-      padding: 1em;
+    .usages .grid {
+      grid-column: span 1;
       gap: 2em;
     }
-    .milestone ul {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 2em;
+  }
+  .usages .graphics {
+    display: flex;
+    align-items: center;
+    padding: 2em 0;
+    gap: 1em;
+  }
+  .usages .graphics :global(svg) {
+    height: 1.5em;
+  }
+  .usages h3 {
+    margin: 0;
+    margin-top: 0.25em;
+  }
+  .usages h2 {
+    margin-top: 0em;
+    font-size: 2em;
+  }
+  .usages p:first-of-type {
+    margin-top: 0;
+  }
+  .usages .description h3 {
+    margin-top: 0;
+  }
+  .usages .usage {
+    display: flex;
+    flex-direction: column;
+  }
+  .usages .description {
+    flex: 1;
+  }
+  .usages .usage .buttons {
+    margin-top: 1em;
+  }
+  @media only screen and (max-width: 600px) {
+    .resources {
+      gap: 2.5em;
     }
-    .samurai-robot img {
-      max-width: 80%;
+    .articles h2 {
+      margin: 0;
     }
-    .team-guardian-illustration {
-      filter: opacity(0.1);
+    .articles .grid {
+      margin-top: 2em;
     }
   }
-  @media (max-width: 800px) {
-    .team-guardian-illustration {
-      display: none;
-    }
-    .hero {
-      flex-direction: column;
-    }
-    .chart {
-      max-width: 400px;
-    }
-    .chart-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .team {
-      grid-template-columns: 1fr;
-      gap: 1em;
-    }
+  .resources .grid > a {
+    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) all 0.2s;
+    z-index: 0;
   }
-  @media (max-width: 600px) {
-    .page {
-      padding: 0;
-    }
-    .section {
-      padding: 1em;
-    }
-    .contact-details,
-    .contact-form {
-      padding: 1em;
-    }
-    .intro {
-      padding-bottom: 0;
-    }
-    h1,
-    h2 {
-      margin-bottom: 0.5em !important;
-    }
-    .section h2 {
-      margin-left: 0.5em;
-    }
-    .hero {
-      padding: 2em;
-      flex-direction: column;
-    }
-    .investment-token {
-      padding-top: 1em;
-      font-size: 1.5em;
-    }
-    .investment-token h2 {
-      text-align: left;
-    }
-    .investment-token .content {
-      font-size: 0.8em;
-    }
-    .intro {
-      font-size: 2em;
-    }
-    .hero .buttons .button {
-      font-size: 1em;
-    }
-    .hero .buttons {
-      gap: 1em;
-    }
-    .navbar {
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      gap: 1em;
-    }
-    .services,
-    .investments,
-    .tokenomics,
-    .features {
-      grid-template-columns: 1fr;
-      padding: 1em;
-      gap: 2em;
-    }
-
-    .milestone ul {
-      padding: 1em;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5em;
-    }
-    .member {
-      flex-direction: column;
-      gap: 1em;
-      padding: 1em;
-    }
-    .member .content .links {
-      margin-top: 1em;
-    }
-    .team-guardian-illustration {
-      display: none;
-    }
-    .samurai-illustration {
-      top: 150px;
-    }
-    .guardian-illustration {
-      top: 100px;
-    }
-    .footer-links {
-      flex-direction: column;
-      margin-bottom: 1em;
-    }
-    .footer-links .vertical-logo {
-      margin-top: 1em;
-      margin-bottom: 1em;
-    }
-    .footer-links--externals {
-      width: 100%;
-      justify-content: space-evenly;
-    }
-    .footer-links--externals > ul {
-      padding: 0;
-    }
-    .footer-links--externals > ul > li {
-      text-align: center;
-    }
+  .resources .grid > a:hover {
+    transform: scale(1.02) translateX(-2px) translateY(-2px);
+  }
+  .resources .grid > a:active {
+    transform: scale(0.98) translateX(2px) translateY(2px);
+  }
+  .resources .grid > :global(.card) {
+    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) all 0.2s;
+  }
+  .resources .grid > a:hover :global(.card) {
+    box-shadow: 1em 1em 2em 0.5em rgb(0 0 0 / 10%);
+  }
+  /* animations */
+  .button > span {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .button:not(.solid) {
+    position: relative;
+  }
+  .button:not(.flat):hover {
+    color: #fff;
+  }
+  .button:not(.solid)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -1px;
+    bottom: -1px;
+    width: 0;
+    background: var(--primary-color);
+    transition: width cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
+    z-index: 0;
+    border-radius: 0.5em;
+  }
+  .button:not(.solid):hover::after {
+    width: 100%;
+    border: 1px solid var(--primary-color);
+    box-sizing: content-box;
+  }
+  .button.solid :global(svg) {
+    transition: transform cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
+  }
+  .button.solid:hover :global(svg) {
+    transform: rotate(45deg);
+  }
+  .button {
+    transition: transform cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+  }
+  .button:active {
+    transform: scale(0.98);
   }
 </style>

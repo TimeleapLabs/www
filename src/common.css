@@ -2,11 +2,31 @@
   --primary-color: #ba3322;
   --secondary-color: #134841;
 
+  --secondary-lighten-4: rgb(242, 244, 243);
+
   --toastBorderRadius: 5px;
   --toastBackground: #ddd;
   --toastColor: #333;
   --toastPadding: 0 1em;
   --toastBarHeight: 0;
+}
+
+@font-face {
+  font-family: "Syabil";
+  src: url("/fonts/Syabil-Regular.woff2") format("woff2"),
+    url("/fonts/Syabil-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Frank";
+  src: url("/fonts/Frank-Regular.woff2") format("woff2"),
+    url("/fonts/Frank-Regular.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 html,
@@ -18,15 +38,31 @@ body {
 }
 
 body {
-  background: linear-gradient(
-    343deg,
-    rgba(105, 118, 121, 0.1) 44%,
-    rgba(33, 43, 46, 0.1) 100%
-  );
+  background: var(--secondary-lighten-4);
 }
 
 body * {
-  font-family: "Roboto";
+  font-family: "Syabil";
+}
+
+.gist .blob-code-content * {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+    Liberation Mono, monospace !important;
+}
+
+.gist .blob-code-content {
+  padding: 0.5em 0;
+}
+
+.gist .gist-file {
+  box-shadow: 1em 1em 2em 0.25em rgb(0 0 0 / 10%);
+  border: none !important;
+  border-radius: 4px !important;
+}
+
+.gist .gist-data {
+  border-bottom: none !important;
+  border-radius: 4px 4px 0 0 !important;
 }
 
 h1,
@@ -34,7 +70,8 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Raleway";
+  font-family: "Frank";
+  font-weight: 300;
 }
 
 a {
@@ -43,14 +80,17 @@ a {
 
 svg {
   max-height: 100%;
+  max-width: 100%;
 }
 
 .fa-primary {
   color: var(--primary-color);
+  fill: var(--primary-color);
 }
 
 .fa-secondary {
   color: var(--secondary-color);
+  fill: var(--secondary-color);
 }
 
 .grecaptcha-badge {

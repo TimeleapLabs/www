@@ -1,21 +1,5 @@
-<svg
-  aria-hidden="true"
-  focusable="false"
-  data-prefix="fad"
-  data-icon="credit-card"
-  class="svg-inline--fa fa-credit-card"
-  role="img"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 576 512"
-  ><g class="fa-group"
-    ><path
-      class="fa-secondary"
-      fill="currentColor"
-      d="M512 32h-448c-35.35 0-64 28.66-64 64L0 128h576V96C576 60.66 547.3 32 512 32zM0 416c0 35.34 28.65 64 64 64h448c35.35 0 64-28.66 64-64V224H0L0 416zM191.1 360c0-4.422 3.582-8 8-8h143.1c4.418 0 8 3.578 8 8L352 376c0 4.418-3.582 8-8 8h-144C195.6 384 192 380.4 192 376L191.1 360zM63.1 360c0-4.422 3.582-8 8-8h80c4.418 0 8 3.578 8 8L160 376C160 380.4 156.4 384 152 384h-80C67.58 384 64 380.4 64 376L63.1 360z"
-    /><path
-      class="fa-primary"
-      fill="currentColor"
-      d="M576 224H0V128h576V224z"
-    /></g
-  ></svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+  ><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path
+    d="M96 368C96 359.2 103.2 352 112 352H176C184.8 352 192 359.2 192 368C192 376.8 184.8 384 176 384H112C103.2 384 96 376.8 96 368zM224 368C224 359.2 231.2 352 240 352H368C376.8 352 384 359.2 384 368C384 376.8 376.8 384 368 384H240C231.2 384 224 376.8 224 368zM0 96C0 60.65 28.65 32 64 32H512C547.3 32 576 60.65 576 96V416C576 451.3 547.3 480 512 480H64C28.65 480 0 451.3 0 416V96zM32 96V128H544V96C544 78.33 529.7 64 512 64H64C46.33 64 32 78.33 32 96zM32 224H544V160H32V224zM32 256V416C32 433.7 46.33 448 64 448H512C529.7 448 544 433.7 544 416V256H32z"
+  /></svg
 >
