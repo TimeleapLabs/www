@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
+import { get } from "./env";
 
 dotenv.config();
 
-const uri = process.env["MONGODB_URI"];
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -17,6 +17,7 @@ const connect = async (retries = 5) => {
   }
   while (retries--) {
     try {
+      const { MONGODB_URI: uri } = await get();
       const connection = new MongoClient(uri, options);
       const client = await connection.connect();
       cachedClient = client;
@@ -31,5 +32,6 @@ const connect = async (retries = 5) => {
 
 export const getDB = async () => {
   const client = await connect();
-  return client.db(process.env["DB_NAME"]);
+  const { DB_NAME: dbName } = await get();
+  return client.db(dbName);
 };
