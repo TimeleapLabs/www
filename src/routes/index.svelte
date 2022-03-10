@@ -3,6 +3,7 @@
   import Footer from "src/components/Footer.svelte";
   import Card from "src/components/Card.svelte";
   import Button from "src/components/Button.svelte";
+  import CardButton from "src/components/CardButton.svelte";
 
   import VR from "src/icons/VR.svelte";
   import Dice from "src/icons/Dice.svelte";
@@ -338,91 +339,36 @@
 
 <div class="resources">
   <div class="grid">
-    <a href="https://github.com/kenshi-token" target="_blank">
-      <Card padding={false}>
-        <div class="card-button">
-          <div class="graphics">
-            <img src="/images/pfp/github.png" alt="Kenshi Github" />
-          </div>
-          <div class="content">
-            <div class="vendor">
-              <h3>Github</h3>
-              <div class="spacer" />
-              <External />
-            </div>
-            <div class="text">Check Kenshi GitHub repositories</div>
-          </div>
-        </div>
-      </Card>
-    </a>
-    <a href="https://www.npmjs.com/org/kenshi.io" target="_blank">
-      <Card padding={false}>
-        <div class="card-button">
-          <div class="graphics">
-            <img src="/images/pfp/npm.png" alt="Kenshi NPM" />
-          </div>
-          <div class="content">
-            <div class="vendor">
-              <h3>NPM</h3>
-              <div class="spacer" />
-              <External />
-            </div>
-            <div class="text">See all Kenshi NPM packages</div>
-          </div>
-        </div>
-      </Card>
-    </a>
-    <a href="https://blog.kenshi.io" target="_blank">
-      <Card padding={false}>
-        <div class="card-button">
-          <div class="graphics">
-            <img src="/images/pfp/medium.png" alt="Kenshi Blog" />
-          </div>
-          <div class="content">
-            <div class="vendor">
-              <h3>Medium</h3>
-              <div class="spacer" />
-              <External />
-            </div>
-            <div class="text">Read Kenshi blog articles</div>
-          </div>
-        </div>
-      </Card>
-    </a>
-    <a href="https://t.me/kenshi_developers" target="_blank">
-      <Card padding={false}>
-        <div class="card-button">
-          <div class="graphics">
-            <img src="/images/pfp/telegram.png" alt="Kenshi Telegram" />
-          </div>
-          <div class="content">
-            <div class="vendor">
-              <h3>Telegram</h3>
-              <div class="spacer" />
-              <External />
-            </div>
-            <div class="text">Join Kenshi developers chat</div>
-          </div>
-        </div>
-      </Card>
-    </a>
-    <a href="https://docs.kenshi.io" target="_blank">
-      <Card padding={false}>
-        <div class="card-button">
-          <div class="graphics">
-            <img src="/images/pfp/docs.png" alt="Kenshi Docs" />
-          </div>
-          <div class="content">
-            <div class="vendor">
-              <h3>Docs</h3>
-              <div class="spacer" />
-              <External />
-            </div>
-            <div class="text">Read Kenshi documentation</div>
-          </div>
-        </div>
-      </Card>
-    </a>
+    <CardButton
+      href="https://github.com/kenshi-token"
+      image="/images/pfp/github.png"
+      title="Github"
+      description="Check Kenshi GitHub repositories"
+    />
+    <CardButton
+      href="https://www.npmjs.com/org/kenshi.io"
+      image="/images/pfp/npm.png"
+      title="NPM"
+      description="See all Kenshi NPM packages"
+    />
+    <CardButton
+      href="https://blog.kenshi.io"
+      image="/images/pfp/medium.png"
+      title="Medium"
+      description="Read Kenshi blog articles"
+    />
+    <CardButton
+      href="https://t.me/kenshi_developers"
+      image="/images/pfp/telegram.png"
+      title="Telegram"
+      description="Join Kenshi developers chat"
+    />
+    <CardButton
+      href="https://docs.kenshi.io"
+      image="/images/pfp/docs.png"
+      title="Docs"
+      description="Read Kenshi documentation"
+    />
   </div>
   <div class="details">
     <h2>Developer resources</h2>
@@ -912,32 +858,6 @@
       display: none;
     }
   }
-  .card-button {
-    display: grid;
-    grid-template-columns: 1.5fr 3fr;
-    height: 100%;
-  }
-  .card-button .graphics img {
-    height: 100%;
-    max-width: 100%;
-    object-fit: cover;
-  }
-  .card-button .content {
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-  }
-  .card-button .vendor {
-    display: flex;
-    align-items: center;
-  }
-  .card-button :global(svg) {
-    height: 1em;
-  }
-  .resources a {
-    color: #111;
-  }
   .deep-index {
     padding: 4em;
     position: relative;
@@ -1021,21 +941,5 @@
     .articles .grid {
       margin-top: 2em;
     }
-  }
-  .resources .grid > a {
-    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) all 0.2s;
-    z-index: 0;
-  }
-  .resources .grid > a:hover {
-    transform: scale(1.02) translateX(-2px) translateY(-2px);
-  }
-  .resources .grid > a:active {
-    transform: scale(0.98) translateX(2px) translateY(2px);
-  }
-  .resources .grid > :global(.card) {
-    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) all 0.2s;
-  }
-  .resources .grid > a:hover :global(.card) {
-    box-shadow: 1em 1em 2em 0.5em rgb(0 0 0 / 10%);
   }
 </style>
