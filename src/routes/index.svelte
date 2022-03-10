@@ -2,6 +2,7 @@
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
   import Card from "src/components/Card.svelte";
+  import Button from "src/components/Button.svelte";
 
   import VR from "src/icons/VR.svelte";
   import Dice from "src/icons/Dice.svelte";
@@ -43,16 +44,16 @@
     <img src="/images/kenshi.logo.long.png" alt="Kenshi" class="logo" />
     <div class="motto">Cutting-edge tech for your blockchain projects</div>
     <div class="buttons">
-      <a
-        class="button solid"
+      <Button
+        solid
         href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
         target="_blank"
       >
-        <span>View charts <External /></span>
-      </a>
-      <a class="button" href="http://docs.kenshi.io/">
-        <span>Read the docs <ChevronRight /></span>
-      </a>
+        View charts <External />
+      </Button>
+      <Button href="http://docs.kenshi.io/">
+        Read the docs <ChevronRight />
+      </Button>
     </div>
   </div>
   <div class="graphics">
@@ -85,18 +86,14 @@
         oracles.
       </div>
       <div class="buttons">
-        <a
-          href="https://docs.kenshi.io/services/vrf/index.html"
-          class="button solid"
-        >
-          <span>Docs <External /></span>
-        </a>
-        <a
+        <Button solid href="https://docs.kenshi.io/services/vrf/index.html">
+          Docs <External />
+        </Button>
+        <Button
           href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
-          class="button"
         >
-          <span>Learn more <ChevronRight /></span>
-        </a>
+          Learn more <ChevronRight />
+        </Button>
       </div>
     </div>
     <div class="product">
@@ -111,18 +108,17 @@
         Sync, search, query, and consume blockchain data that matters.
       </div>
       <div class="buttons">
-        <a
+        <Button
+          solid
           href="https://docs.kenshi.io/services/deep-index/index.html"
-          class="button solid"
         >
-          <span>Docs <External /></span>
-        </a>
-        <a
+          Docs <External />
+        </Button>
+        <Button
           href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
-          class="button"
         >
-          <span>Learn more <ChevronRight /></span>
-        </a>
+          Learn more <ChevronRight />
+        </Button>
       </div>
     </div>
   </div>
@@ -172,23 +168,21 @@
         </div>
         <div class="spacer" />
         <div class="buttons">
-          <a
+          <Button
             href="https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784"
-            class="button solid"
             target="_blank"
           >
-            <span>Buy <External /></span>
-          </a>
-          <a
+            Buy <External />
+          </Button>
+          <Button
             href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
-            class="button solid"
             target="_blank"
           >
-            <span>Charts <External /></span>
-          </a>
-          <a href="https://docs.kenshi.io/tokenomics.html" class="button">
-            <span>Learn more <ChevronRight /></span>
-          </a>
+            Charts <External />
+          </Button>
+          <Button href="https://docs.kenshi.io/tokenomics.html">
+            Learn more <ChevronRight />
+          </Button>
         </div>
       </div>
     </div>
@@ -207,23 +201,15 @@
         </div>
         <div class="spacer" />
         <div class="buttons">
-          <a
-            href="https://t.me/kenshi_token"
-            class="button solid"
-            target="_blank"
-          >
-            <span>Telegram <External /></span>
-          </a>
-          <a
-            href="https://twitter.com/kenshi_token"
-            class="button solid"
-            target="_blank"
-          >
-            <span>Twitter <External /></span>
-          </a>
-          <a href="https://docs.kenshi.io/community.html" class="button">
-            <span>More <ChevronRight /></span>
-          </a>
+          <Button href="https://t.me/kenshi_token" target="_blank">
+            Telegram <External />
+          </Button>
+          <Button href="https://twitter.com/kenshi_token" target="_blank">
+            Twitter <External />
+          </Button>
+          <Button href="https://docs.kenshi.io/community.html">
+            More <ChevronRight />
+          </Button>
         </div>
       </div>
     </div>
@@ -250,26 +236,21 @@
         <div class="spacer" />
         <h4>Learn how to get a random number</h4>
         <div class="buttons">
-          <a
+          <Button
             href="https://remix.ethereum.org/#url=https://raw.githubusercontent.com/kenshi-token/d20/master/contracts/D20.sol"
-            class="button solid"
             target="_blank"
           >
-            <span>Remix <External /></span>
-          </a>
-          <a
+            Remix <External />
+          </Button>
+          <Button
             href="https://github.com/kenshi-token?q=vrf&type=all&language=&sort="
-            class="button solid"
             target="_blank"
           >
-            <span>Github <External /></span>
-          </a>
-          <a
-            href="https://docs.kenshi.io/services/vrf/index.html"
-            class="button"
-          >
-            <span>Docs <ChevronRight /></span>
-          </a>
+            Github <External />
+          </Button>
+          <Button href="https://docs.kenshi.io/services/vrf/index.html">
+            Docs <ChevronRight />
+          </Button>
         </div>
       </div>
       <div class="sample">
@@ -303,13 +284,12 @@
           <p>Focus on your product, we provide the data.</p>
         </div>
         <div class="buttons">
-          <a
-            class="button solid"
+          <Button
             href="https://github.com/kenshi-token?q=reverse-api+OR+graphql&type=public&language=&sort="
             target="_blank"
           >
-            <span>View examples <External /></span>
-          </a>
+            View examples <External />
+          </Button>
         </div>
       </div>
       <div class="usage">
@@ -326,12 +306,11 @@
           <p>Reliability for your services is key, you can count on us.</p>
         </div>
         <div class="buttons">
-          <a
-            class="button solid"
+          <Button
             href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
           >
-            <span>Learn more <External /></span>
-          </a>
+            Learn more <External />
+          </Button>
         </div>
       </div>
       <div class="usage">
@@ -348,12 +327,9 @@
           <p>Never worry about infrastructure again, we've got you covered.</p>
         </div>
         <div class="buttons">
-          <a
-            class="button"
-            href="https://docs.kenshi.io/services/deep-index/index.html"
-          >
-            <span>Start today <ChevronRight /></span>
-          </a>
+          <Button href="https://docs.kenshi.io/services/deep-index/index.html">
+            Start today <ChevronRight />
+          </Button>
         </div>
       </div>
     </div>
@@ -472,12 +448,11 @@
               due to its deterministic nature...
             </div>
             <div class="buttons">
-              <a
-                class="button solid"
+              <Button
                 href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
               >
-                <span>Read article <External /></span>
-              </a>
+                Read article <External />
+              </Button>
             </div>
           </div>
         </div>
@@ -498,12 +473,11 @@
               logs and searching for specific events is not an easy task...
             </div>
             <div class="buttons">
-              <a
+              <Button
                 href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
-                class="button solid"
               >
-                <span>Read article <External /></span>
-              </a>
+                Read article <External />
+              </Button>
             </div>
           </div>
         </div>
@@ -599,33 +573,6 @@
   }
   .spacer {
     flex: 1;
-  }
-  a.button {
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    padding: 0.5em 1em;
-    background: transparent;
-    font-size: 1em;
-    border-radius: 0.5em;
-    display: flex;
-    align-items: center;
-    gap: 0.75em;
-  }
-  a.button.solid {
-    color: #fff;
-    background: #000;
-    border: none;
-    font-size: 1em;
-  }
-  a.button :global(svg) {
-    height: 0.8em;
-    fill: currentColor;
-  }
-  a.button.solid :global(.fa-secondary) {
-    fill: #fff !important;
-  }
-  a.button.solid :global(.fa-primary) {
-    fill: #fff !important;
   }
   .cards {
     display: grid;
@@ -1090,47 +1037,5 @@
   }
   .resources .grid > a:hover :global(.card) {
     box-shadow: 1em 1em 2em 0.5em rgb(0 0 0 / 10%);
-  }
-  /* animations */
-  .button > span {
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-  }
-  .button:not(.solid) {
-    position: relative;
-  }
-  .button:not(.flat):hover {
-    color: #fff;
-  }
-  .button:not(.solid)::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: -1px;
-    bottom: -1px;
-    width: 0;
-    background: var(--primary-color);
-    transition: width cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
-    z-index: 0;
-    border-radius: 0.5em;
-  }
-  .button:not(.solid):hover::after {
-    width: 100%;
-    border: 1px solid var(--primary-color);
-    box-sizing: content-box;
-  }
-  .button.solid :global(svg) {
-    transition: transform cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
-  }
-  .button.solid:hover :global(svg) {
-    transform: rotate(45deg);
-  }
-  .button {
-    transition: transform cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
-  }
-  .button:active {
-    transform: scale(0.98);
   }
 </style>
