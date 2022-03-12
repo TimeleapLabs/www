@@ -1,11 +1,12 @@
 <script>
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Card from "src/components/Card.svelte";
   import Button from "src/components/Button.svelte";
   import CardButton from "src/components/CardButton.svelte";
   import Article from "src/components/Article.svelte";
   import InfoCard from "src/components/InfoCard.svelte";
+  import Product from "src/components/Product.svelte";
+  import Usage from "src/components/Usage.svelte";
 
   import VR from "src/icons/VR.svelte";
   import Dice from "src/icons/Dice.svelte";
@@ -75,55 +76,50 @@
     </div>
   </div>
   <div class="products-list">
-    <div class="product">
-      <div class="usecases">
-        <Shuffle />
-        <VR />
-        <Dice />
-        <Gamepad />
-        <Slot />
-      </div>
-      <h2>VRF Oracle</h2>
-      <div class="description">
-        Implement dynamic NFTs, games, lotteries and more with Kenshi VRF
-        oracles.
-      </div>
-      <div class="buttons">
-        <Button solid href="https://docs.kenshi.io/services/vrf/index.html">
-          Docs <External />
-        </Button>
-        <Button
-          href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
-        >
-          Learn more <ChevronRight />
-        </Button>
-      </div>
-    </div>
-    <div class="product">
-      <div class="usecases">
-        <D20 />
-        <DB />
-        <Magnify />
-        <CloudSensor />
-      </div>
-      <h2>Deep Index</h2>
-      <div class="description">
-        Sync, search, query, and consume blockchain data that matters.
-      </div>
-      <div class="buttons">
-        <Button
-          solid
-          href="https://docs.kenshi.io/services/deep-index/index.html"
-        >
-          Docs <External />
-        </Button>
-        <Button
-          href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
-        >
-          Learn more <ChevronRight />
-        </Button>
-      </div>
-    </div>
+    <Product
+      title="VRF Oracle"
+      description="Implement dynamic NFTs, games, lotteries and more with Kenshi VRF oracles."
+      buttons={[
+        {
+          href: "https://docs.kenshi.io/services/vrf/index.html",
+          external: true,
+          label: "Docs",
+        },
+        {
+          href: "https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9",
+          external: false,
+          label: "Learn more",
+        },
+      ]}
+    >
+      <Shuffle />
+      <VR />
+      <Dice />
+      <Gamepad />
+      <Slot />
+    </Product>
+
+    <Product
+      title="Deep Index"
+      description="Sync, search, query, and consume blockchain data that matters."
+      buttons={[
+        {
+          href: "https://docs.kenshi.io/services/deep-index/index.html",
+          external: true,
+          label: "Docs",
+        },
+        {
+          href: "https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946",
+          external: false,
+          label: "Learn more",
+        },
+      ]}
+    >
+      <D20 />
+      <DB />
+      <Magnify />
+      <CloudSensor />
+    </Product>
   </div>
 </div>
 
@@ -258,71 +254,69 @@
       <h2>All in one blockchain data solution.</h2>
     </div>
     <div class="grid">
-      <div class="usage">
-        <h3>Push notifications for the blockchain</h3>
-        <div class="graphics">
-          <BellOn />
-          <Link />
-          <ChartNetwork />
-        </div>
-        <div class="description">
+      <Usage
+        title="Push notifications for the blockchain"
+        buttons={[
+          {
+            href: "https://github.com/kenshi-token?q=reverse-api+OR+graphql&type=public&language=&sort=",
+            external: true,
+            label: "View examples",
+          },
+        ]}
+      >
+        <BellOn />
+        <Link />
+        <ChartNetwork />
+        <div slot="description">
           <p>
             Receive blockchain events directly on your AWS Lambda functions or
             HTTP reverse API endpoints.
           </p>
           <p>Focus on your product, we provide the data.</p>
         </div>
-        <div class="buttons">
-          <Button
-            solid
-            href="https://github.com/kenshi-token?q=reverse-api+OR+graphql&type=public&language=&sort="
-            target="_blank"
-          >
-            View examples <External />
-          </Button>
-        </div>
-      </div>
-      <div class="usage">
-        <h3>Never miss an event again</h3>
-        <div class="graphics">
-          <Bolt />
-          <CheckDouble />
-        </div>
-        <div class="description">
+      </Usage>
+
+      <Usage
+        title="Never miss an event again"
+        buttons={[
+          {
+            href: "https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946",
+            external: true,
+            label: "Learn more",
+          },
+        ]}
+      >
+        <Bolt />
+        <CheckDouble />
+        <div slot="description">
           <p>
             Kenshi scans each block multiple times to make sure no event is
             missed.
           </p>
           <p>Reliability for your services is key, you can count on us.</p>
         </div>
-        <div class="buttons">
-          <Button
-            solid
-            href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
-          >
-            Learn more <External />
-          </Button>
-        </div>
-      </div>
-      <div class="usage">
-        <h3>Fully managed, scales to infinity</h3>
-        <div class="graphics">
-          <LayerPlus />
-          <Infinity />
-        </div>
-        <div class="description">
+      </Usage>
+
+      <Usage
+        title="Fully managed, scales to infinity"
+        buttons={[
+          {
+            href: "https://docs.kenshi.io/services/deep-index/index.html",
+            external: false,
+            label: "Start today",
+          },
+        ]}
+      >
+        <LayerPlus />
+        <Infinity />
+        <div slot="description">
           <p>
             Kenshi is a highly available, managed serverless solution that
             scales to infinity.
           </p>
           <p>Never worry about infrastructure again, we've got you covered.</p>
         </div>
-        <div class="buttons">
-          <Button href="https://docs.kenshi.io/services/deep-index/index.html">
-            Start today <ChevronRight />
-          </Button>
-        </div>
-      </div>
+      </Usage>
     </div>
   </div>
 </div>
@@ -559,27 +553,7 @@
       padding: 0;
     }
   }
-  .product .description {
-    flex: 1;
-  }
-  .product .usecases {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 5fr;
-    gap: 1em;
-    align-items: center;
-  }
-  .product .usecases :global(svg) {
-    max-height: 1.5em;
-  }
-  .product {
-    display: flex;
-    gap: 1em;
-    flex-direction: column;
-  }
-  .product .buttons {
-    margin-top: 2em;
-    flex-wrap: wrap;
-  }
+
   .start h2 {
     margin-top: 0;
     font-size: 2em;
@@ -693,9 +667,7 @@
     gap: 2em;
     justify-content: right;
   }
-  .resources .grid .vendor h3 {
-    margin: 0;
-  }
+
   @media only screen and (max-width: 800px) {
     .resources .details {
       grid-row: 1;
@@ -751,19 +723,7 @@
       gap: 2em;
     }
   }
-  .usages .graphics {
-    display: flex;
-    align-items: center;
-    padding: 2em 0;
-    gap: 1em;
-  }
-  .usages .graphics :global(svg) {
-    height: 1.5em;
-  }
-  .usages h3 {
-    margin: 0;
-    margin-top: 0.25em;
-  }
+
   .usages h2 {
     margin-top: 0em;
     font-size: 2em;
@@ -774,16 +734,7 @@
   .usages .description h3 {
     margin-top: 0;
   }
-  .usages .usage {
-    display: flex;
-    flex-direction: column;
-  }
-  .usages .description {
-    flex: 1;
-  }
-  .usages .usage .buttons {
-    margin-top: 1em;
-  }
+
   @media only screen and (max-width: 600px) {
     .resources {
       gap: 2.5em;
