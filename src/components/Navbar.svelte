@@ -123,13 +123,12 @@
 
   let innerHeight;
 
-  const submenuSlide = (node, { out }) => {
+  const submenuSlide = (node) => {
     innerHeight = getComputedStyle(node).height;
     return {
       delay: 0,
       duration: 200,
       css: (t) => `
-        ${out ? "position: absolute;" : ""}
         transform: translateX(${600 - t * 600}px);
         opacity: ${t};
       `,
@@ -232,7 +231,7 @@
             </button>
           </div>
         {:else if menus.products}
-          <div in:submenuSlide out:submenuSlide={{ out: true }}>
+          <div in:submenuSlide>
             <div class="products">
               <div class="product">
                 <h3>Deep Index</h3>
@@ -299,7 +298,7 @@
             </div>
           </div>
         {:else if menus.dev}
-          <div in:submenuSlide out:submenuSlide={{ out: true }}>
+          <div in:submenuSlide>
             <div class="devs">
               <div class="dev">
                 <h3>Resources</h3>
@@ -402,7 +401,7 @@
             </div>
           </div>
         {:else if menus.token}
-          <div in:submenuSlide out:submenuSlide={{ out: true }}>
+          <div in:submenuSlide>
             <div class="tokens">
               <div class="token">
                 <h3>About</h3>
@@ -481,7 +480,7 @@
             </div>
           </div>
         {:else if menus.community}
-          <div in:submenuSlide out:submenuSlide={{ out: true }}>
+          <div in:submenuSlide>
             <div class="communities">
               <div class="community">
                 <h3>Chat</h3>
@@ -534,7 +533,7 @@
             </div>
           </div>
         {:else if menus.company}
-          <div in:submenuSlide out:submenuSlide={{ out: true }}>
+          <div in:submenuSlide>
             <div class="communities">
               <div class="community">
                 <h3>About</h3>

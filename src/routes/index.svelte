@@ -4,6 +4,8 @@
   import Card from "src/components/Card.svelte";
   import Button from "src/components/Button.svelte";
   import CardButton from "src/components/CardButton.svelte";
+  import Article from "src/components/Article.svelte";
+  import InfoCard from "src/components/InfoCard.svelte";
 
   import VR from "src/icons/VR.svelte";
   import Dice from "src/icons/Dice.svelte";
@@ -155,66 +157,50 @@
 </div>
 
 <div class="cards">
-  <Card padding={false}>
-    <div class="card-inner community">
-      <div class="graphics">
-        <img src="/images/token.png" alt="Kenshi Token" />
-      </div>
-      <div class="content">
-        <h2>The Token</h2>
-        <div>
-          Looking for the ₭enshi token? The Kenshi token is a frictionless yield
-          token that can provide a passive income to its holders, and that is
-          also used to pay for the Kenshi services.
-        </div>
-        <div class="spacer" />
-        <div class="buttons">
-          <Button
-            href="https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784"
-            target="_blank"
-          >
-            Buy <External />
-          </Button>
-          <Button
-            href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
-            target="_blank"
-          >
-            Charts <External />
-          </Button>
-          <Button href="https://docs.kenshi.io/tokenomics.html">
-            Learn more <ChevronRight />
-          </Button>
-        </div>
-      </div>
-    </div>
-  </Card>
-  <Card padding={false}>
-    <div class="card-inner community">
-      <div class="graphics">
-        <img src="/images/pfp.png" alt="Kenshi Telegram" />
-      </div>
-      <div class="content">
-        <h2>Community</h2>
-        <div>
-          Join the Kenshi communities to talk tech, partake in early adopter
-          programs, get help with one of our services, or to get the latest
-          Kenshi news.
-        </div>
-        <div class="spacer" />
-        <div class="buttons">
-          <Button href="https://t.me/kenshi_token" target="_blank">
-            Telegram <External />
-          </Button>
-          <Button href="https://twitter.com/kenshi_token" target="_blank">
-            Twitter <External />
-          </Button>
-          <Button href="https://docs.kenshi.io/community.html">
-            More <ChevronRight />
-          </Button>
-        </div>
-      </div>
-    </div>
-  </Card>
+  <InfoCard
+    image="/images/token.png"
+    title="The Token"
+    description="Looking for the ₭enshi token? The Kenshi token is a frictionless yield token that can provide a passive income to its holders, and that is also used to pay for the Kenshi services."
+    buttons={[
+      {
+        href: "https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784",
+        external: true,
+        label: "Buy",
+      },
+      {
+        href: "https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784",
+        external: true,
+        label: "Charts",
+      },
+      {
+        href: "https://docs.kenshi.io/tokenomics.html",
+        external: false,
+        label: "Learn more",
+      },
+    ]}
+  />
+  <InfoCard
+    image="/images/pfp.png"
+    title="Community"
+    description="Join the Kenshi communities to talk tech, partake in early adopter programs, get help with one of our services, or to get the latest Kenshi news."
+    buttons={[
+      {
+        href: "https://t.me/kenshi_token",
+        external: true,
+        label: "Telegram",
+      },
+      {
+        href: "https://twitter.com/kenshi_token",
+        external: true,
+        label: "Twitter",
+      },
+      {
+        href: "https://docs.kenshi.io/community.html",
+        external: false,
+        label: "More",
+      },
+    ]}
+  />
 </div>
 
 <div class="getting-started">
@@ -238,12 +224,14 @@
         <h4>Learn how to get a random number</h4>
         <div class="buttons">
           <Button
+            solid
             href="https://remix.ethereum.org/#url=https://raw.githubusercontent.com/kenshi-token/d20/master/contracts/D20.sol"
             target="_blank"
           >
             Remix <External />
           </Button>
           <Button
+            solid
             href="https://github.com/kenshi-token?q=vrf&type=all&language=&sort="
             target="_blank"
           >
@@ -286,6 +274,7 @@
         </div>
         <div class="buttons">
           <Button
+            solid
             href="https://github.com/kenshi-token?q=reverse-api+OR+graphql&type=public&language=&sort="
             target="_blank"
           >
@@ -308,6 +297,7 @@
         </div>
         <div class="buttons">
           <Button
+            solid
             href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
           >
             Learn more <External />
@@ -382,53 +372,18 @@
 <div class="articles">
   <h2>Latest articles</h2>
   <div class="grid">
-    <div class="article">
-      <Card padding={false}>
-        <div class="article-inner">
-          <img src="/images/medium/vrf.png" alt="Kenshi VRF" />
-          <div class="padded">
-            <h3>Introducing the Kenshi VRF oracles.</h3>
-            <div class="content">
-              VRFs play an important role in the blockchain, as the blockchain
-              lacks the native functionality to securely generate random numbers
-              due to its deterministic nature...
-            </div>
-            <div class="buttons">
-              <Button
-                href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
-              >
-                Read article <External />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Card>
-    </div>
-    <div class="article">
-      <Card padding={false}>
-        <div class="article-inner">
-          <img
-            src="/images/medium/kenshi-deep-index.png"
-            alt="Kenshi Deep Index"
-          />
-          <div class="padded">
-            <h3>Introducing the Kenshi Deep Indexing Service.</h3>
-            <div class="content">
-              Information published on the blockchain is publicly available and
-              accessible by anyone who needs it. However, traversing the event
-              logs and searching for specific events is not an easy task...
-            </div>
-            <div class="buttons">
-              <Button
-                href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
-              >
-                Read article <External />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Card>
-    </div>
+    <Article
+      image="/images/medium/vrf.png"
+      title="Introducing the Kenshi VRF oracles."
+      description="VRFs play an important role in the blockchain, as the blockchain lacks the native functionality to securely generate random numbers due to its deterministic nature..."
+      href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
+    />
+    <Article
+      image="/images/medium/kenshi-deep-index.png"
+      title="Introducing the Kenshi Deep Indexing Service."
+      description="Information published on the blockchain is publicly available and accessible by anyone who needs it. However, traversing the event logs and searching for specific events is not an easy task..."
+      href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
+    />
   </div>
 </div>
 
@@ -531,34 +486,6 @@
       padding: 2em 1em;
       gap: 2em;
     }
-    .cards .card-inner .buttons {
-      justify-content: flex-start;
-    }
-  }
-  .card-inner {
-    display: flex;
-    gap: 3em;
-  }
-  .card-inner .content {
-    gap: 1em;
-    text-align: left;
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-  }
-  .card-inner h2 {
-    font-size: 1.5em;
-    color: #111;
-    margin-bottom: 0;
-  }
-  .card-inner .buttons {
-    align-items: flex-end;
-    justify-content: end;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  .card-inner img {
-    max-width: 100%;
   }
   .discover {
     padding: 2em 4em;
@@ -601,42 +528,7 @@
   .discover a:hover :global(svg) {
     fill: var(--primary-color);
   }
-  .community {
-    gap: 0;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-  }
-  @media only screen and (max-width: 1200px) {
-    .community {
-      gap: 0;
-      height: 100%;
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-  }
-  .community h2 {
-    margin: 0;
-  }
-  .community .graphics {
-    height: 100%;
-  }
-  .community img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-  .community .content {
-    padding: 2em;
-  }
-  @media only screen and (max-width: 600px) {
-    .community .buttons {
-      font-size: 0.9em;
-    }
-    .community .graphics {
-      max-height: 242px;
-    }
-  }
+
   .products {
     padding: 4em;
     padding-bottom: 2em;
@@ -717,46 +609,7 @@
       grid-template-columns: 1fr;
     }
   }
-  .articles .article img {
-    max-width: 100%;
-  }
-  .article-inner {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    height: 100%;
-  }
-  .articles .article {
-    gap: 1em;
-    display: flex;
-    flex-direction: column;
-  }
-  .article h3 {
-    margin-top: 0;
-  }
-  .article .buttons {
-    display: flex;
-    justify-content: start;
-    margin-top: 2.5em;
-    flex-wrap: wrap;
-  }
-  .article .padded {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    box-sizing: border-box;
-  }
-  .article .padded .content {
-    flex: 1;
-  }
-  .padded {
-    padding: 2em;
-  }
-  @media only screen and (max-width: 640px) {
-    .padded {
-      padding: 1em;
-    }
-  }
+
   .getting-started {
     padding: 4em;
   }
