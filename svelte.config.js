@@ -8,7 +8,6 @@ const MODE = process.env.NODE_ENV;
 const config = {
   kit: {
     // hydrate the <div id="svelte"> element in src/app.html
-    target: "#svelte",
     adapter: adapter(),
     vite: {
       plugins: [
@@ -22,6 +21,9 @@ const config = {
             })
           : "",
       ],
+      optimizeDeps: {
+        include: ["@web3-onboard/core"],
+      },
       build: {
         rollupOptions: {
           plugins: [
@@ -32,6 +34,7 @@ const config = {
         // ↓ Needed for build
         commonjsOptions: {
           transformMixedEsModules: true,
+          include: [/@web3-onboard/, /node_modules/],
         },
       },
       resolve: {
