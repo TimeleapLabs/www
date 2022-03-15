@@ -9,6 +9,9 @@
   --toastColor: #333;
   --toastPadding: 0 1em;
   --toastBarHeight: 0;
+
+  --onboard-modal-z-index: 1000000;
+  --toastContainerTop: calc(64px + 2em);
 }
 
 @font-face {

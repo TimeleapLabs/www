@@ -1,44 +1,43 @@
-import Onboard from "bnc-onboard";
-import { wallet } from "src/stores/wallet";
+import Onboard from "@web3-onboard/core";
+import injectedModule from "@web3-onboard/injected-wallets";
 
-const dappId = "bc69f74d-6e94-400b-8f06-439b4bcca6d6";
-const rpcUrl = "https://bsc-dataseed.binance.org";
-const email = "admin@kenshi.io";
 const appName = "Kenshi";
-const appUrl = "https://kenshi.io";
-const networkId = 0x38;
 
-const wallets = [
-  { walletName: "coinbase", preferred: true },
-  { walletName: "trust", preferred: true, rpcUrl },
-  { walletName: "metamask", preferred: true },
-  { walletName: "mathwallet", preferred: true },
-  { walletName: "binance", preferred: true },
-  {
-    walletName: "walletConnect",
-    rpc: { [networkId]: rpcUrl },
-    preferred: true,
+const injected = injectedModule();
+
+const options = {
+  appMetadata: {
+    name: appName,
+    description: "Kenshi dApp",
+    icon: "/images/kenshi.logo.short.svg",
   },
-  { walletName: "trezor", appUrl, email, rpcUrl },
-  { walletName: "ledger", rpcUrl },
-  { walletName: "walletLink", rpcUrl, appName },
-  { walletName: "huobiwallet", rpcUrl },
-  { walletName: "opera" },
-  { walletName: "ronin" },
-];
-
-export const onboard = Onboard({
-  dappId,
-  networkId,
-  subscriptions: {
-    wallet: async (selectedWallet) => {
-      await onboard.walletCheck();
-      setTimeout(() => {
-        wallet.set(selectedWallet);
-      }, 100);
+  chains: [
+    {
+      id: "0x61",
+      token: "BNB",
+      label: "Binance Smart Chain Testnet",
+      rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545",
     },
-  },
-  walletSelect: {
-    wallets,
-  },
-});
+    {
+      id: "0x13881",
+      token: "MATIC",
+      label: "Polygon Mumbai Testnet",
+      rpcUrl: "https://rpc-mumbai.maticvigil.com",
+    },
+    {
+      id: "0xfa2",
+      token: "FTM",
+      label: "Fantom Testnet",
+      rpcUrl: "https://rpc.testnet.fantom.network",
+    },
+    {
+      id: "0xa869",
+      token: "AVAX",
+      label: "Avalanche Fuji C-Chain",
+      rpcUrl: "https://api.avax-test.network/ext/bc/C/rpc",
+    },
+  ],
+  wallets: [injected],
+};
+
+export const onboard = Onboard(options);
