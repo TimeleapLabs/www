@@ -1,21 +1,5 @@
-<svg
-	aria-hidden="true"
-	focusable="false"
-	data-prefix="fad"
-	data-icon="wallet"
-	class="svg-inline--fa fa-wallet"
-	role="img"
-	xmlns="http://www.w3.org/2000/svg"
-	viewBox="0 0 512 512"
-	><g class="fa-group"
-		><path
-			class="fa-secondary"
-			fill="currentColor"
-			d="M480 80v56.88C470.6 131.4 459.7 128 448 128H48C21.49 128 0 106.5 0 80S21.49 32 48 32h384C458.5 32 480 53.49 480 80z"
-		/><path
-			class="fa-primary"
-			fill="currentColor"
-			d="M448 128H48C21.49 128 0 106.5 0 80V416c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64V192C512 156.7 483.3 128 448 128zM416 336c-17.67 0-32-14.33-32-32c0-17.67 14.33-32 32-32s32 14.33 32 32C448 321.7 433.7 336 416 336z"
-		/></g
-	></svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+  ><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path
+    d="M456 32C469.3 32 480 42.75 480 56C480 69.25 469.3 80 456 80H88C65.91 80 48 97.91 48 120V392C48 414.1 65.91 432 88 432H424C446.1 432 464 414.1 464 392V216C464 193.9 446.1 176 424 176H120C106.7 176 96 165.3 96 152C96 138.7 106.7 128 120 128H424C472.6 128 512 167.4 512 216V392C512 440.6 472.6 480 424 480H88C39.4 480 0 440.6 0 392V120C0 71.4 39.4 32 88 32H456zM352 304C352 286.3 366.3 272 384 272C401.7 272 416 286.3 416 304C416 321.7 401.7 336 384 336C366.3 336 352 321.7 352 304z"
+  /></svg
 >

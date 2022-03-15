@@ -404,7 +404,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 66px);
+    min-height: calc(100vh - 66px);
     box-sizing: border-box;
     flex-wrap: wrap;
   }
@@ -421,12 +421,19 @@
     flex: 2;
     height: 100%;
     min-width: 300px;
+    display: flex;
+    justify-content: center;
   }
   .hero .graphics img {
     width: 540px;
     max-width: 80%;
     height: 100%;
     object-fit: contain;
+  }
+  @media only screen and (max-width: 880px) {
+    .hero .buttons {
+      justify-content: center;
+    }
   }
   @media only screen and (max-width: 640px) {
     .hero .content {
@@ -441,9 +448,6 @@
       gap: 4em;
       height: auto;
       align-items: center;
-    }
-    .hero .buttons {
-      justify-content: center;
     }
     .hero .graphics {
       display: flex;

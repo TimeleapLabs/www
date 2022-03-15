@@ -2,12 +2,13 @@
   export let href;
   export let target;
   export let solid = false;
+  export let disabled = false;
 </script>
 
 {#if href}
   <a class="button" {href} {target} class:solid><span><slot /></span></a>
 {:else}
-  <button class="button" class:solid on:click>
+  <button class="button" class:solid on:click {disabled}>
     <span><slot /></span>
   </button>
 {/if}

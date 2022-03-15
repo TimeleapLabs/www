@@ -77,7 +77,7 @@
         View charts
       </Link>
       <div class="soon">Multi-chain <Timer /></div>
-      <div class="soon">Faucet <Timer /></div>
+      <Link href="/faucet">Faucet</Link>
     </div>
     <div class="list">
       <h3>Contact</h3>

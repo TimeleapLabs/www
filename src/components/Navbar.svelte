@@ -59,6 +59,8 @@
 
   import Link from "./Link.svelte";
 
+  import ConnectButton from "./ConnectButton.svelte";
+
   let menus = {};
 
   const allClosed = () =>
@@ -141,7 +143,7 @@
 
   let width = 0;
   let isMobile = false;
-  $: isMobile = width < 888;
+  $: isMobile = width < 1050;
 </script>
 
 <svelte:window bind:scrollY={y} bind:outerWidth={width} />
@@ -168,7 +170,9 @@
     </div>
   {/if}
   <span class="logo">
-    <Kenshi />
+    <a href="/">
+      <Kenshi />
+    </a>
   </span>
   <div class="menu">
     {#if !isMobile}
@@ -190,8 +194,16 @@
     {/if}
   </div>
   <div class="spacer" />
+  <ConnectButton {isMobile} />
   <a href="https://docs.kenshi.io" class="button build">
-    <span>Build with Kenshi <ChevronRight /></span>
+    <span>
+      {#if isMobile}
+        Start
+      {:else}
+        Build with Kenshi
+      {/if}
+      <ChevronRight /></span
+    >
   </a>
 </div>
 
@@ -447,8 +459,10 @@
                 <div class="soon">
                   <Swap /> PegSwap <span class="small">coming soon</span>
                 </div>
-                <div class="soon">
-                  <Faucet /> Faucet <span class="small">coming soon</span>
+                <div>
+                  <Link href="/faucet">
+                    <Faucet /> Faucet
+                  </Link>
                 </div>
               </div>
               <div class="token">
@@ -621,7 +635,7 @@
 <style>
   .navbar {
     display: flex;
-    padding: 0em 9em;
+    padding: 0em 4em;
     align-items: center;
     position: sticky;
     top: 0;
@@ -667,7 +681,7 @@
     position: fixed;
     z-index: 1000;
     width: 100%;
-    padding: 0em 9em;
+    padding: 0em 4em;
     box-sizing: border-box;
   }
   .submenu.mobile {
@@ -864,5 +878,8 @@
   }
   .soon {
     cursor: default;
+  }
+  .button.build {
+    margin-left: 0.5em;
   }
 </style>
