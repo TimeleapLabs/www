@@ -103,85 +103,78 @@
   });
 </script>
 
-<div class="page">
-  <Navbar />
+<Navbar />
 
-  <div class="section">
-    <h2>Kenshi Status</h2>
-    <div class="uptime-wrap">
-      <Card>
-        <h3>
-          Are JSON-RPC providers up??
-          {#if !uptimes.length}
-            <Moon size="16" />
-          {/if}
-        </h3>
-        <p class="description">
-          Kenshi Is Up oracle checks the status of each JSON-RPC provider every
-          one minute. This page queries the Kenshi Is Up GraphQL endpoint and
-          displays the recorded data. Click on the provider name to copy its
-          address.
-        </p>
-        {#if lastUptimeLog}
-          <div class="uptimes">
-            {#each groupUptime(lastUptimeLog) as [chain, providers]}
-              <Card flat slim>
-                <h4>{toTitleCase(chain)}</h4>
-                <div class="uptime header">
-                  <h5>Provider</h5>
-                  <h5>Status</h5>
-                  <h5>24hr Chart</h5>
-                </div>
-                {#each providers as provider}
-                  <div class="uptime">
-                    <span
-                      class="name"
-                      class:copy={provider.url}
-                      on:click={copyText(provider.url)}
-                    >
-                      {provider.name}
-                      {#if provider.url}
-                        <Copy />
-                      {/if}
-                    </span>
-                    <span class="status" class:ok={provider.up}>
-                      {#if provider.up}
-                        OK
-                      {:else}
-                        DOWN
-                      {/if}
-                    </span>
-                    {#if chartData[chain]?.[provider.name]}
-                      <span class="chart">
-                        <LineChart
-                          data={chartData[chain][provider.name]}
-                          axisX={false}
-                          axisY={false}
-                        />
-                      </span>
-                    {/if}
-                  </div>
-                {/each}
-              </Card>
-            {/each}
-          </div>
-          <div class="updated">
-            Last updated at {new Date(lastUptimeLog.timestamp).toString()}
-          </div>
+<div class="section">
+  <h2>Kenshi Status</h2>
+  <div class="uptime-wrap">
+    <Card>
+      <h3>
+        Are JSON-RPC providers up??
+        {#if !uptimes.length}
+          <Moon size="16" />
         {/if}
-      </Card>
-    </div>
+      </h3>
+      <p class="description">
+        Kenshi Is Up oracle checks the status of each JSON-RPC provider every
+        one minute. This page queries the Kenshi Is Up GraphQL endpoint and
+        displays the recorded data. Click on the provider name to copy its
+        address.
+      </p>
+      {#if lastUptimeLog}
+        <div class="uptimes">
+          {#each groupUptime(lastUptimeLog) as [chain, providers]}
+            <Card flat slim>
+              <h4>{toTitleCase(chain)}</h4>
+              <div class="uptime header">
+                <h5>Provider</h5>
+                <h5>Status</h5>
+                <h5>24hr Chart</h5>
+              </div>
+              {#each providers as provider}
+                <div class="uptime">
+                  <span
+                    class="name"
+                    class:copy={provider.url}
+                    on:click={copyText(provider.url)}
+                  >
+                    {provider.name}
+                    {#if provider.url}
+                      <Copy />
+                    {/if}
+                  </span>
+                  <span class="status" class:ok={provider.up}>
+                    {#if provider.up}
+                      OK
+                    {:else}
+                      DOWN
+                    {/if}
+                  </span>
+                  {#if chartData[chain]?.[provider.name]}
+                    <span class="chart">
+                      <LineChart
+                        data={chartData[chain][provider.name]}
+                        axisX={false}
+                        axisY={false}
+                      />
+                    </span>
+                  {/if}
+                </div>
+              {/each}
+            </Card>
+          {/each}
+        </div>
+        <div class="updated">
+          Last updated at {new Date(lastUptimeLog.timestamp).toString()}
+        </div>
+      {/if}
+    </Card>
   </div>
-
-  <Footer />
 </div>
 
+<Footer />
+
 <style>
-  .page {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
   h2 {
     margin-top: 0;
     margin-bottom: 1.5em;
@@ -220,6 +213,7 @@
     padding: 4em;
     padding-top: 2em;
     flex: 1;
+    min-height: 400px;
   }
   .uptimes {
     display: grid;
