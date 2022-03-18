@@ -34,8 +34,9 @@
     <div class="list">
       <h3>Developers</h3>
       <Link href="https://docs.kenshi.io">Documentation</Link>
-      <Link href="https://t.me/kenshi_developers" target="_blank"
-        >Developers chat
+      <Link href="/status">Service Status</Link>
+      <Link href="https://t.me/kenshi_developers" target="_blank">
+        Developers chat
       </Link>
       <Link href="https://docs.kenshi.io/services/vrf/index.html">
         Getting randomness
