@@ -230,7 +230,7 @@
       padding: 1em;
     }
     :global(.card.padding) {
-      padding: 1em;
+      padding: 1em !important;
     }
   }
   .chart {
