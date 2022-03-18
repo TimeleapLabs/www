@@ -27,6 +27,8 @@
   import Python from "src/icons/Python.svelte";
   import Go from "src/icons/Go.svelte";
 
+  import HexagonCheck from "src/icons/HexagonCheck.svelte";
+
   import Coin from "src/icons/Coin.svelte";
   import ListCheck from "src/icons/ListCheck.svelte";
   import Scale from "src/icons/Scale.svelte";
@@ -407,6 +409,14 @@
                     target="_blank"
                   >
                     <D20 /> D20 Smart Contract
+                  </Link>
+                </div>
+              </div>
+              <div class="dev">
+                <h3>Other</h3>
+                <div>
+                  <Link href="/status">
+                    <HexagonCheck /> Service Status
                   </Link>
                 </div>
               </div>
