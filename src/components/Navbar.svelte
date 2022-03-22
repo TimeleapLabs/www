@@ -705,6 +705,14 @@
     height: var(--inner-height);
     transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s all;
   }
+  @media screen and (max-width: 1050px) {
+    .submenu :global(.card) {
+      overflow-y: scroll;
+      max-height: calc(100vh - 64px);
+      padding-bottom: 2em !important;
+      box-sizing: border-box;
+    }
+  }
   .build :global(svg) {
     fill: var(--primary-color);
   }
