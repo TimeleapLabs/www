@@ -466,8 +466,10 @@
               </div>
               <div class="token">
                 <h3>Multi-chain</h3>
-                <div class="soon">
-                  <Swap /> PegSwap <span class="small">coming soon</span>
+                <div>
+                  <Link href="/pegswap">
+                    <Swap /> PegSwap
+                  </Link>
                 </div>
                 <div>
                   <Link href="/faucet">
@@ -664,6 +666,11 @@
   }
   .navbar.shadow {
     box-shadow: 1em 1em 2em 0.25em rgb(0 0 0 / 10%);
+    background: #fafafa;
+  }
+  .navbar.shadow + .submenu button,
+  .navbar.shadow button {
+    background: #fafafa;
   }
   .logo :global(svg) {
     fill: var(--primary-color);
@@ -700,7 +707,7 @@
     padding: 0;
   }
   .submenu-inner {
-    background: var(--secondary-lighten-4);
+    background: #fafafa;
     position: relative;
     height: var(--inner-height);
     transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s all;
@@ -888,14 +895,6 @@
   }
   .navbar button {
     font-weight: bold;
-  }
-  .small {
-    font-size: 0.6em;
-    margin-left: -1em;
-    font-style: italic;
-  }
-  .soon {
-    cursor: default;
   }
   .button.build {
     margin-left: 0.5em;

@@ -77,7 +77,7 @@
       >
         View charts
       </Link>
-      <div class="soon">Multi-chain <Timer /></div>
+      <Link href="/pegswap">PegSwap</Link>
       <Link href="/faucet">Faucet</Link>
     </div>
     <div class="list">

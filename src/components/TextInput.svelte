@@ -5,20 +5,26 @@
   export let regex = /.*/;
   export let name = "";
   export let value = "";
+  export let suffix = "";
 
   let valid;
   $: valid = value.toString().match(regex);
 </script>
 
 <div class="wrap">
-  <input
-    class:valid
-    class:invalid={!valid}
-    class:empty={!value}
-    type="text"
-    {placeholder}
-    bind:value
-  />
+  <div class="input">
+    <input
+      class:valid
+      class:invalid={!valid}
+      class:empty={!value}
+      type="text"
+      {placeholder}
+      bind:value
+    />
+    {#if value && suffix}
+      <span>{suffix}</span>
+    {/if}
+  </div>
 
   {#if value && !valid}
     <div class="message" transition:fly={{ x: -8 }}>
@@ -33,6 +39,11 @@
 <style>
   .wrap {
     width: 100%;
+  }
+  .input {
+    display: flex;
+    align-items: center;
+    gap: 1em;
   }
   input {
     background: transparent;

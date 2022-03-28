@@ -24,6 +24,13 @@
       }
     }
   }
+
+  let filteredOptions = [];
+  $: filteredOptions = options;
+
+  $: if (value) {
+    filteredOptions = options.filter((option) => option.value !== value);
+  }
 </script>
 
 <div class="select" class:active class:valid={value} class:empty={!value}>
@@ -41,7 +48,7 @@
   </div>
   {#if active}
     <div class="options" transition:slide>
-      {#each options as option}
+      {#each filteredOptions as option}
         <div class="option" on:click={setValue(option.value)}>
           {option.label}
         </div>

@@ -30,6 +30,7 @@
     "@web3-onboard/injected-wallets": "^2.0.2",
     "bnc-onboard": "^1.37.0",
     "dotenv": "^10.0.0",
+    "ethereum-checksum-address": "^0.0.8",
     "ethers": "^5.5.1",
     "mongodb": "^4.2.1",
     "node-fetch": "^3.1.0"

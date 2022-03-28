@@ -167,7 +167,7 @@
           {/if}
         </Button>
       {:else if !$wallet?.provider}
-        Please connect your wallet first.
+        Connect your wallet to continue.
       {/if}
     </div>
   </Card>
