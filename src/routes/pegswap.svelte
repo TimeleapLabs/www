@@ -442,7 +442,10 @@
   }
   @media screen and (max-width: 960px) {
     .section {
-      padding: 2em;
+      padding: 1em;
+    }
+    :global(.card.padding) {
+      padding: 1.5em 1.25em;
     }
   }
   .card-inner {
