@@ -1,5 +1,6 @@
 <script>
   import Medium from "../icons/Medium.svelte";
+  import Discord from "../icons/Discord.svelte";
   import Telegram from "../icons/Telegram.svelte";
   import Twitter from "../icons/Twitter.svelte";
   import Github from "../icons/Github.svelte";
@@ -17,6 +18,7 @@
     <div class="logo" />
     <div class="social">
       <a href="https://t.me/kenshi_token" target="_blank"> <Telegram /> </a>
+      <a href="https://discord.gg/YNXMYF6d" target="_blank"> <Discord /> </a>
       <a href="https://twitter.com/kenshi_token" target="_blank">
         <Twitter />
       </a>

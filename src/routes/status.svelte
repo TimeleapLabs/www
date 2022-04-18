@@ -115,7 +115,7 @@
     "binance-mainnet": "https://bsc-dataseed.binance.org",
     "binance-testnet": "https://data-seed-prebsc-1-s1.binance.org:8545",
     "polygon-mainnet": "https://polygon-rpc.com",
-    "polygon-mumbai": "https://rpc-mumbai.maticvigil.com",
+    "polygon-mumbai": "https://matic-mumbai.chainstacklabs.com",
     "fantom-mainnet": "https://rpc.ftm.tools",
     "fantom-testnet": "https://rpc.testnet.fantom.network/",
     "avalanche-mainnet": "https://api.avax.network/ext/bc/C/rpc",

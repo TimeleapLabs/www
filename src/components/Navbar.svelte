@@ -22,6 +22,7 @@
   import Medium from "src/icons/Medium.svelte";
   import Telegram from "src/icons/Telegram.svelte";
   import Book from "src/icons/Book.svelte";
+  import Discord from "src/icons/Discord.svelte";
 
   import Node from "src/icons/Node.svelte";
   import Python from "src/icons/Python.svelte";
@@ -335,6 +336,11 @@
                   </Link>
                 </div>
                 <div>
+                  <Link href="https://discord.gg/YNXMYF6d" target="_blank">
+                    <Discord /> Discord
+                  </Link>
+                </div>
+                <div>
                   <Link
                     href="https://www.npmjs.com/org/kenshi.io"
                     target="_blank"
@@ -518,6 +524,11 @@
                 <div>
                   <Link href="https://t.me/kenshi_developers" target="_blank">
                     <Telegram /> Dev Chat
+                  </Link>
+                </div>
+                <div>
+                  <Link href="https://discord.gg/YNXMYF6d" target="_blank">
+                    <Discord /> Discord
                   </Link>
                 </div>
               </div>

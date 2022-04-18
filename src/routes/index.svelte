@@ -348,6 +348,12 @@
       description="Join Kenshi developers chat"
     />
     <CardButton
+      href="https://discord.gg/YNXMYF6d"
+      image="/images/pfp/discord.png"
+      title="Discord"
+      description="Join Kenshi Discord server"
+    />
+    <CardButton
       href="https://docs.kenshi.io"
       image="/images/pfp/docs.png"
       title="Docs"
