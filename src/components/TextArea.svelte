@@ -7,38 +7,28 @@
   export let name = "";
   export let value = "";
   export let suffix = "";
-  export let prefix = "";
-  export let prefixAlwaysOn = false;
-  export let gapless = false;
-  export let icon;
-
-  const Icon = icon;
+  export let rows = 4;
+  export let disabled;
 
   let valid;
   $: valid = validator(value) && value.toString().match(regex);
 </script>
 
 <div class="wrap">
-  <div
-    class="input"
-    class:gapless
-    class:valid
-    class:invalid={!valid}
-    class:empty={!value}
-  >
-    {#if icon}
-      <span class="icon">
-        <Icon />
-      </span>
-    {/if}
-    {#if (value || prefixAlwaysOn) && prefix}
-      <span>{prefix}</span>
-    {/if}
-    <input type="text" {placeholder} bind:value />
+  <div class="input">
+    <textarea
+      class:valid
+      class:invalid={!valid}
+      class:empty={!value}
+      type="text"
+      {rows}
+      {placeholder}
+      {disabled}
+      bind:value
+    />
     {#if value && suffix}
       <span>{suffix}</span>
     {/if}
-    <slot name="buttons" />
   </div>
 
   {#if value && !valid}
@@ -58,19 +48,19 @@
   .input {
     display: flex;
     align-items: center;
-    border-radius: 4px;
-    padding: calc(0.5em - 1px) 0.75em;
+    gap: 1em;
   }
-  .input:not(.gapless) {
-    gap: 0.5em;
-  }
-  input {
+  textarea {
     background: transparent;
     outline: none;
+    padding: 0.5em 0.75em;
     font-size: 1em;
-    flex: 1;
+    border-radius: 4px;
+    width: 100%;
     box-sizing: border-box;
-    border: none;
+  }
+  textarea:disabled {
+    resize: vertical;
   }
   .valid {
     border: 1px solid #0c6e6b;
@@ -90,11 +80,5 @@
   .message {
     margin-top: 1em;
     font-style: italic;
-  }
-  .icon {
-    display: flex;
-  }
-  .icon :global(svg) {
-    height: 1em;
   }
 </style>

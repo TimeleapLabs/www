@@ -77,7 +77,7 @@
   .placeholder,
   .option {
     cursor: pointer;
-    padding: 0.5em 0.75em;
+    padding: calc(0.5em - 1px) 0.75em;
   }
   .placeholder:hover,
   .option:hover {
@@ -98,5 +98,9 @@
   }
   .active .chevron {
     transform: rotate(180deg) translateY(2px);
+  }
+  .options {
+    max-height: 200px;
+    overflow-y: auto;
   }
 </style>

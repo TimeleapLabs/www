@@ -2,20 +2,20 @@
   export let href;
   export let target;
   export let solid = false;
+  export let flat = false;
   export let disabled = false;
 </script>
 
 {#if href}
   <a class="button" {href} {target} class:solid><span><slot /></span></a>
 {:else}
-  <button class="button" class:solid on:click {disabled}>
+  <button class="button" class:flat class:solid on:click {disabled}>
     <span><slot /></span>
   </button>
 {/if}
 
 <style>
   .button {
-    color: var(--primary-color);
     border: 1px solid var(--primary-color);
     padding: 0.5em 1em;
     background: transparent;
@@ -26,6 +26,13 @@
     gap: 0.75em;
     cursor: pointer;
   }
+  .button:not(.flat) {
+    color: var(--primary-color);
+  }
+  .button.flat {
+    padding: 0;
+    border: none;
+  }
   .button.solid {
     color: #fff;
     background: #000;
@@ -34,6 +41,10 @@
   }
   .button :global(svg) {
     height: 0.8em;
+    fill: currentColor;
+  }
+  .button.flat :global(svg) {
+    height: 1em;
     fill: currentColor;
   }
   .button.solid :global(.fa-secondary) {
@@ -54,7 +65,7 @@
   .button:not(.flat):hover {
     color: #fff;
   }
-  .button:not(.solid)::after {
+  .button:not(.solid):not(.flat)::after {
     content: "";
     position: absolute;
     right: 0;
