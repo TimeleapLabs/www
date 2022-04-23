@@ -19,6 +19,12 @@ const options = {
       rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545",
     },
     {
+      id: "0x38",
+      token: "BNB",
+      label: "Binance Smart Chain",
+      rpcUrl: "https://bsc-dataseed.binance.org",
+    },
+    {
       id: "0x13881",
       token: "MATIC",
       label: "Polygon Mumbai Testnet",

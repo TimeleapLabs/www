@@ -35,6 +35,7 @@
   import Scale from "src/icons/Scale.svelte";
   import Swap from "src/icons/Swap.svelte";
   import Faucet from "src/icons/Faucet.svelte";
+  import ArrowUp from "src/icons/ArrowUp.svelte";
   import CreditCard from "src/icons/CreditCard.svelte";
   import ChartLine from "src/icons/ChartLine.svelte";
   import SquareQuestion from "src/icons/SquareQuestion.svelte";
@@ -471,7 +472,7 @@
                 </div>
               </div>
               <div class="token">
-                <h3>Multi-chain</h3>
+                <h3>Tools</h3>
                 <div>
                   <Link href="/pegswap">
                     <Swap /> PegSwap
@@ -480,6 +481,11 @@
                 <div>
                   <Link href="/faucet">
                     <Faucet /> Faucet
+                  </Link>
+                </div>
+                <div>
+                  <Link href="/migrate">
+                    <ArrowUp /> Migrate
                   </Link>
                 </div>
               </div>
