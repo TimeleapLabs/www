@@ -101,6 +101,7 @@
       timeout,
       fromBlock,
       duration: 2,
+      expires: new Date(new Date().valueOf() + 86400000 * 30),
     },
   ];
 
@@ -521,13 +522,13 @@
                 {/each}
               </div>
               <div>
-                Every {task.interval} seconds, {task.step} blocks at a time, for
-                {task.duration}
-                {task.duration > 1 ? "months" : "month"}.
+                Every {task.interval} seconds, {task.step} blocks at a time, expires
+                on {task.expires.toLocaleDateString("en-US")}.
               </div>
             </div>
             <div class="buttons">
               <Button>Modify</Button>
+              <Button>Recharge</Button>
             </div>
           </Card>
         {:else}
