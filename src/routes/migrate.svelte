@@ -24,7 +24,7 @@
   let address;
 
   $: if ($wallet?.provider) {
-    onboard.setChain({ chainId: "0x38" });
+    onboard.setChain({ chainId: "0x61" });
   }
 
   const setAddress = () => {
@@ -33,9 +33,9 @@
 
   $: if ($wallet) setAddress();
 
-  const currentContractAddress = "0x8AdA51404F297bF2603912d1606340223c0a7784";
-  const contractAddress = "0xc3ed8d7207e5171c6f7565dd5e18720aa9e333de";
-  const migrateAddress = "";
+  const currentContractAddress = "0x61E2738f370371183A8f32F0CC49d54522198276";
+  const contractAddress = "0xaCC70a58462E3F5B2e36DcE500E598963918cFdB";
+  const migrateAddress = "0xb378F0e0B9368CBE271240807e3b70D18A5E7430";
 
   let userBalance;
   let kenshi;
@@ -86,14 +86,27 @@
 
     const provider = new ethers.providers.Web3Provider($wallet.provider);
     const migrate = new ethers.Contract(migrateAddress, migrateAbi, provider);
+    const kenshi = new ethers.Contract(
+      currentContractAddress,
+      kenshiAbi,
+      provider
+    );
+
+    const _1e31 = "10000000000000000000000000000000";
 
     try {
       const signer = provider.getSigner();
+      const tx = await kenshi.connect(signer).approve(migrateAddress, _1e31);
+      await tx.wait(1);
       await migrate.connect(signer).migrate();
     } catch (error) {
       spin = false;
       return toast.push("Something went wrong!");
     }
+
+    kenshi.balanceOf(address).then((balance) => {
+      userBalance = balance;
+    });
 
     toast.push("Migrate successful.");
     toast.push("Don't forget to add the new token to your wallet!");
@@ -127,7 +140,7 @@
     </div>
     <div class="buttons">
       {#if $wallet?.provider}
-        {#if userBalance && userBalance.gt(0)}
+        {#if userBalance?.gt(0)}
           <Button on:click={migrate} disabled={spin}>
             {#if spin}
               <SpinLine
@@ -141,6 +154,8 @@
               Migrate {formatBalance(userBalance)} ₭enshi
             {/if}
           </Button>
+        {:else if userBalance?.eq(0)}
+          <Button disabled>Nothing to migrate</Button>
         {/if}
         {#if $wallet.provider}
           <Button on:click={addToMetamask(contractAddress)}>
