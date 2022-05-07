@@ -22,8 +22,12 @@
 
   import External from "src/icons/External.svelte";
 
-  import faucetAbi from "src/lib/abi/faucet";
   import kenshiAbi from "src/lib/abi/kenshi";
+
+  import { fetchPancake } from "src/lib/api/token";
+
+  const collectorAddress = "";
+  const kenshiAddress = "";
 
   let chain;
   let userAddress;
@@ -38,17 +42,17 @@
   let duration;
   let price;
 
-  const generateAPIKey = () =>
+  const getRandomBase64 = (length = 32) =>
     btoa(
       String.fromCharCode.apply(
         null,
         typeof window === "undefined"
           ? []
-          : crypto.getRandomValues(new Uint8Array(32))
+          : crypto.getRandomValues(new Uint8Array(length))
       )
     );
 
-  let apiKey = generateAPIKey();
+  let apiKey = getRandomBase64();
   let requests = "100000";
   let apiKeyQueryAllowed = [];
   let graphqlPrice;
@@ -185,25 +189,12 @@
     );
   }
 
-  const amount = "2.0";
-
-  const chains = {
-    mumbai: "0x13881",
-    bsc: "0x61",
-    ftm: "0xfa2",
-    avax: "0xa869",
-  };
-
   const chainIcons = {
     "avalanche-fuji": "avalanche",
     "polygon-mumbai": "polygon",
     "fantom-testnet": "fantom",
     "binance-testnet": "binance",
   };
-
-  /*   $: if (chain && $wallet?.provider) {
-    onboard.setChain({ chainId: chains[chain] });
-  } */
 
   const setAddress = () => {
     userAddress = $wallet.accounts?.[0]?.address;
@@ -270,55 +261,164 @@
     return allTimeouts.filter((timeout) => timeout.value > step * 100);
   };
 
-  let spin = false;
+  let creatingTask = false;
+  let task = {};
 
-  const withdraw = async () => {
-    spin = true;
-    const provider = new ethers.providers.Web3Provider($wallet.provider);
+  $: task = {
+    chain,
+    fromBlock,
+    interval,
+    step,
+    timeout,
+    duration,
+    contractAddress,
+    abi,
+    signature,
+    args,
+  };
 
-    const kenshi = new ethers.Contract(
-      contractAddresses[chain],
-      kenshiAbi,
-      provider
-    );
+  const fieldNames = {
+    chain: "Chain",
+    contractAddress: "Contract address",
+    signature: "Signature",
+    abi: "ABI",
+    args: "Args",
+    interval: "Interval",
+    step: "Step",
+    timeout: "Timeout",
+    fromBlock: "Starting block",
+    duration: "Duration",
+  };
 
-    const balance = await kenshi.balanceOf(address);
-    if (balance.gt("10000000000000000000")) {
-      spin = false;
-      return toast.push("Reached max balance.");
-    }
+  const taskInvalids = {};
 
-    const contract = new ethers.Contract(
-      faucetAddresses[chain],
-      faucetAbi,
-      provider
-    );
+  const usdToKenshi = async (usd) => {
+    const { price } = await fetchPancake();
+    return price
+      ? ethers.utils.parseUnits(Math.ceil(usd / parseFloat(price)).toFixed())
+      : NaN;
+  };
 
-    const lastClaimedFrom = await contract.getWithdrawTime(
-      $wallet.accounts[0].address
-    );
+  const makePayment = async (usd) => {
+    const priceInKenshi = await usdToKenshi(price);
 
-    const lastClaimedTo = await contract.getWithdrawTime(address);
-    const currentBlock = await provider.getBlockNumber();
-
-    if (
-      lastClaimedFrom.add(100).gt(currentBlock) ||
-      lastClaimedTo.add(100).gt(currentBlock)
-    ) {
-      spin = false;
-      return toast.push("Wait a few more minutes");
+    if (isNaN(priceInKenshi) || priceInKenshi.eq(0)) {
+      toast.push("There was an issue calculating the price.");
+      return null;
     }
 
     try {
-      const signer = provider.getSigner();
-      await contract.connect(signer).withdraw(address);
+      await onboard.setChain({ chainId: "0x61" });
     } catch (error) {
-      spin = false;
-      return toast.push("Something went wrong!");
+      toast.push("Couldn't change to BSC network.");
+      return null;
     }
 
-    spin = false;
-    return toast.push("Withdraw successful.");
+    const provider = new ethers.providers.Web3Provider($wallet.provider);
+    const kenshi = new ethers.Contract(kenshiAddress, kenshiAbi, provider);
+    const balance = await kenshi.balanceOf(userAddress);
+
+    if (priceInKenshi.gt(balance)) {
+      toast.push("Balance is lower than the calculated price!");
+      return null;
+    }
+
+    try {
+      const tx = await kenshi.transfer(collectorAddress, priceInKenshi);
+      await tx.wait(1);
+      return tx.hash;
+    } catch (error) {
+      toast.push("Payment failed");
+      return null;
+    }
+  };
+
+  const createTask = async () => {
+    if (!Object.keys(task).length) {
+      return toast.push("Please fill in the form first!");
+    }
+
+    for (const [key, value] of Object.entries(task)) {
+      if (!value) {
+        return toast.push(`${fieldNames[key]} is required.`);
+      }
+    }
+
+    for (const [key, valid] of Object.entries(taskInvalids)) {
+      if (!valid) {
+        return toast.push(`${fieldNames[key]} is invalid.`);
+      }
+    }
+
+    creatingTask = true;
+
+    const txHash = await makePayment(price);
+
+    if (!txHash) {
+      creatingTask = false;
+      return;
+    }
+
+    const verificationMessage = JSON.stringify({ task, txHash });
+    const signature = await wallet.signMessage(verificationMessage);
+    const payload = { task, txHash, signature };
+
+    // To verify: const actualAddress = ethers.utils.verifyMessage(message, signature)
+
+    // Send to the server
+
+    // Report the result to the user
+
+    // Trigger reload user tasks
+  };
+
+  let creatingApiKey = false;
+  let apiKeyRequest = {};
+
+  $: apiKeyRequest = {
+    key: apiKey,
+    requests,
+    allow: apiKeyQueryAllowed,
+  };
+
+  const apiKeyFieldNames = {
+    key: "API key",
+    requests: "Requests",
+  };
+
+  const apiKeyInvalids = {};
+
+  const createApiKey = async () => {
+    if (!Object.keys(apiKeyRequest).length) {
+      return toast.push("Please fill in the form first!");
+    }
+
+    for (const [key, value] of Object.entries(apiKeyRequest)) {
+      if (!value) {
+        return toast.push(`${apiKeyFieldNames[key]} is required.`);
+      }
+    }
+
+    for (const [key, valid] of Object.entries(apiKeyInvalids)) {
+      if (!valid) {
+        return toast.push(`${apiKeyFieldNames[key]} is invalid.`);
+      }
+    }
+
+    const txHash = await makePayment(graphqlPrice);
+    if (!txHash) {
+      creatingTask = false;
+      return;
+    }
+
+    const verificationMessage = JSON.stringify({
+      graphql: apiKeyRequest,
+      txHash,
+    });
+    const signature = await wallet.signMessage(verificationMessage);
+    const payload = { graphql: apiKeyRequest, txHash, signature };
+
+    // SUBMIT
   };
 
   const abiValidator = (value) => {
@@ -390,8 +490,9 @@
               <TextInput
                 placeholder="Starting block"
                 name="from"
-                regex={/^0|[1-9][0-9]*$/}
+                regex={/^(0|[1-9][0-9]*)$/}
                 bind:value={fromBlock}
+                bind:valid={taskInvalids.fromBlock}
               />
             </div>
 
@@ -462,8 +563,8 @@
           </div>
         </div>
         <div class="buttons">
-          <Button on:click={withdraw} disabled={spin}>
-            {#if spin}
+          <Button on:click={createTask} disabled={creatingTask}>
+            {#if creatingTask}
               <SpinLine
                 size="32"
                 color="currentColor"
@@ -555,18 +656,23 @@
           <div class="card-inner forms">
             <div class="form">
               <h5>Basics</h5>
-              <TextInput plcaeholder="API Key" bind:value={apiKey}>
+              <TextInput
+                plcaeholder="API Key"
+                bind:value={apiKey}
+                bind:invalid={apiKeyInvalids.key}
+              >
                 <div class="field-buttons" slot="buttons">
                   <Button flat on:click={copy(apiKey)}>
                     <Copy />
                   </Button>
-                  <Button flat on:click={() => (apiKey = generateAPIKey())}>
+                  <Button flat on:click={() => (apiKey = getRandomBase64())}>
                     <ArrowRotateRight />
                   </Button>
                 </div>
               </TextInput>
               <TextInput
                 bind:value={requests}
+                bind:valid={apiKeyInvalids.requests}
                 regex={/[1-9][0-9,]*/}
                 placeholder="Requests"
                 suffix="Requests"

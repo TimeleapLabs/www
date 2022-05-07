@@ -11,10 +11,10 @@
   export let prefixAlwaysOn = false;
   export let gapless = false;
   export let icon;
+  export let valid;
 
   const Icon = icon;
 
-  let valid;
   $: valid = validator(value) && value.toString().match(regex);
 </script>
 
