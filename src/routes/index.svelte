@@ -172,7 +172,7 @@
         label: "Charts",
       },
       {
-        href: "https://docs.kenshi.io/tokenomics.html",
+        href: "https://docs.kenshi.io/token/tokenomics.html",
         external: false,
         label: "Learn more",
       },

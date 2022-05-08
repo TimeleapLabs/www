@@ -435,18 +435,18 @@
               <div class="token">
                 <h3>About</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/tokenomics.html">
+                  <Link href="https://docs.kenshi.io/token/tokenomics.html">
                     <Coin /> Tokenomics
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://docs.kenshi.io/features/index.html">
+                  <Link href="https://docs.kenshi.io/token/features/index.html">
                     <ListCheck /> Features
                   </Link>
                 </div>
                 <div>
                   <Link
-                    href="https://docs.kenshi.io/features/variable-tax.html"
+                    href="https://docs.kenshi.io/token/features/variable-tax.html"
                   >
                     <Scale /> Tax
                   </Link>
