@@ -58,6 +58,9 @@
       <Button href="http://docs.kenshi.io/">
         Read the docs <ChevronRight />
       </Button>
+      <Button href="/migrate">
+        Migrate to v2 <ChevronRight />
+      </Button>
     </div>
   </div>
   <div class="graphics">
@@ -169,7 +172,7 @@
         label: "Charts",
       },
       {
-        href: "https://docs.kenshi.io/tokenomics.html",
+        href: "https://docs.kenshi.io/token/tokenomics.html",
         external: false,
         label: "Learn more",
       },

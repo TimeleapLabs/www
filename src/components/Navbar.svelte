@@ -35,6 +35,7 @@
   import Scale from "src/icons/Scale.svelte";
   import Swap from "src/icons/Swap.svelte";
   import Faucet from "src/icons/Faucet.svelte";
+  import ArrowUp from "src/icons/ArrowUp.svelte";
   import CreditCard from "src/icons/CreditCard.svelte";
   import ChartLine from "src/icons/ChartLine.svelte";
   import SquareQuestion from "src/icons/SquareQuestion.svelte";
@@ -434,18 +435,18 @@
               <div class="token">
                 <h3>About</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/tokenomics.html">
+                  <Link href="https://docs.kenshi.io/token/tokenomics.html">
                     <Coin /> Tokenomics
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://docs.kenshi.io/features/index.html">
+                  <Link href="https://docs.kenshi.io/token/features/index.html">
                     <ListCheck /> Features
                   </Link>
                 </div>
                 <div>
                   <Link
-                    href="https://docs.kenshi.io/features/variable-tax.html"
+                    href="https://docs.kenshi.io/token/features/variable-tax.html"
                   >
                     <Scale /> Tax
                   </Link>
@@ -471,7 +472,12 @@
                 </div>
               </div>
               <div class="token">
-                <h3>Multi-chain</h3>
+                <h3>Tools</h3>
+                <div>
+                  <Link href="/migrate">
+                    <ArrowUp /> Migrate
+                  </Link>
+                </div>
                 <div>
                   <Link href="/pegswap">
                     <Swap /> PegSwap
