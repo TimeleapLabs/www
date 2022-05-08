@@ -58,6 +58,9 @@
       <Button href="http://docs.kenshi.io/">
         Read the docs <ChevronRight />
       </Button>
+      <Button href="/migrate">
+        Migrate to v2 <ChevronRight />
+      </Button>
     </div>
   </div>
   <div class="graphics">

@@ -474,6 +474,11 @@
               <div class="token">
                 <h3>Tools</h3>
                 <div>
+                  <Link href="/migrate">
+                    <ArrowUp /> Migrate
+                  </Link>
+                </div>
+                <div>
                   <Link href="/pegswap">
                     <Swap /> PegSwap
                   </Link>
@@ -481,11 +486,6 @@
                 <div>
                   <Link href="/faucet">
                     <Faucet /> Faucet
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/migrate">
-                    <ArrowUp /> Migrate
                   </Link>
                 </div>
               </div>

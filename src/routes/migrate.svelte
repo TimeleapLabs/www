@@ -20,7 +20,6 @@
   import migrateAbi from "src/lib/abi/migrate";
   import kenshiAbi from "src/lib/abi/kenshi";
 
-  let chain;
   let address;
 
   $: if ($wallet?.provider) {
@@ -34,8 +33,8 @@
   $: if ($wallet) setAddress();
 
   const currentContractAddress = "0x61E2738f370371183A8f32F0CC49d54522198276";
-  const contractAddress = "0xaCC70a58462E3F5B2e36DcE500E598963918cFdB";
-  const migrateAddress = "0xb378F0e0B9368CBE271240807e3b70D18A5E7430";
+  const contractAddress = "0x7D8809Eb1b480492d307a0B2D0F9f7ee74b1FEb9";
+  const migrateAddress = "0x60970B10E0a567833e7f3214b62ba5aBad6D2185";
 
   let userBalance;
   let kenshi;
@@ -98,7 +97,8 @@
       const signer = provider.getSigner();
       const tx = await kenshi.connect(signer).approve(migrateAddress, _1e31);
       await tx.wait(1);
-      await migrate.connect(signer).migrate();
+      const tx2 = await migrate.connect(signer).migrate();
+      await tx2.wait(1);
     } catch (error) {
       spin = false;
       return toast.push("Something went wrong!");
@@ -108,7 +108,7 @@
       userBalance = balance;
     });
 
-    toast.push("Migrate successful.");
+    toast.push("Migration successful.");
     toast.push("Don't forget to add the new token to your wallet!");
 
     spin = false;
@@ -118,15 +118,30 @@
 <Navbar />
 
 <div class="section">
-  <h2>Migrate to Kenshi ERC-1363 payable token</h2>
+  <h2>Migrate to Kenshi V2</h2>
   <Card>
     <div class="card-inner">
       <div class="form">
-        <h3>Migrate your ERC-20 tokens</h3>
+        <h3>Migrate V1 tokens to V2</h3>
         <div class="description">
-          Migrate your current ERC-20 Kenshi tokens to the new ERC-1363 token
-          standard to benefit from the new features of the Kenshi platform.
+          <p>
+            Migrate your current ERC-20 Kenshi tokens to the new ERC-1363 token
+            standard to benefit from the new features of the Kenshi platform.
+          </p>
+          <p>
+            This migration is tax-free. The migration process ends on 22nd May
+            2022.
+          </p>
+          Read the
+          <a href="https://docs.kenshi.io/token/migrate.html">
+            migration documentation
+          </a> for more info.
         </div>
+        <Alert warning>
+          Warning: After the migration period is over you won't be able to
+          migrate your tokens anymore. The V1 token will be deprecated and lose
+          its value.
+        </Alert>
         <div class="copy" on:click={copy(contractAddress)}>
           <Alert>
             <div class="address">
@@ -138,8 +153,8 @@
       </div>
       <div />
     </div>
-    <div class="buttons">
-      {#if $wallet?.provider}
+    {#if $wallet?.provider}
+      <div class="buttons">
         {#if userBalance?.gt(0)}
           <Button on:click={migrate} disabled={spin}>
             {#if spin}
@@ -159,19 +174,31 @@
         {/if}
         {#if $wallet.provider}
           <Button on:click={addToMetamask(contractAddress)}>
-            <Wallet /> Add to wallet
+            <Wallet /> Add token to wallet
           </Button>
         {/if}
-      {:else}
-        Connect your wallet to continue.
-      {/if}
-    </div>
+      </div>
+    {:else}
+      <div class="connect">
+        Connect your <span class="inline-icon"> <Wallet /></span> wallet to continue.
+      </div>
+    {/if}
   </Card>
 </div>
 
 <Footer />
 
 <style>
+  .connect {
+    margin-top: 2em;
+  }
+  .inline-icon {
+    display: inline;
+  }
+  .inline-icon :global(svg) {
+    height: 0.8em;
+    margin-bottom: -0.1em;
+  }
   h2 {
     margin-top: 0;
     margin-bottom: 1.5em;
@@ -189,6 +216,11 @@
       padding: 2em;
     }
   }
+  @media screen and (max-width: 480px) {
+    .section {
+      padding: 1em;
+    }
+  }
   .card-inner {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -202,10 +234,14 @@
     margin-top: 2em;
     display: flex;
     gap: 1em;
+    flex-wrap: wrap;
   }
   .description {
     margin-bottom: 1em;
     color: #111;
+  }
+  .description p:first-of-type {
+    margin-top: 0;
   }
   .copy {
     cursor: copy;
@@ -222,5 +258,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: pre;
+  }
+  a {
+    color: var(--primary-color);
   }
 </style>
