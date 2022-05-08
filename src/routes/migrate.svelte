@@ -2,8 +2,6 @@
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
   import Card from "src/components/Card.svelte";
-  import TextInput from "src/components/TextInput.svelte";
-  import Select from "src/components/Select.svelte";
   import Button from "src/components/Button.svelte";
   import Alert from "src/components/Alert.svelte";
 
@@ -23,7 +21,7 @@
   let address;
 
   $: if ($wallet?.provider) {
-    onboard.setChain({ chainId: "0x61" });
+    onboard.setChain({ chainId: "0x38" });
   }
 
   const setAddress = () => {
@@ -32,9 +30,9 @@
 
   $: if ($wallet) setAddress();
 
-  const currentContractAddress = "0x61E2738f370371183A8f32F0CC49d54522198276";
-  const contractAddress = "0x7D8809Eb1b480492d307a0B2D0F9f7ee74b1FEb9";
-  const migrateAddress = "0x60970B10E0a567833e7f3214b62ba5aBad6D2185";
+  const currentContractAddress = "0x8AdA51404F297bF2603912d1606340223c0a7784";
+  const contractAddress = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
+  const migrateAddress = "0x3336979f99921D98Df1Eb60c254f0e1A2F488E84";
 
   let userBalance;
   let kenshi;
