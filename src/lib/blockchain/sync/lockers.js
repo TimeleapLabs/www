@@ -11,7 +11,7 @@ export const sync = async () => {
   const parameters = db.collection("parameters");
 
   const provider = new ethers.providers.JsonRpcProvider(
-    "https://bsc-dataseed.binance.org/"
+    "https://bsc-dataseed1.defibit.io/"
   );
 
   const lastSyncedBlock = await parameters.findOne({

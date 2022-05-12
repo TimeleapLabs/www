@@ -20,7 +20,7 @@
   }
   .danger {
     color: var(--primary-color);
-    border: 1px solid #0c6e6b;
+    border: 1px solid var(--primary-color);
     background-color: #f4433620;
   }
   .warning {
