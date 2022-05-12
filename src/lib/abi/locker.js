@@ -119,6 +119,19 @@ export default [
     type: "function",
   },
   {
+    inputs: [],
+    name: "migrateKenshiToV2",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
