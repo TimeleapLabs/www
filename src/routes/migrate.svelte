@@ -35,6 +35,7 @@
   const migrateAddress = "0x3336979f99921D98Df1Eb60c254f0e1A2F488E84";
 
   let userBalance;
+  let allowance;
   let kenshi;
 
   $: if ($wallet?.provider) {
@@ -42,9 +43,14 @@
     kenshi = new ethers.Contract(currentContractAddress, kenshiAbi, provider);
   }
 
+  const _1e31 = "10000000000000000000000000000000";
+
   $: if ($wallet?.provider && kenshi && address) {
     kenshi.balanceOf(address).then((balance) => {
       userBalance = balance;
+    });
+    kenshi.allowance(address, migrateAddress).then((amount) => {
+      allowance = amount;
     });
   }
 
@@ -78,6 +84,32 @@
 
   let spin = false;
 
+  const approve = async () => {
+    spin = true;
+
+    const provider = new ethers.providers.Web3Provider($wallet.provider);
+    const kenshi = new ethers.Contract(
+      currentContractAddress,
+      kenshiAbi,
+      provider
+    );
+
+    try {
+      const signer = provider.getSigner();
+      const tx = await kenshi.connect(signer).approve(migrateAddress, _1e31);
+      await tx.wait(3);
+    } catch (error) {
+      spin = false;
+      return toast.push("Something went wrong!");
+    }
+
+    kenshi.allowance(address, migrateAddress).then((amount) => {
+      allowance = amount;
+    });
+
+    spin = false;
+  };
+
   const migrate = async () => {
     spin = true;
 
@@ -89,14 +121,10 @@
       provider
     );
 
-    const _1e31 = "10000000000000000000000000000000";
-
     try {
       const signer = provider.getSigner();
-      const tx = await kenshi.connect(signer).approve(migrateAddress, _1e31);
+      const tx = await migrate.connect(signer).migrate();
       await tx.wait(1);
-      const tx2 = await migrate.connect(signer).migrate();
-      await tx2.wait(1);
     } catch (error) {
       spin = false;
       return toast.push("Something went wrong!");
@@ -154,19 +182,35 @@
     {#if $wallet?.provider}
       <div class="buttons">
         {#if userBalance?.gt(0)}
-          <Button on:click={migrate} disabled={spin}>
-            {#if spin}
-              <SpinLine
-                size="32"
-                color="currentColor"
-                unit="px"
-                duration="4s"
-              />
-              Processing
-            {:else}
-              Migrate {formatBalance(userBalance)} ₭enshi
-            {/if}
-          </Button>
+          {#if allowance && allowance.gte(_1e31)}
+            <Button on:click={migrate} disabled={spin}>
+              {#if spin}
+                <SpinLine
+                  size="32"
+                  color="currentColor"
+                  unit="px"
+                  duration="4s"
+                />
+                Processing
+              {:else}
+                Migrate {formatBalance(userBalance)} ₭enshi
+              {/if}
+            </Button>
+          {:else if allowance && allowance.lt(_1e31)}
+            <Button on:click={approve} disabled={spin}>
+              {#if spin}
+                <SpinLine
+                  size="32"
+                  color="currentColor"
+                  unit="px"
+                  duration="4s"
+                />
+                Processing
+              {:else}
+                Approve ₭enshi
+              {/if}
+            </Button>
+          {/if}
         {:else if userBalance?.eq(0)}
           <Button disabled>Nothing to migrate</Button>
         {/if}
