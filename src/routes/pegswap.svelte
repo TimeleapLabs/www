@@ -67,10 +67,6 @@
     "0x0fa2": { key: "ftm", title: "Fantom Testnet" },
   };
 
-  $: if (!claiming && sourceChain && $wallet?.provider) {
-    onboard.setChain({ chainId: chains[sourceChain] });
-  }
-
   const setAddress = () => {
     address = $wallet.accounts?.[0]?.address;
   };
@@ -202,7 +198,8 @@
 
     try {
       const { v, r, s } = ethers.utils.splitSignature(signature);
-      await pegswap.connect(signer).claim(request, v, r, s);
+      const tx = await pegswap.connect(signer).claim(request, v, r, s);
+      await tx.wait(1);
       toast.push("Claimed successfully.");
     } catch (error) {
       toast.push(getErrorMessage(error));
@@ -246,22 +243,39 @@
       await sleep(5000);
     }
 
+    message = "Switching to the destination chain";
+
+    try {
+      await onboard.setChain({
+        chainId: entry.request.toChain.replace(/^0x0*/, "0x"),
+      });
+    } catch (error) {
+      toast.push("Unable to switch network!");
+      throw error;
+    }
+
     claiming = true;
     message = "Claiming from the destination chain";
-
-    await onboard.setChain({
-      chainId: entry.request.toChain.replace(/^0x0*/, "0x"),
-    });
 
     await claim(entry, true);
     claiming = false;
   };
 
-  let spin = false;
+  let requestInProgress = false;
   let message;
 
   const requestSwap = async () => {
-    spin = true;
+    requestInProgress = true;
+
+    try {
+      message = "Switching to the source chain";
+      await onboard.setChain({ chainId: chains[sourceChain] });
+    } catch (error) {
+      requestInProgress = false;
+      message = undefined;
+      return toast.push("Unable to switch network!");
+    }
+
     message = "Sending your swap request";
 
     const provider = new ethers.providers.Web3Provider($wallet.provider);
@@ -307,10 +321,10 @@
         toast.push("Claim request successful");
       }
     } catch (error) {
-      return toast.push(getErrorMessage(error));
+      toast.push(getErrorMessage(error));
     }
 
-    spin = false;
+    requestInProgress = false;
     message = undefined;
   };
 
@@ -372,8 +386,8 @@
 
     <div class="buttons">
       {#if sourceChain && amount && isFinite(amount) && destChain && address && $wallet?.provider}
-        <Button on:click={requestSwap} disabled={spin}>
-          {#if spin}
+        <Button on:click={requestSwap} disabled={requestInProgress}>
+          {#if requestInProgress}
             <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
             Processing
           {:else}

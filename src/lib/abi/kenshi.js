@@ -424,6 +424,19 @@ export default [
     type: "function",
   },
   {
+    inputs: [],
+    name: "getTotalExcluded",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -532,6 +545,25 @@ export default [
       },
     ],
     name: "isTaxless",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "addr",
+        type: "address",
+      },
+    ],
+    name: "isTaxlessDestination",
     outputs: [
       {
         internalType: "bool",
@@ -736,6 +768,24 @@ export default [
       },
     ],
     name: "setIsTaxless",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "addr",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "state",
+        type: "bool",
+      },
+    ],
+    name: "setIsTaxlessDestination",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

@@ -116,9 +116,6 @@
   .swiss-made :global(svg) {
     height: 1em;
   }
-  .soon :global(svg) {
-    height: 0.6em;
-  }
   .swiss-made {
     display: flex;
     align-items: center;
@@ -212,9 +209,6 @@
   .copyright {
     flex: 1;
     white-space: nowrap;
-  }
-  .soon {
-    cursor: default;
   }
   @media only screen and (max-width: 1440px) {
     .footer .middle {

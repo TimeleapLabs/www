@@ -1,9 +1,11 @@
 import Onboard from "@web3-onboard/core";
+import walletConnectModule from "@web3-onboard/walletconnect";
 import injectedModule from "@web3-onboard/injected-wallets";
 
 const appName = "Kenshi";
 
 const injected = injectedModule();
+const walletConnect = walletConnectModule();
 
 const options = {
   appMetadata: {
@@ -17,6 +19,12 @@ const options = {
       token: "BNB",
       label: "Binance Smart Chain Testnet",
       rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545",
+    },
+    {
+      id: "0x38",
+      token: "BNB",
+      label: "Binance Smart Chain",
+      rpcUrl: "https://bsc-dataseed.binance.org",
     },
     {
       id: "0x13881",
@@ -37,7 +45,7 @@ const options = {
       rpcUrl: "https://api.avax-test.network/ext/bc/C/rpc",
     },
   ],
-  wallets: [injected],
+  wallets: [walletConnect, injected],
 };
 
 export const onboard = Onboard(options);
