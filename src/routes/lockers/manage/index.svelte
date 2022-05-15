@@ -153,18 +153,6 @@
     gap: 2em;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
-  .card-inner h4 {
-    margin: 0;
-  }
-  .table {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-  }
-  .table .row {
-    display: grid;
-    grid-template-columns: 2fr 8fr;
-  }
   .form {
     display: flex;
     flex-direction: column;
@@ -175,54 +163,8 @@
     gap: 1em;
     margin-top: 2em;
   }
-  .mini-form .buttons {
-    margin-top: 0;
-  }
   .description {
     margin-bottom: 1em;
     color: #111;
-  }
-  .copy {
-    cursor: copy;
-  }
-  .address :global(svg) {
-    height: 1em;
-  }
-  .address {
-    display: flex;
-    gap: 1em;
-  }
-  .address span {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: pre;
-  }
-  .flex-text {
-    display: flex;
-    gap: 0.5em;
-    align-items: center;
-  }
-  .flex-text :global(svg) {
-    height: 1em;
-    fill: currentColor;
-  }
-  .mini-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1em;
-  }
-  .mini-forms {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2em;
-  }
-  .expand {
-    width: 100%;
-    flex: 1;
-    gap: 1em;
-    display: flex;
-    flex-direction: column;
   }
 </style>

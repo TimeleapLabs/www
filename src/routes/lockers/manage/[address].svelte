@@ -516,22 +516,6 @@
     margin-bottom: 1em;
     color: #111;
   }
-  .copy {
-    cursor: copy;
-  }
-  .address :global(svg) {
-    height: 1em;
-  }
-  .address {
-    display: flex;
-    gap: 1em;
-  }
-  .address span {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: pre;
-  }
   .flex-text {
     display: flex;
     gap: 0.5em;

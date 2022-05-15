@@ -171,7 +171,7 @@
     if (inputs) {
       args = inputs.map((input, index) => ({
         name: input.name,
-        value: args[index]?.value,
+        value: args[index]?.value || "",
       }));
     }
   } else {
@@ -261,6 +261,14 @@
     return allTimeouts.filter((timeout) => timeout.value > step * 100);
   };
 
+  const parseArg = (arg) =>
+    arg.includes(",") ? arg.split(",").map((item) => item.trim()) : arg || null;
+
+  const validateArg = (arg) =>
+    Array.isArray(arg)
+      ? arg.every(validateArg)
+      : arg === null || arg.match(/^0x[0-9a-f]{1,32}$/i);
+
   let creatingTask = false;
   let task = {};
 
@@ -271,15 +279,15 @@
     step,
     timeout,
     duration,
-    contractAddress,
-    abi,
+    address: contractAddress,
+    abi: abiValidator(abi) ? JSON.parse(abi) : undefined,
     signature,
-    args,
+    args: args.map(({ name, value }) => ({ name, value: parseArg(value) })),
   };
 
   const fieldNames = {
     chain: "Chain",
-    contractAddress: "Contract address",
+    address: "Contract address",
     signature: "Signature",
     abi: "ABI",
     args: "Args",
@@ -300,7 +308,7 @@
   };
 
   const makePayment = async (usd) => {
-    const priceInKenshi = await usdToKenshi(price);
+    const priceInKenshi = await usdToKenshi(usd);
 
     if (isNaN(priceInKenshi) || priceInKenshi.eq(0)) {
       toast.push("There was an issue calculating the price.");
@@ -333,27 +341,41 @@
     }
   };
 
-  const createTask = async () => {
-    if (!Object.keys(task).length) {
-      return toast.push("Please fill in the form first!");
+  const check = (document, fieldNames, invalids) => {
+    if (!Object.keys(document).length) {
+      toast.push("Please fill in the form first!");
+      return false;
     }
 
-    for (const [key, value] of Object.entries(task)) {
+    for (const [key, value] of Object.entries(document)) {
       if (!value) {
-        return toast.push(`${fieldNames[key]} is required.`);
+        toast.push(`${fieldNames[key]} is required.`);
+        return false;
       }
     }
 
-    for (const [key, valid] of Object.entries(taskInvalids)) {
+    for (const [key, valid] of Object.entries(invalids)) {
       if (!valid) {
-        return toast.push(`${fieldNames[key]} is invalid.`);
+        toast.push(`${fieldNames[key]} is invalid.`);
+        return false;
       }
     }
+
+    return true;
+  };
+
+  const createTask = async () => {
+    for (const { name, value } of task.args) {
+      if (!validateArg(value)) {
+        return toast.push(`The "${name}" argument has invalid value`);
+      }
+    }
+
+    if (!check(task, fieldNames, taskInvalids)) return;
 
     creatingTask = true;
 
     const txHash = await makePayment(price);
-
     if (!txHash) {
       creatingTask = false;
       return;
@@ -370,6 +392,8 @@
     // Report the result to the user
 
     // Trigger reload user tasks
+
+    creatingTask = false;
   };
 
   let creatingApiKey = false;
@@ -389,25 +413,13 @@
   const apiKeyInvalids = {};
 
   const createApiKey = async () => {
-    if (!Object.keys(apiKeyRequest).length) {
-      return toast.push("Please fill in the form first!");
-    }
+    if (!check(apiKeyRequest, apiKeyFieldNames, apiKeyInvalids)) return;
 
-    for (const [key, value] of Object.entries(apiKeyRequest)) {
-      if (!value) {
-        return toast.push(`${apiKeyFieldNames[key]} is required.`);
-      }
-    }
-
-    for (const [key, valid] of Object.entries(apiKeyInvalids)) {
-      if (!valid) {
-        return toast.push(`${apiKeyFieldNames[key]} is invalid.`);
-      }
-    }
+    creatingApiKey = true;
 
     const txHash = await makePayment(graphqlPrice);
     if (!txHash) {
-      creatingTask = false;
+      creatingApiKey = false;
       return;
     }
 
@@ -419,6 +431,53 @@
     const payload = { graphql: apiKeyRequest, txHash, signature };
 
     // SUBMIT
+
+    creatingApiKey = false;
+  };
+
+  let creatingWebhook = false;
+  let webhookRequest = {};
+
+  $: webhookRequest = {
+    endpoint: requestEndpoint,
+    interval: requestInterval,
+    timeout: requestTimeout,
+    duration: reverseAPIDuration,
+    query,
+  };
+
+  const webhookFieldNames = {
+    endpoint: "Endpoint",
+    interval: "Interval",
+    timeout: "Timeout",
+    duration: "Duration",
+    query: "Query",
+  };
+
+  const webhookInvalids = {};
+
+  const createWebhook = async () => {
+    if (!check(webhookRequest, webhookFieldNames, webhookInvalids)) return;
+
+    createWebhook = true;
+
+    const txHash = await makePayment(reverseAPIPrice);
+    if (!txHash) {
+      creatingWebhook = false;
+      return;
+    }
+
+    const verificationMessage = JSON.stringify({
+      webhook: webhookRequest,
+      txHash,
+    });
+
+    const signature = await wallet.signMessage(verificationMessage);
+    const payload = { webhook: webhookRequest, txHash, signature };
+
+    // SUBMIT
+
+    createWebhook = false;
   };
 
   const abiValidator = (value) => {
@@ -535,7 +594,7 @@
             <TextInput
               placeholder="Contract address"
               name="address"
-              regex={/^0x[a-f0-9]+$/i}
+              regex={/^0x[a-f0-9]{16}$/i}
               bind:value={contractAddress}
             />
             <TextArea
@@ -555,8 +614,9 @@
               <div class="split">
                 <TextInput placeholder="Argument name" bind:value={arg.name} />
                 <TextInput
-                  placeholder="Argument value"
+                  placeholder="Argument value[s], seperated by a comma"
                   bind:value={arg.value}
+                  validator={(v) => validateArg(parseArg(v))}
                 />
               </div>
             {/each}
@@ -757,6 +817,7 @@
               placeholder="Endpoint"
               regex={/https?:\/\/.+/}
               bind:value={requestEndpoint}
+              bind:valid={webhookInvalids.endpoint}
             />
             <Select
               options={[
@@ -772,6 +833,7 @@
               ]}
               placeholder="Choose an interval"
               bind:value={requestInterval}
+              bind:valid={webhookInvalids.interval}
             />
             <Select
               options={[
@@ -783,10 +845,12 @@
               ]}
               placeholder="Choose a timeout"
               bind:value={requestTimeout}
+              bind:valid={webhookInvalids.timeout}
             />
             <TextInput
               placeholder="Duration"
               bind:value={reverseAPIDuration}
+              bind:valid={webhookInvalids.duration}
               suffix={reverseAPIDuration > 1 ? "months" : "month"}
             />
           </div>
