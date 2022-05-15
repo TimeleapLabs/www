@@ -10,24 +10,22 @@
 
   import Copy from "src/icons/Copy.svelte";
   import ArrowRotateRight from "src/icons/ArrowRotateRight.svelte";
+  import External from "src/icons/External.svelte";
 
   import { onboard } from "src/lib/onboard";
   import { wallet } from "src/stores/wallet";
-
   import { toast } from "@zerodevx/svelte-toast";
   import { ethers } from "ethers";
   import { SpinLine } from "svelte-loading-spinners";
-
   import { fly } from "svelte/transition";
 
-  import External from "src/icons/External.svelte";
-
-  import kenshiAbi from "src/lib/abi/kenshi";
-
-  import { fetchPancake } from "src/lib/api/token";
-
-  const collectorAddress = "";
-  const kenshiAddress = "";
+  import { getReverseAPIPrice, getSyncPrice } from "$lib/dash/pricing";
+  import { getGraphQLPrice } from "$lib/dash/pricing";
+  import { getRandomBase64 } from "src/lib/dash/random";
+  import { getStepOptions, getTimeoutOptions } from "src/lib/dash/blockchain";
+  import { parseArg, validateArg } from "src/lib/dash/args";
+  import { check, abiValidator } from "src/lib/dash/validators";
+  import { makePayment } from "src/lib/dash/payments";
 
   let chain;
   let userAddress;
@@ -41,16 +39,6 @@
   let fromBlock;
   let duration;
   let price;
-
-  const getRandomBase64 = (length = 32) =>
-    btoa(
-      String.fromCharCode.apply(
-        null,
-        typeof window === "undefined"
-          ? []
-          : crypto.getRandomValues(new Uint8Array(length))
-      )
-    );
 
   let apiKey = getRandomBase64();
   let requests = "100000";
@@ -130,21 +118,8 @@
     signature = "";
   }
 
-  const getPrice = (interval, timeout, step, duration) => {
-    const storage = 2 + step * 0.1;
-    const runs = (30 * 24 * 60 * 60) / interval;
-    const ms = runs * timeout;
-    return Math.round(duration * (storage + (ms / 3e10) * 62.7) * 100) / 100;
-  };
-
-  const getReverseAPIPrice = (interval, timeout, duration) => {
-    const runs = (30 * 24 * 60 * 60) / interval;
-    const ms = runs * timeout;
-    return Math.round(duration * ((ms / 3e10) * 62.7 * 1.2) * 100) / 100;
-  };
-
   $: if (interval && timeout && step && duration) {
-    price = getPrice(interval, timeout, step, duration);
+    price = getSyncPrice(interval, timeout, step, duration);
   } else {
     price = 0;
   }
@@ -160,8 +135,7 @@
   }
 
   $: if (requests) {
-    graphqlPrice =
-      Math.round((parseInt(requests.replace(/,/g, "")) / 1e6) * 20 * 100) / 100;
+    graphqlPrice = getGraphQLPrice(parseInt(requests.replace(/,/g, "")));
   } else {
     graphqlPrice = 0;
   }
@@ -207,68 +181,6 @@
     toast.push("Copied to clipboard.");
   };
 
-  const blockTimes = {
-    "binance-testnet": 3,
-    "fantom-testnet": 1,
-    "avalanche-fuji": 3,
-    "polygon-mumbai": 2,
-  };
-
-  const allStepFunctions = [
-    ...new Array(4).fill().map((_, i) => ({
-      value: (i + 1) * 6,
-      label: `${(i + 1) * 6} blocks at once`,
-    })),
-    ...new Array(8).fill().map((_, i) => ({
-      value: (i + 1) * 12 + 30,
-      label: `${(i + 1) * 12 + 30} blocks at once`,
-    })),
-    ...new Array(4).fill().map((_, i) => ({
-      value: (i + 1) * 24 + 126,
-      label: `${(i + 1) * 24 + 126} blocks at once`,
-    })),
-    ...new Array(8).fill().map((_, i) => ({
-      value: (i + 1) * 36 + 222,
-      label: `${(i + 1) * 36 + 222} blocks at once`,
-    })),
-  ];
-
-  const getStepOptions = (chain, interval) => {
-    if (!chain || !interval) {
-      return allStepFunctions;
-    }
-    const blockTime = blockTimes[chain];
-    const minBlocks = (interval / blockTime) * 1.5;
-    const maxBlocks = minBlocks * (minBlocks < 10 ? 5 : 3);
-    return allStepFunctions
-      .filter((option) => option.value > minBlocks)
-      .filter((option) => option.value <= maxBlocks);
-  };
-
-  const allTimeouts = [
-    { label: "After 5 seconds", value: 5000 },
-    { label: "After 10 seconds", value: 10000 },
-    { label: "After 15 seconds", value: 15000 },
-    { label: "After 20 seconds", value: 20000 },
-    { label: "After 30 seconds", value: 30000 },
-    { label: "After 60 seconds", value: 60000 },
-  ];
-
-  const getTimeoutOptions = (step) => {
-    if (!step) {
-      return allTimeouts;
-    }
-    return allTimeouts.filter((timeout) => timeout.value > step * 100);
-  };
-
-  const parseArg = (arg) =>
-    arg.includes(",") ? arg.split(",").map((item) => item.trim()) : arg || null;
-
-  const validateArg = (arg) =>
-    Array.isArray(arg)
-      ? arg.every(validateArg)
-      : arg === null || arg.match(/^0x[0-9a-f]{1,32}$/i);
-
   let creatingTask = false;
   let task = {};
 
@@ -285,7 +197,7 @@
     args: args.map(({ name, value }) => ({ name, value: parseArg(value) })),
   };
 
-  const fieldNames = {
+  const taskFieldNames = {
     chain: "Chain",
     address: "Contract address",
     signature: "Signature",
@@ -300,70 +212,6 @@
 
   const taskInvalids = {};
 
-  const usdToKenshi = async (usd) => {
-    const { price } = await fetchPancake();
-    return price
-      ? ethers.utils.parseUnits(Math.ceil(usd / parseFloat(price)).toFixed())
-      : NaN;
-  };
-
-  const makePayment = async (usd) => {
-    const priceInKenshi = await usdToKenshi(usd);
-
-    if (isNaN(priceInKenshi) || priceInKenshi.eq(0)) {
-      toast.push("There was an issue calculating the price.");
-      return null;
-    }
-
-    try {
-      await onboard.setChain({ chainId: "0x61" });
-    } catch (error) {
-      toast.push("Couldn't change to BSC network.");
-      return null;
-    }
-
-    const provider = new ethers.providers.Web3Provider($wallet.provider);
-    const kenshi = new ethers.Contract(kenshiAddress, kenshiAbi, provider);
-    const balance = await kenshi.balanceOf(userAddress);
-
-    if (priceInKenshi.gt(balance)) {
-      toast.push("Balance is lower than the calculated price!");
-      return null;
-    }
-
-    try {
-      const tx = await kenshi.transfer(collectorAddress, priceInKenshi);
-      await tx.wait(1);
-      return tx.hash;
-    } catch (error) {
-      toast.push("Payment failed");
-      return null;
-    }
-  };
-
-  const check = (document, fieldNames, invalids) => {
-    if (!Object.keys(document).length) {
-      toast.push("Please fill in the form first!");
-      return false;
-    }
-
-    for (const [key, value] of Object.entries(document)) {
-      if (!value) {
-        toast.push(`${fieldNames[key]} is required.`);
-        return false;
-      }
-    }
-
-    for (const [key, valid] of Object.entries(invalids)) {
-      if (!valid) {
-        toast.push(`${fieldNames[key]} is invalid.`);
-        return false;
-      }
-    }
-
-    return true;
-  };
-
   const createTask = async () => {
     for (const { name, value } of task.args) {
       if (!validateArg(value)) {
@@ -371,11 +219,11 @@
       }
     }
 
-    if (!check(task, fieldNames, taskInvalids)) return;
+    if (!check(task, taskFieldNames, taskInvalids)) return;
 
     creatingTask = true;
 
-    const txHash = await makePayment(price);
+    const txHash = await makePayment(price, $wallet, userAddress);
     if (!txHash) {
       creatingTask = false;
       return;
@@ -417,7 +265,7 @@
 
     creatingApiKey = true;
 
-    const txHash = await makePayment(graphqlPrice);
+    const txHash = await makePayment(graphqlPrice, $wallet, userAddress);
     if (!txHash) {
       creatingApiKey = false;
       return;
@@ -461,7 +309,7 @@
 
     createWebhook = true;
 
-    const txHash = await makePayment(reverseAPIPrice);
+    const txHash = await makePayment(reverseAPIPrice, $wallet, userAddress);
     if (!txHash) {
       creatingWebhook = false;
       return;
@@ -478,15 +326,6 @@
     // SUBMIT
 
     createWebhook = false;
-  };
-
-  const abiValidator = (value) => {
-    try {
-      const abi = JSON.parse(value);
-      return Array.isArray(abi) && new ethers.utils.Interface(abi);
-    } catch (error) {
-      return false;
-    }
   };
 </script>
 
