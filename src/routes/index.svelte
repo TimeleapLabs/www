@@ -37,6 +37,7 @@
   import Link from "src/icons/Link.svelte";
 
   import Gist from "src/components/Gist.svelte";
+  import Alert from "src/components/Alert.svelte";
 </script>
 
 <Navbar />
@@ -46,6 +47,13 @@
 <div class="hero">
   <div class="content">
     <img src="/images/kenshi.logo.long.png" alt="Kenshi" class="logo" />
+    <Alert warning>
+      <div class="notice">
+        <b>ACTION REQUIRED!</b> Migration to the new Kenshi token is in
+        progress!<br />
+        You have until May 22nd 2022 to migrate your tokens to the new version.
+      </div>
+    </Alert>
     <div class="motto">Cutting-edge tech for your blockchain projects</div>
     <div class="buttons">
       <Button
@@ -758,5 +766,8 @@
     .articles .grid {
       margin-top: 2em;
     }
+  }
+  .notice a {
+    color: var(--secondary-color);
   }
 </style>
