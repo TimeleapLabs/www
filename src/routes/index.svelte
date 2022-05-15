@@ -51,7 +51,8 @@
       <div class="notice">
         <b>ACTION REQUIRED!</b> Migration to the new Kenshi token is in
         progress!<br />
-        You have until May 22nd 2022 to migrate your tokens to the new version.
+        You have until May 22nd, 2022 to <a href="/migrate">migrate</a>
+        your tokens to the new version.
       </div>
     </Alert>
     <div class="motto">Cutting-edge tech for your blockchain projects</div>
