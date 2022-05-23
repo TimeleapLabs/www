@@ -4,8 +4,8 @@ import { onboard } from "../onboard";
 import { toast } from "@zerodevx/svelte-toast";
 import kenshiAbi from "../abi/kenshi";
 
-const collectorAddress = "";
-const kenshiAddress = "";
+const collectorAddress = "0xA2dEc4f8089f89F426e6beB76B555f3Cf9E7f499";
+const kenshiAddress = "0x61E2738f370371183A8f32F0CC49d54522198276";
 
 const usdToKenshi = async (usd) => {
   const { price } = await fetchPancake();
@@ -23,6 +23,7 @@ export const makePayment = async (usd, $wallet, userAddress) => {
   }
 
   try {
+    // await onboard.setChain({ chainId: "0x38" });
     await onboard.setChain({ chainId: "0x61" });
   } catch (error) {
     toast.push("Couldn't change to BSC network.");
@@ -30,7 +31,8 @@ export const makePayment = async (usd, $wallet, userAddress) => {
   }
 
   const provider = new ethers.providers.Web3Provider($wallet.provider);
-  const kenshi = new ethers.Contract(kenshiAddress, kenshiAbi, provider);
+  const signer = provider.getSigner();
+  const kenshi = new ethers.Contract(kenshiAddress, kenshiAbi, signer);
   const balance = await kenshi.balanceOf(userAddress);
 
   if (priceInKenshi.gt(balance)) {

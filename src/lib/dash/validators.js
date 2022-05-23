@@ -1,14 +1,14 @@
 import { toast } from "@zerodevx/svelte-toast";
 import { ethers } from "ethers";
 
-export const check = (document, fieldNames, invalids) => {
+export const check = (document, fieldNames, invalids, optionals = []) => {
   if (!Object.keys(document).length) {
     toast.push("Please fill in the form first!");
     return false;
   }
 
   for (const [key, value] of Object.entries(document)) {
-    if (!value) {
+    if (!value && !optionals.includes(key)) {
       toast.push(`${fieldNames[key]} is required.`);
       return false;
     }

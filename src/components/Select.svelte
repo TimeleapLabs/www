@@ -33,36 +33,45 @@
   }
 </script>
 
-<div class="select" class:active class:valid={value} class:empty={!value}>
-  <div class="placeholder" on:click={toggle}>
-    <div class="content">
-      {#if value}
-        {label}
-      {:else}
-        {placeholder}
-      {/if}
+<div class="wrap">
+  <slot name="prefix" />
+  <div class="select" class:active class:valid={value} class:empty={!value}>
+    <div class="placeholder" on:click={toggle}>
+      <div class="content">
+        {#if value}
+          {label}
+        {:else}
+          {placeholder}
+        {/if}
+      </div>
+      <div class="chevron">
+        <ChevronDown />
+      </div>
     </div>
-    <div class="chevron">
-      <ChevronDown />
-    </div>
+    {#if active}
+      <div class="options" transition:slide>
+        {#each filteredOptions as option}
+          <div class="option" on:click={setValue(option.value)}>
+            {option.label}
+          </div>
+        {/each}
+      </div>
+    {/if}
   </div>
-  {#if active}
-    <div class="options" transition:slide>
-      {#each filteredOptions as option}
-        <div class="option" on:click={setValue(option.value)}>
-          {option.label}
-        </div>
-      {/each}
-    </div>
-  {/if}
 </div>
 
 <style>
+  .wrap {
+    display: flex;
+    gap: 1em;
+    align-items: flex-start;
+  }
   .select {
     background: transparent;
     outline: none;
     font-size: 1em;
     border-radius: 4px;
+    flex: 1;
   }
   .valid {
     border: 1px solid #0c6e6b;

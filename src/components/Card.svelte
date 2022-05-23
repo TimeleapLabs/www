@@ -2,9 +2,10 @@
   export let padding = true;
   export let slim = false;
   export let flat = false;
+  export let flex = false;
 </script>
 
-<div class="card" class:padding class:flat class:slim>
+<div class="card" class:padding class:flat class:slim class:flex>
   <slot />
 </div>
 
@@ -30,5 +31,9 @@
   }
   .slim {
     padding: 1em;
+  }
+  .flex {
+    display: flex;
+    flex-direction: column;
   }
 </style>

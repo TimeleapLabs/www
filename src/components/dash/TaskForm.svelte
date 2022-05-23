@@ -8,11 +8,14 @@
   import { SpinLine } from "svelte-loading-spinners";
   import { wallet } from "src/stores/wallet";
   import { ethers } from "ethers";
+  import { toast } from "@zerodevx/svelte-toast";
   import { getSyncPrice } from "src/lib/dash/pricing";
   import { getStepOptions, getTimeoutOptions } from "src/lib/dash/blockchain";
   import { parseArg, validateArg } from "src/lib/dash/args";
   import { check, abiValidator } from "src/lib/dash/validators";
   import { makePayment } from "src/lib/dash/payments";
+
+  export let showNewTaskForm;
 
   let chain;
   let userAddress;
@@ -72,15 +75,22 @@
     args = [{ name: "", value: "" }];
   }
 
-  $: {
-    step = Math.max(
-      step,
-      Math.min(...getStepOptions(chain, interval).map((option) => option.value))
-    );
-    timeout = Math.max(
-      timeout,
-      Math.min(...getTimeoutOptions(step).map((option) => option.value))
-    );
+  $: if (step && chain && interval) {
+    const steps = getStepOptions(chain, interval).map((option) => option.value);
+    if (steps[0] > step) {
+      step = steps[0];
+    } else if (steps[steps.length - 1] < step) {
+      step = steps[steps.length - 1];
+    }
+  }
+
+  $: if (timeout && step) {
+    const timeouts = getTimeoutOptions(step).map((option) => option.value);
+    if (timeouts[0] > timeout) {
+      timeout = timeouts[0];
+    } else if (timeouts[timeouts.length - 1] < timeout) {
+      timeout = timeouts[timeouts.length - 1];
+    }
   }
 
   let creatingTask = false;
@@ -88,7 +98,7 @@
 
   $: task = {
     chain,
-    fromBlock,
+    fromBlock: Number(fromBlock),
     interval,
     step,
     timeout,
@@ -96,7 +106,7 @@
     address: contractAddress,
     abi: abiValidator(abi) ? JSON.parse(abi) : undefined,
     signature,
-    args: args.map(({ name, value }) => ({ name, value: parseArg(value) })),
+    args,
   };
 
   const taskFieldNames = {
@@ -116,12 +126,12 @@
 
   const createTask = async () => {
     for (const { name, value } of task.args) {
-      if (!validateArg(value)) {
+      if (!validateArg(parseArg(value))) {
         return toast.push(`The "${name}" argument has invalid value`);
       }
     }
 
-    if (!check(task, taskFieldNames, taskInvalids)) return;
+    if (!check(task, taskFieldNames, taskInvalids, ["address"])) return;
 
     creatingTask = true;
 
@@ -131,19 +141,39 @@
       return;
     }
 
-    const verificationMessage = JSON.stringify({ task, txHash });
-    const signature = await wallet.signMessage(verificationMessage);
-    const payload = { task, txHash, signature };
+    const provider = new ethers.providers.Web3Provider($wallet.provider);
+    const signer = provider.getSigner(userAddress);
+    const timestamp = new Date().valueOf();
+    const message = JSON.stringify([task, txHash, timestamp]);
+    const signature = await signer.signMessage(message);
+    const payload = {
+      task,
+      txHash,
+      signature,
+      timestamp,
+    };
 
-    // To verify: const actualAddress = ethers.utils.verifyMessage(message, signature)
+    const response = await fetch(
+      "https://api.kenshi.io/subscriptions/sync/insert",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
-    // Send to the server
+    const { errorMessage, statusCode, body } = await response.json();
 
-    // Report the result to the user
-
-    // Trigger reload user tasks
+    if (errorMessage) {
+      toast.push("An unexpected error happened while processing your request");
+    } else if (statusCode !== 200) {
+      toast.push(`Server error: ${body}`);
+    } else {
+      toast.push("Sync task created successfully");
+    }
 
     creatingTask = false;
+    showNewTaskForm = false;
   };
 </script>
 
@@ -217,7 +247,7 @@
       <TextInput
         placeholder="Contract address"
         name="address"
-        regex={/^0x[a-f0-9]{16}$/i}
+        regex={/^0x[a-f0-9]{40}$/i}
         bind:value={contractAddress}
       />
       <TextArea
