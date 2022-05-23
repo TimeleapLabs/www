@@ -49,10 +49,9 @@
     <img src="/images/kenshi.logo.long.png" alt="Kenshi" class="logo" />
     <Alert warning>
       <div class="notice">
-        <b>ACTION REQUIRED!</b> Migration to the new Kenshi token is in
-        progress!<br />
-        You have until May 22nd, 2022 to <a href="/migrate">migrate</a>
-        your tokens to the new version.
+        Migration process from v1 token to the new Kenshi token is ended.<br />
+        If you haven't migrated yet, you have until 26th May 2022 to send an email
+        to migrate@kenshi.io.
       </div>
     </Alert>
     <div class="motto">Cutting-edge tech for your blockchain projects</div>
@@ -66,9 +65,6 @@
       </Button>
       <Button href="http://docs.kenshi.io/">
         Read the docs <ChevronRight />
-      </Button>
-      <Button href="/migrate">
-        Migrate to v2 <ChevronRight />
       </Button>
     </div>
   </div>
@@ -170,11 +166,11 @@
     title="The Token"
     description="Looking for the ₭enshi token? The Kenshi token is a frictionless yield token that can provide a passive income to its holders, and that is also used to pay for the Kenshi services."
     buttons={[
-      {
-        href: "https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784",
-        external: true,
-        label: "Buy",
-      },
+      // {
+      //   href: "https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784",
+      //   external: true,
+      //   label: "Buy",
+      // },
       {
         href: "https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784",
         external: true,

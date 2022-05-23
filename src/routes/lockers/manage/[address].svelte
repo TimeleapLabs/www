@@ -28,7 +28,6 @@
   import deployerAbi from "src/lib/abi/deployer";
   import migrationRegistryAbi from "src/lib/abi/migrationRegistry";
 
-  let v1KenshiBalance;
   let signer;
   let userAddress;
 
@@ -98,9 +97,6 @@
   const updateValues = async (signer) => {
     if (updating) return;
     updating = true;
-
-    const kenshi = new ethers.Contract(kenshiV1Addr, bep20, signer);
-    v1KenshiBalance = await kenshi.balanceOf(contractAddr);
 
     const deployer = new ethers.Contract(deployerAddr, deployerAbi, signer);
     isKenshiLocker = await deployer.isKenshiLocker(contractAddr);
@@ -184,19 +180,6 @@
       toast.push("Something went wrong!");
     }
     migrating = false;
-  };
-
-  let migratingKenshi = false;
-  const migrateKenshi = async () => {
-    migratingKenshi = true;
-    try {
-      await locker.migrateKenshiToV2();
-      toast.push("Migration successful.");
-    } catch (error) {
-      console.log({ error });
-      toast.push("Something went wrong!");
-    }
-    migratingKenshi = false;
   };
 
   let upgradingLocker = false;
@@ -395,28 +378,6 @@
                 {/if}
               </div>
             </div>
-            {#if lockerVersion?.gte(2) && v1KenshiBalance?.gt(0)}
-              <div class="mini-form">
-                <h4>Migrate v1 Kenshi</h4>
-                <div class="expand">
-                  You have locked v1 Kenshi tokens in your locker. You can
-                  migrate these v1 tokens to v2.
-                </div>
-                <Button on:click={migrateKenshi} disabled={migratingKenshi}>
-                  {#if migratingKenshi}
-                    <SpinLine
-                      size="32"
-                      color="currentColor"
-                      unit="px"
-                      duration="4s"
-                    />
-                    Processing
-                  {:else}
-                    Migrate
-                  {/if}
-                </Button>
-              </div>
-            {/if}
             {#if migrateLocker && migrateLocker !== "0x0000000000000000000000000000000000000000"}
               <div class="mini-form">
                 <h4>Upgrade locker</h4>

@@ -454,14 +454,14 @@
               </div>
               <div class="token">
                 <h3>Trade</h3>
-                <div>
+                <!-- <div>
                   <Link
                     href="https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784"
                     target="_blank"
                   >
                     <CreditCard /> Buy
                   </Link>
-                </div>
+                </div> -->
                 <div>
                   <Link
                     href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
@@ -473,11 +473,6 @@
               </div>
               <div class="token">
                 <h3>Tools</h3>
-                <div>
-                  <Link href="/migrate">
-                    <ArrowUp /> Migrate
-                  </Link>
-                </div>
                 <div>
                   <Link href="/pegswap">
                     <Swap /> PegSwap
