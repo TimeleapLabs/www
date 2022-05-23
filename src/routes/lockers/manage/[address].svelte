@@ -35,7 +35,6 @@
   const contractAddr = $page.params.address;
   const deployerAddr = "0x41e5Dc455Fa7B3fbc7BA4f0cC99a523d98a80594";
   const migrationRegistryAddr = "0xC21261F93360B3F9123A4fb26bbB6618aAdeFcaC";
-  const kenshiV1Addr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
 
   $: contractAddrDisplay = [
     contractAddr.slice(0, 6),
