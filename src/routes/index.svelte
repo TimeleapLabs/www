@@ -49,9 +49,9 @@
     <img src="/images/kenshi.logo.long.png" alt="Kenshi" class="logo" />
     <Alert warning>
       <div class="notice">
-        Migration process from v1 token to the new Kenshi token is ended.<br />
-        If you haven't migrated yet, you have until 26th May 2022 to send an email
-        to migrate@kenshi.io.
+        Migration process from v1 token to the new Kenshi token is ended. If you
+        haven't migrated yet, you have until 26th May 2022 to send an email to
+        migrate@kenshi.io.
       </div>
     </Alert>
     <div class="motto">Cutting-edge tech for your blockchain projects</div>
