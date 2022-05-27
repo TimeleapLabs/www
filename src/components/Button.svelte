@@ -7,7 +7,9 @@
 </script>
 
 {#if href}
-  <a class="button" {href} {target} class:solid><span><slot /></span></a>
+  <a class="button" {href} {target} class:flat class:solid>
+    <span><slot /></span>
+  </a>
 {:else}
   <button class="button" class:flat class:solid on:click {disabled}>
     <span><slot /></span>
@@ -93,5 +95,8 @@
   }
   .button:active {
     transform: scale(0.98);
+  }
+  a.button.flat:visited {
+    color: currentColor;
   }
 </style>

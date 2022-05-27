@@ -13,13 +13,15 @@
   import { toast } from "@zerodevx/svelte-toast";
   import { aesGcmEncrypt } from "src/lib/crypto";
   import { ethers } from "ethers";
+  import { SpinLine } from "svelte-loading-spinners";
 
-  import { getGraphQLPrice } from "$lib/dash/pricing";
+  import { getGraphQLPrice } from "src/lib/dash/pricing";
   import { getRandomBase64 } from "src/lib/dash/random";
   import { check } from "src/lib/dash/validators";
   import { makePayment } from "src/lib/dash/payments";
 
   export let showNewGraphQLForm;
+  export let getUserApiKeys;
 
   let userAddress;
   let apiKey = getRandomBase64();
@@ -127,6 +129,7 @@
       toast.push(`Server error: ${body}`);
     } else {
       toast.push("API key created successfully");
+      getUserApiKeys();
     }
 
     creatingApiKey = false;
@@ -171,6 +174,12 @@
         placeholder="Requests"
         suffix="Requests"
       />
+      {#if signedSharedKey}
+        <Alert>
+          Please note the prices are approximate and you might get more or less
+          requests based on how the prices change while we process your request
+        </Alert>
+      {/if}
     </div>
     <div class="form">
       <h5>Limit Queries</h5>
@@ -223,10 +232,15 @@
     {#if !signedSharedKey}
       <Button on:click={signSharedKey}>Sign shared key</Button>
     {:else}
-      <Button on:click={createApiKey}>
-        Create API key
-        {#if graphqlPrice}
-          - ${graphqlPrice}
+      <Button on:click={createApiKey} disabled={creatingApiKey}>
+        {#if creatingApiKey}
+          <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
+          Processing
+        {:else}
+          Create API key
+          {#if graphqlPrice}
+            ${graphqlPrice}
+          {/if}
         {/if}
       </Button>
     {/if}

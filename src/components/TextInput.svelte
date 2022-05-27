@@ -15,7 +15,7 @@
 
   const Icon = icon;
 
-  $: valid = validator(value) && value.toString().match(regex);
+  $: valid = validator(value) && value?.toString().match(regex);
 </script>
 
 <div class="wrap">
@@ -71,6 +71,7 @@
     flex: 1;
     box-sizing: border-box;
     border: none;
+    color: currentColor;
   }
   .valid {
     border: 1px solid #0c6e6b;

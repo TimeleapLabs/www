@@ -9,10 +9,14 @@
   import { check } from "src/lib/dash/validators";
   import { makePayment } from "src/lib/dash/payments";
   import { toast } from "@zerodevx/svelte-toast";
+  import { ethers } from "ethers";
+  import { getStepOptions } from "src/lib/dash/blockchain";
+  import { SpinLine } from "svelte-loading-spinners";
 
   import TrashCan from "src/icons/TrashCan.svelte";
 
-  import { getStepOptions } from "src/lib/dash/blockchain";
+  export let showNewWebhookForm;
+  export let getUserWebhooks;
 
   let userAddress;
   let endpoint;
@@ -70,7 +74,7 @@
     duration,
     chain,
     step,
-    fromBlock,
+    fromBlock: Number(fromBlock),
     syncTaskId,
     query: query
       .map((item) => ({
@@ -120,7 +124,7 @@
 
     if (!check(webhookRequest, webhookFieldNames, webhookInvalids)) return;
 
-    createWebhook = true;
+    creatingWebhook = true;
 
     const txHash = await makePayment(price, $wallet, userAddress);
     if (!txHash) {
@@ -135,9 +139,29 @@
     const signature = await signer.signMessage(message);
     const payload = { webhook: webhookRequest, txHash, signature, timestamp };
 
-    // SUBMIT
+    const response = await fetch(
+      "https://api.kenshi.io/subscriptions/webhook/insert",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
-    createWebhook = false;
+    const { errorMessage, statusCode, body } = await response.json();
+
+    if (errorMessage) {
+      console.log({ body, errorMessage });
+      toast.push("An unexpected error happened while processing your request");
+    } else if (statusCode !== 200) {
+      toast.push(`Server error: ${body}`);
+    } else {
+      toast.push("Webhook created successfully");
+      getUserWebhooks();
+    }
+
+    creatingWebhook = false;
+    showNewWebhookForm = false;
   };
 </script>
 
@@ -155,14 +179,24 @@
       <Select
         options={[
           {
+            label: "Avalanche C-Chain",
+            value: "avalanche-mainnet",
+          },
+          {
             label: "Avalanche Fuji C-Chain",
             value: "avalanche-fuji",
+          },
+          {
+            label: "Binance Smart Chain",
+            value: "binance-mainnet",
           },
           {
             label: "Binance Smart Chain Testnet",
             value: "binance-testnet",
           },
+          { label: "Fantom", value: "fantom-mainnet" },
           { label: "Fantom Testnet", value: "fantom-testnet" },
+          { label: "Polygon", value: "polygon-mainnet" },
           { label: "Polygon Mumbai", value: "polygon-mumbai" },
         ]}
         placeholder="Choose a chain"
@@ -181,7 +215,7 @@
         bind:valid={webhookInvalids.syncTaskId}
       />
       <TextInput
-        placeholder="Duration"
+        placeholder="Duration (Months)"
         bind:value={duration}
         bind:valid={webhookInvalids.duration}
         suffix={duration > 1 ? "months" : "month"}
@@ -196,7 +230,6 @@
           { label: "Every 15 seconds", value: 15 },
           { label: "Every 20 seconds", value: 20 },
           { label: "Every 30 seconds", value: 30 },
-          { label: "Every 45 seconds", value: 45 },
           { label: "Every 1 minute", value: 60 },
           { label: "Every 2 minutes", value: 120 },
           { label: "Every 5 minutes", value: 300 },
@@ -270,10 +303,15 @@
     </div>
   </div>
   <div class="buttons">
-    <Button>
-      Register endpoint
-      {#if price}
-        - ${price}
+    <Button on:click={createWebhook} disabled={creatingWebhook}>
+      {#if creatingWebhook}
+        <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
+        Processing
+      {:else}
+        Register endpoint
+        {#if price}
+          ${price}
+        {/if}
       {/if}
     </Button>
   </div>

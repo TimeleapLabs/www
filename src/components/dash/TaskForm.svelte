@@ -15,7 +15,10 @@
   import { check, abiValidator } from "src/lib/dash/validators";
   import { makePayment } from "src/lib/dash/payments";
 
+  import CircleQuestion from "src/icons/CircleQuestion.svelte";
+
   export let showNewTaskForm;
+  export let getUserTasks;
 
   let chain;
   let userAddress;
@@ -51,14 +54,16 @@
       value,
       label: value,
     }));
-    signature ||= Object.keys(iface.events || {}).pop();
+    if (!signature || !Object.keys(iface.events || {}).includes(signature)) {
+      signature = Object.keys(iface.events || {}).pop();
+    }
   } else {
     signatures = [];
     signature = "";
   }
 
   $: if (interval && timeout && step && duration) {
-    price = getSyncPrice(interval, timeout, step, duration);
+    price = getSyncPrice(interval, timeout, duration);
   } else {
     price = 0;
   }
@@ -174,11 +179,17 @@
 
     creatingTask = false;
     showNewTaskForm = false;
+    getUserTasks();
   };
 </script>
 
 <Card>
-  <h3>New Deep Indexing Task</h3>
+  <div class="header">
+    <h3>New Deep Indexing Task</h3>
+    <Button flat href="https://docs.kenshi.io" target="_blank">
+      <CircleQuestion />
+    </Button>
+  </div>
   <div class="card-inner forms">
     <div class="form">
       <h5>Basics</h5>
@@ -186,14 +197,24 @@
         <Select
           options={[
             {
+              label: "Avalanche C-Chain",
+              value: "avalanche-mainnet",
+            },
+            {
               label: "Avalanche Fuji C-Chain",
               value: "avalanche-fuji",
+            },
+            {
+              label: "Binance Smart Chain",
+              value: "binance-mainnet",
             },
             {
               label: "Binance Smart Chain Testnet",
               value: "binance-testnet",
             },
+            { label: "Fantom", value: "fantom-mainnet" },
             { label: "Fantom Testnet", value: "fantom-testnet" },
+            { label: "Polygon", value: "polygon-mainnet" },
             { label: "Polygon Mumbai", value: "polygon-mumbai" },
           ]}
           placeholder="Choose a chain"
@@ -216,7 +237,6 @@
           { label: "Every 15 seconds", value: 15 },
           { label: "Every 20 seconds", value: 20 },
           { label: "Every 30 seconds", value: 30 },
-          { label: "Every 45 seconds", value: 45 },
           { label: "Every 1 minute", value: 60 },
           { label: "Every 2 minutes", value: 120 },
           { label: "Every 5 minutes", value: 300 },
@@ -235,7 +255,7 @@
         bind:value={timeout}
       />
       <TextInput
-        placeholder="Duration"
+        placeholder="Duration (Months)"
         name="duration"
         regex={/^[1-9][0-9]*$/}
         bind:value={duration}
@@ -283,7 +303,7 @@
       {:else}
         Create Task
         {#if price}
-          - ${price}
+          ${price}
         {/if}
       {/if}
     </Button>
@@ -291,8 +311,18 @@
 </Card>
 
 <style>
+  .header {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  .header h3 {
+    flex: 1;
+  }
   h3 {
     margin-top: 0;
+    margin-bottom: 0;
   }
   .card-inner {
     display: grid;

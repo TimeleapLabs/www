@@ -1,6 +1,5 @@
 <script>
   import Card from "src/components/Card.svelte";
-  import TextArea from "src/components/TextArea.svelte";
   import Button from "src/components/Button.svelte";
   import Alert from "src/components/Alert.svelte";
   import TextInput from "src/components/TextInput.svelte";
@@ -11,33 +10,69 @@
   import Eye from "src/icons/Eye.svelte";
   import EyeSlash from "src/icons/EyeSlash.svelte";
   import ArrowRotateRight from "src/icons/ArrowRotateRight.svelte";
+  import TrashCan from "src/icons/TrashCan.svelte";
 
   import { toast } from "@zerodevx/svelte-toast";
   import { SpinLine } from "svelte-loading-spinners";
-  import { parseArg, validateArg } from "src/lib/dash/args";
-  import { check } from "src/lib/dash/validators";
   import { ethers } from "ethers";
-  import { getSyncPrice } from "src/lib/dash/pricing";
   import { wallet } from "src/stores/wallet";
 
   import { getGraphQLPrice } from "$lib/dash/pricing";
   import { getRandomBase64 } from "src/lib/dash/random";
   import { makePayment } from "src/lib/dash/payments";
-  import { aesGcmDecrypt } from "src/lib/crypto";
+  import { aesGcmDecrypt, aesGcmEncrypt } from "src/lib/crypto";
+
+  import {
+    safeJoin,
+    conditionNames,
+    getFilterValue,
+  } from "src/lib/dash/filter";
 
   export let graphql;
-
-  const safeJoin = (v) => {
-    return Array.isArray(v) ? v.join(", ") : v;
-  };
+  export let getUserApiKeys;
 
   let apiKey;
   let requests = "100000";
-  let allow = (graphql.allow || []).map(safeJoin);
+
+  let allow = (graphql.allow || []).map((a) => ({
+    ...a,
+    value: safeJoin(a.value),
+  }));
+
+  $: allow = [
+    ...allow.filter(({ condition, value }) => condition || value),
+    { condition: "", value: "" },
+  ];
+
+  const deleteQueryLimit = (i) => () => {
+    if (i === 0 && allow.length === 1) {
+      allow = { condition: "", value: "" };
+    } else {
+      allow = allow.filter((_, index) => index != i);
+    }
+  };
+
+  $: {
+    const requestsWithComma = parseInt(
+      requests.replace(/,/g, "") || "0"
+    ).toLocaleString("en-US", {
+      minimumFractionDigits: 0,
+    });
+    if (requestsWithComma != requests) requests = requestsWithComma;
+  }
 
   let unencryptedKey;
   let userAddress;
   let hide = true;
+
+  let sharedKey = getRandomBase64();
+  let signedSharedKey;
+
+  const signSharedKey = async () => {
+    const provider = new ethers.providers.Web3Provider($wallet.provider);
+    const signer = provider.getSigner(userAddress);
+    signedSharedKey = await signer.signMessage(sharedKey);
+  };
 
   const setAddress = () => {
     userAddress = $wallet.accounts?.[0]?.address;
@@ -48,14 +83,12 @@
   let showModifyForm = false;
   let showRechargeForm = false;
 
-  $: price = getGraphQLPrice(Number(requests));
+  $: price = getGraphQLPrice(Number(requests.replace(/,/g, "")));
 
   const copy = (text) => () => {
     navigator.clipboard?.writeText?.(text);
     toast.push("Copied to clipboard.");
   };
-
-  const signAndSend = () => {};
 
   const reveal = async () => {
     const { sharedKey, encryptedKey } = graphql;
@@ -70,32 +103,119 @@
     hide = !hide;
   };
 
-  const conditionNames = {
-    "contract-is": "Contract address",
-    "arg-is": "Argument",
-    "event-name-is": "Event name",
-    "event-signature-is": "Event signature",
-    "block-number-is": "Block",
+  let isRecharging = false;
+
+  const recharge = async () => {
+    const nRequests = Number(requests.replace(/,/g, ""));
+
+    if (!nRequests) {
+      toast.push("You must sign the shared key first.");
+      return;
+    }
+
+    const apiKeyRequest = { requests: nRequests, id: graphql.id };
+
+    isRecharging = true;
+
+    const txHash = await makePayment(price, $wallet, userAddress);
+    if (!txHash) {
+      isRecharging = false;
+      return;
+    }
+
+    const provider = new ethers.providers.Web3Provider($wallet.provider);
+    const signer = provider.getSigner(userAddress);
+    const timestamp = new Date().valueOf();
+    const message = JSON.stringify([apiKeyRequest, txHash, timestamp]);
+    const signature = await signer.signMessage(message);
+    const payload = { graphql: apiKeyRequest, txHash, signature, timestamp };
+
+    const response = await fetch(
+      "https://api.kenshi.io/subscriptions/graphql/recharge",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    const { errorMessage, statusCode, body } = await response.json();
+
+    if (errorMessage) {
+      toast.push("An unexpected error happened while processing your request");
+    } else if (statusCode !== 200) {
+      toast.push(`Server error: ${body}`);
+    } else {
+      toast.push("API key recharged successfully");
+      showRechargeForm = false;
+      getUserApiKeys();
+    }
+
+    isRecharging = false;
   };
 
-  const getFilterValue = (filter) => {
-    if (filter.condition === "contract-is") {
-      return safeJoin(filter.value);
+  let isUpdating;
+
+  const signAndSend = async () => {
+    if (apiKey && !signedSharedKey) {
+      toast.push("You must sign the shared key first.");
+      return;
     }
-    if (filter.condition === "arg-is") {
-      return `${filter.arg} is ${safeJoin(filter.value)}`;
+
+    const apiKeyRequest = {
+      id: graphql.id,
+      allow: allow
+        .map((item) => ({
+          ...item,
+          value: item.value.split(",").map((v) => v.trim()),
+        }))
+        .filter((item) => item.condition && item.value),
+    };
+
+    if (apiKey) {
+      apiKeyRequest.key = apiKey;
+      apiKeyRequest.sharedKey = sharedKey;
+      apiKeyRequest.encryptedKey = await aesGcmEncrypt(apiKey, signedSharedKey);
     }
-    if (filter.condition === "event-name-is") {
-      return safeJoin(filter.value);
+
+    isUpdating = true;
+
+    const provider = new ethers.providers.Web3Provider($wallet.provider);
+    const signer = provider.getSigner(userAddress);
+    const timestamp = new Date().valueOf();
+    const message = JSON.stringify([apiKeyRequest, null, timestamp]);
+    const signature = await signer.signMessage(message);
+
+    const payload = {
+      graphql: apiKeyRequest,
+      txHash: null,
+      signature,
+      timestamp,
+    };
+
+    const response = await fetch(
+      "https://api.kenshi.io/subscriptions/graphql/update",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    const { errorMessage, statusCode, body } = await response.json();
+
+    if (errorMessage) {
+      console.log({ errorMessage, body });
+      toast.push("An unexpected error happened while processing your request");
+    } else if (statusCode !== 200) {
+      toast.push(`Server error: ${body}`);
+    } else {
+      toast.push("API key updated successfully");
+      showModifyForm = false;
+      getUserApiKeys();
     }
-    if (filter.condition === "event-signature-is") {
-      return safeJoin(filter.value);
-    }
-    if (filter.condition === "block-number-is") {
-      return filter.comparison === "gt"
-        ? `> ${safeJoin(filter.value)}`
-        : `< ${safeJoin(filter.value)}`;
-    }
+
+    isUpdating = false;
   };
 </script>
 
@@ -104,9 +224,11 @@
     <div class="form">
       <div class="header">
         <h4>Modify API key</h4>
-        <Button flat on:click={() => (showModifyForm = false)}>
-          <Xmark />
-        </Button>
+        {#if !isUpdating}
+          <Button flat on:click={() => (showModifyForm = false)}>
+            <Xmark />
+          </Button>
+        {/if}
       </div>
       <TextInput
         placeholder="API Key (Leave empty to keep)"
@@ -121,34 +243,101 @@
           </Button>
         </div>
       </TextInput>
+      <h5>Limit Queries</h5>
+      {#each allow.map((q, i) => [q, i]) as [q, i]}
+        <div
+          class="split"
+          class:triple={["arg-is", "block-number-is"].includes(q.condition)}
+        >
+          <Select
+            options={[
+              { label: "Contract address is", value: "contract-is" },
+              { label: "Event argument is", value: "arg-is" },
+              { label: "Event name is", value: "event-name-is" },
+              {
+                label: "Event signature is",
+                value: "event-signature-is",
+              },
+              {
+                label: "Block number is",
+                value: "block-number-is",
+              },
+            ]}
+            placeholder="Choose a condition"
+            bind:value={q.condition}
+          >
+            <div class="field-buttons delete" slot="prefix">
+              <Button flat on:click={deleteQueryLimit(i)}>
+                <TrashCan />
+              </Button>
+            </div>
+          </Select>
+          {#if q.condition === "arg-is"}
+            <TextInput bind:value={q.arg} placeholder="Argument name" />
+          {:else if q.condition === "block-number-is"}
+            <Select
+              options={[
+                { label: "Bigger than", value: "gt" },
+                { label: "Smaller than", value: "lt" },
+              ]}
+              placeholder="Choose comparison"
+              bind:value={q.comparison}
+            />
+          {/if}
+          <TextInput bind:value={q.value} placeholder="Value[s]" />
+        </div>
+      {/each}
     </div>
     <div class="buttons">
-      <Button on:click={() => (showModifyForm = false)}>Cancel</Button>
-      <Button on:click={signAndSend}>Sign & Send</Button>
+      {#if !isUpdating}
+        <Button on:click={() => (showModifyForm = false)}>Cancel</Button>
+      {/if}
+      {#if apiKey && !signedSharedKey}
+        <Button on:click={signSharedKey}>Sign shared key</Button>
+      {:else}
+        <Button on:click={signAndSend} disabled={isUpdating}>
+          {#if isUpdating}
+            <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
+            Processing
+          {:else}
+            Sign & Send
+          {/if}
+        </Button>
+      {/if}
     </div>
   {:else if showRechargeForm}
     <div class="form">
       <div class="header">
         <h4>Recharge</h4>
-        <Button flat on:click={() => (showRechargeForm = false)}>
-          <Xmark />
-        </Button>
+        {#if !isRecharging}
+          <Button flat on:click={() => (showRechargeForm = false)}>
+            <Xmark />
+          </Button>
+        {/if}
       </div>
       <div class="form">
         <TextInput
-          placeholder="Duration"
+          placeholder="Duration (Months)"
           name="duration"
-          regex={/^[1-9][0-9]*$/}
+          regex={/^[1-9][0-9,]*$/}
           bind:value={requests}
+          suffix="requests"
         />
       </div>
     </div>
     <div class="buttons">
-      <Button on:click={() => (showRechargeForm = false)}>Cancel</Button>
-      <Button on:click={signAndSend}>
-        Recharge
-        {#if price}
-          - ${price}
+      {#if !isRecharging}
+        <Button on:click={() => (showRechargeForm = false)}>Cancel</Button>
+      {/if}
+      <Button on:click={recharge} disabled={isRecharging}>
+        {#if isRecharging}
+          <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
+          Processing
+        {:else}
+          Recharge
+          {#if price}
+            ${price}
+          {/if}
         {/if}
       </Button>
     </div>
@@ -261,9 +450,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .small {
-    font-size: 0.85em;
-  }
   .form {
     display: flex;
     flex-direction: column;
@@ -286,5 +472,8 @@
   .field-buttons {
     display: flex;
     gap: 0.5em;
+  }
+  .field-buttons.delete {
+    height: 34px;
   }
 </style>

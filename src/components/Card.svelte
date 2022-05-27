@@ -3,9 +3,17 @@
   export let slim = false;
   export let flat = false;
   export let flex = false;
+  export let transparent = false;
 </script>
 
-<div class="card" class:padding class:flat class:slim class:flex>
+<div
+  class="card"
+  class:padding
+  class:flat
+  class:slim
+  class:flex
+  class:transparent
+>
   <slot />
 </div>
 
@@ -35,5 +43,8 @@
   .flex {
     display: flex;
     flex-direction: column;
+  }
+  .transparent {
+    background: transparent;
   }
 </style>

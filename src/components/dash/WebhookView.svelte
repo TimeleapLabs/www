@@ -1,6 +1,5 @@
 <script>
   import Card from "src/components/Card.svelte";
-  import TextArea from "src/components/TextArea.svelte";
   import Button from "src/components/Button.svelte";
   import Alert from "src/components/Alert.svelte";
   import TextInput from "src/components/TextInput.svelte";
@@ -8,25 +7,54 @@
 
   import Copy from "src/icons/Copy.svelte";
   import Xmark from "src/icons/Xmark.svelte";
+  import TrashCan from "src/icons/TrashCan.svelte";
 
   import { toast } from "@zerodevx/svelte-toast";
   import { SpinLine } from "svelte-loading-spinners";
-  import { parseArg, validateArg } from "src/lib/dash/args";
-  import { check, abiValidator } from "src/lib/dash/validators";
   import { ethers } from "ethers";
+  import { getReverseAPIPrice } from "src/lib/dash/pricing";
   import { wallet } from "src/stores/wallet";
-  import { getSyncPrice } from "src/lib/dash/pricing";
   import { makePayment } from "src/lib/dash/payments";
 
-  export let task;
-  export let getUserTasks;
+  import {
+    conditionNames,
+    getFilterValue,
+    safeJoin,
+  } from "src/lib/dash/filter";
 
-  let contractAddress = task.address;
-  let abi = JSON.stringify(task.abi);
-  let signature = task.signature;
-  let args = task.args.map((arg) => ({ ...arg }));
+  export let webhook;
+  export let getUserWebhooks;
+
+  let endpoint = webhook.endpoint;
+  let syncTaskId = webhook.syncTaskId;
+
+  let query = (webhook.query || []).map((q) => ({
+    ...q,
+    value: safeJoin(q.value),
+  }));
+
+  $: query = [
+    ...query.filter(({ condition, value }) => condition || value),
+    { condition: "", value: "" },
+  ];
+
+  const deleteQuery = (i) => () => {
+    if (i === 0 && query.length === 1) {
+      query = { condition: "", value: "" };
+    } else {
+      query = query.filter((_, index) => index != i);
+    }
+  };
+
   let unitPrice;
   let duration = 1;
+
+  let showModifyForm = false;
+  let showRechargeForm = false;
+
+  $: unitPrice = getReverseAPIPrice(webhook.interval, webhook.timeout, 1);
+  $: price = Number(duration) * unitPrice;
+
   let userAddress;
 
   const setAddress = () => {
@@ -34,11 +62,6 @@
   };
 
   $: if ($wallet) setAddress();
-
-  let showModifyForm = false;
-  let showRechargeForm = false;
-
-  $: unitPrice = getSyncPrice(task.interval, task.timeout, 1);
 
   const chainIcons = {
     "avalanche-fuji": "avalanche",
@@ -52,86 +75,63 @@
     toast.push("Copied to clipboard.");
   };
 
-  let iface;
+  const requiredConditions = [
+    "contract-is",
+    "arg-is",
+    "event-name-is",
+    "event-signature-is",
+  ];
 
-  $: if (abi && abiValidator(abi)) {
-    iface = new ethers.utils.Interface(JSON.parse(abi));
-  } else {
-    iface = null;
-  }
-
-  let signatures = [];
-
-  $: if (iface) {
-    signatures = Object.keys(iface.events || {}).map((value) => ({
-      value,
-      label: value,
-    }));
-    if (!signature || !Object.keys(iface.events || {}).includes(signature)) {
-      signature = Object.keys(iface.events || {}).pop();
-    }
-  } else {
-    signatures = [];
-    signature = "";
-  }
-
-  $: if (iface && signature) {
-    const { inputs } = iface.events[signature] || {};
-    if (inputs) {
-      args = inputs.map((input, index) => ({
-        name: input.name || "",
-        value: args[index]?.value || "",
-      }));
-    }
-  } else {
-    args = [{ name: "", value: "" }];
-  }
-
-  const taskFieldNames = {
-    address: "Contract address",
-    signature: "Signature",
-    abi: "ABI",
-    args: "Args",
-  };
-
-  const taskInvalids = {};
   let isUpdating = false;
-  let taskUpdate = {};
-
-  $: taskUpdate = {
-    id: task.id,
-    address: contractAddress,
-    abi: abiValidator(abi) ? JSON.parse(abi) : undefined,
-    signature,
-    args,
-  };
 
   const signAndSend = async () => {
-    for (const { name, value } of taskUpdate.args) {
-      if (!validateArg(parseArg(value))) {
-        return toast.push(`The "${name}" argument has invalid value`);
-      }
+    const processedQuery = query
+      .map((item) => ({
+        ...item,
+        value: item.value.split(",").map((v) => v.trim()),
+      }))
+      .filter((item) => item.condition && item.value);
+
+    if (!processedQuery.length) {
+      toast.push("Query is required");
+      return;
     }
 
-    if (!check(taskUpdate, taskFieldNames, taskInvalids, ["address"])) return;
+    const conditions = processedQuery.filter((q) =>
+      requiredConditions.includes(q.condition)
+    );
+
+    if (!conditions.length) {
+      toast.push(
+        "At least one of contract address, event name, event signature or event argument is required in query"
+      );
+      return;
+    }
 
     isUpdating = true;
+
+    const webhookRequest = {
+      id: webhook.id,
+      query: processedQuery,
+      endpoint,
+      syncTaskId,
+    };
 
     const provider = new ethers.providers.Web3Provider($wallet.provider);
     const signer = provider.getSigner(userAddress);
     const timestamp = new Date().valueOf();
-    const message = JSON.stringify([taskUpdate, null, timestamp]);
+    const message = JSON.stringify([webhookRequest, null, timestamp]);
     const signature = await signer.signMessage(message);
 
     const payload = {
-      task: taskUpdate,
+      webhook: webhookRequest,
       txHash: null,
       signature,
       timestamp,
     };
 
     const response = await fetch(
-      "https://api.kenshi.io/subscriptions/sync/update",
+      "https://api.kenshi.io/subscriptions/webhook/update",
       {
         method: "POST",
         body: JSON.stringify(payload),
@@ -142,13 +142,14 @@
     const { errorMessage, statusCode, body } = await response.json();
 
     if (errorMessage) {
+      console.log({ body, errorMessage });
       toast.push("An unexpected error happened while processing your request");
     } else if (statusCode !== 200) {
       toast.push(`Server error: ${body}`);
     } else {
-      toast.push("Sync task updated successfully");
+      toast.push("Webhook updated successfully");
       showModifyForm = false;
-      getUserTasks();
+      getUserWebhooks();
     }
 
     isUpdating = false;
@@ -159,16 +160,14 @@
   const recharge = async () => {
     if (!Number(duration)) {
       toast.push("Duration is required");
+      return;
     }
+
+    const webhookRequest = { id: webhook.id, duration };
 
     isRecharging = true;
 
-    const txHash = await makePayment(
-      Number(duration) * unitPrice,
-      $wallet,
-      userAddress
-    );
-
+    const txHash = await makePayment(price, $wallet, userAddress);
     if (!txHash) {
       isRecharging = false;
       return;
@@ -177,19 +176,12 @@
     const provider = new ethers.providers.Web3Provider($wallet.provider);
     const signer = provider.getSigner(userAddress);
     const timestamp = new Date().valueOf();
-    const _task = { id: task.id };
-    const message = JSON.stringify([_task, txHash, timestamp]);
+    const message = JSON.stringify([webhookRequest, txHash, timestamp]);
     const signature = await signer.signMessage(message);
-
-    const payload = {
-      task: _task,
-      txHash,
-      signature,
-      timestamp,
-    };
+    const payload = { webhook: webhookRequest, txHash, signature, timestamp };
 
     const response = await fetch(
-      "https://api.kenshi.io/subscriptions/sync/recharge",
+      "https://api.kenshi.io/subscriptions/webhook/recharge",
       {
         method: "POST",
         body: JSON.stringify(payload),
@@ -200,13 +192,14 @@
     const { errorMessage, statusCode, body } = await response.json();
 
     if (errorMessage) {
+      console.log({ body, errorMessage });
       toast.push("An unexpected error happened while processing your request");
     } else if (statusCode !== 200) {
       toast.push(`Server error: ${body}`);
     } else {
-      toast.push("Sync task recharged successfully");
+      toast.push("Webhook recharged successfully");
       showRechargeForm = false;
-      getUserTasks();
+      getUserWebhooks();
     }
 
     isRecharging = false;
@@ -217,44 +210,70 @@
   {#if showModifyForm}
     <div class="form">
       <div class="header">
-        <h4>Modify sync task</h4>
+        <h4>Modify webhook</h4>
         {#if !isUpdating}
           <Button flat on:click={() => (showModifyForm = false)}>
             <Xmark />
           </Button>
         {/if}
       </div>
-      <h5>Event details</h5>
+
+      <h5>Basics</h5>
       <TextInput
-        placeholder="Contract address"
-        name="address"
-        regex={/^0x[a-f0-9]{40}$/i}
-        bind:value={contractAddress}
-        bind:valid={taskInvalids.address}
+        placeholder="Endpoint"
+        name="endpoint"
+        regex={/https?:\/\/.+/}
+        bind:value={endpoint}
       />
-      <TextArea
-        placeholder="Contract ABI"
-        name="abi"
-        validator={abiValidator}
-        bind:value={abi}
-        bind:valid={taskInvalids.abi}
-      />
-      <Select
-        options={signatures}
-        placeholder="Event signature"
-        bind:value={signature}
-        bind:valid={taskInvalids.signature}
+      <TextInput
+        placeholder="Sync Task ID"
+        name="syncTaskId"
+        suffix="Task ID"
+        bind:value={syncTaskId}
       />
 
-      <h5>Event Arguments</h5>
-      {#each args as arg}
-        <div class="split">
-          <TextInput placeholder="Argument name" bind:value={arg.name} />
-          <TextInput
-            placeholder="Argument value[s], seperated by a comma"
-            bind:value={arg.value}
-            validator={(v) => validateArg(parseArg(v))}
-          />
+      <h5>Query</h5>
+      {#each query.map((q, i) => [q, i]) as [q, i]}
+        <div
+          class="split"
+          class:triple={["arg-is", "block-number-is"].includes(q.condition)}
+        >
+          <Select
+            options={[
+              { label: "Contract address is", value: "contract-is" },
+              { label: "Event argument is", value: "arg-is" },
+              { label: "Event name is", value: "event-name-is" },
+              {
+                label: "Event signature is",
+                value: "event-signature-is",
+              },
+              {
+                label: "Block number is",
+                value: "block-number-is",
+              },
+            ]}
+            placeholder="Choose a condition"
+            bind:value={q.condition}
+          >
+            <div class="field-buttons delete" slot="prefix">
+              <Button flat on:click={deleteQuery(i)}>
+                <TrashCan />
+              </Button>
+            </div>
+          </Select>
+          {#if q.condition === "arg-is"}
+            <TextInput bind:value={q.arg} placeholder="Argument name" />
+          {:else if q.condition === "block-number-is"}
+            <Select
+              options={[
+                { label: "Bigger than", value: "gt" },
+                { label: "Smaller than", value: "lt" },
+              ]}
+              placeholder="Choose comparison"
+              bind:value={q.comparison}
+            />
+          {/if}
+          <TextInput bind:value={q.value} placeholder="Value" />
         </div>
       {/each}
     </div>
@@ -304,56 +323,50 @@
           Processing
         {:else}
           Recharge
-          {#if duration}
-            ${Number(duration) * unitPrice}
+          {#if price}
+            ${price}
           {/if}
         {/if}
       </Button>
     </div>
   {:else}
     <div class="body">
-      <div class="copy" on:click={copy(task.address)}>
+      <div class="copy" on:click={copy(webhook.endpoint)}>
         <Alert>
           <div class="address">
             <img
-              src="/images/chains/{chainIcons[task.chain]}.svg"
-              alt={task.chain}
+              src="/images/chains/{chainIcons[webhook.chain]}.svg"
+              alt={webhook.chain}
             />
-            <span>{task.address}</span>
+            <span>{webhook.endpoint}</span>
             <Copy />
           </div>
         </Alert>
       </div>
-      <TextInput disabled value={task.id} suffix="Task ID">
+      <TextInput disabled value={webhook.syncTaskId} suffix="Sync task ID">
         <div class="field-buttons" slot="buttons">
-          <Button flat on:click={copy(task.id)}>
+          <Button flat on:click={copy(webhook.syncTaskId)}>
             <Copy />
           </Button>
         </div>
       </TextInput>
-      <TextArea value={task.abi} disabled />
       <div class="table">
         <div class="row">
-          <h5>Argument name</h5>
+          <h5>Query</h5>
           <h5>Value</h5>
         </div>
-        {#each task.args as arg}
+        {#each webhook.query as filter}
           <div class="row">
-            <h5>{arg.name}</h5>
-            <div>
-              {#if arg.value}
-                {arg.value}
-              {:else}
-                <i class="small">Any</i>
-              {/if}
-            </div>
+            <h5>{conditionNames[filter.condition]}</h5>
+            <div>{getFilterValue(filter)}</div>
           </div>
+        {:else}
+          <div class="row">No filters.</div>
         {/each}
       </div>
       <div>
-        Every {task.interval} seconds, {task.step} blocks at a time, expires on {new Date(
-          task.expiresAt
-        ).toLocaleDateString("en-US")}.
+        Every {webhook.interval} seconds, {webhook.step} blocks at a time, expires
+        on {new Date(webhook.expiresAt).toLocaleDateString("en-US")}.
       </div>
     </div>
     <div class="buttons">
@@ -414,9 +427,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .small {
-    font-size: 0.85em;
-  }
   .form {
     display: flex;
     flex-direction: column;
@@ -440,5 +450,8 @@
     gap: 0.5em;
     margin-right: 0.25em;
     color: var(--secondary-color) !important;
+  }
+  .field-buttons.delete {
+    height: 34px;
   }
 </style>
