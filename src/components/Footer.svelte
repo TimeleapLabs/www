@@ -67,14 +67,14 @@
     </div>
     <div class="list">
       <h3>Token</h3>
-      <!-- <Link
-        href="https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784"
+      <Link
+        href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
         target="_blank"
       >
         Buy Kenshi
-      </Link> -->
+      </Link>
       <Link
-        href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
+        href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
         target="_blank"
       >
         View charts

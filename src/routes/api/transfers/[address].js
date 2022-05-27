@@ -5,7 +5,7 @@ import abi from "$lib/abi/kenshi";
 
 dotenv.config();
 
-const kenshiAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
+const kenshiAddr = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
 const initialBlock = 13623924;
 
 const sync = async () => {

@@ -58,7 +58,7 @@
     <div class="buttons">
       <Button
         solid
-        href="https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784"
+        href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
         target="_blank"
       >
         View charts <External />
@@ -166,13 +166,13 @@
     title="The Token"
     description="Looking for the ₭enshi token? The Kenshi token is a frictionless yield token that can provide a passive income to its holders, and that is also used to pay for the Kenshi services."
     buttons={[
-      // {
-      //   href: "https://pancakeswap.finance/swap?outputCurrency=0x8AdA51404F297bF2603912d1606340223c0a7784",
-      //   external: true,
-      //   label: "Buy",
-      // },
       {
-        href: "https://charts.bogged.finance/?c=bsc&t=0x8AdA51404F297bF2603912d1606340223c0a7784",
+        href: "https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f",
+        external: true,
+        label: "Buy",
+      },
+      {
+        href: "https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f",
         external: true,
         label: "Charts",
       },
