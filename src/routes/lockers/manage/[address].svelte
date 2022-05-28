@@ -33,7 +33,7 @@
 
   // MAINNET CONTRACT ADDRESS
   const contractAddr = $page.params.address;
-  const deployerAddr = "0x41e5Dc455Fa7B3fbc7BA4f0cC99a523d98a80594";
+  const deployerAddr = "0x367Fd3EbD74A1da5439069B4eefCFD7a85956993";
   const migrationRegistryAddr = "0xC21261F93360B3F9123A4fb26bbB6618aAdeFcaC";
 
   $: contractAddrDisplay = [
