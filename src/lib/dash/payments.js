@@ -4,8 +4,8 @@ import { onboard } from "../onboard";
 import { toast } from "@zerodevx/svelte-toast";
 import kenshiAbi from "../abi/kenshi";
 
-const collectorAddress = "0xA2dEc4f8089f89F426e6beB76B555f3Cf9E7f499";
-const kenshiAddress = "0x61E2738f370371183A8f32F0CC49d54522198276";
+const collectorAddress = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
+const kenshiAddress = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
 
 const usdToKenshi = async (usd) => {
   const { price } = await fetchPancake();
