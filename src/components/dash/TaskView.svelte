@@ -42,9 +42,13 @@
 
   const chainIcons = {
     "avalanche-fuji": "avalanche",
+    "avalanche-mainnet": "avalanche",
     "polygon-mumbai": "polygon",
+    "polygon-mainnet": "polygon",
     "fantom-testnet": "fantom",
+    "fantom-mainnet": "fantom",
     "binance-testnet": "binance",
+    "binance-mainnet": "binance",
   };
 
   const copy = (text) => () => {
