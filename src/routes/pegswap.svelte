@@ -265,7 +265,7 @@
         break;
       }
 
-      await sleep(5000);
+      await sleep(2500);
     }
 
     message = "Switching to the destination chain";
@@ -274,6 +274,7 @@
       await onboard.setChain({
         chainId: entry.request.toChain.replace(/^0x0*/, "0x"),
       });
+      await sleep(1500);
     } catch (error) {
       toast.push("Unable to switch network!");
       throw error;
@@ -343,7 +344,7 @@
           nonce
         );
       } else {
-        toast.push("Claim request successful");
+        toast.push("Swap request successful");
       }
     } catch (error) {
       toast.push(getErrorMessage(error));
@@ -380,6 +381,7 @@
           placeholder="Enter destination wallet address"
           name="address"
           regex={/^0x[a-f0-9]+$/i}
+          suffix="Destination"
           bind:value={address}
         />
         <TextInput
