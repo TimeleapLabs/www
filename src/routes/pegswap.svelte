@@ -11,6 +11,7 @@
   import MoneyFromBracket from "src/icons/MoneyFromBracket.svelte";
   import LeftFromLine from "src/icons/LeftFromLine.svelte";
   import RightFromLine from "src/icons/RightFromLine.svelte";
+  import MetaMask from "src/icons/MetaMask.svelte";
 
   import { onMount } from "svelte";
   import { onboard } from "src/lib/onboard";
@@ -33,38 +34,38 @@
   $: if (sourceChain && sourceChain === destChain) destChain = undefined;
 
   const chains = {
-    mumbai: "0x13881",
-    bsc: "0x61",
-    ftm: "0xfa2",
-    avax: "0xa869",
+    polygon: "0x89",
+    bsc: "0x38",
+    ftm: "0xfa",
+    avax: "0xa86a",
   };
 
   const kenshiAddresses = {
-    mumbai: "0xA8eeAd1e6a4Cab8010DCA5F7805d7Cb2c2fD9117",
-    bsc: "0xc3eD8d7207e5171C6f7565dd5e18720AA9E333dE",
-    ftm: "0x039976F40a15Bbaaf055144d59F0a47341AF2dcb",
-    avax: "0xd8aA9BeB5ef0eD1Bbb8Efb6EE665888c2E4F7b64",
+    bsc: "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f",
+    polygon: "0x164caf66c45e483F7eE647CcaD275B35B4C75719",
+    ftm: "0x164caf66c45e483F7eE647CcaD275B35B4C75719",
+    avax: "0x164caf66c45e483F7eE647CcaD275B35B4C75719",
   };
 
   const operatorAddresses = {
-    mumbai: "0x855C83A8d3C5BDE6A505cdFEB8272b8F47Bd3213",
+    polygon: "0x855C83A8d3C5BDE6A505cdFEB8272b8F47Bd3213",
     bsc: "0x855C83A8d3C5BDE6A505cdFEB8272b8F47Bd3213",
     ftm: "0x855C83A8d3C5BDE6A505cdFEB8272b8F47Bd3213",
     avax: "0x855C83A8d3C5BDE6A505cdFEB8272b8F47Bd3213",
   };
 
   const pegswapAddresses = {
-    mumbai: "0xDb5f4eb0aC90290db12F43cDca2F8b33b56429E8",
-    bsc: "0x20D8A34Aaea660d72b6CF8CB535fe01670Bb33C6",
-    ftm: "0x2D8152b970dbf426EC2fa8950370f9976508389d",
-    avax: "0xeDd8B6480e7328b2a6871646D831084EeB1f27d4",
+    bsc: "0x3CcAa188Dd35E9125D7ade476da123C020aeC84d",
+    polygon: "0x8AdA51404F297bF2603912d1606340223c0a7784",
+    ftm: "0x8AdA51404F297bF2603912d1606340223c0a7784",
+    avax: "0x8AdA51404F297bF2603912d1606340223c0a7784",
   };
 
   const chainIds = {
-    "0x61": { key: "bsc", title: "Binance Smart Chain" },
-    "0x013881": { key: "mumbai", title: "Polygon Mumbai" },
-    "0xa869": { key: "avax", title: "Avalanche Fuji" },
-    "0x0fa2": { key: "ftm", title: "Fantom Testnet" },
+    "0x38": { key: "bsc", title: "Binance Smart Chain", shortTitle: "BSC" },
+    "0x89": { key: "polygon", title: "Polygon", shortTitle: "MATIC" },
+    "0xa86a": { key: "avax", title: "Avalanche", shortTitle: "AVAX" },
+    "0xfa": { key: "ftm", title: "Fantom", shortTitle: "FTM" },
   };
 
   const setAddress = () => {
@@ -74,10 +75,10 @@
   $: if ($wallet) setAddress();
 
   const chainOptions = [
-    { label: "Avalanche Fuji C-Chain", value: "avax" },
-    { label: "Binance Smart Chain Testnet", value: "bsc" },
-    { label: "Fantom Testnet", value: "ftm" },
-    { label: "Polygon Mumbai", value: "mumbai" },
+    { label: "Avalanche C-Chain", value: "avax" },
+    { label: "Binance Smart Chain", value: "bsc" },
+    { label: "Fantom", value: "ftm" },
+    { label: "Polygon", value: "polygon" },
   ];
 
   const sourceOptions = [...chainOptions];
@@ -86,6 +87,30 @@
   $: destOptions = chainOptions.filter(({ value }) => value != sourceChain);
 
   const pegswapEndpoint = "https://api.kenshi.io/pegswap";
+
+  const addToMetamask = (address, chainId) => async () => {
+    const params = {
+      type: "ERC20",
+      options: {
+        address,
+        symbol: "Kenshi",
+        decimals: 18,
+        image: `${window.location.origin}/images/logo/512x512.png`,
+      },
+    };
+
+    try {
+      await onboard.setChain({ chainId });
+    } catch (error) {
+      return toast.push("Couldn't switch to the destination network.");
+    }
+
+    $wallet.provider
+      .request({ method: "wallet_watchAsset", params })
+      .catch(() => {
+        toast.push("Couldn't add the token to your wallet.");
+      });
+  };
 
   const pegswapNonceQuery = (operator, toChain, nonce) => `{
     getEntries(operator: "${operator}", toChain: "${toChain}", nonce: "${nonce}") {
@@ -166,10 +191,10 @@
   };
 
   const rpcList = {
-    "0x61": "https://data-seed-prebsc-1-s1.binance.org:8545",
-    "0x013881": "https://rpc-mumbai.maticvigil.com",
-    "0x0fa2": "https://rpc.testnet.fantom.network/",
-    "0xa869": "https://api.avax-test.network/ext/bc/C/rpc",
+    "0x38": "https://bsc-dataseed.binance.org",
+    "0x89": "https://polygon-rpc.com",
+    "0xfa": "https://rpc.ftm.tools",
+    "0xa86a": "https://api.avax.network/ext/bc/C/rpc",
   };
 
   const isClaimed = async (request) => {
@@ -394,6 +419,15 @@
             Transfer {amount} ₭enshi
           {/if}
         </Button>
+        <Button
+          on:click={addToMetamask(
+            kenshiAddresses[destChain],
+            chains[destChain]
+          )}
+        >
+          <MetaMask />
+          Add {chainIds[chains[destChain]].shortTitle} ₭enshi
+        </Button>
       {:else if !$wallet?.provider}
         Connect your wallet to continue.
       {:else}
@@ -473,6 +507,11 @@
   }
   .buttons {
     margin-top: 2em;
+    display: flex;
+    gap: 1em;
+  }
+  .buttons :global(svg) {
+    width: 1em;
   }
   .description {
     margin-bottom: 1em;

@@ -46,7 +46,7 @@ body {
 }
 
 body * {
-  font-family: "Syabil";
+  font-family: "Syabil", sans-serif;
 }
 
 .gist .blob-code-content * {
