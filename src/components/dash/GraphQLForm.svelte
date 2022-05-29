@@ -25,7 +25,7 @@
 
   let userAddress;
   let apiKey = getRandomBase64();
-  let sharedKey = "MW1hMpxVvNQuut5wGXm9nxdgr9m3W0/dNyWAbB0wQmI="; //getRandomBase64();
+  let sharedKey = getRandomBase64();
   let requests = "100000";
   let apiKeyQueryAllowed = [];
   let graphqlPrice;
