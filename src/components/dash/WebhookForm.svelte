@@ -14,6 +14,7 @@
   import { SpinLine } from "svelte-loading-spinners";
 
   import TrashCan from "src/icons/TrashCan.svelte";
+  import CircleQuestion from "src/icons/CircleQuestion.svelte";
 
   export let showNewWebhookForm;
   export let getUserWebhooks;
@@ -166,7 +167,16 @@
 </script>
 
 <Card>
-  <h3>Register new Reverse API endpoint</h3>
+  <div class="header">
+    <h3>Register new Reverse API endpoint</h3>
+    <Button
+      flat
+      href="https://docs.kenshi.io/services/deep-index/webhook/getting-started.html"
+      target="_blank"
+    >
+      <CircleQuestion />
+    </Button>
+  </div>
   <div class="card-inner forms">
     <div class="form">
       <h5>Basics</h5>
@@ -318,8 +328,18 @@
 </Card>
 
 <style>
+  .header {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  .header h3 {
+    flex: 1;
+  }
   h3 {
     margin-top: 0;
+    margin-bottom: 0;
   }
   .card-inner {
     display: grid;

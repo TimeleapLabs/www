@@ -8,6 +8,7 @@
   import Copy from "src/icons/Copy.svelte";
   import TrashCan from "src/icons/TrashCan.svelte";
   import ArrowRotateRight from "src/icons/ArrowRotateRight.svelte";
+  import CircleQuestion from "src/icons/CircleQuestion.svelte";
 
   import { wallet } from "src/stores/wallet";
   import { toast } from "@zerodevx/svelte-toast";
@@ -149,7 +150,16 @@
 </script>
 
 <Card>
-  <h3>New GraphQL API Key</h3>
+  <div class="header">
+    <h3>New GraphQL API Key</h3>
+    <Button
+      flat
+      href="https://docs.kenshi.io/services/deep-index/graphql/getting-started.html"
+      target="_blank"
+    >
+      <CircleQuestion />
+    </Button>
+  </div>
   <div class="card-inner forms">
     <div class="form">
       <h5>Basics</h5>
@@ -248,8 +258,18 @@
 </Card>
 
 <style>
+  .header {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  .header h3 {
+    flex: 1;
+  }
   h3 {
     margin-top: 0;
+    margin-bottom: 0;
   }
   .card-inner {
     display: grid;

@@ -186,7 +186,11 @@
 <Card>
   <div class="header">
     <h3>New Deep Indexing Task</h3>
-    <Button flat href="https://docs.kenshi.io" target="_blank">
+    <Button
+      flat
+      href="https://docs.kenshi.io/services/deep-index/sync/getting-started.html"
+      target="_blank"
+    >
       <CircleQuestion />
     </Button>
   </div>
