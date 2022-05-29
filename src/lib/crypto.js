@@ -19,7 +19,7 @@ export async function aesGcmEncrypt(plaintext, password) {
     .map((b) => String.fromCharCode(b))
     .join(""); // iv as utf-8 string
 
-  const alg = { name: "AES-GCM", iv: iv }; // specify algorithm to use
+  const alg = { name: "AES-GCM", iv }; // specify algorithm to use
 
   const key = await crypto.subtle.importKey("raw", pwHash, alg, false, [
     "encrypt",
@@ -53,7 +53,7 @@ export async function aesGcmDecrypt(ciphertext, password) {
   const ivStr = atob(ciphertext).slice(0, 12); // decode base64 iv
   const iv = new Uint8Array(Array.from(ivStr).map((ch) => ch.charCodeAt(0))); // iv as Uint8Array
 
-  const alg = { name: "AES-GCM", iv: iv }; // specify algorithm to use
+  const alg = { name: "AES-GCM", iv }; // specify algorithm to use
 
   const key = await crypto.subtle.importKey("raw", pwHash, alg, false, [
     "decrypt",
