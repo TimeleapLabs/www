@@ -421,15 +421,17 @@
             Transfer {amount} ₭enshi
           {/if}
         </Button>
-        <Button
-          on:click={addToMetamask(
-            kenshiAddresses[destChain],
-            chains[destChain]
-          )}
-        >
-          <MetaMask />
-          Add {chainIds[chains[destChain]].shortTitle} ₭enshi
-        </Button>
+        {#if !requestInProgress}
+          <Button
+            on:click={addToMetamask(
+              kenshiAddresses[destChain],
+              chains[destChain]
+            )}
+          >
+            <MetaMask />
+            Add {chainIds[chains[destChain]].shortTitle} ₭enshi
+          </Button>
+        {/if}
       {:else if !$wallet?.provider}
         Connect your wallet to continue.
       {:else}
