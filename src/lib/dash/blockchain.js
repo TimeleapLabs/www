@@ -1,8 +1,12 @@
 const blockTimes = {
   "binance-testnet": 3,
+  "binance-mainnet": 3,
   "fantom-testnet": 1,
+  "fantom-mainnet": 1,
   "avalanche-fuji": 3,
+  "avalanche-mainnet": 3,
   "polygon-mumbai": 2,
+  "polygon-mainnet": 2,
 };
 
 const allStepOptions = [
