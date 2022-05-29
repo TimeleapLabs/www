@@ -29,6 +29,7 @@
   import Go from "src/icons/Go.svelte";
 
   import HexagonCheck from "src/icons/HexagonCheck.svelte";
+  import Dashboard from "src/icons/Dashboard.svelte";
 
   import Coin from "src/icons/Coin.svelte";
   import ListCheck from "src/icons/ListCheck.svelte";
@@ -199,7 +200,7 @@
   </div>
   <div class="spacer" />
   <ConnectButton {isMobile} />
-  <a href="https://docs.kenshi.io" class="button build">
+  <a href="/dashboard" class="button build">
     <span>
       {#if isMobile}
         Start
@@ -421,6 +422,11 @@
               </div>
               <div class="dev">
                 <h3>Other</h3>
+                <div>
+                  <Link href="/dashboard">
+                    <Dashboard /> Dashboard
+                  </Link>
+                </div>
                 <div>
                   <Link href="/status">
                     <HexagonCheck /> Service Status
