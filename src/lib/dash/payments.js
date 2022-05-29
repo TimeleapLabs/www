@@ -23,8 +23,7 @@ export const makePayment = async (usd, $wallet, userAddress) => {
   }
 
   try {
-    // await onboard.setChain({ chainId: "0x38" });
-    await onboard.setChain({ chainId: "0x61" });
+    await onboard.setChain({ chainId: "0x38" });
   } catch (error) {
     toast.push("Couldn't change to BSC network.");
     return null;
