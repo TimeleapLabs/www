@@ -34,6 +34,7 @@
   .button.flat {
     padding: 0;
     border: none;
+    color: currentColor;
   }
   .button.solid {
     color: #fff;
