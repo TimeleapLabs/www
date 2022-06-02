@@ -12,6 +12,7 @@
   export let gapless = false;
   export let icon;
   export let valid;
+  export let disabled;
 
   const Icon = icon;
 
@@ -34,7 +35,7 @@
     {#if (value || prefixAlwaysOn) && prefix}
       <span>{prefix}</span>
     {/if}
-    <input type="text" {placeholder} bind:value />
+    <input type="text" {placeholder} bind:value {disabled} />
     {#if value && suffix}
       <span>{suffix}</span>
     {/if}

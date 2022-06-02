@@ -49,15 +49,18 @@
     <img src="/images/kenshi.logo.long.png" alt="Kenshi" class="logo" />
     <div class="motto">Cutting-edge tech for your blockchain projects</div>
     <div class="buttons">
+      <Button href="/dashboard">
+        Dashboard <ChevronRight />
+      </Button>
+      <Button href="http://docs.kenshi.io/" target="_blank">
+        Read the docs <ChevronRight />
+      </Button>
       <Button
         solid
         href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
         target="_blank"
       >
         View charts <External />
-      </Button>
-      <Button href="http://docs.kenshi.io/">
-        Read the docs <ChevronRight />
       </Button>
     </div>
   </div>

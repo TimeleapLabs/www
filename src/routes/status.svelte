@@ -158,7 +158,8 @@
         );
       })
     );
-    return diffs.reduce((a, b) => a + b, 0) / values.length;
+    const responseTime = diffs.reduce((a, b) => a + b, 0) / values.length;
+    return responseTime.toFixed(2);
   };
 
   const copyText = (text) => () => {

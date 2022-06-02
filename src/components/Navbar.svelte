@@ -290,6 +290,11 @@
               <div class="product">
                 <h3>Services</h3>
                 <div>
+                  <Link href="/dashboard">
+                    <Dashboard /> Dashboard
+                  </Link>
+                </div>
+                <div>
                   <Link
                     href="https://docs.kenshi.io/services/audits/index.html"
                   >
@@ -320,6 +325,11 @@
               <div class="dev">
                 <h3>Resources</h3>
                 <div>
+                  <Link href="/dashboard">
+                    <Dashboard /> Dashboard
+                  </Link>
+                </div>
+                <div>
                   <Link href="https://docs.kenshi.io">
                     <Book /> Documentation
                   </Link>
@@ -333,7 +343,7 @@
                   <Link href="https://blog.kenshi.io"><Medium /> Medium</Link>
                 </div>
                 <div>
-                  <Link href="https://t.me/kenshi_token" target="_blank">
+                  <Link href="https://t.me/kenshi_developers" target="_blank">
                     <Telegram /> Telegram
                   </Link>
                 </div>
@@ -422,11 +432,6 @@
               </div>
               <div class="dev">
                 <h3>Other</h3>
-                <div>
-                  <Link href="/dashboard">
-                    <Dashboard /> Dashboard
-                  </Link>
-                </div>
                 <div>
                   <Link href="/status">
                     <HexagonCheck /> Service Status

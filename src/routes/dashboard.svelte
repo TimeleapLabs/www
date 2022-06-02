@@ -20,9 +20,13 @@
   import WebhookForm from "src/components/dash/WebhookForm.svelte";
   import WebhookView from "src/components/dash/WebhookView.svelte";
 
+  import VrfCreditForm from "src/components/dash/VrfCreditForm.svelte";
+  import VrfCreditView from "src/components/dash/VrfCreditView.svelte";
+
   let showNewTaskForm = false;
   let showNewGraphQLForm = false;
   let showNewWebhookForm = false;
+  let showNewVrfCreditForm = false;
 
   let userAddress;
 
@@ -95,9 +99,21 @@
     }
   }`;
 
+  const vrfQuery = (owner) => `{
+    getUserSubs(owner: "${owner}", vrfCredits: true) {
+      vrfCredits {
+        id
+        credit
+        allow
+        chain
+      }
+    }
+  }`;
+
   let userSyncTasks = [];
   let userApiKeys = [];
   let userWebhooks = [];
+  let userVrfCredits = [];
 
   const getUserTasks = async () => {
     const query = syncTaskQuery(userAddress);
@@ -106,6 +122,7 @@
       method: "POST",
       body: JSON.stringify({ query }),
     });
+
     const result = await response.json();
     userSyncTasks = result.data?.getUserSubs?.syncTasks || [];
   };
@@ -132,10 +149,22 @@
     userWebhooks = result.data?.getUserSubs?.webhooks || [];
   };
 
+  const getUserVrfCredits = async () => {
+    const query = vrfQuery(userAddress);
+
+    const response = await fetch("https://api.kenshi.io/subscriptions", {
+      method: "POST",
+      body: JSON.stringify({ query }),
+    });
+    const result = await response.json();
+    userVrfCredits = result.data?.getUserSubs?.vrfCredits || [];
+  };
+
   $: if (userAddress) {
     getUserTasks();
     getUserApiKeys();
     getUserWebhooks();
+    getUserVrfCredits();
   }
 
   onMount(() => {
@@ -143,6 +172,7 @@
       getUserTasks();
       getUserApiKeys();
       getUserWebhooks();
+      getUserVrfCredits();
     }, 60 * 1000);
     return () => {
       clearInterval(interval);
@@ -162,23 +192,23 @@
           The Kenshi Deep Index consists of multiple services for retrieving,
           querying and processing blockchain data.
         </p>
-        {#if !$wallet?.provider}
-          <p>Connect your wallet to continue.</p>
-        {:else}
-          <div class="alert">
+        <div class="alert">
+          {#if !$wallet?.provider}
+            <Alert warning>Connect your wallet to continue.</Alert>
+          {:else}
             <Alert>
               This service is in public beta test, if you encounter any issues
               send us an email at support@kenshi.io.
             </Alert>
-          </div>
-        {/if}
+          {/if}
+        </div>
       </div>
       <div class="buttons">
         <Button
           href="https://docs.kenshi.io/services/deep-index/index.html"
           solid
         >
-          Docs <External />
+          Deep Index docs <External />
         </Button>
         {#if $wallet?.provider}
           <Button on:click={() => (showNewTaskForm = !showNewTaskForm)}>
@@ -251,6 +281,59 @@
     </div>
   {/if}
 
+  <div class="section">
+    <div class="vrf">
+      <h3>VRF (Randomness)</h3>
+      <div class="body">
+        <p>
+          Use the Kenshi VRF service to get randomness for you dApps or games on
+          Fantom, Polygon, BSC and the Avalanche blockchains.
+        </p>
+        <div class="alert">
+          {#if !$wallet?.provider}
+            <Alert warning>Connect your wallet to continue.</Alert>
+          {:else}
+            <Alert>
+              This service is in public beta test, if you encounter any issues
+              send us an email at support@kenshi.io.
+            </Alert>
+          {/if}
+        </div>
+      </div>
+      <div class="buttons">
+        <Button href="https://docs.kenshi.io/services/vrf/index.html" solid>
+          VRF docs <External />
+        </Button>
+        {#if $wallet?.provider}
+          <Button
+            on:click={() => (showNewVrfCreditForm = !showNewVrfCreditForm)}
+          >
+            New VRF subscription
+          </Button>
+        {/if}
+      </div>
+    </div>
+  </div>
+
+  {#if showNewVrfCreditForm}
+    <div class="section">
+      <VrfCreditForm bind:showNewVrfCreditForm {getUserVrfCredits} />
+    </div>
+  {/if}
+
+  {#if $wallet?.provider}
+    <div class="section">
+      <h3>Your VRF subscriptions</h3>
+      <div class="vrf-subs" class:empty={userVrfCredits.length === 0}>
+        {#each userVrfCredits as vrf}
+          <VrfCreditView {vrf} {getUserVrfCredits} />
+        {:else}
+          You don't have any VRF subscriptions.
+        {/each}
+      </div>
+    </div>
+  {/if}
+
   <div class="spacer" />
 
   <Footer />
@@ -286,12 +369,14 @@
     display: flex;
     gap: 1em;
   }
+  .vrf-subs,
   .tasks {
     margin-top: 2.5em;
   }
   .tasks:not(.empty),
   .api-keys:not(.empty),
-  .webhooks:not(.empty) {
+  .webhooks:not(.empty),
+  .vrf-subs:not(.empty) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(512px, 1fr));
     gap: 1em;

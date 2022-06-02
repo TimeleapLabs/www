@@ -398,7 +398,8 @@
   }
   .address {
     display: flex;
-    gap: 1em;
+    gap: 0.75em;
+    align-items: center;
   }
   .address span {
     flex: 1;

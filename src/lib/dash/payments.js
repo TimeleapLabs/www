@@ -14,9 +14,11 @@ const usdToKenshi = async (usd) => {
     : NaN;
 };
 
-export const makePayment = async (usd, $wallet, userAddress) => {
-  const priceInKenshi = await usdToKenshi(usd);
-
+export const makeKenshiPayment = async (
+  priceInKenshi,
+  $wallet,
+  userAddress
+) => {
   if (isNaN(priceInKenshi) || priceInKenshi.eq(0)) {
     toast.push("There was an issue calculating the price.");
     return null;
@@ -47,4 +49,9 @@ export const makePayment = async (usd, $wallet, userAddress) => {
     toast.push("Payment failed");
     return null;
   }
+};
+
+export const makePayment = async (usd, $wallet, userAddress) => {
+  const priceInKenshi = await usdToKenshi(usd);
+  return makeKenshiPayment(priceInKenshi, $wallet, userAddress);
 };
