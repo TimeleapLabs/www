@@ -286,8 +286,8 @@
       <h3>VRF (Randomness)</h3>
       <div class="body">
         <p>
-          Use the Kenshi VRF service to get randomness for you dApps or games on
-          Fantom, Polygon, BSC and the Avalanche blockchains.
+          Use the Kenshi VRF service to get randomness for your dApps or games
+          on Fantom, Polygon, BSC and the Avalanche blockchains.
         </p>
         <div class="alert">
           {#if !$wallet?.provider}
