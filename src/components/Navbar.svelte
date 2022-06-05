@@ -147,12 +147,11 @@
   let scrolled = false;
   $: scrolled = y > 0;
 
-  let width = 0;
-  let isMobile = false;
-  $: isMobile = width < 1050;
+  let innerWidth = 0;
+  $: isMobile = innerWidth < 1050;
 </script>
 
-<svelte:window bind:scrollY={y} bind:outerWidth={width} />
+<svelte:window bind:scrollY={y} bind:innerWidth />
 
 <div
   class="navbar"
