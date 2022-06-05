@@ -13,6 +13,14 @@ const options = {
     description: "Kenshi dApp",
     icon: "/images/kenshi.logo.short.svg",
   },
+  accountCenter: {
+    desktop: {
+      enabled: false,
+    },
+    mobile: {
+      enabled: false,
+    },
+  },
   chains: [
     {
       id: "0x61",

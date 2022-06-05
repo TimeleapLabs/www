@@ -760,7 +760,4 @@
       margin-top: 2em;
     }
   }
-  .notice a {
-    color: var(--secondary-color);
-  }
 </style>
