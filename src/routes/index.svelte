@@ -592,7 +592,7 @@
     );
     gap: 2em;
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 720px) {
     .articles .grid {
       grid-template-columns: 1fr;
     }
