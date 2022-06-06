@@ -98,5 +98,6 @@
   }
   .icon :global(svg) {
     height: 1em;
+    fill: currentColor;
   }
 </style>

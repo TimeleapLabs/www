@@ -8,7 +8,6 @@
   import LinkedIn from "../icons/LinkedIn.svelte";
 
   import Heart from "src/emoji/Heart.svelte";
-  import Timer from "src/icons/Timer.svelte";
 
   import Link from "./Link.svelte";
 </script>
@@ -80,6 +79,7 @@
       >
         View charts
       </Link>
+      <Link href="/tools">Tools</Link>
       <Link href="/pegswap">PegSwap</Link>
       <Link href="/faucet">Faucet</Link>
     </div>

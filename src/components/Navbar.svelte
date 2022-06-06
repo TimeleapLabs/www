@@ -36,7 +36,7 @@
   import Scale from "src/icons/Scale.svelte";
   import Swap from "src/icons/Swap.svelte";
   import Faucet from "src/icons/Faucet.svelte";
-  import ArrowUp from "src/icons/ArrowUp.svelte";
+  import Tools from "src/icons/Tools.svelte";
   import CreditCard from "src/icons/CreditCard.svelte";
   import ChartLine from "src/icons/ChartLine.svelte";
   import SquareQuestion from "src/icons/SquareQuestion.svelte";
@@ -485,6 +485,11 @@
               <div class="token">
                 <h3>Tools</h3>
                 <div>
+                  <Link href="/tools">
+                    <Tools /> Tools
+                  </Link>
+                </div>
+                <div>
                   <Link href="/pegswap">
                     <Swap /> PegSwap
                   </Link>
@@ -769,6 +774,7 @@
     color: #000;
     border: none;
     font-size: 1em;
+    background: transparent;
   }
   button :global(svg) {
     height: 0.8em;

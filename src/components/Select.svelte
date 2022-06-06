@@ -5,6 +5,9 @@
   export let placeholder = "";
   export let options = [];
   export let value = "";
+  export let icon;
+
+  const Icon = icon;
 
   let active;
   let label;
@@ -16,7 +19,7 @@
     active = false;
   };
 
-  $: if (value) {
+  $: if (value !== undefined) {
     for (const option of options) {
       if (option.value === value) {
         label = option.label;
@@ -28,17 +31,27 @@
   let filteredOptions = [];
   $: filteredOptions = options;
 
-  $: if (value) {
+  $: if (value !== undefined) {
     filteredOptions = options.filter((option) => option.value !== value);
   }
 </script>
 
 <div class="wrap">
   <slot name="prefix" />
-  <div class="select" class:active class:valid={value} class:empty={!value}>
+  <div
+    class="select"
+    class:active
+    class:valid={value !== undefined}
+    class:empty={value === undefined}
+  >
     <div class="placeholder" on:click={toggle}>
+      {#if icon}
+        <span class="icon">
+          <Icon />
+        </span>
+      {/if}
       <div class="content">
-        {#if value}
+        {#if value !== undefined}
           {label}
         {:else}
           {placeholder}
@@ -98,6 +111,7 @@
   .placeholder {
     display: flex;
     align-items: center;
+    gap: 0.5em;
   }
   .placeholder .content {
     flex: 1;
@@ -111,5 +125,12 @@
   .options {
     max-height: 200px;
     overflow-y: auto;
+  }
+  .icon {
+    display: flex;
+  }
+  .icon :global(svg) {
+    height: 1em;
+    fill: currentColor;
   }
 </style>
