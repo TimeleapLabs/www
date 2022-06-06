@@ -103,6 +103,7 @@
 
   const updateValues = async () => {
     if (!userAddress) return;
+    if (typeof window === "undefined") return;
     balance = await contract.balanceOf(userAddress);
     treasury = await contract.balanceOf(treasuryAddr);
     maxBalance = await contract.getMaxBalance();
