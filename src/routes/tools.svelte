@@ -170,7 +170,10 @@
     );
   };
 
-  $: if (userAddress && unitPrice) updateValues().then(calculateReflections);
+  $: if (userAddress && unitPrice)
+    updateValues()
+      .then(calculateReflections)
+      .catch(() => null);
 
   const taxDateOptions = [
     { label: "Today", value: 0 },
