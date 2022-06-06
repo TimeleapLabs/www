@@ -31,7 +31,7 @@
   import { page } from "$app/stores";
 
   let balance;
-  let userAddress = $page.url.searchParams.get("address");
+  let userAddress = $page?.url?.searchParams?.get?.("address");
   let unitPrice;
   let maxBalance;
   let treasury;
