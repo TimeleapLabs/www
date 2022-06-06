@@ -194,197 +194,187 @@
 
 <Navbar />
 
-<div class="page">
-  <div class="mask">
-    <img src="/images/mask.png" alt="Mask" />
-  </div>
-  <div class="section">
-    <h2>Kenshi Tools</h2>
-    {#if !userAddress}
-      <Alert warning>Connect your wallet to continue.</Alert>
-    {:else}
-      <Card>
-        <div class="card-inner forms">
-          <div class="form">
-            <h5>Wallet address</h5>
-            <TextInput
-              placeholder="Wallet address"
-              suffix="Wallet"
-              bind:value={userAddress}
-              icon={Wallet}
-            >
-              <div class="field-buttons" slot="buttons">
-                <Button
-                  flat
-                  on:click={copy(
-                    `${window.location.origin}/tools?address=${userAddress}`
-                  )}
-                >
-                  <Link />
-                </Button>
-              </div>
-            </TextInput>
-            <h5>Tokens held</h5>
-            <div class="split">
-              <TextInput
-                disabled
-                placeholder="Kenshi balance"
-                suffix="KENSHI"
-                value={balanceDisplay}
-                icon={Coin}
+<div class="mask">
+  <img src="/images/mask.png" alt="Mask" />
+</div>
+
+<div class="section">
+  <h2>Kenshi Tools</h2>
+  {#if !userAddress}
+    <Alert warning>Connect your wallet to continue.</Alert>
+  {:else}
+    <Card>
+      <div class="card-inner forms">
+        <div class="form">
+          <h5>Wallet address</h5>
+          <TextInput
+            placeholder="Wallet address"
+            suffix="Wallet"
+            bind:value={userAddress}
+            icon={Wallet}
+          >
+            <div class="field-buttons" slot="buttons">
+              <Button
+                flat
+                on:click={copy(
+                  `${window.location.origin}/tools?address=${userAddress}`
+                )}
               >
-                <div class="field-buttons" slot="buttons">
-                  <Button
-                    flat
-                    on:click={copy(ethers.utils.formatUnits(balance || "0"))}
-                  >
-                    <Copy />
-                  </Button>
-                </div>
-              </TextInput>
-              <TextInput
-                disabled
-                placeholder="Equivalent BUSD value"
-                suffix="USD"
-                value={usdBalanceDisplay}
-                icon={Dollar}
-              >
-                <div class="field-buttons" slot="buttons">
-                  <Button
-                    flat
-                    on:click={copy(usdBalanceDisplay.replace(/,/g, ""))}
-                  >
-                    <Copy />
-                  </Button>
-                </div>
-              </TextInput>
+                <Link />
+              </Button>
             </div>
-            <h5>Reflections received</h5>
-            <div class="split">
-              <TextInput
-                disabled
-                placeholder="Reflections"
-                suffix="KENSHI"
-                value={reflectionsDisplay}
-                icon={Coin}
-              >
-                <div class="field-buttons" slot="buttons">
-                  <Button flat on:click={copy(reflections)}>
-                    <Copy />
-                  </Button>
-                </div>
-              </TextInput>
-              <TextInput
-                disabled
-                placeholder="Equivalent BUSD value"
-                suffix="USD"
-                value={reflectionsUsdDisplay}
-                icon={Dollar}
-              >
-                <div class="field-buttons" slot="buttons">
-                  <Button
-                    flat
-                    on:click={copy(reflectionsUsdDisplay.replace(/,/g, ""))}
-                  >
-                    <Copy />
-                  </Button>
-                </div>
-              </TextInput>
-            </div>
-            <h5>Able to buy</h5>
+          </TextInput>
+          <h5>Tokens held</h5>
+          <div class="split">
             <TextInput
               disabled
               placeholder="Kenshi balance"
               suffix="KENSHI"
-              value={ableToBuyDisplay}
-              icon={CreditCard}
+              value={balanceDisplay}
+              icon={Coin}
             >
               <div class="field-buttons" slot="buttons">
                 <Button
                   flat
-                  on:click={copy(ethers.utils.formatUnits(ableToBuy || "0"))}
+                  on:click={copy(ethers.utils.formatUnits(balance || "0"))}
+                >
+                  <Copy />
+                </Button>
+              </div>
+            </TextInput>
+            <TextInput
+              disabled
+              placeholder="Equivalent BUSD value"
+              suffix="USD"
+              value={usdBalanceDisplay}
+              icon={Dollar}
+            >
+              <div class="field-buttons" slot="buttons">
+                <Button
+                  flat
+                  on:click={copy(usdBalanceDisplay.replace(/,/g, ""))}
                 >
                   <Copy />
                 </Button>
               </div>
             </TextInput>
           </div>
-          <div class="form">
-            <h5>Max balance</h5>
+          <h5>Reflections received</h5>
+          <div class="split">
             <TextInput
               disabled
+              placeholder="Reflections"
               suffix="KENSHI"
-              value={maxBalanceDisplay}
-              icon={ArrowUp}
+              value={reflectionsDisplay}
+              icon={Coin}
+            >
+              <div class="field-buttons" slot="buttons">
+                <Button flat on:click={copy(reflections)}>
+                  <Copy />
+                </Button>
+              </div>
+            </TextInput>
+            <TextInput
+              disabled
+              placeholder="Equivalent BUSD value"
+              suffix="USD"
+              value={reflectionsUsdDisplay}
+              icon={Dollar}
             >
               <div class="field-buttons" slot="buttons">
                 <Button
                   flat
-                  on:click={copy(maxBalanceDisplay.replace(/,/g, ""))}
+                  on:click={copy(reflectionsUsdDisplay.replace(/,/g, ""))}
                 >
                   <Copy />
                 </Button>
               </div>
             </TextInput>
-            <h5>Treasury</h5>
+          </div>
+          <h5>Able to buy</h5>
+          <TextInput
+            disabled
+            placeholder="Kenshi balance"
+            suffix="KENSHI"
+            value={ableToBuyDisplay}
+            icon={CreditCard}
+          >
+            <div class="field-buttons" slot="buttons">
+              <Button
+                flat
+                on:click={copy(ethers.utils.formatUnits(ableToBuy || "0"))}
+              >
+                <Copy />
+              </Button>
+            </div>
+          </TextInput>
+        </div>
+        <div class="form">
+          <h5>Max balance</h5>
+          <TextInput
+            disabled
+            suffix="KENSHI"
+            value={maxBalanceDisplay}
+            icon={ArrowUp}
+          >
+            <div class="field-buttons" slot="buttons">
+              <Button flat on:click={copy(maxBalanceDisplay.replace(/,/g, ""))}>
+                <Copy />
+              </Button>
+            </div>
+          </TextInput>
+          <h5>Treasury</h5>
+          <TextInput
+            disabled
+            suffix="Kenshi"
+            value={treasuryDisplay}
+            icon={Treasure}
+          >
+            <div class="field-buttons" slot="buttons">
+              <Button flat on:click={copy(treasuryDisplay.replace(/,/g, ""))}>
+                <Copy />
+              </Button>
+            </div>
+          </TextInput>
+          <h5>Selling tax</h5>
+          <div class="split">
+            <Select
+              options={taxDateOptions}
+              placeholder="When?"
+              icon={Timer}
+              bind:value={when}
+            />
             <TextInput
               disabled
-              suffix="Kenshi"
-              value={treasuryDisplay}
-              icon={Treasure}
-            >
-              <div class="field-buttons" slot="buttons">
-                <Button flat on:click={copy(treasuryDisplay.replace(/,/g, ""))}>
-                  <Copy />
-                </Button>
-              </div>
-            </TextInput>
-            <h5>Selling tax</h5>
-            <div class="split">
-              <Select
-                options={taxDateOptions}
-                placeholder="When?"
-                icon={Timer}
-                bind:value={when}
-              />
-              <TextInput
-                disabled
-                placeholder="Tax percentage"
-                suffix="percent"
-                value={saleTax}
-                icon={Percent}
-              />
-            </div>
+              placeholder="Tax percentage"
+              suffix="percent"
+              value={saleTax}
+              icon={Percent}
+            />
           </div>
         </div>
-        <div class="buttons">
-          <Button
-            href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-            solid
-          >
-            Buy Kenshi <External />
-          </Button>
-          <Button
-            href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-            solid
-          >
-            Charts <External />
-          </Button>
-        </div>
-      </Card>
-    {/if}
-  </div>
-
-  <Footer />
+      </div>
+      <div class="buttons">
+        <Button
+          href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+          solid
+        >
+          Buy Kenshi <External />
+        </Button>
+        <Button
+          href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+          solid
+        >
+          Charts <External />
+        </Button>
+      </div>
+    </Card>
+  {/if}
 </div>
 
+<Footer />
+
 <style>
-  .page {
-    min-height: calc(100% - 64px);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
   h2 {
     margin-top: 0;
     margin-bottom: 1.5em;
@@ -397,6 +387,7 @@
     padding: 4em;
     padding-top: 2em;
     flex: 1;
+    min-height: 30%;
   }
   @media screen and (max-width: 960px) {
     .section {
@@ -447,6 +438,8 @@
     top: -60px;
     padding: 0;
     opacity: 0.6;
+    max-width: 80%;
+    max-height: 80%;
   }
   .mask img {
     height: 100%;

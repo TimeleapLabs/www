@@ -182,162 +182,156 @@
 
 <Navbar />
 
-<div class="page">
-  <div class="section">
-    <h2>Kenshi Dashboard</h2>
-    <div class="deep-index">
-      <h3>Deep Index</h3>
-      <div class="body">
-        <p>
-          The Kenshi Deep Index consists of multiple services for retrieving,
-          querying and processing blockchain data.
-        </p>
-        <div class="alert">
-          {#if !$wallet?.provider}
-            <Alert warning>Connect your wallet to continue.</Alert>
-          {:else}
-            <Alert>
-              This service is in public beta test, if you encounter any issues
-              send us an email at support@kenshi.io.
-            </Alert>
-          {/if}
-        </div>
-      </div>
-      <div class="buttons">
-        <Button
-          href="https://docs.kenshi.io/services/deep-index/index.html"
-          solid
-        >
-          Deep Index docs <External />
-        </Button>
-        {#if $wallet?.provider}
-          <Button on:click={() => (showNewTaskForm = !showNewTaskForm)}>
-            New Sync Task
-          </Button>
+<div class="section">
+  <h2>Kenshi Dashboard</h2>
+  <div class="deep-index">
+    <h3>Deep Index</h3>
+    <div class="body">
+      <p>
+        The Kenshi Deep Index consists of multiple services for retrieving,
+        querying and processing blockchain data.
+      </p>
+      <div class="alert">
+        {#if !$wallet?.provider}
+          <Alert warning>Connect your wallet to continue.</Alert>
+        {:else}
+          <Alert>
+            This service is in public beta test, if you encounter any issues
+            send us an email at support@kenshi.io.
+          </Alert>
         {/if}
       </div>
     </div>
-  </div>
-
-  {#if $wallet?.provider && showNewTaskForm}
-    <div class="section" transition:fly={{ y: -32 }}>
-      <TaskForm bind:showNewTaskForm {getUserTasks} />
-    </div>
-  {/if}
-
-  {#if $wallet?.provider}
-    <div class="section">
-      <h3>Your Deep Index Sync tasks</h3>
-      <div class="tasks" class:empty={userSyncTasks.length === 0}>
-        {#each userSyncTasks as task}
-          <TaskView {task} {getUserTasks} />
-        {:else}
-          You don't have any sync tasks.
-        {/each}
-      </div>
-    </div>
-    <div class="section">
-      <h3>Your GraphQL API keys</h3>
-      <div class="api-keys" class:empty={userApiKeys.length === 0}>
-        {#each userApiKeys as graphql}
-          <GraphQLView {graphql} {getUserApiKeys} />
-        {:else}
-          You do not have any GraphQL API keys at the moment. Create one using
-          the button below.
-        {/each}
-      </div>
-      <div class="buttons">
-        <Button on:click={() => (showNewGraphQLForm = !showNewGraphQLForm)}>
-          New GraphQL API Key
+    <div class="buttons">
+      <Button
+        href="https://docs.kenshi.io/services/deep-index/index.html"
+        solid
+      >
+        Deep Index docs <External />
+      </Button>
+      {#if $wallet?.provider}
+        <Button on:click={() => (showNewTaskForm = !showNewTaskForm)}>
+          New Sync Task
         </Button>
-      </div>
-    </div>
-    {#if showNewGraphQLForm}
-      <div class="section">
-        <GraphQLForm bind:showNewGraphQLForm {getUserApiKeys} />
-      </div>
-    {/if}
-    <div class="section">
-      <h3>Reverse API (Webhooks)</h3>
-      <div class="webhooks" class:empty={userWebhooks.length === 0}>
-        {#each userWebhooks as webhook}
-          <WebhookView {webhook} {getUserWebhooks} />
-        {:else}
-          You don't have any Reverse API endpoints registered at the moment.
-          Create one using the button below.
-        {/each}
-      </div>
-      <div class="buttons">
-        <Button on:click={() => (showNewWebhookForm = !showNewWebhookForm)}>
-          New Reverse API
-        </Button>
-      </div>
-    </div>
-  {/if}
-
-  {#if showNewWebhookForm}
-    <div class="section">
-      <WebhookForm bind:showNewWebhookForm {getUserWebhooks} />
-    </div>
-  {/if}
-
-  <div class="section">
-    <div class="vrf">
-      <h3>VRF (Randomness)</h3>
-      <div class="body">
-        <p>
-          Use the Kenshi VRF service to get randomness for your dApps or games
-          on Fantom, Polygon, BSC and the Avalanche blockchains.
-        </p>
-        <div class="alert">
-          {#if !$wallet?.provider}
-            <Alert warning>Connect your wallet to continue.</Alert>
-          {:else}
-            <Alert>
-              This service is in public beta test, if you encounter any issues
-              send us an email at support@kenshi.io.
-            </Alert>
-          {/if}
-        </div>
-      </div>
-      <div class="buttons">
-        <Button href="https://docs.kenshi.io/services/vrf/index.html" solid>
-          VRF docs <External />
-        </Button>
-        {#if $wallet?.provider}
-          <Button
-            on:click={() => (showNewVrfCreditForm = !showNewVrfCreditForm)}
-          >
-            New VRF subscription
-          </Button>
-        {/if}
-      </div>
+      {/if}
     </div>
   </div>
-
-  {#if showNewVrfCreditForm}
-    <div class="section">
-      <VrfCreditForm bind:showNewVrfCreditForm {getUserVrfCredits} />
-    </div>
-  {/if}
-
-  {#if $wallet?.provider}
-    <div class="section">
-      <h3>Your VRF subscriptions</h3>
-      <div class="vrf-subs" class:empty={userVrfCredits.length === 0}>
-        {#each userVrfCredits as vrf}
-          <VrfCreditView {vrf} {getUserVrfCredits} />
-        {:else}
-          You don't have any VRF subscriptions.
-        {/each}
-      </div>
-    </div>
-  {/if}
-
-  <div class="spacer" />
-
-  <Footer />
 </div>
+
+{#if $wallet?.provider && showNewTaskForm}
+  <div class="section" transition:fly={{ y: -32 }}>
+    <TaskForm bind:showNewTaskForm {getUserTasks} />
+  </div>
+{/if}
+
+{#if $wallet?.provider}
+  <div class="section">
+    <h3>Your Deep Index Sync tasks</h3>
+    <div class="tasks" class:empty={userSyncTasks.length === 0}>
+      {#each userSyncTasks as task}
+        <TaskView {task} {getUserTasks} />
+      {:else}
+        You don't have any sync tasks.
+      {/each}
+    </div>
+  </div>
+  <div class="section">
+    <h3>Your GraphQL API keys</h3>
+    <div class="api-keys" class:empty={userApiKeys.length === 0}>
+      {#each userApiKeys as graphql}
+        <GraphQLView {graphql} {getUserApiKeys} />
+      {:else}
+        You do not have any GraphQL API keys at the moment. Create one using the
+        button below.
+      {/each}
+    </div>
+    <div class="buttons">
+      <Button on:click={() => (showNewGraphQLForm = !showNewGraphQLForm)}>
+        New GraphQL API Key
+      </Button>
+    </div>
+  </div>
+  {#if showNewGraphQLForm}
+    <div class="section">
+      <GraphQLForm bind:showNewGraphQLForm {getUserApiKeys} />
+    </div>
+  {/if}
+  <div class="section">
+    <h3>Reverse API (Webhooks)</h3>
+    <div class="webhooks" class:empty={userWebhooks.length === 0}>
+      {#each userWebhooks as webhook}
+        <WebhookView {webhook} {getUserWebhooks} />
+      {:else}
+        You don't have any Reverse API endpoints registered at the moment.
+        Create one using the button below.
+      {/each}
+    </div>
+    <div class="buttons">
+      <Button on:click={() => (showNewWebhookForm = !showNewWebhookForm)}>
+        New Reverse API
+      </Button>
+    </div>
+  </div>
+{/if}
+
+{#if showNewWebhookForm}
+  <div class="section">
+    <WebhookForm bind:showNewWebhookForm {getUserWebhooks} />
+  </div>
+{/if}
+
+<div class="section">
+  <div class="vrf">
+    <h3>VRF (Randomness)</h3>
+    <div class="body">
+      <p>
+        Use the Kenshi VRF service to get randomness for your dApps or games on
+        Fantom, Polygon, BSC and the Avalanche blockchains.
+      </p>
+      <div class="alert">
+        {#if !$wallet?.provider}
+          <Alert warning>Connect your wallet to continue.</Alert>
+        {:else}
+          <Alert>
+            This service is in public beta test, if you encounter any issues
+            send us an email at support@kenshi.io.
+          </Alert>
+        {/if}
+      </div>
+    </div>
+    <div class="buttons">
+      <Button href="https://docs.kenshi.io/services/vrf/index.html" solid>
+        VRF docs <External />
+      </Button>
+      {#if $wallet?.provider}
+        <Button on:click={() => (showNewVrfCreditForm = !showNewVrfCreditForm)}>
+          New VRF subscription
+        </Button>
+      {/if}
+    </div>
+  </div>
+</div>
+
+{#if showNewVrfCreditForm}
+  <div class="section">
+    <VrfCreditForm bind:showNewVrfCreditForm {getUserVrfCredits} />
+  </div>
+{/if}
+
+{#if $wallet?.provider}
+  <div class="section">
+    <h3>Your VRF subscriptions</h3>
+    <div class="vrf-subs" class:empty={userVrfCredits.length === 0}>
+      {#each userVrfCredits as vrf}
+        <VrfCreditView {vrf} {getUserVrfCredits} />
+      {:else}
+        You don't have any VRF subscriptions.
+      {/each}
+    </div>
+  </div>
+{/if}
+
+<Footer />
 
 <style>
   h2 {
@@ -346,18 +340,9 @@
   h3 {
     margin-top: 0;
   }
-  .page {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100% - 64px);
-    box-sizing: border-box;
-  }
   .section {
     padding: 4em;
     padding-top: 0;
-  }
-  .spacer {
-    flex: 1;
   }
   @media screen and (max-width: 960px) {
     .section {
