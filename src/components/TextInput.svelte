@@ -73,6 +73,8 @@
     box-sizing: border-box;
     border: none;
     color: currentColor;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .valid {
     border: 1px solid #0c6e6b;

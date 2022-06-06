@@ -232,7 +232,7 @@
             <TextInput
               disabled
               placeholder="Kenshi balance"
-              suffix="KENSHI"
+              suffix="Kenshi"
               value={balanceDisplay}
               icon={Coin}
             >
@@ -267,7 +267,7 @@
             <TextInput
               disabled
               placeholder="Reflections"
-              suffix="KENSHI"
+              suffix="Kenshi"
               value={reflectionsDisplay}
               icon={Coin}
             >
@@ -298,7 +298,7 @@
           <TextInput
             disabled
             placeholder="Kenshi balance"
-            suffix="KENSHI"
+            suffix="Kenshi"
             value={ableToBuyDisplay}
             icon={CreditCard}
           >
@@ -316,7 +316,7 @@
           <h5>Max balance</h5>
           <TextInput
             disabled
-            suffix="KENSHI"
+            suffix="Kenshi"
             value={maxBalanceDisplay}
             icon={ArrowUp}
           >
