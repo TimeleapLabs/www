@@ -5,7 +5,7 @@ const provider = new ethers.providers.JsonRpcProvider(
   "https://bsc-dataseed.binance.org"
 );
 const contractAddress = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
-const dexAddress = "0x65ef7833898c4a0df62bf150bbaba2718876adf3";
+const dexAddress = "0xc5049f99e1efc3c83a2cd3f9ef1842530986fb88";
 const contract = new ethers.Contract(contractAddress, abi, provider);
 const initialSupply = ethers.BigNumber.from("10000000000000000000000000000000");
 
