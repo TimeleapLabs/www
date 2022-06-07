@@ -124,13 +124,13 @@
   const owner = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
   const endpoint = "https://api.kenshi.io/index/graphql";
 
-  const query = (arg) => `{
+  const query = (arg, addr) => `{
     getEntries(
       blockchain: "binance-mainnet",
       apikey: "${apikey}",
       owner: "${owner}",
       address: "${kenshiAddr.toLowerCase()}",
-      args: [ { name: "${arg}", value: "${userAddress}"}]) {
+      args: [ { name: "${arg}", value: "${addr}"}]) {
         event {
           args
         }
@@ -140,7 +140,9 @@
   const runQuery = (arg) =>
     fetch(endpoint, {
       method: "POST",
-      body: JSON.stringify({ query: query(arg) }),
+      body: JSON.stringify({
+        query: query(arg, ethers.utils.getAddress(userAddress)),
+      }),
     })
       .then((r) => r.json())
       .then((r) =>
