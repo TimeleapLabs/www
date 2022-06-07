@@ -204,19 +204,24 @@
 <div class="section">
   <h2>Kenshi Tools</h2>
   {#if !userAddress}
-    <Alert warning>Connect your wallet to continue.</Alert>
-  {:else}
-    <Card>
-      <div class="card-inner forms">
-        <div class="form">
-          <h5>Wallet address</h5>
-          <TextInput
-            placeholder="Wallet address"
-            suffix="Wallet"
-            bind:value={userAddress}
-            icon={Wallet}
-          >
-            <div class="field-buttons" slot="buttons">
+    <div class="alert">
+      <Alert warning>
+        Connect your wallet or enter wallet address to continue.
+      </Alert>
+    </div>
+  {/if}
+  <Card>
+    <div class="card-inner forms">
+      <div class="form">
+        <h5>Wallet address</h5>
+        <TextInput
+          placeholder="Wallet address"
+          suffix="Wallet"
+          bind:value={userAddress}
+          icon={Wallet}
+        >
+          <div class="field-buttons" slot="buttons">
+            {#if userAddress}
               <Button
                 flat
                 on:click={copy(
@@ -225,8 +230,10 @@
               >
                 <Link />
               </Button>
-            </div>
-          </TextInput>
+            {/if}
+          </div>
+        </TextInput>
+        {#if userAddress}
           <h5>Tokens held</h5>
           <div class="split">
             <TextInput
@@ -311,8 +318,10 @@
               </Button>
             </div>
           </TextInput>
-        </div>
-        <div class="form">
+        {/if}
+      </div>
+      <div class="form">
+        {#if userAddress}
           <h5>Max balance</h5>
           <TextInput
             disabled
@@ -355,24 +364,24 @@
               icon={Percent}
             />
           </div>
-        </div>
+        {/if}
       </div>
-      <div class="buttons">
-        <Button
-          href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-          solid
-        >
-          Buy Kenshi <External />
-        </Button>
-        <Button
-          href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-          solid
-        >
-          Charts <External />
-        </Button>
-      </div>
-    </Card>
-  {/if}
+    </div>
+    <div class="buttons">
+      <Button
+        href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+        solid
+      >
+        Buy Kenshi <External />
+      </Button>
+      <Button
+        href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+        solid
+      >
+        Charts <External />
+      </Button>
+    </div>
+  </Card>
 </div>
 
 <Footer />
@@ -437,15 +446,18 @@
   .mask {
     position: absolute;
     z-index: -1;
-    height: 960px;
-    top: -60px;
+    top: 0;
     padding: 0;
     opacity: 0.6;
-    max-width: 80%;
-    max-height: 80%;
+    height: 80%;
+    max-height: 640px;
+    width: auto;
   }
   .mask img {
     height: 100%;
     max-width: 100%;
+  }
+  .alert {
+    margin-bottom: 2em;
   }
 </style>
