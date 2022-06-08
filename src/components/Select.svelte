@@ -4,7 +4,7 @@
 
   export let placeholder = "";
   export let options = [];
-  export let value = "";
+  export let value;
   export let icon;
 
   const Icon = icon;
