@@ -20,7 +20,6 @@
   import { toast } from "@zerodevx/svelte-toast";
   import { ethers } from "ethers";
   import { SpinLine } from "svelte-loading-spinners";
-  import { toChecksumAddress } from "ethereum-checksum-address";
 
   import pegswapAbi from "src/lib/abi/pegswap";
   import kenshiAbi from "src/lib/abi/kenshi";
@@ -146,7 +145,7 @@
   const getUserRequests = async () => {
     const recipient = $wallet?.accounts?.[0]?.address;
     if (recipient) {
-      const query = pegswapRecipientQuery(toChecksumAddress(recipient));
+      const query = pegswapRecipientQuery(ethers.utils.getAddress(recipient));
 
       const response = await fetch(pegswapEndpoint, {
         method: "POST",

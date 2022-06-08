@@ -32,7 +32,6 @@
     "bnc-onboard": "^1.37.0",
     "d3-shape": "^3.1.0",
     "dotenv": "^10.0.0",
-    "ethereum-checksum-address": "^0.0.8",
     "ethers": "^5.5.1",
     "format-thousands": "^2.0.0",
     "mongodb": "^4.2.1",
