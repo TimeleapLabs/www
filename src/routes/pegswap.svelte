@@ -236,7 +236,7 @@
   const claimPastRequest = async (request, signature) => {
     claiming = true;
     await onboard.setChain({
-      chainId: request.toChain.replace(/^0x0*/, "0x"),
+      chainId: request.toChain.replace(/^0x0+/, "0x"),
     });
     await claim({ request, signature });
     claiming = false;
@@ -272,9 +272,8 @@
 
     try {
       await onboard.setChain({
-        chainId: entry.request.toChain.replace(/^0x0*/, "0x"),
+        chainId: entry.request.toChain.replace(/^0x0+/, "0x"),
       });
-      await sleep(1500);
     } catch (error) {
       toast.push("Unable to switch network!");
       throw error;
