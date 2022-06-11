@@ -27,7 +27,7 @@
   import formatThousands from "format-thousands";
 
   import kenshiAbi from "src/lib/abi/kenshi";
-  import { fetchPancake } from "src/lib/api/token";
+  import { fetchTokenPriceFromPair } from "src/lib/api/token";
   import { page } from "$app/stores";
 
   let balance;
@@ -90,7 +90,7 @@
   };
 
   const updatePrice = async () => {
-    const { price } = await fetchPancake();
+    const { price } = await fetchTokenPriceFromPair();
     unitPrice = price || unitPrice;
   };
 
