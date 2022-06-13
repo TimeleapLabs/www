@@ -348,7 +348,7 @@
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://discord.gg/YNXMYF6d" target="_blank">
+                  <Link href="https://discord.gg/y4f5Rh5Apq" target="_blank">
                     <Discord /> Discord
                   </Link>
                 </div>
@@ -544,7 +544,7 @@
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://discord.gg/YNXMYF6d" target="_blank">
+                  <Link href="https://discord.gg/y4f5Rh5Apq" target="_blank">
                     <Discord /> Discord
                   </Link>
                 </div>
