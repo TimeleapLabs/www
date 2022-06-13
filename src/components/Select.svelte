@@ -51,7 +51,7 @@
         </span>
       {/if}
       <div class="content">
-        {#if value !== undefined}
+        {#if label}
           {label}
         {:else}
           {placeholder}
