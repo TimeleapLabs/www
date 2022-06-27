@@ -147,7 +147,7 @@
     }
   };
 
-  $: getQuote(swapFrom, quoteInput);
+  $: getQuote(swapFrom, quoteInput).catch(() => null);
 
   const addToMetamask = async () => {
     const params = {
