@@ -38,6 +38,7 @@
   import Faucet from "src/icons/Faucet.svelte";
   import Tools from "src/icons/Tools.svelte";
   import CreditCard from "src/icons/CreditCard.svelte";
+  import Pancake from "src/icons/Pancake.svelte";
   import ChartLine from "src/icons/ChartLine.svelte";
   import SquareQuestion from "src/icons/SquareQuestion.svelte";
   import BarcodeRead from "src/icons/BarcodeRead.svelte";
@@ -466,11 +467,16 @@
               <div class="token">
                 <h3>Trade</h3>
                 <div>
+                  <Link href="/swap">
+                    <CreditCard /> Buy
+                  </Link>
+                </div>
+                <div>
                   <Link
                     href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
                     target="_blank"
                   >
-                    <CreditCard /> Buy
+                    <Pancake /> Buy on PancakeSwap
                   </Link>
                 </div>
                 <div>
@@ -885,7 +891,7 @@
   }
   .tokens {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 2em;
   }
   .token {

@@ -163,8 +163,8 @@
     description="Looking for the ₭enshi token? The Kenshi token is a frictionless yield token that can provide a passive income to its holders, and that is also used to pay for the Kenshi services."
     buttons={[
       {
-        href: "https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f",
-        external: true,
+        href: "/swap",
+        external: false,
         label: "Buy",
       },
       {

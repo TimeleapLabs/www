@@ -370,12 +370,7 @@
       </div>
     </div>
     <div class="buttons">
-      <Button
-        href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-        solid
-      >
-        Buy Kenshi <External />
-      </Button>
+      <Button href="/swap">Buy Kenshi</Button>
       <Button
         href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
         solid

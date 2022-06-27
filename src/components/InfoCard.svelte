@@ -47,6 +47,9 @@
     display: flex;
     gap: 3em;
   }
+  .spacer {
+    flex: 1;
+  }
   .card-inner .content {
     gap: 1em;
     text-align: left;
