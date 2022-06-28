@@ -1,4 +1,4 @@
-import { fetchPancake } from "../api/token";
+import { fetchTokenPriceFromPair } from "../api/token";
 import { ethers } from "ethers";
 import { onboard } from "../onboard";
 import { toast } from "@zerodevx/svelte-toast";
@@ -8,7 +8,7 @@ const collectorAddress = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
 const kenshiAddress = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
 
 const usdToKenshi = async (usd) => {
-  const { price } = await fetchPancake();
+  const { price } = await fetchTokenPriceFromPair();
   return price
     ? ethers.utils.parseUnits(Math.ceil(usd / parseFloat(price)).toFixed())
     : NaN;
