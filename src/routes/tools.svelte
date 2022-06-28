@@ -57,7 +57,7 @@
   const formatCurrency = (n) => formatThousands(trimDecimals(n), ",");
 
   const trimDecimals = (n) => {
-    const [lhs, rhs] = n.toString().split(".");
+    const [lhs, rhs = ""] = n.toString().split(".");
     return [lhs, rhs.slice(0, 4).replace(/0+$/, "")].filter(Boolean).join(".");
   };
 
