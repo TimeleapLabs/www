@@ -136,7 +136,7 @@
         <Select
           options={[
             { label: "Avalanche Fuji C-Chain", value: "avax" },
-            { label: "Binance Smart Chain Testnet", value: "bsc" },
+            { label: "BNB Smart Chain Testnet", value: "bsc" },
             { label: "Fantom Testnet", value: "ftm" },
             { label: "Polygon Mumbai", value: "mumbai" },
           ]}

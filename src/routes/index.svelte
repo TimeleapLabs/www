@@ -215,8 +215,8 @@
             verify pseudorandom numbers to be used by smart contracts on-chain.
           </p>
           <p>
-            Enjoy a responsive VRF solution on Binance Smart Chain, Polygon,
-            Fantom and Avalanche chains.
+            Enjoy a responsive VRF solution on BNB Smart Chain, Polygon, Fantom
+            and Avalanche chains.
           </p>
         </div>
         <div class="spacer" />

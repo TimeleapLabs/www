@@ -197,11 +197,11 @@
             value: "avalanche-fuji",
           },
           {
-            label: "Binance Smart Chain",
+            label: "BNB Smart Chain",
             value: "binance-mainnet",
           },
           {
-            label: "Binance Smart Chain Testnet",
+            label: "BNB Smart Chain Testnet",
             value: "binance-testnet",
           },
           { label: "Fantom", value: "fantom-mainnet" },

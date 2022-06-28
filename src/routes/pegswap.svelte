@@ -61,7 +61,7 @@
   };
 
   const chainIds = {
-    "0x38": { key: "bsc", title: "Binance Smart Chain", shortTitle: "BSC" },
+    "0x38": { key: "bsc", title: "BNB Smart Chain", shortTitle: "BSC" },
     "0x89": { key: "polygon", title: "Polygon", shortTitle: "MATIC" },
     "0xa86a": { key: "avax", title: "Avalanche", shortTitle: "AVAX" },
     "0xfa": { key: "ftm", title: "Fantom", shortTitle: "FTM" },
@@ -75,7 +75,7 @@
 
   const chainOptions = [
     { label: "Avalanche C-Chain", value: "avax" },
-    { label: "Binance Smart Chain", value: "bsc" },
+    { label: "BNB Smart Chain", value: "bsc" },
     { label: "Fantom", value: "ftm" },
     { label: "Polygon", value: "polygon" },
   ];

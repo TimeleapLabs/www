@@ -117,7 +117,7 @@
             value: "avalanche-mainnet",
           },
           {
-            label: "Binance Smart Chain",
+            label: "BNB Smart Chain",
             value: "binance-mainnet",
           },
           { label: "Fantom", value: "fantom-mainnet" },

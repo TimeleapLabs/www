@@ -49,7 +49,7 @@
     "avalanche-mainnet": "Avalanche Mainnet",
     "polygon-mainnet": "Polygon Mainnet",
     "fantom-mainnet": "Fantom Mainnet",
-    "binance-mainnet": "Binance Smart Chain Mainnet",
+    "binance-mainnet": "BNB Smart Chain Mainnet",
   };
 
   let isUpdating = false;
@@ -180,7 +180,7 @@
             value: "avalanche-mainnet",
           },
           {
-            label: "Binance Smart Chain",
+            label: "BNB Smart Chain",
             value: "binance-mainnet",
           },
           { label: "Fantom", value: "fantom-mainnet" },
