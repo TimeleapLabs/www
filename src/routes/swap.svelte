@@ -317,7 +317,7 @@
   .tokens {
     display: grid;
     gap: 0.5em;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
   .token {
     display: flex;
@@ -353,5 +353,18 @@
   a {
     color: black;
     text-decoration: underline;
+  }
+  @media only screen and (max-width: 640px) {
+    .section {
+      padding: 1em;
+    }
+  }
+  @media only screen and (max-width: 420px) {
+    :global(.card.padding) {
+      padding: 1.5em 1.25em;
+    }
+    .forms > div:nth-of-type(2) {
+      display: none;
+    }
   }
 </style>
