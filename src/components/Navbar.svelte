@@ -313,7 +313,7 @@
               <div class="product">
                 <h3>Other</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/services/locker.html">
+                  <Link href="/lockers">
                     <BinaryLock /> Liquidity Lockers
                   </Link>
                 </div>

@@ -33,7 +33,7 @@
 
   // MAINNET CONTRACT ADDRESS
   const contractAddr = $page.params.address;
-  const deployerAddr = "0x367Fd3EbD74A1da5439069B4eefCFD7a85956993";
+  const deployerAddr = "0x4571bce71ce17a85a66825f94d43aef4d2bbb391";
   const migrationRegistryAddr = "0xC21261F93360B3F9123A4fb26bbB6618aAdeFcaC";
 
   $: contractAddrDisplay = [
@@ -266,7 +266,7 @@
                     <div>{owner}</div>
                   </div>
                   <div class="row">
-                    <h4>Unlocks at</h4>
+                    <h4>Unlocks on</h4>
                     <div>
                       {lock.toLocaleDateString(undefined, {
                         year: "numeric",

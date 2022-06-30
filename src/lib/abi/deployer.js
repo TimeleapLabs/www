@@ -13,8 +13,27 @@ export default [
         name: "addr",
         type: "address",
       },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
     ],
     name: "LockerCreated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+    ],
+    name: "MinKenshiToLockChanged",
     type: "event",
   },
   {
@@ -46,21 +65,21 @@ export default [
         type: "uint256",
       },
     ],
-    name: "PriceChanged",
+    name: "PriceInKenshiChanged",
     type: "event",
   },
   {
-    anonymous: false,
-    inputs: [
+    inputs: [],
+    name: "getMinKenshiToLock",
+    outputs: [
       {
-        indexed: false,
         internalType: "uint256",
-        name: "price",
+        name: "",
         type: "uint256",
       },
     ],
-    name: "PriceInKenshiChanged",
-    type: "event",
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
@@ -70,19 +89,6 @@ export default [
         internalType: "address",
         name: "",
         type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getPrice",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -147,8 +153,14 @@ export default [
     type: "function",
   },
   {
-    inputs: [],
-    name: "newLocker",
+    inputs: [
+      {
+        internalType: "address",
+        name: "contractOwner",
+        type: "address",
+      },
+    ],
+    name: "newLockerPayKenshi",
     outputs: [
       {
         internalType: "address",
@@ -156,17 +168,52 @@ export default [
         type: "address",
       },
     ],
-    stateMutability: "payable",
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "address",
+        name: "contractOwner",
+        type: "address",
+      },
+    ],
     name: "newLockerVestKenshi",
     outputs: [
       {
         internalType: "address",
         name: "",
         type: "address",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "data",
+        type: "bytes",
+      },
+    ],
+    name: "onApprovalReceived",
+    outputs: [
+      {
+        internalType: "bytes4",
+        name: "",
+        type: "bytes4",
       },
     ],
     stateMutability: "nonpayable",
@@ -239,7 +286,7 @@ export default [
         type: "uint256",
       },
     ],
-    name: "setPrice",
+    name: "setMinKenshiToLock",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

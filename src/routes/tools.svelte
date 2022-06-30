@@ -119,7 +119,7 @@
   };
 
   // This API key is available for free to those who want to
-  // query Kenshi contract transfer events
+  // query the Kenshi contract transfer events
   const apikey = "fSDjCXCTyq+cx7+HLXKBA5oGIfqyMwztb+0/7pvTK8I=";
   const owner = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
   const endpoint = "https://api.kenshi.io/index/graphql";

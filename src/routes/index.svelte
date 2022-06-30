@@ -130,7 +130,7 @@
 <div class="discover">
   <h2>Discover all of Kenshi.</h2>
   <div class="products-list">
-    <a href="https://docs.kenshi.io/services/locker.html" class="product">
+    <a href="/lockers" class="product">
       <BinaryLock />
       <h3>Liquidity Lockers</h3>
       <Arrow />
