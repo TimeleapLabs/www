@@ -389,6 +389,11 @@
       href="https://blog.kenshi.io/kenshi-vrf-40-to-infinitely-faster-than-chainlink-7856853a3ac1"
     />
   </div>
+  <div class="buttons">
+    <Button href="https://blog.kenshi.io/">
+      View all articles <External />
+    </Button>
+  </div>
 </div>
 
 <Footer />
@@ -591,6 +596,9 @@
       minmax(280px, calc((100% - 6em) / 4))
     );
     gap: 2em;
+  }
+  .articles > .buttons {
+    margin-top: 2em;
   }
   @media only screen and (max-width: 720px) {
     .articles .grid {
