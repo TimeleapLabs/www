@@ -600,6 +600,14 @@
   .articles > .buttons {
     margin-top: 2em;
   }
+  @media screen and (max-width: 1350px) {
+    .articles .grid {
+      grid-template-columns: repeat(
+        auto-fill,
+        minmax(280px, calc((100% - 2em) / 2))
+      );
+    }
+  }
   @media only screen and (max-width: 720px) {
     .articles .grid {
       grid-template-columns: 1fr;
