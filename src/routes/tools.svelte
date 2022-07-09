@@ -137,6 +137,12 @@
       }
   }`;
 
+  const getArgByName = (args, name) =>
+    args
+      .filter((a) => a[0] === name)
+      .pop()
+      .pop();
+
   const runQuery = (arg) =>
     fetch(endpoint, {
       method: "POST",
@@ -146,12 +152,16 @@
     })
       .then((r) => r.json())
       .then((r) =>
-        r.data.getEntries.map((e) =>
-          e.event.args
-            .filter((a) => a[0] === "amount")
-            .pop()
-            .pop()
-        )
+        r.data.getEntries.map((e) => {
+          const amount = getArgByName(e.event.args, "amount");
+          const to = getArgByName(e.event.args, "to");
+          if (to === treasuryAddr) {
+            // Account for reflections going out of this account
+            return ethers.BigNumber.from(amount).mul(2);
+          } else {
+            return amount;
+          }
+        })
       );
 
   const sumArr = (arr) =>
@@ -163,8 +173,8 @@
 
     const receivedAmount = sumArr(received);
     const sentAmount = sumArr(sent);
-
     const diff = receivedAmount.sub(sentAmount);
+
     reflections = ethers.utils.formatUnits(balance.sub(diff));
     reflectionsDisplay = formatCurrency(reflections);
     reflectionsUsdDisplay = formatCurrency(
