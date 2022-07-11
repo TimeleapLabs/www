@@ -16,16 +16,16 @@
   <div class="top">
     <div class="logo" />
     <div class="social">
-      <a href="https://t.me/kenshi_token" target="_blank"> <Telegram /> </a>
-      <a href="https://discord.gg/y4f5Rh5Apq" target="_blank"> <Discord /> </a>
-      <a href="https://twitter.com/kenshi_token" target="_blank">
+      <a href="https://t.me/KenshiTech" target="_blank"> <Telegram /> </a>
+      <a href="https://discord.gg/KenshiTech" target="_blank"> <Discord /> </a>
+      <a href="https://twitter.com/KenshiTech" target="_blank">
         <Twitter />
       </a>
       <a href="https://blog.kenshi.io" target="_blank"> <Medium /> </a>
-      <a href="https://www.reddit.com/r/kenshi_token/" target="_blank">
+      <a href="https://www.reddit.com/r/KenshiTech/" target="_blank">
         <Reddit />
       </a>
-      <a href="https://github.com/kenshi-token" target="_blank"> <Github /> </a>
+      <a href="https://github.com/KenshiTech" target="_blank"> <Github /> </a>
       <a href="https://www.linkedin.com/company/kenshiio/" target="_blank">
         <LinkedIn />
       </a>

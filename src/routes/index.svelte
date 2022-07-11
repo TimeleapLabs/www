@@ -185,12 +185,12 @@
     description="Join the Kenshi communities to talk tech, partake in early adopter programs, get help with one of our services, or to get the latest Kenshi news."
     buttons={[
       {
-        href: "https://t.me/kenshi_token",
+        href: "https://t.me/KenshiTech",
         external: true,
         label: "Telegram",
       },
       {
-        href: "https://twitter.com/kenshi_token",
+        href: "https://twitter.com/KenshiTech",
         external: true,
         label: "Twitter",
       },
@@ -225,14 +225,14 @@
         <div class="buttons">
           <Button
             solid
-            href="https://remix.ethereum.org/#url=https://raw.githubusercontent.com/kenshi-token/d20/master/contracts/D20.sol"
+            href="https://remix.ethereum.org/#url=https://raw.githubusercontent.com/KenshiTech/d20/master/contracts/D20.sol"
             target="_blank"
           >
             Remix <External />
           </Button>
           <Button
             solid
-            href="https://github.com/kenshi-token?q=vrf&type=all&language=&sort="
+            href="https://github.com/KenshiTech?q=vrf&type=all&language=&sort="
             target="_blank"
           >
             Github <External />
@@ -262,7 +262,7 @@
         title="Push notifications for the blockchain"
         buttons={[
           {
-            href: "https://github.com/kenshi-token?q=reverse-api+OR+graphql&type=public&language=&sort=",
+            href: "https://github.com/KenshiTech?q=reverse-api+OR+graphql&type=public&language=&sort=",
             external: true,
             label: "View examples",
           },
@@ -328,7 +328,7 @@
 <div class="resources">
   <div class="grid">
     <CardButton
-      href="https://github.com/kenshi-token"
+      href="https://github.com/KenshiTech"
       image="/images/pfp/github.png"
       title="Github"
       description="Check Kenshi GitHub repositories"
@@ -352,7 +352,7 @@
       description="Join Kenshi developers chat"
     />
     <CardButton
-      href="https://discord.gg/y4f5Rh5Apq"
+      href="https://discord.gg/KenshiTech"
       image="/images/pfp/discord.png"
       title="Discord"
       description="Join Kenshi Discord server"

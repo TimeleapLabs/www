@@ -336,7 +336,7 @@
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://github.com/kenshi-token" target="_blank">
+                  <Link href="https://github.com/KenshiTech" target="_blank">
                     <Github /> Github
                   </Link>
                 </div>
@@ -349,7 +349,7 @@
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://discord.gg/y4f5Rh5Apq" target="_blank">
+                  <Link href="https://discord.gg/KenshiTech" target="_blank">
                     <Discord /> Discord
                   </Link>
                 </div>
@@ -367,7 +367,7 @@
                 <h4>GraphQL</h4>
                 <div>
                   <Link
-                    href="https://github.com/kenshi-token/graphql-example-node-fetch"
+                    href="https://github.com/KenshiTech/graphql-example-node-fetch"
                     target="_blank"
                   >
                     <Node /> Node.js (fetch)
@@ -375,7 +375,7 @@
                 </div>
                 <div>
                   <Link
-                    href="https://github.com/kenshi-token/graphql-example-node-axios"
+                    href="https://github.com/KenshiTech/graphql-example-node-axios"
                     target="_blank"
                   >
                     <Node /> Node.js (axios)
@@ -383,7 +383,7 @@
                 </div>
                 <div>
                   <Link
-                    href="https://github.com/kenshi-token/graphql-example-python"
+                    href="https://github.com/KenshiTech/graphql-example-python"
                     target="_blank"
                   >
                     <Python /> Python
@@ -391,7 +391,7 @@
                 </div>
                 <div>
                   <Link
-                    href="https://github.com/kenshi-token/graphql-example-go"
+                    href="https://github.com/KenshiTech/graphql-example-go"
                     target="_blank"
                   >
                     <Go /> Go
@@ -405,7 +405,7 @@
                 <h4>Reverse API</h4>
                 <div>
                   <Link
-                    href="https://github.com/kenshi-token/reverse-api-example-node"
+                    href="https://github.com/KenshiTech/reverse-api-example-node"
                     target="_blank"
                   >
                     <Node /> Node.js
@@ -413,7 +413,7 @@
                 </div>
                 <div>
                   <Link
-                    href="https://github.com/kenshi-token/reverse-api-example-python"
+                    href="https://github.com/KenshiTech/reverse-api-example-python"
                     target="_blank"
                   >
                     <Python /> Python
@@ -424,7 +424,7 @@
                 <h3>Randomness</h3>
                 <div>
                   <Link
-                    href="https://github.com/kenshi-token/d20"
+                    href="https://github.com/KenshiTech/d20"
                     target="_blank"
                   >
                     <D20 /> D20 Smart Contract
@@ -525,7 +525,7 @@
                 </div>
                 <div>
                   <Link
-                    href="https://github.com/kenshi-token/contracts"
+                    href="https://github.com/KenshiTech/contracts"
                     target="_blank"
                   >
                     <Code /> Source code
@@ -540,7 +540,7 @@
               <div class="community">
                 <h3>Chat</h3>
                 <div>
-                  <Link href="https://t.me/kenshi_token" target="_blank">
+                  <Link href="https://t.me/KenshiTech" target="_blank">
                     <Telegram /> Community Chat
                   </Link>
                 </div>
@@ -550,7 +550,7 @@
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://discord.gg/y4f5Rh5Apq" target="_blank">
+                  <Link href="https://discord.gg/KenshiTech" target="_blank">
                     <Discord /> Discord
                   </Link>
                 </div>
@@ -558,13 +558,13 @@
               <div class="community">
                 <h3>Social Media</h3>
                 <div>
-                  <Link href="https://twitter.com/kenshi_token" target="_blank">
+                  <Link href="https://twitter.com/KenshiTech" target="_blank">
                     <Twitter /> Twitter
                   </Link>
                 </div>
                 <div>
                   <Link
-                    href="https://www.reddit.com/r/kenshi_token/"
+                    href="https://www.reddit.com/r/KenshiTech/"
                     target="_blank"
                   >
                     <Reddit /> Reddit
@@ -585,7 +585,7 @@
                   <Link href="https://blog.kenshi.io"><Medium /> Medium</Link>
                 </div>
                 <div>
-                  <Link href="https://github.com/kenshi-token" target="_blank">
+                  <Link href="https://github.com/KenshiTech" target="_blank">
                     <Github /> Github
                   </Link>
                 </div>
