@@ -24,9 +24,12 @@
   import { toast } from "@zerodevx/svelte-toast";
   import { ethers } from "ethers";
   import { onMount } from "svelte";
-  import formatThousands from "format-thousands";
+  import { SpinLine } from "svelte-loading-spinners";
+  import { onboard } from "src/lib/onboard";
 
+  import formatThousands from "format-thousands";
   import kenshiAbi from "src/lib/abi/kenshi";
+
   import { fetchTokenPriceFromPair } from "src/lib/api/token";
   import { page } from "$app/stores";
 
@@ -78,6 +81,7 @@
       : "0";
 
   const kenshiAddr = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
+  const proxyAddr = "0x6b5baa82D2AF098429BC63001dc172E04D8975B8";
   const treasuryAddr = "0xD59321c8266534dac369F0eFABDD5b815F1a5eb6";
   const jsonRpcUrl = "https://bsc-dataseed.binance.org";
   const provider = new ethers.providers.JsonRpcProvider(jsonRpcUrl);
@@ -195,6 +199,60 @@
       value: 86400 * (i + 2),
     })),
   ];
+
+  let transferTo = "";
+  let transferAmount = "0";
+  let transferring = false;
+
+  const maxTransfer = () => {
+    transferAmount = ethers.utils.formatUnits(balance, 18);
+  };
+
+  const transfer = async () => {
+    if (!transferTo) {
+      return toast.push("Destination is required");
+    }
+
+    if (!transferAmount || !Number(transferAmount)) {
+      return toast.push("Amount is required");
+    }
+
+    transferring = true;
+
+    const provider = new ethers.providers.Web3Provider($wallet.provider);
+    const signer = provider.getSigner();
+
+    try {
+      await onboard.setChain({ chainId: "0x38" });
+    } catch (error) {
+      transferring = false;
+      return toast.push("Couldn't switch to BNBChain.");
+    }
+
+    try {
+      const parsedAmount = ethers.utils.parseUnits(transferAmount);
+      const data = ethers.utils.defaultAbiCoder.encode(
+        ["address"],
+        [transferTo]
+      );
+
+      const tx = await contract
+        .connect(signer)
+        ["transferAndCall(address,uint256,bytes)"](
+          proxyAddr,
+          parsedAmount,
+          data
+        );
+
+      await tx.wait(1);
+
+      toast.push("Transfer successful.");
+    } catch (error) {
+      toast.push("Transfer failed.");
+    }
+
+    transferring = false;
+  };
 
   onMount(() => {
     updatePrice();
@@ -391,6 +449,55 @@
   </Card>
 </div>
 
+<div class="section">
+  <h2>Wallet Transfer</h2>
+  <div class="alert">
+    <Alert>
+      You can use this tool to do a tax-free transfer from your wallet to
+      another.
+      {#if !$wallet?.provider}
+        To use this tool, you need to connect your wallet.
+      {/if}
+    </Alert>
+  </div>
+  {#if $wallet?.provider}
+    <Card>
+      <div class="card-inner forms">
+        <div class="form">
+          <h5>Wallet address</h5>
+          <TextInput
+            placeholder="Destination"
+            suffix="Destination"
+            bind:value={transferTo}
+            icon={Wallet}
+          />
+          <div class="field-with-buttons">
+            <TextInput
+              placeholder="Amount"
+              suffix="Amount"
+              icon={Coin}
+              regex={/^(0|[1-9][0-9]*(\.[0-9]+)?|0\.[0-9]+)$/}
+              bind:value={transferAmount}
+            />
+            <Button on:click={maxTransfer}>MAX</Button>
+          </div>
+        </div>
+        <div />
+      </div>
+      <div class="buttons">
+        <Button on:click={transfer} disabled={transferring}>
+          {#if transferring}
+            <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
+            Processing
+          {:else}
+            Transfer
+          {/if}
+        </Button>
+      </div>
+    </Card>
+  {/if}
+</div>
+
 <Footer />
 
 <style>
@@ -466,5 +573,11 @@
   }
   .alert {
     margin-bottom: 2em;
+    max-width: 560px;
+  }
+  .field-with-buttons {
+    display: flex;
+    gap: 1em;
+    align-items: flex-start;
   }
 </style>
