@@ -344,7 +344,10 @@
                   <Link href="https://blog.kenshi.io"><Medium /> Medium</Link>
                 </div>
                 <div>
-                  <Link href="https://t.me/kenshi_developers" target="_blank">
+                  <Link
+                    href="https://t.me/KenshiTechDevelopers"
+                    target="_blank"
+                  >
                     <Telegram /> Telegram
                   </Link>
                 </div>
@@ -545,7 +548,10 @@
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://t.me/kenshi_developers" target="_blank">
+                  <Link
+                    href="https://t.me/KenshiTechDevelopers"
+                    target="_blank"
+                  >
                     <Telegram /> Dev Chat
                   </Link>
                 </div>

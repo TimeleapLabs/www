@@ -346,7 +346,7 @@
       description="Read Kenshi blog articles"
     />
     <CardButton
-      href="https://t.me/kenshi_developers"
+      href="https://t.me/KenshiTechDevelopers"
       image="/images/pfp/telegram.png"
       title="Telegram"
       description="Join Kenshi developers chat"

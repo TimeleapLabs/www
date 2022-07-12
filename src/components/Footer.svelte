@@ -37,7 +37,7 @@
       <Link href="https://docs.kenshi.io">Documentation</Link>
       <Link href="/dashboard">Dashboard</Link>
       <Link href="/status">Service Status</Link>
-      <Link href="https://t.me/kenshi_developers" target="_blank">
+      <Link href="https://t.me/KenshiTechDevelopers" target="_blank">
         Developers chat
       </Link>
       <Link href="https://docs.kenshi.io/services/vrf/index.html">
