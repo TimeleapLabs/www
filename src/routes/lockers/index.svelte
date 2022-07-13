@@ -109,8 +109,8 @@
   let acceptedTerms;
 
   const paymentOptions = [
-    { label: "Spend 200M Kenshi", value: "spend" },
-    { label: "Lock 400M Kenshi for 1Y", value: "lock" },
+    { label: "Spend 100M Kenshi", value: "spend" },
+    { label: "Lock 200M Kenshi for 1Y", value: "lock" },
   ];
 
   let spin = false;
@@ -146,8 +146,8 @@
     try {
       const amount =
         paymentMethod === "lock"
-          ? ethers.utils.parseUnits("400000001")
-          : ethers.utils.parseUnits("200000001");
+          ? ethers.utils.parseUnits("200000001")
+          : ethers.utils.parseUnits("100000001");
 
       const data = ethers.utils.defaultAbiCoder.encode(
         ["bool"],
