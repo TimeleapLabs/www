@@ -81,7 +81,7 @@
       : "0";
 
   const kenshiAddr = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
-  const proxyAddr = "0x6b5baa82D2AF098429BC63001dc172E04D8975B8";
+  const proxyAddr = "0x0A7eD4314D9109986281bdd6235f1A5623690110";
   const treasuryAddr = "0xD59321c8266534dac369F0eFABDD5b815F1a5eb6";
   const jsonRpcUrl = "https://bsc-dataseed.binance.org";
   const provider = new ethers.providers.JsonRpcProvider(jsonRpcUrl);
@@ -215,6 +215,15 @@
 
     if (!transferAmount || !Number(transferAmount)) {
       return toast.push("Amount is required");
+    }
+
+    const tax = await contract.getTaxPercentageAt(
+      userAddress,
+      Math.floor(new Date().valueOf() / 1000)
+    );
+
+    if (tax > 5) {
+      return toast.push("Fine amount is bigger than zero");
     }
 
     transferring = true;
@@ -481,6 +490,10 @@
             />
             <Button on:click={maxTransfer}>MAX</Button>
           </div>
+          <Alert warning>
+            To be able to make a transfer, your selling tax should be 5%. See
+            the Kenshi tools above to find out about your current tax.
+          </Alert>
         </div>
         <div />
       </div>
