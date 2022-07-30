@@ -29,6 +29,7 @@
   let chain;
   let fromBlock;
   let syncTaskId;
+  let requests;
   let query = [];
 
   $: if (step) {
@@ -60,7 +61,12 @@
   };
 
   $: if (interval && timeout && duration) {
-    price = getReverseAPIPrice(interval, timeout, duration);
+    price = getReverseAPIPrice(
+      interval,
+      timeout,
+      Number(duration),
+      Number(requests)
+    );
   } else {
     price = 0;
   }
@@ -76,6 +82,7 @@
     chain,
     step,
     fromBlock: Number(fromBlock),
+    requests: Number(requests),
     syncTaskId,
     query: query
       .map((item) => ({
@@ -90,6 +97,7 @@
     interval: "Interval",
     timeout: "Timeout",
     duration: "Duration",
+    requests: "Requests",
     query: "Query",
     chain: "Chain",
     step: "Step",
@@ -229,6 +237,13 @@
         bind:value={duration}
         bind:valid={webhookInvalids.duration}
         suffix={duration > 1 ? "months" : "month"}
+      />
+      <TextInput
+        placeholder="Requests"
+        bind:value={requests}
+        bind:valid={webhookInvalids.requests}
+        regex={/[1-9]\d*/}
+        suffix={requests > 1 ? "requests" : "request"}
       />
     </div>
     <div class="form">

@@ -46,14 +46,17 @@
     }
   };
 
-  let unitPrice;
+  let requests = 10000;
   let duration = 1;
-
   let showModifyForm = false;
   let showRechargeForm = false;
 
-  $: unitPrice = getReverseAPIPrice(webhook.interval, webhook.timeout, 1);
-  $: price = Number(duration) * unitPrice;
+  $: price = getReverseAPIPrice(
+    webhook.interval,
+    webhook.timeout,
+    Number(duration),
+    Number(requests)
+  );
 
   let userAddress;
 
@@ -167,7 +170,16 @@
       return;
     }
 
-    const webhookRequest = { id: webhook.id, duration };
+    if (!Number.isFinite(Number(requests))) {
+      toast.push("Requests is required");
+      return;
+    }
+
+    const webhookRequest = {
+      id: webhook.id,
+      duration: Number(duration),
+      requests: Number(requests),
+    };
 
     isRecharging = true;
 
@@ -210,177 +222,193 @@
   };
 </script>
 
-<Card>
-  {#if showModifyForm}
-    <div class="form">
-      <div class="header">
-        <h4>Modify webhook</h4>
-        {#if !isUpdating}
-          <Button flat on:click={() => (showModifyForm = false)}>
-            <Xmark />
-          </Button>
-        {/if}
-      </div>
+<div class="wrap">
+  <Card>
+    {#if showModifyForm}
+      <div class="form">
+        <div class="header">
+          <h4>Modify webhook</h4>
+          {#if !isUpdating}
+            <Button flat on:click={() => (showModifyForm = false)}>
+              <Xmark />
+            </Button>
+          {/if}
+        </div>
 
-      <h5>Basics</h5>
-      <TextInput
-        placeholder="Endpoint"
-        name="endpoint"
-        regex={/https?:\/\/.+/}
-        bind:value={endpoint}
-      />
-      <TextInput
-        placeholder="Sync Task ID"
-        name="syncTaskId"
-        suffix="Task ID"
-        bind:value={syncTaskId}
-      />
+        <h5>Basics</h5>
+        <TextInput
+          placeholder="Endpoint"
+          name="endpoint"
+          regex={/https?:\/\/.+/}
+          bind:value={endpoint}
+        />
+        <TextInput
+          placeholder="Sync Task ID"
+          name="syncTaskId"
+          suffix="Task ID"
+          bind:value={syncTaskId}
+        />
 
-      <h5>Query</h5>
-      {#each query.map((q, i) => [q, i]) as [q, i]}
-        <div
-          class="split"
-          class:triple={["arg-is", "block-number-is"].includes(q.condition)}
-        >
-          <Select
-            options={[
-              { label: "Contract address is", value: "contract-is" },
-              { label: "Event argument is", value: "arg-is" },
-              { label: "Event name is", value: "event-name-is" },
-              {
-                label: "Event signature is",
-                value: "event-signature-is",
-              },
-              {
-                label: "Block number is",
-                value: "block-number-is",
-              },
-            ]}
-            placeholder="Choose a condition"
-            bind:value={q.condition}
+        <h5>Query</h5>
+        {#each query.map((q, i) => [q, i]) as [q, i]}
+          <div
+            class="split"
+            class:triple={["arg-is", "block-number-is"].includes(q.condition)}
           >
-            <div class="field-buttons delete" slot="prefix">
-              <Button flat on:click={deleteQuery(i)}>
-                <TrashCan />
-              </Button>
-            </div>
-          </Select>
-          {#if q.condition === "arg-is"}
-            <TextInput bind:value={q.arg} placeholder="Argument name" />
-          {:else if q.condition === "block-number-is"}
             <Select
               options={[
-                { label: "Bigger than", value: "gt" },
-                { label: "Smaller than", value: "lt" },
+                { label: "Contract address is", value: "contract-is" },
+                { label: "Event argument is", value: "arg-is" },
+                { label: "Event name is", value: "event-name-is" },
+                {
+                  label: "Event signature is",
+                  value: "event-signature-is",
+                },
+                {
+                  label: "Block number is",
+                  value: "block-number-is",
+                },
               ]}
-              placeholder="Choose comparison"
-              bind:value={q.comparison}
-            />
-          {/if}
-          <TextInput bind:value={q.value} placeholder="Value" />
-        </div>
-      {/each}
-    </div>
-    <div class="buttons">
-      {#if !isUpdating}
-        <Button on:click={() => (showModifyForm = false)}>Cancel</Button>
-      {/if}
-      <Button on:click={signAndSend} disabled={isUpdating}>
-        {#if isUpdating}
-          <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
-          Processing
-        {:else}
-          Sign & Send
-        {/if}
-      </Button>
-    </div>
-  {:else if showRechargeForm}
-    <div class="form">
-      <div class="header">
-        <h4>Recharge</h4>
-        {#if !isRecharging}
-          <Button flat on:click={() => (showRechargeForm = false)}>
-            <Xmark />
-          </Button>
-        {/if}
-      </div>
-      <div class="form">
-        <div class="description">
-          Recharge for ${unitPrice} per month.
-        </div>
-        <TextInput
-          placeholder="Duration (Months)"
-          name="duration"
-          regex={/^[1-9][0-9]*$/}
-          bind:value={duration}
-          suffix={duration > 1 ? "months" : "month"}
-        />
-      </div>
-    </div>
-    <div class="buttons">
-      {#if !isRecharging}
-        <Button on:click={() => (showRechargeForm = false)}>Cancel</Button>
-      {/if}
-      <Button on:click={recharge} disabled={isRecharging}>
-        {#if isRecharging}
-          <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
-          Processing
-        {:else}
-          Recharge
-          {#if price}
-            ${price}
-          {/if}
-        {/if}
-      </Button>
-    </div>
-  {:else}
-    <div class="body">
-      <div class="copy" on:click={copy(webhook.endpoint)}>
-        <Alert>
-          <div class="address">
-            <img
-              src="/images/chains/{chainIcons[webhook.chain]}.svg"
-              alt={webhook.chain}
-            />
-            <span>{webhook.endpoint}</span>
-            <Copy />
+              placeholder="Choose a condition"
+              bind:value={q.condition}
+            >
+              <div class="field-buttons delete" slot="prefix">
+                <Button flat on:click={deleteQuery(i)}>
+                  <TrashCan />
+                </Button>
+              </div>
+            </Select>
+            {#if q.condition === "arg-is"}
+              <TextInput bind:value={q.arg} placeholder="Argument name" />
+            {:else if q.condition === "block-number-is"}
+              <Select
+                options={[
+                  { label: "Bigger than", value: "gt" },
+                  { label: "Smaller than", value: "lt" },
+                ]}
+                placeholder="Choose comparison"
+                bind:value={q.comparison}
+              />
+            {/if}
+            <TextInput bind:value={q.value} placeholder="Value" />
           </div>
-        </Alert>
-      </div>
-      <TextInput disabled value={webhook.syncTaskId} suffix="Sync task ID">
-        <div class="field-buttons" slot="buttons">
-          <Button flat on:click={copy(webhook.syncTaskId)}>
-            <Copy />
-          </Button>
-        </div>
-      </TextInput>
-      <div class="table">
-        <div class="row">
-          <h5>Query</h5>
-          <h5>Value</h5>
-        </div>
-        {#each webhook.query as filter}
-          <div class="row">
-            <h5>{conditionNames[filter.condition]}</h5>
-            <div>{getFilterValue(filter)}</div>
-          </div>
-        {:else}
-          <div class="row">No filters.</div>
         {/each}
       </div>
-      <div>
-        Every {webhook.interval} seconds, {webhook.step} blocks at a time, expires
-        on {new Date(webhook.expiresAt).toLocaleDateString("en-US")}.
+      <div class="buttons">
+        {#if !isUpdating}
+          <Button on:click={() => (showModifyForm = false)}>Cancel</Button>
+        {/if}
+        <Button on:click={signAndSend} disabled={isUpdating}>
+          {#if isUpdating}
+            <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
+            Processing
+          {:else}
+            Sign & Send
+          {/if}
+        </Button>
       </div>
-    </div>
-    <div class="buttons">
-      <Button on:click={() => (showModifyForm = true)}>Modify</Button>
-      <Button on:click={() => (showRechargeForm = true)}>Recharge</Button>
-    </div>
-  {/if}
-</Card>
+    {:else if showRechargeForm}
+      <div class="form">
+        <div class="header">
+          <h4>Recharge</h4>
+          {#if !isRecharging}
+            <Button flat on:click={() => (showRechargeForm = false)}>
+              <Xmark />
+            </Button>
+          {/if}
+        </div>
+        <div class="form">
+          <div class="description">
+            Recharge for ${price}.
+          </div>
+          <TextInput
+            placeholder="Duration (Months)"
+            name="duration"
+            regex={/^[1-9][0-9]*$/}
+            bind:value={duration}
+            suffix={duration > 1 ? "months" : "month"}
+          />
+          <TextInput
+            placeholder="Requests"
+            name="requests"
+            regex={/^[1-9][0-9]*$/}
+            bind:value={requests}
+            suffix={requests > 1 ? "requests" : "request"}
+          />
+        </div>
+      </div>
+      <div class="buttons">
+        {#if !isRecharging}
+          <Button on:click={() => (showRechargeForm = false)}>Cancel</Button>
+        {/if}
+        <Button on:click={recharge} disabled={isRecharging}>
+          {#if isRecharging}
+            <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
+            Processing
+          {:else}
+            Recharge
+            {#if price}
+              ${price}
+            {/if}
+          {/if}
+        </Button>
+      </div>
+    {:else}
+      <div class="body">
+        <div class="copy" on:click={copy(webhook.endpoint)}>
+          <Alert>
+            <div class="address">
+              <img
+                src="/images/chains/{chainIcons[webhook.chain]}.svg"
+                alt={webhook.chain}
+              />
+              <span>{webhook.endpoint}</span>
+              <Copy />
+            </div>
+          </Alert>
+        </div>
+        <TextInput disabled value={webhook.syncTaskId} suffix="Sync task ID">
+          <div class="field-buttons" slot="buttons">
+            <Button flat on:click={copy(webhook.syncTaskId)}>
+              <Copy />
+            </Button>
+          </div>
+        </TextInput>
+        <div class="table">
+          <div class="row">
+            <h5>Query</h5>
+            <h5>Value</h5>
+          </div>
+          {#each webhook.query as filter}
+            <div class="row">
+              <h5>{conditionNames[filter.condition]}</h5>
+              <div>{getFilterValue(filter)}</div>
+            </div>
+          {:else}
+            <div class="row">No filters.</div>
+          {/each}
+        </div>
+        <div>
+          Every {webhook.interval} seconds, {webhook.step} blocks at a time, expires
+          on {new Date(webhook.expiresAt).toLocaleDateString("en-US")}.
+        </div>
+        <div>
+          A total of {webhook.requests || 0} requests are left.
+        </div>
+      </div>
+      <div class="buttons">
+        <Button on:click={() => (showModifyForm = true)}>Modify</Button>
+        <Button on:click={() => (showRechargeForm = true)}>Recharge</Button>
+      </div>
+    {/if}
+  </Card>
+</div>
 
 <style>
+  .wrap > :global(.card) {
+    display: flex;
+    flex-direction: column;
+  }
   .buttons {
     margin-top: 2em;
     display: flex;
@@ -409,6 +437,7 @@
   }
   .body {
     display: flex;
+    flex: 1;
     gap: 1em;
     flex-direction: column;
   }
@@ -436,6 +465,7 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    flex: 1;
   }
   .split {
     display: grid;

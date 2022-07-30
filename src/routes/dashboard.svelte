@@ -88,6 +88,7 @@
         endpoint
         interval
         timeout
+        requests
         query {
           condition
           value
