@@ -468,7 +468,7 @@
                 </div>
               </div>
               <div class="token">
-                <h3>Trade</h3>
+                <h3>Token</h3>
                 <div>
                   <Link href="/swap">
                     <CreditCard /> Buy
