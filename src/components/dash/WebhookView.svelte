@@ -67,6 +67,7 @@
   $: if ($wallet) setAddress();
 
   const chainIcons = {
+    "ethereum-goerli": "ethereum",
     "avalanche-fuji": "avalanche",
     "avalanche-mainnet": "avalanche",
     "polygon-mumbai": "polygon",
