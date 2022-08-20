@@ -18,6 +18,7 @@
   import Timer from "src/icons/Timer.svelte";
   import Wallet from "src/icons/WalletThin.svelte";
   import Link from "src/icons/Link.svelte";
+  import MetaMask from "src/icons/MetaMask.svelte";
 
   import { wallet } from "src/stores/wallet";
 
@@ -263,6 +264,30 @@
     transferring = false;
   };
 
+  const addToMetamask = async () => {
+    const params = {
+      type: "ERC20",
+      options: {
+        address: kenshiAddr,
+        symbol: "Kenshi",
+        decimals: 18,
+        image: `${window.location.origin}/images/logo/512x512.png`,
+      },
+    };
+
+    try {
+      await onboard.setChain({ chainId: "0x38" });
+    } catch (error) {
+      return toast.push("Couldn't switch to the BSC network.");
+    }
+
+    $wallet.provider
+      .request({ method: "wallet_watchAsset", params })
+      .catch(() => {
+        toast.push("Couldn't add the token to your wallet.");
+      });
+  };
+
   onMount(() => {
     updatePrice();
     const priceInterval = setInterval(updatePrice, 5 * 60 * 1000);
@@ -448,6 +473,12 @@
     </div>
     <div class="buttons">
       <Button href="/swap">Buy Kenshi</Button>
+      {#if $wallet?.provider}
+        <Button on:click={addToMetamask}>
+          <MetaMask />
+          Add ₭enshi
+        </Button>
+      {/if}
       <Button
         href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
         solid
@@ -569,6 +600,9 @@
     margin-top: 2em;
     display: flex;
     gap: 1em;
+  }
+  .buttons :global(svg) {
+    width: 1em;
   }
   .mask {
     position: absolute;
