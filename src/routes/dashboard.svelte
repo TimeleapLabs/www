@@ -242,13 +242,13 @@
       {#each userApiKeys as graphql}
         <GraphQLView {graphql} {getUserApiKeys} />
       {:else}
-        You do not have any GraphQL API keys at the moment. Create one using the
-        button below.
+        You do not have any GraphQL + MQL API keys at the moment. Create one
+        using the button below.
       {/each}
     </div>
     <div class="buttons">
       <Button on:click={() => (showNewGraphQLForm = !showNewGraphQLForm)}>
-        New GraphQL API Key
+        New GraphQL + MQL API Key
       </Button>
     </div>
   </div>
@@ -347,7 +347,13 @@
   }
   @media screen and (max-width: 960px) {
     .section {
-      padding: 2em;
+      padding: 1.25em;
+    }
+    .section :global(.card.padding) {
+      padding: 1.25em;
+    }
+    .section :global(.split) {
+      grid-template-columns: 1fr;
     }
   }
   .buttons {

@@ -151,7 +151,7 @@
 
 <Card>
   <div class="header">
-    <h3>New GraphQL API Key</h3>
+    <h3>New GraphQL + MQL API Key</h3>
     <Button
       flat
       href="https://docs.kenshi.io/services/deep-index/graphql/getting-started.html"

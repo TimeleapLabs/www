@@ -10,6 +10,7 @@
   import LiquidUp from "src/icons/LiquidUp.svelte";
 
   import DB from "src/icons/DB.svelte";
+  import MongoDB from "src/icons/MongoDB.svelte";
   import D20 from "src/icons/D20.svelte";
   import CloudSensor from "src/icons/CloudSensor.svelte";
 
@@ -274,6 +275,13 @@
                     <D20 />GraphQL
                   </Link>
                 </div>
+                <div>
+                  <Link
+                    href="https://docs.kenshi.io/services/deep-index/mql/index.html"
+                  >
+                    <MongoDB />MQL
+                  </Link>
+                </div>
               </div>
               <div class="product">
                 <h3>Oracles</h3>
@@ -366,7 +374,7 @@
                 </div>
               </div>
               <div class="dev">
-                <h3>Deep Index Examples</h3>
+                <h3>Deep Index</h3>
                 <h4>GraphQL</h4>
                 <div>
                   <Link
@@ -395,6 +403,44 @@
                 <div>
                   <Link
                     href="https://github.com/KenshiTech/graphql-example-go"
+                    target="_blank"
+                  >
+                    <Go /> Go
+                  </Link>
+                </div>
+              </div>
+              <div class="dev">
+                {#if !isMobile}
+                  <h3>‌</h3>
+                {/if}
+                <h4>MQL</h4>
+                <div>
+                  <Link
+                    href="https://github.com/KenshiTech/mql-example-node-fetch"
+                    target="_blank"
+                  >
+                    <Node /> Node.js (fetch)
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href="https://github.com/KenshiTech/mql-example-node-axios"
+                    target="_blank"
+                  >
+                    <Node /> Node.js (axios)
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href="https://github.com/KenshiTech/mql-example-python"
+                    target="_blank"
+                  >
+                    <Python /> Python
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href="https://github.com/KenshiTech/mql-example-go"
                     target="_blank"
                   >
                     <Go /> Go
@@ -876,6 +922,7 @@
   }
   .product > div :global(svg) {
     width: 1em;
+    max-height: 24px;
   }
   .devs {
     display: grid;

@@ -48,6 +48,9 @@
       >
         Deep Index: GraphQL
       </Link>
+      <Link href="https://docs.kenshi.io/services/deep-index/mql/index.html">
+        Deep Index: MQL
+      </Link>
       <Link
         href="https://docs.kenshi.io/services/deep-index/webhook/index.html"
       >
