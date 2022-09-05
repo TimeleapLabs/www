@@ -5,26 +5,10 @@
 
   import { onMount } from "svelte";
   import { Moon } from "svelte-loading-spinners";
-  import { toast } from "@zerodevx/svelte-toast";
-  import { ethers } from "ethers";
 
-  import LineChart from "src/components/charts/line/Chart.svelte";
-  import Copy from "src/icons/Copy.svelte";
+  import Uptime from "src/components/isup/Uptime.svelte";
 
-  const uptimeEndpoint = "https://api.kenshi.io/isup";
   const vrfLogsEndpoint = "https://api.kenshi.io/vrf/logs";
-
-  const uptimeQuery = (fromTime) => `{
-    getEntries(fromTime: "${fromTime}") {
-      timestamp
-      result {
-        blockchain
-        name
-        url
-        up
-      }
-    }
-  }`;
 
   const vrfLogsQuery = (blockchain) => `{
     getLogs(blockchain: "${blockchain}") {
@@ -33,67 +17,12 @@
     }
   }`;
 
-  let uptimes = [];
-  let lastUptimeLog;
-
-  const getUptimes = async () => {
-    const query = uptimeQuery(
-      new Date(new Date().valueOf() - 86400000).toISOString()
-    );
-
-    const response = await fetch(uptimeEndpoint, {
-      method: "POST",
-      body: JSON.stringify({
-        query,
-      }),
-    });
-
-    const { data: { getEntries: entries } = {} } =
-      (await response.json()) || {};
-
-    uptimes = entries || uptimes || [];
-    lastUptimeLog = uptimes[uptimes.length - 1];
-  };
-
-  const groupUptime = (uptime) => {
-    return Object.entries(
-      uptime.result.reduce((result, entry) => {
-        result[entry.blockchain] ||= [];
-
-        result[entry.blockchain].push({
-          up: entry.up,
-          url: entry.url,
-          name: entry.name,
-        });
-
-        return result;
-      }, {})
-    );
-  };
-
   const toTitleCase = (str) =>
     str
       .replace(/-/g, " ")
       .split(/ +/)
       .map((part) => part[0].toUpperCase() + part.slice(1))
       .join(" ");
-
-  let chartData = {};
-
-  $: if (uptimes) {
-    const data = {};
-    for (const entry of uptimes) {
-      for (const measure of entry.result) {
-        data[measure.blockchain] ||= {};
-        data[measure.blockchain][measure.name] ||= [];
-        data[measure.blockchain][measure.name].push({
-          x: new Date(entry.timestamp).valueOf(),
-          y: measure.up ? 1 : 0,
-        });
-      }
-    }
-    chartData = data;
-  }
 
   const chainIcons = {
     "avalanche-fuji": "avalanche",
@@ -115,23 +44,6 @@
 
   const vrfLogs = {};
 
-  const rpcList = {
-    "binance-mainnet": "https://bsc-dataseed.binance.org",
-    "binance-testnet": "https://data-seed-prebsc-1-s1.binance.org:8545",
-    "polygon-mainnet": "https://polygon-rpc.com",
-    "polygon-mumbai": "https://matic-mumbai.chainstacklabs.com",
-    "fantom-mainnet": "https://rpc.ftm.tools",
-    "fantom-testnet": "https://rpc.testnet.fantom.network/",
-    "avalanche-mainnet": "https://api.avax.network/ext/bc/C/rpc",
-    "avalanche-fuji": "https://api.avax-test.network/ext/bc/C/rpc",
-  };
-
-  const getBlockTime = async (chain, blockNumber) => {
-    const provider = new ethers.providers.JsonRpcProvider(rpcList[chain]);
-    const block = await provider.getBlock(blockNumber);
-    return block.timestamp;
-  };
-
   const getVrfLogs = async (chain) => {
     const query = vrfLogsQuery(chain);
 
@@ -149,34 +61,20 @@
     }
   };
 
-  const getAverageResponseTime = async (chain, values) => {
-    const diffs = await Promise.all(
-      values.map(async ({ requested, delivered }) => {
-        return (
-          (await getBlockTime(chain, delivered)) -
-          (await getBlockTime(chain, requested))
-        );
-      })
-    );
-    const responseTime = diffs.reduce((a, b) => a + b, 0) / values.length;
-    return responseTime.toFixed(2);
-  };
-
-  const copyText = (text) => () => {
-    if (!text) return;
-    navigator.clipboard?.writeText?.(text);
-    toast.push("Copied to clipboard.");
+  const getAverageResponseTime = async (values) => {
+    const average =
+      values
+        .map(({ requested, delivered }) => delivered - requested)
+        .reduce((a, b) => a + b, 0) / values.length;
+    return average.toFixed(2);
   };
 
   onMount(() => {
-    getUptimes();
     vrfLogsChains.map(getVrfLogs);
-    const uptimeInterval = setInterval(getUptimes, 60 * 1000);
     const vrfLogIntervals = vrfLogsChains.map((chain) =>
       setInterval(getVrfLogs, 5 * 60 * 1000, chain)
     );
     return () => {
-      clearInterval(uptimeInterval);
       vrfLogIntervals.forEach(clearInterval);
     };
   });
@@ -188,72 +86,43 @@
   <h2>Kenshi Status</h2>
   <div class="uptime-wrap">
     <Card>
-      <h3>
-        JSON-RPC endpoints
-        {#if !uptimes.length}
-          <Moon size="16" />
-        {/if}
-      </h3>
+      <h3>JSON-RPC endpoints</h3>
       <p class="description">
         Kenshi Is Up oracle checks the status of each JSON-RPC provider every
         one minute. This page queries the Kenshi Is Up GraphQL endpoint and
         displays the recorded data. Click on the provider name to copy its
         address.
       </p>
-      {#if lastUptimeLog}
-        <div class="uptimes">
-          {#each groupUptime(lastUptimeLog) as [chain, providers]}
-            <Card flat slim>
-              <div class="title">
-                <h4>{toTitleCase(chain)}</h4>
-                <img
-                  src="/images/chains/{chainIcons[chain]}.svg"
-                  class="icon"
-                  alt={toTitleCase(chain)}
-                />
-              </div>
-              <div class="uptime header">
-                <h5>Provider</h5>
-                <h5>Status</h5>
-                <h5>24hr Chart</h5>
-              </div>
-              {#each providers as provider}
-                <div class="uptime">
-                  <span
-                    class="name"
-                    class:copy={provider.url}
-                    on:click={copyText(provider.url)}
-                  >
-                    {provider.name}
-                    {#if provider.url}
-                      <Copy />
-                    {/if}
-                  </span>
-                  <span class="status" class:ok={provider.up}>
-                    {#if provider.up}
-                      OK
-                    {:else}
-                      DOWN
-                    {/if}
-                  </span>
-                  {#if chartData[chain]?.[provider.name]}
-                    <span class="chart">
-                      <LineChart
-                        data={chartData[chain][provider.name]}
-                        axisX={false}
-                        axisY={false}
-                      />
-                    </span>
-                  {/if}
-                </div>
-              {/each}
-            </Card>
-          {/each}
-        </div>
-        <div class="chart-description">
-          Last updated at {new Date(lastUptimeLog.timestamp).toString()}
-        </div>
-      {/if}
+      <div class="uptimes">
+        <Uptime
+          title="BSC Testnet"
+          icon="binance"
+          names={["BSC_OFFICIAL_TESTNET"]}
+        />
+        <Uptime
+          title="Polygon Mumbai"
+          icon="polygon"
+          names={[
+            "POLYGON_CHAINSTACK_LABS_MUMBAI",
+            "POLYGON_MATICVIGIL_MUMBAI",
+            "POLYGON_CHAINSTACK_PRIVATE_MUMBAI",
+            "POLYGON_MATIC_TODAY_MUMBAI",
+          ]}
+        />
+        <Uptime
+          title="Fantom Testnet"
+          icon="fantom"
+          names={[
+            "FANTOM_OFFICIAL_TESTNET",
+            "FANTOM_CHAINSTACK_PRIVATE_TESTNET",
+          ]}
+        />
+        <Uptime
+          title="Avalanche Fuji"
+          icon="avalanche"
+          names={["AVALANCHE_OFFICIAL_FUJI"]}
+        />
+      </div>
     </Card>
   </div>
 </div>
@@ -284,8 +153,8 @@
               />
             </div>
             Average Response Time:
-            {#await getAverageResponseTime(chain, values) then duration}
-              {duration}s
+            {#await getAverageResponseTime(values) then duration}
+              {duration} blocks
             {/await}
           </Card>
         {/each}
@@ -315,26 +184,8 @@
     align-items: center;
     margin-bottom: 2em;
   }
-  .logs h4,
-  .uptimes h4 {
+  .logs h4 {
     margin-top: 0;
-  }
-  .uptimes h5 {
-    margin: 0;
-  }
-  .uptime {
-    display: grid;
-    margin-bottom: 1em;
-    align-items: center;
-    gap: 1em;
-    grid-template-columns: 1fr 2.5em 86px;
-  }
-  .uptime h5:not(:first-child),
-  .uptime span:not(:first-child) {
-    text-align: center;
-  }
-  .uptime .name {
-    flex: 1;
   }
   .section {
     padding: 4em;
@@ -363,29 +214,7 @@
       padding: 1em !important;
     }
   }
-  .chart {
-    height: 24px;
-    width: 86px;
-  }
-  .uptime.header {
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid #e4e4e4;
-  }
-  .copy {
-    cursor: copy;
-  }
-  .name :global(svg) {
-    height: 0.9em;
-    opacity: 0;
-  }
-  .name {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-  }
-  .name:hover :global(svg) {
-    opacity: 1;
-  }
+
   .chart-description {
     margin-top: 2em;
     color: #666;
