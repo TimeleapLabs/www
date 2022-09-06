@@ -2,11 +2,10 @@
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
   import Card from "src/components/Card.svelte";
+  import Uptime from "src/components/isup/Uptime.svelte";
 
   import { onMount } from "svelte";
   import { Moon } from "svelte-loading-spinners";
-
-  import Uptime from "src/components/isup/Uptime.svelte";
 
   const vrfLogsEndpoint = "https://api.kenshi.io/vrf/logs";
 
@@ -97,15 +96,16 @@
         <Uptime
           title="BSC Testnet"
           icon="binance"
-          names={["BSC_OFFICIAL_TESTNET"]}
+          names={["BSC_OFFICIAL_TESTNET", "BSC_ANKR_TESTNET"]}
         />
         <Uptime
           title="Polygon Mumbai"
           icon="polygon"
           names={[
             "POLYGON_CHAINSTACK_LABS_MUMBAI",
-            "POLYGON_MATICVIGIL_MUMBAI",
             "POLYGON_CHAINSTACK_PRIVATE_MUMBAI",
+            "POLYGON_ANKR_MUMBAI",
+            "POLYGON_MATICVIGIL_MUMBAI",
             "POLYGON_MATIC_TODAY_MUMBAI",
           ]}
         />
@@ -115,12 +115,13 @@
           names={[
             "FANTOM_OFFICIAL_TESTNET",
             "FANTOM_CHAINSTACK_PRIVATE_TESTNET",
+            "FANTOM_ANKR_TESTNET",
           ]}
         />
         <Uptime
           title="Avalanche Fuji"
           icon="avalanche"
-          names={["AVALANCHE_OFFICIAL_FUJI"]}
+          names={["AVALANCHE_OFFICIAL_FUJI", "AVALANCHE_ANKR_FUJI"]}
         />
       </div>
     </Card>

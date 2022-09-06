@@ -3,11 +3,14 @@
 
   import { rpcNames, endpoints } from "src/lib/isup/rpc";
   import { toast } from "@zerodevx/svelte-toast";
-  import { Moon } from "svelte-loading-spinners";
 
   import Card from "../Card.svelte";
   import LineChart from "src/components/charts/line/Chart.svelte";
+  import Skeleton from "svelte-skeleton/Skeleton.svelte";
+
   import Copy from "src/icons/Copy.svelte";
+  import ThumbsDown from "src/icons/ThumbsDown.svelte";
+  import ThumbsUp from "src/icons/ThumbsUp.svelte";
 
   export let names;
   export let title;
@@ -62,6 +65,11 @@
       .sort((a, b) => a.x - b.x);
   };
 
+  const averageLatency = (data) => {
+    const avg = data.reduce((a, b) => a + b.latency, 0) / data.length / 1000;
+    return avg.toFixed(2);
+  };
+
   onMount(() => {
     getUptimes();
   });
@@ -74,41 +82,59 @@
   </div>
   <div class="uptime header">
     <h5>Provider</h5>
-    <h5>Status</h5>
-    <h5>24hr Chart</h5>
+    <h5>Latency</h5>
+    <h5>Up?</h5>
+    <h5>
+      <span class="xm"> 24hr Chart </span>
+      <span class="sm"> Chart </span>
+    </h5>
   </div>
-  {#if uptimes?.length}
-    {#each names as name}
-      <div class="uptime">
-        {#if endpoints[name]}
-          <span class="name copy" on:click={copyText(endpoints[name])}>
-            {rpcNames[name]}
-            <Copy />
-          </span>
-        {:else}
-          <span class="name">
-            {rpcNames[name]}
-          </span>{/if}
+  {#each names as name}
+    <div class="uptime">
+      {#if endpoints[name]}
+        <span class="name copy" on:click={copyText(endpoints[name])}>
+          {rpcNames[name]}
+          <Copy />
+        </span>
+      {:else}
+        <span class="name">
+          {rpcNames[name]}
+        </span>{/if}
+      {#if uptimes?.length}
         {#await filterUptimes(name) then data}
+          <span class="latency">
+            {averageLatency(data)}s
+          </span>
           <span class="status" class:ok={data[data.length - 1].isUp}>
             {#if data[data.length - 1].isUp}
-              OK
+              <ThumbsUp />
             {:else}
-              DOWN
+              <ThumbsDown />
             {/if}
           </span>
           <span class="chart">
             <LineChart data={toChartData(data)} axisX={false} axisY={false} />
           </span>
         {/await}
-      </div>
-    {/each}
-  {:else}
-    <div class="loading">
-      <Moon size="16" />
-      Loading
+      {:else}
+        <div class="loading">
+          <Skeleton height="16" width="34">
+            <rect width="34" height="16" x="0" y="0" rx="2" ry="2" />
+          </Skeleton>
+        </div>
+        <div class="loading">
+          <Skeleton height="24" width="24">
+            <rect width="24" height="24" x="0" y="0" rx="4" ry="4" />
+          </Skeleton>
+        </div>
+        <div class="loading">
+          <Skeleton height="24" width="86">
+            <rect width="86" height="24" x="0" y="0" rx="2" ry="2" />
+          </Skeleton>
+        </div>
+      {/if}
     </div>
-  {/if}
+  {/each}
 </Card>
 
 <style>
@@ -117,7 +143,7 @@
     margin-bottom: 1em;
     align-items: center;
     gap: 1em;
-    grid-template-columns: 1fr 2.5em 86px;
+    grid-template-columns: 4fr 3em 2.5em 86px;
   }
   h5 {
     margin: 0;
@@ -141,6 +167,9 @@
   .uptime.header {
     padding-bottom: 0.5em;
     border-bottom: 1px solid #e4e4e4;
+  }
+  .header span {
+    font-family: "Frank";
   }
   .copy {
     cursor: copy;
@@ -172,9 +201,51 @@
   .title {
     margin-bottom: 1em;
   }
+
+  .status,
   .loading {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5em;
+  }
+  .status :global(svg) {
+    height: 1em;
+  }
+  .status.ok :global(svg) {
+    fill: var(--secondary-color);
+  }
+  .status:not(.ok) :global(svg) {
+    fill: var(--primary-color);
+  }
+  .latency {
+    font-size: 0.8em;
+    text-align: center;
+  }
+  .sm {
+    display: none;
+  }
+  .xm {
+    display: unset;
+  }
+  @media screen and (max-width: 540px) {
+    .header,
+    .name {
+      font-size: 0.8em;
+    }
+    .chart {
+      height: 24px;
+      width: 60px;
+    }
+    .uptime {
+      gap: 0.5em;
+      grid-template-columns: 3fr 1fr 1fr 60px;
+    }
+    .xm {
+      display: none;
+    }
+    .sm {
+      display: unset;
+    }
   }
 </style>
