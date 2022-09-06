@@ -153,9 +153,9 @@
             "POLYGON_CHAINSTACK_PRIVATE_MUMBAI",
             "POLYGON_CHAINSTACK_LABS_MUMBAI",
             "POLYGON_ANKR_MUMBAI",
+            "POLYGON_BLAST_MUMBAI",
             "POLYGON_MATICVIGIL_MUMBAI",
             "POLYGON_MATIC_TODAY_MUMBAI",
-            "POLYGON_BLAST_MUMBAI",
           ]}
         />
         <Uptime
@@ -258,6 +258,7 @@
     gap: 1em;
   }
   @media screen and (max-width: 720px) {
+    .logs,
     .uptimes {
       grid-template-columns: 1fr;
     }
