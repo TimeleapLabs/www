@@ -150,8 +150,8 @@
           title="Polygon Mumbai"
           icon="polygon"
           names={[
-            "POLYGON_CHAINSTACK_LABS_MUMBAI",
             "POLYGON_CHAINSTACK_PRIVATE_MUMBAI",
+            "POLYGON_CHAINSTACK_LABS_MUMBAI",
             "POLYGON_ANKR_MUMBAI",
             "POLYGON_MATICVIGIL_MUMBAI",
             "POLYGON_MATIC_TODAY_MUMBAI",
