@@ -92,11 +92,59 @@
         displays the recorded data. Click on the provider name to copy its
         address.
       </p>
+      <h4>Mainnets</h4>
+      <div class="uptimes">
+        <Uptime
+          title="BSC"
+          icon="binance"
+          names={[
+            "BSC_OFFICIAL_MAINNET",
+            "BSC_CHAINSTACK_PRIVATE_MAINNET",
+            "BSC_ANKR_MAINNET",
+          ]}
+        />
+        <Uptime
+          title="Polygon"
+          icon="polygon"
+          names={[
+            "POLYGON_OFFICIAL_MAINNET",
+            "POLYGON_CHAINSTACK_PRIVATE_MAINNET",
+            "POLYGON_ANKR_MAINNET",
+            "POLYGON_BLAST_MAINNET",
+          ]}
+        />
+        <Uptime
+          title="Fantom"
+          icon="fantom"
+          names={[
+            "FANTOM_OFFICIAL_MAINNET",
+            "FANTOM_CHAINSTACK_PRIVATE_MAINNET",
+            "FANTOM_ANKR_MAINNET",
+            "FANTOM_BLAST_MAINNET",
+          ]}
+        />
+        <Uptime
+          title="Avalanche"
+          icon="avalanche"
+          names={[
+            "AVALANCHE_OFFICIAL_MAINNET",
+            "AVALANCHE_CHAINSTACK_PRIVATE_MAINNET",
+            "AVALANCHE_ANKR_MAINNET",
+            "AVALANCHE_BLAST_MAINNET",
+          ]}
+        />
+      </div>
+      <h4>Testnets</h4>
       <div class="uptimes">
         <Uptime
           title="BSC Testnet"
           icon="binance"
-          names={["BSC_OFFICIAL_TESTNET", "BSC_ANKR_TESTNET"]}
+          names={[
+            "BSC_OFFICIAL_TESTNET",
+            "BSC_CHAINSTACK_PRIVATE_TESTNET",
+            "BSC_ANKR_TESTNET",
+            "BSC_BLAST_TESTNET",
+          ]}
         />
         <Uptime
           title="Polygon Mumbai"
@@ -107,6 +155,7 @@
             "POLYGON_ANKR_MUMBAI",
             "POLYGON_MATICVIGIL_MUMBAI",
             "POLYGON_MATIC_TODAY_MUMBAI",
+            "POLYGON_BLAST_MUMBAI",
           ]}
         />
         <Uptime
@@ -116,12 +165,18 @@
             "FANTOM_OFFICIAL_TESTNET",
             "FANTOM_CHAINSTACK_PRIVATE_TESTNET",
             "FANTOM_ANKR_TESTNET",
+            "FANTOM_BLAST_TESTNET",
           ]}
         />
         <Uptime
           title="Avalanche Fuji"
           icon="avalanche"
-          names={["AVALANCHE_OFFICIAL_FUJI", "AVALANCHE_ANKR_FUJI"]}
+          names={[
+            "AVALANCHE_OFFICIAL_FUJI",
+            "AVALANCHE_CHAINSTACK_PRIVATE_FUJI",
+            "AVALANCHE_ANKR_FUJI",
+            "AVALANCHE_BLAST_FUJI",
+          ]}
         />
       </div>
     </Card>
@@ -199,8 +254,13 @@
   .logs,
   .uptimes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 1em;
+  }
+  @media screen and (max-width: 720px) {
+    .uptimes {
+      grid-template-columns: 1fr;
+    }
   }
   @media screen and (max-width: 960px) {
     .section {

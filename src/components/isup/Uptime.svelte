@@ -3,6 +3,7 @@
 
   import { rpcNames, endpoints } from "src/lib/isup/rpc";
   import { toast } from "@zerodevx/svelte-toast";
+  import percentile from "percentile";
 
   import Card from "../Card.svelte";
   import LineChart from "src/components/charts/line/Chart.svelte";
@@ -66,13 +67,21 @@
       .sort((a, b) => a.x - b.x);
   };
 
-  const averageLatency = (data) => {
-    const avg = data.reduce((a, b) => a + b.latency, 0) / data.length / 1000;
-    return avg.toFixed(2);
+  const getLatency = (data) => {
+    if (data.every((b) => !b.latency)) {
+      return null;
+    }
+    const latencies = data.map((b) => b.latency);
+    const latency = percentile(90, latencies) / 1000;
+    return latency.toFixed(2);
   };
 
   onMount(() => {
     getUptimes();
+    const interval = setInterval(getUptimes, 60000);
+    return () => {
+      clearInterval(interval);
+    };
   });
 </script>
 
@@ -101,11 +110,11 @@
       {#if uptimes?.length}
         {#await filterUptimes(name) then data}
           <span class="latency">
-            {#await averageLatency(data) then latency}
-              {#if latency === "0.00"}
-                <Infinity />
+            {#await getLatency(data) then latency}
+              {#if latency}
+                {latency}s
               {:else}
-                {averageLatency(data)}s
+                <Infinity />
               {/if}
             {/await}
           </span>
@@ -174,6 +183,9 @@
   .uptime.header {
     padding-bottom: 0.5em;
     border-bottom: 1px solid #e4e4e4;
+  }
+  .name {
+    cursor: not-allowed;
   }
   .copy {
     cursor: copy;
