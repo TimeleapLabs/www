@@ -9,8 +9,8 @@
   import Skeleton from "svelte-skeleton/Skeleton.svelte";
 
   import Copy from "src/icons/Copy.svelte";
-  import ThumbsDown from "src/icons/ThumbsDown.svelte";
-  import ThumbsUp from "src/icons/ThumbsUp.svelte";
+  import Check from "src/icons/Check.svelte";
+  import Xmark from "src/icons/Xmark.svelte";
 
   export let names;
   export let title;
@@ -32,7 +32,7 @@
 
   const getUptimes = async () => {
     const query = uptimeQuery(
-      new Date(new Date().valueOf() - 86400000).toISOString(),
+      new Date(new Date().valueOf() - 3600000).toISOString(), // From 1hr ago
       new Date(new Date().valueOf()).toISOString()
     );
 
@@ -84,10 +84,7 @@
     <h5>Provider</h5>
     <h5>Latency</h5>
     <h5>Up?</h5>
-    <h5>
-      <span class="xm"> 24hr Chart </span>
-      <span class="sm"> Chart </span>
-    </h5>
+    <h5>Chart</h5>
   </div>
   {#each names as name}
     <div class="uptime">
@@ -107,9 +104,9 @@
           </span>
           <span class="status" class:ok={data[data.length - 1].isUp}>
             {#if data[data.length - 1].isUp}
-              <ThumbsUp />
+              <Check />
             {:else}
-              <ThumbsDown />
+              <Xmark />
             {/if}
           </span>
           <span class="chart">
@@ -168,9 +165,6 @@
     padding-bottom: 0.5em;
     border-bottom: 1px solid #e4e4e4;
   }
-  .header span {
-    font-family: "Frank";
-  }
   .copy {
     cursor: copy;
   }
@@ -222,12 +216,6 @@
     font-size: 0.8em;
     text-align: center;
   }
-  .sm {
-    display: none;
-  }
-  .xm {
-    display: unset;
-  }
   @media screen and (max-width: 540px) {
     .header,
     .name {
@@ -240,12 +228,6 @@
     .uptime {
       gap: 0.5em;
       grid-template-columns: 3fr 1fr 1fr 60px;
-    }
-    .xm {
-      display: none;
-    }
-    .sm {
-      display: unset;
     }
   }
 </style>
