@@ -11,6 +11,7 @@
   import Copy from "src/icons/Copy.svelte";
   import Check from "src/icons/Check.svelte";
   import Xmark from "src/icons/Xmark.svelte";
+  import Infinity from "src/icons/Infinity.svelte";
 
   export let names;
   export let title;
@@ -100,7 +101,13 @@
       {#if uptimes?.length}
         {#await filterUptimes(name) then data}
           <span class="latency">
-            {averageLatency(data)}s
+            {#await averageLatency(data) then latency}
+              {#if latency === "0.00"}
+                <Infinity />
+              {:else}
+                {averageLatency(data)}s
+              {/if}
+            {/await}
           </span>
           <span class="status" class:ok={data[data.length - 1].isUp}>
             {#if data[data.length - 1].isUp}
@@ -148,6 +155,9 @@
   .uptime h5:not(:first-child),
   .uptime span:not(:first-child) {
     text-align: center;
+  }
+  .latency :global(svg) {
+    height: 1em;
   }
   .uptime .name {
     flex: 1;
