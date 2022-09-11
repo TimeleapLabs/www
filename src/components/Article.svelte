@@ -1,12 +1,10 @@
 <script>
   import Card from "src/components/Card.svelte";
-  import Button from "src/components/Button.svelte";
-  import External from "src/icons/External.svelte";
 
   export let image;
   export let title;
   export let description;
-  export let href;
+  export let tags = [];
 </script>
 
 <div class="article">
@@ -16,21 +14,31 @@
       <div class="padded">
         <h3>{title}</h3>
         <div class="content">
-          {description}
+          {@html description}
         </div>
         <div class="buttons">
-          <Button {href} solid>
-            Read article <External />
-          </Button>
+          <slot />
         </div>
+        {#if tags.length}
+          <div class="tags">
+            {#each tags as tag}
+              <span class="tag">#{tag}</span>
+            {/each}
+          </div>
+        {/if}
       </div>
     </div>
   </Card>
 </div>
 
 <style>
-  .articles .article img {
+  .article img {
     max-width: 100%;
+    max-height: 100%;
+    flex: 1 0 250px;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
   }
   .article-inner {
     display: flex;
@@ -51,6 +59,7 @@
     justify-content: start;
     margin-top: 2.5em;
     flex-wrap: wrap;
+    gap: 0.5em;
   }
   .article .padded {
     display: flex;
@@ -63,6 +72,18 @@
   }
   .padded {
     padding: 2em;
+  }
+  .article .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-top: 1em;
+    color: #aaa;
+  }
+  @media only screen and (max-width: 798px) {
+    .article {
+      width: 100%;
+    }
   }
   @media only screen and (max-width: 640px) {
     .padded {
