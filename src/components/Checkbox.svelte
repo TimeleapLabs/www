@@ -10,7 +10,7 @@
   <div class="input" class:checked>
     <div class="checkmark">
       {#if checked}
-        <div transition:fly={{ y: 20 }}>
+        <div transition:fly|local={{ y: 20 }}>
           <Xmark />
         </div>
       {/if}

@@ -4,6 +4,7 @@
   export let solid = false;
   export let flat = false;
   export let disabled = false;
+  export let active = false;
 </script>
 
 {#if href}
@@ -11,7 +12,16 @@
     <span><slot /></span>
   </a>
 {:else}
-  <button class="button" class:flat class:solid on:click {disabled}>
+  <button
+    class="button"
+    class:flat
+    class:solid
+    class:active
+    on:click
+    on:mouseenter
+    on:mouseleave
+    {disabled}
+  >
     <span><slot /></span>
   </button>
 {/if}
@@ -65,9 +75,11 @@
   .button:not(.solid) {
     position: relative;
   }
+  .button.active,
   .button:not(.flat):hover {
     color: #fff;
   }
+  .button.active::after,
   .button:not(.solid):not(.flat)::after {
     content: "";
     position: absolute;
@@ -80,8 +92,9 @@
     z-index: 0;
     border-radius: 0.5em;
   }
+  .button.active::after,
   .button:not(.solid):hover::after {
-    width: 100%;
+    width: 100% !important;
     border: 1px solid var(--primary-color);
     box-sizing: content-box;
   }
