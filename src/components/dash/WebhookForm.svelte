@@ -197,6 +197,8 @@
       />
       <Select
         options={[
+          { label: "Ethereum", value: "ethereum-mainnet" },
+          { label: "Ethereum Goerli", value: "ethereum-goerli" },
           {
             label: "Avalanche C-Chain",
             value: "avalanche-mainnet",
@@ -217,7 +219,6 @@
           { label: "Fantom Testnet", value: "fantom-testnet" },
           { label: "Polygon", value: "polygon-mainnet" },
           { label: "Polygon Mumbai", value: "polygon-mumbai" },
-          { label: "Ethereum Goerli", value: "ethereum-goerli" },
         ]}
         placeholder="Choose a chain"
         bind:value={chain}

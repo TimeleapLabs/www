@@ -41,6 +41,7 @@
   $: unitPrice = getSyncPrice(task.interval, task.timeout, 1);
 
   const chainIcons = {
+    "ethereum-mainnet": "ethereum",
     "ethereum-goerli": "ethereum",
     "avalanche-fuji": "avalanche",
     "avalanche-mainnet": "avalanche",
