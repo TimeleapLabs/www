@@ -32,6 +32,7 @@
     "@web3-onboard/injected-wallets": "^2.0.7",
     "@web3-onboard/walletconnect": "^2.0.1",
     "bnc-onboard": "^1.37.0",
+    "cadey": "^1.0.5",
     "d3-shape": "^3.1.0",
     "dotenv": "^10.0.0",
     "ethers": "^5.5.1",
