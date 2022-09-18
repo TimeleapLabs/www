@@ -1,9 +1,13 @@
 <script>
   export let title = "Articles";
+  export let padding = "4em";
 </script>
 
-<div class="articles">
+<div class="articles" style="--padding: {padding};">
   <h2>{title}</h2>
+  {#if $$slots.filter}
+    <slot name="filter" />
+  {/if}
   <div class="grid">
     <slot />
   </div>
@@ -11,7 +15,7 @@
 
 <style>
   .articles {
-    padding: 4em;
+    padding: var(--padding);
   }
   .articles h2 {
     font-size: 2em;

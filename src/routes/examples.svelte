@@ -1,31 +1,104 @@
 <script>
+  import { browser } from "$app/env";
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
   import Section from "src/components/Section.svelte";
   import Articles from "src/components/Articles.svelte";
   import Article from "src/components/Article.svelte";
   import Button from "src/components/Button.svelte";
+  import TagsSelect from "src/components/TagsSelect.svelte";
   import External from "src/icons/External.svelte";
+  import D20 from "../icons/D20.svelte";
+  import CloudSensor from "../icons/CloudSensor.svelte";
+  import MongoDB from "../icons/MongoDB.svelte";
+  import Shuffle from "../icons/Shuffle.svelte";
+  import Node from "../icons/Node.svelte";
+  import Solidity from "../icons/Solidity.svelte";
+  import Python from "../icons/Python.svelte";
+  import Go from "../icons/Go.svelte";
   import { onMount } from "svelte";
 
   export let examples = [];
+  export let products = [];
+  export let languages = [];
+
+  const getTagIcon = (tag) => {
+    switch (tag.value) {
+      case "di-graphql":
+        return D20;
+      case "r-api":
+        return CloudSensor;
+      case "di-mql":
+        return MongoDB;
+      case "vrf":
+        return Shuffle;
+      case "node":
+        return Node;
+      case "solidity":
+        return Solidity;
+      case "python":
+        return Python;
+      case "go":
+        return Go;
+      default:
+        return null;
+    }
+  };
+
+  const fetchTags = async () => {
+    const response = await fetch("/api/examples/tags");
+    const tags = await response.json();
+    const tagsWithIcons = tags.map((tag) => ({
+      ...tag,
+      icon: getTagIcon(tag),
+    }));
+    products = tagsWithIcons.filter((tag) => tag.type === "product");
+    languages = tagsWithIcons.filter((tag) => tag.type === "language");
+  };
+
+  const fetchExamples = async (_products, _languages) => {
+    const res = await fetch(
+      "/api/examples?tags=" +
+        encodeURIComponent(
+          _products
+            .concat(_languages)
+            .filter((t) => t?.checked)
+            .map((t) => t.value)
+            .join(",")
+        )
+    );
+    examples = await res.json();
+  };
+
+  $: if (browser) fetchExamples(products, languages);
 
   onMount(async () => {
-    const res = await fetch("/api/examples");
-    examples = await res.json();
+    if (browser) {
+      await fetchTags();
+      await fetchExamples([]);
+    }
   });
 </script>
 
 <Navbar />
 
 <Section>
-  <Articles title="Examples">
+  <Articles title="Examples" padding="2em 4em 4em 4em">
+    <div class="filters" slot="filter">
+      <div class="filter product">
+        <span>By product:</span>
+        <TagsSelect bind:tags={products} />
+      </div>
+      <div class="filter language">
+        <span>By language:</span>
+        <TagsSelect bind:tags={languages} />
+      </div>
+    </div>
     {#each examples as example}
       <Article
         title={example.name}
         description={example.description}
         image={example.image}
-        tags={example.tags}
       >
         <Button href={example.url} target="_blank" solid>
           View website
@@ -35,6 +108,24 @@
           View source code
           <External />
         </Button>
+        <div class="footer" slot="footer">
+          <div class="products">
+            <span
+              >Products: {example.tags
+                .filter((t) => t.type === "product")
+                .map((t) => t.name)
+                .join(", ")}
+            </span>
+          </div>
+          <div class="languages">
+            <span>
+              Languages: {example.tags
+                .filter((t) => t.type === "language")
+                .map((t) => t.name)
+                .join(", ")}
+            </span>
+          </div>
+        </div>
       </Article>
     {/each}
   </Articles>
@@ -43,4 +134,18 @@
 <Footer />
 
 <style>
+  .filters {
+    display: flex;
+    width: 100%;
+    gap: 4em;
+  }
+  .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  .footer {
+    padding-top: 1.5em;
+    opacity: 0.4;
+  }
 </style>

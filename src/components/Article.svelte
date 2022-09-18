@@ -4,7 +4,6 @@
   export let image;
   export let title;
   export let description;
-  export let tags = [];
 </script>
 
 <div class="article">
@@ -19,12 +18,8 @@
         <div class="buttons">
           <slot />
         </div>
-        {#if tags.length}
-          <div class="tags">
-            {#each tags as tag}
-              <span class="tag">#{tag}</span>
-            {/each}
-          </div>
+        {#if $$slots.footer}
+          <slot name="footer" />
         {/if}
       </div>
     </div>
@@ -72,13 +67,6 @@
   }
   .padded {
     padding: 2em;
-  }
-  .article .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5em;
-    margin-top: 1em;
-    color: #aaa;
   }
   @media only screen and (max-width: 798px) {
     .article {
