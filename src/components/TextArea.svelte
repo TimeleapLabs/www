@@ -1,5 +1,6 @@
 <script>
-  import { fly } from "svelte/transition";
+  import { slide } from "svelte/transition";
+  import Alert from "./Alert.svelte";
 
   export let placeholder = "";
   export let regex = /.*/;
@@ -32,11 +33,13 @@
   </div>
 
   {#if value && !valid}
-    <div class="message" transition:fly={{ x: -8 }}>
-      Not a valid input
-      {#if name}
-        for {name}
-      {/if}
+    <div class="message" transition:slide>
+      <Alert danger>
+        Not a valid input
+        {#if name}
+          for <b>{name}</b>
+        {/if}
+      </Alert>
     </div>
   {/if}
 </div>
@@ -79,6 +82,5 @@
   }
   .message {
     margin-top: 1em;
-    font-style: italic;
   }
 </style>

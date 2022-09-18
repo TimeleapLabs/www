@@ -193,6 +193,7 @@
         regex={/https?:\/\/.+/}
         bind:value={endpoint}
         bind:valid={webhookInvalids.endpoint}
+        help="The http endpoint you want to receive the notifications on."
       />
       <Select
         options={[
@@ -227,11 +228,14 @@
         regex={/^(0|[1-9][0-9]*)$/}
         bind:value={fromBlock}
         bind:valid={webhookInvalids.fromBlock}
+        help="The block number from which you want to be notified of the events."
       />
       <TextInput
         placeholder="Sync task ID"
         bind:value={syncTaskId}
         bind:valid={webhookInvalids.syncTaskId}
+        help="The Sync task ID that corresponds to the events you want to be notified of.
+              This is used to keep track of the last block synced into the Kenshi data clusters."
       />
       <TextInput
         placeholder="Duration (Months)"
@@ -245,6 +249,8 @@
         bind:valid={webhookInvalids.requests}
         regex={/[1-9]\d*/}
         suffix={requests > 1 ? "requests" : "request"}
+        help="The total number of requests you are expecting Kenshi to make to your
+              R-API endpoint."
       />
     </div>
     <div class="form">
@@ -263,6 +269,7 @@
         placeholder="Choose an interval"
         bind:value={interval}
         bind:valid={webhookInvalids.interval}
+        help="The interval at which Kenshi checks for new events matching this R-API task."
       />
       <Select
         options={[
@@ -275,12 +282,17 @@
         placeholder="Choose a timeout"
         bind:value={timeout}
         bind:valid={webhookInvalids.timeout}
+        help="The amount of time Kenshi is allowed to process your events and to wait for a
+              response from your endpoint. Choose a bigger value if you are expecting
+              a lot of events."
       />
       <Select
         options={getStepOptions(chain, interval)}
         placeholder="Choose step"
         bind:value={step}
         bind:valid={webhookInvalids.step}
+        help="The number of blocks to process at a time for new events matching this R-API
+              task."
       />
       <h5>Query</h5>
       {#each query.map((q, i) => [q, i]) as [q, i]}

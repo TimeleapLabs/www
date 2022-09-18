@@ -1,11 +1,13 @@
 <script>
   import { slide } from "svelte/transition";
   import ChevronDown from "src/icons/ChevronDown.svelte";
+  import Alert from "./Alert.svelte";
 
   export let placeholder = "";
   export let options = [];
   export let value;
   export let icon;
+  export let help = "";
 
   const Icon = icon;
 
@@ -72,6 +74,14 @@
     {/if}
   </div>
 </div>
+
+{#if active && help}
+  <div class="message" transition:slide>
+    <Alert>
+      {help}
+    </Alert>
+  </div>
+{/if}
 
 <style>
   .wrap {

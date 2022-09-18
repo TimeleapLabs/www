@@ -1,5 +1,6 @@
 <script>
-  import { fly } from "svelte/transition";
+  import { slide } from "svelte/transition";
+  import Alert from "./Alert.svelte";
 
   export let placeholder = "";
   export let regex = /.*/;
@@ -8,6 +9,7 @@
   export let value = "";
   export let suffix = "";
   export let prefix = "";
+  export let help = "";
   export let prefixAlwaysOn = false;
   export let gapless = false;
   export let icon;
@@ -15,6 +17,10 @@
   export let disabled;
 
   const Icon = icon;
+
+  let focus = false;
+  const onFocus = () => (focus = true);
+  const onBlur = () => (focus = false);
 
   $: valid = validator(value) && value?.toString().match(regex);
 </script>
@@ -35,7 +41,14 @@
     {#if (value || prefixAlwaysOn) && prefix}
       <span>{prefix}</span>
     {/if}
-    <input type="text" {placeholder} bind:value {disabled} />
+    <input
+      type="text"
+      {placeholder}
+      bind:value
+      on:focus={onFocus}
+      on:blur={onBlur}
+      {disabled}
+    />
     {#if value && suffix}
       <span>{suffix}</span>
     {/if}
@@ -43,11 +56,21 @@
   </div>
 
   {#if value && !valid}
-    <div class="message" transition:fly={{ x: -8 }}>
-      Not a valid input
-      {#if name}
-        for {name}
-      {/if}
+    <div class="message" transition:slide>
+      <Alert danger>
+        Not a valid input
+        {#if name}
+          for <b>{name}</b>
+        {/if}
+      </Alert>
+    </div>
+  {/if}
+
+  {#if focus && help}
+    <div class="message" transition:slide>
+      <Alert>
+        {help}
+      </Alert>
     </div>
   {/if}
 </div>
@@ -93,7 +116,6 @@
   }
   .message {
     margin-top: 1em;
-    font-style: italic;
   }
   .icon {
     display: flex;

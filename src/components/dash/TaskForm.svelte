@@ -228,6 +228,7 @@
         <TextInput
           placeholder="Starting block"
           name="from"
+          help="The block number Kenshi starts with to look for your events on the blockchain."
           regex={/^(0|[1-9][0-9]*)$/}
           bind:value={fromBlock}
           bind:valid={taskInvalids.fromBlock}
@@ -247,16 +248,23 @@
           { label: "Every 5 minutes", value: 300 },
         ]}
         placeholder="Choose an interval"
+        help="The interval at which Kenshi reads your events from the blockchain. If you are syncing
+              historical data this defines how fast the task will catch up with the current block."
         bind:value={interval}
       />
       <Select
         options={getStepOptions(chain, interval)}
         placeholder="Choose sync step"
+        help="The number of blocks Kenshi syncs from the blockchain on each run. If you are syncing
+              historical data, this defines how fast the task will catch up with the current block."
         bind:value={step}
       />
       <Select
         options={getTimeoutOptions(step)}
         placeholder="Choose a timeout"
+        help="The number of seconds Kenshi is allowed to process your events each time it looks for
+              data. Choose based on the size of your sync step and the amount of events you expect
+              on each block."
         bind:value={timeout}
       />
       <TextInput
