@@ -1,0 +1,316 @@
+/**
+ * Code Highlighting Style for Jekyll or Pygments
+ * Ayu Light by dempfi
+ * https://github.com/dempfi
+ */
+.highlight {
+  background-color: #fafafa;
+  color: #6c7680;
+}
+
+.highlight * {
+  font-family: 'Fira Code', monospace;
+}
+
+.highlight .c {
+  color: #abb0b6;
+  font-style: italic;
+  /* Comment */
+}
+
+.highlight .k {
+  color: #fa8d3e;
+  /* Keyword */
+}
+
+.highlight .o {
+  color: #ed9366;
+  /* Operator */
+}
+
+.highlight .cm {
+  color: #abb0b6;
+  /* Comment.Multiline */
+}
+
+.highlight .cp {
+  color: #abb0b6;
+  /* Comment.Preproc */
+}
+
+.highlight .c1 {
+  color: #abb0b6;
+  /* Comment.Single */
+}
+
+.highlight .cs {
+  color: #e6ba7e;
+  /* Comment.Special */
+}
+
+.highlight .gd {
+  color: #f51818;
+  /* Generic.Deleted */
+}
+
+.highlight .ge {
+  font-style: italic;
+  /* Generic.Emph */
+}
+
+.highlight .gr {
+  color: #fafafa;
+  background-color: #f51818;
+  /* Generic.Error */
+}
+
+.highlight .gh {
+  color: #ff9940;
+  /* Generic.Heading */
+}
+
+.highlight .gi {
+  color: #86b300;
+  /* Generic.Inserted */
+}
+
+.highlight .go {
+  color: #6c7680;
+  /* Generic.Output */
+}
+
+.highlight .gp {
+  color: #6c7680;
+  /* Generic.Prompt */
+}
+
+.highlight .gs {
+  font-weight: bold;
+  /* Generic.Strong */
+}
+
+.highlight .gu {
+  color: #6c7680;
+  /* Generic.Subheading */
+}
+
+.highlight .gt {
+  color: #fafafa;
+  background-color: #f51818;
+  /* Generic.Traceback */
+}
+
+.highlight .kc {
+  color: #fa8d3e;
+  /* Keyword.Constant */
+}
+
+.highlight .kd {
+  color: #fa8d3e;
+  /* Keyword.Declaration */
+}
+
+.highlight .kn {
+  color: #ed9366;
+  /* Keyword.Namespace */
+}
+
+.highlight .kp {
+  color: #fa8d3e;
+  /* Keyword.Pseudo */
+}
+
+.highlight .kr {
+  color: #fa8d3e;
+  /* Keyword.Reserved */
+}
+
+.highlight .kt {
+  color: #fa8d3e;
+  /* Keyword.Type */
+}
+
+.highlight .m {
+  color: #a37acc;
+  /* Literal.Number */
+}
+
+.highlight .s {
+  color: #a37acc;
+  /* Literal.String */
+}
+
+.highlight .na {
+  color: #399ee6;
+  /* Name.Attribute */
+}
+
+.highlight .nb {
+  color: #399ee6;
+  /* Name.Builtin */
+}
+
+.highlight .nc {
+  color: #f2ae49;
+  /* Name.Class */
+}
+
+.highlight .no {
+  color: #a37acc;
+  /* Name.Constant */
+}
+
+.highlight .nd {
+  color: #f2ae49;
+  /* Name.Decorator */
+}
+
+.highlight .ni {
+  color: #399ee6;
+  /* Name.Entity */
+}
+
+.highlight .ne {
+  color: #f2ae49;
+  /* Name.Exception */
+}
+
+.highlight .nf {
+  color: #f2ae49;
+  /* Name.Function */
+}
+
+.highlight .nl {
+  color: #399ee6;
+  /* Name.Label */
+}
+
+.highlight .nn {
+  color: #399ee6;
+  /* Name.Namespace */
+}
+
+.highlight .nt {
+  color: #55b4d4;
+  /* Name.Tag */
+}
+
+.highlight .nv {
+  color: #399ee6;
+  /* Name.Variable */
+}
+
+.highlight .ow {
+  color: #ed9366;
+  /* Operator.Word */
+}
+
+.highlight .w {
+  color: #399ee6;
+  /* Text.Whitespace */
+}
+
+.highlight .mf {
+  color: #a37acc;
+  /* Literal.Number.Float */
+}
+
+.highlight .mh {
+  color: #a37acc;
+  /* Literal.Number.Hex */
+}
+
+.highlight .mi {
+  color: #a37acc;
+  /* Literal.Number.Integer */
+}
+
+.highlight .mo {
+  color: #a37acc;
+  /* Literal.Number.Oct */
+}
+
+.highlight .sb {
+  color: #86b300;
+  /* Literal.String.Backtick */
+}
+
+.highlight .sc {
+  color: #86b300;
+  /* Literal.String.Char */
+}
+
+.highlight .sd {
+  color: #86b300;
+  /* Literal.String.Doc */
+}
+
+.highlight .s2 {
+  color: #86b300;
+  /* Literal.String.Double */
+}
+
+.highlight .se {
+  color: #a37acc;
+  /* Literal.String.Escape */
+}
+
+.highlight .sh {
+  color: #86b300;
+  /* Literal.String.Heredoc */
+}
+
+.highlight .si {
+  color: #86b300;
+  /* Literal.String.Interpol */
+}
+
+.highlight .sx {
+  color: #86b300;
+  /* Literal.String.Other */
+}
+
+.highlight .sr {
+  color: #4cbf99;
+  /* Literal.String.Regex */
+}
+
+.highlight .s1 {
+  color: #86b300;
+  /* Literal.String.Single */
+}
+
+.highlight .ss {
+  color: #55b4d4;
+  /* Literal.String.Symbol */
+}
+
+.highlight .s {
+  color: #86b300;
+  /* Literal.String */
+}
+
+.highlight .bp {
+  color: #399ee6;
+  /* Name.Builtin.Pseudo */
+}
+
+.highlight .vc {
+  color: #399ee6;
+  /* Name.Variable.Class */
+}
+
+.highlight .vg {
+  color: #399ee6;
+  /* Name.Variable.Global */
+}
+
+.highlight .vi {
+  color: #399ee6;
+  /* Name.Variable.Instance */
+}
+
+.highlight .il {
+  color: #a37acc;
+  /* Literal.Number.Integer.Long */
+}

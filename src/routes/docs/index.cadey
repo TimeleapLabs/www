@@ -1,0 +1,17 @@
+[heading Documentation]
+
+Kenshi is a Swiss-based blockchain company offering services such as
+[link https://docs.kenshi.io/services/vrf/index.html VRF] oracle,
+[link https://docs.kenshi.io/services/deep-index/index.html Deep Indexing],
+[link https://docs.kenshi.io/services/deep-index/graphql/index.html GraphQL], and
+[link https://docs.kenshi.io/services/deep-index/webhook/index.html Reverse-API] (webhooks)
+on Ethereum, Avalanche, Fantom, Polygon and the BNB Smart Chain.
+
+[alert warning
+  Buying the token? Make sure you read the
+  [link https://docs.kenshi.io/token/index.html token documentation]
+  first.]
+
+[toc
+  kenshi
+  services/index]

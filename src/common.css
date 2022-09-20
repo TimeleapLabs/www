@@ -24,12 +24,26 @@
 }
 
 @font-face {
+  font-family: "Syabil";
+  src: url("/fonts/Syabil-Bold.woff2") format("woff2"),
+    url("/fonts/Syabil-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Frank";
   src: url("/fonts/Frank-Regular.woff2") format("woff2"),
     url("/fonts/Frank-Regular.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
+}
+
+html {
+  scroll-padding-top: 96px;
+  scroll-behavior: smooth;
 }
 
 #svelte,

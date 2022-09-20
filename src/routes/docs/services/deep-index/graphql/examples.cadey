@@ -1,0 +1,28 @@
+[heading Examples]
+
+On this page you can find examples for [link #nodejs Node.js], [link #python Python] and Go languages.
+
+[heading :size 2 Node.js]
+
+[tabs 
+  [tab [:title Using Axios]
+    [alert note This example requires Node.js v14.8+ and the axios npm package installed.]
+    [alert info This example is also available on GitHub.]
+    [code :content static/examples/deep-index/graphql/node-axios.js :title node-axios.js]]
+  [tab [:title Using Fetch] [code :content static/examples/deep-index/graphql/node-fetch.js :title node-fetch.js]]]
+
+[heading :size 2 Python]
+
+[tabs 
+  [tab [:title Using Requests]
+    [alert note This example requires the requests Python package installed.]
+    [alert info This example is also available on GitHub.]
+    [code :content static/examples/deep-index/graphql/requests.py :title requests.py]]]
+
+[heading :size 2 Go]
+
+[tabs 
+  [tab [:title Using Shurcool/GraphQL]
+    [alert note This example requires the shurcool/graphql package installed.]
+    [alert info This example is also available on GitHub.]
+    [code :content static/examples/deep-index/graphql/shurcool.go :title shurcool.go]]]

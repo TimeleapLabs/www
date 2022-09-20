@@ -12,3 +12,5 @@ node_modules
 .assets
 
 /static/images/originals
+src/routes/docs/**/*.svelte
+src/lib/docs.nav.js

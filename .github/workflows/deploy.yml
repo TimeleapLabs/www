@@ -18,6 +18,7 @@ jobs:
       - name: Build the app
         run: |
           npm ci
+          npm run docs:build
           npm run build
 
       - name: Configure AWS credentials

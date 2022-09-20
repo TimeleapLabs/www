@@ -1,0 +1,31 @@
+[heading Getting started]
+
+To get started with the Kenshi Deep Indexing Sync tasks, go to the Kenshi dashboard and
+connect your wallet. Then click on the “New Sync Task” button and fill in the “New Deep 
+Indexing Task” form.
+
+[gallery [image /images/docs/screenshots/sync.png Deep Index Sync Form]]
+
+[heading :size 2 How to fill the form?]
+
+The Sync task form lets you choose what blockchain data is relevant to you. How you fill the
+form depends on your use case, but we can give you some tips and info about each one of the
+fields in this form.
+
+[list :type ordered
+  [: [bold Chain]: Here you need to choose the chain where your data is. For example, if you
+      deployedyour smart contract to the Fantom chain and you want to sync the events from
+      this smart contract to the Kenshi blockchain data clusters, then you'll need to choose
+      the Fantom chain here. This value cannot be changed after the task is created.]
+
+  [: [bold Starting block]: This field specifies from which block the sync task should look
+      for the events you want to sync. Following the example of the [bold Chain] field, if your
+      smart contract is deployed at block XYZ (eg. block 39176717) you'd want to put that number
+      in this field. This value cannot be changed after the task is created.]
+
+  [: [bold Interval]: The sync task runs at specific periods to look for new events, for example
+      it can run every 5 seconds, or every 5 minutes. The lower the interval is the lower the
+      data sync latency will be. If you're creating the task for archiving purposes, it won't
+      matter if the interval is too high, but if you're making a dApp then you don't want to
+      keep your users waiting. This value cannot be changed after the task is created.]
+  ]
