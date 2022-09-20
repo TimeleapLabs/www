@@ -1,24 +1,15 @@
-import { Cadey, rules, macros } from "cadey/generator.js";
+import { Cadey, rules } from "cadey/generator.js";
 import { parse } from "cadey/parser.js";
-import prettier from "prettier";
 
 import fs from "fs";
 import path from "path";
 
+import { macros } from "./cadey/macros.js";
+import { getNav, getNext, getPrev } from "./cadey/nav.js";
+import { getHeadings, getImports } from "./cadey/generators.js";
+import { getDocPage, getContext } from "./cadey/generators.js";
+
 const cadey = new Cadey({ parse, macros, rules });
-
-const asText = (arr) => {
-  if (typeof arr == "string") return arr;
-  return arr.map(asText).join("").trim();
-};
-
-cadey.addMacros({
-  alert(options, ...args) {
-    this.components = { ...this.components, Alert: true };
-    const [type, ...text] = args.slice(1);
-    return `<Alert ${type}>${asText(text)}</Alert>`;
-  },
-});
 
 function* walkSync(dir) {
   const files = fs.readdirSync(dir, { withFileTypes: true });
@@ -32,23 +23,35 @@ function* walkSync(dir) {
 }
 
 const parseAll = async () => {
-  for (const file of walkSync("./src/routes/docs")) {
-    if (file.endsWith(".cadey")) {
+  const processed = {};
+  const allHeadings = {};
+  const allTocs = {};
+  const processOne = async (file) => {
+    if (file.endsWith(".cadey") && !processed[file]) {
       const content = fs.readFileSync(file).toString();
       const cst = await cadey.parse(content);
-      const context = cadey.getContext();
+      const context = getContext(cadey, processOne, file, allHeadings, allTocs);
       const parsed = await cadey.parseCST(cst, context);
-      const imports = Object.keys(context.components)
-        .map((c) => `import ${c} from "src/components/${c}.svelte"`)
-        .join(";\n");
-      const code = `<script>${imports}</script>${parsed}`;
-      const pretty = prettier.format(code, {
-        parser: "svelte",
-        plugins: ["prettier-plugin-svelte"],
-      });
-      fs.writeFileSync(file.replace(".cadey", ".svelte"), pretty);
+      processed[file] = { parsed, context };
     }
+  };
+  for (const file of walkSync("./src/routes/docs")) {
+    await processOne(file);
   }
+  for (const file in processed) {
+    const { parsed, context } = processed[file];
+    const imports = getImports(context.components);
+    const headings = getHeadings(context.headings);
+    const next = getNext(file, allTocs);
+    const prev = getPrev(file, allTocs, allHeadings);
+    const code = getDocPage(parsed, imports, headings, next, prev);
+    fs.writeFileSync(file.replace(".cadey", ".svelte"), code);
+  }
+  const nav = getNav(allTocs);
+  fs.writeFileSync(
+    "src/lib/docs.nav.js",
+    `export default ${JSON.stringify(nav, null, 2)}`
+  );
 };
 
 parseAll();

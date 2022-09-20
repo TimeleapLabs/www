@@ -1,0 +1,19 @@
+[heading Introduction]
+
+Sync tasks are essential to the Kenshi Deep Indexing ecosystem. These tasks run periodically,
+fetching events from the blockchain and storing them into the Kenshi blockchain data clusters.
+This information can then be queried using the Kenshi GraphQL API, or you can choose to be
+notified of them using the Kenshi Reverse-API (Webhooks) service.
+
+Data stored in the Kenshi blockchain data cluster is shared with all Kenshi clients. If there
+is already a Sync task targeting the blockchain data you are interested in, you won't have to
+create a sync task yourself. To check whether the data you are interested in already exists on
+the Kenshi blockchain data clusters simply make a GraphQL request to our API address, or ask
+the project owners if they have already created a task and if they provide a Kenshi GraphQL API
+key for public access.
+
+The Kenshi Deep Index Sync task service is fully managed and does not require any external
+servers or setup. To use it head to the Kenshi [link /dashbiard dashboard], connect your wallet
+and make a task using the new Sync task form.
+
+Continue reading on to get help with the dashboard or see examples of the Sync service.

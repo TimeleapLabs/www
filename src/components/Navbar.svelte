@@ -159,7 +159,7 @@
   class="navbar"
   class:mobile={isMobile}
   class:open={anyMenuOpen}
-  class:shadow={scrolled}
+  class:shadow={scrolled || anyMenuOpen}
 >
   {#if isMobile}
     <div class="menu">
@@ -722,6 +722,8 @@
   </div>
 {/if}
 
+<div class="pad" />
+
 {#if anyMenuOpen && isMobile}
   <style global>
     body {
@@ -735,10 +737,15 @@
     display: flex;
     padding: 0em 4em;
     align-items: center;
-    position: sticky;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
     top: 0;
     background: var(--secondary-lighten-4);
     z-index: 1000;
+  }
+  .pad {
+    height: 64px;
   }
   @media only screen and (max-width: 1280px) {
     .navbar {
@@ -786,6 +793,7 @@
     width: 100%;
     padding: 0em 4em;
     box-sizing: border-box;
+    top: 64px;
   }
   .submenu.mobile {
     width: 100%;
@@ -980,9 +988,6 @@
   }
   .mobile h3 {
     margin-top: 1em;
-  }
-  .navbar button {
-    font-weight: bold;
   }
   .button.build {
     margin-left: 0.5em;
