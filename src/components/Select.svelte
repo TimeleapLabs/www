@@ -8,6 +8,8 @@
   export let value;
   export let icon;
   export let help = "";
+  export let prefix;
+  export let format = (label) => label;
 
   const Icon = icon;
 
@@ -54,7 +56,10 @@
       {/if}
       <div class="content">
         {#if label}
-          {label}
+          {#if prefix}
+            <span>{prefix}</span>
+          {/if}
+          {format(label)}
         {:else}
           {placeholder}
         {/if}

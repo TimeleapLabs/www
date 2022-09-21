@@ -14,19 +14,19 @@ const blockTimes = {
 const allStepOptions = [
   ...new Array(4).fill().map((_, i) => ({
     value: (i + 1) * 6,
-    label: `${(i + 1) * 6} blocks at once`,
+    label: `${(i + 1) * 6} blocks on each run`,
   })),
   ...new Array(8).fill().map((_, i) => ({
     value: (i + 1) * 12 + 30,
-    label: `${(i + 1) * 12 + 30} blocks at once`,
+    label: `${(i + 1) * 12 + 30} blocks on each run`,
   })),
   ...new Array(4).fill().map((_, i) => ({
     value: (i + 1) * 24 + 126,
-    label: `${(i + 1) * 24 + 126} blocks at once`,
+    label: `${(i + 1) * 24 + 126} blocks on each run`,
   })),
   ...new Array(8).fill().map((_, i) => ({
     value: (i + 1) * 36 + 222,
-    label: `${(i + 1) * 36 + 222} blocks at once`,
+    label: `${(i + 1) * 36 + 222} blocks on each run`,
   })),
 ];
 

@@ -3,6 +3,8 @@
   import TextInput from "src/components/TextInput.svelte";
   import Select from "src/components/Select.svelte";
   import Button from "src/components/Button.svelte";
+  import Checkbox from "src/components/Checkbox.svelte";
+  import Alert from "src/components/Alert.svelte";
 
   import { wallet } from "src/stores/wallet";
   import { getReverseAPIPrice } from "$lib/dash/pricing";
@@ -21,16 +23,23 @@
 
   let userAddress;
   let endpoint;
-  let timeout;
-  let interval;
-  let step;
+  let interval = 20;
+  let step = 24;
+  let timeout = 10000;
   let price;
-  let duration;
+  let duration = 1;
   let chain;
   let fromBlock;
   let syncTaskId;
   let requests;
   let query = [];
+  let useDefaultOptions = true;
+
+  $: if (useDefaultOptions) {
+    interval = 20;
+    step = 24;
+    timeout = 10000;
+  }
 
   $: if (step) {
     const steps = getStepOptions(chain, interval).map(({ value }) => value);
@@ -240,6 +249,7 @@
       />
       <TextInput
         placeholder="Duration (Months)"
+        prefix="Run for"
         bind:value={duration}
         bind:valid={webhookInvalids.duration}
         suffix={duration > 1 ? "months" : "month"}
@@ -256,45 +266,63 @@
     </div>
     <div class="form">
       <h5>Scheduling</h5>
-      <Select
-        options={[
-          { label: "Every 5 seconds", value: 5 },
-          { label: "Every 10 seconds", value: 10 },
-          { label: "Every 15 seconds", value: 15 },
-          { label: "Every 20 seconds", value: 20 },
-          { label: "Every 30 seconds", value: 30 },
-          { label: "Every 1 minute", value: 60 },
-          { label: "Every 2 minutes", value: 120 },
-          { label: "Every 5 minutes", value: 300 },
-        ]}
-        placeholder="Choose an interval"
-        bind:value={interval}
-        bind:valid={webhookInvalids.interval}
-        help="The interval at which Kenshi checks for new events matching this R-API task."
-      />
-      <Select
-        options={[
-          { label: "After 5 seconds", value: 5000 },
-          { label: "After 10 seconds", value: 10000 },
-          { label: "After 15 seconds", value: 15000 },
-          { label: "After 20 seconds", value: 20000 },
-          { label: "After 30 seconds", value: 30000 },
-        ]}
-        placeholder="Choose a timeout"
-        bind:value={timeout}
-        bind:valid={webhookInvalids.timeout}
-        help="The amount of time Kenshi is allowed to process your events and to wait for a
+      <Checkbox bind:checked={useDefaultOptions}>
+        Use default scheduling options
+      </Checkbox>
+      {#if useDefaultOptions}
+        <Alert>
+          Scheduling controls how often Kenshi looks for blockchain events and
+          how it processes them. The default settings fit most of the projects.
+          Uncheck the above checkbox if you want to adjust the options.
+        </Alert>
+      {/if}
+      {#if !useDefaultOptions}
+        <Select
+          options={[
+            { label: "Every 5 seconds", value: 5 },
+            { label: "Every 10 seconds", value: 10 },
+            { label: "Every 15 seconds", value: 15 },
+            { label: "Every 20 seconds", value: 20 },
+            { label: "Every 30 seconds", value: 30 },
+            { label: "Every 1 minute", value: 60 },
+            { label: "Every 2 minutes", value: 120 },
+            { label: "Every 5 minutes", value: 300 },
+          ]}
+          placeholder="Choose an interval"
+          format={(label) => label.toLowerCase()}
+          prefix="Run"
+          bind:value={interval}
+          bind:valid={webhookInvalids.interval}
+          help="The interval at which Kenshi checks for new events matching this R-API task."
+        />
+        <Select
+          options={getStepOptions(chain, interval)}
+          placeholder="Choose step"
+          prefix="Read"
+          bind:value={step}
+          bind:valid={webhookInvalids.step}
+          help="The number of blocks to process on each run for new events matching this R-API
+              task."
+        />
+        <Select
+          options={[
+            { label: "After 5 seconds", value: 5000 },
+            { label: "After 10 seconds", value: 10000 },
+            { label: "After 15 seconds", value: 15000 },
+            { label: "After 20 seconds", value: 20000 },
+            { label: "After 30 seconds", value: 30000 },
+          ]}
+          placeholder="Choose a timeout"
+          prefix="Timeout"
+          format={(label) => label.toLowerCase()}
+          bind:value={timeout}
+          bind:valid={webhookInvalids.timeout}
+          help="The amount of time Kenshi is allowed to process your events and to wait for a
               response from your endpoint. Choose a bigger value if you are expecting
               a lot of events."
-      />
-      <Select
-        options={getStepOptions(chain, interval)}
-        placeholder="Choose step"
-        bind:value={step}
-        bind:valid={webhookInvalids.step}
-        help="The number of blocks to process at a time for new events matching this R-API
-              task."
-      />
+        />
+      {/if}
+
       <h5>Query</h5>
       {#each query.map((q, i) => [q, i]) as [q, i]}
         <div

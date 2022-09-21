@@ -357,9 +357,8 @@
         {/each}
       </div>
       <div>
-        Every {task.interval} seconds, {task.step} blocks at a time, expires on {new Date(
-          task.expiresAt
-        ).toLocaleDateString("en-US")}.
+        Every {task.interval} seconds, {task.step} blocks on each run, expires on
+        {new Date(task.expiresAt).toLocaleDateString("en-US")}.
       </div>
     </div>
     <div class="buttons">

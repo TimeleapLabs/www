@@ -4,6 +4,8 @@
   import TextArea from "src/components/TextArea.svelte";
   import Select from "src/components/Select.svelte";
   import Button from "src/components/Button.svelte";
+  import Checkbox from "src/components/Checkbox.svelte";
+  import Alert from "src/components/Alert.svelte";
 
   import { SpinLine } from "svelte-loading-spinners";
   import { wallet } from "src/stores/wallet";
@@ -26,12 +28,19 @@
   let signature;
   let abi;
   let args = [{ name: "", value: "" }];
-  let interval;
-  let step;
-  let timeout;
+  let interval = 20;
+  let step = 24;
+  let timeout = 10000;
   let fromBlock;
-  let duration;
+  let duration = 1;
   let price;
+  let useDefaultOptions = true;
+
+  $: if (useDefaultOptions) {
+    interval = 20;
+    step = 24;
+    timeout = 10000;
+  }
 
   const setAddress = () => {
     userAddress = $wallet.accounts?.[0]?.address;
@@ -237,40 +246,59 @@
       </div>
 
       <h5>Schedule</h5>
-      <Select
-        options={[
-          { label: "Every 5 seconds", value: 5 },
-          { label: "Every 10 seconds", value: 10 },
-          { label: "Every 15 seconds", value: 15 },
-          { label: "Every 20 seconds", value: 20 },
-          { label: "Every 30 seconds", value: 30 },
-          { label: "Every 1 minute", value: 60 },
-          { label: "Every 2 minutes", value: 120 },
-          { label: "Every 5 minutes", value: 300 },
-        ]}
-        placeholder="Choose an interval"
-        help="The interval at which Kenshi reads your events from the blockchain. If you are syncing
+      <Checkbox bind:checked={useDefaultOptions}>
+        Use default scheduling options
+      </Checkbox>
+      {#if useDefaultOptions}
+        <Alert>
+          Scheduling controls how often Kenshi looks for events on the
+          blockchain and how it processes them. The default settings fit most of
+          the projects. Uncheck the above checkbox if you want to adjust the
+          options.
+        </Alert>
+      {/if}
+      {#if !useDefaultOptions}
+        <Select
+          options={[
+            { label: "Every 5 seconds", value: 5 },
+            { label: "Every 10 seconds", value: 10 },
+            { label: "Every 15 seconds", value: 15 },
+            { label: "Every 20 seconds", value: 20 },
+            { label: "Every 30 seconds", value: 30 },
+            { label: "Every 1 minute", value: 60 },
+            { label: "Every 2 minutes", value: 120 },
+            { label: "Every 5 minutes", value: 300 },
+          ]}
+          placeholder="Choose an interval"
+          format={(label) => label.toLowerCase()}
+          prefix="Run"
+          help="The interval at which Kenshi reads your events from the blockchain. If you are syncing
               historical data this defines how fast the task will catch up with the current block."
-        bind:value={interval}
-      />
-      <Select
-        options={getStepOptions(chain, interval)}
-        placeholder="Choose sync step"
-        help="The number of blocks Kenshi syncs from the blockchain on each run. If you are syncing
+          bind:value={interval}
+        />
+        <Select
+          options={getStepOptions(chain, interval)}
+          prefix="Sync"
+          placeholder="Choose sync step"
+          help="The number of blocks Kenshi syncs from the blockchain on each run. If you are syncing
               historical data, this defines how fast the task will catch up with the current block."
-        bind:value={step}
-      />
-      <Select
-        options={getTimeoutOptions(step)}
-        placeholder="Choose a timeout"
-        help="The number of seconds Kenshi is allowed to process your events each time it looks for
+          bind:value={step}
+        />
+        <Select
+          options={getTimeoutOptions(step)}
+          placeholder="Choose a timeout"
+          prefix="Timeout"
+          format={(label) => label.toLowerCase()}
+          help="The number of seconds Kenshi is allowed to process your events each time it looks for
               data. Choose based on the size of your sync step and the amount of events you expect
               on each block."
-        bind:value={timeout}
-      />
+          bind:value={timeout}
+        />
+      {/if}
       <TextInput
         placeholder="Duration (Months)"
         name="duration"
+        prefix="Run for"
         regex={/^[1-9][0-9]*$/}
         bind:value={duration}
         suffix={duration > 1 ? "months" : "month"}

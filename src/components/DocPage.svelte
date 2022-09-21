@@ -70,15 +70,6 @@
 
 <svelte:window on:hashchange={hashchange} on:scroll={scroll} />
 
-<svelte:head>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
-    rel="stylesheet"
-  />
-</svelte:head>
-
 <Navbar />
 
 <div class="docs" on:click={closeSidebar}>
@@ -153,6 +144,7 @@
   .body {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
   .docs {
     padding: 4em;
@@ -180,15 +172,15 @@
     margin: 0;
   }
   .docs .body > :global(.card) {
-    display: grid;
+    display: flex;
     gap: 1.25em;
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
   .docs .body :global(li:not(last-of-type)) {
     margin-bottom: 0.5em;
   }
   .docs .body > :global(.card > div) {
-    overflow: hidden;
+    overflow: auto;
   }
   .docs :global(a) {
     color: black;
@@ -272,9 +264,10 @@
       background: #fff;
       padding: 1em;
       border-top-right-radius: 4px;
-      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
       border: 1px solid rgba(0, 0, 0, 0.1);
       animation: chevron linear 0.5s;
+      box-shadow: 1em 1em 2em 0.25em rgb(0 0 0 / 10%);
     }
     .headings {
       display: none;

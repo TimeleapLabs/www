@@ -391,7 +391,7 @@
           {/each}
         </div>
         <div>
-          Every {webhook.interval} seconds, {webhook.step} blocks at a time, expires
+          Every {webhook.interval} seconds, {webhook.step} blocks on each run, expires
           on {new Date(webhook.expiresAt).toLocaleDateString("en-US")}.
         </div>
         <div>
