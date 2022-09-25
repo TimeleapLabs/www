@@ -145,12 +145,16 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    line-height: 1.5;
+  }
+  .nav-buttons {
+    line-height: initial;
   }
   .docs {
     padding: 4em;
     padding-top: 2em;
     display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr;
     gap: 2em;
   }
   .docs :global(h1) {
