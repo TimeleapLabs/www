@@ -113,6 +113,12 @@
 <Footer />
 
 <style>
+  .body :global(pre) {
+    margin: 0;
+  }
+  .body :global(.alert .message .tabs) {
+    margin-top: 1em;
+  }
   .docs .body :global(.alert) {
     display: flex;
     gap: 1em;

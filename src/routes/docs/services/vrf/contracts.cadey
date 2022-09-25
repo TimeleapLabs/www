@@ -1,0 +1,90 @@
+[heading Contracts Addresses]
+
+On this page you can find the contract addresses for the [link #bnb-chain BNB Chain],
+[link #polygon Polygon], [link #fantom Fantom], [link #avalanche-c-chain Avalanche (C-Chain)],
+and the [link #ethereum Ethereum] (Goerli) chains. These contract addresses
+should be passed to the "setupVRF" function depending on which chain your contract is deployed to.
+
+[alert note
+   This service is currently in beta test and active only on the BNB Chain (BSC),
+   Fantom (FTM) and Polygon (MATIC) testnets and mainnets. If you have any issues or questions
+   you can join our [link https://t.me/KenshiTechDevelopers Telegram chat] or send us an email
+   at [link mailto:support@kenshi.io support@kenshi.io].]
+
+[heading :size 2 BNB Chain]
+
+[heading :size 3 BSC Mainnet]
+
+[table
+   [:header Contract        Address]
+   [:row    Coordinator     [code :language js 0xe5830c0e60FBBCd9d6f71B7a397964d61B6d5eab]]
+   [:row    [: VRF Utils]   [code :language js 0xdDac2D19073163fD1349e9fa6a3691381480Dd30]]]
+
+[heading :size 3 BSC Testnet]
+
+[table
+   [:header Contract          Address]
+   [:row    Coordinator       [code :language js 0x1f54B2dF5b9f15b834bA3E85576244BC7e689501]]
+   [:row    [: VRF Utils]     [code :language js 0x2c317b986CDD71FaAcd46e6E47a3f3E62F51E2bf]]
+   [:row    [: D20 Example]   [code :language js 0xA585Aa1A06a17a0DC2Ee8b12EfD40b08826020F1]]]
+
+[heading :size 2 Polygon]
+
+[heading :size 3 Polygon Mainnet]
+
+[table
+   [:header Contract        Address]
+   [:row    Coordinator     [code :language js 0x6DD8b59648Df205fef3C98F5545cC96859034C6C]]
+   [:row    [: VRF Utils]   [code :language js 0x70e3aa1c0d5aDa1D4B573eDcF6a6FF3C26760A1A]]]
+
+[heading :size 3 Mumbai Testnet]
+
+[table
+   [:header Contract          Address]
+   [:row    Coordinator       [code :language js 0xB2B448eBF7b44C5d1b3Ded988525789A12bEABD9]]
+   [:row    [: VRF Utils]     [code :language js 0x184B5bd3c3494fD38BD2b489669E4dB33a4b72AE]]
+   [:row    [: D20 Example]   [code :language js 0xc490A24dd3A2600DbedD3CC1E7151c1D7645b656]]]
+
+[heading :size 2 Fantom]
+
+[heading :size 3 Fantom Mainnet]
+
+[table
+   [:header Contract        Address]
+   [:row    Coordinator     [code :language js 0x6DD8b59648Df205fef3C98F5545cC96859034C6C]]
+   [:row    [: VRF Utils]   [code :language js 0x70e3aa1c0d5aDa1D4B573eDcF6a6FF3C26760A1A]]]
+
+[heading :size 3 Fantom Testnet]
+
+[table
+   [:header Contract          Address]
+   [:row    Coordinator       [code :language js 0xf864115542CdC5e7d001101Cf79C147B0aE497ee]]
+   [:row    [: VRF Utils]     [code :language js 0xd8aA9BeB5ef0eD1Bbb8Efb6EE665888c2E4F7b64]]
+   [:row    [: D20 Example]   [code :language js 0x571aa5DAf9196e20f97AA5f82d0c991D2A5CF167]]]
+
+[heading :size 2 Avalanche (C-Chain)]
+
+[heading :size 3 Avalanche Mainnet]
+
+[table
+   [:header Contract        Address]
+   [:row    Coordinator     [code :language js 0x6DD8b59648Df205fef3C98F5545cC96859034C6C]]
+   [:row    [: VRF Utils]   [code :language js 0x70e3aa1c0d5aDa1D4B573eDcF6a6FF3C26760A1A]]]
+
+[heading :size 3 Fuji Testnet]
+
+[table
+   [:header Contract          Address]
+   [:row    Coordinator       [code :language js 0xc41eCc605d583Aa3A5CD5b8776B0D8ed3b6bb312]]
+   [:row    [: VRF Utils]     [code :language js 0x039976F40a15Bbaaf055144d59F0a47341AF2dcb]]
+   [:row    [: D20 Example]   [code :language js 0x9877690753444fa090C107bF83ea48F7EdAD7937]]]
+
+[heading :size 2 Ethereum]
+
+[heading :size 3 Goerli Testnet]
+
+[table
+   [:header Contract          Address]
+   [:row    Coordinator       [code :language js 0x8AdA51404F297bF2603912d1606340223c0a7784]]
+   [:row    [: VRF Utils]     [code :language js 0x164caf66c45e483F7eE647CcaD275B35B4C75719]]
+   [:row    [: D20 Example]   [code :language js 0x68EB019C53D8FE3Ffe60784617377649Cd9380C9]]]

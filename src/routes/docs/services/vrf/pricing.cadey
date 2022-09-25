@@ -1,0 +1,16 @@
+[heading Pricing]
+
+We estimate how much gas is required to deliver randomness to your smart contract, add 15% to it,
+convert it to Kenshi and then charge that amount from your VRF subscription.
+
+VRF subscriptions can be made on the Kenshi [link /dashboard dashboard]. All payments
+for the VRF fees are processed off-chain and therefore are gas-free. This makes the
+Kenshi VRF cheaper compared to the rest.
+
+[alert note
+  Make sure you have enough Kenshi tokens in your VRF subscription for paying the
+  VRF fees.]
+
+[heading :size 2 Testnets]
+
+The VRF service is free of charge on testnets.

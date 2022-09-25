@@ -12,19 +12,16 @@ contract D20 is VRFConsumer {
     }
 
     /**
-     * @dev this function can be used to pass config parameters to the Kenshi VRF library
+     * @dev this function can be used to pass config parameters
+     * to the Kenshi VRF library
      */
-    function setVRFConfig(
-        address coordinator,
-        bool verify,
-        bool silent
-    ) public {
+    function setVRFConfig(address coordinator) public {
         require(msg.sender == _owner, "Only owner");
-        setupVRF(coordinator, verify, silent);
+        setupVRF(coordinator);
     }
 
     /**
-     * @dev rolls a D20, requests a random number from the Kenshi VRF
+     * @dev rolls a D20, requests a random number from the Kenshi VRF coordinator
      * and maps the `requestId` of the VRF request to the message sender
      */
     function roll() public {
@@ -35,9 +32,9 @@ contract D20 is VRFConsumer {
     event Rolled(address addr, uint8 number);
 
     /**
-     * @dev receives `requestId` and `randomness` from the Kenshi VRF coordinator
+     * @dev receives `requestId` and `randomness` from the Kenshi VRF coordinator,
      * gets the original message sender, converts the randomness to a number between
-     * 1 and 20, emits an event as the D20 roll result for this `requestId`
+     * 1 and 20, and emits an event as the D20 roll result for this `requestId`
      */
     function fulfillRandomness(uint256 requestId, uint256 randomness)
         internal

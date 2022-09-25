@@ -58,7 +58,6 @@
   }
   .code {
     padding: 1em;
-    padding-bottom: 0;
     overflow: auto;
   }
   .code :global(pre) {
