@@ -1,0 +1,19 @@
+[heading Examples]
+
+On this page you can find examples for [link #nodejs Node.js], and [link #python Python].
+
+[heading :size 2 Node.js]
+
+[tabs 
+  [tab [:title Using Express]
+    [alert note This example requires Node.js v14.8+ and the express npm package installed.]
+    [alert info This example is also available on GitHub.]
+    [code :content static/examples/deep-index/r-api/node-express.js :title node-express.js]]]
+
+[heading :size 2 Python]
+
+[tabs 
+  [tab [:title Using Flask]
+    [alert note This example requires the flask Python package installed.]
+    [alert info This example is also available on GitHub.]
+    [code :content static/examples/deep-index/r-api/flask.py :title flask.py]]]

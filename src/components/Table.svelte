@@ -22,6 +22,11 @@
     margin: 0;
     white-space: break-spaces;
   }
+  .table :global(.highlight),
+  .table :global(.highlight pre) {
+    display: inline;
+    white-space: inherit;
+  }
   table :global(td),
   table :global(td *) {
     vertical-align: top;

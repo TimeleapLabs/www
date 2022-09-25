@@ -28,6 +28,7 @@ const parseAll = async () => {
   const allTocs = {};
   const processOne = async (file) => {
     if (file.endsWith(".cadey") && !processed[file]) {
+      console.log(`Processing ${file}`);
       const content = fs.readFileSync(file).toString();
       const cst = await cadey.parse(content);
       const context = getContext(cadey, processOne, file, allHeadings, allTocs);
@@ -36,10 +37,7 @@ const parseAll = async () => {
     }
   };
   for (const file of walkSync("./src/routes/docs")) {
-    await processOne(file).catch((err) => {
-      console.log(`Error while processing ${file}`);
-      throw err;
-    });
+    await processOne(file);
   }
   for (const file in processed) {
     const { parsed, context } = processed[file];
