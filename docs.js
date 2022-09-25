@@ -36,7 +36,10 @@ const parseAll = async () => {
     }
   };
   for (const file of walkSync("./src/routes/docs")) {
-    await processOne(file);
+    await processOne(file).catch((err) => {
+      console.log(`Error while processing ${file}`);
+      throw err;
+    });
   }
   for (const file in processed) {
     const { parsed, context } = processed[file];

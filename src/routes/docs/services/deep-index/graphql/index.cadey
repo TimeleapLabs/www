@@ -12,4 +12,9 @@ for querying and retrieving blockchain data using GraphQL.
 To learn more about GraphQL itself, you can visit the [link https://graphql.org/ official GraphQL website].
 
 [toc
-  examples]
+  introduction
+  start
+  endpoints
+  examples
+  schema
+  pricing]

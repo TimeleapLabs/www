@@ -1,0 +1,5 @@
+[heading Schema]
+
+Below you can find the Kenshi Deep Index GraphQL schema.
+
+[code :content static/schema/deep-index.graphql :title deep-index.graphql]

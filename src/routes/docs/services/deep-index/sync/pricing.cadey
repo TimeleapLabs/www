@@ -1,0 +1,13 @@
+[heading Pricing]
+
+On testnets and mainnets, the price of the Sync task is $0.0000035 per running second.
+The amount of seconds per month is calculated based on the task interval and timeout.
+The price is paid in Kenshi tokens.
+
+[alert note
+  If you encounter any issues with payments, contact us at [link mailto:support@kenshi.io support@kenshi.io].]
+
+[heading :size 2 Financing]
+
+To get a grant on our services or to get a discount you can contact us at
+[link mailto:inquiries@kenshi.io inquiries@kenshi.io].

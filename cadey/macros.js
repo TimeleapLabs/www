@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 
 import { asText, asArgList, unIndent, getLang, toUrl } from "./utils.js";
+import { arrayOrNotWhite } from "./utils.js";
 
 const { heading } = cadeyMacros;
 
@@ -15,8 +16,48 @@ const alertIcons = {
   success: "CircleCheck",
 };
 
+const tableHead = (items) =>
+  "<tr>" + items.map((item) => `<th>${item}</th>`).join("\n") + "</tr>";
+
+const tableRow = (items) =>
+  "<tr>" + items.map((item) => `<td>${item}</td>`).join("\n") + "</tr>";
+
+const isMultiValue = (arg) => {
+  for (const item of arg) {
+    if (Array.isArray(item)) {
+      for (const inner of item) {
+        if (Array.isArray(inner)) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+};
+
 export const macros = {
   ...cadeyMacros,
+  table(options, ..._args) {
+    this.components = { ...this.components, Table: true };
+    const header = options.header.filter(Boolean).filter(arrayOrNotWhite);
+    const rowsFromOptions = isMultiValue(options.row)
+      ? options.row
+      : [options.row];
+    const rows = rowsFromOptions
+      .filter(Boolean)
+      .filter(arrayOrNotWhite)
+      .map((row) => row.filter(arrayOrNotWhite))
+      .map((row) => row.map(asText));
+    const sizes = options.sizes
+      ? options.sizes.filter(arrayOrNotWhite)
+      : header.map(() => "1fr");
+    return `
+      <Table sizes={${JSON.stringify(sizes)}}>
+        <thead>${tableHead(header)}</thead>
+        <tbody>${rows.map(tableRow).join("\n")}</tbody>
+      </Table>
+    `;
+  },
   tab(options, ...args) {
     const { title } = options;
     const content = asText(args);
@@ -66,7 +107,7 @@ export const macros = {
     const { language, content, title } = options;
     const code = content
       ? fs.readFileSync(content.trim()).toString()
-      : unIndent(args.join(""));
+      : unIndent(asText(args));
     const getLangName = () => getLang(asText(content));
     const langName = language || (content ? getLangName() : "");
     const highlighted = pygments
@@ -74,7 +115,8 @@ export const macros = {
       .replace(/{/g, "&#123;")
       .replace(/}/g, "&#125;");
     const download = content ? `"${content.replace(/^static/, "")}"` : null;
-    return `<Code title={"${title}"} download={${download}}>${highlighted}</Code>`;
+    const titleTag = title ? `"${title}"` : null;
+    return `<Code title={${titleTag}} download={${download}}>${highlighted}</Code>`;
   },
   async toc(_options, ...args) {
     const files = asArgList(args).map((name) =>

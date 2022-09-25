@@ -19,23 +19,27 @@
   };
 </script>
 
-<Card flat padding={false}>
-  <div class="title">
-    <Button flat on:click={copy}>
-      <span class="copy">
-        <Copy />
-        {title}
-      </span>
-    </Button>
-    <div class="spacer" />
-    {#if download}
-      <a href={download} download=""> <FileArrowDown /> </a>
-    {/if}
-  </div>
-  <div class="code" bind:this={codeEl}>
-    <slot />
-  </div>
-</Card>
+{#if title}
+  <Card flat padding={false}>
+    <div class="title">
+      <Button flat on:click={copy}>
+        <span class="copy">
+          <Copy />
+          {title}
+        </span>
+      </Button>
+      <div class="spacer" />
+      {#if download}
+        <a href={download} download=""> <FileArrowDown /> </a>
+      {/if}
+    </div>
+    <div class="code" bind:this={codeEl}>
+      <slot />
+    </div>
+  </Card>
+{:else}
+  <slot />
+{/if}
 
 <style>
   .title {

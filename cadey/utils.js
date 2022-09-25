@@ -42,3 +42,6 @@ export const unIndent = (text) => {
 };
 
 export const getLang = (src) => extensions[src.split(".").pop()]?.toLowerCase();
+
+export const arrayOrNotWhite = (item) =>
+  Array.isArray(item) || item.match(/\S+/);

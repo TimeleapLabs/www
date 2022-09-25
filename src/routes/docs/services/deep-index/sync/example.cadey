@@ -1,0 +1,24 @@
+[heading Example]
+
+The example below shows a Sync task to sync all Kenshi token transfer events into the Kenshi
+blockchain data clusters:
+
+[table
+  [:header Field                  Value           Description]
+  [:row    Chain                  [: BNB Chain]   [: Kenshi smart contract is deployed to the BNB Chain.]]
+  [:row    [: Starting block]     17633890        [: Kenshi smart contract is deployed at block number 17633890.]]
+  [:row    Interval               [: 5 seconds]   [: Sync events once very five seconds.]]
+  [:row    Step                   [: 12 blocks]   [: Sync 12 blocks on each run.]]
+  [:row    Timeout                [: 10 seconds]  [: Time out after 10 seconds of looking for events with no result.]]
+  [:row    Duration               1               [: Run this sync task for 1 month]]
+  [:row    [: Contract address]
+           [code :language javascript 0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f]
+           [: This is the Kenshi token smart contract address]]
+  [:row    [: Contract ABI]
+           [code :language javascript [:[ "event Transfer(address indexed from, address indexed to, uint256 value)" ]:]]
+           [: Human-Readable ABI including only the Transfer event ABI]]
+  [:row    [: Event signature]
+           [code :language solidity [: Transfer(address,address,uint256)]]
+           [: Event signature for the Transfer event]]
+  [:row    Arguments [::] [: Left empty to sync all Transfer events]]
+]

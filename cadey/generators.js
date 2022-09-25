@@ -6,6 +6,7 @@ export const getHeadings = (headings) =>
 const componentsMap = {
   Alert: "src/components/Alert.svelte",
   Code: "src/components/Code.svelte",
+  Table: "src/components/Table.svelte",
   TriangleExclamation: "src/icons/TriangleExclamation.svelte",
   CircleInfo: "src/icons/CircleInfo.svelte",
   Pencil: "src/icons/Pencil.svelte",
