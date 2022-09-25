@@ -1,0 +1,92 @@
+[heading Locker]
+
+The Kenshi locker can be used to lock any BEP-20 tokens for a set period of time.
+For example, you can use it to lock your liquidity tokens or use it to lock up
+your team allocations for as long as your project requires.
+
+[heading :size 2 Features]
+
+Kenshi lockers have a set of features that makes them stand out in the competition:
+
+[list
+  [:[bold One-time flat fee]: pay one time and use forever, do whatever.]
+  [:[bold Upgradable]: upgrade your locker to a new version for free any time we add new features.]
+  [:[bold Lock any token]: lock any token on the BNB Chain.]
+  [:[bold Lock multiple tokens]: lock multiple tokens or lp tokens in the same locker.]
+  [:[bold Transfer ownership]: transfer ownership to a new wallet if needed.]]
+
+[heading :size 2 Pricing]
+
+Kenshi lockers have a one-time flat fee and all future interactions with them
+are free. You can either pay or lock a specific amount of Kenshi tokens
+for at least a year and get the locker for free. Please note that you won't pay
+any Kenshi transaction tax if you choose to pay by locking Kenshi, and you will
+receive reflections on top of that.
+
+[table
+   [:header [: Locker Action]                               [: Price (Pay in Kenshi)] [: Price (Lock Kenshi)]]
+   [:row    [: Create a new locker]                         100M                      200M]
+   [:row    [: Lock liquidity or other tokens]              [italic Free]             [italic Free]]
+   [:row    [: Increase locked liquidity or other tokens]   [italic Free]             [italic Free]]
+   [:row    [: Increase lock time]                          [italic Free]             [italic Free]]
+   [:row    [: Transfer ownership]                          [italic Free]             [italic Free]]
+   [:row    [: Upgrade to a new locker version]             [italic Free]             [italic Free]]]
+
+[heading :size 2 How to create a locker?]
+
+To create a locker, go to the [link /lockers lockers] page on our website, connect your wallet
+and click on the create button. Once the locker creation is done you will be
+redirected to the admin page. Be sure to copy the contract address of your newly
+created locker so you can manage it later.
+
+[heading :size 2 How to add tokens to the locker?]
+
+You can either use the admin page of the locker for sending tokens into the locker,
+or you can simply send tokens to the locker contract address from the wallet of
+your choice.
+
+[alert warning
+  When sending tokens to the contract address, make sure you're on the correct
+  network. Otherwise, your tokens will be lost forever.]
+
+[heading :size 2 How to withdraw tokens from the locker?]
+
+Go on the admin page of your locker, connect with your wallet, and enter the address of
+the token you want to remove in the [bold Lock / Withdraw] section, click on the [bold Withdraw]
+button.
+
+[heading :size 2 How to lock tokens?]
+
+Go to the admin page of your locker, connect your wallet, choose a date and click
+on the [bold Change] button. If you want to extend the lock time you can do it the same
+way.
+
+[heading :size 2 How do I see details about a locker?]
+
+You can go on to the locker's admin page, connect your wallet and see the information
+publicly available on the locker.
+
+[alert note
+  Admin actions such as locking, withdrawing and setting the dates are only available
+  and displayed to the locker owner. Locker onwer is anyone who created the locker.
+  Please note that the ownership of the locker is not transferrable.]
+
+[heading :size 2 Programmatic access]
+
+Check our [link https://github.com/KenshiTech/locker-interface GitHub repository]
+for the relevant interfaces and documentation.
+
+[heading :size 2 I lost my locker's address!]
+
+No worries, just send us an email at [link mailto:support@kenshi.io support@kenshi.io]
+and we will recover it for you.
+
+[heading Terms of Use]
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
