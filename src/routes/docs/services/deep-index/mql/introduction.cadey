@@ -1,0 +1,9 @@
+[heading Introduction]
+
+The Kenshi Deep Indexing MQL service is your gateway to query the blockchain data
+stored on the Kenshi blockchain data clusters. This endpoint implements the standard
+MQL specification and is accessible over the HTTP protocol using POST requests.
+
+To use the MQL service, you will need an API key. To create an API key you can visit
+the Kenshi [link https://kenshi.io/dashboard dashboard]. Continue reading on to get
+help with the dashboard or see examples of the Sync service.

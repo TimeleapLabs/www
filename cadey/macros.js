@@ -22,7 +22,10 @@ const tableHead = (items) =>
 const tableRow = (items) =>
   "<tr>" + items.map((item) => `<td>${item}</td>`).join("\n") + "</tr>";
 
-const isMultiValue = (arg) => {
+const isMultiValue = (arg, expect) => {
+  if (arg.filter(arrayOrNotWhite).length > expect) {
+    return true;
+  }
   for (const item of arg) {
     if (Array.isArray(item)) {
       for (const inner of item) {
@@ -39,8 +42,11 @@ export const macros = {
   ...cadeyMacros,
   table(options, ..._args) {
     this.components = { ...this.components, Table: true };
-    const header = options.header.filter(Boolean).filter(arrayOrNotWhite);
-    const rowsFromOptions = isMultiValue(options.row)
+    const header = options.header
+      .filter(Boolean)
+      .filter(arrayOrNotWhite)
+      .map(asText);
+    const rowsFromOptions = isMultiValue(options.row, header.length)
       ? options.row
       : [options.row];
     const rows = rowsFromOptions

@@ -1,0 +1,48 @@
+[heading Schema]
+
+Below you can find the Kenshi Deep Index MQL schemas.
+
+[heading :size 2 Request]
+
+[table
+  [:header [: Field Name]                  Type                         Description]
+  [:row    [code :language js blockchain]  [code :language js String]   [: The blockchain you want to query]]
+  [:row    [code :language js apikey]      [code :language js String]   [: Your API key]]
+  [:row    [code :language js owner]       [code :language js String]   [: Wallet address the API key's owner]]
+  [:row    [code :language js query]       [code :language js Object]   [: Your MQL query. Refer to MongoDB
+                                                                           documentation for more details.]]
+]
+
+[heading :size 2 Response]
+
+[table
+  [:header   Path                                          Type]
+  [:row      [code :language js log.index]                 [code :language js String(Hex)]]
+  [:row      [code :language js transaction.hash]          [code :language js String(Hex)]]
+  [:row      [code :language js transaction.index]         [code :language js String(Hex)]]
+  [:row      [code :language js block.number]              [code :language js Number]]
+  [:row      [code :language js block.hash]                [code :language js String(Hex)]]
+  [:row      [code :language js block.address]             [code :language js String(Hex)]]
+  [:row      [code :language js event.name]                [code :language js String]]
+  [:row      [code :language js event.signature]           [code :language js String]]
+  [:row      [code :language js event.args.${ARG_NAME}]    [code :language js String]]
+  [:row      [code :language js createdAt]                 [code :language js String(ISODate)]]
+]
+
+[heading :size 2 Available blockchains]
+
+Available blockchains are:
+
+[table
+  [:header Blockchain                 [: MQL Value]]
+  [:row    [: Ethereum]               [code :language js "ethereum-mainnet"]]
+  [:row    [: Ethereum Goerli]        [code :language js "ethereum-goerli"]]
+  [:row    [: BNB Chain]              [code :language js "binance-mainnet"]]
+  [:row    [: BNB Chain testnet]      [code :language js "binance-testnet"]]
+  [:row    [: Polygon]                [code :language js "polygon-mainnet"]]
+  [:row    [: Polygon Mumbai]         [code :language js "polygon-mumbai"]]
+  [:row    [: Fantom]                 [code :language js "fantom-mainnet"]]
+  [:row    [: Fantom testnet]         [code :language js "fantom-testnet"]]
+  [:row    [: Avalanche]              [code :language js "avalanche-mainnet"]]
+  [:row    [: Avalanche Fuji]         [code :language js "avalanche-fuji"]]
+]
