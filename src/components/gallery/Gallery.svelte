@@ -1,6 +1,8 @@
 <script>
   import Card from "../Card.svelte";
 
+  export let gap = "1em";
+
   let gallery;
   let dragging;
 
@@ -23,6 +25,7 @@
 <Card flat padding={false}>
   <div
     class="gallery"
+    style="--gap: {gap};"
     bind:this={gallery}
     on:mousedown={onMouseDown}
     on:mouseleave={onMouseUp}
@@ -40,8 +43,7 @@
   }
   .gallery {
     display: flex;
-    gap: 1em;
-    height: 320px;
+    gap: var(--gap);
     width: 100%;
     overflow: auto;
     padding: 1em;

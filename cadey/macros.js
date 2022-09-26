@@ -86,12 +86,13 @@ export const macros = {
       atts.push(`alt="${asText(alt)}"`);
     }
 
-    return `<Image ${atts} />`;
+    return `<Image ${atts.join(" ")} />`;
   },
   gallery(options, ...args) {
     this.components = { ...this.components, Gallery: true };
+    const { gap = "1em" } = options;
     const inner = asText(args);
-    return `<Gallery>${inner}</Gallery>`;
+    return `<Gallery gap={"${gap}"}>${inner}</Gallery>`;
   },
   grid(options, ...args) {
     this.components = { ...this.components, Grid: true };

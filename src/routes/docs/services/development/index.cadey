@@ -1,0 +1,45 @@
+[heading Development]
+
+[heading :size 2 Blockchain & Crypto Development]
+
+[list :type ordered
+  [: NFT smart contracts (ERC1155, ERC721), dynamic NFTs]
+  [: Tokens (ERC20, ERC1363, etc)]
+  [: Custom smart contract development (Swaps, PegSwaps, Games, Marketplaces, Faucets, etc)]
+  [: Custom blockchain development]]
+
+[heading :size 3 Blockchain Tech Stack]
+
+[gallery :gap 2em
+  [image :height 80 /images/vendor/solidity.png Solidity]
+  [image :height 96 /images/vendor/hardhat.png Hardhat]
+  [image :height 96 /images/vendor/metamask.png Metamask]
+  [image :height 80 /images/vendor/ethereum.png Ethereum]
+  [image :height 80 /images/vendor/binance.png Binance]
+  [image :height 80 /images/vendor/polygon.png Polygon]
+  [image :height 80 /images/vendor/fantom.png Fantom]
+  [image :height 80 /images/vendor/avalanche.png Avalanche]]
+
+[heading :size 2 Other Development Services]
+
+[list :type ordered
+  [: Hybrid & native mobile apps]
+  [: Websites & dApps]
+  [: Embedded & electronics]
+  [: Serverless data flows & microservices]]
+
+[heading :size 3 Software Development Tech Stack]
+
+[gallery :gap 2em
+  [image :height 80 /images/vendor/node.png Node.js]
+  [image :height 64 /images/vendor/go.png Go]
+  [image :height 72 /images/vendor/python.png Python]
+  [image :height 72 /images/vendor/cpp.png C++]
+  [image :height 72 /images/vendor/svelte.webp Svelte]
+  [image :height 80 /images/vendor/react.png React]
+  [image :height 64 /images/vendor/flutter.png Flutter]
+  [image :height 96 /images/vendor/postgresql.png PostgreSQL]
+  [image :height 48 /images/vendor/cockroachdb.png CockroachDB]
+  [image :height 64 /images/vendor/mongodb.png MongoDB]
+  [image :height 64 /images/vendor/aws.png AWS]
+  [image :height 96 /images/vendor/lambda.png AWS Lambda]]
