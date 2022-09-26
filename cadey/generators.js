@@ -17,6 +17,8 @@ const componentsMap = {
   TabPanel: "src/components/tabs/TabPanel.svelte",
   Image: "src/components/gallery/Image.svelte",
   Gallery: "src/components/gallery/Gallery.svelte",
+  TeamMember: "src/components/TeamMember.svelte",
+  Grid: "src/components/Grid.svelte",
 };
 
 export const getImports = (components = {}) =>

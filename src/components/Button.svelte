@@ -101,7 +101,7 @@
   .button.solid :global(svg) {
     transition: transform cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
   }
-  .button.solid:hover :global(svg) {
+  .button.solid:hover :global(svg:last-of-type) {
     transform: rotate(45deg);
   }
   .button {

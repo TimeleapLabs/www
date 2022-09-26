@@ -1,0 +1,42 @@
+[heading Team]
+
+[grid [:cols repeat(auto-fit, minmax(300px, 1fr))] [:gap 2em]
+  [team
+    [:name Pouya (Founder)]
+    [:photo /images/team/pouya.png]
+    [:linkedIn https://www.linkedin.com/in/pouya-eghbali]
+    [:github https://github.com/pouya-eghbali]
+    [:medium https://pouyae.medium.com]
+    [:twitter https://twitter.com/pouya_eghbali]
+
+    Entrepreneur, developer and innovator with a passion for distributed and decentralized systems.
+    Founder at Kenshi, Clio programming language, and CTO at Equip.]
+
+  [team
+    [:name Henry (Co-founder)]
+    [:photo /images/team/henry.jpg]
+    [:linkedIn https://www.linkedin.com/in/henry-nidecker-5836191]
+
+    CEO at Nidecker Group, LPS and Equip. Entrepreneur in sport & tech. Partner to awesome
+    startups & relentless optimist. Growing internationally +10 brands with a team 100+ people.]
+
+  [team
+    [:name Nathalie (Co-founder)]
+    [:photo /images/team/nathalie.jpg]
+    [:linkedIn https://www.linkedin.com/in/nathaliecasati]
+    [:github https://github.com/iDmple]
+
+    Data science professional with over 12 years of experience in applying machine learning
+    and cryptography in a diverse range of industries. She previously worked at IBM Research
+    and holds multiple patents for her scientific work.]
+
+  [team
+    [:name Kevin (Co-founder)]
+    [:photo /images/team/kevin.jpg]
+    [:linkedIn https://www.linkedin.com/in/kevin-aguilar-5445211b4]
+    [:github https://github.com/Dirdmaster]
+
+    Full-stack developer with a passion for cybersecurity and crypto-assets.
+    He has been growing online businesses for the last 3 years and is proficient in design,
+    marketing and deploying complex infrastructures.]
+]

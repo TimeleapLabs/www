@@ -93,6 +93,26 @@ export const macros = {
     const inner = asText(args);
     return `<Gallery>${inner}</Gallery>`;
   },
+  grid(options, ...args) {
+    this.components = { ...this.components, Grid: true };
+    const cols = asText(options.cols || "1fr 1fr");
+    const gap = asText(options.gap || "1em");
+    const inner = asText(args);
+    return `<Grid cols={"${cols}"} gap={"${gap}"}>${inner}</Grid>`;
+  },
+  team(options, ...args) {
+    this.components = { ...this.components, TeamMember: true };
+    const { name, photo, linkedIn, github, twitter, medium } = options;
+    const inner = asText(args);
+
+    let tags = `name={"${asText(name)}"} photo={"${asText(photo)}"}`;
+    if (linkedIn) tags += ` linkedIn={"${asText(linkedIn)}"}`;
+    if (github) tags += ` github={"${asText(github)}"}`;
+    if (twitter) tags += ` twitter={"${asText(twitter)}"}`;
+    if (medium) tags += ` medium={"${asText(medium)}"}`;
+
+    return `<TeamMember ${tags}>${inner}</TeamMember>`;
+  },
   tabs() {
     this.components = {
       ...this.components,
