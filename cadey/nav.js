@@ -27,7 +27,7 @@ export const getPrev = (file, allTocs, allHeadings) => {
     return allHeadings[parentIndex]
       ? JSON.stringify({
           url: toUrl(parentIndex),
-          title: allHeadings[parentIndex],
+          title: allHeadings[parentIndex][0],
         })
       : null;
   } else {
@@ -37,7 +37,10 @@ export const getPrev = (file, allTocs, allHeadings) => {
       return null;
     }
     const parentTocEntries = Object.entries(parentToc);
-    const entry = parentTocEntries[parentTocEntries.length - 2];
+    const entry =
+      parentTocEntries[
+        parentTocEntries.findIndex(([entry]) => entry === file) - 1
+      ];
     if (entry && entry[0] !== file) {
       return JSON.stringify({
         url: toUrl(entry[0]),

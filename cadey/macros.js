@@ -170,6 +170,13 @@ export const macros = {
     this.allHeadings[this.currentFile] = this.headings;
     return heading.call(this, options, ...args);
   },
+  chart(options, ..._args) {
+    this.components = { ...this.components, Chart: true };
+    const { data, title } = options;
+    const chartData = fs.readFileSync(data.trim()).toString();
+    const titleTag = title ? `"${asText(title)}"` : null;
+    return `<Chart title={${titleTag}} data={${chartData}} />`;
+  },
   alert(_options, ...args) {
     const [type, ...text] = args.slice(1);
     const iconName = alertIcons[type];

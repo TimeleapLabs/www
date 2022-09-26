@@ -19,6 +19,7 @@ const componentsMap = {
   Gallery: "src/components/gallery/Gallery.svelte",
   TeamMember: "src/components/TeamMember.svelte",
   Grid: "src/components/Grid.svelte",
+  Chart: "src/components/Chart.svelte",
 };
 
 export const getImports = (components = {}) =>
