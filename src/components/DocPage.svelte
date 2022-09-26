@@ -7,9 +7,6 @@
   import ChevronRight from "src/icons/ChevronRight.svelte";
   import Nav from "src/components/docs/Nav.svelte";
 
-  import Image from "./gallery/Image.svelte";
-  import Gallery from "./gallery/Gallery.svelte";
-
   import { SvelteToast } from "@zerodevx/svelte-toast";
 
   import "../common.css";
@@ -77,9 +74,9 @@
     <Nav />
   </div>
 
-  <div class="chevron" on:click={openSidebar}>
+  <button class="chevron" on:click={openSidebar}>
     <ChevronRight />
-  </div>
+  </button>
 
   <div class="body" bind:this={body}>
     <Card flat>
