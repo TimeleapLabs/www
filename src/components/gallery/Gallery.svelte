@@ -49,6 +49,7 @@
     cursor: grab;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    align-items: center;
   }
   .gallery::-webkit-scrollbar {
     display: none;

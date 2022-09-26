@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 449.1 248.25"
+   version="1.1"
+   id="svg840"
+   sodipodi:docname="Kenshi.svg"
+   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs844" />
+  <sodipodi:namedview
+     id="namedview842"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="2.5495435"
+     inkscape:cx="178.46332"
+     inkscape:cy="125.70878"
+     inkscape:window-width="1792"
+     inkscape:window-height="1067"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg840" />
+  <g
+     id="f716685d-2b15-4fb2-b794-7a651aee5b1c"
+     data-name="Layer 3"
+     style="fill:#ba3322;fill-opacity:1">
+    <path
+       d="M549.68,518.81,409,520.27V635.62h67V524.22l80.89,111.4h84.45ZM633.3,387.37H554.45L475.93,500.14V387.37H409V501.91l138.66-1.45Z"
+       transform="translate(-282.83 -387.37)"
+       id="path824"
+       style="fill:#ba3322;fill-opacity:1" />
+  </g>
+  <g
+     id="fa0ce84f-bac0-481f-a29e-93236a95823e"
+     data-name="Layer 2"
+     style="fill:#ba3322;fill-opacity:1">
+    <polygon
+       points="48.13 127.73 45.92 130.05 48.1 130.07 48.13 127.73"
+       id="polygon827"
+       style="fill:#ba3322;fill-opacity:1" />
+    <path
+       d="M317.05,516a26.63,26.63,0,0,1,5.5-22.51L306,493.29v-.17H282.83v33.73H306l16.24.17A26.59,26.59,0,0,1,317.05,516Z"
+       transform="translate(-282.83 -387.37)"
+       id="path829"
+       style="fill:#ba3322;fill-opacity:1" />
+    <path
+       d="M320.18,516A26.71,26.71,0,0,0,372,517.84l-40.09-.42,17.32-18.19,21.47.22A26.71,26.71,0,0,0,320.18,516Z"
+       transform="translate(-282.83 -387.37)"
+       id="path831"
+       style="fill:#ba3322;fill-opacity:1" />
+    <rect
+       x="331.86"
+       y="510.54"
+       width="380.03"
+       height="18.36"
+       transform="translate(755.49 657.48) rotate(-179.4)"
+       id="rect833"
+       style="fill:#ba3322;fill-opacity:1" />
+    <polygon
+       points="428.96 143.51 449.1 116.15 449.1 116.15 427.91 125.14 428.96 143.51"
+       id="polygon835"
+       style="fill:#ba3322;fill-opacity:1" />
+    <path
+       d="M358.2,499.33"
+       transform="translate(-282.83 -387.37)"
+       id="path837"
+       style="fill:#ba3322;fill-opacity:1" />
+  </g>
+</svg>

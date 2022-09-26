@@ -4,7 +4,7 @@
   export let alt;
   export let src;
   export let radius = 4;
-  export let height = "100%";
+  export let height = "auto";
   export let width = "auto";
 
   let zoom = false;
@@ -64,6 +64,8 @@
   .unzoom {
     height: var(--height);
     width: var(--width);
+    max-width: 400px;
+    max-height: 100%;
   }
   .zoom {
     position: fixed;
