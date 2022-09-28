@@ -45,6 +45,9 @@ const config = {
             "@ensdomains/address-encoder/lib/index.umd.js",
         },
       },
+      define: {
+        "process.env.VITE_BUILD_TIME": JSON.stringify(new Date().toISOString()),
+      },
     },
   },
 };
