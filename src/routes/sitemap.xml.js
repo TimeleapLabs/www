@@ -39,14 +39,16 @@ const render = (staticPages) => `<?xml version="1.0" encoding="UTF-8" ?>
   xmlns:pagemap="http://www.google.com/schemas/sitemap-pagemap/1.0"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
 >
-${staticPages.map(
-  (staticPage) => `
+${staticPages
+  .map(
+    (staticPage) => `
   <url>
     <loc>${staticPage}</loc>
     <lastmod>${`${process.env.VITE_BUILD_TIME}`}</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 `
-)}
+  )
+  .join("")}
 </urlset>
 `;
