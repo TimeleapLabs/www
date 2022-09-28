@@ -52,7 +52,7 @@
       <Button href="/dashboard">
         Dashboard <ChevronRight />
       </Button>
-      <Button href="http://docs.kenshi.io/" target="_blank">
+      <Button href="/docs" target="_blank">
         Read the docs <ChevronRight />
       </Button>
       <Button
@@ -85,7 +85,7 @@
       description="Implement dynamic NFTs, games, lotteries and more with Kenshi VRF oracles."
       buttons={[
         {
-          href: "https://docs.kenshi.io/services/vrf/index.html",
+          href: "/docs/services/vrf",
           external: true,
           label: "Docs",
         },
@@ -108,7 +108,7 @@
       description="Sync, search, query, and consume blockchain data that matters."
       buttons={[
         {
-          href: "https://docs.kenshi.io/services/deep-index/index.html",
+          href: "/docs/services/deep-index",
           external: true,
           label: "Docs",
         },
@@ -135,20 +135,12 @@
       <h3>Liquidity Lockers</h3>
       <Arrow />
     </a>
-    <a href="https://docs.kenshi.io/services/lbp.html" class="product">
-      <LiquidUp />
-      <h3>Liquidity Bootstrapping</h3>
-      <Arrow />
-    </a>
-    <a href="https://docs.kenshi.io/services/audits/index.html" class="product">
+    <a href="/docs/services/audits" class="product">
       <Shield />
       <h3>Security Audits</h3>
       <Arrow />
     </a>
-    <a
-      href="https://docs.kenshi.io/services/development/index.html"
-      class="product"
-    >
+    <a href="/docs/services/development" class="product">
       <Code />
       <h3>Blockchain Development</h3>
       <Arrow />
@@ -173,7 +165,7 @@
         label: "Charts",
       },
       {
-        href: "https://docs.kenshi.io/token/tokenomics.html",
+        href: "/docs/token",
         external: false,
         label: "Learn more",
       },
@@ -195,7 +187,7 @@
         label: "Twitter",
       },
       {
-        href: "https://docs.kenshi.io/community.html",
+        href: "/docs/community",
         external: false,
         label: "More",
       },
@@ -237,7 +229,7 @@
           >
             Github <External />
           </Button>
-          <Button href="https://docs.kenshi.io/services/vrf/index.html">
+          <Button href="/docs/services/vrf">
             Docs <ChevronRight />
           </Button>
         </div>
@@ -305,7 +297,7 @@
         title="Fully managed, scales to infinity"
         buttons={[
           {
-            href: "https://docs.kenshi.io/services/deep-index/index.html",
+            href: "/docs/services/deep-index",
             external: false,
             label: "Start today",
           },
@@ -358,7 +350,7 @@
       description="Join Kenshi Discord server"
     />
     <CardButton
-      href="https://docs.kenshi.io"
+      href="/docs"
       image="/images/pfp/docs.png"
       title="Docs"
       description="Read Kenshi documentation"

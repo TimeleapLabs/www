@@ -186,11 +186,7 @@
 <Card>
   <div class="header">
     <h3>Register new Reverse API endpoint</h3>
-    <Button
-      flat
-      href="https://docs.kenshi.io/services/deep-index/webhook/getting-started.html"
-      target="_blank"
-    >
+    <Button flat href="/docs/services/deep-index/webhook/start" target="_blank">
       <CircleQuestion />
     </Button>
   </div>

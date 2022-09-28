@@ -99,11 +99,7 @@
 <Card>
   <div class="header">
     <h3>New VRF subscription</h3>
-    <Button
-      flat
-      href="https://docs.kenshi.io/services/vrf/getting-started.html"
-      target="_blank"
-    >
+    <Button flat href="/docs/services/vrf/start" target="_blank">
       <CircleQuestion />
     </Button>
   </div>

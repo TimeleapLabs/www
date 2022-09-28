@@ -255,30 +255,22 @@
               <div class="product">
                 <h3>Deep Index</h3>
                 <div>
-                  <Link
-                    href="https://docs.kenshi.io/services/deep-index/sync/index.html"
-                  >
+                  <Link href="/docs/services/deep-index/sync">
                     <DB />Indexing
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    href="https://docs.kenshi.io/services/deep-index/webhook/index.html"
-                  >
+                  <Link href="/docs/services/deep-index/webhook">
                     <CloudSensor />Reverse API
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    href="https://docs.kenshi.io/services/deep-index/graphql/index.html"
-                  >
+                  <Link href="/docs/services/deep-index/graphql">
                     <D20 />GraphQL
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    href="https://docs.kenshi.io/services/deep-index/mql/index.html"
-                  >
+                  <Link href="/docs/services/deep-index/mql">
                     <MongoDB />MQL
                   </Link>
                 </div>
@@ -286,13 +278,8 @@
               <div class="product">
                 <h3>Oracles</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/services/vrf/index.html">
+                  <Link href="/docs/services/vrf">
                     <Shuffle />VRF
-                  </Link>
-                </div>
-                <div>
-                  <Link href="https://docs.kenshi.io/services/lbp.html">
-                    <LiquidUp />Liquidity Bootstrapping
                   </Link>
                 </div>
               </div>
@@ -304,16 +291,12 @@
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    href="https://docs.kenshi.io/services/audits/index.html"
-                  >
+                  <Link href="/docs/services/audits">
                     <Shield />Security Audits
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    href="https://docs.kenshi.io/services/development/index.html"
-                  >
+                  <Link href="/docs/services/development">
                     <Code />Blockchain Development
                   </Link>
                 </div>
@@ -339,7 +322,7 @@
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://docs.kenshi.io">
+                  <Link href="/docs">
                     <Book /> Documentation
                   </Link>
                 </div>
@@ -496,19 +479,17 @@
               <div class="token">
                 <h3>About</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/token/tokenomics.html">
-                    <Coin /> Tokenomics
+                  <Link href="/docs/token/ecosystem">
+                    <Coin /> Ecosystem
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://docs.kenshi.io/token/features/index.html">
+                  <Link href="/docs/token/features">
                     <ListCheck /> Features
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    href="https://docs.kenshi.io/token/features/variable-tax.html"
-                  >
+                  <Link href="/docs/token/features/variable-tax">
                     <Scale /> Tax
                   </Link>
                 </div>
@@ -650,12 +631,12 @@
               <div class="community">
                 <h3>About</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/kenshi.html">
+                  <Link href="/docs/kenshi">
                     <Briefcase /> Kenshi
                   </Link>
                 </div>
                 <div>
-                  <Link href="https://docs.kenshi.io/team.html">
+                  <Link href="/docs/team">
                     <Team /> Team
                   </Link>
                 </div>
@@ -679,7 +660,7 @@
               <div class="community">
                 <h3>Press</h3>
                 <div>
-                  <Link href="https://docs.kenshi.io/media.html">
+                  <Link href="/docs/media">
                     <Palette />
                     Press Kit
                   </Link>

@@ -34,39 +34,24 @@
   <div class="middle">
     <div class="list">
       <h3>Developers</h3>
-      <Link href="https://docs.kenshi.io">Documentation</Link>
+      <Link href="/docs">Documentation</Link>
       <Link href="/dashboard">Dashboard</Link>
       <Link href="/status">Service Status</Link>
       <Link href="https://t.me/KenshiTechDevelopers" target="_blank">
         Developers chat
       </Link>
-      <Link href="https://docs.kenshi.io/services/vrf/index.html">
-        Getting randomness
-      </Link>
-      <Link
-        href="https://docs.kenshi.io/services/deep-index/graphql/index.html"
-      >
-        Deep Index: GraphQL
-      </Link>
-      <Link href="https://docs.kenshi.io/services/deep-index/mql/index.html">
-        Deep Index: MQL
-      </Link>
-      <Link
-        href="https://docs.kenshi.io/services/deep-index/webhook/index.html"
-      >
+      <Link href="/docs/services/vrf">Getting randomness</Link>
+      <Link href="/docs/services/deep-index/graphql">Deep Index: GraphQL</Link>
+      <Link href="/docs/services/deep-index/mql">Deep Index: MQL</Link>
+      <Link href="/docs/services/deep-index/webhook">
         Deep Index: Reverse-API
       </Link>
     </div>
     <div class="list">
       <h3>Products</h3>
-      <Link href="https://docs.kenshi.io/services/vrf/index.html">VRF</Link>
-      <Link href="https://docs.kenshi.io/services/deep-index/index.html">
-        Deep Index
-      </Link>
-      <Link href="https://docs.kenshi.io/services/locker.html">Lockers</Link>
-      <Link href="https://docs.kenshi.io/services/lbp.html">
-        Liquidity Bootstrapping
-      </Link>
+      <Link href="/docs/services/vrf">VRF</Link>
+      <Link href="/docs/services/deep-index">Deep Index</Link>
+      <Link href="/docs/services/locker">Lockers</Link>
     </div>
     <div class="list">
       <h3>Token</h3>
@@ -97,13 +82,13 @@
     </div>
     <div class="list">
       <h3>Company</h3>
-      <Link href="https://docs.kenshi.io/kenshi.html">About</Link>
-      <Link href="https://docs.kenshi.io/team.html">Team</Link>
+      <Link href="/docs/kenshi">About</Link>
+      <Link href="/docs/team">Team</Link>
       <Link href="https://blog.kenshi.io">Blog</Link>
       <Link href="https://www.linkedin.com/company/kenshiio/" target="_blank">
         LinkedIn
       </Link>
-      <Link href="https://docs.kenshi.io/media.html">Press Kit</Link>
+      <Link href="/docs/media">Press Kit</Link>
     </div>
   </div>
   <div class="bottom">

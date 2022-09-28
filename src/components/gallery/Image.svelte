@@ -38,6 +38,32 @@
       `,
     };
   }
+
+  let scrolled = false;
+  let track = false;
+
+  const onMouseMove = () => {
+    if (track) scrolled = true;
+  };
+
+  const onMouseDown = () => {
+    track = true;
+  };
+
+  const onMouseLeave = () => {
+    track = false;
+  };
+
+  const onMouseUp = () => {
+    track = false;
+  };
+
+  const onClick = () => {
+    if (!scrolled) {
+      zoom = true;
+    }
+    scrolled = false;
+  };
 </script>
 
 <img
@@ -47,7 +73,11 @@
   style="--radius: {radius}px; --height: {height}; --width: {width}"
   {src}
   {alt}
-  on:click={() => (zoom = true)}
+  on:click={onClick}
+  on:mousemove={onMouseMove}
+  on:mousedown={onMouseDown}
+  on:mouseleave={onMouseLeave}
+  on:mouseup={onMouseUp}
 />
 
 {#if zoom}

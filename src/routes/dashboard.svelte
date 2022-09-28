@@ -247,10 +247,7 @@
         </div>
       </div>
       <div class="buttons">
-        <Button
-          href="https://docs.kenshi.io/services/deep-index/index.html"
-          solid
-        >
+        <Button href="/docs/services/deep-index" solid>
           Deep Index docs <External />
         </Button>
         {#if $wallet?.provider}
@@ -355,7 +352,7 @@
         </div>
       </div>
       <div class="buttons">
-        <Button href="https://docs.kenshi.io/services/vrf/index.html" solid>
+        <Button href="/docs/services/vrf" solid>
           VRF docs <External />
         </Button>
         {#if $wallet?.provider}

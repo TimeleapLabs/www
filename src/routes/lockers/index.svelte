@@ -211,11 +211,7 @@
   {/if}
 
   <div class="buttons">
-    <Button
-      solid
-      href="https://docs.kenshi.io/services/locker.html"
-      target="_blank"
-    >
+    <Button solid href="/docs/services/locker" target="_blank">
       Docs <External />
     </Button>
 
@@ -241,7 +237,7 @@
           <Checkbox bind:checked={acceptedTerms}>
             I agree to the Kenshi locker terms of use
           </Checkbox>
-          <a href="https://docs.kenshi.io/services/locker.html" target="_blank">
+          <a href="/docs/services/locker" target="_blank">
             <Alert>
               <div class="tos">
                 <span>Click here to review the Kenshi locker terms of use</span>
