@@ -582,6 +582,9 @@
     gap: 1em;
   }
   @media only screen and (max-width: 640px) {
+    .split {
+      grid-template-columns: 1fr;
+    }
     .section {
       padding: 1em;
     }

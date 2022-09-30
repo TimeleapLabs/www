@@ -348,6 +348,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 1em;
   }
+  @media (max-width: 640px) {
+    .split {
+      grid-template-columns: 1fr;
+    }
+  }
   .split.triple {
     grid-template-columns: 1fr 1fr 1fr;
   }

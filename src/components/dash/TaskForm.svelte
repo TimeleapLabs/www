@@ -425,6 +425,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 1em;
   }
+  @media (max-width: 640px) {
+    .split {
+      grid-template-columns: 1fr;
+    }
+  }
   .tiers {
     margin-top: 1em;
     display: grid;

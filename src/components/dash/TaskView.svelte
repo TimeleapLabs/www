@@ -311,6 +311,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 1em;
   }
+  @media (max-width: 640px) {
+    .split {
+      grid-template-columns: 1fr;
+    }
+  }
   .buttons {
     margin-top: 2em;
     display: flex;

@@ -295,6 +295,12 @@
   .split.triple {
     grid-template-columns: 1fr 1fr 1fr;
   }
+  @media (max-width: 640px) {
+    .split {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .field-buttons {
     display: flex;
     gap: 0.5em;
