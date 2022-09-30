@@ -23,6 +23,7 @@
       <img src={photo} alt={name} />
     </div>
     <div class="body">
+      <h4>{name}</h4>
       <slot />
     </div>
     <div class="buttons">
@@ -70,5 +71,8 @@
   }
   .body {
     flex: 1;
+  }
+  h4 {
+    margin-bottom: 1em !important;
   }
 </style>
