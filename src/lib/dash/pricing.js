@@ -1,14 +1,17 @@
-export const getSyncPrice = (interval, timeout, duration) => {
-  const runs = (30 * 24 * 60 * 60) / interval;
-  const ms = runs * timeout;
-  return Math.round(duration * ((ms / 3e10) * 105) * 100) / 100;
+const syncTierPrices = {
+  startup: 49.95,
+  growth: 99.95,
+  business: 199.95,
+  enterprise: 399.95,
 };
 
-export const getReverseAPIPrice = (interval, timeout, duration, requests) => {
-  const runs = (30 * 24 * 60 * 60) / interval;
-  const ms = (duration * runs + requests) * timeout;
-  return Math.round((ms / 3e10) * 105 * 100) / 100;
+export const getSyncPrice = (tier, duration) => {
+  return Math.round(duration * syncTierPrices[tier] * 100) / 100;
+};
+
+export const getReverseAPIPrice = (duration, requests) => {
+  return Math.round((duration * 24.95 + (requests * 25) / 1e6) * 100) / 100;
 };
 
 export const getGraphQLPrice = (requests) =>
-  Math.round((requests / 1e6) * 50 * 100) / 100;
+  Math.round((requests / 1e6) * 24.95 * 100) / 100;

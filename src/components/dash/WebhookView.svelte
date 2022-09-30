@@ -8,6 +8,8 @@
   import Copy from "src/icons/Copy.svelte";
   import Xmark from "src/icons/Xmark.svelte";
   import TrashCan from "src/icons/TrashCan.svelte";
+  import CalendarX from "src/icons/CalendarX.svelte";
+  import Link from "src/icons/Link.svelte";
 
   import { toast } from "@zerodevx/svelte-toast";
   import { SpinLine } from "svelte-loading-spinners";
@@ -27,6 +29,8 @@
 
   let endpoint = webhook.endpoint;
   let syncTaskId = webhook.syncTaskId;
+  let expiresAt = new Date(webhook.expiresAt).toLocaleDateString("en-US");
+  let price = 0;
 
   let query = (webhook.query || []).map((q) => ({
     ...q,
@@ -46,18 +50,19 @@
     }
   };
 
-  let requests = 10000;
+  let requests = "10000";
   let duration = 1;
   let showModifyForm = false;
   let showRechargeForm = false;
 
-  $: price = getReverseAPIPrice(
-    webhook.interval,
-    webhook.timeout,
-    Number(duration),
-    Number(requests)
-  );
-
+  $: if (requests && duration) {
+    price = getReverseAPIPrice(
+      Number(duration),
+      Number(requests.replace(/,/g, "") || "0")
+    );
+  } else {
+    price = 0;
+  }
   let userAddress;
 
   const setAddress = () => {
@@ -376,6 +381,18 @@
             </Button>
           </div>
         </TextInput>
+        <div class="split">
+          <TextInput
+            disabled
+            icon={Link}
+            value={(webhook.requests || 0) + " requests"}
+          />
+          <TextInput
+            disabled
+            icon={CalendarX}
+            value={"Expires at " + expiresAt}
+          />
+        </div>
         <div class="table">
           <div class="row">
             <h5>Query</h5>
@@ -389,13 +406,6 @@
           {:else}
             <div class="row">No filters.</div>
           {/each}
-        </div>
-        <div>
-          Every {webhook.interval} seconds, {webhook.step} blocks on each run, expires
-          on {new Date(webhook.expiresAt).toLocaleDateString("en-US")}.
-        </div>
-        <div>
-          A total of {webhook.requests || 0} requests are left.
         </div>
       </div>
       <div class="buttons">

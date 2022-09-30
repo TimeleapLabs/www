@@ -4,18 +4,26 @@
   import TextArea from "src/components/TextArea.svelte";
   import Select from "src/components/Select.svelte";
   import Button from "src/components/Button.svelte";
-  import Checkbox from "src/components/Checkbox.svelte";
-  import Alert from "src/components/Alert.svelte";
+
+  import CircleCheck from "src/icons/CircleCheck.svelte";
+  import CircleDashed from "src/icons/CircleDashed.svelte";
+  import Db from "src/icons/DB.svelte";
+  import CreditCard from "src/icons/CreditCard.svelte";
+  import Timer from "src/icons/Timer.svelte";
+  import MessageCode from "src/icons/MessageCode.svelte";
+
+  import GaugeMax from "src/icons/GaugeMax.svelte";
+  import GaugeHigh from "src/icons/GaugeHigh.svelte";
+  import GaugeMed from "src/icons/GaugeMed.svelte";
+  import GaugeLow from "src/icons/GaugeLow.svelte";
 
   import { SpinLine } from "svelte-loading-spinners";
   import { wallet } from "src/stores/wallet";
   import { ethers } from "ethers";
   import { toast } from "@zerodevx/svelte-toast";
-  import { getSyncPrice } from "src/lib/dash/pricing";
-  import { getStepOptions, getTimeoutOptions } from "src/lib/dash/blockchain";
-  import { parseArg, validateArg } from "src/lib/dash/args";
   import { check, abiValidator } from "src/lib/dash/validators";
   import { makePayment } from "src/lib/dash/payments";
+  import { getSyncPrice } from "src/lib/dash/pricing";
 
   import CircleQuestion from "src/icons/CircleQuestion.svelte";
 
@@ -25,22 +33,12 @@
   let chain;
   let userAddress;
   let contractAddress;
-  let signature;
   let abi;
-  let args = [{ name: "", value: "" }];
-  let interval = 20;
-  let step = 24;
-  let timeout = 10000;
   let fromBlock;
   let duration = 1;
-  let price;
-  let useDefaultOptions = true;
+  let tier = "business";
 
-  $: if (useDefaultOptions) {
-    interval = 20;
-    step = 24;
-    timeout = 10000;
-  }
+  const selectTier = (t) => () => (tier = t);
 
   const setAddress = () => {
     userAddress = $wallet.accounts?.[0]?.address;
@@ -56,100 +54,37 @@
     iface = null;
   }
 
-  let signatures = [];
-
-  $: if (iface) {
-    signatures = Object.keys(iface.events || {}).map((value) => ({
-      value,
-      label: value,
-    }));
-    if (!signature || !Object.keys(iface.events || {}).includes(signature)) {
-      signature = Object.keys(iface.events || {}).pop();
-    }
-  } else {
-    signatures = [];
-    signature = "";
-  }
-
-  $: if (interval && timeout && step && duration) {
-    price = getSyncPrice(interval, timeout, duration);
-  } else {
-    price = 0;
-  }
-
-  $: if (iface && signature) {
-    const { inputs } = iface.events[signature] || {};
-    if (inputs) {
-      args = inputs.map((input, index) => ({
-        name: input.name,
-        value: args[index]?.value || "",
-      }));
-    }
-  } else {
-    args = [{ name: "", value: "" }];
-  }
-
-  $: if (step && chain && interval) {
-    const steps = getStepOptions(chain, interval).map((option) => option.value);
-    if (steps[0] > step) {
-      step = steps[0];
-    } else if (steps[steps.length - 1] < step) {
-      step = steps[steps.length - 1];
-    }
-  }
-
-  $: if (timeout && step) {
-    const timeouts = getTimeoutOptions(step).map((option) => option.value);
-    if (timeouts[0] > timeout) {
-      timeout = timeouts[0];
-    } else if (timeouts[timeouts.length - 1] < timeout) {
-      timeout = timeouts[timeouts.length - 1];
-    }
-  }
-
   let creatingTask = false;
   let task = {};
 
   $: task = {
     chain,
     fromBlock: Number(fromBlock),
-    interval,
-    step,
-    timeout,
     duration,
     address: contractAddress,
     abi: abiValidator(abi) ? JSON.parse(abi) : undefined,
-    signature,
-    args,
+    tier,
   };
 
   const taskFieldNames = {
     chain: "Chain",
     address: "Contract address",
-    signature: "Signature",
     abi: "ABI",
-    args: "Args",
-    interval: "Interval",
-    step: "Step",
-    timeout: "Timeout",
     fromBlock: "Starting block",
     duration: "Duration",
+    tier: "Tier",
   };
 
   const taskInvalids = {};
 
   const createTask = async () => {
-    for (const { name, value } of task.args) {
-      if (!validateArg(parseArg(value))) {
-        return toast.push(`The "${name}" argument has invalid value`);
-      }
-    }
-
     if (!check(task, taskFieldNames, taskInvalids, ["address"])) return;
 
     creatingTask = true;
 
+    const price = getSyncPrice(tier, Number(duration));
     const txHash = await makePayment(price, $wallet, userAddress);
+
     if (!txHash) {
       creatingTask = false;
       return;
@@ -240,68 +175,17 @@
           bind:valid={taskInvalids.fromBlock}
         />
       </div>
-
-      <h5>Schedule</h5>
-      <Checkbox bind:checked={useDefaultOptions}>
-        Use default scheduling options
-      </Checkbox>
-      {#if useDefaultOptions}
-        <Alert>
-          Scheduling controls how often Kenshi looks for events on the
-          blockchain and how it processes them. The default settings fit most of
-          the projects. Uncheck the above checkbox if you want to adjust the
-          options.
-        </Alert>
-      {/if}
-      {#if !useDefaultOptions}
-        <Select
-          options={[
-            { label: "Every 5 seconds", value: 5 },
-            { label: "Every 10 seconds", value: 10 },
-            { label: "Every 15 seconds", value: 15 },
-            { label: "Every 20 seconds", value: 20 },
-            { label: "Every 30 seconds", value: 30 },
-            { label: "Every 1 minute", value: 60 },
-            { label: "Every 2 minutes", value: 120 },
-            { label: "Every 5 minutes", value: 300 },
-          ]}
-          placeholder="Choose an interval"
-          format={(label) => label.toLowerCase()}
-          prefix="Run"
-          help="The interval at which Kenshi reads your events from the blockchain. If you are syncing
-              historical data this defines how fast the task will catch up with the current block."
-          bind:value={interval}
-        />
-        <Select
-          options={getStepOptions(chain, interval)}
-          prefix="Sync"
-          placeholder="Choose sync step"
-          help="The number of blocks Kenshi syncs from the blockchain on each run. If you are syncing
-              historical data, this defines how fast the task will catch up with the current block."
-          bind:value={step}
-        />
-        <Select
-          options={getTimeoutOptions(step)}
-          placeholder="Choose a timeout"
-          prefix="Timeout"
-          format={(label) => label.toLowerCase()}
-          help="The number of seconds Kenshi is allowed to process your events each time it looks for
-              data. Choose based on the size of your sync step and the amount of events you expect
-              on each block."
-          bind:value={timeout}
-        />
-      {/if}
       <TextInput
         placeholder="Duration (Months)"
         name="duration"
-        prefix="Run for"
+        prefix="Duration"
         regex={/^[1-9][0-9]*$/}
         bind:value={duration}
         suffix={duration > 1 ? "months" : "month"}
       />
     </div>
     <div class="form">
-      <h5>Event details</h5>
+      <h5>Contract details</h5>
       <TextInput
         placeholder="Contract address"
         name="address"
@@ -314,23 +198,180 @@
         validator={abiValidator}
         bind:value={abi}
       />
-      <Select
-        options={signatures}
-        placeholder="Event signature"
-        bind:value={signature}
-      />
-
-      <h5>Event Arguments</h5>
-      {#each args as arg}
-        <div class="split">
-          <TextInput placeholder="Argument name" bind:value={arg.name} />
-          <TextInput
-            placeholder="Argument value[s], seperated by a comma"
-            bind:value={arg.value}
-            validator={(v) => validateArg(parseArg(v))}
-          />
+    </div>
+  </div>
+  <div class="tiers">
+    <div
+      class="tier"
+      class:selected={tier === "startup"}
+      on:click={selectTier("startup")}
+    >
+      <div class="name">
+        {#if tier === "startup"}
+          <span class="green">
+            <CircleCheck />
+          </span>
+        {:else}
+          <span class="grey">
+            <CircleDashed />
+          </span>
+        {/if}
+        Startup
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="name"><Db /> Storage</span>
+          <span class="spacer" />
+          <span class="value">2 Gb</span>
         </div>
-      {/each}
+        <div class="stat">
+          <span class="name"><MessageCode /> Max events</span>
+          <span class="spacer" />
+          <span class="value">3M</span>
+        </div>
+        <div class="stat">
+          <span class="name"><Timer /> Indexing</span>
+          <span class="spacer" />
+          <span class="value">Normal</span>
+        </div>
+        <div class="stat">
+          <span class="name"><CreditCard /> Price</span>
+          <span class="spacer" />
+          <span class="value">$49.95/Month</span>
+        </div>
+      </div>
+      <div class="for">
+        <GaugeLow /> Suitable for small work loads
+      </div>
+    </div>
+    <div
+      class="tier"
+      class:selected={tier === "growth"}
+      on:click={selectTier("growth")}
+    >
+      <div class="name">
+        {#if tier === "growth"}
+          <span class="green">
+            <CircleCheck />
+          </span>
+        {:else}
+          <span class="grey">
+            <CircleDashed />
+          </span>
+        {/if}
+        Growth
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="name"><Db /> Storage</span>
+          <span class="spacer" />
+          <span class="value">4 Gb</span>
+        </div>
+        <div class="stat">
+          <span class="name"><MessageCode /> Max events</span>
+          <span class="spacer" />
+          <span class="value">6M</span>
+        </div>
+        <div class="stat">
+          <span class="name"><Timer /> Indexing</span>
+          <span class="spacer" />
+          <span class="value">Fast</span>
+        </div>
+        <div class="stat">
+          <span class="name"><CreditCard /> Price</span>
+          <span class="spacer" />
+          <span class="value">$99.95/Month</span>
+        </div>
+      </div>
+      <div class="for">
+        <GaugeMed /> Suitable for medium work loads
+      </div>
+    </div>
+    <div
+      class="tier"
+      class:selected={tier === "business"}
+      on:click={selectTier("business")}
+    >
+      <div class="name">
+        {#if tier === "business"}
+          <span class="green">
+            <CircleCheck />
+          </span>
+        {:else}
+          <span class="grey">
+            <CircleDashed />
+          </span>
+        {/if}
+        Business
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="name"><Db /> Storage</span>
+          <span class="spacer" />
+          <span class="value">8 Gb</span>
+        </div>
+        <div class="stat">
+          <span class="name"><MessageCode /> Max events</span>
+          <span class="spacer" />
+          <span class="value">12M</span>
+        </div>
+        <div class="stat">
+          <span class="name"><Timer /> Indexing</span>
+          <span class="spacer" />
+          <span class="value">Faster</span>
+        </div>
+        <div class="stat">
+          <span class="name"><CreditCard /> Price</span>
+          <span class="spacer" />
+          <span class="value">$199.95/Month</span>
+        </div>
+      </div>
+      <div class="for">
+        <GaugeHigh /> Suitable for heavy work loads
+      </div>
+    </div>
+    <div
+      class="tier"
+      class:selected={tier === "enterprise"}
+      on:click={selectTier("enterprise")}
+    >
+      <div class="name">
+        {#if tier === "enterprise"}
+          <span class="green">
+            <CircleCheck />
+          </span>
+        {:else}
+          <span class="grey">
+            <CircleDashed />
+          </span>
+        {/if}
+        Enterprise
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="name"><Db /> Storage</span>
+          <span class="spacer" />
+          <span class="value">16 Gb</span>
+        </div>
+        <div class="stat">
+          <span class="name"><MessageCode /> Max events</span>
+          <span class="spacer" />
+          <span class="value">24M</span>
+        </div>
+        <div class="stat">
+          <span class="name"><Timer /> Indexing</span>
+          <span class="spacer" />
+          <span class="value">Instant</span>
+        </div>
+        <div class="stat">
+          <span class="name"><CreditCard /> Price</span>
+          <span class="spacer" />
+          <span class="value">$399.95/Month</span>
+        </div>
+      </div>
+      <div class="for">
+        <GaugeMax /> Suitable for extreme work loads
+      </div>
     </div>
   </div>
   <div class="buttons">
@@ -339,10 +380,7 @@
         <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
         Processing
       {:else}
-        Create Task
-        {#if price}
-          ${price}
-        {/if}
+        Create Task ${getSyncPrice(tier, Number(duration))}
       {/if}
     </Button>
   </div>
@@ -386,5 +424,88 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
+  }
+  .tiers {
+    margin-top: 1em;
+    display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .tier {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tier .stats > * {
+    padding: 0 1em;
+    box-sizing: border-box;
+  }
+  .tier > .name {
+    padding: 0 1em;
+    padding-top: 1em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .tier.selected {
+    border-color: var(--secondary-color);
+  }
+  .tier .for {
+    display: flex;
+    gap: 1em;
+    flex: 1;
+    align-items: center;
+    padding: 1em;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .tier.selected .for {
+    border-color: var(--secondary-color);
+  }
+  .tier .name {
+    display: flex;
+    gap: 1em;
+    flex: 1;
+    align-items: center;
+  }
+  .tier > .name {
+    font-family: "Frank";
+  }
+  .tier .stats {
+    width: 100%;
+    gap: 0.5em;
+    display: flex;
+    flex-direction: column;
+  }
+  .tier .stats .stat {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+  .spacer {
+    flex: 1;
+  }
+  .tier :global(svg) {
+    width: 1.25em;
+    height: 1.25em;
+    max-width: initial;
+  }
+  .green,
+  .grey {
+    display: flex;
+    align-items: center;
+  }
+  .green :global(svg) {
+    width: 1.25em;
+    fill: var(--secondary-color);
+  }
+  .grey :global(svg) {
+    width: 1.25em;
+    fill: rgba(0, 0, 0, 0.1);
   }
 </style>

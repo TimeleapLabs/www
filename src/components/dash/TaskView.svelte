@@ -4,14 +4,14 @@
   import Button from "src/components/Button.svelte";
   import Alert from "src/components/Alert.svelte";
   import TextInput from "src/components/TextInput.svelte";
-  import Select from "src/components/Select.svelte";
 
   import Copy from "src/icons/Copy.svelte";
   import Xmark from "src/icons/Xmark.svelte";
+  import CreditCard from "src/icons/CreditCard.svelte";
+  import CalendarX from "src/icons/CalendarX.svelte";
 
   import { toast } from "@zerodevx/svelte-toast";
   import { SpinLine } from "svelte-loading-spinners";
-  import { parseArg, validateArg } from "src/lib/dash/args";
   import { check, abiValidator } from "src/lib/dash/validators";
   import { ethers } from "ethers";
   import { wallet } from "src/stores/wallet";
@@ -23,11 +23,10 @@
 
   let contractAddress = task.address;
   let abi = JSON.stringify(task.abi);
-  let signature = task.signature;
-  let args = task.args.map((arg) => ({ ...arg }));
   let unitPrice;
   let duration = 1;
   let userAddress;
+  let expiresAt = new Date(task.expiresAt).toLocaleDateString("en-US");
 
   const setAddress = () => {
     userAddress = $wallet.accounts?.[0]?.address;
@@ -37,8 +36,6 @@
 
   let showModifyForm = false;
   let showRechargeForm = false;
-
-  $: unitPrice = getSyncPrice(task.interval, task.timeout, 1);
 
   const chainIcons = {
     "ethereum-mainnet": "ethereum",
@@ -66,38 +63,18 @@
     iface = null;
   }
 
-  let signatures = [];
+  const tierMap = {
+    15: "Basic",
+    10: "Growth",
+    5: "Business",
+    1: "Enterprise",
+  };
 
-  $: if (iface) {
-    signatures = Object.keys(iface.events || {}).map((value) => ({
-      value,
-      label: value,
-    }));
-    if (!signature || !Object.keys(iface.events || {}).includes(signature)) {
-      signature = Object.keys(iface.events || {}).pop();
-    }
-  } else {
-    signatures = [];
-    signature = "";
-  }
-
-  $: if (iface && signature) {
-    const { inputs } = iface.events[signature] || {};
-    if (inputs) {
-      args = inputs.map((input, index) => ({
-        name: input.name || "",
-        value: args[index]?.value || "",
-      }));
-    }
-  } else {
-    args = [{ name: "", value: "" }];
-  }
+  $: unitPrice = getSyncPrice(tierMap[task.interval].toLowerCase(), 1);
 
   const taskFieldNames = {
     address: "Contract address",
-    signature: "Signature",
     abi: "ABI",
-    args: "Args",
   };
 
   const taskInvalids = {};
@@ -108,17 +85,9 @@
     id: task.id,
     address: contractAddress,
     abi: abiValidator(abi) ? JSON.parse(abi) : undefined,
-    signature,
-    args,
   };
 
   const signAndSend = async () => {
-    for (const { name, value } of taskUpdate.args) {
-      if (!validateArg(parseArg(value))) {
-        return toast.push(`The "${name}" argument has invalid value`);
-      }
-    }
-
     if (!check(taskUpdate, taskFieldNames, taskInvalids, ["address"])) return;
 
     isUpdating = true;
@@ -245,24 +214,6 @@
         bind:value={abi}
         bind:valid={taskInvalids.abi}
       />
-      <Select
-        options={signatures}
-        placeholder="Event signature"
-        bind:value={signature}
-        bind:valid={taskInvalids.signature}
-      />
-
-      <h5>Event Arguments</h5>
-      {#each args as arg}
-        <div class="split">
-          <TextInput placeholder="Argument name" bind:value={arg.name} />
-          <TextInput
-            placeholder="Argument value[s], seperated by a comma"
-            bind:value={arg.value}
-            validator={(v) => validateArg(parseArg(v))}
-          />
-        </div>
-      {/each}
     </div>
     <div class="buttons">
       {#if !isUpdating}
@@ -337,29 +288,15 @@
           </Button>
         </div>
       </TextInput>
+      <div class="split">
+        <TextInput icon={CreditCard} disabled value={tierMap[task.interval]} />
+        <TextInput
+          icon={CalendarX}
+          disabled
+          value={"Expires at " + expiresAt}
+        />
+      </div>
       <TextArea value={task.abi} disabled />
-      <div class="table">
-        <div class="row">
-          <h5>Argument name</h5>
-          <h5>Value</h5>
-        </div>
-        {#each task.args as arg}
-          <div class="row">
-            <h5>{arg.name}</h5>
-            <div>
-              {#if arg.value}
-                {arg.value}
-              {:else}
-                <i class="small">Any</i>
-              {/if}
-            </div>
-          </div>
-        {/each}
-      </div>
-      <div>
-        Every {task.interval} seconds, {task.step} blocks on each run, expires on
-        {new Date(task.expiresAt).toLocaleDateString("en-US")}.
-      </div>
     </div>
     <div class="buttons">
       <Button on:click={() => (showModifyForm = true)}>Modify</Button>
@@ -369,6 +306,11 @@
 </Card>
 
 <style>
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
   .buttons {
     margin-top: 2em;
     display: flex;
@@ -400,37 +342,9 @@
     gap: 1em;
     flex-direction: column;
   }
-  .table {
-    display: flex;
-    flex-direction: column;
-  }
-  .table .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0.5em;
-  }
-  .table .row:first-of-type {
-    padding-bottom: 0.25em;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  .table .row:nth-of-type(2n + 1):not(:first-of-type) {
-    background: rgba(0, 0, 0, 0.05);
-  }
-  .table .row > div {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .small {
-    font-size: 0.85em;
-  }
   .form {
     display: flex;
     flex-direction: column;
-    gap: 1em;
-  }
-  .split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 1em;
   }
   .header {
