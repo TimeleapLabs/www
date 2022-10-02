@@ -33,25 +33,10 @@ You can use the following list as a guide for each of the fields in this form.
    [: [bold Requests]: Amount of request credits you need for this endpoint. Each time a request is made to
       your endpoint one request credit is charged.]
 
-   [: [bold Interval]: The interval at which the Kenshi event dispatcher should run and look for new events.
-      The lower the interval is the quicker new events will arrive at your endpoint.]
-
-   [: [bold Timeout]: Choose a timeout for both the Dispatcher. This includes both the time to lookup for new
-      data, and the time it takes to deliver the results to your Reverse-API endpoint. If your endpoint takes
-      too much time processing the received events, you'll then need to set a big timeout. This value cannot
-      be changed later.]
-
-   [: [bold Step]: How many blocks at a time should this task process at each run? This needs to be adjusted
-      depending on the [bold Interval], for example, the block time on the Fantom chain is about 1 second, so
-      in 10 seconds there will be 10 new blocks. That means if your task is running every 10 seconds and
-      processing 6 blocks at a time it won't be able to catch up to the new data fast enough. This value
-      cannot be changed after the task is created.]
-
    [: [bold Query]: Define a query for this Reverse-API. Here you need to add contract addresses, event signatures,
       event names or any other required info for querying the events from the Kenshi blockchain data clusters.
       The Kenshi event Dispatcher uses this query against the data cluster on each run, then sends every matched
-      record to your Reverse-API endpoint in a separate request.]
-]
+      record to your Reverse-API endpoint in a separate request.]]
 
 [alert note
    If you're filtering based on an event argument with an "address" type,

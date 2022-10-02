@@ -1,7 +1,7 @@
 [heading Pricing]
 
-This service costs $0.000004 per running second. The amount of seconds per month is
-calculated based on the task interval and timeout. The price is paid in Kenshi tokens.
+This service costs $24.95 per month to run, plus $25 per million requests made to your
+webhook endpoint. The price is paid in Kenshi tokens.
 
 [alert note
   If you encounter any issues with payments, contact us at

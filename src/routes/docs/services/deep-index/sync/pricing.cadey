@@ -1,11 +1,57 @@
 [heading Pricing]
 
-On testnets and mainnets, the price of the Sync task is $0.0000035 per running second.
-The amount of seconds per month is calculated based on the task interval and timeout.
-The price is paid in Kenshi tokens.
+Pricing for the sync service depends on the tier chosen while creating the task.
+Below you will find the differences between the tiers. Contact us if you need a
+custom service or pricing. The price is paid in Kenshi tokens.
 
 [alert note
-  If you encounter any issues with payments, contact us at [link mailto:support@kenshi.io support@kenshi.io].]
+  If you encounter any issues with payments, contact us at
+  [link mailto:support@kenshi.io support@kenshi.io].]
+
+[heading Tiers]
+
+Each tier differs from the other in amount of provided storage and the speed at which
+syncing happens with the blockchain. These parameters in turn affect the price of the tier.
+It is possible to order a custom plan, or run dedicated sync nodes by contacting
+[link mailto:inquiries@kenshi.io inquiries@kenshi.io].
+
+[table
+  [:header  Tier       [: Index speed[1]:] [: Storage[2]:] Price]
+  [:row     Startup    [: 15 seconds]       1GB            $49.95/month]
+  [:row     Growth     [: 10 seconds]       2GB            $99.95/month]
+  [:row     Business   [: 5 seconds]        4GB            $199.95/month]
+  [:row     Enterprise [: 1 second]         8GB            $399.95/month]]
+
+[list :type ordered
+  [: This property directly affects the freshness of data indexed in the Kenshi
+  database clusters. For example, if the index speed is 15 seconds in a tier, it means the
+  last indexed event at any time might be 15 seconds behind the blockchain.]
+
+  [: This property directly affects the amount of data that can be indexed and stored
+  in the Kenshi database clusters. On average each 1GB can store about 3 to 4 million events
+  depending on the size of the events emitted by your smart contract.
+  
+  As an example, the [link https://1inch.io 1inch] router on BSC emits about 350k "Swapped"
+  events each month, which occupies about ~217mb of storage size. On an Enterprise plan it
+  will take more than 3 years to run out of storage at this rate. This is an extreme case,
+  and most smart contracts won't need this much of storage space.]]
+
+[alert note
+  All indexed data is geographically replicated to allow low latency queries from anywhere in
+  world. Indexing is done on [bold ALL] event fields, and all indexes are stored in memory to
+  allow faster queries.]
+
+If you're not sure which plan fits your needs the best, you can contact us by sending an email to
+[link mailto:inquiries@kenshi.io inquiries@kenshi.io] or reaching out via one of our official
+[link /docs/social social media] links.
+
+[heading :size 2 Custom plans]
+
+Contact us if you need to store more than 8GB of data, need to index events from a great number
+of contracts, or have any other unique requirements. The Kenshi Deep Index infrastructure runs
+completely serverless, is able to handle hundreds of thousands of events per second, and is able
+to index peta-bytes of data. Reach out to [link mailto:inquiries@kenshi.io inquiries@kenshi.io]
+for inquiries or further details.
 
 [heading :size 2 Financing]
 
