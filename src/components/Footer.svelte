@@ -6,8 +6,7 @@
   import Github from "../icons/Github.svelte";
   import Reddit from "../icons/Reddit.svelte";
   import LinkedIn from "../icons/LinkedIn.svelte";
-
-  import Heart from "src/emoji/Heart.svelte";
+  import Heart from "../icons/Heart.svelte";
 
   import Link from "./Link.svelte";
 </script>
@@ -92,19 +91,36 @@
     </div>
   </div>
   <div class="bottom">
-    <div class="copyright">
-      Copyright © {new Date().getFullYear()} - Kenshi
+    <div class="left">
+      <div class="swiss-made">Made with <Heart /> in Switzerland</div>
+      <div class="copyright">
+        Copyright © {new Date().getFullYear()} - Kenshi
+      </div>
     </div>
-    <div class="swiss-made">Made with <Heart /> in Switzerland</div>
+    <a
+      href="https://members.cryptovalley.swiss/companies/2280577"
+      target="_blank"
+    >
+      <img
+        class="cva"
+        src="/images/cva_logo_member.svg"
+        alt="Swiss Crypto Valley member"
+      />
+    </a>
   </div>
 </div>
 
 <style>
+  .cva {
+    width: 200px;
+  }
   .social :global(svg) {
     height: 1.5em;
   }
   .swiss-made :global(svg) {
     height: 1em;
+    width: 1em;
+    fill: var(--primary-color);
   }
   .swiss-made {
     display: flex;
@@ -179,6 +195,7 @@
     .bottom {
       padding: 1em;
       gap: 1em;
+      flex-direction: column-reverse;
     }
   }
   a {
@@ -196,9 +213,12 @@
   h3 {
     font-size: 1.4em;
   }
-  .copyright {
+  .left {
     flex: 1;
     white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   @media only screen and (max-width: 1440px) {
     .footer .middle {
