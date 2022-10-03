@@ -5,5 +5,4 @@
 
 # Kenshi Website
 
-Kenshi is a blockchain company sharing its profits with their holders. \
-We provide services as token locker, Liquidity Bootstrapping Oracle, Smart Contract Development and Security Audits.
+Kenshi is a Swiss-based blockchain company offering services such as VRF oracle, Deep Indexing with GraphQL, MQL, and Reverse-API (webhooks) endpoints for the blockchain.
