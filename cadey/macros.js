@@ -78,7 +78,9 @@ export const macros = {
     const atts = [];
     if (width) atts.push(`width="${width}px"`);
     if (height) atts.push(`height="${height}px"`);
+
     atts.push(`src="${src}"`);
+    this.images = [...(this.images || []), src];
 
     if (options.alt) {
       atts.push(`alt="${asText(options.alt)}"`);

@@ -1,4 +1,4 @@
-[heading Getting Started]
+[heading Getting Started with Kenshi VRF]
 
 The Kenshi VRF oracle implements a request-response message exchange pattern.
 That means your smart contract needs to ask for a random number first, then

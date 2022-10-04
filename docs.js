@@ -8,6 +8,7 @@ import { macros } from "./cadey/macros.js";
 import { getNav, getNext, getPrev } from "./cadey/nav.js";
 import { getHeadings, getImports } from "./cadey/generators.js";
 import { getDocPage, getContext } from "./cadey/generators.js";
+import { getSeoTags } from "./cadey/seo.js";
 
 const cadey = new Cadey({ parse, macros, rules });
 
@@ -41,12 +42,17 @@ const parseAll = async () => {
   }
   for (const file in processed) {
     const { parsed, context } = processed[file];
+    const tags = getSeoTags(parsed, context);
     const imports = getImports(context.components);
     const headings = getHeadings(context.headings);
     const next = getNext(file, allTocs);
     const prev = getPrev(file, allTocs, allHeadings);
-    const code = getDocPage(parsed, imports, headings, next, prev);
-    fs.writeFileSync(file.replace(".cadey", ".svelte"), code);
+    const code = getDocPage(parsed, imports, headings, next, prev, tags);
+    const dirname = file.replace(/(index)?\.cadey$/, "");
+    if (!fs.existsSync(dirname)) {
+      fs.mkdirSync(dirname);
+    }
+    fs.writeFileSync(`${dirname}/+page.svelte`, code);
   }
   const nav = getNav(allTocs);
   fs.writeFileSync(

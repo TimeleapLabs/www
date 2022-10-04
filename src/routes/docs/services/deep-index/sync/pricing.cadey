@@ -1,4 +1,4 @@
-[heading Pricing]
+[heading Deep Index Pricing]
 
 Pricing for the sync service depends on the tier chosen while creating the task.
 Below you will find the differences between the tiers. Contact us if you need a
@@ -8,7 +8,7 @@ custom service or pricing. The price is paid in Kenshi tokens.
   If you encounter any issues with payments, contact us at
   [link mailto:support@kenshi.io support@kenshi.io].]
 
-[heading Tiers]
+[heading :size 2 Deep Index Tiers]
 
 Each tier differs from the other in amount of provided storage and the speed at which
 syncing happens with the blockchain. These parameters in turn affect the price of the tier.

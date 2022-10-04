@@ -1,4 +1,4 @@
-[heading Retry Policy]
+[heading VRF Retry Policy]
 
 Kenshi has a generous approach for delivering randomness to your smart contracts.
 In case of failure we retry twice within 2 minutes of the first try, if all fails we

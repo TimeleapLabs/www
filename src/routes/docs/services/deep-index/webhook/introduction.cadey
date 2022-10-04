@@ -1,4 +1,4 @@
-[heading Introduction]
+[heading Introduction to R-API]
 
 Instead of querying the blockchain or the Kenshi GraphQL endpoint, you can get the
 events delivered to your application instead. This allows creating a completely serverless

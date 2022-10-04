@@ -1,16 +1,16 @@
-/** @type {import('./$types').RequestHandler} */
-export async function get() {
+/** @type {import('@sveltejs/kit').RequestHandler} */
+export const GET = () => {
   const staticPages = Object.keys(
     import.meta.glob("/src/routes/**/!(_)*.svelte")
   )
     .filter((page) => {
-      const filters = ["slug]", "_", "/src/routes/index.svelte"];
+      const filters = ["]", "+layout", "/src/routes/index.svelte"];
       return !filters.find((filter) => page.includes(filter));
     })
     .map((page) => {
       return page
         .replace("/src/routes", "https://kenshi.io")
-        .replace("/index.svelte", "")
+        .replace("/+page.svelte", "")
         .replace(".svelte", "");
     });
 
@@ -21,11 +21,10 @@ export async function get() {
     "Content-Type": "application/xml",
   };
 
-  return {
-    body,
+  return new Response(body, {
     headers,
-  };
-}
+  });
+};
 
 const render = (staticPages) => `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
@@ -45,7 +44,7 @@ ${staticPages
   <url>
     <loc>${staticPage}</loc>
     <lastmod>${`${process.env.VITE_BUILD_TIME}`}</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
   </url>
 `
   )

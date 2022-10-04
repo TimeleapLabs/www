@@ -1,4 +1,4 @@
-[heading Getting started]
+[heading Getting started with Deep Index]
 
 To work with the MQL endpoint, you need to serialize your MQL query together
 with your API key, API key owner and the desired blockchain in a JSON package.
