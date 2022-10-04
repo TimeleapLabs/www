@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:18
+FROM node:18-alpine
 
 RUN apk add --no-cache git python3 py3-pip g++ make
 
