@@ -1,5 +1,6 @@
 import { getDB } from "$lib/mongo";
 import { sync } from "$lib/blockchain/sync/lockers";
+import { json } from "@sveltejs/kit";
 
 import dotenv from "dotenv";
 
@@ -12,5 +13,5 @@ export async function GET() {
   const db = await getDB();
   const collection = db.collection("lockers");
 
-  return new Response(await collection.distinct("address", {}));
+  return json(await collection.distinct("address", {}));
 }

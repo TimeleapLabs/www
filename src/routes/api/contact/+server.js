@@ -10,7 +10,7 @@ export async function POST({ request }) {
   const { subject, body, topic, name, email, token } = requestBody;
 
   if (!subject || !body || !topic || !email || !name || !token) {
-    return new Response(undefined, { status: 401 });
+    return new Response("Missing arguments", { status: 401 });
   }
 
   const { RECAPTCHA_SECRET: secret } = await get();
@@ -21,7 +21,7 @@ export async function POST({ request }) {
   const captchaRes = await captchaReq.json();
 
   if (!captchaRes.success || captchaReq.score < 0.5) {
-    return new Response(undefined, { status: 401 });
+    return new Response("Verification failed", { status: 401 });
   }
 
   const db = await getDB();
@@ -31,7 +31,7 @@ export async function POST({ request }) {
   const last = await collection.findOne({ ip }, { sort: { time: -1 } });
 
   if (last?.time && new Date() - last.time < 5000) {
-    return new Response(undefined, { status: 401 });
+    return new Response("Token expired", { status: 401 });
   }
 
   try {
@@ -44,8 +44,8 @@ export async function POST({ request }) {
       ip,
       time: new Date(),
     });
-    return new Response(undefined);
+    return new Response("OK");
   } catch (error) {
-    return new Response(undefined, { status: 500 });
+    return new Response("Internal error", { status: 500 });
   }
 }
