@@ -51,6 +51,9 @@
     grid-template-columns: 1.5fr 3fr;
     height: 100%;
   }
+  .card-button .graphics {
+    max-height: 128px;
+  }
   .card-button .graphics img {
     height: 100%;
     max-width: 100%;
