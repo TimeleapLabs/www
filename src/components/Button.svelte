@@ -49,6 +49,7 @@
   .button.solid {
     color: #fff;
     background: #000;
+    border: 1px solid #000;
     border: none;
     font-size: 1em;
   }
@@ -71,6 +72,9 @@
     display: flex;
     align-items: center;
     gap: 0.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
   }
   .button:not(.solid) {
     position: relative;
