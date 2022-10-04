@@ -613,17 +613,19 @@
   }
   .guide {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, calc(50% - 2em)));
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
     gap: 4em;
   }
   @media screen and (max-width: 1320px) {
-    .guide {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 100%));
-      gap: 4em;
-    }
     .guide .sample {
       padding: 0.5em;
+    }
+  }
+  @media screen and (max-width: 960px) {
+    .guide {
+      display: grid;
+      grid-template-columns: minmax(300px, 1fr);
+      gap: 4em;
     }
   }
   @media screen and (max-width: 600px) {
