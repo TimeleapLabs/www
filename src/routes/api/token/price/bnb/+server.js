@@ -1,10 +1,7 @@
 import { fetchPancake } from "$lib/api/token";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export const get = async () => {
+export const GET = async () => {
   const { price_BNB: price } = await fetchPancake();
-  return {
-    status: 200,
-    body: price,
-  };
+  return new Response(price);
 };

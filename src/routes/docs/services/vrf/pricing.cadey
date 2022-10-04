@@ -1,4 +1,4 @@
-[heading Pricing]
+[heading VRF Pricing]
 
 We estimate how much gas is required to deliver randomness to your smart contract, add 15% to it,
 convert it to Kenshi and then charge that amount from your VRF subscription.

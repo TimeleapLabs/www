@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import dotenv from "dotenv";
 import { getDB } from "$lib/mongo";
 import { sync } from "$lib/blockchain/sync/balances";
+import { json } from "@sveltejs/kit";
 
 dotenv.config();
 
@@ -67,7 +68,7 @@ const setTokenMetadata =
   };
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function get(request) {
+export async function GET(request) {
   const { address } = request.params;
   const provider = new ethers.providers.JsonRpcProvider(JSONRPC);
 
@@ -78,8 +79,5 @@ export async function get(request) {
 
   const tokens = await collection.find({ address }).toArray();
 
-  return {
-    status: 200,
-    body: await Promise.all(tokens.map(setTokenMetadata(provider))),
-  };
+  return json(await Promise.all(tokens.map(setTokenMetadata(provider))));
 }

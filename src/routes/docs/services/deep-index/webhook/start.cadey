@@ -1,4 +1,4 @@
-[heading Getting Started]
+[heading Getting Started with R-API]
 
 To integrate the Kenshi Reverse-API service into your ecosystem or workflow,
 you need to expose an HTTP POST endpoint that is publicly available over the

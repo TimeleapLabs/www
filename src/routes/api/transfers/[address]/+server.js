@@ -64,7 +64,7 @@ const sync = async () => {
 };
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function get(request) {
+export async function GET(request) {
   const { address } = request.params;
 
   await sync().catch(() => {});
@@ -106,8 +106,5 @@ export async function get(request) {
     { upsert: true }
   );
 
-  return {
-    status: 200,
-    body: total.toString(),
-  };
+  return new Response(total.toString());
 }

@@ -1,10 +1,11 @@
+import { json } from "@sveltejs/kit";
 import { getDB } from "$lib/mongo";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function get(request) {
+export async function GET(request) {
   const { address } = request.params;
 
   const db = await getDB();
@@ -21,8 +22,5 @@ export async function get(request) {
     }
   }
 
-  return {
-    status: 200,
-    body: lockers,
-  };
+  return json(lockers);
 }

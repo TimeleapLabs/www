@@ -1,4 +1,4 @@
-[heading Introduction]
+[heading Introduction to Deep Index Sync]
 
 Sync tasks are essential to the Kenshi Deep Indexing ecosystem. These tasks run periodically,
 fetching events from the blockchain and storing them into the Kenshi blockchain data clusters.

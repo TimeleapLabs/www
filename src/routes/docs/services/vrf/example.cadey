@@ -1,4 +1,4 @@
-[heading Example]
+[heading VRF Examples]
 
 The following Solidity code implements a D20 smart contract using
 the Kenshi VRF service.

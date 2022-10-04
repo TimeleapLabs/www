@@ -5,12 +5,12 @@ import { get } from "$lib/env";
 dotenv.config();
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
-export async function post({ request }) {
+export async function POST({ request }) {
   const requestBody = await request.json();
   const { subject, body, topic, name, email, token } = requestBody;
 
   if (!subject || !body || !topic || !email || !name || !token) {
-    return { status: 401 };
+    return new Response("Missing arguments", { status: 401 });
   }
 
   const { RECAPTCHA_SECRET: secret } = await get();
@@ -21,7 +21,7 @@ export async function post({ request }) {
   const captchaRes = await captchaReq.json();
 
   if (!captchaRes.success || captchaReq.score < 0.5) {
-    return { status: 401 };
+    return new Response("Verification failed", { status: 401 });
   }
 
   const db = await getDB();
@@ -31,7 +31,7 @@ export async function post({ request }) {
   const last = await collection.findOne({ ip }, { sort: { time: -1 } });
 
   if (last?.time && new Date() - last.time < 5000) {
-    return { status: 401 };
+    return new Response("Token expired", { status: 401 });
   }
 
   try {
@@ -44,8 +44,8 @@ export async function post({ request }) {
       ip,
       time: new Date(),
     });
-    return { status: 200 };
+    return new Response("OK");
   } catch (error) {
-    return { status: 500 };
+    return new Response("Internal error", { status: 500 });
   }
 }

@@ -3,11 +3,11 @@ User-agent: *
 Allow: /
 Sitemap: https://kenshi.io/sitemap.xml`;
 
-export async function get() {
-  return {
+/** @type {import('@sveltejs/kit').RequestHandler} */
+export const GET = () => {
+  return new Response(body, {
     headers: {
       "Content-Type": "text/plain",
     },
-    body,
-  };
-}
+  });
+};

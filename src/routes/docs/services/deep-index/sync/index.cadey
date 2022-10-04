@@ -1,4 +1,4 @@
-[heading Sync]
+[heading Deep Index Sync]
 
 The Kenshi Deep Index Sync oracle allows retrieving, storing and indexing desired
 blockchain data into the Kenshi database clusters. This data can later be queried

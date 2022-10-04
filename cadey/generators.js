@@ -27,13 +27,18 @@ export const getImports = (components = {}) =>
     .map((c) => `import ${c} from "${componentsMap[c]}"`)
     .join(";\n");
 
-export const getDocPage = (parsed, imports, headings, next, prev) => `
+export const getDocPage = (parsed, imports, headings, next, prev, tags) => `
     <script>
       import DocPage from "src/components/DocPage.svelte";
       ${imports};
       const next = ${next};
       const prev = ${prev};
     </script>
+
+    <svelte:head>
+      ${tags}
+    </svelte:head>
+
     <DocPage {next} {prev}>
       ${parsed}
       <div slot="headings">${headings}</div>

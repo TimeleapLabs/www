@@ -1,4 +1,4 @@
-[heading Introduction]
+[heading Introduction to GraphQL]
 
 The Kenshi Deep Indexing GraphQL service is your gateway to query the blockchain data
 stored on the Kenshi blockchain data clusters. This endpoint implements the standard

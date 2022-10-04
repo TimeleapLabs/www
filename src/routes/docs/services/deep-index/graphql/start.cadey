@@ -1,4 +1,4 @@
-[heading Getting Started]
+[heading Getting Started with GraphQL]
 
 To work with the GraphQL endpoint, you need to use a GraphQL library,
 or directly make an HTTP POST request to the Kenshi Deep Index endpoint
