@@ -65,6 +65,9 @@ export const getExamples = async (tags) => {
   return result.data.examples.data.map((d) => ({
     id: d.id,
     ...d.attributes,
+    description: JSON.parse(d.attributes.description).blocks.map(
+      (b) => `${b.data.text}\n\n`
+    ),
     image: d.attributes.image.data.attributes.formats.medium.url,
     tags: d.attributes.tags.data.map((t) => t.attributes),
   }));

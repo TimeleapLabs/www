@@ -8,6 +8,7 @@ export const get = async ({ url }) => {
     const examples = await getExamples(tagsArray);
     return { status: 200, body: examples };
   } catch (error) {
+    console.error(error);
     return { status: 400, body: { error: error.message } };
   }
 };
