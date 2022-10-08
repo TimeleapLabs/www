@@ -21,6 +21,7 @@
   export let examples = [];
   export let products = [];
   export let languages = [];
+  let error;
 
   const getTagIcon = (tag) => {
     switch (tag.value) {
@@ -57,17 +58,26 @@
   };
 
   const fetchExamples = async (_products, _languages) => {
-    const res = await fetch(
-      "/api/examples?tags=" +
-        encodeURIComponent(
-          _products
-            .concat(_languages)
-            .filter((t) => t?.checked)
-            .map((t) => t.value)
-            .join(",")
-        )
-    );
-    examples = await res.json();
+    try {
+      const res = await fetch(
+        "/api/examples?tags=" +
+          encodeURIComponent(
+            _products
+              .concat(_languages)
+              .filter((t) => t?.checked)
+              .map((t) => t.value)
+              .join(",")
+          )
+      );
+      if (!res.ok) {
+        throw new Error("There was an error fetching the examples.");
+      }
+      examples = await res.json();
+    } catch (e) {
+      error = e.message;
+      console.error(e);
+      examples = [];
+    }
   };
 
   $: if (browser) fetchExamples(products, languages);
@@ -83,7 +93,12 @@
 <Navbar />
 
 <Section>
-  <Articles title="Examples" padding="2em 4em 4em 4em">
+  <Articles
+    title="Examples"
+    padding="2em 4em 4em 4em"
+    empty={!error && !examples.length}
+    error={!!error}
+  >
     <div class="filters" slot="filter">
       <div class="filter product">
         <span>By product:</span>
@@ -93,6 +108,12 @@
         <span>By language:</span>
         <TagsSelect bind:tags={languages} />
       </div>
+    </div>
+    <div slot="empty-message" class="empty-message">
+      There are no published examples matching your criteria.
+    </div>
+    <div slot="error-message" class="error-message">
+      ⚠️ {error}
     </div>
     {#each examples as example}
       <Article
@@ -110,8 +131,8 @@
         </Button>
         <div class="footer" slot="footer">
           <div class="products">
-            <span
-              >Products: {example.tags
+            <span>
+              Products: {example.tags
                 .filter((t) => t.type === "product")
                 .map((t) => t.name)
                 .join(", ")}
@@ -143,6 +164,10 @@
     display: flex;
     flex-direction: column;
     gap: 0.5em;
+  }
+  .empty-message,
+  .error-message {
+    margin: 2em 0;
   }
   .footer {
     padding-top: 1.5em;

@@ -65,7 +65,7 @@ export const getExamples = async (tags) => {
   return result.data.examples.data.map((d) => ({
     id: d.id,
     ...d.attributes,
-    image: `${STRAPI_BASE_URL}${d.attributes.image.data.attributes.formats.medium.url}`,
+    image: d.attributes.image.data.attributes.formats.medium.url,
     tags: d.attributes.tags.data.map((t) => t.attributes),
   }));
 };

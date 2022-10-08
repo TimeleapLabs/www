@@ -1,6 +1,8 @@
 <script>
   export let title = "Articles";
   export let padding = "4em";
+  export let empty = false;
+  export let error = false;
 </script>
 
 <div class="articles" style="--padding: {padding};">
@@ -8,9 +10,15 @@
   {#if $$slots.filter}
     <slot name="filter" />
   {/if}
-  <div class="grid">
-    <slot />
-  </div>
+  {#if empty}
+    <slot name="empty-message" />
+  {:else if error}
+    <slot name="error-message" />
+  {:else}
+    <div class="grid">
+      <slot />
+    </div>
+  {/if}
 </div>
 
 <style>
