@@ -29,11 +29,6 @@
 <style>
   .article img {
     max-width: 100%;
-    max-height: 100%;
-    flex: 1 0 250px;
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
   }
   .article-inner {
     display: flex;
@@ -60,6 +55,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    max-width: 100%;
     box-sizing: border-box;
   }
   .article .padded .content {

@@ -92,65 +92,63 @@
 
 <Navbar />
 
-<Section>
-  <Articles
-    title="Examples"
-    padding="2em 4em 4em 4em"
-    empty={!error && !examples.length}
-    error={!!error}
-  >
-    <div class="filters" slot="filter">
-      <div class="filter product">
-        <span>By product:</span>
-        <TagsSelect bind:tags={products} />
-      </div>
-      <div class="filter language">
-        <span>By language:</span>
-        <TagsSelect bind:tags={languages} />
-      </div>
+<Articles
+  title="Examples"
+  padding="2em 4em 4em 4em"
+  empty={!error && !examples.length}
+  error={!!error}
+>
+  <div class="filters" slot="filter">
+    <div class="filter product">
+      <span>By product:</span>
+      <TagsSelect bind:tags={products} />
     </div>
-    <div slot="empty-message" class="empty-message">
-      There are no published examples matching your criteria.
+    <div class="filter language">
+      <span>By language:</span>
+      <TagsSelect bind:tags={languages} />
     </div>
-    <div slot="error-message" class="error-message">
-      ⚠️ {error}
-    </div>
-    {#each examples as example}
-      <Article
-        title={example.name}
-        description={example.description}
-        image={example.image}
-      >
-        <Button href={example.url} target="_blank" solid>
-          View website
-          <External />
-        </Button>
-        <Button href={example.source_url} target="_blank" solid>
-          View source code
-          <External />
-        </Button>
-        <div class="footer" slot="footer">
-          <div class="products">
-            <span>
-              Products: {example.tags
-                .filter((t) => t.type === "product")
-                .map((t) => t.name)
-                .join(", ")}
-            </span>
-          </div>
-          <div class="languages">
-            <span>
-              Languages: {example.tags
-                .filter((t) => t.type === "language")
-                .map((t) => t.name)
-                .join(", ")}
-            </span>
-          </div>
+  </div>
+  <div slot="empty-message" class="empty-message">
+    There are no published examples matching your criteria.
+  </div>
+  <div slot="error-message" class="error-message">
+    ⚠️ {error}
+  </div>
+  {#each examples as example}
+    <Article
+      title={example.name}
+      description={example.description}
+      image={example.image}
+    >
+      <Button href={example.url} target="_blank" solid>
+        View website
+        <External />
+      </Button>
+      <Button href={example.source_url} target="_blank" solid>
+        View source code
+        <External />
+      </Button>
+      <div class="footer" slot="footer">
+        <div class="products">
+          <span>
+            Products: {example.tags
+              .filter((t) => t.type === "product")
+              .map((t) => t.name)
+              .join(", ")}
+          </span>
         </div>
-      </Article>
-    {/each}
-  </Articles>
-</Section>
+        <div class="languages">
+          <span>
+            Languages: {example.tags
+              .filter((t) => t.type === "language")
+              .map((t) => t.name)
+              .join(", ")}
+          </span>
+        </div>
+      </div>
+    </Article>
+  {/each}
+</Articles>
 
 <Footer />
 
