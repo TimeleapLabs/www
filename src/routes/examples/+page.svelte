@@ -1,5 +1,5 @@
 <script>
-  import { browser } from "$app/env";
+  import { browser } from "$app/environment";
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
   import Section from "src/components/Section.svelte";
@@ -8,14 +8,14 @@
   import Button from "src/components/Button.svelte";
   import TagsSelect from "src/components/TagsSelect.svelte";
   import External from "src/icons/External.svelte";
-  import D20 from "../icons/D20.svelte";
-  import CloudSensor from "../icons/CloudSensor.svelte";
-  import MongoDB from "../icons/MongoDB.svelte";
-  import Shuffle from "../icons/Shuffle.svelte";
-  import Node from "../icons/Node.svelte";
-  import Solidity from "../icons/Solidity.svelte";
-  import Python from "../icons/Python.svelte";
-  import Go from "../icons/Go.svelte";
+  import D20 from "src/icons/D20.svelte";
+  import CloudSensor from "src/icons/CloudSensor.svelte";
+  import MongoDB from "src/icons/MongoDB.svelte";
+  import Shuffle from "src/icons/Shuffle.svelte";
+  import Node from "src/icons/Node.svelte";
+  import Solidity from "src/icons/Solidity.svelte";
+  import Python from "src/icons/Python.svelte";
+  import Go from "src/icons/Go.svelte";
   import { onMount } from "svelte";
 
   export let examples = [];
