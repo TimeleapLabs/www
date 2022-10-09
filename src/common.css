@@ -41,28 +41,6 @@
   font-display: swap;
 }
 
-html {
-  scroll-padding-top: 96px;
-  scroll-behavior: smooth;
-}
-
-#svelte,
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  background: var(--secondary-lighten-4);
-}
-
-body * {
-  font-family: "Syabil", sans-serif;
-}
-
 .gist .blob-code-content * {
   font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
     Liberation Mono, monospace !important;
@@ -81,34 +59,6 @@ body * {
 .gist .gist-data {
   border-bottom: none !important;
   border-radius: 4px 4px 0 0 !important;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Frank";
-  font-weight: 300;
-}
-
-a {
-  text-decoration: none;
-}
-
-svg {
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.fa-primary {
-  color: var(--primary-color);
-  fill: var(--primary-color);
-}
-
-.fa-secondary {
-  color: var(--secondary-color);
-  fill: var(--secondary-color);
 }
 
 .grecaptcha-badge {

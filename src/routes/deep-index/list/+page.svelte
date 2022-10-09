@@ -1,15 +1,24 @@
 <script>
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Button from "src/components/Button.svelte";
+  //import Button from "src/components/Button.svelte";
   import Alert from "src/components/Alert.svelte";
-  import TextInput from "src/components/TextInput.svelte";
-  import Select from "src/components/Select.svelte";
-  import Card from "src/components/Card.svelte";
+  //import TextInput from "src/components/TextInput.svelte";
+  //import Select from "src/components/Select.svelte";
+  //import Card from "src/components/Card.svelte";
   import TextArea from "src/components/TextArea.svelte";
 
-  import Copy from "src/icons/Copy.svelte";
-  import CalendarX from "src/icons/CalendarX.svelte";
+  import { Select, SelectItem } from "carbon-components-svelte";
+  import { TextInput } from "carbon-components-svelte";
+  import { Button } from "carbon-components-svelte";
+  import { Tile, ClickableTile } from "carbon-components-svelte";
+  import { CodeSnippet } from "carbon-components-svelte";
+  import { Grid, Row, Column } from "carbon-components-svelte";
+
+  import Api_1 from "carbon-icons-svelte/lib/Api_1.svelte";
+  import Add from "carbon-icons-svelte/lib/Add.svelte";
+  import Copy from "carbon-icons-svelte/lib/Copy.svelte";
+  import Dashboard from "carbon-icons-svelte/lib/Dashboard.svelte";
 
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
@@ -28,7 +37,8 @@
     "binance-mainnet": "binance",
   };
 
-  const copy = (text) => () => {
+  const copy = (text) => {
+    console.log(text);
     navigator.clipboard?.writeText?.(text);
     toast.push("Copied to clipboard.");
   };
@@ -75,159 +85,135 @@
       clearInterval(interval);
     };
   });
+
+  const chains = {
+    "ethereum-mainnet": "Ethereum",
+    "ethereum-goerli": "Ethereum Goerli",
+    "avalanche-mainnet": "Avalanche C-Chain",
+    "avalanche-fuji": "Avalanche Fuji C-Chain",
+    "binance-mainnet": "BNB Smart Chain",
+    "binance-testnet": "BNB Smart Chain Testnet",
+    "fantom-mainnet": "Fantom",
+    "fantom-testnet": "Fantom Testnet",
+    "polygon-mainnet": "Polygon",
+    "polygon-mumbai": "Polygon Mumbai",
+  };
 </script>
 
-<Navbar />
+<Grid padding>
+  <Row>
+    <Column lg={12}>
+      <div class="head">
+        <h2>Kenshi Deep Index</h2>
+        <div class="welcome">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, quae!
+          Porro praesentium dignissimos natus, quia rerum dolor vel minima
+          assumenda? Corporis, animi ipsa recusandae eaque totam deleniti! Sunt,
+          nesciunt alias.
+        </div>
+        <div class="filters">
+          <Select labelText="Chain" bind:selected={chain}>
+            {#each Object.entries(chains) as [value, text]}
+              <SelectItem {value} {text} />
+            {/each}
+          </Select>
+          <TextInput
+            labelText="Address"
+            placeholder="Search by contract address"
+            bind:value={address}
+          />
+        </div>
+        <div class="buttons">
+          <Button href="/dashboard" icon={Add}>Create a sync task</Button>
+          <Button href="/dashboard" icon={Api_1}>Get an API key</Button>
+        </div>
+      </div>
+    </Column>
+    <Column>
+      <ClickableTile href="/dashboard">
+        <div class="gap">
+          <h5>Index your smart contract</h5>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Voluptatibus harum ipsa blanditiis necessitatibus corrupti tempora
+            aspernatur esse molestiae perspiciatis iusto, minus et molestias
+            provident illum ratione. Voluptatibus quas ratione tempora.
+          </p>
+          <Button href="/dashboard" icon={Dashboard}>Start now</Button>
+        </div>
+      </ClickableTile>
+    </Column>
+  </Row>
+</Grid>
 
-<div class="section small-bottom-pad">
-  <h2>Kenshi Deep Index</h2>
-  <div class="welcome">
-    Welcome to the Kenshi dashboard! Connect your wallet and choose one of the
-    Kenshi services below to continue:
-  </div>
-  <div class="filters">
-    <Select
-      options={[
-        { label: "Ethereum", value: "ethereum-mainnet" },
-        { label: "Ethereum Goerli", value: "ethereum-goerli" },
-        {
-          label: "Avalanche C-Chain",
-          value: "avalanche-mainnet",
-        },
-        {
-          label: "Avalanche Fuji C-Chain",
-          value: "avalanche-fuji",
-        },
-        {
-          label: "BNB Smart Chain",
-          value: "binance-mainnet",
-        },
-        {
-          label: "BNB Smart Chain Testnet",
-          value: "binance-testnet",
-        },
-        { label: "Fantom", value: "fantom-mainnet" },
-        { label: "Fantom Testnet", value: "fantom-testnet" },
-        { label: "Polygon", value: "polygon-mainnet" },
-        { label: "Polygon Mumbai", value: "polygon-mumbai" },
-      ]}
-      placeholder="Choose a chain"
-      bind:value={chain}
-    />
-    <TextInput placeholder="Address" bind:value={address} />
-  </div>
-  <div class="buttons services">
-    <Button href="/dashboard">Create a sync task</Button>
-    <Button href="/dashboard">Get an API key</Button>
-  </div>
-</div>
+<Grid padding>
+  <Row>
+    <Column>
+      <h3>Indexed Contracts</h3>
+    </Column>
+  </Row>
 
-<div class="section">
-  <h3>Indexed Contracts</h3>
-  <div class="tasks">
+  <Row>
     {#each filter(syncAddrs, address.toLowerCase(), chain) as task}
-      <div transition:fade>
-        <Card flat>
-          <div class="body">
-            <div class="copy" on:click={copy(task.address)}>
-              <Alert>
+      <Column>
+        <div transition:fade>
+          <Tile>
+            <div class="body">
+              <CodeSnippet light>
                 <div class="address">
                   <img
                     src="/images/chains/{chainIcons[task.chain]}.svg"
                     alt={task.chain}
                   />
                   <span>{task.address}</span>
-                  <Copy />
                 </div>
-              </Alert>
+              </CodeSnippet>
+              <CodeSnippet light>{task.id}</CodeSnippet>
             </div>
-            <TextInput disabled value={task.id} suffix="Task ID">
-              <div class="field-buttons" slot="buttons">
-                <Button flat on:click={copy(task.id)}>
-                  <Copy />
-                </Button>
+            <div class="footer">
+              <div class="expires">
+                {#if task.expiresAt}
+                  Expires at
+                  {new Date(task.expiresAt).toLocaleDateString("en-US")}
+                {:else}
+                  Never expires
+                {/if}
               </div>
-            </TextInput>
-            <TextInput
-              icon={CalendarX}
-              disabled
-              value={task.expiresAt
-                ? "Expires at " +
-                  new Date(task.expiresAt).toLocaleDateString("en-US")
-                : "Never expires"}
-            />
-          </div>
-          <div class="buttons">
-            <Button on:click={copy(JSON.stringify(task.abi))}>Copy ABI</Button>
-          </div>
-        </Card>
-      </div>
+              <Button on:click={copy(JSON.stringify(task.abi))} icon={Copy}>
+                Copy ABI
+              </Button>
+            </div>
+          </Tile>
+        </div>
+      </Column>
     {/each}
-  </div>
-</div>
+  </Row>
+</Grid>
 
 <Footer />
 
 <style>
-  h2 {
-    margin-bottom: 1.5em;
-  }
-  h3 {
-    margin-top: 0;
-  }
-  .section {
-    padding: 4em;
-    padding-top: 0;
-  }
-  @media screen and (max-width: 960px) {
-    .section {
-      padding: 1.25em;
-    }
-    .section :global(.card.padding) {
-      padding: 1.25em;
-    }
-    .section :global(.split) {
-      grid-template-columns: 1fr;
-    }
-  }
+  .filters,
   .buttons {
-    margin-top: 2em;
     display: flex;
     gap: 1em;
+    flex-wrap: wrap;
   }
-  .filters {
-    margin-top: 2em;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(512px, 1fr));
-    gap: 2em;
-  }
-  .tasks {
-    margin-top: 2.5em;
-  }
-  .tasks:not(.empty) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(512px, 1fr));
-    gap: 2em;
-  }
-  .body {
-    max-width: 840px;
-  }
-  .buttons.services :global(svg) {
-    height: 1em;
-    padding-right: 0.25em;
-  }
-  .small-bottom-pad {
-    padding-bottom: 3em;
-  }
+
   .buttons {
-    margin-top: 2em;
+    margin-top: 1em;
+  }
+
+  .footer {
     display: flex;
-    gap: 1em;
+    align-items: center;
+    padding: 1em 0;
+    padding-left: 1em;
+    box-sizing: border-box;
   }
-  .copy {
-    cursor: copy;
+  .expires {
+    flex: 1;
   }
-  .address :global(svg),
   .address img {
     height: 1em;
   }
@@ -247,10 +233,20 @@
     gap: 1em;
     flex-direction: column;
   }
-  .field-buttons {
+  .gap {
     display: flex;
-    gap: 0.5em;
-    margin-right: 0.25em;
-    color: var(--secondary-color) !important;
+    gap: 1em;
+    flex-direction: column;
+  }
+  .head {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 1em;
+    box-sizing: border-box;
+  }
+  .welcome {
+    flex: 1;
   }
 </style>
