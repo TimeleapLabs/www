@@ -74,7 +74,7 @@
     gap: 0.5em;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: pre;
+    white-space: nowrap;
   }
   .button:not(.solid) {
     position: relative;
