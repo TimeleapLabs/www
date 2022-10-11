@@ -14,6 +14,7 @@
   import { Tile, ClickableTile } from "carbon-components-svelte";
   import { CodeSnippet } from "carbon-components-svelte";
   import { Grid, Row, Column } from "carbon-components-svelte";
+  import { Content } from "carbon-components-svelte";
 
   import Api_1 from "carbon-icons-svelte/lib/Api_1.svelte";
   import Add from "carbon-icons-svelte/lib/Add.svelte";
@@ -100,95 +101,127 @@
   };
 </script>
 
-<Grid padding>
-  <Row>
-    <Column lg={12}>
-      <div class="head">
-        <h2>Kenshi Deep Index</h2>
-        <div class="welcome">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, quae!
-          Porro praesentium dignissimos natus, quia rerum dolor vel minima
-          assumenda? Corporis, animi ipsa recusandae eaque totam deleniti! Sunt,
-          nesciunt alias.
-        </div>
-        <div class="filters">
-          <Select labelText="Chain" bind:selected={chain}>
-            {#each Object.entries(chains) as [value, text]}
-              <SelectItem {value} {text} />
-            {/each}
-          </Select>
-          <TextInput
-            labelText="Address"
-            placeholder="Search by contract address"
-            bind:value={address}
-          />
-        </div>
-        <div class="buttons">
-          <Button href="/dashboard" icon={Add}>Create a sync task</Button>
-          <Button href="/dashboard" icon={Api_1}>Get an API key</Button>
-        </div>
-      </div>
-    </Column>
-    <Column>
-      <ClickableTile href="/dashboard">
-        <div class="gap">
-          <h5>Index your smart contract</h5>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Voluptatibus harum ipsa blanditiis necessitatibus corrupti tempora
-            aspernatur esse molestiae perspiciatis iusto, minus et molestias
-            provident illum ratione. Voluptatibus quas ratione tempora.
-          </p>
-          <Button href="/dashboard" icon={Dashboard}>Start now</Button>
-        </div>
-      </ClickableTile>
-    </Column>
-  </Row>
-</Grid>
-
-<Grid padding>
-  <Row>
-    <Column>
-      <h3>Indexed Contracts</h3>
-    </Column>
-  </Row>
-
-  <Row>
-    {#each filter(syncAddrs, address.toLowerCase(), chain) as task}
-      <Column>
-        <div transition:fade>
+<Content>
+  <Grid padding>
+    <Row>
+      <Column lg={8} sm={16}>
+        <div class="hero">
           <Tile>
-            <div class="body">
-              <CodeSnippet light>
-                <div class="address">
-                  <img
-                    src="/images/chains/{chainIcons[task.chain]}.svg"
-                    alt={task.chain}
-                  />
-                  <span>{task.address}</span>
-                </div>
-              </CodeSnippet>
-              <CodeSnippet light>{task.id}</CodeSnippet>
-            </div>
-            <div class="footer">
-              <div class="expires">
-                {#if task.expiresAt}
-                  Expires at
-                  {new Date(task.expiresAt).toLocaleDateString("en-US")}
-                {:else}
-                  Never expires
-                {/if}
-              </div>
-              <Button on:click={copy(JSON.stringify(task.abi))} icon={Copy}>
-                Copy ABI
-              </Button>
+            <h2>Kenshi Deep Index</h2>
+            <div class="welcome">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero,
+              quae! Porro praesentium dignissimos natus, quia rerum dolor vel
+              minima assumenda? Corporis, animi ipsa recusandae eaque totam
+              deleniti! Sunt, nesciunt alias.
             </div>
           </Tile>
         </div>
       </Column>
-    {/each}
-  </Row>
-</Grid>
+      <Column lg={8} sm={16}>
+        <ClickableTile href="/dashboard">
+          <div class="gap">
+            <h5>Index your smart contract</h5>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Voluptatibus harum ipsa blanditiis necessitatibus corrupti tempora
+              aspernatur esse molestiae perspiciatis iusto, minus et molestias
+              provident illum ratione. Voluptatibus quas ratione tempora.
+            </p>
+            <Button href="/dashboard" icon={Dashboard}>Start now</Button>
+          </div>
+        </ClickableTile>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid padding>
+    <Row>
+      <Column lg={12}>
+        <div class="head">
+          <div class="welcome">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero,
+            quae! Porro praesentium dignissimos natus, quia rerum dolor vel
+            minima assumenda? Corporis, animi ipsa recusandae eaque totam
+            deleniti! Sunt, nesciunt alias.
+          </div>
+          <div class="filters">
+            <Select labelText="Chain" bind:selected={chain}>
+              {#each Object.entries(chains) as [value, text]}
+                <SelectItem {value} {text} />
+              {/each}
+            </Select>
+            <TextInput
+              labelText="Address"
+              placeholder="Search by contract address"
+              bind:value={address}
+            />
+          </div>
+          <div class="buttons">
+            <Button href="/dashboard" icon={Add}>Create a sync task</Button>
+            <Button href="/dashboard" icon={Api_1}>Get an API key</Button>
+          </div>
+        </div>
+      </Column>
+      <Column>
+        <ClickableTile href="/dashboard">
+          <div class="gap">
+            <h5>Start querying today</h5>
+            <p>Query all of this with one API key AHAHAHAHAHAHA</p>
+            <Button href="/dashboard" icon={Api_1}>Get an API key</Button>
+          </div>
+        </ClickableTile>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid padding>
+    <Row>
+      <Column>
+        <h3>Indexed Contracts</h3>
+      </Column>
+    </Row>
+
+    <Row>
+      {#each filter(syncAddrs, address.toLowerCase(), chain) as task}
+        <Column>
+          <div transition:fade>
+            <Tile>
+              <div class="body">
+                <CodeSnippet light>
+                  <div class="address">
+                    <img
+                      src="/images/chains/{chainIcons[task.chain]}.svg"
+                      alt={task.chain}
+                    />
+                    <span>{task.address}</span>
+                  </div>
+                </CodeSnippet>
+                <CodeSnippet light>{task.id}</CodeSnippet>
+              </div>
+              <div class="footer">
+                <div class="expires">
+                  {#if task.expiresAt}
+                    Expires at
+                    {new Date(task.expiresAt).toLocaleDateString("en-US")}
+                  {:else}
+                    Never expires
+                  {/if}
+                </div>
+                <Button
+                  kind="tertiary"
+                  on:click={copy(JSON.stringify(task.abi))}
+                  icon={Copy}
+                >
+                  Copy ABI
+                </Button>
+              </div>
+            </Tile>
+          </div>
+        </Column>
+      {/each}
+    </Row>
+  </Grid>
+</Content>
 
 <Footer />
 
@@ -248,5 +281,17 @@
   }
   .welcome {
     flex: 1;
+  }
+  .hero {
+    height: 100%;
+  }
+  .hero > :global(.bx--tile) {
+    background-color: #161616;
+    color: #f4f4f4;
+    background-image: url(/images/ellipse.png);
+    background-size: 400px;
+    background-position: 120%;
+    background-repeat: no-repeat;
+    height: 100%;
   }
 </style>

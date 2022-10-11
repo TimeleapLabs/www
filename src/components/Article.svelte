@@ -1,7 +1,6 @@
 <script>
-  import Card from "src/components/Card.svelte";
-  import Button from "src/components/Button.svelte";
-  import External from "src/icons/External.svelte";
+  import { Tile, Button } from "carbon-components-svelte";
+  import { Launch } from "carbon-icons-svelte";
 
   export let image;
   export let title;
@@ -10,7 +9,7 @@
 </script>
 
 <div class="article">
-  <Card padding={false}>
+  <Tile>
     <div class="article-inner">
       <img src={image} alt={title} />
       <div class="padded">
@@ -19,16 +18,17 @@
           {description}
         </div>
         <div class="buttons">
-          <Button {href} solid>
-            Read article <External />
-          </Button>
+          <Button {href} kind="secondary" icon={Launch}>Read article</Button>
         </div>
       </div>
     </div>
-  </Card>
+  </Tile>
 </div>
 
 <style>
+  .article :global(.bx--tile) {
+    padding: 0;
+  }
   .articles .article img {
     max-width: 100%;
   }
@@ -57,6 +57,7 @@
     flex-direction: column;
     height: 100%;
     box-sizing: border-box;
+    gap: 1em;
   }
   .article .padded .content {
     flex: 1;

@@ -1,6 +1,6 @@
 <script>
-  import Card from "./Card.svelte";
-  import External from "../icons/External.svelte";
+  import { ClickableTile } from "carbon-components-svelte";
+  import { Launch } from "carbon-icons-svelte";
 
   export let href;
   export let image;
@@ -8,8 +8,8 @@
   export let description;
 </script>
 
-<a {href} target="_blank">
-  <Card padding={false}>
+<div class="wrap">
+  <ClickableTile {href} target="_blank">
     <div class="card-button">
       <div class="graphics">
         <img src={image} alt={title} />
@@ -18,33 +18,17 @@
         <div class="vendor">
           <h3>{title}</h3>
           <div class="spacer" />
-          <External />
+          <Launch />
         </div>
         <div class="text">{description}</div>
       </div>
     </div>
-  </Card>
-</a>
+  </ClickableTile>
+</div>
 
 <style>
-  a {
-    color: #111;
-  }
-  a {
-    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) all 0.2s;
-    z-index: 0;
-  }
-  a:hover {
-    transform: scale(1.02) translateX(-2px) translateY(-2px);
-  }
-  a:active {
-    transform: scale(0.98) translateX(2px) translateY(2px);
-  }
-  :global(.card) {
-    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) all 0.2s;
-  }
-  a:hover :global(.card) {
-    box-shadow: 1em 1em 2em 0.5em rgb(0 0 0 / 10%);
+  .wrap :global(.bx--tile--clickable) {
+    padding: 0;
   }
   .card-button {
     display: grid;
