@@ -1,34 +1,39 @@
 <script>
-  import Button from "src/components/Button.svelte";
-  import ChevronRight from "src/icons/ChevronRight.svelte";
-  import External from "src/icons/External.svelte";
+  //import Button from "src/components/Button.svelte";
+  //import ChevronRight from "src/icons/ChevronRight.svelte";
+  //import External from "src/icons/External.svelte";
+
+  import { Button, Tile } from "carbon-components-svelte";
+  import { Launch, ChevronRight } from "carbon-icons-svelte";
 
   export let title;
   export let description;
   export let buttons;
 </script>
 
-<div class="product">
-  <div class="usecases">
-    <slot />
+<Tile>
+  <div class="product">
+    <div class="usecases">
+      <slot />
+    </div>
+    <h2>{title}</h2>
+    <div class="description">
+      {description}
+    </div>
+    <div class="buttons">
+      {#each buttons as button}
+        <Button
+          kind={button.external ? "secondary" : "primary"}
+          icon={button.external ? Launch : ChevronRight}
+          href={button.href}
+          target={button.external ? "_blank" : ""}
+        >
+          {button.label}
+        </Button>
+      {/each}
+    </div>
   </div>
-  <h2>{title}</h2>
-  <div class="description">
-    {description}
-  </div>
-  <div class="buttons">
-    {#each buttons as button}
-      <Button
-        solid={!!button.external}
-        href={button.href}
-        target={button.external ? "_blank" : ""}
-      >
-        {button.label}
-        {#if button.external} <External /> {:else} <ChevronRight /> {/if}
-      </Button>
-    {/each}
-  </div>
-</div>
+</Tile>
 
 <style>
   .product .description {
@@ -50,7 +55,6 @@
   }
   .product .buttons {
     display: flex;
-    gap: 1em;
     flex-wrap: wrap;
     margin-top: 2em;
     flex-wrap: wrap;

@@ -19,7 +19,7 @@
   import Magnify from "src/icons/Magnify.svelte";
   import CloudSensor from "src/icons/CloudSensor.svelte";
 
-  import ChevronRight from "src/icons/ChevronRight.svelte";
+  //import ChevronRight from "src/icons/ChevronRight.svelte";
   import External from "src/icons/External.svelte";
   import Arrow from "src/icons/Arrow.svelte";
 
@@ -46,18 +46,19 @@
     Tile,
     Button,
     Content,
+    ClickableTile,
   } from "carbon-components-svelte";
-  import { Dashboard, Book } from "carbon-icons-svelte";
+  import { Dashboard, Book, ChevronRight } from "carbon-icons-svelte";
 </script>
 
 <!-- Hero -->
 
 <div class="hero">
   <Tile>
-    <Grid padding>
+    <Grid noGutter padding>
       <Row>
         <Column>
-          <Grid>
+          <Grid noGutter>
             <Row>
               <Column>
                 <h1>Kenshi Blockchain Tech</h1>
@@ -75,7 +76,7 @@
                 <Button href="/dashboard" icon={Dashboard}>
                   Start building
                 </Button>
-                <Button href="/docs" kind="tertiary" icon={Book}>
+                <Button href="/docs" kind="secondary" icon={Book}>
                   Documentation
                 </Button>
               </Column>
@@ -90,126 +91,217 @@
 
 <Content>
   <div class="products">
-    <div class="start">
-      <h2>Start using Kenshi <br /> for your awesome products.</h2>
-      <div class="content">
-        From development to deployment and further, Kenshi is on your side.
-      </div>
-    </div>
-    <div class="products-list">
-      <Product
-        title="VRF Oracle"
-        description="Implement dynamic NFTs, games, lotteries and more with Kenshi VRF oracles."
-        buttons={[
-          {
-            href: "/docs/services/vrf",
-            external: true,
-            label: "Docs",
-          },
-          {
-            href: "https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9",
-            external: false,
-            label: "Learn more",
-          },
-        ]}
-      >
-        <Shuffle />
-        <VR />
-        <Dice />
-        <Gamepad />
-        <Slot />
-      </Product>
+    <Grid noGutter padding>
+      <Row>
+        <Column>
+          <div class="start">
+            <h2>Start using Kenshi <br /> for your awesome products.</h2>
+            <div class="content">
+              From development to deployment and further, Kenshi is on your
+              side.
+            </div>
+          </div>
+        </Column>
+        <Column>
+          <div class="products-list">
+            <Product
+              title="VRF Oracle"
+              description="Implement dynamic NFTs, games, lotteries and more with Kenshi VRF oracles."
+              buttons={[
+                {
+                  href: "/docs/services/vrf",
+                  external: true,
+                  label: "Docs",
+                },
+                {
+                  href: "https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9",
+                  external: false,
+                  label: "Learn more",
+                },
+              ]}
+            >
+              <Shuffle />
+              <VR />
+              <Dice />
+              <Gamepad />
+              <Slot />
+            </Product>
 
-      <Product
-        title="Deep Index"
-        description="Sync, search, query, and consume blockchain data that matters."
-        buttons={[
-          {
-            href: "/docs/services/deep-index",
-            external: true,
-            label: "Docs",
-          },
-          {
-            href: "https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946",
-            external: false,
-            label: "Learn more",
-          },
-        ]}
-      >
-        <D20 />
-        <DB />
-        <Magnify />
-        <CloudSensor />
-      </Product>
-    </div>
+            <Product
+              title="Deep Index"
+              description="Sync, search, query, and consume blockchain data that matters."
+              buttons={[
+                {
+                  href: "/docs/services/deep-index",
+                  external: true,
+                  label: "Docs",
+                },
+                {
+                  href: "https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946",
+                  external: false,
+                  label: "Learn more",
+                },
+              ]}
+            >
+              <D20 />
+              <DB />
+              <Magnify />
+              <CloudSensor />
+            </Product>
+          </div>
+        </Column>
+      </Row>
+    </Grid>
   </div>
 
   <div class="discover">
-    <h2>Discover all of Kenshi.</h2>
-    <div class="products-list">
-      <a href="/lockers" class="product">
-        <BinaryLock />
-        <h3>Liquidity Lockers</h3>
-        <Arrow />
-      </a>
-      <a href="/docs/services/audits" class="product">
-        <Shield />
-        <h3>Security Audits</h3>
-        <Arrow />
-      </a>
-      <a href="/docs/services/development" class="product">
-        <Code />
-        <h3>Blockchain Development</h3>
-        <Arrow />
-      </a>
-    </div>
+    <Grid noGutter padding>
+      <Row>
+        <Column>
+          <h2>Discover all of Kenshi.</h2>
+        </Column>
+      </Row>
+      <Row>
+        <Column lg={4}>
+          <ClickableTile>
+            <div class="discover-tile">
+              <h3>Deep Index</h3>
+              <p class="body">
+                Sync, search, query, and consume blockchain data that matters.
+              </p>
+              <div class="buttons">
+                <Button
+                  href="/docs/services/deep-index"
+                  kind="tertiary"
+                  icon={Book}
+                >
+                  Docs
+                </Button>
+                <Button href="/docs/services/deep-index" icon={ChevronRight}>
+                  Start
+                </Button>
+              </div>
+            </div>
+          </ClickableTile>
+        </Column>
+        <Column lg={4}>
+          <ClickableTile>
+            <div class="discover-tile">
+              <h3>DeFi Price Feed</h3>
+              <p class="body">
+                Free to use, real-time, on-chain price feed oracle and library
+                based on DeFi and DEX.
+              </p>
+              <div class="buttons">
+                <Button
+                  href="/docs/services/deep-index"
+                  kind="tertiary"
+                  icon={Book}
+                >
+                  Docs
+                </Button>
+                <Button href="/docs/services/deep-index" icon={ChevronRight}>
+                  Start
+                </Button>
+              </div>
+            </div>
+          </ClickableTile>
+        </Column>
+        <Column lg={4}>
+          <ClickableTile>
+            <div class="discover-tile">
+              <h3>VRF Oracle</h3>
+              <p>
+                Implement dynamic NFTs, games, lotteries and more with Kenshi
+                VRF oracles.
+              </p>
+              <div class="buttons">
+                <Button
+                  href="/docs/services/deep-index"
+                  kind="tertiary"
+                  icon={Book}
+                >
+                  Docs
+                </Button>
+                <Button href="/docs/services/deep-index" icon={ChevronRight}>
+                  Start
+                </Button>
+              </div>
+            </div>
+          </ClickableTile>
+        </Column>
+        <Column lg={4}>
+          <ClickableTile>
+            <h3>Liquidity Lockers</h3>
+          </ClickableTile>
+        </Column>
+        <Column lg={4}>
+          <ClickableTile>
+            <h3>Liquidity Lockers</h3>
+          </ClickableTile>
+        </Column>
+        <Column lg={4}>
+          <ClickableTile>
+            <h3>Blockchain Development</h3>
+          </ClickableTile>
+        </Column>
+      </Row>
+    </Grid>
   </div>
 
   <div class="cards">
-    <InfoCard
-      image="/images/token.png"
-      title="The Token"
-      description="Looking for the ₭enshi token? The Kenshi token is a frictionless yield token that can provide a passive income to its holders, and that is also used to pay for the Kenshi services."
-      buttons={[
-        {
-          href: "https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f",
-          external: true,
-          label: "Charts",
-        },
-        {
-          href: "/swap",
-          external: false,
-          label: "Buy",
-        },
-        {
-          href: "/docs/token",
-          external: false,
-          label: "Learn more",
-        },
-      ]}
-    />
-    <InfoCard
-      image="/images/pfp.png"
-      title="Community"
-      description="Join the Kenshi communities to talk tech, partake in early adopter programs, get help with one of our services, or to get the latest Kenshi news."
-      buttons={[
-        {
-          href: "https://t.me/KenshiTech",
-          external: true,
-          label: "Telegram",
-        },
-        {
-          href: "https://twitter.com/KenshiTech",
-          external: true,
-          label: "Twitter",
-        },
-        {
-          href: "/docs/community",
-          external: false,
-          label: "More",
-        },
-      ]}
-    />
+    <Grid noGutter padding>
+      <Row>
+        <Column>
+          <InfoCard
+            image="/images/token.png"
+            title="The Token"
+            description="Looking for the ₭enshi token? The Kenshi token is a frictionless yield token that can provide a passive income to its holders, and that is also used to pay for the Kenshi services."
+            buttons={[
+              {
+                href: "https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f",
+                external: true,
+                label: "Charts",
+              },
+              {
+                href: "/swap",
+                external: false,
+                label: "Buy",
+              },
+              {
+                href: "/docs/token",
+                external: false,
+                label: "Learn more",
+              },
+            ]}
+          />
+        </Column>
+        <Column>
+          <InfoCard
+            image="/images/pfp.png"
+            title="Community"
+            description="Join the Kenshi communities to talk tech, partake in early adopter programs, get help with one of our services, or to get the latest Kenshi news."
+            buttons={[
+              {
+                href: "https://t.me/KenshiTech",
+                external: true,
+                label: "Telegram",
+              },
+              {
+                href: "https://twitter.com/KenshiTech",
+                external: true,
+                label: "Twitter",
+              },
+              {
+                href: "/docs/community",
+                external: false,
+                label: "More",
+              },
+            ]}
+          />
+        </Column>
+      </Row>
+    </Grid>
   </div>
 
   <div class="getting-started">
@@ -404,8 +496,20 @@
 <Footer />
 
 <style>
-  .products {
-    position: relative;
+  .discover :global(.bx--tile) {
+    height: 100%;
+  }
+  .discover-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: 100%;
+  }
+  .discover-tile .body {
+    flex: 1;
+  }
+  .discover-tile .buttons {
+    margin-top: 1em;
   }
   .hero > :global(.bx--tile) {
     background-color: #161616;
@@ -417,80 +521,13 @@
   }
   .buttons {
     display: flex;
-    gap: 1em;
+    gap: 0;
+    flex-wrap: wrap;
+    width: 100%;
     flex-wrap: wrap;
   }
   .spacer {
     flex: 1;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 4em;
-  }
-  @media only screen and (max-width: 640px) {
-    .cards {
-      padding: 2em 1em;
-      gap: 2em;
-    }
-  }
-  .discover {
-    padding: 2em 4em;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 4em;
-  }
-  @media only screen and (max-width: 640px) {
-    .discover {
-      padding: 2em 1em;
-      gap: 2em;
-    }
-  }
-  .discover h2 {
-    font-size: 2em;
-    margin: 0;
-  }
-  .discover .products-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2em;
-    padding: 0;
-  }
-  .discover .product {
-    display: flex;
-    gap: 0.75em;
-    flex-direction: row;
-    align-items: center;
-    color: #000;
-  }
-  .discover .product h3 {
-    margin: 0;
-  }
-  .discover .product :global(svg) {
-    height: 1.25em;
-  }
-  .discover a:hover {
-    color: var(--primary-color);
-  }
-  .discover a:hover :global(svg) {
-    fill: var(--primary-color);
-  }
-
-  .products {
-    padding-bottom: 2em;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2em;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  @media only screen and (max-width: 640px) {
-    .products {
-      padding: 2em 1em;
-    }
-    .products .start h2 {
-      margin-top: 0.75em;
-    }
   }
   .products .products-list {
     display: grid;
