@@ -347,7 +347,7 @@
                 labelText="Wallet"
                 bind:value={userAddress}
               />
-              {#if userAddress}
+              {#if userAddress && typeof window !== "undefined"}
                 <CopyButton
                   text={`${window.location.origin}/tools?address=${userAddress}`}
                 />
