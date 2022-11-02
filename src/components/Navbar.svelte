@@ -85,7 +85,7 @@
                 </ClickableTile>
               </Column>
               <Column max={4}>
-                <ClickableTile href="/docs/services/deep-index/graph">
+                <ClickableTile href="/docs/services/deep-index/graphql">
                   <h4>Deep Index GraphQL</h4>
                   <div class="body">
                     Use GraphQL to query events emitted from your smart
@@ -275,7 +275,7 @@
       <SideNavMenu text="Deep Index">
         <SideNavMenuItem href="/docs/services/deep-index/sync" text="Sync" />
         <SideNavMenuItem
-          href="/docs/services/deep-index/graph"
+          href="/docs/services/deep-index/graphql"
           text="GraphQL"
         />
         <SideNavMenuItem href="/docs/services/deep-index/mql" text="MQL" />
