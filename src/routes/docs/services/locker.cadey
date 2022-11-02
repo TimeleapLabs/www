@@ -24,13 +24,13 @@ any Kenshi transaction tax if you choose to pay by locking Kenshi, and you will
 receive reflections on top of that.
 
 [table
-   [:header [: Locker Action]                               [: Price (Pay in Kenshi)] [: Price (Lock Kenshi)]]
-   [:row    [: Create a new locker]                         100M                      200M]
-   [:row    [: Lock liquidity or other tokens]              [italic Free]             [italic Free]]
-   [:row    [: Increase locked liquidity or other tokens]   [italic Free]             [italic Free]]
-   [:row    [: Increase lock time]                          [italic Free]             [italic Free]]
-   [:row    [: Transfer ownership]                          [italic Free]             [italic Free]]
-   [:row    [: Upgrade to a new locker version]             [italic Free]             [italic Free]]]
+   [:header [: Locker Action]                [: Price (Pay in Kenshi)] [: Price (Lock Kenshi)]]
+   [:row    [: Create a new locker]                         100M             200M]
+   [:row    [: Lock liquidity or other tokens]              Free             Free]
+   [:row    [: Increase locked liquidity or other tokens]   Free             Free]
+   [:row    [: Increase lock time]                          Free             Free]
+   [:row    [: Transfer ownership]                          Free             Free]
+   [:row    [: Upgrade to a new locker version]             Free             Free]]
 
 [heading :size 2 How to create a locker?]
 
@@ -66,7 +66,7 @@ way.
 You can go on to the locker's admin page, connect your wallet and see the information
 publicly available on the locker.
 
-[alert note
+[alert info-square
   Admin actions such as locking, withdrawing and setting the dates are only available
   and displayed to the locker owner. Locker onwer is anyone who created the locker.
   Please note that the ownership of the locker is not transferrable.]

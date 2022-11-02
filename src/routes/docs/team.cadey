@@ -1,7 +1,7 @@
 [heading Team]
 
-[grid [:cols repeat(auto-fit, minmax(300px, 1fr))] [:gap 2em]
-  [team
+[team
+  [teamMember
     [:name Pouya (Founder)]
     [:photo /images/team/pouya.png]
     [:linkedIn https://www.linkedin.com/in/pouya-eghbali]
@@ -12,7 +12,7 @@
     Entrepreneur, developer and innovator with a passion for distributed and decentralized systems.
     Founder at Kenshi, Clio programming language, and CTO at Equip.]
 
-  [team
+  [teamMember
     [:name Henry (Co-founder)]
     [:photo /images/team/henry.jpg]
     [:linkedIn https://www.linkedin.com/in/henry-nidecker-5836191]
@@ -20,7 +20,7 @@
     CEO at Nidecker Group, LPS and Equip. Entrepreneur in sport & tech. Partner to awesome
     startups & relentless optimist. Growing internationally +10 brands with a team 100+ people.]
 
-  [team
+  [teamMember
     [:name Nathalie (Co-founder)]
     [:photo /images/team/nathalie.jpg]
     [:linkedIn https://www.linkedin.com/in/nathaliecasati]
@@ -30,7 +30,7 @@
     and cryptography in a diverse range of industries. She previously worked at IBM Research
     and holds multiple patents for her scientific work.]
 
-  [team
+  [teamMember
     [:name Kevin (Co-founder)]
     [:photo /images/team/kevin.jpg]
     [:linkedIn https://www.linkedin.com/in/kevin-aguilar-5445211b4]

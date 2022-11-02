@@ -37,7 +37,7 @@ To fill and submit the new MQL API key form you can refer to the following manua
     made using this API key that doesn't match the query limits. This field is optional.]
 ]
 
-[alert note
+[alert info-square
    For Query limits, you should use checksummed hex values for argument values. Use lowercase
    values anywhere else.]
 

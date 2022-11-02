@@ -5,7 +5,7 @@ There are 2 billion Kenshi tokens in this wallet and enough gas to withdraw them
 The wallet is excluded from fines.
 
 
-[alert note
+[alert info-square
   You can check the Kenshi balance of the wallet on the Kenshi
   [link /tools?address=0xBFE5C7dA985f8d3Ff689A4608436402dfF647B4F tools] page.
   If the wallet is not empty it means the contest is still ongoing.]

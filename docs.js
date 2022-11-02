@@ -1,11 +1,17 @@
 import { Cadey, rules } from "cadey/generator.js";
 import { parse } from "cadey/parser.js";
 
+const { block } = rules;
+
+rules.block = async function (...args) {
+  return `<Row><Column>${await block.call(this, ...args)}</Column></Row>`;
+};
+
 import fs from "fs";
 import path from "path";
 
 import { macros } from "./cadey/macros.js";
-import { getNav, getNext, getPrev } from "./cadey/nav.js";
+import { getNav, getNext, getPrev, getBreadCrumb } from "./cadey/nav.js";
 import { getHeadings, getImports } from "./cadey/generators.js";
 import { getDocPage, getContext } from "./cadey/generators.js";
 import { getSeoTags } from "./cadey/seo.js";
@@ -45,9 +51,18 @@ const parseAll = async () => {
     const tags = getSeoTags(parsed, context);
     const imports = getImports(context.components);
     const headings = getHeadings(context.headings);
+    const breadcrumb = getBreadCrumb(file, allHeadings);
     const next = getNext(file, allTocs);
     const prev = getPrev(file, allTocs, allHeadings);
-    const code = getDocPage(parsed, imports, headings, next, prev, tags);
+    const code = getDocPage(
+      parsed,
+      imports,
+      headings,
+      breadcrumb,
+      next,
+      prev,
+      tags
+    );
     const dirname = file.replace(/(index)?\.cadey$/, "");
     if (!fs.existsSync(dirname)) {
       fs.mkdirSync(dirname);

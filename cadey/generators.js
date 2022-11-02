@@ -1,47 +1,78 @@
 import { slug } from "./utils.js";
 
 export const getHeadings = (headings) =>
-  headings.map((h) => `<a href="#${slug(h)}"> ${h} </a>`).join("\n");
+  headings
+    .map(
+      (h, i) => `
+        <ProgressStep 
+          href="#${slug(h.title)}"
+          label={"${h.title}"}
+          secondaryLabel={"${h.hint}"}
+          complete={progress > ${i}} />`
+    )
+    .join("\n");
 
 const componentsMap = {
-  Alert: "src/components/Alert.svelte",
-  Code: "src/components/Code.svelte",
-  Table: "src/components/Table.svelte",
-  TriangleExclamation: "src/icons/TriangleExclamation.svelte",
-  CircleInfo: "src/icons/CircleInfo.svelte",
-  Pencil: "src/icons/Pencil.svelte",
-  CircleCheck: "src/icons/CircleCheck.svelte",
-  Tab: "src/components/tabs/Tab.svelte",
-  Tabs: "src/components/tabs/Tabs.svelte",
-  TabList: "src/components/tabs/TabList.svelte",
-  TabPanel: "src/components/tabs/TabPanel.svelte",
+  Alert: `import { InlineNotification } from "carbon-components-svelte"`,
+  Toc: `import { OrderedList, ListItem } from "carbon-components-svelte"`,
+  Code: `import { CodeSnippet } from "carbon-components-svelte"`,
+  Table: `import { DataTable } from "carbon-components-svelte"`,
+  Tab: `import { Tabs, Tab, TabContent, Tile } from "carbon-components-svelte"`,
   Image: "src/components/gallery/Image.svelte",
   Gallery: "src/components/gallery/Gallery.svelte",
   TeamMember: "src/components/TeamMember.svelte",
-  Grid: "src/components/Grid.svelte",
   Chart: "src/components/Chart.svelte",
 };
 
-export const getImports = (components = {}) =>
-  Object.keys(components)
-    .map((c) => `import ${c} from "${componentsMap[c]}"`)
-    .join(";\n");
+const getImport = (c) =>
+  componentsMap[c].startsWith("import")
+    ? componentsMap[c]
+    : `import ${c} from "${componentsMap[c]}"`;
 
-export const getDocPage = (parsed, imports, headings, next, prev, tags) => `
+export const getImports = (components = {}) =>
+  Object.keys(components).map(getImport).join(";\n");
+
+const genBread = (bread) => {
+  const lastBread = bread.pop();
+  const lastItem = `<BreadcrumbItem href="${lastBread.url}"
+    isCurrentPage>${lastBread.title}</BreadcrumbItem>`;
+  const items = bread
+    .map((c) => `<BreadcrumbItem href="${c.url}">${c.title}</BreadcrumbItem>`)
+    .join("\n");
+  return `<Breadcrumb>${items}\n${lastItem}</Breadcrumb>`;
+};
+
+export const getDocPage = (
+  parsed,
+  imports,
+  headings,
+  bread,
+  next,
+  prev,
+  tags
+) => `
     <script>
       import DocPage from "src/components/DocPage.svelte";
+      import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
+      import { Grid, Row, Column, Link } from "carbon-components-svelte";
+      import { ProgressStep } from "carbon-components-svelte";
+      import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
       ${imports};
+
       const next = ${next};
       const prev = ${prev};
+
+      let progress = 0;
     </script>
 
     <svelte:head>
       ${tags}
     </svelte:head>
 
-    <DocPage {next} {prev}>
+    <DocPage {next} {prev} bind:progress>
       ${parsed}
-      <div slot="headings">${headings}</div>
+      <svelte:fragment slot="breadcrumb">${genBread(bread)}</svelte:fragment>
+      <svelte:fragment slot="headings">${headings}</svelte:fragment>
     </DocPage>
   `;
 

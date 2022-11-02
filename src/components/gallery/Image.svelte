@@ -1,9 +1,10 @@
 <script>
   import { expoInOut } from "svelte/easing";
+  import { Column, Tile } from "carbon-components-svelte";
 
   export let alt;
   export let src;
-  export let radius = 4;
+  export let radius = 0;
   export let height = "auto";
   export let width = "auto";
 
@@ -66,19 +67,23 @@
   };
 </script>
 
-<img
-  bind:this={unzoomImage}
-  class="unzoom"
-  class:faded={zoom}
-  style="--radius: {radius}px; --height: {height}; --width: {width}"
-  {src}
-  {alt}
-  on:click={onClick}
-  on:mousemove={onMouseMove}
-  on:mousedown={onMouseDown}
-  on:mouseleave={onMouseLeave}
-  on:mouseup={onMouseUp}
-/>
+<Column class="gallery-col" lg={2} sm={2} mg={2} aspectRatio={"1x1"}>
+  <Tile light>
+    <img
+      bind:this={unzoomImage}
+      class="unzoom"
+      class:faded={zoom}
+      style="--radius: {radius}px; --height: {height}; --width: {width}"
+      {src}
+      {alt}
+      on:click={onClick}
+      on:mousemove={onMouseMove}
+      on:mousedown={onMouseDown}
+      on:mouseleave={onMouseLeave}
+      on:mouseup={onMouseUp}
+    />
+  </Tile>
+</Column>
 
 {#if zoom}
   <div
@@ -92,10 +97,10 @@
 
 <style>
   .unzoom {
+    max-width: 100%;
     height: var(--height);
     width: var(--width);
-    max-width: 400px;
-    max-height: 100%;
+    object-fit: contain;
   }
   .zoom {
     position: fixed;

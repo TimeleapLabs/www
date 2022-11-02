@@ -14,6 +14,20 @@ export const getParentTocI = (currDir, allTocs) => {
   return { parentToc: parentTocEntries, parentTocI };
 };
 
+export const getBreadCrumb = (file, allHeadings) => {
+  const bread = [{ url: toUrl(file), title: allHeadings[file][0].title }];
+  let parent = path.dirname(file);
+  let index = `${parent}/index.cadey`;
+  while (allHeadings[index]) {
+    if (index !== file) {
+      bread.unshift({ url: toUrl(parent), title: allHeadings[index][0].title });
+    }
+    parent = path.dirname(parent);
+    index = `${parent}/index.cadey`;
+  }
+  return bread;
+};
+
 export const getPrev = (file, allTocs, allHeadings) => {
   const currDir = path.dirname(file);
   const currToc = allTocs[`${currDir}/index.cadey`];
@@ -27,7 +41,7 @@ export const getPrev = (file, allTocs, allHeadings) => {
     return allHeadings[parentIndex]
       ? JSON.stringify({
           url: toUrl(parentIndex),
-          title: allHeadings[parentIndex][0],
+          title: allHeadings[parentIndex][0].title,
         })
       : null;
   } else {
@@ -50,7 +64,7 @@ export const getPrev = (file, allTocs, allHeadings) => {
       return allHeadings[parentIndex]
         ? JSON.stringify({
             url: toUrl(parentIndex),
-            title: allHeadings[parentIndex],
+            title: allHeadings[parentIndex][0].title,
           })
         : null;
     }

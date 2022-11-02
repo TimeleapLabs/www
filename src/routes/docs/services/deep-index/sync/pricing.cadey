@@ -4,7 +4,7 @@ Pricing for the sync service depends on the tier chosen while creating the task.
 Below you will find the differences between the tiers. Contact us if you need a
 custom service or pricing. The price is paid in Kenshi tokens.
 
-[alert note
+[alert info-square
   If you encounter any issues with payments, contact us at
   [link mailto:support@kenshi.io support@kenshi.io].]
 
@@ -36,7 +36,7 @@ It is possible to order a custom plan, or run dedicated sync nodes by contacting
   will take more than 3 years to run out of storage at this rate. This is an extreme case,
   and most smart contracts won't need this much of storage space.]]
 
-[alert note
+[alert info-square
   All indexed data is geographically replicated to allow low latency queries from anywhere in
   world. Indexing is done on [bold ALL] event fields, and all indexes are stored in memory to
   allow faster queries.]

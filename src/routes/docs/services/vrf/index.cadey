@@ -5,7 +5,7 @@ to generate random numbers securely because of its deterministic nature.
 VRFs can be used to implement dynamic NFTs, cryptocurrency betting systems, metaverses assets,
 cryptocurrency games, or anywhere on the blockchain where a random number is needed.
 
-[alert note
+[alert info-square
    This service is currently in beta test and active on the BNB Chain (BSC),
    Avalanche (AVAX), Fantom (FTM), Polygon (MATIC) testnets and mainnets, and the Ethereum Goerli
    testnet. If you have any issues or questions you can join our
@@ -17,7 +17,7 @@ to be used by smart contracts on-chain. These random numbers are safe, secure, a
 Their fairness and derivation are verifiable by the receiving party. This verification proves that
 they are not modified nor tampered with when transferred from source to destination.
 
-[alert note
+[alert info-square
    In cryptography, a verifiable random function (VRF) is a public-key pseudorandom function that
    provides proofs that its outputs were calculated correctly. The owner of the secret key can compute
    the function value as well as an associated proof for any input value. Everyone else, using the

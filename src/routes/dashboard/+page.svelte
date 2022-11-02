@@ -1,466 +1,167 @@
 <script>
-  import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Button from "src/components/Button.svelte";
-  import Alert from "src/components/Alert.svelte";
 
-  import External from "src/icons/External.svelte";
-  import DB from "src/icons/DB.svelte";
-  import Shuffle from "src/icons/Shuffle.svelte";
+  import { Grid, Row, Column, Content } from "carbon-components-svelte";
+  import { ClickableTile, Tile } from "carbon-components-svelte";
+  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
-  import { wallet } from "src/stores/wallet";
-  import { onMount } from "svelte";
-  import { slide } from "svelte/transition";
-  import { ethers } from "ethers";
-
-  import TaskForm from "src/components/dash/TaskForm.svelte";
-  import TaskView from "src/components/dash/TaskView.svelte";
-
-  import GraphQLForm from "src/components/dash/GraphQLForm.svelte";
-  import GraphQLView from "src/components/dash/GraphQLView.svelte";
-
-  import WebhookForm from "src/components/dash/WebhookForm.svelte";
-  import WebhookView from "src/components/dash/WebhookView.svelte";
-
-  import VrfCreditForm from "src/components/dash/VrfCreditForm.svelte";
-  import VrfCreditView from "src/components/dash/VrfCreditView.svelte";
-
-  let showNewTaskForm = false;
-  let showNewGraphQLForm = false;
-  let showNewWebhookForm = false;
-  let showNewVrfCreditForm = false;
-
-  let userAddress;
-
-  const services = {
-    VRF: Symbol("VRF"),
-    DEEP_INDEX: Symbol("DEEP_INDEX"),
-  };
-
-  let currService = services.DEEP_INDEX;
-
-  const toggleService = (key) => () => {
-    currService = currService === key ? null : key;
-  };
-
-  const setAddress = async () => {
-    const provider = new ethers.providers.Web3Provider($wallet.provider);
-    const signer = provider.getSigner($wallet.accounts?.[0]?.address);
-    userAddress = await signer.getAddress();
-  };
-
-  $: if ($wallet) setAddress();
-
-  const syncTaskQuery = (owner) => `{
-    getUserSubs(owner: "${owner}", syncTasks: true) {
-      syncTasks {
-        id
-        signature
-        abi
-        args {
-          name
-          value
-        }
-        fromBlock
-        step
-        chain
-        address
-        interval
-        timeout
-        expiresAt
-      }
-    }
-  }`;
-
-  const apiKeyQuery = (owner) => `{
-    getUserSubs(owner: "${owner}", apiKeys: true) {
-      apiKeys {
-        id
-        requests
-        sharedKey
-        encryptedKey
-        createdAt
-        allow {
-          condition
-          value
-          comparison
-          arg
-        }
-      }
-    }
-  }`;
-
-  const webhookQuery = (owner) => `{
-    getUserSubs(owner: "${owner}", webhooks: true) {
-      webhooks {
-        id
-        syncTaskId
-        fromBlock
-        step
-        chain
-        endpoint
-        interval
-        timeout
-        requests
-        query {
-          condition
-          value
-          comparison
-          arg
-        }
-        expiresAt
-      }
-    }
-  }`;
-
-  const vrfQuery = (owner) => `{
-    getUserSubs(owner: "${owner}", vrfCredits: true) {
-      vrfCredits {
-        id
-        credit
-        allow
-        chain
-      }
-    }
-  }`;
-
-  let userSyncTasks = [];
-  let userApiKeys = [];
-  let userWebhooks = [];
-  let userVrfCredits = [];
-
-  const getUserTasks = async () => {
-    const query = syncTaskQuery(userAddress);
-
-    const response = await fetch("https://api.kenshi.io/subscriptions", {
-      method: "POST",
-      body: JSON.stringify({ query }),
-    });
-
-    const result = await response.json();
-    userSyncTasks = result.data?.getUserSubs?.syncTasks || [];
-  };
-
-  const getUserApiKeys = async () => {
-    const query = apiKeyQuery(userAddress);
-
-    const response = await fetch("https://api.kenshi.io/subscriptions", {
-      method: "POST",
-      body: JSON.stringify({ query }),
-    });
-    const result = await response.json();
-    userApiKeys = result.data?.getUserSubs?.apiKeys || [];
-  };
-
-  const getUserWebhooks = async () => {
-    const query = webhookQuery(userAddress);
-
-    const response = await fetch("https://api.kenshi.io/subscriptions", {
-      method: "POST",
-      body: JSON.stringify({ query }),
-    });
-    const result = await response.json();
-    userWebhooks = result.data?.getUserSubs?.webhooks || [];
-  };
-
-  const getUserVrfCredits = async () => {
-    const query = vrfQuery(userAddress);
-
-    const response = await fetch("https://api.kenshi.io/subscriptions", {
-      method: "POST",
-      body: JSON.stringify({ query }),
-    });
-    const result = await response.json();
-    userVrfCredits = result.data?.getUserSubs?.vrfCredits || [];
-  };
-
-  $: if (userAddress) {
-    getUserTasks();
-    getUserApiKeys();
-    getUserWebhooks();
-    getUserVrfCredits();
-  }
-
-  onMount(() => {
-    const interval = setInterval(() => {
-      getUserTasks();
-      getUserApiKeys();
-      getUserWebhooks();
-      getUserVrfCredits();
-    }, 60 * 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  });
+  import { AssemblyCluster, Query, Webhook } from "carbon-icons-svelte";
+  import { ArrowRight, Shuffle } from "carbon-icons-svelte";
 </script>
 
-<Navbar />
+<Content>
+  <Grid noGutter padding narrow>
+    <Row>
+      <Column>
+        <ExpressiveHeading size={5}>
+          <h1>Kenshi Dashboard</h1>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
 
-<div class="section small-bottom-pad">
-  <h2>Kenshi Dashboard</h2>
-  <div class="welcome">
-    Welcome to the Kenshi dashboard! Connect your wallet and choose one of the
-    Kenshi services below to continue:
-  </div>
-  <div class="buttons services">
-    <Button
-      active={currService === services.DEEP_INDEX}
-      on:click={toggleService(services.DEEP_INDEX)}
-    >
-      <DB />
-      Deep Index
-    </Button>
-    <Button
-      active={currService === services.VRF}
-      on:click={toggleService(services.VRF)}
-    >
-      <Shuffle />
-      VRF
-    </Button>
-  </div>
-</div>
+    <Row>
+      <Column>
+        <ExpressiveHeading size={3}>Data Out</ExpressiveHeading>
+      </Column>
+    </Row>
 
-{#if currService === services.DEEP_INDEX}
-  <div class="section">
-    <div class="deep-index">
-      <h3>Deep Index</h3>
-      <div class="body">
-        <p>
-          The Kenshi Deep Index consists of multiple services for retrieving,
-          querying and processing blockchain data.
-        </p>
-        <p class="availability">
-          <Alert>
-            Available on: <span class="chains">
-              <img src="/images/chains/ethereum.svg" alt="Ethereum" />
-              <img src="/images/chains/binance.svg" alt="BNB Chain" />
-              <img src="/images/chains/polygon.svg" alt="Polygon" />
-              <img src="/images/chains/fantom.svg" alt="Fantom" />
-              <img src="/images/chains/avalanche.svg" alt="Avalanche" />
-            </span>
-          </Alert>
-        </p>
-        <div class="alert">
-          {#if !$wallet?.provider}
-            <Alert warning>Connect your wallet to continue.</Alert>
-          {/if}
-        </div>
-      </div>
-      <div class="buttons">
-        <Button href="/docs/services/deep-index" solid>
-          Deep Index docs <External />
-        </Button>
-        {#if $wallet?.provider}
-          <Button on:click={() => (showNewTaskForm = !showNewTaskForm)}>
-            New Sync Task
-          </Button>
-        {/if}
-      </div>
-    </div>
-  </div>
+    <Row>
+      <Column sm={4} md={4} lg={4}>
+        <Tile class="blue-tile full-height">
+          <div class="flex-column">
+            <ExpressiveHeading size={5}>
+              <h2>Deep Index</h2>
+            </ExpressiveHeading>
 
-  {#if $wallet?.provider && showNewTaskForm}
-    <div class="section" transition:slide>
-      <TaskForm bind:showNewTaskForm {getUserTasks} />
-    </div>
-  {/if}
+            <div class="spacer" />
 
-  {#if $wallet?.provider}
-    <div class="section">
-      <h3>Your Deep Index Sync tasks</h3>
-      <div class="tasks" class:empty={userSyncTasks.length === 0}>
-        {#each userSyncTasks as task}
-          <TaskView {task} {getUserTasks} />
-        {:else}
-          You don't have any sync tasks.
-        {/each}
-      </div>
-    </div>
-    <div class="section">
-      <h3>Your GraphQL API keys</h3>
-      <div class="api-keys" class:empty={userApiKeys.length === 0}>
-        {#each userApiKeys as graphql}
-          <GraphQLView {graphql} {getUserApiKeys} />
-        {:else}
-          You do not have any GraphQL + MQL API keys at the moment. Create one
-          using the button below.
-        {/each}
-      </div>
-      <div class="buttons">
-        <Button on:click={() => (showNewGraphQLForm = !showNewGraphQLForm)}>
-          New GraphQL + MQL API Key
-        </Button>
-      </div>
-    </div>
-    {#if showNewGraphQLForm}
-      <div class="section" transition:slide>
-        <GraphQLForm bind:showNewGraphQLForm {getUserApiKeys} />
-      </div>
-    {/if}
-    <div class="section">
-      <h3>Reverse API (Webhooks)</h3>
-      <div class="webhooks" class:empty={userWebhooks.length === 0}>
-        {#each userWebhooks as webhook}
-          <WebhookView {webhook} {getUserWebhooks} />
-        {:else}
-          You don't have any Reverse API endpoints registered at the moment.
-          Create one using the button below.
-        {/each}
-      </div>
-      <div class="buttons">
-        <Button on:click={() => (showNewWebhookForm = !showNewWebhookForm)}>
-          New Reverse API
-        </Button>
-      </div>
-    </div>
-  {/if}
+            <div class="body-02 ">
+              Deep Index is an all-in-one data consumption, data processing, and
+              data flow solution that connects web3 data to web2.
+            </div>
 
-  {#if showNewWebhookForm}
-    <div class="section" transition:slide>
-      <WebhookForm bind:showNewWebhookForm {getUserWebhooks} />
-    </div>
-  {/if}
-{:else if currService === services.VRF}
-  <div class="section">
-    <div class="vrf">
-      <h3>VRF (Randomness)</h3>
-      <div class="body">
-        <p>
-          Use the Kenshi VRF service to get randomness for your dApps or games
-          on Fantom, Polygon, BSC and the Avalanche blockchains.
-        </p>
-        <p class="availability">
-          <Alert>
-            Available on: <span class="chains">
-              <img src="/images/chains/ethereum.svg" alt="Ethereum" />
-              <img src="/images/chains/binance.svg" alt="BNB Chain" />
-              <img src="/images/chains/polygon.svg" alt="Polygon" />
-              <img src="/images/chains/fantom.svg" alt="Fantom" />
-              <img src="/images/chains/avalanche.svg" alt="Avalanche" />
-            </span>
-          </Alert>
-        </p>
-        <div class="alert">
-          {#if !$wallet?.provider}
-            <Alert warning>Connect your wallet to continue.</Alert>
-          {:else}
-            <Alert>
-              This service is in public beta test, if you encounter any issues
-              send us an email at support@kenshi.io.
-            </Alert>
-          {/if}
-        </div>
-      </div>
-      <div class="buttons">
-        <Button href="/docs/services/vrf" solid>
-          VRF docs <External />
-        </Button>
-        {#if $wallet?.provider}
-          <Button
-            on:click={() => (showNewVrfCreditForm = !showNewVrfCreditForm)}
-          >
-            New VRF subscription
-          </Button>
-        {/if}
-      </div>
-    </div>
-  </div>
+            <div class="spacer" />
+          </div>
+        </Tile>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <ClickableTile class="full-height" href="/dashboard/deep-index/sync">
+          <div class="flex-column">
+            <AssemblyCluster />
+            <ExpressiveHeading size={3}>
+              <h2>Sync</h2>
+            </ExpressiveHeading>
+            <div class="body-compact-02">
+              Store and index data from your smart contracts into Kenshi's
+              geographically distributed data clusters.
+            </div>
+            <div class="spacer" />
+            <div class="arrow">
+              <ArrowRight />
+            </div>
+          </div>
+        </ClickableTile>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <ClickableTile class="full-height" href="/dashboard/deep-index/query">
+          <div class="flex-column">
+            <Query />
+            <ExpressiveHeading size={3}>
+              <h2>MQL+GraphQL</h2>
+            </ExpressiveHeading>
+            <div class="body-compact-02">
+              Query data from Kenshi's data clusters using MQL or GraphQL.
+            </div>
+            <div class="spacer" />
+            <div class="arrow">
+              <ArrowRight />
+            </div>
+          </div>
+        </ClickableTile>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <ClickableTile class="full-height" href="/dashboard/deep-index/webhook">
+          <div class="flex-column">
+            <Webhook />
+            <ExpressiveHeading size={3}>
+              <h2>Reverse API (Webhooks)</h2>
+            </ExpressiveHeading>
+            <div class="body-compact-02">
+              Directly listen to events as they happen on the blockchain and get
+              them delivered to you.
+            </div>
+            <div class="spacer" />
+            <div class="arrow">
+              <ArrowRight />
+            </div>
+          </div>
+        </ClickableTile>
+      </Column>
+    </Row>
 
-  {#if showNewVrfCreditForm}
-    <div class="section" transition:slide>
-      <VrfCreditForm bind:showNewVrfCreditForm {getUserVrfCredits} />
-    </div>
-  {/if}
+    <Row>
+      <Column>
+        <ExpressiveHeading size={3}>Data In</ExpressiveHeading>
+      </Column>
+    </Row>
 
-  {#if $wallet?.provider}
-    <div class="section">
-      <h3>Your VRF subscriptions</h3>
-      <div class="vrf-subs" class:empty={userVrfCredits.length === 0}>
-        {#each userVrfCredits as vrf}
-          <VrfCreditView {vrf} {getUserVrfCredits} />
-        {:else}
-          You don't have any VRF subscriptions.
-        {/each}
-      </div>
-    </div>
-  {/if}
-{/if}
+    <Row>
+      <Column sm={4} md={4} lg={4} max={4}>
+        <Tile class="blue-tile full-height">
+          <div class="flex-column">
+            <ExpressiveHeading size={5}>
+              <h1>Oracle Network</h1>
+            </ExpressiveHeading>
+
+            <div class="spacer" />
+
+            <div class="body-02 ">
+              Kenshi Oracle Network is a high-performance asynchronous oracle
+              platform currently hosting the Kenshi VRF.
+            </div>
+
+            <div class="spacer" />
+          </div>
+        </Tile>
+      </Column>
+      <Column sm={4} md={4} lg={4} max={4}>
+        <ClickableTile class="full-height" href="/dashboard/oracle-network/vrf">
+          <div class="flex-column">
+            <Shuffle />
+            <ExpressiveHeading size={3}>
+              <h2>VRF</h2>
+            </ExpressiveHeading>
+            <div class="body-compact-02">
+              Get randomness on the blockchain in a secure, reliable and
+              tamper-proof way.
+            </div>
+            <div class="spacer" />
+            <div class="arrow">
+              <ArrowRight />
+            </div>
+          </div>
+        </ClickableTile>
+      </Column>
+    </Row>
+  </Grid>
+</Content>
 
 <Footer />
 
 <style>
+  .flex-column {
+    gap: 0;
+    height: 100%;
+  }
   h2 {
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
   }
-  h3 {
-    margin-top: 0;
-  }
-  .section {
-    padding: 4em;
-    padding-top: 0;
-  }
-  @media screen and (max-width: 960px) {
-    .section {
-      padding: 1.25em;
-    }
-    .section :global(.card.padding) {
-      padding: 1.25em;
-    }
-    .section :global(.split) {
-      grid-template-columns: 1fr;
-    }
-  }
-  .buttons {
-    margin-top: 2em;
+  .arrow {
     display: flex;
     gap: 1em;
-  }
-  .vrf-subs,
-  .tasks {
-    margin-top: 2.5em;
-  }
-  .tasks:not(.empty),
-  .api-keys:not(.empty),
-  .webhooks:not(.empty),
-  .vrf-subs:not(.empty) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(512px, 1fr));
-    gap: 1em;
-  }
-  .api-keys:not(.empty),
-  .webhooks:not(.empty) {
-    margin-bottom: 4em;
-    margin-top: 2.5em;
-  }
-  .body {
-    max-width: 840px;
-  }
-  .alert {
-    max-width: 600px;
-    margin-top: 1.5em;
-  }
-  .buttons.services :global(svg) {
-    height: 1em;
-    padding-right: 0.25em;
-  }
-  .small-bottom-pad {
-    padding-bottom: 3em;
-  }
-  .availability {
-    margin-top: 2em;
-  }
-  .availability :global(.alert) {
-    display: flex;
-    gap: 1em;
+    justify-content: flex-end;
     align-items: center;
-    margin: 0;
-  }
-  .chains {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 1em;
-  }
-  .chains img {
-    height: 1.5em;
+    margin-top: 1em;
+    width: 100%;
   }
 </style>

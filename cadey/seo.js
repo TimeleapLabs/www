@@ -2,7 +2,7 @@ import { JSDOM } from "jsdom";
 
 const getDescription = (body) => {
   const { document } = new JSDOM(`<body>${body}</body>`).window;
-  const secondDiv = document.querySelector("body > div:nth-of-type(2)");
+  const secondDiv = document.querySelector("body > Row:nth-of-type(2)");
   const pretty = secondDiv.textContent
     .replace(/\n/g, " ")
     .replace(/ +/g, " ")
@@ -29,8 +29,8 @@ export const getSeoTags = (body, context) => {
     : "https://kenshi.io/images/social.png";
 
   const title =
-    headings?.length && headings[0] != "Documentation"
-      ? `Kenshi — ${headings[0]} — Documentation`
+    headings?.length && headings[0].title != "Documentation"
+      ? `Kenshi — ${headings[0].title} — Documentation`
       : "Kenshi — Documentation";
 
   return `

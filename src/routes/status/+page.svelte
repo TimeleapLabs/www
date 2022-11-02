@@ -1,8 +1,9 @@
 <script>
-  import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Card from "src/components/Card.svelte";
   import Uptime from "src/components/isup/Uptime.svelte";
+
+  import { Tile, Grid, Column, Row, Content } from "carbon-components-svelte";
+  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
   import { onMount } from "svelte";
   import { Moon } from "svelte-loading-spinners";
@@ -79,21 +80,45 @@
   });
 </script>
 
-<Navbar />
+<Content>
+  <Grid noGutter narrow padding>
+    <Row>
+      <Column>
+        <ExpressiveHeading size={4}>
+          <h1>Kenshi Status</h1>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
 
-<div class="section">
-  <h2>Kenshi Status</h2>
-  <div class="uptime-wrap">
-    <Card>
-      <h3>JSON-RPC endpoints</h3>
-      <p class="description">
-        Kenshi Is Up oracle checks the status of each JSON-RPC provider every
-        one minute. This page queries the Kenshi Is Up GraphQL endpoint and
-        displays the recorded data. Click on the provider name to copy its
-        address.
-      </p>
-      <h4>Mainnets</h4>
-      <div class="uptimes">
+    <Row>
+      <Column>
+        <ExpressiveHeading size={3}>
+          <h2>JSON-RPC endpoints</h2>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+
+    <Row>
+      <Column>
+        <p>
+          Kenshi Is Up oracle checks the status of each JSON-RPC provider every
+          one minute. This page queries the Kenshi Is Up GraphQL endpoint and
+          displays the recorded data. Click on the provider name to copy its
+          address.
+        </p>
+      </Column>
+    </Row>
+
+    <Row>
+      <Column>
+        <ExpressiveHeading size={2}>
+          <h3>Mainnets</h3>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+
+    <Row>
+      <Column>
         <Uptime
           title="BSC"
           icon="binance"
@@ -103,6 +128,8 @@
             "BSC_ANKR_MAINNET",
           ]}
         />
+      </Column>
+      <Column>
         <Uptime
           title="Polygon"
           icon="polygon"
@@ -113,6 +140,8 @@
             "POLYGON_BLAST_MAINNET",
           ]}
         />
+      </Column>
+      <Column>
         <Uptime
           title="Fantom"
           icon="fantom"
@@ -123,6 +152,8 @@
             "FANTOM_BLAST_MAINNET",
           ]}
         />
+      </Column>
+      <Column>
         <Uptime
           title="Avalanche"
           icon="avalanche"
@@ -133,9 +164,19 @@
             "AVALANCHE_BLAST_MAINNET",
           ]}
         />
-      </div>
-      <h4>Testnets</h4>
-      <div class="uptimes">
+      </Column>
+    </Row>
+
+    <Row>
+      <Column>
+        <ExpressiveHeading size={2}>
+          <h3>Testnets</h3>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+
+    <Row>
+      <Column>
         <Uptime
           title="BSC Testnet"
           icon="binance"
@@ -146,6 +187,8 @@
             "BSC_BLAST_TESTNET",
           ]}
         />
+      </Column>
+      <Column>
         <Uptime
           title="Polygon Mumbai"
           icon="polygon"
@@ -158,6 +201,8 @@
             "POLYGON_MATIC_TODAY_MUMBAI",
           ]}
         />
+      </Column>
+      <Column>
         <Uptime
           title="Fantom Testnet"
           icon="fantom"
@@ -168,6 +213,8 @@
             "FANTOM_BLAST_TESTNET",
           ]}
         />
+      </Column>
+      <Column>
         <Uptime
           title="Avalanche Fuji"
           icon="avalanche"
@@ -178,69 +225,75 @@
             "AVALANCHE_BLAST_FUJI",
           ]}
         />
-      </div>
-    </Card>
-  </div>
-</div>
+      </Column>
+    </Row>
 
-<div class="section">
-  <h2>Kenshi Oracles</h2>
-  <div class="logs-wrap">
-    <Card>
-      <h3>
-        VRF Delivery Times
-        {#if !Object.keys(vrfLogs).length}
-          <Moon size="16" />
-        {/if}
-      </h3>
-      <p class="description">
-        Kenshi VRF delivers fast results on all chains thanks to its fully
-        serverless design, with no queue or wait time.
-      </p>
-      <div class="logs">
-        {#each Object.entries(vrfLogs) as [chain, values]}
-          <Card flat slim>
-            <div class="title">
-              <h4>{toTitleCase(chain)}</h4>
-              <img
-                src="/images/chains/{chainIcons[chain]}.svg"
-                class="icon"
-                alt={toTitleCase(chain)}
-              />
+    <Row>
+      <Column>
+        <ExpressiveHeading size={3}>
+          <h2>Kenshi Oracles</h2>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+
+    <Row>
+      <Column>
+        <ExpressiveHeading size={2}>
+          <h3>
+            VRF Delivery Times
+            {#if !Object.keys(vrfLogs).length}
+              <Moon size="16" />
+            {/if}
+          </h3>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+
+    <Row>
+      <Column>
+        <p>
+          Kenshi VRF delivers fast results on all chains thanks to its fully
+          serverless design, with no queue or wait time.
+        </p>
+      </Column>
+    </Row>
+
+    <Row>
+      {#each Object.entries(vrfLogs) as [chain, values]}
+        <Column>
+          <Tile>
+            <div class="log">
+              <div class="title">
+                <h4>{toTitleCase(chain)}</h4>
+                <img
+                  src="/images/chains/{chainIcons[chain]}.svg"
+                  class="icon"
+                  alt={toTitleCase(chain)}
+                />
+              </div>
+              Average Response Time:
+              {#await getAverageResponseTime(values) then duration}
+                {duration} blocks
+              {/await}
             </div>
-            Average Response Time:
-            {#await getAverageResponseTime(values) then duration}
-              {duration} blocks
-            {/await}
-          </Card>
-        {/each}
-      </div>
-      {#if Object.keys(vrfLogs).length}
-        <div class="chart-description">Based on last 5 VRF requests.</div>
-      {/if}
-    </Card>
-  </div>
-</div>
+          </Tile>
+        </Column>
+      {/each}
+    </Row>
+  </Grid>
+</Content>
 
 <Footer />
 
 <style>
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1.5em;
-    margin-left: 0.5em;
-  }
-  h3 {
-    margin-top: 0;
-  }
-  .logs-wrap h3,
+  .log-wrap h3,
   .uptime-wrap h3 {
     display: flex;
     gap: 0.5em;
     align-items: center;
     margin-bottom: 2em;
   }
-  .logs h4 {
+  .log h4 {
     margin-top: 0;
   }
   .section {
@@ -251,14 +304,14 @@
   .section:first-of-type {
     min-height: 400px;
   }
-  .logs,
+  .log,
   .uptimes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 1em;
   }
   @media screen and (max-width: 720px) {
-    .logs,
+    .log,
     .uptimes {
       grid-template-columns: 1fr;
     }

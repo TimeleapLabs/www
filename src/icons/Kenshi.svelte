@@ -1,4 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449.1 248.25"
+<script>
+  export let size = 16;
+
+  export let title = undefined;
+
+  $: labelled = $$props["aria-label"] || $$props["aria-labelledby"] || title;
+  $: attributes = {
+    "aria-hidden": labelled ? undefined : true,
+    role: labelled ? "img" : undefined,
+    focusable: Number($$props["tabindex"]) === 0 ? true : undefined,
+  };
+</script>
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 449.1 248.25"
+  width={size}
+  height={size}
+  {...attributes}
+  {...$$restProps}
   ><g id="f716685d-2b15-4fb2-b794-7a651aee5b1c" data-name="Layer 3"
     ><path
       d="M549.68,518.81,409,520.27V635.62h67V524.22l80.89,111.4h84.45ZM633.3,387.37H554.45L475.93,500.14V387.37H409V501.91l138.66-1.45Z"
