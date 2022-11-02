@@ -1,17 +1,22 @@
 <script>
-  import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Card from "src/components/Card.svelte";
-  import TextInput from "src/components/TextInput.svelte";
-  import Select from "src/components/Select.svelte";
-  import Button from "src/components/Button.svelte";
-  import Alert from "src/components/Alert.svelte";
-  import Checkbox from "src/components/Checkbox.svelte";
-
-  import MoneyFromBracket from "src/icons/MoneyFromBracket.svelte";
-  import LeftFromLine from "src/icons/LeftFromLine.svelte";
-  import RightFromLine from "src/icons/RightFromLine.svelte";
   import MetaMask from "src/icons/MetaMask.svelte";
+
+  import { Content, Tile, Grid, Row, Column } from "carbon-components-svelte";
+  import { InlineNotification, Link, Button } from "carbon-components-svelte";
+  import { TextInput, Checkbox, Select } from "carbon-components-svelte";
+  import { Tabs, Tab, TabContent, SelectItem } from "carbon-components-svelte";
+
+  import {
+    DataTable,
+    Toolbar,
+    ToolbarContent,
+    ToolbarSearch,
+    Pagination,
+  } from "carbon-components-svelte";
+
+  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
+  import ConnectButton from "src/components/ConnectButton.svelte";
 
   import { onMount } from "svelte";
   import { onboard } from "src/lib/onboard";
@@ -24,13 +29,11 @@
   import pegswapAbi from "src/lib/abi/pegswap";
   import kenshiAbi from "src/lib/abi/kenshi";
 
-  let sourceChain;
-  let destChain;
+  let sourceChain = "bsc";
+  let destChain = "ftm";
   let address;
-  let amount;
+  let amount = "1000";
   let autoclaim = true;
-
-  $: if (sourceChain && sourceChain === destChain) destChain = undefined;
 
   const chains = {
     polygon: "0x89",
@@ -61,10 +64,25 @@
   };
 
   const chainIds = {
-    "0x38": { key: "bsc", title: "BNB Smart Chain", shortTitle: "BSC" },
-    "0x89": { key: "polygon", title: "Polygon", shortTitle: "MATIC" },
-    "0xa86a": { key: "avax", title: "Avalanche", shortTitle: "AVAX" },
-    "0xfa": { key: "ftm", title: "Fantom", shortTitle: "FTM" },
+    "0x38": {
+      key: "bsc",
+      icon: "binance",
+      title: "BNB Smart Chain",
+      shortTitle: "BSC",
+    },
+    "0x89": {
+      key: "polygon",
+      icon: "polygon",
+      title: "Polygon",
+      shortTitle: "MATIC",
+    },
+    "0xa86a": {
+      key: "avax",
+      icon: "avalanche",
+      title: "Avalanche",
+      shortTitle: "AVAX",
+    },
+    "0xfa": { key: "ftm", icon: "fantom", title: "Fantom", shortTitle: "FTM" },
   };
 
   const setAddress = () => {
@@ -84,6 +102,12 @@
 
   let destOptions;
   $: destOptions = chainOptions.filter(({ value }) => value != sourceChain);
+
+  $: if (sourceChain && sourceChain === destChain) {
+    destChain = destOptions[0].value;
+  } else {
+    destChain = destChain;
+  }
 
   const pegswapEndpoint = "https://api.kenshi.io/pegswap";
 
@@ -140,7 +164,10 @@
   }`;
 
   let userRequests;
-  let pendingRequests;
+  let pendingRequests = [];
+  let pageSize = 5;
+  let page = 1;
+  let filteredRowIds = [];
 
   const getUserRequests = async () => {
     const recipient = $wallet?.accounts?.[0]?.address;
@@ -163,7 +190,14 @@
         if (!claimed) pending.push(entry);
       }
 
-      pendingRequests = pending;
+      pendingRequests = pending.map((req, id) => ({
+        ...req.request,
+        actions: {
+          signature: req.signature,
+          request: req.request,
+        },
+        id,
+      }));
     }
   };
 
@@ -363,191 +397,288 @@
   });
 </script>
 
-<Navbar />
-
-<div class="section">
-  <h2>Kenshi PegSwap</h2>
-  <Card>
-    <div class="card-inner">
-      <div class="form">
-        <h3>Kenshi cross-chain transfer</h3>
-        <div class="description">
-          Use this service to move your Kenshi tokens from one chain into
-          another.
-        </div>
-        <TextInput
-          placeholder="Enter destination wallet address"
-          name="address"
-          regex={/^0x[a-f0-9]+$/i}
-          suffix="Destination"
-          bind:value={address}
-        />
-        <TextInput
-          placeholder="Amount of tokens to move"
-          name="amount"
-          suffix="₭enshi"
-          regex={/^[1-9][0-9]*(\.[0-9]+)?|0\.[0-9]+$/}
-          bind:value={amount}
-        />
-        <Select
-          options={sourceOptions}
-          placeholder="Choose source chain"
-          bind:value={sourceChain}
-        />
-        <Select
-          options={destOptions}
-          placeholder="Choose destination chain"
-          bind:value={destChain}
-        />
-        <Checkbox bind:checked={autoclaim}>Claim automatically</Checkbox>
-        {#if message}
-          <Alert>
-            {message}
-          </Alert>
-        {/if}
-      </div>
-      <div />
-    </div>
-
-    <div class="buttons">
-      {#if sourceChain && amount && isFinite(amount) && destChain && address && $wallet?.provider}
-        <Button on:click={requestSwap} disabled={requestInProgress}>
-          {#if requestInProgress}
-            <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
-            Processing
-          {:else}
-            Transfer {amount} ₭enshi
-          {/if}
-        </Button>
-        {#if !requestInProgress}
-          <Button
-            on:click={addToMetamask(
-              kenshiAddresses[destChain],
-              chains[destChain]
-            )}
-          >
-            <MetaMask />
-            Add {chainIds[chains[destChain]].shortTitle} ₭enshi
-          </Button>
-        {/if}
-      {:else if !$wallet?.provider}
-        Connect your wallet to continue.
-      {:else}
-        Fill the form to continue.
-      {/if}
-    </div>
-  </Card>
-</div>
-
-{#if pendingRequests?.length}
-  <div class="section">
-    <h3>Pending requests</h3>
-    <Card>
-      <div class="requests">
-        {#each pendingRequests as { request, signature }}
-          <Card flat padding={false}>
-            <div class="request">
-              <div class="details">
-                <div class="from-chain">
-                  <LeftFromLine />
-                  {chainIds[request.fromChain].title}
-                </div>
-                <div class="to-chain">
-                  <RightFromLine />{chainIds[request.toChain].title}
-                </div>
-                <div class="amount">
-                  <MoneyFromBracket />
-                  {formatAmount(request.amount)} ₭
-                </div>
-              </div>
-              <div class="buttons">
-                <Button on:click={claimPastRequest(request, signature)}>
-                  Claim
-                </Button>
-              </div>
+<Content>
+  <Grid noGutter padding narrow>
+    <Row>
+      <Column lg={4}>
+        <div class="stick sidebar">
+          <Tile class="blue-tile">
+            <div class="form-info">
+              <ExpressiveHeading size={4}>
+                <h1>Swap</h1>
+              </ExpressiveHeading>
+              <p class="body-02">
+                Kenshi token is a utility token that allows access to Kenshi's
+                on-chain services.
+              </p>
             </div>
-          </Card>
-        {/each}
-      </div>
-    </Card>
-  </div>
-{/if}
+          </Tile>
+
+          <div>
+            <InlineNotification kind="info" hideCloseButton>
+              <svelte:fragment slot="subtitle">
+                Cross-chain transfers are async and need to be approved by the
+                Kenshi PegSwap oracle. Once the oracle receives your Kenshi on
+                the source chain, it allows claiming the same amount of tokens
+                on the destination chain.
+              </svelte:fragment>
+            </InlineNotification>
+            <InlineNotification kind="warning" hideCloseButton>
+              <svelte:fragment slot="subtitle">
+                If for any reason you fail to claim your tokens (e.g. if you
+                don't have enough gas on the destination chain) you can go to
+                the pending tab and claim them later.
+              </svelte:fragment>
+            </InlineNotification>
+          </div>
+        </div>
+      </Column>
+      <Column>
+        <Grid>
+          <Row>
+            <Column>
+              <Tabs type="container">
+                <Tab label="Move cross-chain" />
+                <Tab label="Pending" />
+                <svelte:fragment slot="content">
+                  <TabContent>
+                    <Grid noGutter fullWidth>
+                      <Row>
+                        <Column>
+                          <ExpressiveHeading size={2}>
+                            Kenshi cross-chain transfer
+                          </ExpressiveHeading>
+                          <div>
+                            You can move Kenshi token's to any wallet address on
+                            any of the supported chains.
+                          </div>
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <TextInput
+                            helperText="Enter destination wallet address"
+                            name="address"
+                            placeholder="Destination"
+                            labelText="Destination wallet"
+                            regex={/^0x[a-f0-9]+$/i}
+                            bind:value={address}
+                          />
+                        </Column>
+                        <Column>
+                          <TextInput
+                            helperText="Number of tokens to move"
+                            name="amount"
+                            placeholder="Amount"
+                            labelText="Amount in ₭enshi"
+                            regex={/^[1-9][0-9]*(\.[0-9]+)?|0\.[0-9]+$/}
+                            bind:value={amount}
+                          />
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <ExpressiveHeading size={2}>
+                            Chain info
+                          </ExpressiveHeading>
+                          <div>
+                            Choose the source and the destination chains for
+                            this transfer.
+                          </div>
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <Select
+                            labelText="Source"
+                            helperText="Source chain to move tokens from"
+                            placeholder="Choose source chain"
+                            bind:selected={sourceChain}
+                          >
+                            {#each sourceOptions as { label, value }}
+                              <SelectItem {value} text={label} />
+                            {/each}
+                          </Select>
+                        </Column>
+                        <Column>
+                          <Select
+                            labelText="Destination"
+                            helperText="Destination chain to move tokens to"
+                            placeholder="Choose destination chain"
+                            bind:selected={destChain}
+                          >
+                            {#each destOptions as { label, value }}
+                              <SelectItem {value} text={label} />
+                            {/each}
+                          </Select>
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <Checkbox
+                            bind:checked={autoclaim}
+                            labelText="Claim automatically"
+                          />
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <div class="buttons">
+                            {#if sourceChain && amount && isFinite(amount) && destChain && address && $wallet?.provider}
+                              <Button
+                                on:click={requestSwap}
+                                disabled={requestInProgress}
+                              >
+                                {#if requestInProgress}
+                                  <SpinLine
+                                    size="32"
+                                    color="currentColor"
+                                    unit="px"
+                                    duration="4s"
+                                  />
+                                  Processing
+                                {:else}
+                                  Transfer {amount} ₭enshi
+                                {/if}
+                              </Button>
+                              {#if !requestInProgress}
+                                <Button
+                                  on:click={addToMetamask(
+                                    kenshiAddresses[destChain],
+                                    chains[destChain]
+                                  )}
+                                  icon={MetaMask}
+                                >
+                                  Add {chainIds[chains[destChain]].shortTitle}
+                                  ₭enshi
+                                </Button>
+                              {/if}
+                            {:else if !$wallet?.provider}
+                              <ConnectButton primary />
+                            {:else}
+                              Fill the form to continue.
+                            {/if}
+                          </div>
+                        </Column>
+                      </Row>
+                    </Grid>
+                  </TabContent>
+                  <TabContent>
+                    <Grid noGutter fullWidth>
+                      <Row>
+                        <Column>
+                          <ExpressiveHeading size={3}>
+                            <h3>Pending requests</h3>
+                          </ExpressiveHeading>
+                        </Column>
+                      </Row>
+                      {#if pendingRequests?.length}
+                        <Row>
+                          <Column>
+                            <DataTable
+                              headers={[
+                                { key: "fromChain", value: "Source" },
+                                { key: "toChain", value: "Destination" },
+                                { key: "amount", value: "Amount" },
+                                { key: "actions", value: "Actions" },
+                              ]}
+                              rows={pendingRequests}
+                              {pageSize}
+                              {page}
+                              sortable
+                            >
+                              <Toolbar>
+                                <ToolbarContent>
+                                  <ToolbarSearch
+                                    persistent
+                                    shouldFilterRows
+                                    bind:filteredRowIds
+                                  />
+                                </ToolbarContent>
+                              </Toolbar>
+                              <svelte:fragment slot="cell" let:row let:cell>
+                                {#if cell.key === "actions"}
+                                  <Link
+                                    href="#"
+                                    on:click={claimPastRequest(
+                                      cell.value.request,
+                                      cell.value.signature
+                                    )}
+                                  >
+                                    Claim
+                                  </Link>
+                                {:else if cell.key === "fromChain"}
+                                  <span class="chain">
+                                    <img
+                                      src="/images/chains/{chainIds[cell.value]
+                                        .icon}.svg"
+                                      alt={chainIds[cell.value].title}
+                                    />
+                                    {chainIds[cell.value].title}
+                                  </span>
+                                {:else if cell.key === "toChain"}
+                                  <span class="chain">
+                                    <img
+                                      src="/images/chains/{chainIds[cell.value]
+                                        .icon}.svg"
+                                      alt={chainIds[cell.value].title}
+                                    />
+                                    {chainIds[cell.value].title}
+                                  </span>
+                                {:else if cell.key === "amount"}
+                                  {formatAmount(cell.value)} KENSHI
+                                {/if}
+                              </svelte:fragment>
+                            </DataTable>
+                            <Pagination
+                              bind:pageSize
+                              bind:page
+                              totalItems={filteredRowIds.length}
+                              pageSizeInputDisabled
+                            />
+                          </Column>
+                        </Row>
+                      {:else}
+                        <Row>
+                          <Column>No pending requests at the moment.</Column>
+                        </Row>
+                      {/if}
+                      <Row>
+                        <Column>
+                          <ConnectButton primary />
+                        </Column>
+                      </Row>
+                    </Grid>
+                  </TabContent>
+                </svelte:fragment>
+              </Tabs>
+            </Column>
+          </Row>
+        </Grid>
+      </Column>
+    </Row>
+  </Grid>
+</Content>
 
 <Footer />
 
 <style>
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1.5em;
-    margin-left: 0.5em;
+  .sidebar {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
   }
   h3 {
     margin-top: 0;
   }
-  .section {
-    padding: 2em 4em;
-  }
-  .section > h3 {
-    margin-bottom: 2em;
-  }
-  @media screen and (max-width: 960px) {
-    .section {
-      padding: 1em;
-    }
-    :global(.card.padding) {
-      padding: 1.5em 1.25em;
-    }
-  }
-  .card-inner {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-  }
-  .buttons {
-    margin-top: 2em;
-    display: flex;
-    gap: 1em;
-  }
-  .buttons :global(svg) {
-    width: 1em;
-  }
-  .description {
-    margin-bottom: 1em;
-    color: #111;
-  }
-  .requests {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1em;
-  }
-  .request .details {
-    display: flex;
-    gap: 1em;
-    flex-direction: column;
-  }
-  .request .details > div {
-    display: grid;
-    grid-template-columns: 2em 1fr;
-    align-items: center;
-  }
-  .request :global(svg) {
-    margin-right: 0.5em;
+  .chain img {
     height: 1em;
-    justify-self: center;
   }
-  .request .buttons {
-    padding-top: 1em;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-top: 0;
-    display: flex;
-    justify-content: end;
-  }
-  .request .details,
-  .request .buttons {
-    padding: 1em;
+  .chain {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
   }
 </style>

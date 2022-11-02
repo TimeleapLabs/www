@@ -2,13 +2,16 @@
   import { onboard } from "$lib/onboard";
   import { wallet } from "src/stores/wallet";
   import { onMount } from "svelte";
+  import { Button, Truncate, HeaderPanelLink } from "carbon-components-svelte";
 
-  import Wallet from "src/icons/Wallet.svelte";
-  import Portal from "src/icons/Portal.svelte";
+  import { Wallet, Logout } from "carbon-icons-svelte";
 
-  export let isMobile;
+  export let primary = false;
+  export let header = !primary;
 
-  const onclick = async () => {
+  const kind = primary ? "primary" : "ghost";
+
+  const connect = async () => {
     if ($wallet?.provider) {
       await onboard.disconnectWallet({ label: $wallet.label });
     } else {
@@ -26,45 +29,36 @@
   });
 </script>
 
-<button on:click={onclick}>
-  {#if $wallet?.provider}
-    {#if !isMobile}
-      <span class="address">
-        {$wallet?.accounts?.[0]?.address || ""}
-      </span>
-    {/if}
-    <Portal />
-    {#if !isMobile}
-      Logout
-    {/if}
-  {:else}
-    <Wallet />
-    {#if !isMobile}
+{#if header}
+  <HeaderPanelLink on:click={connect}>
+    {#if $wallet?.provider}
+      <div class="menu-connect">
+        <Truncate>
+          {$wallet?.accounts?.[0]?.address || ""}
+        </Truncate>
+        Logout
+      </div>
+    {:else}
       Connect
     {/if}
-  {/if}
-</button>
+  </HeaderPanelLink>
+{:else}
+  <Button {kind} on:click={connect} icon={$wallet?.provider ? Logout : Wallet}>
+    {#if $wallet?.provider}
+      <Truncate>
+        {$wallet?.accounts?.[0]?.address || ""}
+      </Truncate>
+    {:else}
+      Connect
+    {/if}
+  </Button>
+{/if}
 
 <style>
-  button {
+  .menu-connect {
+    white-space: nowrap;
     display: flex;
-    font-size: 1em;
-    border: none;
+    gap: 2em;
     align-items: center;
-    justify-content: center;
-    padding: 0.4em 1em;
-    cursor: pointer;
-    background: transparent;
-    gap: 0.75em;
-  }
-  button :global(svg) {
-    height: 1em;
-  }
-  .address {
-    width: 60px;
-    white-space: pre;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
   }
 </style>

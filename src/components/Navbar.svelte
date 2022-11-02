@@ -1,976 +1,314 @@
 <script>
+  import {
+    Header,
+    HeaderUtilities,
+    HeaderAction,
+    HeaderGlobalAction,
+    HeaderPanelLinks,
+    HeaderPanelDivider,
+    HeaderPanelLink,
+    HeaderNav,
+    HeaderNavItem,
+    HeaderNavMenu,
+    SideNav,
+    SideNavItems,
+    SideNavMenu,
+    SideNavMenuItem,
+    SideNavLink,
+    SkipToContent,
+    Grid,
+    Column,
+    Row,
+    ClickableTile,
+  } from "carbon-components-svelte";
+
   import Kenshi from "src/icons/Kenshi.svelte";
-  import ChevronRight from "src/icons/ChevronRight.svelte";
 
-  import Card from "./Card.svelte";
+  import FullWidthHeaderNavMenu from "src/components/carbon/FullWidthHeaderNavMenu.svelte";
+  import VerticalTabs from "src/components/carbon/VerticalTabs.svelte";
+  import ThemeSwitcher from "src/components/carbon/ThemeSwitcher.svelte";
 
-  import { fly } from "svelte/transition";
+  import { UserAvatarFilledAlt } from "carbon-icons-svelte";
 
-  import Shuffle from "src/icons/Shuffle.svelte";
-  import LiquidUp from "src/icons/LiquidUp.svelte";
+  import ConnectButton from "src/components/ConnectButton.svelte";
 
-  import DB from "src/icons/DB.svelte";
-  import MongoDB from "src/icons/MongoDB.svelte";
-  import D20 from "src/icons/D20.svelte";
-  import CloudSensor from "src/icons/CloudSensor.svelte";
+  import "carbon-components-svelte/css/all.css";
+  import "../common.css";
 
-  import BinaryLock from "src/icons/BinaryLock.svelte";
-  import Shield from "src/icons/Shield.svelte";
-  import Code from "src/icons/Code.svelte";
-
-  import NPM from "src/icons/NPM.svelte";
-  import Github from "src/icons/Github.svelte";
-  import Medium from "src/icons/Medium.svelte";
-  import Telegram from "src/icons/Telegram.svelte";
-  import Book from "src/icons/Book.svelte";
-  import Discord from "src/icons/Discord.svelte";
-
-  import Node from "src/icons/Node.svelte";
-  import Python from "src/icons/Python.svelte";
-  import Go from "src/icons/Go.svelte";
-
-  import HexagonCheck from "src/icons/HexagonCheck.svelte";
-  import Dashboard from "src/icons/Dashboard.svelte";
-
-  import Coin from "src/icons/Coin.svelte";
-  import ListCheck from "src/icons/ListCheck.svelte";
-  import Scale from "src/icons/Scale.svelte";
-  import Swap from "src/icons/Swap.svelte";
-  import Faucet from "src/icons/Faucet.svelte";
-  import Tools from "src/icons/Tools.svelte";
-  import CreditCard from "src/icons/CreditCard.svelte";
-  import Pancake from "src/icons/Pancake.svelte";
-  import ChartLine from "src/icons/ChartLine.svelte";
-  import SquareQuestion from "src/icons/SquareQuestion.svelte";
-  import BarcodeRead from "src/icons/BarcodeRead.svelte";
-
-  import Twitter from "../icons/Twitter.svelte";
-  import Reddit from "../icons/Reddit.svelte";
-  import LinkedIn from "../icons/LinkedIn.svelte";
-
-  import Bars from "src/icons/Bars.svelte";
-  import ChevronLeft from "src/icons/ChevronLeft.svelte";
-  import Xmark from "src/icons/Xmark.svelte";
-
-  import Products from "src/icons/Products.svelte";
-  import Community from "src/icons/Community.svelte";
-  import Briefcase from "src/icons/Briefcase.svelte";
-
-  import Newspaper from "src/icons/Newspaper.svelte";
-  import UserGear from "src/icons/UserGear.svelte";
-  import UserHeadset from "src/icons/UserHeadset.svelte";
-  import UserSecret from "src/icons/UserSecret.svelte";
-  import UserTie from "src/icons/UserTie.svelte";
-  import Palette from "src/icons/Palette.svelte";
-  import Team from "src/icons/Team.svelte";
-
-  import Link from "./Link.svelte";
-
-  import ConnectButton from "./ConnectButton.svelte";
-
-  let menus = {};
-
-  const allClosed = () =>
-    Object.fromEntries(Object.entries(menus).map(([k]) => [k, false]));
-
-  const openMenu = (menu) => {
-    menus = { ...allClosed(), [menu]: true };
-  };
-
-  const closeMenu = (menu) => {
-    menus = { ...allClosed(), [menu]: false };
-  };
-
-  let currentOpenMenu = null;
-  $: currentOpenMenu = Object.entries(menus)
-    .find(([_, state]) => state)
-    ?.shift?.();
-
-  let lastOpenMenu;
-  $: lastOpenMenu = currentOpenMenu || lastOpenMenu;
-
-  let anyMenuOpen;
-  $: if (anyMenuOpen != !!currentOpenMenu) {
-    anyMenuOpen = !!currentOpenMenu;
+  let theme = "white"; // "white" | "g10" | "g80" | "g90" | "g100"
+  $: if (typeof document !== "undefined") {
+    document.documentElement.setAttribute("theme", theme);
   }
 
-  let closeTimeout;
-
-  const dropAction = (el, name) => {
-    const onEnter = () => {
-      clearTimeout(closeTimeout);
-      openMenu(name || lastOpenMenu);
-    };
-    const onLeave = () => {
-      if (isMobile) return;
-      closeTimeout = setTimeout(() => closeMenu(name || lastOpenMenu), 250);
-    };
-    el.addEventListener("mouseenter", onEnter);
-    el.addEventListener("mouseleave", onLeave);
-    return () => {
-      el.removeEventListener("mouseender", onEnter);
-      el.removeEventListener("mouseleave", onLeave);
-    };
-  };
-
-  const dropActionMobile = (el, name) => {
-    const onClick = () => {
-      if (!menus.mobile && anyMenuOpen) {
-        menus = { ...allClosed(), mobile: true };
-      } else if (menus.mobile) {
-        menus = { ...allClosed() };
-      } else {
-        openMenu(name);
-      }
-      return false;
-    };
-    el.addEventListener("click", onClick);
-    return () => {
-      el.removeEventListener("click", onClick);
-    };
-  };
-
-  let innerHeight;
-
-  const submenuSlide = (node) => {
-    innerHeight = getComputedStyle(node).height;
-    return {
-      delay: 0,
-      duration: 200,
-      css: (t) => `
-        transform: translateX(${600 - t * 600}px);
-        opacity: ${t};
-      `,
-    };
-  };
-
-  let y;
-  let scrolled = false;
-  $: scrolled = y > 0;
-
-  let width = 0;
-  let isMobile = false;
-  $: isMobile = width < 1050;
+  let isSideNavOpen = false;
+  let isOpen1 = false;
+  let isOpen2 = false;
 </script>
 
-<svelte:window bind:scrollY={y} bind:outerWidth={width} />
-
-<div
-  class="navbar"
-  class:mobile={isMobile}
-  class:open={anyMenuOpen}
-  class:shadow={scrolled || anyMenuOpen}
+<Header
+  _company="Kenshi"
+  _platformName="Deep Index"
+  persistentHamburgerMenu={true}
+  bind:isSideNavOpen
 >
-  {#if isMobile}
-    <div class="menu">
-      <span>
-        <button class="flat bars" use:dropActionMobile={"mobile"}>
-          {#if menus.mobile}
-            <Xmark />
-          {:else if anyMenuOpen}
-            <ChevronLeft />
-          {:else}
-            <Bars />
-          {/if}
-        </button>
-      </span>
-    </div>
-  {/if}
-  <span class="logo">
-    <a href="/">
-      <Kenshi />
-    </a>
+  <span slot="platform" class="logo">
+    <Kenshi size={24} fill={"#fff"} />
   </span>
-  <div class="menu">
-    {#if !isMobile}
-      <span class:active={menus["products"]}>
-        <button class="flat" use:dropAction={"products"}> Products </button>
-      </span>
-      <span class:active={menus["dev"]}>
-        <button class="flat" use:dropAction={"dev"}> Developers </button>
-      </span>
-      <span class:active={menus["token"]}>
-        <button class="flat" use:dropAction={"token"}> Token </button>
-      </span>
-      <span class:active={menus["community"]}>
-        <button class="flat" use:dropAction={"community"}> Community </button>
-      </span>
-      <span class:active={menus["company"]}>
-        <button class="flat" use:dropAction={"company"}> Company </button>
-      </span>
-    {/if}
-  </div>
-  <div class="spacer" />
-  <ConnectButton {isMobile} />
-  <a href="/dashboard" class="button build">
-    <span>
-      {#if isMobile}
-        Start
-      {:else}
-        Build with Kenshi
-      {/if}
-      <ChevronRight /></span
+  <HeaderNav>
+    <HeaderNavItem href="/" text="Kenshi" />
+    <HeaderNavItem href="/dashboard" text="Dashboard" />
+    <HeaderNavItem href="/docs" text="Docs" />
+    <!-- <HeaderNavItem href="/" text="Link 2" /> -->
+    <FullWidthHeaderNavMenu text="Products">
+      <VerticalTabs tabs={["Deep Index", "Oracle Network"]}>
+        <div class="vertical-tab">
+          <Grid padding>
+            <Row>
+              <Column>
+                <h3>Deep Index</h3>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                Kenshi Deep Index is a full-stack data consumption and data
+                processing solution for the blockchain.
+              </Column>
+            </Row>
+            <Row>
+              <Column max={4}>
+                <ClickableTile href="/docs/services/deep-index/sync">
+                  <h4>Deep Index Sync</h4>
+                  <div class="body">
+                    Sync and index events emitted from your smart contract to
+                    enable fast querying.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="/docs/services/deep-index/graph">
+                  <h4>Deep Index GraphQL</h4>
+                  <div class="body">
+                    Use GraphQL to query events emitted from your smart
+                    contracts.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="/docs/services/deep-index/mql">
+                  <h4>Deep Index MQL</h4>
+                  <div class="body">
+                    Use MongoDB Query Language to run complex queries on
+                    blockchain data.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="/docs/services/deep-index/webhook">
+                  <h4>Deep Index R-API</h4>
+                  <div class="body">
+                    Receive push notifications from the blockchain on your HTTP
+                    endpoints.
+                  </div>
+                </ClickableTile>
+              </Column>
+            </Row>
+          </Grid>
+        </div>
+        <div class="vertical-tab">
+          <Grid padding>
+            <Row>
+              <Column>
+                <h3>Oracle Network</h3>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                Kenshi Oracle Network is an asynchronous, fault-tolerant,
+                serverless framework for creating, deploying and operating
+                oracles for EVM chains.
+              </Column>
+            </Row>
+            <Row>
+              <Column max={4}>
+                <ClickableTile href="/docs/services/vrf">
+                  <h4>VRF</h4>
+                  <div class="body">
+                    Looking for randomness on the blockchain? Kenshi delivers
+                    verifiable random numbers with unmatched speed.
+                  </div>
+                </ClickableTile>
+              </Column>
+            </Row>
+          </Grid>
+        </div>
+      </VerticalTabs>
+    </FullWidthHeaderNavMenu>
+    <FullWidthHeaderNavMenu text="Developers">
+      <VerticalTabs tabs={["Developer Resources"]}>
+        <div class="vertical-tab">
+          <Grid padding>
+            <Row>
+              <Column>
+                <h3>Developer Resources</h3>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                Kenshi provides comprehensive documentation for all of its
+                products, with examples implemented in various languages. Don't
+                hesitate to join one of our communities if you have any
+                questions.
+              </Column>
+            </Row>
+            <Row>
+              <Column max={4}>
+                <ClickableTile href="/dashboard">
+                  <h4>Dashboard</h4>
+                  <div class="body">
+                    Kenshi Dashboard is the all-in-one solution for subscribing
+                    to or managing the Kenshi services.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="/docs">
+                  <h4>Documentation</h4>
+                  <div class="body">
+                    Get more information about Kenshi products or learn how to
+                    integrate them into your projects.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="https://github.com/KenshiTech">
+                  <h4>GitHub</h4>
+                  <div class="body">
+                    Check Kenshi's public software repositories for sample codes
+                    and other useful utilities.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="https://blog.kenshi.io/">
+                  <h4>Medium</h4>
+                  <div class="body">
+                    Latest news about Kenshi, as well as technical articles
+                    about Kenshi products.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="https://t.me/KenshiTechDevelopers">
+                  <h4>Kenshi Dev Talk</h4>
+                  <div class="body">
+                    Join our developer's chat on Telegram to get help
+                    integrating our products into your projects.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="https://discord.gg/KenshiTech">
+                  <h4>Discord</h4>
+                  <div class="body">
+                    Join our community on Discord to get help integrating our
+                    products into your projects.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column max={4}>
+                <ClickableTile href="https://www.npmjs.com/org/kenshi.io">
+                  <h4>NPM</h4>
+                  <div class="body">
+                    Kenshi publishes Solidity and Node.js libraries to help you
+                    integrate the Kenshi services.
+                  </div>
+                </ClickableTile>
+              </Column>
+            </Row>
+          </Grid>
+        </div>
+      </VerticalTabs>
+    </FullWidthHeaderNavMenu>
+  </HeaderNav>
+  <svelte:fragment slot="skip-to-content">
+    <SkipToContent />
+  </svelte:fragment>
+  <HeaderUtilities>
+    <ThemeSwitcher />
+    <HeaderAction
+      bind:isOpen={isOpen1}
+      icon={UserAvatarFilledAlt}
+      closeIcon={UserAvatarFilledAlt}
     >
-  </a>
-</div>
+      <HeaderPanelLinks>
+        <HeaderPanelDivider>Web3 connect</HeaderPanelDivider>
+        <ConnectButton />
+      </HeaderPanelLinks>
+    </HeaderAction>
+    <HeaderAction bind:isOpen={isOpen2}>
+      <HeaderPanelLinks>
+        <HeaderPanelDivider>Deep Index</HeaderPanelDivider>
+        <HeaderPanelLink href="/dashboard/deep-index/sync">
+          Sync Tasks
+        </HeaderPanelLink>
+        <HeaderPanelLink href="/dashboard/deep-index/query">
+          API Keys
+        </HeaderPanelLink>
+        <HeaderPanelLink href="/dashboard/deep-index/webhook">
+          Webhooks
+        </HeaderPanelLink>
+        <HeaderPanelDivider>Oracle Network</HeaderPanelDivider>
+        <HeaderPanelLink href="/dashboard/oracle-network/vrf">
+          VRF
+        </HeaderPanelLink>
+      </HeaderPanelLinks>
+    </HeaderAction>
+  </HeaderUtilities>
+</Header>
 
-{#if anyMenuOpen}
-  <div
-    class="submenu"
-    class:mobile={isMobile}
-    use:dropAction
-    transition:fly={{ y: 80, duration: 200 }}
-  >
-    <Card>
-      <div class="submenu-inner" style="--inner-height: {innerHeight}">
-        {#if menus.mobile}
-          <div class:active={menus["products"]}>
-            <button class="flat" use:dropAction={"products"}>
-              <Products /> Products <ChevronRight />
-            </button>
-          </div>
-          <div class:active={menus["dev"]}>
-            <button class="flat" use:dropAction={"dev"}>
-              <Code /> Developers <ChevronRight />
-            </button>
-          </div>
-          <div class:active={menus["token"]}>
-            <button class="flat" use:dropAction={"token"}>
-              <Coin /> Token <ChevronRight />
-            </button>
-          </div>
-          <div class:active={menus["community"]}>
-            <button class="flat" use:dropAction={"community"}>
-              <Community /> Community <ChevronRight />
-            </button>
-          </div>
-          <div class:active={menus["company"]}>
-            <button class="flat" use:dropAction={"company"}>
-              <Briefcase /> Company <ChevronRight />
-            </button>
-          </div>
-        {:else if menus.products}
-          <div in:submenuSlide>
-            <div class="products">
-              <div class="product">
-                <h3>Deep Index</h3>
-                <div>
-                  <Link href="/docs/services/deep-index/sync">
-                    <DB />Indexing
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs/services/deep-index/webhook">
-                    <CloudSensor />Reverse API
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs/services/deep-index/graphql">
-                    <D20 />GraphQL
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs/services/deep-index/mql">
-                    <MongoDB />MQL
-                  </Link>
-                </div>
-              </div>
-              <div class="product">
-                <h3>Oracles</h3>
-                <div>
-                  <Link href="/docs/services/vrf">
-                    <Shuffle />VRF
-                  </Link>
-                </div>
-              </div>
-              <div class="product">
-                <h3>Services</h3>
-                <div>
-                  <Link href="/dashboard">
-                    <Dashboard /> Dashboard
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs/services/audits">
-                    <Shield />Security Audits
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs/services/development">
-                    <Code />Blockchain Development
-                  </Link>
-                </div>
-              </div>
-              <div class="product">
-                <h3>Other</h3>
-                <div>
-                  <Link href="/lockers">
-                    <BinaryLock /> Liquidity Lockers
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        {:else if menus.dev}
-          <div in:submenuSlide>
-            <div class="devs">
-              <div class="dev">
-                <h3>Resources</h3>
-                <div>
-                  <Link href="/dashboard">
-                    <Dashboard /> Dashboard
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs">
-                    <Book /> Documentation
-                  </Link>
-                </div>
-                <div>
-                  <Link href="https://github.com/KenshiTech" target="_blank">
-                    <Github /> Github
-                  </Link>
-                </div>
-                <div>
-                  <Link href="https://blog.kenshi.io"><Medium /> Medium</Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://t.me/KenshiTechDevelopers"
-                    target="_blank"
-                  >
-                    <Telegram /> Telegram
-                  </Link>
-                </div>
-                <div>
-                  <Link href="https://discord.gg/KenshiTech" target="_blank">
-                    <Discord /> Discord
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://www.npmjs.com/org/kenshi.io"
-                    target="_blank"
-                  >
-                    <NPM /> NPM
-                  </Link>
-                </div>
-              </div>
-              <div class="dev">
-                <h3>Deep Index</h3>
-                <h4>GraphQL</h4>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/graphql-example-node-fetch"
-                    target="_blank"
-                  >
-                    <Node /> Node.js (fetch)
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/graphql-example-node-axios"
-                    target="_blank"
-                  >
-                    <Node /> Node.js (axios)
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/graphql-example-python"
-                    target="_blank"
-                  >
-                    <Python /> Python
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/graphql-example-go"
-                    target="_blank"
-                  >
-                    <Go /> Go
-                  </Link>
-                </div>
-              </div>
-              <div class="dev">
-                {#if !isMobile}
-                  <h3>‌</h3>
-                {/if}
-                <h4>MQL</h4>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/mql-example-node-fetch"
-                    target="_blank"
-                  >
-                    <Node /> Node.js (fetch)
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/mql-example-node-axios"
-                    target="_blank"
-                  >
-                    <Node /> Node.js (axios)
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/mql-example-python"
-                    target="_blank"
-                  >
-                    <Python /> Python
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/mql-example-go"
-                    target="_blank"
-                  >
-                    <Go /> Go
-                  </Link>
-                </div>
-              </div>
-              <div class="dev">
-                {#if !isMobile}
-                  <h3>‌</h3>
-                {/if}
-                <h4>Reverse API</h4>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/reverse-api-example-node"
-                    target="_blank"
-                  >
-                    <Node /> Node.js
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/reverse-api-example-python"
-                    target="_blank"
-                  >
-                    <Python /> Python
-                  </Link>
-                </div>
-              </div>
-              <div class="dev">
-                <h3>Randomness</h3>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/d20"
-                    target="_blank"
-                  >
-                    <D20 /> D20 Smart Contract
-                  </Link>
-                </div>
-              </div>
-              <div class="dev">
-                <h3>Other</h3>
-                <div>
-                  <Link href="/status">
-                    <HexagonCheck /> Service Status
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        {:else if menus.token}
-          <div in:submenuSlide>
-            <div class="tokens">
-              <div class="token">
-                <h3>About</h3>
-                <div>
-                  <Link href="/docs/token/ecosystem">
-                    <Coin /> Ecosystem
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs/token/features">
-                    <ListCheck /> Features
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs/token/features/variable-tax">
-                    <Scale /> Tax
-                  </Link>
-                </div>
-              </div>
-              <div class="token">
-                <h3>Token</h3>
-                <div>
-                  <Link href="/swap">
-                    <CreditCard /> Buy
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-                    target="_blank"
-                  >
-                    <Pancake /> Buy on PancakeSwap
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-                    target="_blank"
-                  >
-                    <ChartLine /> Charts
-                  </Link>
-                </div>
-              </div>
-              <div class="token">
-                <h3>Tools</h3>
-                <div>
-                  <Link href="/tools">
-                    <Tools /> Tools
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/pegswap">
-                    <Swap /> PegSwap
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/faucet">
-                    <Faucet /> Faucet
-                  </Link>
-                </div>
-              </div>
-              <div class="token">
-                <h3>Resources</h3>
-                <div>
-                  <Link
-                    href="https://blog.kenshi.io/how-to-buy-the-kenshi-token-30ab03372fd4"
-                  >
-                    <SquareQuestion /> How to buy
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://bscscan.com/token/0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-                    target="_blank"
-                  >
-                    <BarcodeRead /> BscScan
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://github.com/KenshiTech/contracts"
-                    target="_blank"
-                  >
-                    <Code /> Source code
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        {:else if menus.community}
-          <div in:submenuSlide>
-            <div class="communities">
-              <div class="community">
-                <h3>Chat</h3>
-                <div>
-                  <Link href="https://t.me/KenshiTech" target="_blank">
-                    <Telegram /> Community Chat
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://t.me/KenshiTechDevelopers"
-                    target="_blank"
-                  >
-                    <Telegram /> Dev Chat
-                  </Link>
-                </div>
-                <div>
-                  <Link href="https://discord.gg/KenshiTech" target="_blank">
-                    <Discord /> Discord
-                  </Link>
-                </div>
-              </div>
-              <div class="community">
-                <h3>Social Media</h3>
-                <div>
-                  <Link href="https://twitter.com/KenshiTech" target="_blank">
-                    <Twitter /> Twitter
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://www.reddit.com/r/KenshiTech/"
-                    target="_blank"
-                  >
-                    <Reddit /> Reddit
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="https://www.linkedin.com/company/kenshiio/"
-                    target="_blank"
-                  >
-                    <LinkedIn /> LinkedIn
-                  </Link>
-                </div>
-              </div>
-              <div class="community">
-                <h3>Other</h3>
-                <div>
-                  <Link href="https://blog.kenshi.io"><Medium /> Medium</Link>
-                </div>
-                <div>
-                  <Link href="https://github.com/KenshiTech" target="_blank">
-                    <Github /> Github
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        {:else if menus.company}
-          <div in:submenuSlide>
-            <div class="communities">
-              <div class="community">
-                <h3>About</h3>
-                <div>
-                  <Link href="/docs/kenshi">
-                    <Briefcase /> Kenshi
-                  </Link>
-                </div>
-                <div>
-                  <Link href="/docs/team">
-                    <Team /> Team
-                  </Link>
-                </div>
-              </div>
-              <div class="community">
-                <h3>Resources</h3>
-                <div>
-                  <Link
-                    href="https://www.linkedin.com/company/kenshiio/"
-                    target="_blank"
-                  >
-                    <LinkedIn /> LinkedIn
-                  </Link>
-                </div>
-                <div>
-                  <Link href="https://blog.kenshi.io">
-                    <Medium /> Blog
-                  </Link>
-                </div>
-              </div>
-              <div class="community">
-                <h3>Press</h3>
-                <div>
-                  <Link href="/docs/media">
-                    <Palette />
-                    Press Kit
-                  </Link>
-                </div>
-                <div>
-                  <Link href="mailto:press@kenshi.io">
-                    <Newspaper /> Press Inquiries
-                  </Link>
-                </div>
-              </div>
-              <div class="community">
-                <h3>Contacts</h3>
-                <div>
-                  <Link href="mailto:experts@kenshi.io">
-                    <UserGear />
-                    Talk to an expert
-                  </Link>
-                </div>
-                <div>
-                  <Link href="mailto:security@kenshi.io">
-                    <UserSecret /> Security
-                  </Link>
-                </div>
-                <div>
-                  <Link href="mailto:support@kenshi.io">
-                    <UserHeadset /> Support
-                  </Link>
-                </div>
-                <div>
-                  <Link href="mailto:inquiries@kenshi.io">
-                    <UserTie /> Business Inquiries
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        {/if}
-      </div>
-    </Card>
-  </div>
-{/if}
-
-<div class="pad" />
-
-{#if anyMenuOpen && isMobile}
-  <style global>
-    body {
-      overflow: hidden;
-    }
-  </style>
-{/if}
+<SideNav bind:isOpen={isSideNavOpen}>
+  <SideNavItems>
+    <SideNavLink href="/" text="Kenshi" />
+    <SideNavLink href="/dashboard" text="Dashboard" />
+    <SideNavLink href="/docs" text="Documentation" />
+    <SideNavMenu text="Products">
+      <SideNavMenu text="Deep Index">
+        <SideNavMenuItem href="/docs/services/deep-index/sync" text="Sync" />
+        <SideNavMenuItem
+          href="/docs/services/deep-index/graph"
+          text="GraphQL"
+        />
+        <SideNavMenuItem href="/docs/services/deep-index/mql" text="MQL" />
+        <SideNavMenuItem
+          href="/docs/services/deep-index/webhook"
+          text="R-API (Webhooks)"
+        />
+      </SideNavMenu>
+      <SideNavMenu text="Oracle Network">
+        <SideNavMenuItem href="/docs/services/vrf" text="VRF" />
+      </SideNavMenu>
+    </SideNavMenu>
+    <SideNavMenu text="Developers">
+      <SideNavMenuItem href="/dashboard" text="Dashboard" />
+      <SideNavMenuItem href="/docs" text="Documentation" />
+      <SideNavMenuItem href="https://github.com/KenshiTech" text="GitHub" />
+      <SideNavMenuItem href="https://blog.kenshi.io/" text="Medium" />
+      <SideNavMenuItem
+        href="https://t.me/KenshiTechDevelopers"
+        text="DevTalk (Telegram)"
+      />
+      <SideNavMenuItem href="https://discord.gg/KenshiTech" text="Discord" />
+      <SideNavMenuItem href="https://www.npmjs.com/org/kenshi.io" text="NPM" />
+    </SideNavMenu>
+  </SideNavItems>
+</SideNav>
 
 <style>
-  .navbar {
-    display: flex;
-    padding: 0em 4em;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    box-sizing: border-box;
-    top: 0;
-    background: var(--secondary-lighten-4);
-    z-index: 1000;
-  }
-  .pad {
-    height: 64px;
-  }
-  @media only screen and (max-width: 1280px) {
-    .navbar {
-      padding: 0em 4em;
-    }
-  }
-  @media only screen and (max-width: 640px) {
-    .navbar {
-      padding: 0em 1em;
-    }
-  }
-  .navbar.shadow {
-    box-shadow: 1em 1em 2em 0.25em rgb(0 0 0 / 10%);
-    background: #fafafa;
-  }
-  .navbar.shadow + .submenu button,
-  .navbar.shadow button {
-    background: #fafafa;
-  }
-  .logo :global(svg) {
-    fill: var(--primary-color);
-    height: 32px;
+  .vertical-tab {
+    padding: 17px 0;
   }
   .logo {
     display: flex;
-    gap: 1em;
-    align-items: center;
-  }
-  .spacer {
-    flex: 1;
-  }
-  .menu {
-    display: flex;
-    align-items: center;
-    padding: 0 2em;
-  }
-  @media only screen and (max-width: 1280px) {
-    .menu {
-      padding: 0em 0.5em;
-    }
-  }
-  .submenu {
-    position: fixed;
-    z-index: 1000;
-    width: 100%;
-    padding: 0em 4em;
-    box-sizing: border-box;
-    top: 64px;
-  }
-  .submenu.mobile {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-  }
-  .submenu-inner {
-    background: #fafafa;
-    position: relative;
-    height: var(--inner-height);
-    transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s all;
-  }
-  @media screen and (max-width: 1050px) {
-    .submenu :global(.card) {
-      overflow-y: scroll;
-      max-height: calc(100vh - 64px);
-      padding-bottom: 2em !important;
-      box-sizing: border-box;
-    }
-  }
-  .build :global(svg) {
-    fill: var(--primary-color);
-  }
-  .menu span {
-    position: relative;
-    padding-bottom: 1em;
-    padding-top: 1em;
-  }
-  .menu .active button {
-    background: rgba(0, 0, 0, 0.05);
-  }
-  button {
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    padding: 0.5em 1em;
-    font-size: 1em;
-    background: var(--secondary-lighten-4);
-    border-radius: 0.5em;
-    display: flex;
-    align-items: center;
-    gap: 0.75em;
-  }
-  button.flat {
-    color: #000;
-    border: none;
-    font-size: 1em;
-    background: transparent;
-  }
-  button :global(svg) {
-    height: 0.8em;
-  }
-  .button:not(.flat) {
-    position: relative;
-  }
-  .button:not(.flat):hover {
-    color: #fff;
-  }
-  .button > span {
-    z-index: 1;
-  }
-  .button:not(.flat)::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: -1px;
-    bottom: -1px;
-    width: 0;
-    background: var(--primary-color);
-    transition: width cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
-    z-index: 0;
-    border-radius: 0.5em;
-  }
-  .button:not(.flat):hover::after {
-    width: 100%;
-  }
-  .button {
-    transition: transform cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
-  }
-  .button:active {
-    transform: scale(0.98);
-  }
-  .bars {
-    width: 2.3em;
-  }
-  .bars :global(svg) {
-    height: 1.5em;
-  }
-  .bars {
-    padding: 0.25em;
-    padding-right: 1em;
-    padding-left: 0;
-  }
-  a.button {
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    padding: 0.5em 1em;
-    background: transparent;
-    font-size: 1em;
-    border-radius: 0.5em;
-    display: flex;
-    align-items: center;
-    gap: 0.75em;
-  }
-  .button > span {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-  }
-  a.button :global(svg) {
-    height: 0.8em;
-    fill: currentColor;
-  }
-  h3,
-  h4 {
-    margin-top: 0;
-  }
-  h4 {
-    margin-bottom: 0.5em;
-  }
-  .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 1em;
-  }
-  .product {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-  }
-  .product > div {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-  }
-  .product > div :global(svg) {
-    width: 1em;
-    max-height: 24px;
-  }
-  .devs {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 2em;
-  }
-  .dev {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-  }
-  .dev > div:not(.duo) {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-  }
-  .dev > div :global(svg) {
-    width: 1em;
-  }
-  .tokens {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 2em;
-  }
-  .token {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-  }
-  .token > div {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-  }
-  .token > div :global(svg) {
-    width: 1em;
-  }
-  .communities {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 2em;
-  }
-  .community {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-  }
-  .community > div {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-  }
-  .community > div :global(svg) {
-    width: 1em;
-  }
-  .mobile h3 {
-    margin-top: 1em;
-  }
-  .button.build {
-    margin-left: 0.5em;
+    margin-right: -1em;
   }
 </style>

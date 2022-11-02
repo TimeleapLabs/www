@@ -5,9 +5,9 @@
   import { toast } from "@zerodevx/svelte-toast";
   import percentile from "percentile";
 
-  import Card from "../Card.svelte";
   import LineChart from "src/components/charts/line/Chart.svelte";
   import Skeleton from "svelte-skeleton/Skeleton.svelte";
+  import { Tile } from "carbon-components-svelte";
 
   import Copy from "src/icons/Copy.svelte";
   import Check from "src/icons/Check.svelte";
@@ -85,7 +85,7 @@
   });
 </script>
 
-<Card flat slim>
+<Tile class="full-height">
   <div class="title">
     <h4>{title}</h4>
     <img src="/images/chains/{icon}.svg" class="icon" alt={title} />
@@ -148,7 +148,7 @@
       {/if}
     </div>
   {/each}
-</Card>
+</Tile>
 
 <style>
   .uptime {
@@ -229,10 +229,10 @@
     height: 1em;
   }
   .status.ok :global(svg) {
-    fill: var(--secondary-color);
+    fill: var(--cds-support-02);
   }
   .status:not(.ok) :global(svg) {
-    fill: var(--primary-color);
+    fill: var(--cds-support-01);
   }
   .latency {
     font-size: 0.8em;

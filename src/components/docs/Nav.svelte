@@ -1,14 +1,18 @@
 <script>
-  import SubNav from "./SubNav.svelte";
+  import SubNavItem from "./SubNavItem.svelte";
   import navData from "src/lib/docs.nav.js";
+
+  import { SideNav, SideNavItems } from "carbon-components-svelte";
 
   const topLevel = { title: "Documentation", url: "/docs" };
 </script>
 
-<h5>Table of Contents</h5>
+<SideNav isOpen fixed class="docs-side-nav">
+  <SideNavItems>
+    <SubNavItem nav={topLevel} />
 
-<SubNav nav={topLevel} />
-
-{#each navData as nav}
-  <SubNav {nav} />
-{/each}
+    {#each navData as nav}
+      <SubNavItem {nav} />
+    {/each}
+  </SideNavItems>
+</SideNav>

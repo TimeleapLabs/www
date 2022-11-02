@@ -9,15 +9,13 @@ automatically handling the steps required for requesting and receiving a random
 number. If you are interested in knowing how the process works you can read more
 about the detailed steps in the "Kenshi VRF Workflow" section below.
 
-[alert note
+[alert info-square
   If you are using Hardhat or Truffle for development, you can install the Kenshi
-  VRF consumer library using the following command:
-  
-  [tabs
-    [tab [:title With NPM] [code :language bash npm install @kenshi.io/vrf-consumer]]
-    [tab [:title With Yarn] [code :language bash yarn add @kenshi.io/vrf-consumer]]
-  ]]
+  VRF consumer library using the following commands:]
 
+[tabs
+  [tab [:title With NPM] [code :language bash npm install @kenshi.io/vrf-consumer]]
+  [tab [:title With Yarn] [code :language bash yarn add @kenshi.io/vrf-consumer]]]
 
 [heading :size 2 VRF Subscriptions]
 

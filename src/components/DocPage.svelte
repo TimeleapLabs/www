@@ -2,38 +2,24 @@
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
   import Card from "src/components/Card.svelte";
-  import Button from "src/components/Button.svelte";
-  import ChevronLeft from "src/icons/ChevronLeft.svelte";
-  import ChevronRight from "src/icons/ChevronRight.svelte";
   import Nav from "src/components/docs/Nav.svelte";
 
   import { SvelteToast } from "@zerodevx/svelte-toast";
+
+  import { Button, Tile, Content } from "carbon-components-svelte";
+  import { Grid, Row, Column } from "carbon-components-svelte";
+  import { ChevronLeft, ChevronRight } from "carbon-icons-svelte";
+  import { ProgressIndicator } from "carbon-components-svelte";
+  import { Dropdown } from "carbon-components-svelte";
+  import { EarthEuropeAfrica } from "carbon-icons-svelte";
+
+  import ExpressiveHeading from "./carbon/ExpressiveHeading.svelte";
 
   import "../common.css";
   import "../ayu.css";
 
   export let next = null;
   export let prev = null;
-
-  let sidebar = false;
-  const toggleSidebar = () => {
-    if (!sidebar || window.innerWidth >= 640) {
-      sidebar = !sidebar;
-    }
-  };
-
-  const closeSidebar = (e) => {
-    if (
-      !e.target.classList.value.includes("sidebar") &&
-      !e.target.classList.value.includes("chevron")
-    ) {
-      sidebar = false;
-    }
-  };
-
-  const openSidebar = () => {
-    sidebar = true;
-  };
 
   let headings;
   let body;
@@ -47,10 +33,9 @@
       .classList.add("active");
   };
 
+  export let progress = 0;
+
   const scroll = () => {
-    [...headings.querySelectorAll(".active")].map((el) =>
-      el.classList.remove("active")
-    );
     const closest = [...body.querySelectorAll("h1,h2,h3,h4,h5")]
       .map((el) => {
         const offset = el.getBoundingClientRect();
@@ -59,57 +44,126 @@
       })
       .sort((a, b) => a.distance - b.distance)
       .shift();
-    headings
-      .querySelector(`[href="#${closest.el.id}"]`)
-      ?.classList?.add?.("active");
+    const element = headings.querySelector(`[href="#${closest.el.id}"]`);
+    if (!element) return;
+    progress = [...element.parentElement.children].indexOf(element);
   };
 </script>
 
 <svelte:window on:hashchange={hashchange} on:scroll={scroll} />
 
-<Navbar />
-
-<div class="docs" on:click={closeSidebar}>
-  <div class="sidebar" class:active={sidebar} on:click={toggleSidebar}>
+<Content class="docs-page">
+  <div class="docs">
     <Nav />
-  </div>
 
-  <button class="chevron" on:click={openSidebar}>
-    <ChevronRight />
-  </button>
+    <div class="body" bind:this={body}>
+      <div class="breadcrumb">
+        <slot name="breadcrumb" />
+        <div class="language">
+          <EarthEuropeAfrica />
+          <Dropdown
+            hideLabel
+            titleText="Language"
+            items={[{ id: "english", text: "English" }]}
+            selectedId={"english"}
+          />
+        </div>
+      </div>
 
-  <div class="body" bind:this={body}>
-    <Card flat>
-      <slot />
-    </Card>
+      <div class="content">
+        <Grid>
+          <slot />
+        </Grid>
+      </div>
 
-    <div class="nav-buttons">
-      {#if prev}
-        <Button href={prev.url}>
-          <ChevronLeft />
-          {prev.title}
-        </Button>
-      {/if}
-      <div class="spacer" />
-      {#if next}
-        <Button href={next.url}>
-          {next.title}
-          <ChevronRight />
-        </Button>
-      {/if}
+      <div class="nav-buttons">
+        {#if prev}
+          <Button href={prev.url} kind="secondary">
+            <ChevronLeft class="prev-btn-icon" />
+            {prev.title}
+          </Button>
+        {/if}
+        <div class="spacer" />
+        {#if next}
+          <Button href={next.url} icon={ChevronRight}>
+            {next.title}
+          </Button>
+        {/if}
+      </div>
+    </div>
+
+    <div class="headings" bind:this={headings}>
+      <ExpressiveHeading size={7}>
+        <h5>On this page</h5>
+      </ExpressiveHeading>
+      <ProgressIndicator vertical currentIndex={progress}>
+        <slot name="headings" />
+      </ProgressIndicator>
     </div>
   </div>
-
-  <div class="headings" bind:this={headings}>
-    <h5>Contents</h5>
-    <slot name="headings" />
-  </div>
-</div>
+</Content>
 
 <SvelteToast />
 <Footer />
 
 <style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .breadcrumb > :global(nav) {
+    flex: 1;
+  }
+  .language {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+  }
+  .body {
+    border-left: 1px solid var(--cds-ui-03);
+    border-right: 1px solid var(--cds-ui-03);
+  }
+  .breadcrumb {
+    border-bottom: 1px solid var(--cds-ui-03);
+    padding: 1em 2em;
+    padding-left: 3em;
+    padding-top: 1.5em;
+  }
+  .breadcrumb :global(nav),
+  .breadcrumb :global(.bx--breadcrumb-item),
+  .breadcrumb :global(.bx--link) {
+    max-width: 100%;
+  }
+  .breadcrumb :global(.bx--breadcrumb) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .breadcrumb :global(.bx--link) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  @media (max-width: 640px) {
+    .breadcrumb {
+      padding: 0;
+      padding-bottom: 0.5em;
+      padding-left: 0.5em;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1em;
+    }
+    .language {
+      align-self: flex-end;
+    }
+  }
+  :global(.docs-page) {
+    margin-left: 0 !important;
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+  }
   .body :global(pre) {
     margin: 0;
   }
@@ -129,17 +183,12 @@
   .docs .body :global(.message) {
     flex: 1;
   }
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.35s left;
-  }
   .nav-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
-    margin-top: 2em;
+    line-height: initial;
+    padding: 2em;
   }
   .nav-buttons .spacer {
     flex: 1;
@@ -150,26 +199,30 @@
     overflow: hidden;
     line-height: 1.5;
   }
-  .nav-buttons {
-    line-height: initial;
+  .content {
+    padding-top: 2em;
+    flex: 1;
+  }
+  .content > :global(.bx--grid > .bx--row) {
+    margin-bottom: 1em;
+  }
+  .content :global(h2),
+  .content :global(h3),
+  .content :global(h4),
+  .content :global(h5) {
+    margin-top: 1em !important;
+  }
+  .content :global(.toc h5) {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
   }
   .docs {
-    padding: 4em;
-    padding-top: 2em;
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
-    gap: 2em;
+    grid-template-columns: 16rem 1fr 16rem;
+    min-height: calc(100vh - 412px);
   }
   .docs :global(h1) {
     margin-top: 0;
-  }
-  .docs :global(h1 a),
-  .docs :global(h2 a),
-  .docs :global(h3 a),
-  .docs :global(h4 a),
-  .docs :global(h5 a) {
-    font-family: "Frank";
-    text-decoration: none;
   }
   .docs .body :global(h1),
   .docs .body :global(h2),
@@ -189,35 +242,14 @@
   .docs .body > :global(.card > div) {
     overflow: auto;
   }
-  .docs :global(a) {
-    color: black;
-    text-decoration: underline solid rgba(0, 0, 0, 0.2);
-  }
   .docs :global(.nav-buttons a) {
     text-decoration: none;
-  }
-  .docs .headings :global(a) {
-    text-decoration: none;
-  }
-  .docs :global(a:hover) {
-    color: var(--primary-color);
   }
   .docs :global(h1 a) {
     text-decoration: none;
   }
-  .headings > :global(div) {
-    display: flex;
-    gap: 0.5em;
-    flex-direction: column;
-  }
-  .chevron {
-    display: none;
-  }
-  .chevron :global(svg) {
-    width: 0.5em;
-  }
-  .headings :global(a.active) {
-    color: var(--primary-color);
+  :global(.prev-btn-icon) {
+    margin-right: 1em;
   }
   @keyframes chevron {
     0% {
@@ -230,11 +262,17 @@
       opacity: 1;
     }
   }
+  .headings {
+    padding-left: 1em;
+  }
+  .headings h5 {
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
   @media only screen and (min-width: 640px) {
-    .sidebar,
     .headings {
       position: sticky;
-      top: 6em;
+      top: 4em;
       align-self: flex-start;
     }
   }
@@ -246,38 +284,15 @@
       display: block;
       padding: 1em;
     }
-    .sidebar {
-      width: 300px;
-      position: fixed;
-      z-index: 100;
-      left: -300px;
-      top: 0;
-      background: #fff;
-      height: 100%;
+    .body {
+      border: none;
     }
-    .sidebar.active {
-      left: 0;
-      top: 3em;
-      padding: 2em;
-      box-sizing: border-box;
-      box-shadow: 1em 1em 2em 0.25em rgb(0 0 0 / 10%);
-    }
-    .sidebar:not(.active) + .chevron {
-      display: flex;
-      align-items: center;
-      left: -1px;
-      position: fixed;
-      top: 200px;
-      background: #fff;
-      padding: 1em;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      animation: chevron linear 0.5s;
-      box-shadow: 1em 1em 2em 0.25em rgb(0 0 0 / 10%);
-    }
+    .docs :global(.docs-side-nav),
     .headings {
       display: none;
     }
+  }
+  .docs :global(.toc ol) {
+    margin-left: 1em;
   }
 </style>

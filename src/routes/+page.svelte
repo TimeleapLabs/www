@@ -1,7 +1,7 @@
 <script>
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Button from "src/components/Button.svelte";
+  // import Button from "src/components/Button.svelte";
   import CardButton from "src/components/CardButton.svelte";
   import Article from "src/components/Article.svelte";
   import InfoCard from "src/components/InfoCard.svelte";
@@ -19,7 +19,7 @@
   import Magnify from "src/icons/Magnify.svelte";
   import CloudSensor from "src/icons/CloudSensor.svelte";
 
-  import ChevronRight from "src/icons/ChevronRight.svelte";
+  //import ChevronRight from "src/icons/ChevronRight.svelte";
   import External from "src/icons/External.svelte";
   import Arrow from "src/icons/Arrow.svelte";
 
@@ -34,724 +34,752 @@
   import CheckDouble from "src/icons/CheckDouble.svelte";
   import BellOn from "src/icons/BellOn.svelte";
   import ChartNetwork from "src/icons/ChartNetwork.svelte";
-  import Link from "src/icons/Link.svelte";
 
   import Gist from "src/components/Gist.svelte";
   import Alert from "src/components/Alert.svelte";
-</script>
 
-<Navbar />
+  import { Grid, Row, Column, Tile } from "carbon-components-svelte";
+  import { Button, Content, ClickableTile } from "carbon-components-svelte";
+  import { Tabs, Tab, TabContent } from "carbon-components-svelte";
+  import { CodeSnippet } from "carbon-components-svelte";
+  import { ImageLoader, OutboundLink, Link } from "carbon-components-svelte";
+
+  import { Dashboard, Book, ChevronRight } from "carbon-icons-svelte";
+  import {
+    LogoPython,
+    ArrowDown,
+    ArrowDownRight,
+    ArrowShiftDown,
+  } from "carbon-icons-svelte";
+
+  import { Connect } from "carbon-pictograms-svelte";
+
+  import Go from "src/icons/Go.svelte";
+  import Node from "src/icons/Node.svelte";
+
+  import Fantom from "src/icons/Fantom.svelte";
+  import Ethereum from "src/icons/Ethereum.svelte";
+  import BnbChain from "src/icons/BNBChain.svelte";
+  import Avalanche from "src/icons/Avalanche.svelte";
+  import Polygon from "src/icons/Polygon.svelte";
+
+  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
+  import Github from "src/icons/Github.svelte";
+  import Npm from "src/icons/NPM.svelte";
+  import Telegram from "src/icons/Telegram.svelte";
+  import Medium from "src/icons/Medium.svelte";
+  import Discord from "src/icons/Discord.svelte";
+
+  import { apollo, mql, rapi, vrf } from "src/lib/snippets/all";
+</script>
 
 <!-- Hero -->
 
-<div class="hero">
-  <div class="content">
-    <img src="/images/kenshi.logo.long.png" alt="Kenshi" class="logo" />
-    <div class="motto">Cutting-edge tech for your blockchain projects</div>
-    <div class="buttons">
-      <Button href="/dashboard">
-        Dashboard <ChevronRight />
-      </Button>
-      <Button href="/docs" target="_blank">
-        Read the docs <ChevronRight />
-      </Button>
-      <Button
-        solid
-        href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-        target="_blank"
-      >
-        View charts <External />
-      </Button>
-    </div>
-  </div>
-  <div class="graphics">
-    <img src="/images/kenshi.png" alt="Kenshi Samurai" />
-  </div>
-</div>
+<Content class="gap">
+  <Grid noGutter padding>
+    <Row>
+      <Column md={10} lg={8}>
+        <div class="flex-column">
+          <h1>
+            <span class="blue">Build smarter</span><br />
+            applications on the blockchain
+          </h1>
+          <span class="blue">
+            <ArrowDownRight size={48} />
+            <ArrowDownRight size={48} />
+            <ArrowDownRight size={48} />
+          </span>
 
-<div class="products">
-  <div class="mask">
-    <img src="/images/mask.png" alt="Mask" />
-  </div>
-  <div class="start">
-    <h2>Start using Kenshi <br /> for your awesome products.</h2>
-    <div class="content">
-      From development to deployment and further, Kenshi is on your side.
-    </div>
-  </div>
-  <div class="products-list">
-    <Product
-      title="VRF Oracle"
-      description="Implement dynamic NFTs, games, lotteries and more with Kenshi VRF oracles."
-      buttons={[
-        {
-          href: "/docs/services/vrf",
-          external: true,
-          label: "Docs",
-        },
-        {
-          href: "https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9",
-          external: false,
-          label: "Learn more",
-        },
-      ]}
-    >
-      <Shuffle />
-      <VR />
-      <Dice />
-      <Gamepad />
-      <Slot />
-    </Product>
+          <div class="spacer" />
 
-    <Product
-      title="Deep Index"
-      description="Sync, search, query, and consume blockchain data that matters."
-      buttons={[
-        {
-          href: "/docs/services/deep-index",
-          external: true,
-          label: "Docs",
-        },
-        {
-          href: "https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946",
-          external: false,
-          label: "Learn more",
-        },
-      ]}
-    >
-      <D20 />
-      <DB />
-      <Magnify />
-      <CloudSensor />
-    </Product>
-  </div>
-</div>
+          <ExpressiveHeading size={4}>
+            Build hassle-free on all EVM chains.
+          </ExpressiveHeading>
 
-<div class="discover">
-  <h2>Discover all of Kenshi.</h2>
-  <div class="products-list">
-    <a href="/lockers" class="product">
-      <BinaryLock />
-      <h3>Liquidity Lockers</h3>
-      <Arrow />
-    </a>
-    <a href="/docs/services/audits" class="product">
-      <Shield />
-      <h3>Security Audits</h3>
-      <Arrow />
-    </a>
-    <a href="/docs/services/development" class="product">
-      <Code />
-      <h3>Blockchain Development</h3>
-      <Arrow />
-    </a>
-  </div>
-</div>
+          <ExpressiveHeading size={3}>
+            Build faster and better decentralized apps in no-time.
+          </ExpressiveHeading>
 
-<div class="cards">
-  <InfoCard
-    image="/images/token.png"
-    title="The Token"
-    description="Looking for the ₭enshi token? The Kenshi token is a frictionless yield token that can provide a passive income to its holders, and that is also used to pay for the Kenshi services."
-    buttons={[
-      {
-        href: "/swap",
-        external: false,
-        label: "Buy",
-      },
-      {
-        href: "https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f",
-        external: true,
-        label: "Charts",
-      },
-      {
-        href: "/docs/token",
-        external: false,
-        label: "Learn more",
-      },
-    ]}
-  />
-  <InfoCard
-    image="/images/pfp.png"
-    title="Community"
-    description="Join the Kenshi communities to talk tech, partake in early adopter programs, get help with one of our services, or to get the latest Kenshi news."
-    buttons={[
-      {
-        href: "https://t.me/KenshiTech",
-        external: true,
-        label: "Telegram",
-      },
-      {
-        href: "https://twitter.com/KenshiTech",
-        external: true,
-        label: "Twitter",
-      },
-      {
-        href: "/docs/community",
-        external: false,
-        label: "More",
-      },
-    ]}
-  />
-</div>
+          <div class="spacer" />
 
-<div class="getting-started">
-  <div class="guides">
-    <div class="guide">
-      <div class="description">
-        <h2>Getting started is easy.</h2>
-        <h3>Use VRF to get randomness.</h3>
-        <div class="content">
-          <p>
-            The Kenshi Verifiable Random Function (VRF) oracle can generate and
-            verify pseudorandom numbers to be used by smart contracts on-chain.
-          </p>
-          <p>
-            Enjoy a responsive VRF solution on BNB Smart Chain, Polygon, Fantom
-            and Avalanche chains.
-          </p>
+          <div class="blockchains">
+            <Button kind="tertiary" icon={Ethereum}>Ethereum</Button>
+            <Button kind="tertiary" icon={BnbChain}>BNB Chain</Button>
+            <Button kind="tertiary" icon={Avalanche}>Avalanche</Button>
+            <Button kind="tertiary" icon={Fantom}>Fantom</Button>
+            <Button kind="tertiary" icon={Polygon}>Polygon</Button>
+            <Button kind="ghost">+ All EVM Chains</Button>
+          </div>
+
+          <div class="spacer" />
+
+          <div class="buttons">
+            <Button href="/dashboard" icon={Dashboard}>Start building</Button>
+            <Button href="/docs" kind="secondary" icon={Book}>
+              Documentation
+            </Button>
+          </div>
+
+          <div class="spacer" />
         </div>
-        <div class="spacer" />
-        <div class="spacer" />
-        <h4>Learn how to get a random number</h4>
-        <div class="buttons">
-          <Button
-            solid
-            href="https://remix.ethereum.org/#url=https://raw.githubusercontent.com/KenshiTech/d20/master/contracts/D20.sol"
-            target="_blank"
-          >
-            Remix <External />
-          </Button>
-          <Button
-            solid
-            href="https://github.com/KenshiTech?q=vrf&type=all&language=&sort="
-            target="_blank"
-          >
-            Github <External />
-          </Button>
-          <Button href="/docs/services/vrf">
-            Docs <ChevronRight />
-          </Button>
-        </div>
-      </div>
-      <div class="sample">
-        <Gist src="pouya-eghbali/2aba0069fa0cd8eded3c0df4d966232e" />
-      </div>
-    </div>
-  </div>
-</div>
+      </Column>
+      <Column md={4} lg={5}>
+        <ImageLoader src="/images/backgrounds/vr.jpg" />
+      </Column>
+      <Column md={4} lg={3}>
+        <Grid>
+          <Row>
+            <Column>
+              <Link href="#deep-index" class="no-decoration">
+                <div class="head-link">
+                  <span>Deep Index</span>
+                  <div class="text-normal">
+                    Query and index any smart contract
+                  </div>
+                  <ArrowDown size={32} />
+                </div>
+              </Link>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <Link href="#oracle-network" class="no-decoration">
+                <div class="head-link">
+                  <span>Oracle Network</span>
+                  <div class="text-normal">
+                    Blazing fast oracle implementations
+                  </div>
+                  <ArrowDown size={32} />
+                </div>
+              </Link>
+            </Column>
+          </Row>
+        </Grid>
+      </Column>
+    </Row>
+  </Grid>
 
-<div class="deep-index">
-  <div class="mask">
-    <img src="/images/mask.elephant.png" alt="Mask" />
-  </div>
-  <div class="usages">
-    <div class="title">
-      <h2>All in one blockchain data solution.</h2>
-    </div>
-    <div class="grid">
-      <Usage
-        title="Push notifications for the blockchain"
-        buttons={[
-          {
-            href: "https://github.com/KenshiTech?q=reverse-api+OR+graphql&type=public&language=&sort=",
-            external: true,
-            label: "View examples",
-          },
-        ]}
-      >
-        <BellOn />
-        <Link />
-        <ChartNetwork />
-        <div slot="description">
+  <Grid noGutter padding id="deep-index">
+    <Row>
+      <Column sm={4} md={4} lg={5}>
+        <ImageLoader src="/images/backgrounds/data-flow.jpg" />
+      </Column>
+      <Column sm={4} md={4} lg={5}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={5}>
+            <h2>
+              Deliver data to your users, <span class="blue">FAST</span>
+            </h2>
+          </ExpressiveHeading>
+
+          <div class="spacer" />
+
+          <div class="fluid-paragraph-01">
+            Kenshi deep index allows retrieving, storing, and indexing
+            blockchain events into Kenshi's geographically distributed data
+            clusters for faster access.
+          </div>
+
+          <div class="spacer" />
+
+          <div class="buttons">
+            <Button href="/dashboard" icon={Dashboard}>Subscribe now</Button>
+            <Button
+              href="/docs/services/deep-index"
+              kind="secondary"
+              icon={Book}
+            >
+              Documentation
+            </Button>
+          </div>
+
+          <div class="spacer" />
+          <div class="spacer" />
+          <div class="spacer" />
+        </div>
+      </Column>
+      <Column sm={4} md={10} lg={6}>
+        <div class="condensed-tabs">
+          <Tabs autoWidth>
+            <Tab label="GraphQL" />
+            <Tab label="MQL" />
+            <Tab label="R-API (Webhooks)" />
+            <svelte:fragment slot="content">
+              <TabContent>
+                <Grid noGutter padding fullWidth>
+                  <Row>
+                    <Column>
+                      Use your favorite
+                      <OutboundLink href="https://graphql.org/">
+                        GraphQL
+                      </OutboundLink>
+                      client to query the blockchain
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <CodeSnippet
+                        type="multi"
+                        code={apollo}
+                        class="full-width"
+                      />
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <h5>See more examples on GitHub</h5>
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <div class="buttons">
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/graphql-example-node-axios"
+                          icon={Node}>Node Axios</Button
+                        >
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/graphql-example-node-fetch"
+                          icon={Node}>Node Fetch</Button
+                        >
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/graphql-example-python"
+                          icon={LogoPython}
+                        >
+                          Python Requests
+                        </Button>
+                        <Button
+                          href="https://github.com/KenshiTech/graphql-example-go"
+                          kind="secondary"
+                          icon={Go}>Go Shurcool</Button
+                        >
+                      </div>
+                    </Column>
+                  </Row>
+                </Grid>
+              </TabContent>
+              <TabContent>
+                <Grid noGutter padding fullWidth>
+                  <Row>
+                    <Column>
+                      Use
+                      <OutboundLink
+                        href="https://www.mongodb.com/docs/manual/tutorial/query-documents/"
+                      >
+                        MongoDB Query Language
+                      </OutboundLink>
+                      to run complex queries on the blockchain
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <CodeSnippet type="multi" code={mql} class="full-width" />
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <h5>See more examples on GitHub</h5>
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <div class="buttons">
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/mql-example-node-axios"
+                          icon={Node}>Node Axios</Button
+                        >
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/mql-example-node-fetch"
+                          icon={Node}>Node Fetch</Button
+                        >
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/mql-example-python"
+                          icon={LogoPython}
+                        >
+                          Python Requests
+                        </Button>
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/mql-example-go"
+                          icon={Go}>Go net/http</Button
+                        >
+                      </div>
+                    </Column>
+                  </Row>
+                </Grid>
+              </TabContent>
+              <TabContent>
+                <Grid noGutter padding fullWidth>
+                  <Row>
+                    <Column>
+                      Use
+                      <OutboundLink
+                        href="https://en.wikipedia.org/wiki/Webhook"
+                      >
+                        Webhooks
+                      </OutboundLink>
+                      to get push notifications from the blockchain
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <CodeSnippet
+                        type="multi"
+                        code={rapi}
+                        class="full-width"
+                      />
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <h5>See more examples on GitHub</h5>
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column>
+                      <div class="buttons">
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/reverse-api-example-node"
+                          icon={Node}
+                        >
+                          Node Express
+                        </Button>
+                        <Button
+                          kind="secondary"
+                          href="https://github.com/KenshiTech/reverse-api-example-python"
+                          icon={LogoPython}
+                        >
+                          Python Flask
+                        </Button>
+                      </div>
+                    </Column>
+                  </Row>
+                </Grid>
+              </TabContent>
+            </svelte:fragment>
+          </Tabs>
+        </div>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid noGutter padding>
+    <Row>
+      <Column sm={4} md={10} lg={5}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={5}>
+            <h2>
+              <span class="blue">Automate</span> the world, with blockchain
+            </h2>
+          </ExpressiveHeading>
+
+          <div class="spacer" />
+
+          <div class="fluid-paragraph-01">
+            Connect your smart contract to the world! Kenshi R-API can stream
+            events from your smart contracts directly to already existing
+            automation tools!
+          </div>
+
+          <div class="spacer" />
+          <div class="spacer" />
+
+          <div class="buttons">
+            <Button href="/dashboard" icon={Dashboard}>Subscribe now</Button>
+            <Button
+              href="/docs/services/deep-index/webhook"
+              kind="secondary"
+              icon={Book}
+            >
+              Documentation
+            </Button>
+          </div>
+
+          <div class="spacer" />
+          <div class="spacer" />
+        </div>
+      </Column>
+      <Column sm={4} md={4} lg={6}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={4}>
+            <h3>Integrate with the tools you already know</h3>
+          </ExpressiveHeading>
           <p>
-            Receive blockchain events directly on your AWS Lambda functions or
-            HTTP reverse API endpoints.
+            The Kenshi R-API integrations with existing automation and data flow
+            tools.
           </p>
-          <p>Focus on your product, we provide the data.</p>
+          <div class="spacer" />
+          <Grid noGutter padding fullWidth>
+            <Row>
+              <Column sm={4} lg={8}>
+                <ClickableTile
+                  href="/docs/services/deep-index/webhook/integrations"
+                >
+                  <div class="integration">
+                    <ImageLoader src="/images/integrations/aws.lambda.svg" />
+                    <div>
+                      Learn how to integrate the Kenshi Deep Index with AWS
+                      <OutboundLink href="https://aws.com">Lambda.</OutboundLink
+                      >
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column sm={4} lg={8}>
+                <ClickableTile
+                  href="/docs/services/deep-index/webhook/integrations"
+                >
+                  <div class="integration">
+                    <ImageLoader src="/images/integrations/zapier.svg" />
+                    <div>
+                      Learn how to integrate the Kenshi Deep Index with
+                      <OutboundLink href="https://aws.com">
+                        Zepier.
+                      </OutboundLink>
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column sm={4} lg={8}>
+                <ClickableTile
+                  href="/docs/services/deep-index/webhook/integrations"
+                >
+                  <div class="integration">
+                    <ImageLoader src="/images/integrations/make.com.png" />
+                    <div>
+                      Learn how to integrate the Kenshi Deep Index with
+                      <OutboundLink href="https://make.com">
+                        make.com.
+                      </OutboundLink>
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column sm={4} lg={8}>
+                <ClickableTile
+                  href="/docs/services/deep-index/webhook/integrations"
+                >
+                  <div class="integration">
+                    <ImageLoader src="/images/integrations/ifttt.svg" />
+                    <div>
+                      Learn how to integrate the Kenshi Deep Index with
+                      <OutboundLink href="https://ifttt.com">
+                        IFTTT.
+                      </OutboundLink>
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column sm={4} lg={8}>
+                <ClickableTile
+                  href="/docs/services/deep-index/webhook/integrations"
+                >
+                  <div class="integration">
+                    <ImageLoader src="/images/integrations/automate.io.svg" />
+                    <div>
+                      Learn how to integrate the Kenshi Deep Index with
+                      <OutboundLink href="https://automate.io">
+                        automate.io.
+                      </OutboundLink>
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column sm={4} lg={8}>
+                <ClickableTile
+                  href="/docs/services/deep-index/webhook/integrations"
+                >
+                  <div class="integration">
+                    <ImageLoader src="/images/integrations/webhooks.png" />
+                    <div>
+                      Learn how to integrate the Kenshi Deep Index with
+                      <OutboundLink href="https://automate.io">
+                        webhooks.
+                      </OutboundLink>
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+            </Row>
+          </Grid>
+          <div class="spacer" />
+          <div class="spacer" />
         </div>
-      </Usage>
+      </Column>
+      <Column sm={4} md={4} lg={5}>
+        <ImageLoader src="/images/backgrounds/automate.jpg" />
+      </Column>
+    </Row>
+  </Grid>
 
-      <Usage
-        title="Never miss an event again"
-        buttons={[
-          {
-            href: "https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946",
-            external: true,
-            label: "Learn more",
-          },
-        ]}
-      >
-        <Bolt />
-        <CheckDouble />
-        <div slot="description">
-          <p>
-            Kenshi scans each block multiple times to make sure no event is
-            missed.
-          </p>
-          <p>Reliability for your services is key, you can count on us.</p>
+  <Grid noGutter padding id="oracle-network">
+    <Row>
+      <Column sm={4} md={4} lg={5}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={5}>
+            <h2>
+              <span class="blue">Connect</span>
+              your smart contract
+            </h2>
+          </ExpressiveHeading>
+
+          <div class="spacer" />
+
+          <div class="fluid-paragraph-01">
+            Kenshi Oracle Network is a high-performance asynchronous oracle
+            platform currently hosting the Kenshi VRF.
+          </div>
+
+          <div class="spacer" />
+
+          <div class="buttons">
+            <Button href="/dashboard" icon={Dashboard}>Subscribe now</Button>
+            <Button href="/docs/services/vrf" kind="secondary" icon={Book}>
+              Documentation
+            </Button>
+          </div>
+
+          <div class="spacer" />
         </div>
-      </Usage>
-
-      <Usage
-        title="Fully managed, scales to infinity"
-        buttons={[
-          {
-            href: "/docs/services/deep-index",
-            external: false,
-            label: "Start today",
-          },
-        ]}
-      >
-        <LayerPlus />
-        <Infinity />
-        <div slot="description">
-          <p>
-            Kenshi is a highly available, managed serverless solution that
-            scales to infinity.
-          </p>
-          <p>Never worry about infrastructure again, we've got you covered.</p>
+      </Column>
+      <Column sm={4} md={4} lg={5}>
+        <ImageLoader src="/images/backgrounds/connect.jpg" />
+      </Column>
+      <Column sm={4} md={10} lg={6}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={5}>
+            <h3>Get started</h3>
+          </ExpressiveHeading>
+          <p>Use our libraries and sample codes to get started in no time.</p>
+          <div class="spacer" />
+          <div class="condensed-tabs">
+            <Tabs autoWidth>
+              <Tab label="VRF" />
+              <svelte:fragment slot="content">
+                <TabContent>
+                  <Grid noGutter padding fullWidth>
+                    <Row>
+                      <Column>
+                        Use
+                        <OutboundLink
+                          href="https://en.wikipedia.org/wiki/Verifiable_random_function"
+                        >
+                          VRF
+                        </OutboundLink>
+                        to get randomness on the blockchain
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <CodeSnippet
+                          type="multi"
+                          code={vrf}
+                          class="full-width"
+                        />
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        View on
+                        <OutboundLink href="https://github.com/KenshiTech/d20">
+                          GitHub.
+                        </OutboundLink>
+                      </Column>
+                    </Row>
+                  </Grid>
+                </TabContent>
+              </svelte:fragment>
+            </Tabs>
+          </div>
+          <div class="spacer" />
+          <div class="spacer" />
         </div>
-      </Usage>
-    </div>
-  </div>
-</div>
+      </Column>
+    </Row>
+  </Grid>
 
-<div class="resources">
-  <div class="grid">
-    <CardButton
-      href="https://github.com/KenshiTech"
-      image="/images/pfp/github.png"
-      title="Github"
-      description="Check Kenshi GitHub repositories"
-    />
-    <CardButton
-      href="https://www.npmjs.com/org/kenshi.io"
-      image="/images/pfp/npm.png"
-      title="NPM"
-      description="See all Kenshi NPM packages"
-    />
-    <CardButton
-      href="https://blog.kenshi.io"
-      image="/images/pfp/medium.png"
-      title="Medium"
-      description="Read Kenshi blog articles"
-    />
-    <CardButton
-      href="https://t.me/KenshiTechDevelopers"
-      image="/images/pfp/telegram.png"
-      title="Telegram"
-      description="Join Kenshi developers chat"
-    />
-    <CardButton
-      href="https://discord.gg/KenshiTech"
-      image="/images/pfp/discord.png"
-      title="Discord"
-      description="Join Kenshi Discord server"
-    />
-    <CardButton
-      href="/docs"
-      image="/images/pfp/docs.png"
-      title="Docs"
-      description="Read Kenshi documentation"
-    />
-  </div>
-  <div class="details">
-    <h2>Developer resources</h2>
-    <div>
-      Find examples, tools and documents for integrating the Kenshi products and
-      services into your projects.
-    </div>
-  </div>
-</div>
+  <Grid noGutter padding>
+    <Row>
+      <Column>
+        <Grid noGutter padding fullWidth class="full-height">
+          <Row class="full-height">
+            <Column>
+              <Tile class="blue-tile full-height">
+                <div class="flex-column fast">
+                  <ExpressiveHeading size={5}>
+                    <h2>Developer resources</h2>
+                  </ExpressiveHeading>
 
-<div class="articles">
-  <h2>Latest articles</h2>
-  <div class="grid">
-    <Article
-      image="/images/medium/vrf.png"
-      title="Introducing the Kenshi VRF oracles."
-      description="VRFs play an important role in the blockchain, as the blockchain lacks the native functionality to securely generate random numbers due to its deterministic nature..."
-      href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
-    />
-    <Article
-      image="/images/medium/kenshi-deep-index.png"
-      title="Introducing the Kenshi Deep Indexing Service."
-      description="Information published on the blockchain is publicly available and accessible by anyone who needs it. However, traversing the event logs and searching for specific events is not an easy task..."
-      href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
-    />
-  </div>
-</div>
+                  <div class="spacer" />
+
+                  <div class="fluid-paragraph-01">
+                    Find examples, tools and documents for integrating the
+                    Kenshi products and services into your projects.
+                  </div>
+
+                  <div class="spacer" />
+                </div>
+              </Tile>
+            </Column>
+          </Row>
+        </Grid>
+      </Column>
+      <Column lg={12}>
+        <Grid noGutterRight padding fullWidth class="full-height no-padding">
+          <Row class="full-height">
+            <Column>
+              <CardButton
+                href="https://github.com/KenshiTech"
+                icon={Github}
+                title="GitHub"
+                description="Find examples for the Kenshi services and contribute to our open-source projects."
+              />
+            </Column>
+            <Column lg={4}>
+              <CardButton
+                href="https://www.npmjs.com/org/kenshi.io"
+                icon={Npm}
+                title="NPM"
+                description="Check out all the JavaScript and Solidity packages published by Kenshi to NPM."
+              />
+            </Column>
+            <Column lg={4}>
+              <CardButton
+                href="https://blog.kenshi.io"
+                icon={Medium}
+                title="Medium"
+                description="Read our blog for use cases, examples and technical articles about Kenshi products."
+              />
+            </Column>
+            <Column lg={4}>
+              <CardButton
+                href="https://t.me/KenshiTechDevelopers"
+                icon={Telegram}
+                title="Telegram"
+                description="Join a community of developers using Kenshi products to develop their projects."
+              />
+            </Column>
+            <Column lg={4}>
+              <CardButton
+                href="https://discord.gg/KenshiTech"
+                icon={Discord}
+                title="Discord"
+                description="Join Kenshi Discord server to discuss the tech or get help with the products."
+              />
+            </Column>
+            <Column lg={4}>
+              <CardButton
+                href="/docs"
+                icon={Book}
+                title="Docs"
+                description="Read the docs to learn how to integrate the Kenshi products into your projects."
+              />
+            </Column>
+          </Row>
+        </Grid>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid noGutter padding>
+    <Row>
+      <Column lg={4} sm={4}>
+        <Article
+          image="/images/backgrounds/vrf.jpg"
+          title="Introducing the Kenshi VRF oracles."
+          description="VRFs play an important role in the blockchain, as the blockchain lacks the native functionality to securely generate random numbers due to its deterministic nature..."
+          href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
+        />
+      </Column>
+      <Column lg={4} sm={4}>
+        <Article
+          image="/images/backgrounds/deep-index.jpg"
+          title="Introducing the Kenshi Deep Indexing Service."
+          description="Information published on the blockchain is publicly available and accessible by anyone who needs it. However, traversing the event logs and searching for specific events is not an easy task..."
+          href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
+        />
+      </Column>
+    </Row>
+  </Grid>
+</Content>
 
 <Footer />
 
 <style>
-  .products {
-    position: relative;
+  .text-normal {
+    font-size: 1rem;
+    color: var(--cds-text-01, #161616);
   }
-  .mask {
-    position: absolute;
-    z-index: -1;
-    height: 960px;
-    top: -74%;
-    padding: 0;
-    opacity: 0.6;
-  }
-  .mask img {
-    height: 100%;
-  }
-  .hero {
-    padding: 6em;
-    gap: 6em;
+  .head-link {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 66px);
-    box-sizing: border-box;
-    flex-wrap: wrap;
-  }
-  .hero .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
     flex-direction: column;
-    gap: 6em;
-    flex: 3;
+    gap: 0.5em;
+    font-size: 2rem;
+    font-weight: 300;
   }
-  .hero .graphics {
-    flex: 2;
-    height: 100%;
-    min-width: 300px;
+  .head-link:hover span {
+    text-decoration: underline;
+  }
+  h1 {
+    font-weight: 300;
+    font-size: 5rem;
+  }
+  .fast h2,
+  .fast h2 span {
+    font-weight: 300;
+    font-size: 3.25rem;
+  }
+  @media (max-width: 760px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+  .blue {
+    color: var(--cds-interactive-01);
+  }
+  .blockchains {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1em;
+    padding-right: 8em;
+  }
+  @media (max-width: 720px) {
+    .blockchains {
+      padding-right: 0em;
+    }
+    .fast {
+      padding: 0;
+    }
+  }
+  .integration {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
   }
-  .hero .graphics img {
-    width: 540px;
-    max-width: 80%;
-    height: 100%;
-    object-fit: contain;
+  .integration :global(img) {
+    height: 40px;
+    max-width: 70%;
+    width: auto !important;
+    align-self: flex-start;
+    filter: grayscale(1) brightness(0.5) contrast(1.5);
   }
-  @media only screen and (max-width: 880px) {
-    .hero .buttons {
-      justify-content: center;
-    }
-  }
-  @media only screen and (max-width: 640px) {
-    .hero .content {
-      gap: 3em;
-    }
-    .hero .content .motto {
-      font-size: 2em;
-    }
-    .hero {
-      padding: 1em;
-      padding-top: 2em;
-      gap: 4em;
-      height: auto;
-      align-items: center;
-    }
-    .hero .graphics {
-      display: flex;
-      justify-content: center;
-    }
-  }
-  .hero .logo {
-    width: 440px;
-    max-width: 90%;
-  }
-  .hero .motto {
-    font-size: 3em;
-    max-width: 90%;
-    font-family: "Frank";
-    text-align: center;
-    font-weight: 500;
+  :global([theme="g100"]) .integration :global(img) {
+    filter: grayscale(1) brightness(0.5) contrast(1.5) invert(1);
   }
   .buttons {
     display: flex;
     gap: 1em;
     flex-wrap: wrap;
+    width: 100%;
+    flex-wrap: wrap;
   }
   .spacer {
     flex: 1;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 4em;
-    padding: 4em;
-  }
-  @media only screen and (max-width: 640px) {
-    .cards {
-      padding: 2em 1em;
-      gap: 2em;
-    }
-  }
-  .discover {
-    padding: 2em 4em;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 4em;
-  }
-  @media only screen and (max-width: 640px) {
-    .discover {
-      padding: 2em 1em;
-      gap: 2em;
-    }
-  }
-  .discover h2 {
-    font-size: 2em;
-    margin: 0;
-  }
-  .discover .products-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2em;
-    padding: 0;
-  }
-  .discover .product {
-    display: flex;
-    gap: 0.75em;
-    flex-direction: row;
-    align-items: center;
-    color: #000;
-  }
-  .discover .product h3 {
-    margin: 0;
-  }
-  .discover .product :global(svg) {
-    height: 1.25em;
-  }
-  .discover a:hover {
-    color: var(--primary-color);
-  }
-  .discover a:hover :global(svg) {
-    fill: var(--primary-color);
-  }
-
-  .products {
-    padding: 4em;
-    padding-bottom: 2em;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2em;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  @media only screen and (max-width: 640px) {
-    .products {
-      padding: 2em 1em;
-    }
-    .products .start h2 {
-      margin-top: 0.75em;
-    }
-  }
-  .products .products-list {
-    display: grid;
-    gap: 2em;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
-  .products > div {
-    padding: 1em;
-  }
-  @media only screen and (max-width: 640px) {
-    .products > div {
-      padding: 0;
-    }
-  }
-
-  .start h2 {
-    margin-top: 0;
-    font-size: 2em;
-  }
-  .articles {
-    padding: 4em;
-  }
-  @media only screen and (max-width: 640px) {
-    .articles {
-      padding: 2em 1em;
-    }
-  }
-  .articles h2 {
-    font-size: 2em;
-  }
-  .articles .grid {
-    margin-top: 4em;
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(280px, calc((100% - 6em) / 4))
-    );
-    gap: 2em;
-  }
-  @media only screen and (max-width: 500px) {
-    .articles .grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .getting-started {
-    padding: 4em;
-  }
-  @media only screen and (max-width: 640px) {
-    .getting-started {
-      padding: 2em 0.5em;
-    }
-    .getting-started h2,
-    .getting-started h3 {
-      margin-top: 0;
-    }
-    .getting-started .description {
-      padding: 0 0.5em;
-    }
-  }
-  .guides {
-    display: flex;
-    gap: 4em;
-    width: 100%;
-    flex-direction: column;
-  }
-  .guide {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-    gap: 4em;
-  }
-  @media screen and (max-width: 1320px) {
-    .guide .sample {
-      padding: 0.5em;
-    }
-  }
-  @media screen and (max-width: 960px) {
-    .guide {
-      display: grid;
-      grid-template-columns: minmax(300px, 1fr);
-      gap: 4em;
-    }
-  }
-  @media screen and (max-width: 600px) {
-    .guide {
-      gap: 2.5em;
-    }
-  }
-  .guides h2 {
-    font-size: 2em;
-  }
-  .guide .description {
-    display: flex;
-    flex-direction: column;
-  }
-  .guide .content {
-    width: 80%;
-    line-height: 1.2em;
-    color: #222;
-  }
-  @media screen and (max-width: 1200px) {
-    .guide .content {
-      width: 100%;
-    }
-  }
-  .guide .sample {
-    height: 444px;
-  }
-  .resources {
-    padding: 4em;
-    display: grid;
-    grid-template-columns: 4fr 2fr;
-    gap: 4em;
-  }
-  @media only screen and (max-width: 640px) {
-    .resources {
-      padding: 2em 1em;
-    }
-  }
-  .resources h2 {
-    font-size: 2em;
-    margin-bottom: 1em;
-    margin-top: 0;
-  }
-  .resources .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2em;
-    justify-content: right;
-  }
-
-  @media only screen and (max-width: 800px) {
-    .resources .details {
-      grid-row: 1;
-    }
-    .resources {
-      grid-template-columns: 1fr;
-      width: 100%;
-      box-sizing: border-box;
-    }
-  }
-  @media only screen and (max-width: 990px) {
-    .mask {
-      display: none;
-    }
-  }
-  .deep-index {
-    padding: 4em;
-    position: relative;
-  }
-  @media only screen and (max-width: 640px) {
-    .deep-index {
-      padding: 2em 1em;
-    }
-  }
-  .deep-index h2 {
-    font-size: 2em;
-  }
-  .deep-index .mask {
-    right: 0em;
-  }
-  .usages {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 4em;
-  }
-  .usages .grid {
-    grid-column: span 3;
-    display: grid;
-    gap: 4em;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-  @media only screen and (max-width: 800px) {
-    .usages .grid {
-      grid-column: span 2;
-    }
-  }
-  @media only screen and (max-width: 600px) {
-    .usages {
-      gap: 0;
-    }
-    .usages .grid {
-      grid-column: span 1;
-      gap: 2em;
-    }
-  }
-
-  .usages h2 {
-    margin-top: 0em;
-    font-size: 2em;
-  }
-  .usages p:first-of-type {
-    margin-top: 0;
-  }
-  .usages .description h3 {
-    margin-top: 0;
-  }
-
-  @media only screen and (max-width: 600px) {
-    .resources {
-      gap: 2.5em;
-    }
-    .articles h2 {
-      margin: 0;
-    }
-    .articles .grid {
-      margin-top: 2em;
-    }
   }
 </style>

@@ -8,107 +8,245 @@
   import LinkedIn from "../icons/LinkedIn.svelte";
   import Heart from "../icons/Heart.svelte";
 
-  import Link from "./Link.svelte";
+  import { Link, Tile, Button } from "carbon-components-svelte";
+  import { Grid, Column, Row } from "carbon-components-svelte";
+  import { UnorderedList, ListItem } from "carbon-components-svelte";
+
+  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 </script>
 
-<div class="section footer">
-  <div class="top">
-    <div class="logo" />
-    <div class="social">
-      <a href="https://t.me/KenshiTech" target="_blank"> <Telegram /> </a>
-      <a href="https://discord.gg/KenshiTech" target="_blank"> <Discord /> </a>
-      <a href="https://twitter.com/KenshiTech" target="_blank">
-        <Twitter />
-      </a>
-      <a href="https://blog.kenshi.io" target="_blank"> <Medium /> </a>
-      <a href="https://www.reddit.com/r/KenshiTech/" target="_blank">
-        <Reddit />
-      </a>
-      <a href="https://github.com/KenshiTech" target="_blank"> <Github /> </a>
-      <a href="https://www.linkedin.com/company/kenshiio/" target="_blank">
-        <LinkedIn />
-      </a>
-    </div>
-  </div>
-  <div class="middle">
-    <div class="list">
-      <h3>Developers</h3>
-      <Link href="/docs">Documentation</Link>
-      <Link href="/dashboard">Dashboard</Link>
-      <Link href="/status">Service Status</Link>
-      <Link href="https://t.me/KenshiTechDevelopers" target="_blank">
-        Developers chat
-      </Link>
-      <Link href="/docs/services/vrf">Getting randomness</Link>
-      <Link href="/docs/services/deep-index/graphql">Deep Index: GraphQL</Link>
-      <Link href="/docs/services/deep-index/mql">Deep Index: MQL</Link>
-      <Link href="/docs/services/deep-index/webhook">
-        Deep Index: Reverse-API
-      </Link>
-    </div>
-    <div class="list">
-      <h3>Products</h3>
-      <Link href="/docs/services/vrf">VRF</Link>
-      <Link href="/docs/services/deep-index">Deep Index</Link>
-      <Link href="/docs/services/locker">Lockers</Link>
-    </div>
-    <div class="list">
-      <h3>Token</h3>
-      <Link href="/swap">Buy Kenshi</Link>
-      <Link
-        href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-        target="_blank"
-      >
-        Buy on PancakeSwap
-      </Link>
-      <Link
-        href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-        target="_blank"
-      >
-        View charts
-      </Link>
-      <Link href="/tools">Tools</Link>
-      <Link href="/pegswap">PegSwap</Link>
-      <Link href="/faucet">Faucet</Link>
-    </div>
-    <div class="list">
-      <h3>Contact</h3>
-      <Link href="mailto:experts@kenshi.io">Talk to an expert</Link>
-      <Link href="mailto:inquiries@kenshi.io">Business inquiries</Link>
-      <Link href="mailto:security@kenshi.io">Security</Link>
-      <Link href="mailto:support@kenshi.io">Support</Link>
-      <Link href="mailto:press@kenshi.io">Press inquiries</Link>
-    </div>
-    <div class="list">
-      <h3>Company</h3>
-      <Link href="/docs/kenshi">About</Link>
-      <Link href="/docs/team">Team</Link>
-      <Link href="https://blog.kenshi.io">Blog</Link>
-      <Link href="https://www.linkedin.com/company/kenshiio/" target="_blank">
-        LinkedIn
-      </Link>
-      <Link href="/docs/media">Press Kit</Link>
-    </div>
-  </div>
-  <div class="bottom">
-    <div class="left">
-      <div class="swiss-made">Made with <Heart /> in Switzerland</div>
-      <div class="copyright">
-        Copyright © {new Date().getFullYear()} - Kenshi
-      </div>
-    </div>
-    <a
-      href="https://members.cryptovalley.swiss/companies/2280577"
-      target="_blank"
-    >
-      <img
-        class="cva"
-        src="/images/cva_logo_member.svg"
-        alt="Swiss Crypto Valley member"
-      />
-    </a>
-  </div>
-</div>
+<Tile>
+  <Grid noGutterRight padding>
+    <Row>
+      <Column sm={4} lg={2}>
+        <div class="logo" />
+      </Column>
+      <Column sm={0} lg={4} />
+      <Column>
+        <Grid condensed noGutter narrow>
+          <Row>
+            <Column>
+              <Button
+                kind="ghost"
+                href="https://t.me/KenshiTech"
+                target="_blank"
+                icon={Telegram}
+              >
+                Telegram
+              </Button>
+            </Column>
+            <Column>
+              <Button
+                kind="ghost"
+                href="https://discord.gg/KenshiTech"
+                target="_blank"
+                icon={Discord}
+              >
+                Discord
+              </Button>
+            </Column>
+            <Column>
+              <Button
+                kind="ghost"
+                href="https://twitter.com/KenshiTech"
+                target="_blank"
+                icon={Twitter}
+              >
+                Twitter
+              </Button>
+            </Column>
+            <Column>
+              <Button
+                kind="ghost"
+                href="https://blog.kenshi.io"
+                target="_blank"
+                icon={Medium}
+              >
+                Medium
+              </Button>
+            </Column>
+            <Column>
+              <Button
+                kind="ghost"
+                href="https://www.reddit.com/r/KenshiTech/"
+                target="_blank"
+                icon={Reddit}
+              >
+                Reddit
+              </Button>
+            </Column>
+            <Column>
+              <Button
+                kind="ghost"
+                href="https://github.com/KenshiTech"
+                target="_blank"
+                icon={Github}
+              >
+                Github
+              </Button>
+            </Column>
+            <Column>
+              <Button
+                kind="ghost"
+                href="https://www.linkedin.com/company/kenshiio/"
+                target="_blank"
+                icon={LinkedIn}
+              >
+                LinkedIn
+              </Button>
+            </Column>
+          </Row>
+        </Grid>
+      </Column>
+    </Row>
+    <Row>
+      <Column>
+        <ExpressiveHeading size={3}>
+          <h3>Developers</h3>
+        </ExpressiveHeading>
+        <UnorderedList>
+          <ListItem><Link href="/docs">Documentation</Link></ListItem>
+          <ListItem><Link href="/dashboard">Dashboard</Link></ListItem>
+          <ListItem><Link href="/status">Service Status</Link></ListItem>
+          <ListItem>
+            <Link href="https://t.me/KenshiTechDevelopers" target="_blank">
+              Developers chat
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/vrf">Getting randomness</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/deep-index/graphql"
+              >Deep Index: GraphQL
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/deep-index/mql">Deep Index: MQL</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/deep-index/webhook">
+              Deep Index: Reverse-API
+            </Link>
+          </ListItem>
+        </UnorderedList>
+      </Column>
+      <Column>
+        <ExpressiveHeading>
+          <h3>Products</h3>
+        </ExpressiveHeading>
+        <UnorderedList>
+          <ListItem><Link href="/docs/services/vrf">VRF</Link></ListItem>
+          <ListItem>
+            <Link href="/docs/services/deep-index">Deep Index</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/locker">Lockers</Link>
+          </ListItem>
+        </UnorderedList>
+      </Column>
+      <Column>
+        <ExpressiveHeading>
+          <h3>Token</h3>
+        </ExpressiveHeading>
+        <UnorderedList>
+          <ListItem><Link href="/swap">Buy Kenshi</Link></ListItem>
+          <ListItem>
+            <Link
+              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+              target="_blank"
+            >
+              Buy on PancakeSwap
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link
+              href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+              target="_blank"
+            >
+              View charts
+            </Link>
+          </ListItem>
+          <ListItem><Link href="/tools">Tools</Link></ListItem>
+          <ListItem><Link href="/pegswap">PegSwap</Link></ListItem>
+          <ListItem><Link href="/faucet">Faucet</Link></ListItem>
+        </UnorderedList>
+      </Column>
+      <Column>
+        <ExpressiveHeading>
+          <h3>Contact</h3>
+        </ExpressiveHeading>
+        <UnorderedList>
+          <ListItem>
+            <Link href="mailto:experts@kenshi.io">Talk to an expert</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="mailto:inquiries@kenshi.io">Business inquiries</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="mailto:security@kenshi.io">Security</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="mailto:support@kenshi.io">Support</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="mailto:press@kenshi.io">Press inquiries</Link>
+          </ListItem>
+        </UnorderedList>
+      </Column>
+      <Column>
+        <ExpressiveHeading>
+          <h3>Company</h3>
+        </ExpressiveHeading>
+        <UnorderedList>
+          <ListItem><Link href="/docs/kenshi">About</Link></ListItem>
+          <ListItem><Link href="/docs/team">Team</Link></ListItem>
+          <ListItem>
+            <Link href="https://blog.kenshi.io">Blog</Link>
+          </ListItem>
+          <ListItem>
+            <Link
+              href="https://www.linkedin.com/company/kenshiio/"
+              target="_blank"
+            >
+              LinkedIn
+            </Link>
+          </ListItem>
+          <ListItem><Link href="/docs/media">Press Kit</Link></ListItem>
+        </UnorderedList>
+      </Column>
+    </Row>
+    <Row class="bottom">
+      <Column lg={3}>
+        <Grid fullWidth narrow noGutter>
+          <Row>
+            <div class="swiss-made">
+              Made with <Heart /> in Switzerland
+            </div>
+          </Row>
+          <Row>
+            <div class="copyright">
+              Copyright © {new Date().getFullYear()} - Kenshi
+            </div>
+          </Row>
+        </Grid>
+      </Column>
+      <Column sm={0} lg={11} />
+      <Column lg={2}>
+        <a
+          href="https://members.cryptovalley.swiss/companies/2280577"
+          target="_blank"
+        >
+          <img
+            class="cva"
+            src="/images/cva_logo_member.svg"
+            alt="Swiss Crypto Valley member"
+          />
+        </a>
+      </Column>
+    </Row>
+  </Grid>
+</Tile>
 
 <style>
   .cva {
@@ -167,10 +305,9 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-origin: content-box;
-    padding: 2em 4em;
     box-sizing: border-box;
     max-width: 520px;
-    height: 128px;
+    height: 48px;
   }
   @media only screen and (max-width: 640px) {
     .logo {

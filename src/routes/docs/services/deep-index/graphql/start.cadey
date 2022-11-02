@@ -35,7 +35,7 @@ To fill and submit the new GraphQL API key form you can refer to the following m
    made using this API key that doesn't match the query limits. This field is optional.]
 ]
 
-[alert note
+[alert info-square
    Hex values should not be checksummed. All values for query limits should be in lowercase.]
 
 [heading :size 2 limits]

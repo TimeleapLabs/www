@@ -1,3 +1,16 @@
+<script>
+  export let size = 16;
+
+  export let title = undefined;
+
+  $: labelled = $$props["aria-label"] || $$props["aria-labelledby"] || title;
+  $: attributes = {
+    "aria-hidden": labelled ? undefined : true,
+    role: labelled ? "img" : undefined,
+    focusable: Number($$props["tabindex"]) === 0 ? true : undefined,
+  };
+</script>
+
 <svg
   version="1.1"
   id="Layer_1"
@@ -6,13 +19,15 @@
   viewBox="0 0 256 237.39996"
   xml:space="preserve"
   sodipodi:docname="MetaMask.svg"
-  width="256"
-  height="237.39996"
   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:svg="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  {...attributes}
+  {...$$restProps}
   ><defs id="defs3198" /><sodipodi:namedview
     id="namedview3196"
     pagecolor="#ffffff"

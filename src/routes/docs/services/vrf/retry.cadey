@@ -11,7 +11,7 @@ if you don't have enough Kenshi tokens stored in your smart contract for paying 
 delivery fees or when the network is down. If the failure is from our side, we will
 resolve the issues as soon as possible and deliver the results out of schedule.
 
-[alert note
+[alert info-square
   A feature to notify contract owners of such failures is planned for the future.]
 
 We use multiple RPC endpoints for delivering your results. These endpoints are chosen

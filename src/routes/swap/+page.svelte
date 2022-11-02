@@ -2,8 +2,8 @@
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
   import Card from "src/components/Card.svelte";
-  import TextInput from "src/components/TextInput.svelte";
-  import Button from "src/components/Button.svelte";
+  //import TextInput from "src/components/TextInput.svelte";
+  //import Button from "src/components/Button.svelte";
   import Alert from "src/components/Alert.svelte";
 
   import CircleCheck from "src/icons/CircleCheck.svelte";
@@ -18,6 +18,17 @@
   import { ethers } from "ethers";
   import { SpinLine } from "svelte-loading-spinners";
   import formatThousands from "format-thousands";
+
+  import { Content, Tile, Grid, Row, Column } from "carbon-components-svelte";
+  import { TileGroup, RadioTile, Button } from "carbon-components-svelte";
+  import { InlineNotification, OutboundLink } from "carbon-components-svelte";
+  import { TextInput } from "carbon-components-svelte";
+  import { Information, Purchase } from "carbon-icons-svelte";
+
+  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
+  import ConnectButton from "src/components/ConnectButton.svelte";
+
+  import Pancake from "src/icons/Pancake.svelte";
 
   const tokens = [
     {
@@ -44,9 +55,9 @@
 
   const kenshiAddr = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
 
-  const selectToken = (token) => () => {
-    swapFrom = token.address;
-    fromTokenSymbol = token.symbol;
+  const selectToken = ({ detail }) => {
+    swapFrom = detail.address;
+    fromTokenSymbol = detail.symbol;
   };
 
   const swap = async (swapFrom, quoteInput) => {
@@ -174,197 +185,190 @@
   };
 </script>
 
-<Navbar />
+<Content>
+  <Grid noGutter padding narrow>
+    <Row>
+      <Column lg={4}>
+        <div class="stick sidebar">
+          <Tile class="blue-tile">
+            <div class="form-info">
+              <ExpressiveHeading size={4}>
+                <h1>Swap</h1>
+              </ExpressiveHeading>
+              <p class="body-02">
+                Kenshi token is a utility token that allows access to Kenshi's
+                on-chain services.
+              </p>
+            </div>
+          </Tile>
 
-<div class="section">
-  <h2>Kenshi Swap</h2>
-  <Card>
-    <div class="card-inner">
-      <div class="forms">
-        <div class="form">
-          <h3>Swap from</h3>
-          <div class="tokens">
-            {#each tokens as token}
-              <div
-                class="token"
-                class:selected={swapFrom === token.address}
-                on:click={selectToken(token)}
-              >
-                <img src="/images/tokens/{token.icon}.svg" alt={token.name} />
-                <span class="name">{token.name}</span>
-                <span class="symbol">{token.symbol}</span>
-                {#if swapFrom === token.address}
-                  <span class="green">
-                    <CircleCheck />
-                  </span>
-                {:else}
-                  <span class="grey">
-                    <CircleDashed />
-                  </span>
-                {/if}
-              </div>
-            {/each}
-          </div>
-          <TextInput
-            bind:value={quoteInput}
-            suffix={fromTokenSymbol}
-            placeholder="Amount"
-          />
-          <Alert>
-            To swap from any other tokens you can trade directly on
-            <a
-              target="_blank"
-              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-            >
-              PancakeSwap</a
-            >.
-          </Alert>
-          <h3>To get</h3>
-          <div class="output">
-            <TextInput value={quoteOutput} suffix="₭enshi" icon={Kenshi} />
+          <div class="buttons">
+            <Button kind="secondary" icon={Information}>Read the docs</Button>
+            <Button kind="secondary" icon={Pancake}>PancakeSwap</Button>
           </div>
         </div>
-        <div />
-      </div>
-    </div>
-    <div class="buttons">
-      {#if $wallet?.provider}
-        {#if ethers.BigNumber.from(allowedToSpend).gte(ethers.utils.parseUnits(quoteInput))}
-          <Button on:click={() => swap(swapFrom, quoteInput)} disabled={spin}>
-            {#if spin}
-              <SpinLine
-                size="32"
-                color="currentColor"
-                unit="px"
-                duration="4s"
+      </Column>
+      <Column>
+        <Grid>
+          <Row>
+            <Column>
+              <ExpressiveHeading size={2}>Swap from</ExpressiveHeading>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <p>Which token do you want to use to get Kenshi?</p>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <div class="tokens">
+                <TileGroup on:select={selectToken} legend="Exchange from">
+                  {#each tokens as token}
+                    <RadioTile
+                      value={token}
+                      checked={swapFrom === token.address}
+                    >
+                      <div class="token">
+                        <img
+                          src="/images/tokens/{token.icon}.svg"
+                          alt={token.name}
+                        />
+                        <span class="name">{token.name}</span>
+                        <span class="symbol">{token.symbol}</span>
+                      </div>
+                    </RadioTile>
+                  {/each}
+                </TileGroup>
+              </div>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <InlineNotification kind="info">
+                <svelte:fragment slot="subtitle">
+                  Want to exchange other tokens into Kenshi? You can always use
+                  <OutboundLink href="/">PancakeSwap</OutboundLink> for that.
+                </svelte:fragment>
+              </InlineNotification>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <TextInput
+                bind:value={quoteInput}
+                labelText="Amount to exchange from {fromTokenSymbol}"
+                placeholder="Amount"
               />
-              Processing
-            {:else}
-              Swap
-            {/if}
-          </Button>
-        {:else}
-          <Button
-            on:click={() => approve(swapFrom, quoteInput)}
-            disabled={spin}
-          >
-            {#if spin}
-              <SpinLine
-                size="32"
-                color="currentColor"
-                unit="px"
-                duration="4s"
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <ExpressiveHeading size={2}>Review</ExpressiveHeading>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <p>Please review the transaction.</p>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <TextInput
+                readonly
+                value={quoteOutput}
+                labelText="Number of ₭enshi's you will get"
+                icon={Kenshi}
               />
-              Processing
-            {:else}
-              Approve
-            {/if}
-          </Button>
-        {/if}
-        <Button on:click={addToMetamask}>
-          <MetaMask />
-          Add ₭enshi
-        </Button>
-      {:else}
-        Connect your wallet to continue.
-      {/if}
-    </div>
-  </Card>
-</div>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <div class="buttons">
+                {#if $wallet?.provider}
+                  {#if ethers.BigNumber.from(allowedToSpend).gte(ethers.utils.parseUnits(quoteInput))}
+                    <Button
+                      on:click={() => swap(swapFrom, quoteInput)}
+                      disabled={spin}
+                      icon={Purchase}
+                    >
+                      {#if spin}
+                        <SpinLine
+                          size="32"
+                          color="currentColor"
+                          unit="px"
+                          duration="4s"
+                        />
+                        Processing
+                      {:else}
+                        Swap
+                      {/if}
+                    </Button>
+                  {:else}
+                    <Button
+                      on:click={() => approve(swapFrom, quoteInput)}
+                      disabled={spin}
+                      icon={Purchase}
+                    >
+                      {#if spin}
+                        <SpinLine
+                          size="32"
+                          color="currentColor"
+                          unit="px"
+                          duration="4s"
+                        />
+                        Processing
+                      {:else}
+                        Approve
+                      {/if}
+                    </Button>
+                  {/if}
+                  <Button on:click={addToMetamask} icon={MetaMask}>
+                    Add ₭enshi
+                  </Button>
+                {:else}
+                  <ConnectButton primary />
+                {/if}
+              </div>
+            </Column>
+          </Row>
+        </Grid>
+      </Column>
+    </Row>
+  </Grid>
+</Content>
 
 <Footer />
 
 <style>
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1.5em;
-    margin-left: 0.5em;
-  }
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  .section {
-    padding: 4em;
-    padding-top: 2em;
-  }
-  @media screen and (max-width: 960px) {
-    .section {
-      padding: 2em;
-    }
-  }
-  .forms {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2em;
-  }
-  .form {
+  .sidebar {
+    padding-top: 1em;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 2em;
+    align-items: flex-start;
   }
   .buttons {
-    margin-top: 2em;
     display: flex;
     gap: 1em;
   }
   .buttons :global(svg) {
     width: 1em;
   }
-  .output :global(.icon svg) {
-    fill: var(--primary-color);
-  }
-  .tokens {
+  .tokens :global(.bx--tile-group > div) {
     display: grid;
-    gap: 0.5em;
+    gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
   .token {
     display: flex;
     gap: 1em;
     align-items: center;
-    padding: 1em;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .token.selected {
-    border-color: var(--secondary-color);
   }
   .token img {
-    height: 24px;
+    height: 1rem;
   }
   .token .name {
     flex: 1;
-  }
-  .green,
-  .grey {
-    display: flex;
-    align-items: center;
-  }
-  .green :global(svg) {
-    width: 1.25em;
-    fill: var(--secondary-color);
-  }
-  .grey :global(svg) {
-    width: 1.25em;
-    fill: rgba(0, 0, 0, 0.1);
-  }
-  a {
-    color: black;
-    text-decoration: underline;
-  }
-  @media only screen and (max-width: 640px) {
-    .section {
-      padding: 1em;
-    }
-  }
-  @media only screen and (max-width: 420px) {
-    :global(.card.padding) {
-      padding: 1.5em 1.25em;
-    }
-    .forms > div:nth-of-type(2) {
-      display: none;
-    }
   }
 </style>

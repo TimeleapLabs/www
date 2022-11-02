@@ -1,26 +1,13 @@
 import { macros as cadeyMacros } from "cadey/generator.js";
+import slugify from "slugify";
 
-import pygments from "pygments";
 import fs from "fs";
 import path from "path";
 
-import { asText, asArgList, unIndent, getLang, toUrl } from "./utils.js";
+import { asText, asArgList, unIndent, toUrl } from "./utils.js";
 import { arrayOrNotWhite } from "./utils.js";
 
-const { heading } = cadeyMacros;
-
-const alertIcons = {
-  warning: "TriangleExclamation",
-  info: "CircleInfo",
-  note: "Pencil",
-  success: "CircleCheck",
-};
-
-const tableHead = (items) =>
-  "<tr>" + items.map((item) => `<th>${item}</th>`).join("\n") + "</tr>";
-
-const tableRow = (items) =>
-  "<tr>" + items.map((item) => `<td>${item}</td>`).join("\n") + "</tr>";
+export const slug = (str) => slugify(str, { lower: true, strict: true });
 
 const isMultiValue = (arg, expect) => {
   if (arg.filter(arrayOrNotWhite).length > expect) {
@@ -46,28 +33,42 @@ export const macros = {
       .filter(Boolean)
       .filter(arrayOrNotWhite)
       .map(asText);
+
     const rowsFromOptions = isMultiValue(options.row, header.length)
       ? options.row
       : [options.row];
+
     const rows = rowsFromOptions
       .filter(Boolean)
       .filter(arrayOrNotWhite)
       .map((row) => row.filter(arrayOrNotWhite))
       .map((row) => row.map(asText));
-    const sizes = options.sizes
-      ? options.sizes.filter(arrayOrNotWhite)
-      : header.map(() => "1fr");
-    return `
-      <Table sizes={${JSON.stringify(sizes)}}>
-        <thead>${tableHead(header)}</thead>
-        <tbody>${rows.map(tableRow).join("\n")}</tbody>
-      </Table>
-    `;
+
+    const headerSlugs = header.map(slug);
+
+    const headersJson = JSON.stringify(
+      header.map((value, i) => ({ key: headerSlugs[i], value }))
+    );
+
+    const rowsJson = JSON.stringify(
+      rows.map((row, id) =>
+        Object.fromEntries([
+          ["id", id],
+          ...row.map((value, i) => [headerSlugs[i], value]),
+        ])
+      )
+    );
+
+    return `<DataTable headers={${headersJson}} rows={${rowsJson}} />`;
   },
   tab(options, ...args) {
     const { title } = options;
     const content = asText(args);
     this.tabs = [...(this.tabs || []), { title: asText(title), content }];
+  },
+  link(options, ...args) {
+    const [href, ...text] = args.slice(1);
+    return `<Link href="${href}">${text ? asText(text) : href}</Link>`;
   },
   image(options, ...args) {
     this.components = { ...this.components, Image: true };
@@ -96,14 +97,16 @@ export const macros = {
     const inner = asText(args);
     return `<Gallery gap={"${gap}"}>${inner}</Gallery>`;
   },
-  grid(options, ...args) {
-    this.components = { ...this.components, Grid: true };
-    const cols = asText(options.cols || "1fr 1fr");
-    const gap = asText(options.gap || "1em");
+  team(_, ...args) {
     const inner = asText(args);
-    return `<Grid cols={"${cols}"} gap={"${gap}"}>${inner}</Grid>`;
+    return `
+      <Grid noGutter fullWidth padding>
+        <Row>
+          ${inner}
+        </Row>
+      </Grid>`;
   },
-  team(options, ...args) {
+  teamMember(options, ...args) {
     this.components = { ...this.components, TeamMember: true };
     const { name, photo, linkedIn, github, twitter, medium } = options;
     const inner = asText(args);
@@ -117,61 +120,78 @@ export const macros = {
     return `<TeamMember ${tags}>${inner}</TeamMember>`;
   },
   tabs() {
-    this.components = {
-      ...this.components,
-      Tab: true,
-      Tabs: true,
-      TabList: true,
-      TabPanel: true,
-    };
+    this.components = { ...this.components, Tab: true };
     const titles = this.tabs.map((tab) => `<Tab>${tab.title}</Tab>`).join("");
     const contents = this.tabs
-      .map((tab) => `<TabPanel>${tab.content}</TabPanel>`)
+      .map((tab) => `<TabContent>${tab.content}</TabContent>`)
       .join("");
     this.tabs = [];
-    return `<Tabs><TabList>${titles}</TabList>${contents}</Tabs>`;
+    return `
+      <div class="condensed-tabs">
+        <Tabs>
+          ${titles}
+          <svelte:fragment slot="content">
+            ${contents}
+          </svelte:fragment>
+        </Tabs>
+      </div>`;
   },
   code(options, ...args) {
     this.components = { ...this.components, Code: true };
-    const { language, content, title } = options;
+    const { content } = options;
     const code = content
-      ? fs.readFileSync(content.trim()).toString()
-      : unIndent(asText(args));
-    const getLangName = () => getLang(asText(content));
-    const langName = language || (content ? getLangName() : "");
-    const highlighted = pygments
-      .colorizeSync(code, langName)
-      .replace(/{/g, "&#123;")
-      .replace(/}/g, "&#125;");
-    const download = content ? `"${content.replace(/^static/, "")}"` : null;
-    const titleTag = title ? `"${title}"` : null;
-    return `<Code title={${titleTag}} download={${download}}>${highlighted}</Code>`;
+      ? fs
+          .readFileSync(content.trim())
+          .toString()
+          .replace(/`/g, "\\`")
+          .replace(/{/g, "\\{")
+      : unIndent(asText(args)).replace(/`/g, "\\`").replace(/{/g, "\\{");
+
+    const type = code.includes("\n") ? "multi" : "single";
+    return `<CodeSnippet type={"${type}"} code={\`${code}\`}></CodeSnippet>`;
   },
   async toc(_options, ...args) {
+    this.components = { ...this.components, Toc: true };
     const files = asArgList(args).map((name) =>
       path.join(path.dirname(this.currentFile), `${name}.cadey`)
     );
     await Promise.all(files.map((file) => this.processOne(file)));
     const headings = {};
     for (const file of files) {
-      headings[file] = this.allHeadings[file][0];
+      headings[file] = this.allHeadings[file][0].title;
     }
     this.allTocs[this.currentFile] = headings;
     const links = Object.entries(headings)
       .map(([file, title]) => [toUrl(file), title])
-      .map(([url, title]) => `<a href="${url}"> ${title} </a>`)
-      .map((a) => `<li>${a}</li>`)
+      .map(([url, title]) => `<Link href="${url}"> ${title} </Link>`)
+      .map((a) => `<ListItem>${a}</ListItem>`)
       .join("\n");
     return `
       <div class="toc">
-        <h5> Table of Contents </h5>
-        <ul>${links}</ul>
+        <ExpressiveHeading size={3}>
+          <h5> Table of Contents </h5>
+        </ExpressiveHeading>
+        <OrderedList>${links}</OrderedList>
       </div>`;
   },
   heading(options, ...args) {
-    this.headings = [...(this.headings || []), asText(args)];
+    const { size = 1, hint = "" } = options;
+
+    const title = asText(args);
+    const anchor = slug(title);
+
+    this.headings = [...(this.headings || []), { title, hint: asText(hint) }];
     this.allHeadings[this.currentFile] = this.headings;
-    return heading.call(this, options, ...args);
+
+    return `
+      <ExpressiveHeading size={${5 - Number(size)}}>
+        <h${size} id="${anchor}">
+          <Link href="#${anchor}">
+            ${title}
+          </Link>
+        </h${size}>
+      </ExpressiveHeading>
+      `;
   },
   chart(options, ..._args) {
     this.components = { ...this.components, Chart: true };
@@ -182,12 +202,10 @@ export const macros = {
   },
   alert(_options, ...args) {
     const [type, ...text] = args.slice(1);
-    const iconName = alertIcons[type];
-    this.components = { ...this.components, Alert: true, [iconName]: true };
+    this.components = { ...this.components, Alert: true };
     return `
-      <Alert ${type}>
-        <div class="icon"><${iconName}/></div>
-        <div class="message">${asText(text)}</div>
-      </Alert>`;
+      <InlineNotification hideCloseButton kind={"${type}"}>
+        <div slot="subtitle">${asText(text)}</div>
+      </InlineNotification>`;
   },
 };

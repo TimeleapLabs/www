@@ -3,10 +3,8 @@
   import Github from "src/icons/Github.svelte";
   import Medium from "src/icons/Medium.svelte";
   import Twitter from "src/icons/Twitter.svelte";
-  import External from "src/icons/External.svelte";
 
-  import Card from "./Card.svelte";
-  import Button from "./Button.svelte";
+  import { Tile, Button, Column } from "carbon-components-svelte";
 
   export let linkedIn = "";
   export let github = "";
@@ -17,39 +15,37 @@
   export let name;
 </script>
 
-<Card flat>
-  <div class="wrap">
-    <div class="photo">
-      <img src={photo} alt={name} />
+<Column sm={4} lg={8}>
+  <Tile>
+    <div class="wrap">
+      <div class="photo">
+        <img src={photo} alt={name} />
+      </div>
+      <div class="body">
+        <h4>{name}</h4>
+        <slot />
+      </div>
+      <div class="buttons">
+        {#if linkedIn}
+          <Button solid href={linkedIn} kind="ghost" icon={LinkedIn}>
+            LinkedIn
+          </Button>
+        {/if}
+        {#if github}
+          <Button solid href={github} kind="ghost" icon={Github}>Github</Button>
+        {/if}
+        {#if medium}
+          <Button solid href={medium} kind="ghost" icon={Medium}>Medium</Button>
+        {/if}
+        {#if twitter}
+          <Button solid href={twitter} kind="ghost" icon={Twitter}>
+            Twitter
+          </Button>
+        {/if}
+      </div>
     </div>
-    <div class="body">
-      <h4>{name}</h4>
-      <slot />
-    </div>
-    <div class="buttons">
-      {#if linkedIn}
-        <Button solid href={linkedIn}>
-          <LinkedIn /> LinkedIn <External />
-        </Button>
-      {/if}
-      {#if github}
-        <Button solid href={github}>
-          <Github /> Github <External />
-        </Button>
-      {/if}
-      {#if medium}
-        <Button solid href={medium}>
-          <Medium /> Medium <External />
-        </Button>
-      {/if}
-      {#if twitter}
-        <Button solid href={twitter}>
-          <Twitter /> Twitter <External />
-        </Button>
-      {/if}
-    </div>
-  </div>
-</Card>
+  </Tile>
+</Column>
 
 <style>
   .wrap {
@@ -60,7 +56,6 @@
     height: 100%;
   }
   img {
-    border-radius: 0.5em;
     height: 96px;
   }
   .buttons {

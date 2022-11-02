@@ -1,10 +1,6 @@
 <script>
   import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Card from "src/components/Card.svelte";
-  import TextInput from "src/components/TextInput.svelte";
-  import Select from "src/components/Select.svelte";
-  import Button from "src/components/Button.svelte";
   import Alert from "src/components/Alert.svelte";
 
   import Copy from "src/icons/Copy.svelte";
@@ -19,6 +15,14 @@
   import Wallet from "src/icons/WalletThin.svelte";
   import Link from "src/icons/Link.svelte";
   import MetaMask from "src/icons/MetaMask.svelte";
+
+  import { Button, Select, SelectItem } from "carbon-components-svelte";
+  import { Grid, Content, Row, Column, Tile } from "carbon-components-svelte";
+  import ConnectButton from "src/components/ConnectButton.svelte";
+  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
+  import { Launch, Purchase, CaretUp } from "carbon-icons-svelte";
+  import { TextInput, CopyButton } from "carbon-components-svelte";
+  import { DataTable, InlineNotification } from "carbon-components-svelte";
 
   import { wallet } from "src/stores/wallet";
 
@@ -43,10 +47,20 @@
   let saleTax;
   let when = 0;
 
+  let usdAbleToBuyDisplay = "0";
   let ableToBuyDisplay = "0";
   let reflections = "0";
   let reflectionsDisplay = "0";
   let reflectionsUsdDisplay = "0";
+
+  const formatCurrency = (n, unit = "") =>
+    unit + formatThousands(trimDecimals(n), ",");
+
+  const toUsd = (n) =>
+    formatCurrency(n.div("1000000000000000000").toNumber() * unitPrice, "$");
+
+  const toKenshi = (n) =>
+    formatCurrency(ethers.utils.formatUnits(n || "0")) || "0";
 
   $: if (maxBalance && balance) {
     const diff = maxBalance.sub(balance);
@@ -55,31 +69,22 @@
     } else {
       ableToBuy = ethers.BigNumber.from("0");
     }
-    ableToBuyDisplay = formatCurrency(ethers.utils.formatUnits(ableToBuy));
+    ableToBuyDisplay = toKenshi(ableToBuy);
+    usdAbleToBuyDisplay = toUsd(ableToBuy);
   }
-
-  const formatCurrency = (n) => formatThousands(trimDecimals(n), ",");
 
   const trimDecimals = (n) => {
     const [lhs, rhs = ""] = n.toString().split(".");
-    return [lhs, rhs.slice(0, 4).replace(/0+$/, "")].filter(Boolean).join(".");
+    return [lhs, rhs.slice(0, 2).replace(/0+$/, "")].filter(Boolean).join(".");
   };
 
-  $: balanceDisplay =
-    formatCurrency(ethers.utils.formatUnits(balance || "0")) || "0";
+  $: balanceDisplay = toKenshi(balance || "0");
+  $: maxBalanceDisplay = toKenshi(maxBalance || "0");
+  $: treasuryDisplay = toKenshi(treasury || "0");
 
-  $: maxBalanceDisplay =
-    formatCurrency(ethers.utils.formatUnits(maxBalance || "0")) || "0";
-
-  $: treasuryDisplay =
-    formatCurrency(ethers.utils.formatUnits(treasury || "0")) || "0";
-
-  $: usdBalanceDisplay =
-    balance && unitPrice
-      ? formatCurrency(
-          balance.div("1000000000000000000").toNumber() * unitPrice
-        )
-      : "0";
+  $: usdBalanceDisplay = balance && unitPrice ? toUsd(balance) : "0";
+  $: usdTreasuryDisplay = treasury && unitPrice ? toUsd(treasury) : "0";
+  $: usdMaxBalanceDisplay = maxBalance && unitPrice ? toUsd(maxBalance) : "0";
 
   const kenshiAddr = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
   const proxyAddr = "0x0A7eD4314D9109986281bdd6235f1A5623690110";
@@ -181,10 +186,8 @@
     const diff = receivedAmount.sub(sentAmount);
 
     reflections = ethers.utils.formatUnits(balance.sub(diff));
-    reflectionsDisplay = formatCurrency(reflections);
-    reflectionsUsdDisplay = formatCurrency(
-      balance.sub(diff).div("1000000000000000000").toNumber() * unitPrice
-    );
+    reflectionsDisplay = toKenshi(balance.sub(diff));
+    reflectionsUsdDisplay = toUsd(balance.sub(diff));
   };
 
   $: if (userAddress && unitPrice)
@@ -193,10 +196,10 @@
       .catch(() => null);
 
   const taxDateOptions = [
-    { label: "Today", value: 0 },
-    { label: "Tomorrow", value: 86400 },
+    { text: "Today", value: 0 },
+    { text: "Tomorrow", value: 86400 },
     ...new Array(28).fill().map((_, i) => ({
-      label: `In ${i + 2} days`,
+      text: `In ${i + 2} days`,
       value: 86400 * (i + 2),
     })),
   ];
@@ -299,259 +302,217 @@
   });
 </script>
 
-<Navbar />
-
-<div class="mask">
-  <img src="/images/mask.png" alt="Mask" />
-</div>
-
-<div class="section">
-  <h2>Kenshi Tools</h2>
-  {#if !userAddress}
-    <div class="alert">
-      <Alert warning>
-        Connect your wallet or enter wallet address to continue.
-      </Alert>
-    </div>
-  {/if}
-  <Card>
-    <div class="card-inner forms">
-      <div class="form">
-        <h5>Wallet address</h5>
-        <TextInput
-          placeholder="Wallet address"
-          suffix="Wallet"
-          bind:value={userAddress}
-          icon={Wallet}
-        >
-          <div class="field-buttons" slot="buttons">
-            {#if userAddress}
-              <Button
-                flat
-                on:click={copy(
-                  `${window.location.origin}/tools?address=${userAddress}`
-                )}
-              >
-                <Link />
-              </Button>
-            {/if}
+<Content>
+  <Grid noGutter narrow padding>
+    <Row>
+      <Column max={4}>
+        <Tile class="blue-tile">
+          <div class="flex-column">
+            <ExpressiveHeading size={4}>
+              <h1>Kenshi Tools</h1>
+            </ExpressiveHeading>
+            <p>
+              Kenshi tools gives you an overview of your account and provides
+              you with utilities for managing it.
+            </p>
           </div>
-        </TextInput>
-        {#if userAddress}
-          <h5>Tokens held</h5>
-          <div class="split">
-            <TextInput
-              disabled
-              placeholder="Kenshi balance"
-              suffix="Kenshi"
-              value={balanceDisplay}
-              icon={Coin}
-            >
-              <div class="field-buttons" slot="buttons">
-                <Button
-                  flat
-                  on:click={copy(ethers.utils.formatUnits(balance || "0"))}
-                >
-                  <Copy />
-                </Button>
-              </div>
-            </TextInput>
-            <TextInput
-              disabled
-              placeholder="Equivalent BUSD value"
-              suffix="USD"
-              value={usdBalanceDisplay}
-              icon={Dollar}
-            >
-              <div class="field-buttons" slot="buttons">
-                <Button
-                  flat
-                  on:click={copy(usdBalanceDisplay.replace(/,/g, ""))}
-                >
-                  <Copy />
-                </Button>
-              </div>
-            </TextInput>
-          </div>
-          <h5>Reflections received</h5>
-          <div class="split">
-            <TextInput
-              disabled
-              placeholder="Reflections"
-              suffix="Kenshi"
-              value={reflectionsDisplay}
-              icon={Coin}
-            >
-              <div class="field-buttons" slot="buttons">
-                <Button flat on:click={copy(reflections)}>
-                  <Copy />
-                </Button>
-              </div>
-            </TextInput>
-            <TextInput
-              disabled
-              placeholder="Equivalent BUSD value"
-              suffix="USD"
-              value={reflectionsUsdDisplay}
-              icon={Dollar}
-            >
-              <div class="field-buttons" slot="buttons">
-                <Button
-                  flat
-                  on:click={copy(reflectionsUsdDisplay.replace(/,/g, ""))}
-                >
-                  <Copy />
-                </Button>
-              </div>
-            </TextInput>
-          </div>
-          <h5>Able to buy</h5>
-          <TextInput
-            disabled
-            placeholder="Kenshi balance"
-            suffix="Kenshi"
-            value={ableToBuyDisplay}
-            icon={CreditCard}
-          >
-            <div class="field-buttons" slot="buttons">
-              <Button
-                flat
-                on:click={copy(ethers.utils.formatUnits(ableToBuy || "0"))}
-              >
-                <Copy />
-              </Button>
-            </div>
-          </TextInput>
-        {/if}
-      </div>
-      <div class="form">
-        {#if userAddress}
-          <h5>Max balance</h5>
-          <TextInput
-            disabled
-            suffix="Kenshi"
-            value={maxBalanceDisplay}
-            icon={ArrowUp}
-          >
-            <div class="field-buttons" slot="buttons">
-              <Button flat on:click={copy(maxBalanceDisplay.replace(/,/g, ""))}>
-                <Copy />
-              </Button>
-            </div>
-          </TextInput>
-          <h5>Treasury</h5>
-          <TextInput
-            disabled
-            suffix="Kenshi"
-            value={treasuryDisplay}
-            icon={Treasure}
-          >
-            <div class="field-buttons" slot="buttons">
-              <Button flat on:click={copy(treasuryDisplay.replace(/,/g, ""))}>
-                <Copy />
-              </Button>
-            </div>
-          </TextInput>
-          <h5>Selling tax</h5>
-          <div class="split">
-            <Select
-              options={taxDateOptions}
-              placeholder="When?"
-              icon={Timer}
-              bind:value={when}
-            />
-            <TextInput
-              disabled
-              placeholder="Tax percentage"
-              suffix="percent"
-              value={saleTax}
-              icon={Percent}
-            />
-          </div>
-        {/if}
-      </div>
-    </div>
-    <div class="buttons">
-      <Button href="/swap">Buy Kenshi</Button>
-      {#if $wallet?.provider}
-        <Button on:click={addToMetamask}>
-          <MetaMask />
-          Add ₭enshi
-        </Button>
-      {/if}
-      <Button
-        href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
-        solid
-      >
-        Charts <External />
-      </Button>
-    </div>
-  </Card>
-</div>
-
-<div class="section">
-  <h2>Wallet Transfer</h2>
-  <div class="alert">
-    <Alert>
-      You can use this tool to do a tax-free transfer from your wallet to
-      another.
-      {#if !$wallet?.provider}
-        To use this tool, you need to connect your wallet.
-      {/if}
-    </Alert>
-  </div>
-  {#if $wallet?.provider}
-    <Card>
-      <div class="card-inner forms">
-        <div class="form">
-          <h5>Wallet address</h5>
-          <TextInput
-            placeholder="Destination"
-            suffix="Destination"
-            bind:value={transferTo}
-            icon={Wallet}
-          />
-          <div class="field-with-buttons">
-            <TextInput
-              placeholder="Amount"
-              suffix="Amount"
-              icon={Coin}
-              regex={/^(0|[1-9][0-9]*(\.[0-9]+)?|0\.[0-9]+)$/}
-              bind:value={transferAmount}
-            />
-            <Button on:click={maxTransfer}>MAX</Button>
-          </div>
-          <Alert warning>
-            To be able to make a transfer, your selling tax should be 5%. See
-            the Kenshi tools above to find out about your current tax.
-          </Alert>
+        </Tile>
+      </Column>
+      <Column max={4}>
+        <div class="flex-column align-start">
+          <p class="body-02">
+            You'll need to connect your wallet to use certain areas of Kenshi
+            tools.
+          </p>
+          <div class="spacer" />
+          <ConnectButton primary />
         </div>
-        <div />
-      </div>
-      <div class="buttons">
-        <Button on:click={transfer} disabled={transferring}>
-          {#if transferring}
-            <SpinLine size="32" color="currentColor" unit="px" duration="4s" />
-            Processing
-          {:else}
-            Transfer
-          {/if}
-        </Button>
-      </div>
-    </Card>
-  {/if}
-</div>
+      </Column>
+    </Row>
+    <Row>
+      <Column>
+        <ExpressiveHeading size={2}>
+          <h2>Account summary</h2>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+    <Row>
+      <Column lg={4}>
+        <Tile>
+          <div class="card-inner forms">
+            <div class="field">
+              <TextInput
+                light
+                placeholder="Wallet address"
+                labelText="Wallet"
+                bind:value={userAddress}
+              />
+              {#if userAddress}
+                <CopyButton
+                  text={`${window.location.origin}/tools?address=${userAddress}`}
+                />
+              {/if}
+            </div>
+          </div>
+          <div class="buttons">
+            <Button href="/swap" icon={Purchase} kind="tertiary">
+              Buy Kenshi
+            </Button>
+            <Button on:click={addToMetamask} icon={MetaMask} kind="tertiary">
+              Add ₭enshi
+            </Button>
+            <Button
+              href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+              solid
+              icon={Launch}
+              kind="secondary"
+            >
+              Charts
+            </Button>
+          </div>
+        </Tile>
+      </Column>
+      {#if userAddress}
+        <Column>
+          <DataTable
+            title="Balance sheet"
+            description="Balance details for your account"
+            headers={[
+              { key: "name", value: "Name" },
+              { key: "kenshi", value: "Kenshi" },
+              { key: "usd", value: "USD" },
+            ]}
+            rows={[
+              {
+                id: "0",
+                name: "Current",
+                kenshi: balanceDisplay,
+                usd: usdBalanceDisplay,
+              },
+              {
+                id: "1",
+                name: "To max",
+                kenshi: ableToBuyDisplay,
+                usd: usdAbleToBuyDisplay,
+              },
+              {
+                id: "2",
+                name: "Reflections",
+                kenshi: reflectionsDisplay,
+                usd: reflectionsUsdDisplay,
+              },
+            ]}
+          />
+        </Column>
+        <Column>
+          <DataTable
+            title="Stats"
+            description="Global Kenshi stats"
+            headers={[
+              { key: "name", value: "Name" },
+              { key: "kenshi", value: "Kenshi" },
+              { key: "usd", value: "USD" },
+            ]}
+            rows={[
+              {
+                id: "0",
+                name: "Treasury",
+                kenshi: treasuryDisplay,
+                usd: usdTreasuryDisplay,
+              },
+              {
+                id: "1",
+                name: "Max Balance",
+                kenshi: maxBalanceDisplay,
+                usd: usdMaxBalanceDisplay,
+              },
+            ]}
+          />
+        </Column>
+        <Column>
+          <Tile>
+            <div class="flex-column">
+              <Select light labelText="Tax at" bind:selected={when}>
+                {#each taxDateOptions as { text, value }}
+                  <SelectItem {value} {text} />
+                {/each}
+              </Select>
+              <TextInput
+                readonly
+                labelText="Tax percentage"
+                value={saleTax}
+                icon={Percent}
+              />
+            </div>
+          </Tile>
+        </Column>
+      {/if}
+    </Row>
+    {#if $wallet?.provider}
+      <Row>
+        <Column>
+          <ExpressiveHeading size={2}>
+            <h2>Wallet Transfer</h2>
+          </ExpressiveHeading>
+        </Column>
+      </Row>
+      <Row>
+        <Column lg={4}>
+          <Tile>
+            <div class="card-inner forms">
+              <div class="form">
+                <TextInput
+                  labelText="Destination"
+                  placeholder="Destination"
+                  light
+                  bind:value={transferTo}
+                />
+                <div class="field">
+                  <TextInput
+                    light
+                    placeholder="Amount"
+                    labelText="Amount"
+                    bind:value={transferAmount}
+                  />
+                  <Button size="field" on:click={maxTransfer} icon={CaretUp}>
+                    MAX
+                  </Button>
+                </div>
+                <InlineNotification kind="warning" hideCloseButton>
+                  To be able to make a transfer, your selling tax should be 5%.
+                  See the Kenshi tools above to find out about your current tax.
+                </InlineNotification>
+              </div>
+            </div>
+            <div class="buttons">
+              <Button on:click={transfer} disabled={transferring}>
+                {#if transferring}
+                  <SpinLine
+                    size="32"
+                    color="currentColor"
+                    unit="px"
+                    duration="4s"
+                  />
+                  Processing
+                {:else}
+                  Transfer
+                {/if}
+              </Button>
+            </div>
+          </Tile>
+        </Column>
+      </Row>
+    {/if}
+  </Grid>
+</Content>
 
 <Footer />
 
 <style>
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1.5em;
-    margin-left: 0.5em;
-  }
-  h5 {
-    margin: 0;
+  .field {
+    display: flex;
+    gap: 0;
+    align-items: flex-end;
   }
   .section {
     padding: 4em;
@@ -603,6 +564,7 @@
     margin-top: 2em;
     display: flex;
     gap: 1em;
+    flex-wrap: wrap;
   }
   .buttons :global(svg) {
     width: 1em;

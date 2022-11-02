@@ -38,10 +38,10 @@ You can use the following list as a guide for each of the fields in this form.
       The Kenshi event Dispatcher uses this query against the data cluster on each run, then sends every matched
       record to your Reverse-API endpoint in a separate request.]]
 
-[alert note
+[alert info-square
    If you're filtering based on an event argument with an "address" type,
    you need to provide a checksummed address. For other argument types, the hex values must be all lower.]
 
-[alert note
+[alert info-square
   The Kenshi event dispatcher for Reverse-API caches all events in a "memcached"
   instance to prevent sending duplicate events to your endpoints. The TTL of the cache is 15 minutes.]
