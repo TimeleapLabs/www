@@ -251,9 +251,7 @@
 <style>
   .cva {
     width: 200px;
-  }
-  .social :global(svg) {
-    height: 1.5em;
+    max-width: 100%;
   }
   .swiss-made :global(svg) {
     height: 1em;
@@ -266,40 +264,7 @@
     gap: 0.5em;
     flex-wrap: wrap;
   }
-  .social {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 8em;
-    box-sizing: border-box;
-  }
-  @media only screen and (max-width: 640px) {
-    .social {
-      padding: 0em 1em;
-      justify-content: center;
-    }
-  }
-  .footer {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  .top {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-  .middle {
-    display: grid;
-    padding: 2em;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-  @media only screen and (max-width: 640px) {
-    .middle {
-      padding: 0em;
-    }
-  }
+
   .logo {
     background: url("/images/kenshi.logo.long.png");
     background-size: contain;
@@ -314,58 +279,15 @@
       background-position: center;
     }
   }
-  .list {
-    padding: 1em 2em;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-  }
-  .bottom {
-    display: flex;
-    padding: 2em 4em;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
-    gap: 2em;
-  }
-  @media only screen and (max-width: 640px) {
-    .bottom {
-      padding: 1em;
-      gap: 1em;
-      flex-direction: column-reverse;
-    }
-  }
+
   a {
     color: #000;
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
   }
-  .social a:hover {
-    color: var(--primary-color);
-  }
-  .social a:hover :global(svg) {
-    fill: var(--primary-color);
-  }
+
   h3 {
     font-size: 1.4em;
-  }
-  .left {
-    flex: 1;
-    white-space: nowrap;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  @media only screen and (max-width: 1440px) {
-    .footer .middle {
-      font-size: 0.9em;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    }
-  }
-  @media only screen and (max-width: 600px) {
-    .list:last-of-type {
-      padding-bottom: 2em;
-    }
   }
 </style>
