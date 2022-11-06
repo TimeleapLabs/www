@@ -439,8 +439,8 @@
                     <ImageLoader src="/images/integrations/zapier.svg" />
                     <div>
                       Learn how to integrate the Kenshi Deep Index with
-                      <OutboundLink href="https://aws.com">
-                        Zepier.
+                      <OutboundLink href="https://zapier.com">
+                        Zapier.
                       </OutboundLink>
                     </div>
                   </div>
@@ -499,7 +499,9 @@
                     <ImageLoader src="/images/integrations/webhooks.png" />
                     <div>
                       Learn how to integrate the Kenshi Deep Index with
-                      <OutboundLink href="https://automate.io">
+                      <OutboundLink
+                        href="https://en.wikipedia.org/wiki/Webhook"
+                      >
                         webhooks.
                       </OutboundLink>
                     </div>
