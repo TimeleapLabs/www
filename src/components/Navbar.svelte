@@ -47,8 +47,9 @@
 
 <Header
   _company="Kenshi"
-  _platformName="Deep Index"
+  _platformName="Kenshi"
   persistentHamburgerMenu={true}
+  href="/"
   bind:isSideNavOpen
 >
   <span slot="platform" class="logo">

@@ -514,17 +514,6 @@
     gap: 0;
     align-items: flex-end;
   }
-  .section {
-    padding: 4em;
-    padding-top: 2em;
-    flex: 1;
-    min-height: 30%;
-  }
-  @media screen and (max-width: 960px) {
-    .section {
-      padding: 2em;
-    }
-  }
   .card-inner {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -536,19 +525,6 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
-  }
-  .split {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1em;
-  }
-  @media only screen and (max-width: 640px) {
-    .split {
-      grid-template-columns: 1fr;
-    }
-    .section {
-      padding: 1em;
-    }
   }
   @media only screen and (max-width: 420px) {
     :global(.card.padding) {
@@ -568,28 +544,5 @@
   }
   .buttons :global(svg) {
     width: 1em;
-  }
-  .mask {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    padding: 0;
-    opacity: 0.6;
-    height: 80%;
-    max-height: 640px;
-    width: auto;
-  }
-  .mask img {
-    height: 100%;
-    max-width: 100%;
-  }
-  .alert {
-    margin-bottom: 2em;
-    max-width: 560px;
-  }
-  .field-with-buttons {
-    display: flex;
-    gap: 1em;
-    align-items: flex-start;
   }
 </style>
