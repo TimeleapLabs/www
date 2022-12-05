@@ -481,21 +481,6 @@
                   href="/docs/services/deep-index/webhook/integrations"
                 >
                   <div class="integration">
-                    <ImageLoader src="/images/integrations/automate.io.svg" />
-                    <div>
-                      Learn how to integrate the Kenshi Deep Index with
-                      <OutboundLink href="https://automate.io">
-                        automate.io.
-                      </OutboundLink>
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-              <Column sm={4} lg={8}>
-                <ClickableTile
-                  href="/docs/services/deep-index/webhook/integrations"
-                >
-                  <div class="integration">
                     <ImageLoader src="/images/integrations/webhooks.png" />
                     <div>
                       Learn how to integrate the Kenshi Deep Index with
