@@ -75,7 +75,7 @@
               </Column>
             </Row>
             <Row>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/docs/services/deep-index/sync">
                   <h4>Deep Index Sync</h4>
                   <div class="body">
@@ -84,7 +84,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/docs/services/deep-index/graphql">
                   <h4>Deep Index GraphQL</h4>
                   <div class="body">
@@ -93,7 +93,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/docs/services/deep-index/mql">
                   <h4>Deep Index MQL</h4>
                   <div class="body">
@@ -102,7 +102,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/docs/services/deep-index/webhook">
                   <h4>Deep Index R-API</h4>
                   <div class="body">
@@ -129,7 +129,7 @@
               </Column>
             </Row>
             <Row>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/docs/services/vrf">
                   <h4>VRF</h4>
                   <div class="body">
@@ -161,7 +161,7 @@
               </Column>
             </Row>
             <Row>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/dashboard">
                   <h4>Dashboard</h4>
                   <div class="body">
@@ -170,7 +170,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/docs">
                   <h4>Documentation</h4>
                   <div class="body">
@@ -179,7 +179,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="https://github.com/KenshiTech">
                   <h4>GitHub</h4>
                   <div class="body">
@@ -188,7 +188,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="https://blog.kenshi.io/">
                   <h4>Medium</h4>
                   <div class="body">
@@ -197,7 +197,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="https://t.me/KenshiTechDevelopers">
                   <h4>Kenshi Dev Talk</h4>
                   <div class="body">
@@ -206,7 +206,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="https://discord.gg/KenshiTech">
                   <h4>Discord</h4>
                   <div class="body">
@@ -215,7 +215,7 @@
                   </div>
                 </ClickableTile>
               </Column>
-              <Column max={4}>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="https://www.npmjs.com/org/kenshi.io">
                   <h4>NPM</h4>
                   <div class="body">
