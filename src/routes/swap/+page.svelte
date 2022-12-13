@@ -203,8 +203,16 @@
           </Tile>
 
           <div class="buttons">
-            <Button kind="secondary" icon={Information}>Read the docs</Button>
-            <Button kind="secondary" icon={Pancake}>PancakeSwap</Button>
+            <Button kind="secondary" href="/docs" icon={Information}>
+              Read the docs
+            </Button>
+            <Button
+              kind="secondary"
+              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+              icon={Pancake}
+            >
+              PancakeSwap
+            </Button>
           </div>
         </div>
       </Column>
@@ -248,7 +256,11 @@
               <InlineNotification kind="info">
                 <svelte:fragment slot="subtitle">
                   Want to exchange other tokens into Kenshi? You can always use
-                  <OutboundLink href="/">PancakeSwap</OutboundLink> for that.
+                  <OutboundLink
+                    href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+                  >
+                    PancakeSwap
+                  </OutboundLink> for that.
                 </svelte:fragment>
               </InlineNotification>
             </Column>

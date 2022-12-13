@@ -313,3 +313,6 @@ a.no-decoration:hover {
 .no-padding {
   padding: 0;
 }
+ol {
+  list-style: decimal;
+}

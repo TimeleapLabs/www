@@ -5,6 +5,7 @@ import { toast } from "@zerodevx/svelte-toast";
 import { makePayment } from "./dash/payments.js";
 import { makeKenshiPayment } from "./dash/payments.js";
 import { ethers } from "ethers";
+import { getRef } from "./ref.js";
 
 export class Product {
   constructor(options) {
@@ -78,6 +79,7 @@ export class Product {
       txHash,
       signature,
       timestamp,
+      refCode: getRef(),
     };
   }
 

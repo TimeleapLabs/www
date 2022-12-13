@@ -2,6 +2,8 @@
   import DefaultTags from "src/components/seo/DefaultTags.svelte";
   import { SvelteToast } from "@zerodevx/svelte-toast";
   import { page } from "$app/stores";
+  import { setRef } from "$lib/ref";
+  import { onMount } from "svelte";
   import Navbar from "src/components/Navbar.svelte";
 
   $: needsHead = !$page?.url?.pathname?.startsWith("/docs");
@@ -13,6 +15,8 @@
   $: if (typeof document !== "undefined") {
     document.documentElement.setAttribute("theme", theme);
   }
+
+  onMount(setRef);
 </script>
 
 <Navbar />
