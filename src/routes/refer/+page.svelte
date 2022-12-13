@@ -34,7 +34,7 @@
     },
     {
       id: "other",
-      name: "Other",
+      name: "Regular",
       info: "Don't fit any of the other options? You can still earn by referring clients",
       icon: FaceCool,
     },
@@ -201,7 +201,9 @@
             <Column>
               <p>
                 Tell us how you promote our brand or products. Be sure to
-                include links so we can find your content.
+                include links so we can find your content. Your referral type
+                will fall back to "Regular" if we cannot verify your content
+                using the information you provide here.
               </p>
             </Column>
           </Row>
