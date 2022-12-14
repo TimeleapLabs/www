@@ -55,8 +55,8 @@
     referralLinkToDocs = `https://kenshi.io/docs/?ref=${refCode}`;
   }
 
-  const selectPerson = ({ detail }) => {
-    refType = detail.address;
+  const selectRefType = ({ detail }) => {
+    refType = detail;
   };
 
   const save = async () => {
@@ -135,7 +135,7 @@
           <Row>
             <Column>
               <div class="persons">
-                <TileGroup on:select={selectPerson} legend="Referrer type">
+                <TileGroup on:select={selectRefType} legend="Referrer type">
                   {#each persons as person}
                     <RadioTile
                       value={person.id}
