@@ -1,42 +1,8 @@
 <script>
-  import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
   // import Button from "src/components/Button.svelte";
   import CardButton from "src/components/CardButton.svelte";
   import Article from "src/components/Article.svelte";
-  import InfoCard from "src/components/InfoCard.svelte";
-  import Product from "src/components/Product.svelte";
-  import Usage from "src/components/Usage.svelte";
-
-  import VR from "src/icons/VR.svelte";
-  import Dice from "src/icons/Dice.svelte";
-  import Gamepad from "src/icons/Gamepad.svelte";
-  import Slot from "src/icons/Slot.svelte";
-  import Shuffle from "src/icons/Shuffle.svelte";
-
-  import DB from "src/icons/DB.svelte";
-  import D20 from "src/icons/D20.svelte";
-  import Magnify from "src/icons/Magnify.svelte";
-  import CloudSensor from "src/icons/CloudSensor.svelte";
-
-  //import ChevronRight from "src/icons/ChevronRight.svelte";
-  import External from "src/icons/External.svelte";
-  import Arrow from "src/icons/Arrow.svelte";
-
-  import BinaryLock from "src/icons/BinaryLock.svelte";
-  import LiquidUp from "src/icons/LiquidUp.svelte";
-  import Shield from "src/icons/Shield.svelte";
-  import Code from "src/icons/Code.svelte";
-
-  import LayerPlus from "src/icons/LayerPlus.svelte";
-  import Infinity from "src/icons/Infinity.svelte";
-  import Bolt from "src/icons/Bolt.svelte";
-  import CheckDouble from "src/icons/CheckDouble.svelte";
-  import BellOn from "src/icons/BellOn.svelte";
-  import ChartNetwork from "src/icons/ChartNetwork.svelte";
-
-  import Gist from "src/components/Gist.svelte";
-  import Alert from "src/components/Alert.svelte";
 
   import { Grid, Row, Column, Tile } from "carbon-components-svelte";
   import { Button, Content, ClickableTile } from "carbon-components-svelte";
@@ -45,14 +11,7 @@
   import { ImageLoader, OutboundLink, Link } from "carbon-components-svelte";
 
   import { Dashboard, Book, ChevronRight } from "carbon-icons-svelte";
-  import {
-    LogoPython,
-    ArrowDown,
-    ArrowDownRight,
-    ArrowShiftDown,
-  } from "carbon-icons-svelte";
-
-  import { Connect } from "carbon-pictograms-svelte";
+  import { LogoPython, ArrowDown, ArrowDownRight } from "carbon-icons-svelte";
 
   import Go from "src/icons/Go.svelte";
   import Node from "src/icons/Node.svelte";

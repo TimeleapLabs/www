@@ -1,0 +1,16 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+/contracts/build
+
+.vercel
+.vercel_build_output
+.env
+.vscode
+.assets
+
+/static/images/originals
+src/routes/docs/**/*.svelte
+src/lib/docs.nav.js
