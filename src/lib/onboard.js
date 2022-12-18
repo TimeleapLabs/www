@@ -1,6 +1,13 @@
 import Onboard from "@web3-onboard/core";
 import walletConnectModule from "@web3-onboard/walletconnect";
 import injectedModule from "@web3-onboard/injected-wallets";
+import uauthModule from "@web3-onboard/uauth";
+
+const uauth = uauthModule({
+  clientID: "d2c1ef00-bab8-4f6d-b851-8fe9926ae01e",
+  redirectUri: "http://localhost:5173/",
+  scope: "openid wallet",
+});
 
 const appName = "Kenshi";
 
@@ -71,7 +78,7 @@ const options = {
       rpcUrl: "https://api.avax.network/ext/bc/C/rpc",
     },
   ],
-  wallets: [walletConnect, injected],
+  wallets: [walletConnect, injected, uauth],
 };
 
 export const onboard = Onboard(options);

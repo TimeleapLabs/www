@@ -33,6 +33,7 @@
     "@sveltejs/kit": "^1.0.1",
     "@web3-onboard/core": "^2.2.10",
     "@web3-onboard/injected-wallets": "^2.0.7",
+    "@web3-onboard/uauth": "^2.0.1",
     "@web3-onboard/walletconnect": "^2.0.1",
     "bnc-onboard": "^1.39.1",
     "cadey": "^1.0.5",
