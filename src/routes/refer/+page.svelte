@@ -1,14 +1,9 @@
 <script>
   import Footer from "src/components/Footer.svelte";
 
-  import { onboard } from "src/lib/onboard";
   import { wallet } from "src/stores/wallet";
-
   import { toast } from "@zerodevx/svelte-toast";
-  import { ethers } from "ethers";
   import { SpinLine } from "svelte-loading-spinners";
-  import formatThousands from "format-thousands";
-
   import { Content, Tile, Grid, Row, Column } from "carbon-components-svelte";
   import { TileGroup, RadioTile, Button } from "carbon-components-svelte";
   import { TextArea, CodeSnippet } from "carbon-components-svelte";
