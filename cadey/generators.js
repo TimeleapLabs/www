@@ -54,7 +54,7 @@ export const getDocPage = (
     <script>
       import DocPage from "src/components/DocPage.svelte";
       import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
-      import { Grid, Row, Column, Link } from "carbon-components-svelte";
+      import { Grid, Row, Column, Link, OutboundLink } from "carbon-components-svelte";
       import { ProgressStep } from "carbon-components-svelte";
       import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
       ${imports};

@@ -68,7 +68,10 @@ export const macros = {
   },
   link(options, ...args) {
     const [href, ...text] = args.slice(1);
-    return `<Link href="${href}">${text ? asText(text) : href}</Link>`;
+    const local = href.startsWith("https://kenshi.io") || href.startsWith("/");
+    const component = local ? "Link" : "OutboundLink";
+    const content = text ? asText(text) : href;
+    return `<${component} href="${href}">${content}</${component}>`;
   },
   image(options, ...args) {
     this.components = { ...this.components, Image: true };
