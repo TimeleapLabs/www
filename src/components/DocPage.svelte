@@ -1,15 +1,12 @@
 <script>
-  import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Card from "src/components/Card.svelte";
   import Nav from "src/components/docs/Nav.svelte";
 
   import { SvelteToast } from "@zerodevx/svelte-toast";
 
-  import { Button, Tile, Content } from "carbon-components-svelte";
-  import { Grid, Row, Column } from "carbon-components-svelte";
+  import { Button, Content } from "carbon-components-svelte";
+  import { Grid, UnorderedList } from "carbon-components-svelte";
   import { ChevronLeft, ChevronRight } from "carbon-icons-svelte";
-  import { ProgressIndicator } from "carbon-components-svelte";
   import { Dropdown } from "carbon-components-svelte";
   import { EarthEuropeAfrica } from "carbon-icons-svelte";
 
@@ -32,25 +29,9 @@
       .querySelector(`[href="${window.location.hash}"]`)
       .classList.add("active");
   };
-
-  export let progress = 0;
-
-  const scroll = () => {
-    const closest = [...body.querySelectorAll("h1,h2,h3,h4,h5")]
-      .map((el) => {
-        const offset = el.getBoundingClientRect();
-        const distance = Math.abs(offset.top - window.pageYOffset);
-        return { el, distance };
-      })
-      .sort((a, b) => a.distance - b.distance)
-      .shift();
-    const element = headings.querySelector(`[href="#${closest.el.id}"]`);
-    if (!element) return;
-    progress = [...element.parentElement.children].indexOf(element);
-  };
 </script>
 
-<svelte:window on:hashchange={hashchange} on:scroll={scroll} />
+<svelte:window on:hashchange={hashchange} />
 
 <Content class="docs-page">
   <div class="docs">
@@ -96,9 +77,9 @@
       <ExpressiveHeading size={7}>
         <h5>On this page</h5>
       </ExpressiveHeading>
-      <ProgressIndicator vertical currentIndex={progress}>
+      <UnorderedList>
         <slot name="headings" />
-      </ProgressIndicator>
+      </UnorderedList>
     </div>
   </div>
 </Content>
@@ -264,6 +245,9 @@
     100% {
       opacity: 1;
     }
+  }
+  .headings > :global(ul) {
+    padding-left: 1em;
   }
   .headings {
     padding-left: 1em;
