@@ -15,3 +15,5 @@ features offered by the Oracle Network and how to create and deploy your oracle.
   security
   examples
   price]
+
+[alert warning Be sure to read the security considerations before deploying your oracle.]
