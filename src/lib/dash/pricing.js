@@ -13,5 +13,9 @@ export const getReverseAPIPrice = (duration, requests) => {
   return Math.round((duration * 24.95 + (requests * 25) / 1e6) * 100) / 100;
 };
 
+export const getOraclePrice = (calls, duration) => {
+  return Math.round((duration * 49.95 + (calls * 2) / 10000) * 100) / 100;
+};
+
 export const getGraphQLPrice = (requests) =>
   Math.round((requests / 1e6) * 24.95 * 100) / 100;
