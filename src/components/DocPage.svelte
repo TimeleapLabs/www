@@ -231,6 +231,9 @@
   .docs .body :global(h5) {
     margin: 0;
   }
+  .docs .body :global(b) {
+    font-weight: 600;
+  }
   .docs .body > :global(.card) {
     display: flex;
     gap: 1.25em;

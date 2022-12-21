@@ -104,7 +104,11 @@
           </Row>
           <Row>
             <Column>
-              <Button kind="secondary" href="/docs/services/vrf" icon={Book}>
+              <Button
+                kind="secondary"
+                href="/docs/services/oracle-network/vrf"
+                icon={Book}
+              >
                 Documentation
               </Button>
               <ConnectButton primary />
@@ -138,7 +142,10 @@
             <ToolbarContent>
               <ToolbarSearch persistent shouldFilterRows bind:filteredRowIds />
               <ToolbarMenu>
-                <ToolbarMenuItem primaryFocus href="/docs/services/vrf">
+                <ToolbarMenuItem
+                  primaryFocus
+                  href="/docs/services/oracle-network/vrf"
+                >
                   Documentation
                 </ToolbarMenuItem>
               </ToolbarMenu>

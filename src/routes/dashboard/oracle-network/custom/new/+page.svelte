@@ -218,7 +218,7 @@
                 We will send matching events to this endpoint for processing,
                 the returned response will be sent to your smart contact. This
                 endpoint should implement the
-                <Link href="/docs/services/oracle-network/custom/endpoint">
+                <Link href="/docs/services/oracle-network/custom/protocol">
                   Kenshi Custom Oracle Protocol.
                 </Link>
               </p>

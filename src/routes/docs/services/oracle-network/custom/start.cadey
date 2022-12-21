@@ -1,0 +1,29 @@
+[heading Getting started]
+
+Getting started with the Kenshi Oracle Network is easy. The logic part of your oracle can
+be developed in the language of your choice, it only needs to implement the Custom Oracle Protocol.
+You can host the logic part on any serverless (or serverful) solutions such as
+
+[list
+  [: AWS Lambda]
+  [: Vercel]
+  [: Cloudflare Workers]
+  [: Microsoft Azure Functions]
+  [: Google Cloud Functions]
+  [: Netlify Functions]]
+  
+and others.
+
+Once you're ready with the logic side of your oracle, you can head to the [link /dashboard Kenshi Dashboard]
+and click on the "Custom Oracle" tile. Follow the instructions on the "New Oracle" form to deploy your
+custom oracle.
+
+[heading :size 2 Gas fees]
+
+Once you deploy your oralce, you can see the address of the gas wallet associated with your oralce on the
+[link /dashboard/oracle-network/custom Custom Oracle Dashboard.] You must supply enough gas to this address
+for oracle network to fulfil your oracle's requests.
+
+[alert warning
+       Once you transfer gas to the associated address, the gas belongs to Kenshi and its Oracle Network
+       and is not refundable. Make sure you don't supply more gas than your oracle requires.]

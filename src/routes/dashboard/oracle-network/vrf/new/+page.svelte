@@ -102,7 +102,11 @@
             </div>
           </ClickableTile>
 
-          <Button kind="secondary" href="/docs/services/vrf" icon={Information}>
+          <Button
+            kind="secondary"
+            href="/docs/services/oracle-network/vrf"
+            icon={Information}
+          >
             Read the docs
           </Button>
           <ConnectButton primary />

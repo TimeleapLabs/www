@@ -1,0 +1,13 @@
+[heading Price]
+
+Custom oracles hosted on Kenshi Oracle Network cost a fixed monthly fee of $49.95,
+plus $0.0002 for each request processed by the oracle.
+
+[heading :size 2 Specs and Limitations]
+
+[list 
+  [: The Oracle Network guarantees a sub-second delay for sourcing events from the blockchain.]
+  [: The maximum time for processing each request (getting a response from your endpoint and
+     sending it to the blockchain) is 3 minutes.]
+  [: The Oracle Network's event dispatcher retries delivery on failure. Retries happen three
+     times immediately after a failure, and a total of 7 times in the next 48 hours.]]

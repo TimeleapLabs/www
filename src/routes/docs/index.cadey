@@ -1,7 +1,7 @@
 [heading Documentation]
 
 Kenshi is a Swiss-based blockchain company offering services such as
-[link /docs/services/vrf VRF] oracle,
+[link /docs/services/oracle-network/vrf VRF] oracle,
 [link /docs/services/deep-index Deep Indexing],
 [link /docs/services/deep-index/graphql GraphQL], and
 [link /docs/services/deep-index/webhook Reverse-API] (webhooks)

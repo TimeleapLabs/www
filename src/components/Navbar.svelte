@@ -131,7 +131,7 @@
             </Row>
             <Row>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="/docs/services/vrf">
+                <ClickableTile href="/docs/services/oracle-network/vrf">
                   <h4>VRF</h4>
                   <div class="body">
                     Looking for randomness on the blockchain? Kenshi delivers
@@ -286,7 +286,7 @@
         />
       </SideNavMenu>
       <SideNavMenu text="Oracle Network">
-        <SideNavMenuItem href="/docs/services/vrf" text="VRF" />
+        <SideNavMenuItem href="/docs/services/oracle-network/vrf" text="VRF" />
       </SideNavMenu>
     </SideNavMenu>
     <SideNavMenu text="Developers">

@@ -16,7 +16,7 @@ data from the blockchain.
 
 [heading :size 3 VRF Oracle]
 
-Kenshi's [link /docs/services/vrf upgradable VRF oracle] (based on IETF ECVRF draft 10)
+Kenshi's [link /docs/services/oracle-network/vrf upgradable VRF oracle] (based on IETF ECVRF draft 10)
 is fully functional and deployed to four blockchains: Avalanche, BNB Chain, Fantom, and Polygon.
 We published open-source libraries for generating, requesting, and verifying randomness on-chain
 and off-chain. This service is deployed to the Kenshi serverless oracle network.

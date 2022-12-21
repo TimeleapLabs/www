@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 
 import { asText, asArgList, unIndent, toUrl } from "./utils.js";
-import { arrayOrNotWhite } from "./utils.js";
+import { arrayOrNotWhite, removeWhites } from "./utils.js";
 
 export const slug = (str) => slugify(str, { lower: true, strict: true });
 
@@ -65,6 +65,24 @@ export const macros = {
     const { title } = options;
     const content = asText(args);
     this.tabs = [...(this.tabs || []), { title: asText(title), content }];
+  },
+  list(options, ...args) {
+    const { type = "unordered" } = options;
+    const items = args
+      .filter((arg) => typeof arg != "string" || !arg.match(/^[ \n]+$/))
+      .map((arg) => (Array.isArray(arg) ? arg.join("") : arg))
+      .map((item) => item.split(/\n\s*?\n/g))
+      .map((item) => item.filter(removeWhites))
+      .map((item) => item.map((line) => `<div> ${line} </div>`))
+      .map((item) => item.join("\n"))
+      .map((item) => `<ListItem> ${item} </ListItem>`)
+      .join("\n");
+    const el = type == "unordered" ? "UnorderedList" : "OrderedList";
+    this.components = { ...this.components, Toc: true };
+    if (type === "unordered") {
+      this.components = { ...this.components, List: true };
+    }
+    return `<${el}> ${items} </${el}>`;
   },
   link(options, ...args) {
     const [href, ...text] = args.slice(1);

@@ -486,7 +486,11 @@
 
           <div class="buttons">
             <Button href="/dashboard" icon={Dashboard}>Subscribe now</Button>
-            <Button href="/docs/services/vrf" kind="secondary" icon={Book}>
+            <Button
+              href="/docs/services/oracle-network/vrf"
+              kind="secondary"
+              icon={Book}
+            >
               Documentation
             </Button>
           </div>
