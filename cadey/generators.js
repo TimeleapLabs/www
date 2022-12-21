@@ -2,19 +2,13 @@ import { slug } from "./utils.js";
 
 export const getHeadings = (headings) =>
   headings
-    .map(
-      (h, i) => `
-        <ProgressStep 
-          href="#${slug(h.title)}"
-          label={"${h.title}"}
-          secondaryLabel={"${h.hint}"}
-          complete={progress > ${i}} />`
-    )
+    .map((h) => `<Link href="#${slug(h.title)}">${h.title}</Link>`)
+    .map((l) => `<ListItem>${l}</ListItem>`)
     .join("\n");
 
 const componentsMap = {
   Alert: `import { InlineNotification } from "carbon-components-svelte"`,
-  Toc: `import { OrderedList, ListItem } from "carbon-components-svelte"`,
+  Toc: `import { OrderedList } from "carbon-components-svelte"`,
   Code: `import { CodeSnippet } from "carbon-components-svelte"`,
   Table: `import { DataTable } from "carbon-components-svelte"`,
   Tab: `import { Tabs, Tab, TabContent, Tile } from "carbon-components-svelte"`,
@@ -55,21 +49,19 @@ export const getDocPage = (
       import DocPage from "src/components/DocPage.svelte";
       import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
       import { Grid, Row, Column, Link, OutboundLink } from "carbon-components-svelte";
-      import { ProgressStep } from "carbon-components-svelte";
+      import { ListItem } from "carbon-components-svelte";
       import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
       ${imports};
 
       const next = ${next};
       const prev = ${prev};
-
-      let progress = 0;
     </script>
 
     <svelte:head>
       ${tags}
     </svelte:head>
 
-    <DocPage {next} {prev} bind:progress>
+    <DocPage {next} {prev}>
       ${parsed}
       <svelte:fragment slot="breadcrumb">${genBread(bread)}</svelte:fragment>
       <svelte:fragment slot="headings">${headings}</svelte:fragment>
