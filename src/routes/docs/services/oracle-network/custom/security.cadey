@@ -37,4 +37,5 @@ Certain types of data are easily verifable on the blockchain. For example, rando
 by a VRF. Other types of data, such as market data, sport or weather are not so verifiable. However,
 it is easy to verify the sender of such data, and to make sure they are not manipulated after being 
 generated and verified by your oracle endpoint.
-You can use [link https://eips.ethereum.org/EIPS/eip-712 EIP712] to sign and verify them on the blockchain.
+You can use [link https://eips.ethereum.org/EIPS/eip-712 EIP712] to sign and later verify them on
+the blockchain.
