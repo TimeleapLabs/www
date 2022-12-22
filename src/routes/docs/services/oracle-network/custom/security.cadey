@@ -8,7 +8,7 @@ required, they are highly recommended.
 
 Gas fees stored in associated gas wallets are not insured. Kenshi protects the stored
 gas on a best effort basis. Addresses are derived from a common BIP39 seed, stored in
-a secret manager for API use. Make sure you do not supply more gas than your oracle 
+a secret manager for API usage. Make sure you do not supply more gas than your oracle 
 needs. You can always check the balance of this address in a call to your oracle endpoint
 and supply more gas if needed.
 

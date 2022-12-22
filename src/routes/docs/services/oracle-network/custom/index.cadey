@@ -8,6 +8,8 @@ features offered by the Oracle Network and how to create and deploy your oracle.
   You can use the BNB Chain Kenshi tokens to pay for any of the Kenshi services
   on any of the supported chains.]
 
+[alert warning Be sure to read the security considerations before deploying your oracle.]
+
 [toc
   features
   start
@@ -16,4 +18,3 @@ features offered by the Oracle Network and how to create and deploy your oracle.
   examples
   price]
 
-[alert warning Be sure to read the security considerations before deploying your oracle.]
