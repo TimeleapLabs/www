@@ -28,8 +28,8 @@ results for an already fulfilled request.
 
 It is quite easy to manipulate certain types of data. For example, if you are working with market
 data, an attacker could put an order when the market conditions are in their favor. To prevent
-such attacks you can employ an averaging mechanism that best fits your use case (for example use
-a one hour average or percentile of of an asset's price, instead of its spot price).
+such attacks you can employ an averaging mechanism that best fits your use case (for example, use
+a one hour average or percentile of an asset's price, instead of its spot price).
 
 [heading :size 2 Signature]
 
