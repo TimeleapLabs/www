@@ -16,8 +16,8 @@ and supply more gas if needed.
 
 Kenshi caches requests as to not send an event for processing twice, and to not deliver it
 to your smart contract twice. In case of retries, Kenshi re-sends events to your endpoint
-to get fresh data (this useful if you're checking for market data, weather data, or any data
-that changes frequently).
+to get fresh data (this is useful if you're checking for market data, weather data, or any
+data that changes frequently).
 
 While Kenshi tries its best to prevent double-deliveries, you must make sure your smart contracts
 are [link https://en.wikipedia.org/wiki/Idempotence idempotent]. You can assign a unique "requestId"
