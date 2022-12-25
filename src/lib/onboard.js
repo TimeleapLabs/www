@@ -5,7 +5,7 @@ import uauthModule from "@web3-onboard/uauth";
 
 const uauth = uauthModule({
   clientID: "d2c1ef00-bab8-4f6d-b851-8fe9926ae01e",
-  redirectUri: "http://localhost:5173/",
+  redirectUri: "https://kenshi.io",
   scope: "openid wallet",
 });
 
