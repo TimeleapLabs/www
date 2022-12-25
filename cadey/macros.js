@@ -77,7 +77,7 @@ export const macros = {
       .map((item) => item.join("\n"))
       .map((item) => `<ListItem> ${item} </ListItem>`)
       .join("\n");
-    const el = type == "unordered" ? "UnorderedList" : "OrderedList";
+    const el = type === "unordered" ? "UnorderedList" : "OrderedList";
     if (type === "unordered") {
       this.components = { ...this.components, List: true };
     } else {
