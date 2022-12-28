@@ -3,7 +3,7 @@
 Below you can find a few sample oracles demonstrating how to develop custom oracles on
 top of the Kenshi Oracle Network.
 
-[alert warning These examples are not production ready.]
+[alert warning These examples are not production ready and are provided without any warranty.]
 
 [heading :size 2 Simple Oracle]
 
