@@ -16,5 +16,5 @@ Kenshi Oracle Network takes care of the following for your oracles:
      need to be unique and in sequential order; blockchain doesn't support the concept of parallel processing.
      Kenshi Nonce Manager keeps your transactions in order and makes sure nonces are not skipped.]]
 
-With the Oracle Network, you can use any technology to develop your oracle, as long as you implement
-the Kenshi Custom Oracle Protocol.
+With the Oracle Network, you can use the technology of your choice to develop your oracle, as long as you
+implement the Kenshi Custom Oracle Protocol.
