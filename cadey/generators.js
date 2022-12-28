@@ -7,12 +7,12 @@ export const getHeadings = (headings) =>
     .join("\n");
 
 const componentsMap = {
-  Alert: `import { InlineNotification } from "carbon-components-svelte"`,
-  Toc: `import { OrderedList } from "carbon-components-svelte"`,
-  List: `import { UnorderedList } from "carbon-components-svelte"`,
-  Code: `import { CodeSnippet } from "carbon-components-svelte"`,
-  Table: `import { DataTable } from "carbon-components-svelte"`,
-  Tab: `import { Tabs, Tab, TabContent, Tile } from "carbon-components-svelte"`,
+  Alert: 'import { InlineNotification } from "carbon-components-svelte"',
+  Toc: 'import { OrderedList } from "carbon-components-svelte"',
+  List: 'import { UnorderedList } from "carbon-components-svelte"',
+  Code: 'import { CodeSnippet } from "carbon-components-svelte"',
+  Table: 'import { DataTable } from "carbon-components-svelte"',
+  Tab: 'import { Tabs, Tab, TabContent, Tile } from "carbon-components-svelte"',
   Image: "src/components/gallery/Image.svelte",
   Gallery: "src/components/gallery/Gallery.svelte",
   TeamMember: "src/components/TeamMember.svelte",

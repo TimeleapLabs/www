@@ -1,8 +1,8 @@
 import { decode, prove, getFastVerifyComponents } from "@kenshi.io/node-ecvrf";
 import { createHash } from "crypto";
-import elliptic from "elliptic";
+import Elliptic from "elliptic";
 
-const EC = new elliptic.ec("secp256k1");
+const EC = new Elliptic.ec("secp256k1");
 
 export const getPublicKey = (privateKey) => {
   const key = EC.keyFromPrivate(privateKey);
@@ -18,7 +18,9 @@ const fromHex = (hex) => Buffer.from(hex.slice(2));
 
 const hash = (...args) => {
   const sha256 = createHash("sha256");
-  for (const arg of args) sha256.update(arg);
+  for (const arg of args) {
+    sha256.update(arg);
+  }
   return sha256.digest().toString("hex");
 };
 
