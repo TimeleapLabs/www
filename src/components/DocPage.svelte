@@ -4,11 +4,11 @@
 
   import { SvelteToast } from "@zerodevx/svelte-toast";
 
-  import { Button, Content } from "carbon-components-svelte";
-  import { Grid, UnorderedList } from "carbon-components-svelte";
+  import { Button, Content, Tile } from "carbon-components-svelte";
+  import { Grid, Row, Column, UnorderedList } from "carbon-components-svelte";
   import { ChevronLeft, ChevronRight } from "carbon-icons-svelte";
-  import { Dropdown } from "carbon-components-svelte";
-  import { EarthEuropeAfrica } from "carbon-icons-svelte";
+  import { Search, Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
+  import { debounce } from "$lib/utils";
 
   import ExpressiveHeading from "./carbon/ExpressiveHeading.svelte";
 
@@ -29,6 +29,46 @@
       .querySelector(`[href="${window.location.hash}"]`)
       .classList.add("active");
   };
+
+  let searchQuery;
+  let searchExpanded = false;
+  let searchResults = [];
+  let isSearching = false;
+
+  const search = debounce(async (query) => {
+    searchResults = [];
+    if (!query || query.length < 3) {
+      return;
+    }
+    isSearching = true;
+    searchResults = [];
+    const req = await fetch(`/api/docs/search?q=${encodeURIComponent(query)}`);
+    searchResults = await req.json();
+    console.log({ searchResults });
+    isSearching = false;
+  });
+
+  $: search(searchQuery);
+
+  const getSearchResultText = (result) => {
+    const text = result.text.split("\n").join(" ");
+    const index = text.toLowerCase().indexOf(searchQuery.toLowerCase());
+    const start =
+      index < 150
+        ? 0
+        : index - 150 + text.slice(0, index).slice(-150).indexOf(" ");
+    const end =
+      index + 150 > text.length
+        ? text.length
+        : index + text.slice(index, index + 150).lastIndexOf(" ");
+    return [
+      start > 0 ? "..." : "",
+      text.slice(start, end),
+      end < text.length ? "..." : "",
+    ]
+      .filter(Boolean)
+      .join("");
+  };
 </script>
 
 <svelte:window on:hashchange={hashchange} />
@@ -40,20 +80,46 @@
     <div class="body" bind:this={body}>
       <div class="breadcrumb">
         <slot name="breadcrumb" />
-        <div class="language">
-          <EarthEuropeAfrica />
-          <Dropdown
-            hideLabel
-            titleText="Language"
-            items={[{ id: "english", text: "English" }]}
-            selectedId={"english"}
+        <div class="search">
+          <Search
+            expandable
+            bind:expanded={searchExpanded}
+            bind:value={searchQuery}
+            size={"lg"}
           />
         </div>
       </div>
 
       <div class="content">
         <Grid>
-          <slot />
+          {#if isSearching}
+            Searching for "{searchQuery}"...
+          {:else if searchQuery && searchResults?.length}
+            {#each searchResults as result}
+              <Row>
+                <Column>
+                  <Tile>
+                    <div class="search-path">
+                      <Breadcrumb noTrailingSlash>
+                        {#each result.breadcrumb as { url, title }}
+                          <BreadcrumbItem href={url}>{title}</BreadcrumbItem>
+                        {/each}
+                      </Breadcrumb>
+                    </div>
+                    <div>
+                      {getSearchResultText(result)}
+                    </div>
+                  </Tile>
+                </Column>
+              </Row>
+            {/each}
+          {:else if searchQuery && searchQuery.length < 3}
+            Query is too short.
+          {:else if searchQuery && !searchResults?.length}
+            No results found for "{searchQuery}"!
+          {:else}
+            <slot />
+          {/if}
         </Grid>
       </div>
 
@@ -96,11 +162,6 @@
   .breadcrumb > :global(nav) {
     flex: 1;
   }
-  .language {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-  }
   .body {
     border-left: 1px solid var(--cds-ui-03);
     border-right: 1px solid var(--cds-ui-03);
@@ -125,6 +186,7 @@
     text-overflow: ellipsis;
     display: inline-block;
   }
+
   @media (max-width: 640px) {
     .breadcrumb {
       padding: 0;
@@ -134,8 +196,8 @@
       align-items: flex-start;
       gap: 1em;
     }
-    .language {
-      align-self: flex-end;
+    .search {
+      width: calc(100% - 0.25em);
     }
   }
   :global(.docs-page) {
