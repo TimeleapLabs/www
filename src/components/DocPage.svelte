@@ -92,7 +92,9 @@
       </div>
 
       <div class="content">
-        <Grid noGutter={searchQuery && searchResults?.length}>
+        <Grid
+          noGutter={innerWidth < 640 && searchQuery && searchResults?.length}
+        >
           {#if isSearching}
             Searching for "{searchQuery}"...
           {:else if searchQuery && searchResults?.length}
