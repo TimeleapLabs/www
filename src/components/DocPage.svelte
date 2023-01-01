@@ -30,6 +30,7 @@
       .classList.add("active");
   };
 
+  let innerWidth = 1600;
   let searchQuery;
   let searchExpanded = false;
   let searchResults = [];
@@ -71,7 +72,7 @@
   };
 </script>
 
-<svelte:window on:hashchange={hashchange} />
+<svelte:window on:hashchange={hashchange} bind:innerWidth />
 
 <Content class="docs-page">
   <div class="docs">
@@ -82,7 +83,7 @@
         <slot name="breadcrumb" />
         <div class="search">
           <Search
-            expandable
+            expandable={innerWidth > 640}
             bind:expanded={searchExpanded}
             bind:value={searchQuery}
             size={"lg"}
@@ -195,10 +196,15 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 1em;
+      flex-direction: column-reverse;
     }
     .search {
       width: calc(100% - 0.25em);
     }
+  }
+  .search-path :global(.bx--breadcrumb) {
+    display: inline-flex;
+    flex-wrap: wrap;
   }
   :global(.docs-page) {
     margin-left: 0 !important;
