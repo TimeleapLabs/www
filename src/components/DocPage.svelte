@@ -92,7 +92,7 @@
       </div>
 
       <div class="content">
-        <Grid>
+        <Grid noGutter={searchQuery && searchResults?.length}>
           {#if isSearching}
             Searching for "{searchQuery}"...
           {:else if searchQuery && searchResults?.length}
@@ -186,21 +186,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
-  }
-
-  @media (max-width: 640px) {
-    .breadcrumb {
-      padding: 0;
-      padding-bottom: 0.5em;
-      padding-left: 0.5em;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1em;
-      flex-direction: column-reverse;
-    }
-    .search {
-      width: calc(100% - 0.25em);
-    }
   }
   .search-path :global(.bx--breadcrumb) {
     display: inline-flex;
@@ -348,6 +333,21 @@
     .docs :global(.docs-side-nav),
     .headings {
       display: none;
+    }
+    .breadcrumb {
+      padding: 0;
+      padding-bottom: 0.5em;
+      padding-left: 0.5em;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1em;
+      flex-direction: column-reverse;
+    }
+    .search {
+      width: calc(100% - 0.25em);
+    }
+    .nav-buttons {
+      padding: 1em;
     }
   }
   .docs :global(.toc ol) {

@@ -34,7 +34,7 @@ const genBread = (bread) => {
   const items = bread
     .map((c) => `<BreadcrumbItem href="${c.url}">${c.title}</BreadcrumbItem>`)
     .join("\n");
-  return `<Breadcrumb>${items}\n${lastItem}</Breadcrumb>`;
+  return `<Breadcrumb noTrailingSlash>${items}\n${lastItem}</Breadcrumb>`;
 };
 
 export const getDocPage = (
