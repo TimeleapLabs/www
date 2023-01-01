@@ -30,29 +30,25 @@ for oracle network to fulfil your oracle's requests.
 
 [heading :size 2 Nonce management]
 
-Understanding how nonce management works within the Kenshi Oracle Network is crucial. Kenshi Nonce
-Manager keeps track of the last nonce used to send a transaction from your oracle. For each oracle
-request, the nonce manager assigns a nonce to the request and updates the tracked nonce in the database.
+The Kenshi Nonce Manager is an Ethereum compatible nonce management solution by Kenshi for sending
+transactions in parallel. It is crucial to understand how the Kenshi
+[link https://ethereum.stackexchange.com/questions/39790/concurrency-patterns-for-account-nonce Nonce Manager]
+works. For each request to your smart contract, the Kenshi Nonce Manager:
 
-Kenshi estimates the gas required for fulfilling the oracle request and sends the transaction with
-the assigned nonce and the estimated gas prices. For a total of three times, and if a transaction
-doesn't get approved within a minute, Kenshi increases the gas fee and resends the transaction.
+[list :type ordered
+  [: Assigns a nonce, keeping track of the last used nonce in the database,]
+  [: Estimates the gas required to fulfil the request,]
+  [: Uses the gas estimate and the assigned nonce to sign and send a transaction to fulfil the request,]
+  [: Increases the gas and resends the transaction if the transaction doesn't get approved within a minute,]
+  [: Burns the nonce by re-using it in a zero-eth transfer transaction if transaction isn't fulfilled after
+     three retries,]
+  [: Re-schedules the request fulfilment for later if the assigned nonce is burned.]]
 
-Transactions on the blockchain need to be sequential. If an address sends multiple transactions to the
-blockchain and the one with the smallest nonce isn't approved, validators won't pick up any remaining
-transactions for processing. In simpler words, all future transactions will be delayed until the first
-transaction goes through.
-
-To prevent future transactions from getting stuck, if a transaction still needs to be approved after
-increasing the gas fee three times, the nonce manager will burn the assigned nonce and reschedule,
-fulfilling the request at a later time. Burning the nonce happens by reusing it in a zero Eth transfer
-transaction, which effectively cancels the original transaction. Burning nonce still uses some gas.
-
-If too many requests get canceled due to network congestion or any other reason, the Nonce Manager
-will eventually burn the entire gas in the oracle's wallet because of the above process. The Kenshi
-Nonce Manager tries to prevent such scenarios and keep the nonces in order. However, Kenshi cannot
+If there are gaps in the nonce or there are too many canceled transactions due to errors such as network
+congestion or RPC node failures, the Nonce Manager will eventually burn the entire gas in the oracle's wallet.
+The Kenshi Nonce Manager tries to prevent such scenarios and keep the nonces in order. However, Kenshi cannot
 guarantee the procedure is error-free.
 
-To prevent catastrophic events, Kenshi allows adjusting the maximum number of unresolved requests
-sent to the blockchain from your oracle. When choosing a number for this parameter, you should consider
-the risks involved in nonce management, as well as the needs of your application.
+To prevent catastrophic events, Kenshi allows adjusting the maximum number of unresolved requests sent to the
+blockchain from your oracle. When choosing a number for this parameter, you should consider the risks involved
+in nonce management, as well as the needs of your application.
