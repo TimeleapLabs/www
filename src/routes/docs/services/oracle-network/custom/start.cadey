@@ -20,7 +20,7 @@ custom oracle.
 
 [heading :size 2 Gas fees]
 
-Once you deploy your oralce, you can see the address of the gas wallet associated with your oralce on the
+Once you deploy your oracle, you can see the address of the gas wallet associated with your oracle on the
 [link /dashboard/oracle-network/custom Custom Oracle Dashboard.] You must supply enough gas to this address
 for oracle network to fulfil your oracle's requests.
 
