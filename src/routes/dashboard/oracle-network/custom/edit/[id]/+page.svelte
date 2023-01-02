@@ -6,7 +6,7 @@
   import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
   import { TextInput } from "carbon-components-svelte";
   import { NumberInput } from "carbon-components-svelte";
-  import { TextArea } from "carbon-components-svelte";
+  import { TextArea, CodeSnippet } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
   import { Tooltip, InlineNotification } from "carbon-components-svelte";
   import { Email, Information } from "carbon-icons-svelte";
@@ -430,6 +430,26 @@
                   </TabContent>
                   <TabContent>
                     <Grid fullWidth noGutter>
+                      <Row>
+                        <Column>
+                          <ExpressiveHeading size={2}>
+                            Add gas
+                          </ExpressiveHeading>
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <p>
+                            To add gas (eth) to your oracle, send them directly
+                            to the following wallet address:
+                          </p>
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <CodeSnippet code={oracleFromId?.gasWallet} />
+                        </Column>
+                      </Row>
                       <Row>
                         <Column>
                           <ExpressiveHeading size={2}>

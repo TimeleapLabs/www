@@ -11,7 +11,7 @@ export const handler = async ({ body }) => {
     statusCode: 200,
     body: JSON.stringify({
       method: "setBalance",
-      args: [balance.toString()],
+      args: [entry.event.args.user, entry.event.args.token, balance.toString()],
       maxGas: "100000000000000", // 0.0001 ETH
       abort: false,
     }),

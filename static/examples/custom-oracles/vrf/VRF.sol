@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import "@kenshi.io/vrf-consumer/contracts/lib/VRFUtils.sol";
+import "@kenshi.io/vrf-consumer/contracts/VRFUtils.sol";
 
-contract VRF {
-    uint256 requestId;
+contract VRFOracle {
+    uint256 _requestId;
     mapping(uint256 => bool) alreadyFulfilled;
 
     event RandomnessRequest(uint256 requestId);
@@ -22,7 +22,7 @@ contract VRF {
      * Oracle Network and sent to your oracle for processing
      */
     function requestRandomness() external {
-        emit RandomnessRequest(requestId++);
+        emit RandomnessRequest(_requestId++);
     }
 
     /**
@@ -41,7 +41,7 @@ contract VRF {
     ) external {
         require(!alreadyFulfilled[requestId], "Already fulfilled");
         bool isValid = utils.fastVerify(proof, message, uPoint, vComponents);
-        require(!isValid, "Cannot verify VRF results");
+        require(isValid, "Cannot verify VRF results");
         bytes32 beta = utils.gammaToHash(proof[0], proof[1]);
         uint256 randomness = uint256(beta);
         alreadyFulfilled[requestId] = true;

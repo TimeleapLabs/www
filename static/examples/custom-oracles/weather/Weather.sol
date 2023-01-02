@@ -2,10 +2,10 @@
 pragma solidity ^0.8.17;
 
 contract Weather {
-    event WeatherRequest(uint256 lat, uint56 long);
+    event WeatherRequest(uint256 lat, uint256 long);
     event WeatherRequestFulfilled(
         uint256 lat,
-        uint56 long,
+        uint256 long,
         uint256 temperature
     );
 
@@ -17,7 +17,7 @@ contract Weather {
      * we assume lat and long are multiplied by 100 to elliminate
      * the decimal part of them
      */
-    function requestWeather(uint256 lat, uint56 long) external {
+    function requestWeather(uint256 lat, uint256 long) external {
         emit WeatherRequest(lat, long);
     }
 
@@ -27,7 +27,7 @@ contract Weather {
      */
     function setWeather(
         uint256 lat,
-        uint56 long,
+        uint256 long,
         uint256 temperature
     ) external {
         emit WeatherRequestFulfilled(lat, long, temperature);
