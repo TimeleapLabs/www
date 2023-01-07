@@ -322,7 +322,7 @@
     }
   }
   @media only screen and (max-width: 640px) {
-    :global(.card.padding) {
+    .docs :global(.card.padding) {
       padding: 1.25em;
     }
     .docs {

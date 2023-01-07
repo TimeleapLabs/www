@@ -10,7 +10,7 @@
   import { CodeSnippet } from "carbon-components-svelte";
   import { ImageLoader, OutboundLink, Link } from "carbon-components-svelte";
 
-  import { Dashboard, Book, ChevronRight } from "carbon-icons-svelte";
+  import { Dashboard, Book } from "carbon-icons-svelte";
   import { LogoPython, ArrowDown, ArrowDownRight } from "carbon-icons-svelte";
 
   import Go from "src/icons/Go.svelte";
@@ -29,7 +29,16 @@
   import Medium from "src/icons/Medium.svelte";
   import Discord from "src/icons/Discord.svelte";
 
-  import { apollo, mql, rapi, vrf } from "src/lib/snippets/all";
+  import {
+    apollo,
+    mql,
+    rapi,
+    simple,
+    vrf,
+    price,
+    weather,
+    balance,
+  } from "src/lib/snippets/all";
 </script>
 
 <!-- Hero -->
@@ -479,7 +488,14 @@
 
           <div class="fluid-paragraph-01">
             Kenshi Oracle Network is a high-performance asynchronous oracle
-            platform currently hosting the Kenshi VRF.
+            platform that allows creating and hosting custom oracles.
+          </div>
+
+          <div class="spacer" />
+
+          <div class="body-02">
+            Kenshi takes care of event sourcing, scheduling, security, error
+            handling, and data delivery so you can focus on your business.
           </div>
 
           <div class="spacer" />
@@ -506,40 +522,260 @@
           <ExpressiveHeading size={5}>
             <h3>Get started</h3>
           </ExpressiveHeading>
-          <p>Use our libraries and sample codes to get started in no time.</p>
+          <p>
+            Use one of our <Link
+              href="/docs/services/oracle-network/custom/blueprints"
+            >
+              Oracle blueprints
+            </Link> or sample codes to get started in no time.
+          </p>
           <div class="spacer" />
           <div class="condensed-tabs">
             <Tabs autoWidth>
+              <Tab label="Simple" />
+              <Tab label="Price" />
+              <Tab label="Balance" />
+              <Tab label="Weather" />
               <Tab label="VRF" />
               <svelte:fragment slot="content">
                 <TabContent>
                   <Grid noGutter padding fullWidth>
                     <Row>
                       <Column>
-                        Use
-                        <OutboundLink
-                          href="https://en.wikipedia.org/wiki/Verifiable_random_function"
+                        <p>
+                          A very simple blueprint to start from. Extend this to
+                          create your custom functionality.
+                        </p>
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <div class="condensed-tabs">
+                          <Tabs autoWidth>
+                            <Tab label="Oracle" />
+                            <Tab label="Contract" />
+                            <svelte:fragment slot="content">
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={simple.oracle}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={simple.contract}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                            </svelte:fragment>
+                          </Tabs>
+                        </div>
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <Link
+                          href="/docs/services/oracle-network/custom/blueprints#simple-oracle"
                         >
-                          VRF
-                        </OutboundLink>
-                        to get randomness on the blockchain
+                          Learn more.
+                        </Link>
+                      </Column>
+                    </Row>
+                  </Grid>
+                </TabContent>
+                <TabContent>
+                  <Grid noGutter padding fullWidth>
+                    <Row>
+                      <Column>
+                        <p>
+                          The following blueprint shows how to get price data
+                          from <OutboundLink href="https://coingecko.com">
+                            coingecko.com
+                          </OutboundLink>.
+                        </p>
                       </Column>
                     </Row>
                     <Row>
                       <Column>
-                        <CodeSnippet
-                          type="multi"
-                          code={vrf}
-                          class="full-width"
-                        />
+                        <div class="condensed-tabs">
+                          <Tabs autoWidth>
+                            <Tab label="Oracle" />
+                            <Tab label="Contract" />
+                            <svelte:fragment slot="content">
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={price.oracle}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={price.contract}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                            </svelte:fragment>
+                          </Tabs>
+                        </div>
                       </Column>
                     </Row>
                     <Row>
                       <Column>
-                        View on
-                        <OutboundLink href="https://github.com/KenshiTech/d20">
-                          GitHub.
-                        </OutboundLink>
+                        <Link
+                          href="/docs/services/oracle-network/custom/blueprints#price-oracle"
+                        >
+                          Learn more.
+                        </Link>
+                      </Column>
+                    </Row>
+                  </Grid>
+                </TabContent>
+                <TabContent>
+                  <Grid noGutter padding fullWidth>
+                    <Row>
+                      <Column>
+                        <p>
+                          The following blueprint shows how to check if the user
+                          owns a specific amount of tokens or NFTs on another
+                          chain.
+                        </p>
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <div class="condensed-tabs">
+                          <Tabs autoWidth>
+                            <Tab label="Oracle" />
+                            <Tab label="Contract" />
+                            <svelte:fragment slot="content">
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={balance.oracle}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={balance.contract}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                            </svelte:fragment>
+                          </Tabs>
+                        </div>
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <Link
+                          href="/docs/services/oracle-network/custom/blueprints#proof-of-balance-oracle"
+                        >
+                          Learn more.
+                        </Link>
+                      </Column>
+                    </Row>
+                  </Grid>
+                </TabContent>
+                <TabContent>
+                  <Grid noGutter padding fullWidth>
+                    <Row>
+                      <Column>
+                        <p>
+                          The following blueprint shows how to get weather data
+                          from
+                          <OutboundLink href="https://brightsky.dev">
+                            brightsky.dev
+                          </OutboundLink>.
+                        </p>
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <div class="condensed-tabs">
+                          <Tabs autoWidth>
+                            <Tab label="Oracle" />
+                            <Tab label="Contract" />
+                            <svelte:fragment slot="content">
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={weather.oracle}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={weather.contract}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                            </svelte:fragment>
+                          </Tabs>
+                        </div>
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <Link
+                          href="/docs/services/oracle-network/custom/blueprints#weather-oracle"
+                        >
+                          Learn more.
+                        </Link>
+                      </Column>
+                    </Row>
+                  </Grid>
+                </TabContent>
+                <TabContent>
+                  <Grid noGutter padding fullWidth>
+                    <Row>
+                      <Column>
+                        <p>
+                          The following blueprint shows how to create your own
+                          VRF oracle. This example uses the Kenshi VRF
+                          libraries, which implement draft 10 of the IETF ECVRF.
+                        </p>
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <div class="condensed-tabs">
+                          <Tabs autoWidth>
+                            <Tab label="Oracle" />
+                            <Tab label="Contract" />
+                            <svelte:fragment slot="content">
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={vrf.oracle}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                              <TabContent>
+                                <CodeSnippet
+                                  type="multi"
+                                  code={vrf.contract}
+                                  class="full-width"
+                                />
+                              </TabContent>
+                            </svelte:fragment>
+                          </Tabs>
+                        </div>
+                      </Column>
+                    </Row>
+                    <Row>
+                      <Column>
+                        <Link
+                          href="/docs/services/oracle-network/custom/blueprints#vrf-oracle"
+                        >
+                          Learn more.
+                        </Link>
                       </Column>
                     </Row>
                   </Grid>
@@ -633,27 +869,6 @@
             </Column>
           </Row>
         </Grid>
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid noGutter padding>
-    <Row>
-      <Column lg={4} sm={4}>
-        <Article
-          image="/images/backgrounds/vrf.jpg"
-          title="Introducing the Kenshi VRF oracles."
-          description="VRFs play an important role in the blockchain, as the blockchain lacks the native functionality to securely generate random numbers due to its deterministic nature..."
-          href="https://blog.kenshi.io/introducing-the-kenshi-vrf-oracle-be1cbc4779c9"
-        />
-      </Column>
-      <Column lg={4} sm={4}>
-        <Article
-          image="/images/backgrounds/deep-index.jpg"
-          title="Introducing the Kenshi Deep Indexing Service."
-          description="Information published on the blockchain is publicly available and accessible by anyone who needs it. However, traversing the event logs and searching for specific events is not an easy task..."
-          href="https://blog.kenshi.io/introducing-the-kenshi-deep-blockchain-indexing-services-7fc4b159a946"
-        />
       </Column>
     </Row>
   </Grid>
