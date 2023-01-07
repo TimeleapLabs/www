@@ -297,15 +297,15 @@ ol {
   list-style: decimal;
 }
 
-.bx--side-nav__menu .bx--side-nav__submenu {
+.docs-page .bx--side-nav__menu .bx--side-nav__submenu {
   padding-left: var(--indent, 0) !important;
 }
-.bx--side-nav__menu .bx--side-nav__link {
+.docs-page .bx--side-nav__menu .bx--side-nav__link {
   padding-left: var(--indent) !important;
 }
-.bx--side-nav__submenu > .bx--side-nav__item .bx--side-nav__link {
+.docs-page .bx--side-nav__submenu > .bx--side-nav__item .bx--side-nav__link {
   padding-left: calc(0.75rem + var(--indent)) !important;
 }
-.bx--side-nav__menu > .bx--side-nav__item .bx--side-nav__link {
+.docs-page .bx--side-nav__menu > .bx--side-nav__item .bx--side-nav__link {
   padding-left: calc(0.75rem + var(--indent)) !important;
 }
