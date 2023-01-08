@@ -138,9 +138,11 @@
           <h3>Products</h3>
         </ExpressiveHeading>
         <UnorderedList>
-          <ListItem
-            ><Link href="/docs/services/oracle-network/vrf">VRF</Link></ListItem
-          >
+          <ListItem>
+            <Link href="/docs/services/oracle-network/custom">
+              Oracle Network
+            </Link>
+          </ListItem>
           <ListItem>
             <Link href="/docs/services/deep-index">Deep Index</Link>
           </ListItem>
@@ -230,7 +232,7 @@
           </Row>
           <Row>
             <div class="copyright">
-              Copyright © {new Date().getFullYear()} - Kenshi
+              Copyright © 2021-{new Date().getFullYear()} - Kenshi
             </div>
           </Row>
         </Grid>
@@ -240,6 +242,7 @@
         <a
           href="https://members.cryptovalley.swiss/companies/2280577"
           target="_blank"
+          rel="noreferrer"
         >
           <img
             class="cva"
