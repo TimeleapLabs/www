@@ -131,11 +131,63 @@
             </Row>
             <Row>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="/docs/services/vrf">
+                <ClickableTile href="/dashboard/oracle-network/custom">
+                  <h4>Custom oracle</h4>
+                  <div class="body">
+                    Create and deplpoy your custom oracle with the technologies
+                    you know.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="/docs/services/oracle-network/custom/blueprints#simple-oracle"
+                >
+                  <h4>Simple oracle</h4>
+                  <div class="body">
+                    Learn how to create your oracle using a simple example.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="/docs/services/oracle-network/custom/blueprints#weather-oracle"
+                >
+                  <h4>Weather</h4>
+                  <div class="body">
+                    Looking for weather data on the blockchain? Start here.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="/docs/services/oracle-network/custom/blueprints#proof-of-balance-oracle"
+                >
+                  <h4>Proof of Balance</h4>
+                  <div class="body">
+                    Check if your users own a specific asset on another
+                    blockchain.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="/docs/services/oracle-network/custom/blueprints#price-oracle"
+                >
+                  <h4>Price feed</h4>
+                  <div class="body">
+                    Learn how to create and deploy your own price feed oracle.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="/docs/services/oracle-network/custom/blueprints#vrf-oracle"
+                >
                   <h4>VRF</h4>
                   <div class="body">
-                    Looking for randomness on the blockchain? Kenshi delivers
-                    verifiable random numbers with unmatched speed.
+                    Looking for randomness? Learn how to deploy your dedicated
+                    VRF oracle.
                   </div>
                 </ClickableTile>
               </Column>
@@ -259,8 +311,8 @@
           Webhooks
         </HeaderPanelLink>
         <HeaderPanelDivider>Oracle Network</HeaderPanelDivider>
-        <HeaderPanelLink href="/dashboard/oracle-network/vrf">
-          VRF
+        <HeaderPanelLink href="/dashboard/oracle-network/custom">
+          Custom oracles
         </HeaderPanelLink>
       </HeaderPanelLinks>
     </HeaderAction>
@@ -286,7 +338,32 @@
         />
       </SideNavMenu>
       <SideNavMenu text="Oracle Network">
-        <SideNavMenuItem href="/docs/services/vrf" text="VRF" />
+        <SideNavMenuItem
+          href="/dashboard/oracle-network/custom"
+          text="Custom oracles"
+        />
+      </SideNavMenu>
+      <SideNavMenu text="Oracle Blueprints">
+        <SideNavMenuItem
+          href="/docs/services/oracle-network/custom/blueprints#simple-oracle"
+          text="Simple oracle"
+        />
+        <SideNavMenuItem
+          href="/docs/services/oracle-network/custom/blueprints#weather-oracle"
+          text="Weather oracle"
+        />
+        <SideNavMenuItem
+          href="/docs/services/oracle-network/custom/blueprints#proof-of-balance-oracle"
+          text="Proof of Balane oracle"
+        />
+        <SideNavMenuItem
+          href="/docs/services/oracle-network/custom/blueprints#price-oracle"
+          text="Price oracle"
+        />
+        <SideNavMenuItem
+          href="/docs/services/oracle-network/custom/blueprints#vrf-oracle"
+          text="VRF oracle"
+        />
       </SideNavMenu>
     </SideNavMenu>
     <SideNavMenu text="Developers">

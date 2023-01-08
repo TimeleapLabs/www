@@ -6,7 +6,7 @@
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
   import { AssemblyCluster, Query, Webhook } from "carbon-icons-svelte";
-  import { ArrowRight, Shuffle } from "carbon-icons-svelte";
+  import { ArrowRight, Shuffle, BuildTool } from "carbon-icons-svelte";
 </script>
 
 <Content>
@@ -134,6 +134,27 @@
             <div class="body-compact-02">
               Get randomness on the blockchain in a secure, reliable and
               tamper-proof way.
+            </div>
+            <div class="spacer" />
+            <div class="arrow">
+              <ArrowRight />
+            </div>
+          </div>
+        </ClickableTile>
+      </Column>
+      <Column sm={4} md={4} lg={4} max={4}>
+        <ClickableTile
+          class="full-height"
+          href="/dashboard/oracle-network/custom"
+        >
+          <div class="flex-column">
+            <BuildTool />
+            <ExpressiveHeading size={3}>
+              <h2>Custom</h2>
+            </ExpressiveHeading>
+            <div class="body-compact-02">
+              Create and deploy your custom oracle on top of Kenshi's blazing
+              fast oracle network.
             </div>
             <div class="spacer" />
             <div class="arrow">

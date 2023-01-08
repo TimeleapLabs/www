@@ -14,7 +14,7 @@ import { macros } from "./cadey/macros.js";
 import { getNav, getNext, getPrev, getBreadCrumb } from "./cadey/nav.js";
 import { getHeadings, getImports } from "./cadey/generators.js";
 import { getDocPage, getContext } from "./cadey/generators.js";
-import { getSeoTags } from "./cadey/seo.js";
+import { getSeoTags, getTextContent } from "./cadey/seo.js";
 
 const cadey = new Cadey({ parse, macros, rules });
 
@@ -46,9 +46,11 @@ const parseAll = async () => {
   for (const file of walkSync("./src/routes/docs")) {
     await processOne(file);
   }
+  const allTexts = [];
   for (const file in processed) {
     const { parsed, context } = processed[file];
     const tags = getSeoTags(parsed, context);
+    const text = getTextContent(parsed);
     const imports = getImports(context.components);
     const headings = getHeadings(context.headings);
     const breadcrumb = getBreadCrumb(file, allHeadings);
@@ -63,7 +65,12 @@ const parseAll = async () => {
       prev,
       tags
     );
-    const dirname = file.replace(/(index)?\.cadey$/, "");
+    const dirname = file.replace(/(index)?\.cadey$/, "").replace(/\/$/, "");
+    const url = "/" + dirname.slice("src/routes/".length);
+    allTexts.push({
+      text,
+      breadcrumb: [...breadcrumb, { url, title: context.headings[0].title }],
+    });
     if (!fs.existsSync(dirname)) {
       fs.mkdirSync(dirname);
     }
@@ -73,6 +80,10 @@ const parseAll = async () => {
   fs.writeFileSync(
     "src/lib/docs.nav.js",
     `export default ${JSON.stringify(nav, null, 2)}`
+  );
+  fs.writeFileSync(
+    "src/lib/docs.search.js",
+    `export default ${JSON.stringify(allTexts, null, 2)}`
   );
 };
 

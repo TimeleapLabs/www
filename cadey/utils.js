@@ -45,3 +45,6 @@ export const getLang = (src) => extensions[src.split(".").pop()]?.toLowerCase();
 
 export const arrayOrNotWhite = (item) =>
   Array.isArray(item) || item.match(/\S+/);
+
+export const isWhite = (str) => str.match(/^\s+$/);
+export const removeWhites = (cell) => typeof cell != "string" || !isWhite(cell);

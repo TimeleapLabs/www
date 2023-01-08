@@ -1,5 +1,17 @@
 import { JSDOM } from "jsdom";
 
+export const getTextContent = (body) => {
+  const { document } = new JSDOM(`<body>${body}</body>`).window;
+  document.body
+    .querySelectorAll("h1,h2,h3,h4,h5,CodeSnippet")
+    .forEach((el) => el.remove());
+  return document.body.textContent
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .join("\n");
+};
+
 const getDescription = (body) => {
   const { document } = new JSDOM(`<body>${body}</body>`).window;
   const secondDiv = document.querySelector("body > Row:nth-of-type(2)");

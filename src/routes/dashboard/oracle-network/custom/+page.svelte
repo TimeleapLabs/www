@@ -1,22 +1,56 @@
 <script>
+  import Footer from "src/components/Footer.svelte";
+
   import { wallet } from "src/stores/wallet";
   import { onMount } from "svelte";
   import { ethers } from "ethers";
 
+  import ConnectButton from "src/components/ConnectButton.svelte";
+
   import { Grid, Row, Column, Content } from "carbon-components-svelte";
-  import { Button, Tile } from "carbon-components-svelte";
+  import { Tile } from "carbon-components-svelte";
+  import { Button, Link } from "carbon-components-svelte";
   import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
   import { Add, Book, UpdateNow } from "carbon-icons-svelte";
-  import { DataTable, Toolbar, ToolbarMenu } from "carbon-components-svelte";
-  import { ToolbarMenuItem, ToolbarContent } from "carbon-components-svelte";
-  import { ToolbarSearch, Pagination } from "carbon-components-svelte";
-
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
-  import ConnectButton from "src/components/ConnectButton.svelte";
-  import Footer from "src/components/Footer.svelte";
 
-  import { VrfProduct } from "src/lib/products/vrf";
-  import { chainIcons, chainNames } from "src/lib/chains";
+  import { OracleProduct } from "src/lib/products/oracle";
+
+  const chainIcons = {
+    "ethereum-mainnet": "ethereum",
+    "ethereum-goerli": "ethereum",
+    "avalanche-fuji": "avalanche",
+    "avalanche-mainnet": "avalanche",
+    "polygon-mumbai": "polygon",
+    "polygon-mainnet": "polygon",
+    "fantom-testnet": "fantom",
+    "fantom-mainnet": "fantom",
+    "binance-testnet": "binance",
+    "binance-mainnet": "binance",
+  };
+
+  const chainNames = {
+    "ethereum-mainnet": "Ethereum",
+    "ethereum-goerli": "Ethereum Goerli",
+    "avalanche-fuji": "Avalanche Fuji",
+    "avalanche-mainnet": "Avalanche",
+    "polygon-mumbai": "Polygon Mumbai",
+    "polygon-mainnet": "Polygon",
+    "fantom-testnet": "Fantom Testnet",
+    "fantom-mainnet": "Fantom",
+    "binance-testnet": "BNB Chain Testnet",
+    "binance-mainnet": "BNB Chain",
+  };
+
+  import {
+    DataTable,
+    Toolbar,
+    ToolbarMenu,
+    ToolbarMenuItem,
+    ToolbarContent,
+    ToolbarSearch,
+    Pagination,
+  } from "carbon-components-svelte";
 
   let userAddress;
 
@@ -29,36 +63,30 @@
   $: if ($wallet) setAddress();
 
   const headers = [
-    { key: "chain", value: "Blockchain" },
-    { key: "credit", value: "Credits" },
-    { key: "allow", value: "Allow list" },
+    { key: "id", value: "Oracle ID" },
+    { key: "blockchain", value: "Blockchain" },
+    { key: "address", value: "Contract address" },
+    { key: "endpoint", value: "Endpoint" },
+    { key: "callsLeft", value: "Calls" },
+    { key: "expiresAt", value: "Expires" },
     { key: "actions", value: "Actions" },
   ];
 
-  let userVrfCredits = [];
+  let userCustomOracles = [];
   let pageSize = 5;
   let page = 1;
   let filteredRowIds = [];
 
-  const getUserVrfCredits = async () => {
-    userVrfCredits = await VrfProduct.findAll(userAddress);
+  const getUserOracles = async () => {
+    userCustomOracles = await OracleProduct.findAll(userAddress);
   };
 
   $: if (userAddress) {
-    getUserVrfCredits();
+    getUserOracles();
   }
 
-  const formatCredits = (n) => {
-    try {
-      const [lhs, rhs = ""] = ethers.utils.formatUnits(n.toString()).split(".");
-      return [lhs, rhs.slice(0, 2)].filter(Boolean).join(".");
-    } catch (error) {
-      return 0;
-    }
-  };
-
   onMount(() => {
-    const interval = setInterval(getUserVrfCredits, 60 * 1000);
+    const interval = setInterval(getUserOracles, 60 * 1000);
     return () => clearInterval(interval);
   });
 </script>
@@ -69,8 +97,8 @@
       <Column>
         <Breadcrumb>
           <BreadcrumbItem href="/dashboard">Dashboard</BreadcrumbItem>
-          <BreadcrumbItem href="/dashboard/oracle-network/vrf" isCurrentPage>
-            vrf
+          <BreadcrumbItem href="/dashboard/oracle-network/custom" isCurrentPage>
+            Custom oracle
           </BreadcrumbItem>
         </Breadcrumb>
       </Column>
@@ -81,12 +109,9 @@
         <Tile class="blue-tile">
           <div class="flex-column">
             <ExpressiveHeading size={5}>
-              <h1>VRF</h1>
+              <h1>Custom oracle</h1>
             </ExpressiveHeading>
-            <p>
-              Verfiable Random Functions can be used to get randomness on the
-              blockchain in a fair, secure and verifable way.
-            </p>
+            <p>This is the first step to make your own custom oracle.</p>
           </div>
         </Tile>
       </Column>
@@ -98,7 +123,7 @@
                 <ExpressiveHeading size={2}>
                   <h4>+You</h4>
                 </ExpressiveHeading>
-                <p>Connect your wallet to see your vrf subscriptions.</p>
+                <p>Connect your wallet to see your custom oracles.</p>
               </div>
             </Column>
           </Row>
@@ -106,7 +131,7 @@
             <Column>
               <Button
                 kind="secondary"
-                href="/docs/services/oracle-network/vrf"
+                href="/docs/services/oracle-network/custom"
                 icon={Book}
               >
                 Documentation
@@ -120,9 +145,9 @@
 
     <Row>
       <Column>
-        <ExpressiveHeading size={3}>Your vrf subscriptions</ExpressiveHeading>
+        <ExpressiveHeading size={3}>Your custom oracles</ExpressiveHeading>
         <div class="helper-text-01">
-          Connect your wallet to see your subscriptions.
+          Connect your wallet to see your oracles.
         </div>
       </Column>
     </Row>
@@ -131,12 +156,10 @@
       <Column>
         <DataTable
           {headers}
-          rows={userVrfCredits}
+          rows={userCustomOracles}
           {pageSize}
           {page}
           sortable
-          expandable
-          batchExpansion
         >
           <Toolbar>
             <ToolbarContent>
@@ -144,29 +167,27 @@
               <ToolbarMenu>
                 <ToolbarMenuItem
                   primaryFocus
-                  href="/docs/services/oracle-network/vrf"
+                  href="/docs/services/oracle-network/custom"
                 >
                   Documentation
                 </ToolbarMenuItem>
               </ToolbarMenu>
-              <Button icon={Add} href="/dashboard/oracle-network/vrf/new">
-                New subscription
+              <Button icon={Add} href="/dashboard/oracle-network/custom/new">
+                Create Oracle
               </Button>
             </ToolbarContent>
           </Toolbar>
           <svelte:fragment slot="cell" let:row let:cell>
             {#if cell.key === "actions"}
-              <Button
-                size="small"
-                kind="ghost"
+              <Link
                 icon={UpdateNow}
-                href="/dashboard/oracle-network/vrf/edit/{row.id}"
+                href="/dashboard/oracle-network/custom/edit/{row.id}"
               >
                 Update
-              </Button>
-            {:else if cell.key === "credit"}
-              {formatCredits(cell.value)} KENSHI
-            {:else if cell.key === "chain"}
+              </Link>
+            {:else if cell.key === "expiresAt"}
+              {new Date(cell.value).toLocaleDateString()}
+            {:else if cell.key === "blockchain"}
               <span class="chain">
                 <img
                   src="/images/chains/{chainIcons[cell.value]}.svg"
@@ -174,23 +195,9 @@
                 />
                 {chainNames[cell.value]}
               </span>
-            {:else if cell.key === "allow"}
-              {cell.value.length} Contract{cell.value.length > 1 ? "s" : ""}
             {:else}
               {cell.value}
             {/if}
-          </svelte:fragment>
-          <svelte:fragment slot="expanded-row" let:row>
-            <div class="flex-column expanded">
-              <ExpressiveHeading size={1}>
-                <h5>Allow list</h5>
-              </ExpressiveHeading>
-              <div class="addresses">
-                {#each row.allow as address}
-                  <div>{address}</div>
-                {/each}
-              </div>
-            </div>
           </svelte:fragment>
         </DataTable>
 
@@ -215,11 +222,5 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
-  }
-  .addresses {
-    font-family: "IBM Plex Mono", monospace;
-  }
-  .expanded {
-    padding: 1em 0;
   }
 </style>

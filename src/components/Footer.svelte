@@ -114,7 +114,9 @@
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="/docs/services/vrf">Getting randomness</Link>
+            <Link href="/docs/services/oracle-network/vrf"
+              >Getting randomness</Link
+            >
           </ListItem>
           <ListItem>
             <Link href="/docs/services/deep-index/graphql"
@@ -136,7 +138,9 @@
           <h3>Products</h3>
         </ExpressiveHeading>
         <UnorderedList>
-          <ListItem><Link href="/docs/services/vrf">VRF</Link></ListItem>
+          <ListItem
+            ><Link href="/docs/services/oracle-network/vrf">VRF</Link></ListItem
+          >
           <ListItem>
             <Link href="/docs/services/deep-index">Deep Index</Link>
           </ListItem>

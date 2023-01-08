@@ -94,7 +94,7 @@ export class Product {
     return { provider, signer, timestamp, wallet, userAddress };
   }
 
-  async makeRequest(payload, successAction, method) {
+  async makeRequest(payload, successAction, method, retry = 3) {
     const response = await fetch(`${this.endpoint}/${method}`, {
       method: "POST",
       body: JSON.stringify(payload),
@@ -104,9 +104,15 @@ export class Product {
     const { errorMessage, statusCode, body } = await response.json();
 
     if (errorMessage) {
+      if (retry > 0) {
+        return this.makeRequest(payload, successAction, method, retry - 1);
+      }
       toast.push("An unexpected error happened while processing your request");
       return false;
     } else if (statusCode !== 200) {
+      if (!body && retry > 0) {
+        return this.makeRequest(payload, successAction, method, retry - 1);
+      }
       toast.push(`Server error: ${body}`);
       return false;
     } else {
