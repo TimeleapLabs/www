@@ -957,27 +957,27 @@
           <Grid noGutter padding fullWidth>
             <Row class="supported-chains">
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://chainstack.com">
+                <OutboundLink href="https://ethereum.org">
                   <ImageLoader src="/images/chains/ethereum.svg" />
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://chainstack.com">
+                <OutboundLink href="https://fantom.foundation/">
                   <ImageLoader src="/images/chains/fantom.svg" />
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://chainstack.com">
+                <OutboundLink href="https://www.avax.network">
                   <ImageLoader src="/images/chains/avalanche.svg" />
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://chainstack.com">
+                <OutboundLink href="https://polygon.technology">
                   <ImageLoader src="/images/chains/polygon.svg" />
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://chainstack.com">
+                <OutboundLink href="https://www.bnbchain.org">
                   <ImageLoader src="/images/chains/binance.svg" />
                 </OutboundLink>
               </Column>
