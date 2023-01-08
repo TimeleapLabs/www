@@ -10,7 +10,8 @@
   import { CodeSnippet } from "carbon-components-svelte";
   import { ImageLoader, OutboundLink, Link } from "carbon-components-svelte";
 
-  import { Dashboard, Book } from "carbon-icons-svelte";
+  import { Dashboard, Book, IntentRequestCreate } from "carbon-icons-svelte";
+  import { Partnership, AnalyticsReference } from "carbon-icons-svelte";
   import { LogoPython, ArrowDown, ArrowDownRight } from "carbon-icons-svelte";
 
   import Go from "src/icons/Go.svelte";
@@ -350,8 +351,8 @@
           <div class="spacer" />
 
           <div class="fluid-paragraph-01">
-            Connect your smart contract to the world! Kenshi R-API can stream
-            events from your smart contracts directly to already existing
+            Connect your smart contract to the world! Kenshi R-API directly
+            streams events from your smart contracts to already existing
             automation tools!
           </div>
 
@@ -488,7 +489,7 @@
 
           <div class="fluid-paragraph-01">
             Kenshi Oracle Network is a high-performance asynchronous oracle
-            platform that allows creating and hosting custom oracles.
+            platform that allows creating and hosting of custom oracles.
           </div>
 
           <div class="spacer" />
@@ -869,6 +870,140 @@
             </Column>
           </Row>
         </Grid>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid noGutter padding>
+    <Row>
+      <Column sm={4} md={10} lg={5}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={5}>
+            <h2>
+              <span class="blue">Together,</span> we drive forward!
+            </h2>
+          </ExpressiveHeading>
+
+          <div class="spacer" />
+
+          <div class="fluid-paragraph-01">
+            Join Kenshi's network of partners to enjoy exclusive offers, volume
+            discounts, premium support, and closer collaboration.
+          </div>
+
+          <div class="spacer" />
+
+          <ExpressiveHeading size={3}>
+            <h4>Influencers and Content Creators</h4>
+          </ExpressiveHeading>
+
+          <div class="body-compact-02">
+            Earn up to 20% commission by joining one of our referral programs.
+            Curious? See who is <Link href="/docs/refer">eligible</Link>.
+          </div>
+
+          <div class="spacer" />
+
+          <div class="buttons">
+            <Button href="/dashboard" icon={Partnership}>
+              Contact us for partnership
+            </Button>
+            <Button
+              href="/docs/services/deep-index/webhook"
+              kind="secondary"
+              icon={AnalyticsReference}
+            >
+              Referral program
+            </Button>
+          </div>
+
+          <div class="spacer" />
+          <div class="spacer" />
+        </div>
+      </Column>
+      <Column sm={4} md={4} lg={6}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={4}>
+            <h3>Partner to amazing businesses</h3>
+          </ExpressiveHeading>
+          <p>
+            We are on a constant lookout for collaborating with top-notch
+            companies and industry leaders.
+          </p>
+          <div class="spacer" />
+          <Grid noGutter padding fullWidth>
+            <Row class="center">
+              <Column sm={4} lg={8}>
+                <OutboundLink href="https://chainstack.com">
+                  <ImageLoader src="/images/partners/chainstack.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={4} lg={8}>
+                <OutboundLink href="https://unstoppabledomains.com/">
+                  <ImageLoader src="/images/partners/ud.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={4} lg={8}>
+                <OutboundLink href="https://cls.global/">
+                  <ImageLoader src="/images/partners/cls.svg" />
+                </OutboundLink>
+              </Column>
+            </Row>
+          </Grid>
+          <div class="spacer" />
+          <ExpressiveHeading size={4}>
+            <h3>Supported blockchains</h3>
+          </ExpressiveHeading>
+          <Grid noGutter padding fullWidth>
+            <Row class="supported-chains">
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://chainstack.com">
+                  <ImageLoader src="/images/chains/ethereum.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://chainstack.com">
+                  <ImageLoader src="/images/chains/fantom.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://chainstack.com">
+                  <ImageLoader src="/images/chains/avalanche.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://chainstack.com">
+                  <ImageLoader src="/images/chains/polygon.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://chainstack.com">
+                  <ImageLoader src="/images/chains/binance.svg" />
+                </OutboundLink>
+              </Column>
+            </Row>
+          </Grid>
+          <div class="spacer" />
+          <p>Reach out to us to launch Kenshi services on your blockchain.</p>
+          <Grid noGutter padding fullWidth>
+            <Row>
+              <Column sm={4} lg={6}>
+                <Button
+                  href="mailto:chains@kenshi.io"
+                  icon={IntentRequestCreate}
+                >
+                  Add Your Chain
+                </Button>
+              </Column>
+            </Row>
+          </Grid>
+          <div class="spacer" />
+          <div class="spacer" />
+          <div class="spacer" />
+        </div>
+      </Column>
+      <Column sm={4} md={4} lg={5}>
+        <ImageLoader src="/images/backgrounds/partners.jpg" />
       </Column>
     </Row>
   </Grid>

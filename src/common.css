@@ -309,3 +309,13 @@ ol {
 .docs-page .bx--side-nav__menu > .bx--side-nav__item .bx--side-nav__link {
   padding-left: calc(0.75rem + var(--indent)) !important;
 }
+.supported-chains img {
+  max-height: 32px;
+}
+.bx--row.center > div {
+  display: flex;
+  align-items: center;
+}
+.flex-column > .bx--grid--full-width {
+  width: 100%;
+}
