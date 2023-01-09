@@ -1,80 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 
 <svg
-   viewBox="0 0 449.1 248.25"
    version="1.1"
-   id="svg840"
-   sodipodi:docname="favicon.svg"
-   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   id="Layer_2"
+   x="0px"
+   y="0px"
+   viewBox="0 0 1080 1080"
+   style="enable-background:new 0 0 1080 1080;"
+   xml:space="preserve"
+   sodipodi:docname="Kenshi Logo.svg"
+   inkscape:export-filename="4096x4096"
+   inkscape:export-xdpi="364.0889"
+   inkscape:export-ydpi="364.0889"
+   inkscape:version="1.2.1 (9c6d41e4, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs844" />
-  <sodipodi:namedview
-     id="namedview842"
-     pagecolor="#ffffff"
-     bordercolor="#999999"
-     borderopacity="1"
-     inkscape:pageshadow="0"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="0"
-     showgrid="false"
-     inkscape:zoom="0.52549544"
-     inkscape:cx="224.55"
-     inkscape:cy="124.64428"
-     inkscape:window-width="1792"
-     inkscape:window-height="1067"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg840" />
-  <g
-     id="f716685d-2b15-4fb2-b794-7a651aee5b1c"
-     data-name="Layer 3"
-     style="fill:#ba3322;fill-opacity:1">
-    <path
-       d="M549.68,518.81,409,520.27V635.62h67V524.22l80.89,111.4h84.45ZM633.3,387.37H554.45L475.93,500.14V387.37H409V501.91l138.66-1.45Z"
-       transform="translate(-282.83 -387.37)"
-       id="path824"
-       style="fill:#ba3322;fill-opacity:1" />
-  </g>
-  <g
-     id="fa0ce84f-bac0-481f-a29e-93236a95823e"
-     data-name="Layer 2"
-     style="fill:#ba3322;fill-opacity:1">
-    <polygon
-       points="48.13 127.73 45.92 130.05 48.1 130.07 48.13 127.73"
-       id="polygon827"
-       style="fill:#ba3322;fill-opacity:1" />
-    <path
-       d="M317.05,516a26.63,26.63,0,0,1,5.5-22.51L306,493.29v-.17H282.83v33.73H306l16.24.17A26.59,26.59,0,0,1,317.05,516Z"
-       transform="translate(-282.83 -387.37)"
-       id="path829"
-       style="fill:#ba3322;fill-opacity:1" />
-    <path
-       d="M320.18,516A26.71,26.71,0,0,0,372,517.84l-40.09-.42,17.32-18.19,21.47.22A26.71,26.71,0,0,0,320.18,516Z"
-       transform="translate(-282.83 -387.37)"
-       id="path831"
-       style="fill:#ba3322;fill-opacity:1" />
-    <rect
-       x="331.86"
-       y="510.54"
-       width="380.03"
-       height="18.36"
-       transform="translate(755.49 657.48) rotate(-179.4)"
-       id="rect833"
-       style="fill:#ba3322;fill-opacity:1" />
-    <polygon
-       points="428.96 143.51 449.1 116.15 449.1 116.15 427.91 125.14 428.96 143.51"
-       id="polygon835"
-       style="fill:#ba3322;fill-opacity:1" />
-    <path
-       d="M358.2,499.33"
-       transform="translate(-282.83 -387.37)"
-       id="path837"
-       style="fill:#ba3322;fill-opacity:1" />
-  </g>
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs5078" /><sodipodi:namedview
+   id="namedview5076"
+   pagecolor="#ffffff"
+   bordercolor="#999999"
+   borderopacity="1"
+   inkscape:showpageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   inkscape:zoom="0.21851852"
+   inkscape:cx="489.66102"
+   inkscape:cy="542.28814"
+   inkscape:window-width="1792"
+   inkscape:window-height="1067"
+   inkscape:window-x="0"
+   inkscape:window-y="25"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_2" />
+<style
+   type="text/css"
+   id="style5065">
+	.st0{fill:#0F62FE;}
+</style>
+<g
+   id="g5073"
+   transform="translate(0,27.87)">
+	<path
+   class="st0"
+   d="m 500.81,209.41 c 0,-7.75 -6.28,-14 -14,-14 H 364.97 c -7.72,0 -14,6.25 -14,14 V 490.27 H 500.82 V 209.41 Z"
+   id="path5067" />
+	<path
+   class="st0"
+   d="m 857.52,202.69 c 2.12,-3.1 -0.09,-7.28 -3.85,-7.28 H 717.41 c -9.43,0 -18.2,4.74 -23.38,12.6 L 508.05,490.27 H 662 Z"
+   id="path5069" />
+	<path
+   class="st0"
+   d="m 1077.48,499.16 -40.84,26.35 c -0.75,0.49 -1.63,0.75 -2.52,0.75 l -39.09,-0.07 -333.37,-0.56 -154.28,-0.26 -6.56,-0.02 -149.85,-0.26 -154.26,-0.26 -28.68,-0.05 -14.68,-0.02 h -0.02 c -0.77,-0.19 -1.17,-1.03 -0.77,-1.73 l 15.47,-26.88 1.38,-2.38 c 1.12,-1.91 3.85,-3.5 6.07,-3.5 H 193 c -6.98,-16.87 -21.21,-28.42 -37.64,-28.42 -15.89,0 -29.73,10.78 -36.94,26.72 H 6.56 c -3.62,0 -6.56,2.92 -6.56,6.56 v 37.71 c 0,3.62 2.94,6.56 6.56,6.56 h 111.88 c 7.21,15.94 21.03,26.72 36.92,26.72 12.3,0 23.36,-6.46 31.06,-16.8 l 164.55,1.7 v 263.83 c 0,7.72 6.28,14 14,14 h 121.84 c 7.72,0 14,-6.28 14,-14 V 552.58 l 25.23,0.26 179.3,263.76 c 5.23,7.65 13.89,12.25 23.17,12.25 H 865.9 c 3.78,0 6,-4.27 3.83,-7.35 l -187.8,-267.03 353.63,3.69 c 1.49,0.02 2.92,-0.68 3.8,-1.89 l 40.3,-54.75 c 1.08,-1.47 -0.67,-3.34 -2.18,-2.36 z"
+   id="path5071" />
+</g>
 </svg>

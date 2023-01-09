@@ -273,13 +273,14 @@
   }
 
   .logo {
-    background: url("/images/kenshi.logo.long.png");
+    background: url("/images/logo.typography.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-origin: content-box;
+    background-position: center left;
     box-sizing: border-box;
     max-width: 520px;
-    height: 48px;
+    height: 100%;
   }
   @media only screen and (max-width: 640px) {
     .logo {
