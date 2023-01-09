@@ -67,7 +67,7 @@
               </ExpressiveHeading>
               <p class="body-02">
                 If you missed the migration, this tool refunds pre-migration
-                value of your v1 token's. Connect your wallet to check your
+                value of your v1 token. Connect your wallet to check your
                 eligibility.
               </p>
             </div>
