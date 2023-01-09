@@ -8,6 +8,7 @@
   import { Content, Tile, Grid, Row, Column } from "carbon-components-svelte";
   import { TextInput, Button } from "carbon-components-svelte";
   import { Information, SendAlt } from "carbon-icons-svelte";
+  import ConnectButton from "src/components/ConnectButton.svelte";
   import refundAbi from "src/lib/abi/refund";
   import bep20Abi from "src/lib/abi/bep20";
 
@@ -120,6 +121,12 @@
                     {/if}
                   </Button>
                 </div>
+              </Column>
+            </Row>
+          {:else}
+            <Row>
+              <Column>
+                <ConnectButton primary />
               </Column>
             </Row>
           {/if}
