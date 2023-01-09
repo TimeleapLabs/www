@@ -18,7 +18,7 @@ const options = {
   appMetadata: {
     name: appName,
     description: "Kenshi dApp",
-    icon: "/images/kenshi.logo.svg",
+    icon: "/images/logo.svg",
   },
   accountCenter: {
     desktop: {
