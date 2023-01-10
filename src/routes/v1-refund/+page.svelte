@@ -18,20 +18,14 @@
   let balance = 0;
   let spin = false;
 
-  const refundAddr = "0xc7D269645c62821436d1e94033113547614639e8";
-  const kenshiAddr = "0x8AdA51404F297bF2603912d1606340223c0a7784";
+  const refundAddr = "0xfd153301bDD9082060a0Bac0ebc7251f3948a648";
 
   const claim = async () => {
     spin = true;
     const provider = new ethers.providers.Web3Provider($wallet.provider);
     const signer = provider.getSigner(userAddress);
     const contract = new ethers.Contract(refundAddr, refundAbi, signer);
-    const kenshi = new ethers.Contract(kenshiAddr, bep20Abi, signer);
     try {
-      await kenshi.approve(
-        refundAddr,
-        ethers.utils.parseUnits("1000000000000000000")
-      );
       await contract.claim();
       toast.push("Claimed successfully!");
     } catch (error) {
