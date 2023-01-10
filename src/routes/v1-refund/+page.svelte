@@ -10,7 +10,6 @@
   import { Information, SendAlt } from "carbon-icons-svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
   import refundAbi from "src/lib/abi/refund";
-  import bep20Abi from "src/lib/abi/bep20";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
@@ -94,6 +93,7 @@
                   bind:value={balance}
                   labelText="Balance"
                   placeholder="Your claimable amount"
+                  helperText="You are eligible if the above number is greater than zero."
                   readonly
                 />
               </Column>
