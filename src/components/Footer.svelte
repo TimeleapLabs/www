@@ -114,13 +114,13 @@
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="/docs/services/oracle-network/vrf"
-              >Getting randomness</Link
-            >
+            <Link href="/docs/services/oracle-network/vrf">
+              Getting randomness
+            </Link>
           </ListItem>
           <ListItem>
-            <Link href="/docs/services/deep-index/graphql"
-              >Deep Index: GraphQL
+            <Link href="/docs/services/deep-index/graphql">
+              Deep Index: GraphQL
             </Link>
           </ListItem>
           <ListItem>
@@ -129,6 +129,11 @@
           <ListItem>
             <Link href="/docs/services/deep-index/webhook">
               Deep Index: Reverse-API
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/oracle-network/custom">
+              Oracle Network: Custom Oracles
             </Link>
           </ListItem>
         </UnorderedList>
@@ -219,6 +224,9 @@
             </Link>
           </ListItem>
           <ListItem><Link href="/docs/media">Press Kit</Link></ListItem>
+          <ListItem>
+            <Link href="/docs/terms-and-conditions">Terms and Conditions</Link>
+          </ListItem>
         </UnorderedList>
       </Column>
     </Row>
