@@ -1,0 +1,37 @@
+[heading Supported devices]
+
+Currently the Kenshi IoT SDK supports Arduino and ESP32-compatible boards through
+the Arduino IDE and its ecosystem. The following boards and platforms are supported
+by this SDK:
+
+[heading :size 2 ESP32 product family]
+
+All boards based on the ESP32 SoC and programmable by Arduino IDE, including ESP32
+Devkits, Adafruit HUZZAH32, SparkFun ESP32 Thing Plus, Wemos LOLIN D32, NodeMCU,
+ESPduino 32, and others.
+
+[heading :size 2 Arduino product family]
+
+Any board with internet connectivity supported by one of the libraries below:
+
+[list
+ [:[link https://github.com/arduino-libraries/WiFiNINA WiFiNINA]:
+  Arduino MKR WiFi 1010,
+  Arduino MKR VIDOR 4000,
+  Arduino UNO WiFi Rev.2,
+  Arduino Nano 33 IoT,
+  Arduino Nano RP2040 Connect]
+ [:[link https://github.com/arduino-libraries/WiFi101 WiFi101]:
+  Arduino MKR1000 WiFi,
+  Arduino/Genuino Wifi Shield 101]
+ [:[link https://github.com/arduino-libraries/Ethernet Ethernet]:
+  Arduino Ethernet Board,
+  Arduino Ethernet Shield]
+ [:[link https://github.com/arduino-libraries/MKRGSM MKRGSM]:
+  Arduino MKR GSM 1400]
+ [:[link https://github.com/arduino-libraries/MKRNB MKRNB]:
+  Arduino MKR NB 1500]
+ [:[link https://github.com/arduino-libraries/WiFi WiFi]:
+  Arduino WiFi Shield]
+ [:[link https://github.com/arduino-libraries/GSM GSM]:
+  Arduino GSM Shield]]

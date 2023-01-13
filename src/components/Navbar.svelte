@@ -28,7 +28,7 @@
   import VerticalTabs from "src/components/carbon/VerticalTabs.svelte";
   import ThemeSwitcher from "src/components/carbon/ThemeSwitcher.svelte";
 
-  import { UserAvatarFilledAlt } from "carbon-icons-svelte";
+  import { UserAvatarFilledAlt, Launch } from "carbon-icons-svelte";
 
   import ConnectButton from "src/components/ConnectButton.svelte";
 
@@ -61,7 +61,7 @@
     <HeaderNavItem href="/docs" text="Docs" />
     <!-- <HeaderNavItem href="/" text="Link 2" /> -->
     <FullWidthHeaderNavMenu text="Products">
-      <VerticalTabs tabs={["Deep Index", "Oracle Network"]}>
+      <VerticalTabs tabs={["Deep Index", "Oracle Network", "IoT SDK"]}>
         <div class="vertical-tab">
           <Grid padding>
             <Row>
@@ -194,6 +194,62 @@
             </Row>
           </Grid>
         </div>
+        <div class="vertical-tab">
+          <Grid padding>
+            <Row>
+              <Column>
+                <h3>Blockchain IoT SDK</h3>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                The Kenshi IoT SDK allows receiving and processing blockchain
+                events on embedded devices.
+              </Column>
+            </Row>
+            <Row>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile href="/docs/iot/install">
+                  <h4>Arduino IDE</h4>
+                  <div class="body">
+                    Use the Kenshi IoT SDK on ESP32 and Arduino boards with the
+                    Arduino IDE.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="https://github.com/KenshiTech/iot-sdk/tree/master/SDK/Arduino/examples/blinky32"
+                  target="_blank"
+                >
+                  <h4 class="external">
+                    <span>ESP32 Example</span>
+                    <Launch />
+                  </h4>
+                  <div class="body">
+                    Learn how to use the Kenshi IoT SDK for Arduino to receive
+                    blockchain events on ESP32.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="https://github.com/KenshiTech/iot-sdk/tree/master/SDK/Arduino/examples/blinky"
+                  target="_blank"
+                >
+                  <h4 class="external">
+                    <span>Arduino MKR WiFi Example</span>
+                    <Launch />
+                  </h4>
+                  <div class="body">
+                    Learn how to use the Kenshi IoT SDK to receive blockchain
+                    events on Arduino MKR WiFi.
+                  </div>
+                </ClickableTile>
+              </Column>
+            </Row>
+          </Grid>
+        </div>
       </VerticalTabs>
     </FullWidthHeaderNavMenu>
     <FullWidthHeaderNavMenu text="Developers">
@@ -233,8 +289,11 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="https://github.com/KenshiTech">
-                  <h4>GitHub</h4>
+                <ClickableTile
+                  href="https://github.com/KenshiTech"
+                  target="_blank"
+                >
+                  <h4 class="external"><span>GitHub</span><Launch /></h4>
                   <div class="body">
                     Check Kenshi's public software repositories for sample codes
                     and other useful utilities.
@@ -242,8 +301,8 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="https://blog.kenshi.io/">
-                  <h4>Medium</h4>
+                <ClickableTile href="https://blog.kenshi.io/" target="_blank">
+                  <h4 class="external"><span>Medium</span><Launch /></h4>
                   <div class="body">
                     Latest news about Kenshi, as well as technical articles
                     about Kenshi products.
@@ -251,8 +310,13 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="https://t.me/KenshiTechDevelopers">
-                  <h4>Kenshi Dev Talk</h4>
+                <ClickableTile
+                  href="https://t.me/KenshiTechDevelopers"
+                  target="_blank"
+                >
+                  <h4 class="external">
+                    <span>Kenshi Dev Talk</span><Launch />
+                  </h4>
                   <div class="body">
                     Join our developer's chat on Telegram to get help
                     integrating our products into your projects.
@@ -260,8 +324,11 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="https://discord.gg/KenshiTech">
-                  <h4>Discord</h4>
+                <ClickableTile
+                  href="https://discord.gg/KenshiTech"
+                  target="_blank"
+                >
+                  <h4 class="external"><span>Discord</span><Launch /></h4>
                   <div class="body">
                     Join our community on Discord to get help integrating our
                     products into your projects.
@@ -269,8 +336,11 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="https://www.npmjs.com/org/kenshi.io">
-                  <h4>NPM</h4>
+                <ClickableTile
+                  href="https://www.npmjs.com/org/kenshi.io"
+                  target="_blank"
+                >
+                  <h4 class="external"><span>NPM</span><Launch /></h4>
                   <div class="body">
                     Kenshi publishes Solidity and Node.js libraries to help you
                     integrate the Kenshi services.
@@ -365,18 +435,41 @@
           text="VRF oracle"
         />
       </SideNavMenu>
+      <SideNavMenu text="Blockchain IoT SDK">
+        <SideNavMenuItem
+          href="/docs/services/iot/install"
+          text="Install for Arduino IDE"
+        />
+      </SideNavMenu>
     </SideNavMenu>
     <SideNavMenu text="Developers">
       <SideNavMenuItem href="/dashboard" text="Dashboard" />
       <SideNavMenuItem href="/docs" text="Documentation" />
-      <SideNavMenuItem href="https://github.com/KenshiTech" text="GitHub" />
-      <SideNavMenuItem href="https://blog.kenshi.io/" text="Medium" />
+      <SideNavMenuItem
+        href="https://github.com/KenshiTech"
+        text="GitHub"
+        target="_blank"
+      />
+      <SideNavMenuItem
+        href="https://blog.kenshi.io/"
+        text="Medium"
+        target="_blank"
+      />
       <SideNavMenuItem
         href="https://t.me/KenshiTechDevelopers"
         text="DevTalk (Telegram)"
+        target="_blank"
       />
-      <SideNavMenuItem href="https://discord.gg/KenshiTech" text="Discord" />
-      <SideNavMenuItem href="https://www.npmjs.com/org/kenshi.io" text="NPM" />
+      <SideNavMenuItem
+        href="https://discord.gg/KenshiTech"
+        text="Discord"
+        target="_blank"
+      />
+      <SideNavMenuItem
+        href="https://www.npmjs.com/org/kenshi.io"
+        text="NPM"
+        target="_blank"
+      />
     </SideNavMenu>
   </SideNavItems>
 </SideNav>
@@ -388,5 +481,12 @@
   .logo {
     display: flex;
     margin-right: -1em;
+  }
+  h4.external {
+    display: flex;
+    align-items: center;
+  }
+  h4.external span {
+    flex: 1;
   }
 </style>

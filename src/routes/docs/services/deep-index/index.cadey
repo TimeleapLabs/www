@@ -9,12 +9,12 @@ and processing blockchain data:
   [: [bold Reverse-API] can be used to get notifications about new blockchain events on your HTTP endpoints.]]
 
 [gallery
-  [image /images/docs/screenshots/1_Create_a_Sync_task_on_the_Kenshi_dashboard_to_get_started.png hello]
-  [image /images/docs/screenshots/2_Create_a_MQL_+_GraphQL_API_key_to_access_the_query_endpoints.png hello]
-  [image /images/docs/screenshots/3_Register_an_HTTP_endpoint_to_get_blockchain_events_via_the_Kenshi.png hello]
-  [image /images/docs/screenshots/4_Use_MQL_to_run_advanced_queries_on_the_blockchain_data.png hello]
-  [image /images/docs/screenshots/5_Use_your_favorite_GraphQL_client_to_get_data_from_the_Kenshi_data.png hello]
-  [image /images/docs/screenshots/6_Register_a_POST_HTTP_endpoint_and_get_notified_of_the_events_as.png hello]]
+  [image /images/docs/screenshots/1_Create_a_Sync_task_on_the_Kenshi_dashboard_to_get_started.png screenshot]
+  [image /images/docs/screenshots/2_Create_a_MQL_+_GraphQL_API_key_to_access_the_query_endpoints.png screenshot]
+  [image /images/docs/screenshots/3_Register_an_HTTP_endpoint_to_get_blockchain_events_via_the_Kenshi.png screenshot]
+  [image /images/docs/screenshots/4_Use_MQL_to_run_advanced_queries_on_the_blockchain_data.png screenshot]
+  [image /images/docs/screenshots/5_Use_your_favorite_GraphQL_client_to_get_data_from_the_Kenshi_data.png screenshot]
+  [image /images/docs/screenshots/6_Register_a_POST_HTTP_endpoint_and_get_notified_of_the_events_as.png screenshot]]
 
 [alert warning
   This service is currently in beta test and active on the BNB Smart Chain (BSC),

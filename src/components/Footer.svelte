@@ -136,6 +136,9 @@
               Oracle Network: Custom Oracles
             </Link>
           </ListItem>
+          <ListItem>
+            <Link href="/docs/services/iot/install">IoT SDK: Arduino IDE</Link>
+          </ListItem>
         </UnorderedList>
       </Column>
       <Column>
@@ -150,6 +153,9 @@
           </ListItem>
           <ListItem>
             <Link href="/docs/services/deep-index">Deep Index</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/iot">Blockchain IoT SDK</Link>
           </ListItem>
           <ListItem>
             <Link href="/docs/services/locker">Lockers</Link>

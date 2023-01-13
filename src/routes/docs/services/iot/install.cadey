@@ -1,0 +1,12 @@
+[heading Install]
+
+To install the Kenshi IoT SDK for Arduino, go to the Kenshi IoT SDK
+[link https://github.com/KenshiTech/iot-sdk/releases release page] on Github
+and download the latest release.
+
+Then open the Arduino IDE and select Sketch > Include Library > Add ZIP Library...
+like the image below:
+
+[image /images/docs/screenshots/arduino.install.png Install Kenshi IoT SDK on Arduino IDE]
+
+Now select the downloaded file and wait for the install to finish.
