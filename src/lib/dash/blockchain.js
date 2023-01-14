@@ -9,4 +9,6 @@ export const blockTimes = {
   "avalanche-mainnet": 3,
   "polygon-mumbai": 2,
   "polygon-mainnet": 2,
+  "aurora-testnet": 1,
+  "aurora-mainnet": 1,
 };

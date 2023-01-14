@@ -22,6 +22,7 @@
   import BnbChain from "src/icons/BNBChain.svelte";
   import Avalanche from "src/icons/Avalanche.svelte";
   import Polygon from "src/icons/Polygon.svelte";
+  import Aurora from "src/icons/Aurora.svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import Github from "src/icons/Github.svelte";
@@ -73,9 +74,10 @@
 
           <div class="blockchains">
             <Button kind="tertiary" icon={Ethereum}>Ethereum</Button>
-            <Button kind="tertiary" icon={BnbChain}>BNB Chain</Button>
-            <Button kind="tertiary" icon={Avalanche}>Avalanche</Button>
             <Button kind="tertiary" icon={Fantom}>Fantom</Button>
+            <Button kind="tertiary" icon={Aurora}>Aurora</Button>
+            <Button kind="tertiary" icon={Avalanche}>Avalanche</Button>
+            <Button kind="tertiary" icon={BnbChain}>BNB Chain</Button>
             <Button kind="tertiary" icon={Polygon}>Polygon</Button>
             <Button kind="ghost">+ All EVM Chains</Button>
           </div>
@@ -964,6 +966,11 @@
               <Column sm={1} lg={2}>
                 <OutboundLink href="https://fantom.foundation/">
                   <ImageLoader src="/images/chains/fantom.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://aurora.dev/">
+                  <ImageLoader src="/images/chains/aurora.svg" />
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>

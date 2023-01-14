@@ -45,4 +45,6 @@ Available blockchains are:
   [:row    [: Fantom testnet]         "fantom-testnet"]
   [:row    [: Avalanche]              "avalanche-mainnet"]
   [:row    [: Avalanche Fuji]         "avalanche-fuji"]
+  [:row    [: Aurora]                 "aurora-mainnet"]
+  [:row    [: Aurora testnet]         "aurora-testnet"]
 ]

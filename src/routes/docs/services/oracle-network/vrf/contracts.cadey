@@ -6,7 +6,7 @@ and the [link #ethereum Ethereum] (Goerli) chains. These contract addresses
 should be passed to the "setupVRF" function depending on which chain your contract is deployed to.
 
 [alert info-square
-   This service is currently in beta test and active only on the BNB Chain (BSC),
+   This service is available only on the BNB Chain (BSC),
    Fantom (FTM) and Polygon (MATIC) testnets and mainnets. If you have any issues or questions
    you can join our [link https://t.me/KenshiTechDevelopers Telegram chat] or send us an email
    at [link mailto:support@kenshi.io support@kenshi.io].]

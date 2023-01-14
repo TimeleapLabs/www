@@ -1,6 +1,8 @@
 export const chainIcons = {
   "ethereum-mainnet": "ethereum",
   "ethereum-goerli": "ethereum",
+  "aurora-testnet": "aurora",
+  "aurora-mainnet": "aurora",
   "avalanche-fuji": "avalanche",
   "avalanche-mainnet": "avalanche",
   "polygon-mumbai": "polygon",
@@ -14,6 +16,8 @@ export const chainIcons = {
 export const chainNames = {
   "ethereum-mainnet": "Ethereum",
   "ethereum-goerli": "Ethereum Goerli",
+  "aurora-testnet": "Aurora Testnet",
+  "aurora-mainnet": "Aurora",
   "avalanche-fuji": "Avalanche Fuji",
   "avalanche-mainnet": "Avalanche",
   "polygon-mumbai": "Polygon Mumbai",
