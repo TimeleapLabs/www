@@ -16,10 +16,11 @@ and processing blockchain data:
   [image /images/docs/screenshots/5_Use_your_favorite_GraphQL_client_to_get_data_from_the_Kenshi_data.png screenshot]
   [image /images/docs/screenshots/6_Register_a_POST_HTTP_endpoint_and_get_notified_of_the_events_as.png screenshot]]
 
-[alert warning
-  This service is currently in beta test and active on the BNB Smart Chain (BSC),
-  Fantom (FTM), Polygon (MATIC) and Avalanche (AVAX) testnets and mainnets, and the
-  Ethereum Goerli testnet. If you need any help don't hesitate to join our communities
+[alert info-square
+  This service is avalable on Ethereum, BNB Smart Chain (BSC),
+  Fantom (FTM), Polygon (MATIC), Avalanche (AVAX), and Aurora (AURORA)
+  testnets and mainnets.
+  If you need any help don't hesitate to join our communities
   or send us an email at [link mailto:support@kenshi.io support@kenshi.io].]
 
 [toc

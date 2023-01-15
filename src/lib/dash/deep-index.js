@@ -26,6 +26,8 @@ export const chainOptions = [
   { label: "Fantom Testnet", value: "fantom-testnet" },
   { label: "Polygon", value: "polygon-mainnet" },
   { label: "Polygon Mumbai", value: "polygon-mumbai" },
+  { label: "Aurora", value: "aurora-mainnet" },
+  { label: "Aurora Testnet", value: "aurora-testnet" },
 ];
 
 export const tiers = {

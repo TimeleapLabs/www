@@ -86,7 +86,9 @@ You are free to use the technology of your choice to implement the above protoco
                 [: "polygon-mainnet"],
                 [: "polygon-mumbai"],
                 [: "fantom-mainnet"],
-                [: "fantom-testnet"]]]
+                [: "fantom-testnet"],
+                [: "aurora-mainnet"],
+                [: "aurora-testnet"]]]
 ]
 
 [heading :size 2 Response Schema]

@@ -3,10 +3,11 @@
 The Kenshi Oracle Network is a high performance asynchronous oracle network
 built as a platform for hosting custom oracles:
 
-[alert warning
-  This service is currently in beta test and active on the BNB Smart Chain (BSC),
-  Fantom (FTM), Polygon (MATIC) and Avalanche (AVAX) testnets and mainnets, and the
-  Ethereum Goerli testnet. If you need any help don't hesitate to join our communities
+[alert info-square
+  This service is available on Ethereum, BNB Smart Chain (BSC),
+  Fantom (FTM), Polygon (MATIC), Avalanche (AVAX), and Aurora (AURORA)
+  testnets and mainnets.
+  If you need any help don't hesitate to join our communities
   or send us an email at [link mailto:support@kenshi.io support@kenshi.io].]
 
 [toc
