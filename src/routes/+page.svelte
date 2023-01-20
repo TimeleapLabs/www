@@ -31,6 +31,7 @@
   import Telegram from "src/icons/Telegram.svelte";
   import Medium from "src/icons/Medium.svelte";
   import Discord from "src/icons/Discord.svelte";
+  import Pancake from "src/icons/Pancake.svelte";
 
   import {
     apollo,
@@ -86,7 +87,14 @@
           <div class="spacer" />
 
           <div class="buttons">
-            <Button href="/dashboard" icon={Dashboard}>Start building</Button>
+            <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
+            <Button
+              target="_blank"
+              icon={Pancake}
+              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+            >
+              Token
+            </Button>
             <Button href="/docs" kind="secondary" icon={Book}>
               Documentation
             </Button>
