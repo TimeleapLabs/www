@@ -1,9 +1,10 @@
 [heading Supported devices]
 
-Currently the Kenshi IoT SDK supports Arduino and ESP32-compatible boards through
-the Arduino IDE and its ecosystem. The following boards and platforms are supported
-by this SDK:
-
+The Kenshi IoT SDK supports Arduino and ESP32-compatible boards through
+the Arduino IDE and ecosystem. All network-enabled boards supported by
+[link https://docs.zephyrproject.org/latest/boards/index.html Zephyr]
+are supported by this SDK. Check the official Kenshi Deep Index MQL/GraphQL
+[link /docs/services/deep-index documentation] for Linux development boards.
 
 [heading :size 2 ESP32 product family]
 
