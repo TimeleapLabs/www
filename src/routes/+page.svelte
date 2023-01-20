@@ -11,8 +11,9 @@
   import { ImageLoader, OutboundLink, Link } from "carbon-components-svelte";
 
   import { Dashboard, Book, IntentRequestCreate } from "carbon-icons-svelte";
-  import { Partnership, AnalyticsReference } from "carbon-icons-svelte";
+  import { Partnership, AnalyticsReference, Email } from "carbon-icons-svelte";
   import { LogoPython, ArrowDown, ArrowDownRight } from "carbon-icons-svelte";
+  import { IotPlatform, LogoGithub } from "carbon-icons-svelte";
 
   import Go from "src/icons/Go.svelte";
   import Node from "src/icons/Node.svelte";
@@ -340,6 +341,148 @@
     </Row>
   </Grid>
 
+  <Grid noGutter padding id="deep-index">
+    <Row>
+      <Column sm={4} md={4} lg={5}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={5}>
+            <h2>
+              Kenshi blockchain <span class="blue">IoT SDK</span>
+            </h2>
+          </ExpressiveHeading>
+
+          <div class="spacer" />
+
+          <div class="fluid-paragraph-01">
+            From supply chain and vending machines that accept crypto, to smart
+            home appliances and smart cities.
+          </div>
+
+          <div class="spacer" />
+
+          <div class="body-02">
+            Kenshi IoT SDK enables you to connect your embedded devices to the
+            blockchain. Have an idea and don't know where to start? Contact us
+            and we will help bring your idea to life.
+          </div>
+
+          <div class="spacer" />
+
+          <div class="buttons">
+            <Button href="mailto:chains@kenshi.io" icon={Email}>
+              Contact us
+            </Button>
+            <Button href="/docs/services/iot" kind="secondary" icon={Book}>
+              Documentation
+            </Button>
+          </div>
+
+          <div class="spacer" />
+          <div class="spacer" />
+        </div>
+      </Column>
+      <Column sm={4} md={4} lg={5}>
+        <ImageLoader src="/images/backgrounds/iot.jpg" />
+      </Column>
+      <Column sm={4} md={10} lg={6}>
+        <div class="flex-column fast">
+          <ExpressiveHeading size={4}>
+            <h3>Supports 200+ development boards!</h3>
+          </ExpressiveHeading>
+          <p>
+            Kenshi blockchain IoT SDK supports more than 200 development boards.
+          </p>
+          <div class="spacer" />
+          <Grid noGutter padding fullWidth>
+            <Row>
+              <Column sm={4} lg={8}>
+                <ClickableTile
+                  href="/docs/services/iot/install#linux-bsd-and-windows-sbcs"
+                >
+                  <div class="integration">
+                    <ExpressiveHeading size={2}>Linux</ExpressiveHeading>
+                    <div>
+                      Use your favorite Linux-compatible technology to
+                      communicate with the Kenshi Deep Index.
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column sm={4} lg={8}>
+                <ClickableTile href="/docs/services/iot/install#zephyr-rtos">
+                  <div class="integration">
+                    <ExpressiveHeading size={2}>Zephyr</ExpressiveHeading>
+                    <div>
+                      You can use the Kenshi IoT SDK on Zephyr RTOS. Find an
+                      example app
+                      <OutboundLink
+                        href="https://github.com/KenshiTech/iot-sdk"
+                      >
+                        here.
+                      </OutboundLink>
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column sm={4} lg={8}>
+                <ClickableTile href="/docs/services/iot/install#arduino-boards">
+                  <div class="integration">
+                    <ExpressiveHeading size={2}>
+                      Arduino boards
+                    </ExpressiveHeading>
+                    <div>
+                      The Kenshi IoT SDK supports all internet-enabled Arduino
+                      boards. Check the library
+                      <OutboundLink
+                        href="https://github.com/KenshiTech/iot-sdk"
+                      >
+                        here.
+                      </OutboundLink>
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column sm={4} lg={8}>
+                <ClickableTile href="/docs/services/iot/install#esp32-boards">
+                  <div class="integration">
+                    <ExpressiveHeading size={2}>ESP32</ExpressiveHeading>
+                    <div>
+                      The Kenshi IoT SDK for Arduino is compatible with ESP32
+                      boards that support the Arduino IDE.
+                    </div>
+                  </div>
+                </ClickableTile>
+              </Column>
+            </Row>
+          </Grid>
+          <div class="spacer" />
+
+          <div class="body-02">
+            Don't hesitate to reach out if you cannot find your favorite boards.
+          </div>
+
+          <div class="spacer" />
+          <div class="buttons">
+            <Button href="/docs/services/iot/devices" icon={IotPlatform}>
+              See all boards
+            </Button>
+
+            <Button
+              href="https://github.com/KenshiTech/iot-sdk"
+              icon={LogoGithub}
+            >
+              Github
+            </Button>
+          </div>
+
+          <div class="spacer" />
+          <div class="spacer" />
+          <div class="spacer" />
+        </div>
+      </Column>
+    </Row>
+  </Grid>
+
   <Grid noGutter padding>
     <Row>
       <Column sm={4} md={10} lg={5}>
@@ -393,7 +536,7 @@
                   href="/docs/services/deep-index/webhook/integrations"
                 >
                   <div class="integration">
-                    <ImageLoader src="/images/integrations/aws.lambda.svg" />
+                    <ExpressiveHeading size={2}>AWS Lambda</ExpressiveHeading>
                     <div>
                       Learn how to integrate the Kenshi Deep Index with AWS
                       <OutboundLink href="https://aws.com">Lambda.</OutboundLink
@@ -407,7 +550,7 @@
                   href="/docs/services/deep-index/webhook/integrations"
                 >
                   <div class="integration">
-                    <ImageLoader src="/images/integrations/zapier.svg" />
+                    <ExpressiveHeading size={2}>Zapier</ExpressiveHeading>
                     <div>
                       Learn how to integrate the Kenshi Deep Index with
                       <OutboundLink href="https://zapier.com">
@@ -422,7 +565,7 @@
                   href="/docs/services/deep-index/webhook/integrations"
                 >
                   <div class="integration">
-                    <ImageLoader src="/images/integrations/make.com.png" />
+                    <ExpressiveHeading size={2}>Make.com</ExpressiveHeading>
                     <div>
                       Learn how to integrate the Kenshi Deep Index with
                       <OutboundLink href="https://make.com">
@@ -437,7 +580,7 @@
                   href="/docs/services/deep-index/webhook/integrations"
                 >
                   <div class="integration">
-                    <ImageLoader src="/images/integrations/ifttt.svg" />
+                    <ExpressiveHeading size={2}>IFTTT</ExpressiveHeading>
                     <div>
                       Learn how to integrate the Kenshi Deep Index with
                       <OutboundLink href="https://ifttt.com">
@@ -452,7 +595,7 @@
                   href="/docs/services/deep-index/webhook/integrations"
                 >
                   <div class="integration">
-                    <ImageLoader src="/images/integrations/webhooks.png" />
+                    <ExpressiveHeading size={2}>Webhooks</ExpressiveHeading>
                     <div>
                       Learn how to integrate the Kenshi Deep Index with
                       <OutboundLink

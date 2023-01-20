@@ -1,0 +1,13 @@
+[heading IoT SDK Documentation]
+
+[alert warning This is a work in progress.]
+
+[heading :size 2 Arduino/ESP32 library]
+
+Check the [link arduino https://github.com/KenshiTech/iot-sdk/tree/master/arduino]
+directory on Github for header files and samples.
+
+[heading :size 2 Zephyr RTOS]
+
+Check the [link zephyr https://github.com/KenshiTech/iot-sdk/tree/master/zephyr]
+directory on Github for header files and samples.

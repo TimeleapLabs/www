@@ -319,3 +319,7 @@ ol {
 .flex-column > .bx--grid--full-width {
   width: 100%;
 }
+
+ul ul {
+  padding-left: 1em;
+}
