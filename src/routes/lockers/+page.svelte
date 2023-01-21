@@ -215,7 +215,11 @@
       Docs <External />
     </Button>
 
-    <Button href="/swap">Buy ₭enshi</Button>
+    <Button
+      href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+    >
+      Buy ₭enshi
+    </Button>
 
     {#if $wallet?.provider}
       <Button on:click={toggleShowLockerForm}>New locker</Button>

@@ -5,4 +5,5 @@
 
 # Kenshi Website
 
-Kenshi is a Swiss-based blockchain company offering services such as VRF oracle, Custom Oracle Network, Deep Indexing with GraphQL, MQL, and Reverse-API (webhooks) endpoints for the blockchain.
+Kenshi is a Swiss-based blockchain company offering services such as Custom Oracle Network, blockchain IoT SDK,
+and Deep Indexing with GraphQL, MQL, and Reverse-API (webhooks) endpoints for the blockchain.

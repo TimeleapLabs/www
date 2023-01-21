@@ -1,18 +1,21 @@
 [heading What is Kenshi?]
 
-Kenshi is a tech company interested in blockchain technology and distributed systems,
-as well as a token on the BNB Chain. While the vast majority of tokens on the market
-rely merely on the market hype to derive their value, Kenshi does it by bringing actual
-projects into life.
+Kenshi is a full-stack application development platform targeting the blockchain.
+Kenshi enables fast product development and reduces time to market. Whether you
+want to index and query blockchain data or deliver data to the blockchain,
+Kenshi has you covered and enables two-way communication.
 
-[heading :size 2 Kenshi as a Tech Company]
+Our vision is to lift the limitations faced by developers each day and allow
+them to build more innovative blockchain applications with real-world use cases.
+Whether you are making complex applications or smart contracts interacting with
+machines and IoT devices outside the blockchain, we'd love to help you bring
+your ideas to life.
 
-On the tech side, Kenshi engineers and implements multiple projects, mainly blockchain
-related such as deep indexing and oracles. These projects bring value to the ecosystem
-and boost the economy of Kenshi.
+[heading :size 2 Kenshi Products]
 
-[heading :size 2 Kenshi as a Token]
+Kenshi provides the following services:
 
-The Kenshi ERC1363 token empowers the Kenshi EVM ecosystem. A percentage of each transaction
-is dedicated to the growth of this ecosystem. This token is primarily used to pay for the
-Kenshi ecosystem services.
+[list
+  [: [link /docs/services/deep-index Deep Index]: Allows indexing blockchain events for blazing-fast access.]
+  [: [link /docs/services/iot IoT SDK]: Allows receiving blockchain events on IoT devices.]
+  [: [link /docs/services/oracle-network Oracle Network]: Allows creating custom oracles.]]

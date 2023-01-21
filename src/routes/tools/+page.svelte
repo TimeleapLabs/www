@@ -1,26 +1,13 @@
 <script>
-  import Navbar from "src/components/Navbar.svelte";
   import Footer from "src/components/Footer.svelte";
-  import Alert from "src/components/Alert.svelte";
-
-  import Copy from "src/icons/Copy.svelte";
-  import External from "src/icons/External.svelte";
-  import Coin from "src/icons/Coin.svelte";
-  import Dollar from "src/icons/Dollar.svelte";
-  import ArrowUp from "src/icons/ArrowUp.svelte";
-  import Treasure from "src/icons/Treasure.svelte";
-  import CreditCard from "src/icons/CreditCard.svelte";
-  import Percent from "src/icons/Percent.svelte";
-  import Timer from "src/icons/Timer.svelte";
-  import Wallet from "src/icons/WalletThin.svelte";
-  import Link from "src/icons/Link.svelte";
   import MetaMask from "src/icons/MetaMask.svelte";
 
-  import { Button, Select, SelectItem } from "carbon-components-svelte";
+  import { Button } from "carbon-components-svelte";
   import { Grid, Content, Row, Column, Tile } from "carbon-components-svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
-  import { Launch, Purchase, CaretUp } from "carbon-icons-svelte";
+  import { Launch, Purchase } from "carbon-icons-svelte";
+  import { IntentRequestUninstall } from "carbon-icons-svelte";
   import { TextInput, CopyButton } from "carbon-components-svelte";
   import { DataTable, InlineNotification } from "carbon-components-svelte";
 
@@ -34,6 +21,7 @@
 
   import formatThousands from "format-thousands";
   import kenshiAbi from "src/lib/abi/kenshi";
+  import unstakeAbi from "src/lib/abi/unstake";
 
   import { fetchTokenPriceFromPair } from "src/lib/api/token";
   import { page } from "$app/stores";
@@ -44,8 +32,6 @@
   let maxBalance;
   let treasury;
   let ableToBuy;
-  let saleTax;
-  let when = 0;
 
   let usdAbleToBuyDisplay = "0";
   let ableToBuyDisplay = "0";
@@ -87,7 +73,7 @@
   $: usdMaxBalanceDisplay = maxBalance && unitPrice ? toUsd(maxBalance) : "0";
 
   const kenshiAddr = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
-  const proxyAddr = "0x0A7eD4314D9109986281bdd6235f1A5623690110";
+  const unstakeAddr = "0xA5b18FF6189031d977db28B3D31d15F067eBD1C4";
   const treasuryAddr = "0xD59321c8266534dac369F0eFABDD5b815F1a5eb6";
   const jsonRpcUrl = "https://bsc-dataseed.binance.org";
   const provider = new ethers.providers.JsonRpcProvider(jsonRpcUrl);
@@ -104,29 +90,14 @@
     unitPrice = price || unitPrice;
   };
 
-  const calculateTax = async () => {
-    saleTax = await contract.getTaxPercentageAt(
-      userAddress,
-      Math.floor(new Date().valueOf() / 1000 + when)
-    );
-  };
-
   const updateValues = async () => {
     if (!userAddress) return;
     balance = await contract.balanceOf(userAddress);
     treasury = await contract.balanceOf(treasuryAddr);
     maxBalance = await contract.getMaxBalance();
-    calculateTax();
   };
-
-  $: if (when !== undefined && userAddress) calculateTax().catch(() => null);
 
   $: if ($wallet?.provider) onWallet();
-
-  const copy = (text) => () => {
-    navigator.clipboard?.writeText?.(text);
-    toast.push("Copied to clipboard.");
-  };
 
   // This API key is available for free to those who want to
   // query the Kenshi contract transfer events
@@ -195,78 +166,6 @@
       .then(calculateReflections)
       .catch(() => null);
 
-  const taxDateOptions = [
-    { text: "Today", value: 0 },
-    { text: "Tomorrow", value: 86400 },
-    ...new Array(28).fill().map((_, i) => ({
-      text: `In ${i + 2} days`,
-      value: 86400 * (i + 2),
-    })),
-  ];
-
-  let transferTo = "";
-  let transferAmount = "0";
-  let transferring = false;
-
-  const maxTransfer = () => {
-    transferAmount = ethers.utils.formatUnits(balance, 18);
-  };
-
-  const transfer = async () => {
-    if (!transferTo) {
-      return toast.push("Destination is required");
-    }
-
-    if (!transferAmount || !Number(transferAmount)) {
-      return toast.push("Amount is required");
-    }
-
-    const tax = await contract.getTaxPercentageAt(
-      userAddress,
-      Math.floor(new Date().valueOf() / 1000)
-    );
-
-    if (tax > 5) {
-      return toast.push("Fine amount is bigger than zero");
-    }
-
-    transferring = true;
-
-    const provider = new ethers.providers.Web3Provider($wallet.provider);
-    const signer = provider.getSigner();
-
-    try {
-      await onboard.setChain({ chainId: "0x38" });
-    } catch (error) {
-      transferring = false;
-      return toast.push("Couldn't switch to BNBChain.");
-    }
-
-    try {
-      const parsedAmount = ethers.utils.parseUnits(transferAmount);
-      const data = ethers.utils.defaultAbiCoder.encode(
-        ["address"],
-        [transferTo]
-      );
-
-      const tx = await contract
-        .connect(signer)
-        ["transferAndCall(address,uint256,bytes)"](
-          proxyAddr,
-          parsedAmount,
-          data
-        );
-
-      await tx.wait(1);
-
-      toast.push("Transfer successful.");
-    } catch (error) {
-      toast.push("Transfer failed.");
-    }
-
-    transferring = false;
-  };
-
   const addToMetamask = async () => {
     const params = {
       type: "ERC20",
@@ -289,6 +188,21 @@
       .catch(() => {
         toast.push("Couldn't add the token to your wallet.");
       });
+  };
+
+  let isUnstaking = false;
+  const unstake = async () => {
+    isUnstaking = true;
+    try {
+      const provider = new ethers.providers.Web3Provider($wallet.provider);
+      const signer = provider.getSigner(userAddress);
+      const contract = new ethers.Contract(unstakeAddr, unstakeAbi, signer);
+      await contract.unstake();
+      toast.push("Unstaking was successful.");
+    } catch (error) {
+      toast.push("There was a problem with unstaking. Retry later.");
+    }
+    isUnstaking = false;
   };
 
   onMount(() => {
@@ -355,7 +269,11 @@
             </div>
           </div>
           <div class="buttons">
-            <Button href="/swap" icon={Purchase} kind="tertiary">
+            <Button
+              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+              icon={Purchase}
+              kind="primary"
+            >
               Buy Kenshi
             </Button>
             <Button on:click={addToMetamask} icon={MetaMask} kind="tertiary">
@@ -365,7 +283,7 @@
               href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
               solid
               icon={Launch}
-              kind="secondary"
+              kind="tertiary"
             >
               Charts
             </Button>
@@ -431,78 +349,32 @@
         </Column>
         <Column>
           <Tile>
-            <div class="flex-column">
-              <Select light labelText="Tax at" bind:selected={when}>
-                {#each taxDateOptions as { text, value }}
-                  <SelectItem {value} {text} />
-                {/each}
-              </Select>
-              <TextInput
-                readonly
-                labelText="Tax percentage"
-                value={saleTax}
-                icon={Percent}
-              />
-            </div>
+            <ExpressiveHeading size={3}>Unstake</ExpressiveHeading>
+            <div class="body-02 tax">Make your account tax-free</div>
+            <InlineNotification hideCloseButton kind="info">
+              You can click on the button below to completely remove the tax
+              from your account. You only need to do this once.
+            </InlineNotification>
+            <Button
+              disabled={isUnstaking}
+              on:click={unstake}
+              icon={IntentRequestUninstall}
+            >
+              {#if isUnstaking}
+                <SpinLine
+                  size="32"
+                  color="currentColor"
+                  unit="px"
+                  duration="4s"
+                /> Unstaking..
+              {:else}
+                Unstake
+              {/if}
+            </Button>
           </Tile>
         </Column>
       {/if}
     </Row>
-    {#if $wallet?.provider}
-      <Row>
-        <Column>
-          <ExpressiveHeading size={2}>
-            <h2>Wallet Transfer</h2>
-          </ExpressiveHeading>
-        </Column>
-      </Row>
-      <Row>
-        <Column lg={4}>
-          <Tile>
-            <div class="card-inner forms">
-              <div class="form">
-                <TextInput
-                  labelText="Destination"
-                  placeholder="Destination"
-                  light
-                  bind:value={transferTo}
-                />
-                <div class="field">
-                  <TextInput
-                    light
-                    placeholder="Amount"
-                    labelText="Amount"
-                    bind:value={transferAmount}
-                  />
-                  <Button size="field" on:click={maxTransfer} icon={CaretUp}>
-                    MAX
-                  </Button>
-                </div>
-                <InlineNotification kind="warning" hideCloseButton>
-                  To be able to make a transfer, your selling tax should be 5%.
-                  See the Kenshi tools above to find out about your current tax.
-                </InlineNotification>
-              </div>
-            </div>
-            <div class="buttons">
-              <Button on:click={transfer} disabled={transferring}>
-                {#if transferring}
-                  <SpinLine
-                    size="32"
-                    color="currentColor"
-                    unit="px"
-                    duration="4s"
-                  />
-                  Processing
-                {:else}
-                  Transfer
-                {/if}
-              </Button>
-            </div>
-          </Tile>
-        </Column>
-      </Row>
-    {/if}
   </Grid>
 </Content>
 
@@ -521,11 +393,7 @@
   .forms {
     gap: 2em;
   }
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-  }
+
   @media only screen and (max-width: 420px) {
     :global(.card.padding) {
       padding: 1.25em 1em;
@@ -544,5 +412,9 @@
   }
   .buttons :global(svg) {
     width: 1em;
+  }
+  .body-02.tax {
+    font-size: 0.875rem;
+    color: var(--cds-text-secondary, #525252);
   }
 </style>

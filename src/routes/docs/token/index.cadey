@@ -1,24 +1,27 @@
 [heading The Kenshi token]
 
-[heading :size 2 TL;DR]
+[alert warning
+  [bold Important notice - MUST READ]
+  
+  The Kenshi token has auto-staking features, and used to have a sales tax
+  that decreased over time. This tax was removed on 21 Jan 2023 from PancakeSwap
+  so all buys and sells are now tax-free there.
+  Howeveer, the acount to account transfer tax is still in place due to
+  auto-staking. To completely remove the tax from your account, head over
+  to the Kenshi [link /tools tools] page, connect your wallet and unstake your tokens.]
 
-If the documentation is too long for you to read, here is a summary:
+[heading :size 2 Technology]
 
-[list :type ordered
- [: The token unlocks access to the Kenshi's on-chain services and products]
- [: There is a 5% community tax on buying or selling the token]
- [: There is a fine to discourage token trading; this is a utility token]
- [: You get reflections as a part of our royalty program]
- [: Head to
-    [link https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f PancakeSwap]
-    to buy]]
+Kenshi implements the [link https://eips.ethereum.org/EIPS/eip-1363 ERC-1363] token standard
+and is deployed to BNB Smart Chain.
 
-[alert info-square
-  There is no tax or fine for buying the Kenshi services.]
+[heading :size 2 How to buy?]
 
-Check the topics below if you want to learn more about the token.
+You can buy the token on
+[link https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f PancakeSwap.]
 
-[toc
-  utility
-  ecosystem/index
-  features/index]
+[heading :size 2 Utility]
+
+The Kenshi token is a utility token. It creates a bilateral relationship between Kenshi
+and its customers allowing them to digitally access Kenshi services by the means of a
+blockchain-based infrastructure.
