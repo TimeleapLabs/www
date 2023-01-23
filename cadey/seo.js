@@ -31,6 +31,9 @@ const getDescription = (body) => {
 const defaultDescription =
   "Kenshi is a Swiss based blockchain company offering blockchain services such as deep indexing, VRF, product development, security audits, and more.";
 
+const absolute = (url) =>
+  url.startsWith("/") ? `https://kenshi.io${url}` : url;
+
 export const getSeoTags = (body, context) => {
   const description = getDescription(body) || defaultDescription;
 
@@ -53,10 +56,10 @@ export const getSeoTags = (body, context) => {
 
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}"/>
-    <meta property="og:image" content="${image}" />
+    <meta property="og:image" content="${absolute(image)}" />
     
     <meta property="twitter:title" content="${title}" />
     <meta property="twitter:description" content="${description}"/>
-    <meta property="twitter:image" content="${image}"/>
+    <meta property="twitter:image" content="${absolute(image)}"/>
   `;
 };

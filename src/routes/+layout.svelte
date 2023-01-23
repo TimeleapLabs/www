@@ -6,7 +6,7 @@
   import { onMount } from "svelte";
   import Navbar from "src/components/Navbar.svelte";
 
-  $: needsHead = !$page?.url?.pathname?.startsWith("/docs");
+  $: needsHead = !$page?.url?.pathname?.match(/^(\/docs|\/blog)/);
 
   import "carbon-components-svelte/css/all.css";
   import "../common.css";
