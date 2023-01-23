@@ -73,13 +73,12 @@
       .join("");
   };
 
-  let share;
-  const sharePage = () => {
-    share({
+  let hasShare;
+  const sharePage = () =>
+    navigator.share({
       title: document.title,
       url: window.location.href,
     });
-  };
 
   const tweetText = meta.tweet
     ? encodeURIComponent(
@@ -88,7 +87,7 @@
     : "";
 
   onMount(() => {
-    share = navigator?.share;
+    hasShare = !!navigator?.share;
   });
 </script>
 
@@ -105,7 +104,7 @@
         {/if}
         <span> Help spread the word! </span>
         <div class="buttons">
-          {#if share}
+          {#if hasShare}
             <Button icon={Share} on:click={sharePage}>Share</Button>
           {/if}
           {#if meta.tweet}
@@ -377,7 +376,8 @@
       padding: 1.25em;
     }
     .blog {
-      display: block;
+      display: flex;
+      flex-direction: column-reverse;
       padding: 1em;
     }
     .body {
@@ -386,6 +386,9 @@
     .blog :global(.blog-side-nav),
     .headings {
       display: none;
+    }
+    .meta {
+      padding: 1em;
     }
     .breadcrumb {
       padding: 0;
