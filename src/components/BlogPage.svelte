@@ -107,7 +107,7 @@
           {#if hasShare}
             <Button icon={Share} on:click={sharePage}>Share</Button>
           {/if}
-          {#if meta.tweet}
+          {#if tweetText}
             <Button
               target="_blank"
               icon={LogoTwitter}
