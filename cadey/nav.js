@@ -109,7 +109,7 @@ export const getSubNav = (tocs, meta, [route, title]) => {
     url: toUrl(route),
     title,
     entries: toc
-      ? Object.entries(toc).map((toc) => getSubNav(tocs, toc))
+      ? Object.entries(toc).map((toc) => getSubNav(tocs, meta, toc))
       : null,
   };
 };
