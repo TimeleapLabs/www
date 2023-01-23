@@ -1,8 +1,9 @@
 [heading Introducing the Kenshi Oracle Network]
 
 The Kenshi Oracle Network is a complete platform for building custom oracles. It takes care
-of the boring stuff like event sourcing, task queues, security, caching, scaling, nonce management,
-error management, data delivery, and retries so you can focus on your business logic. With the
+of the boring and time consuming stuff like event sourcing, task queues, security, caching,
+scaling, nonce management, error management, data delivery, and retries so you can focus on
+your business logic. With the
 Kenshi [link /docs/services/oracle-network/custom Oracle Network],
 you develop your oracle's logic using the technology of your choice, and we take care
 of the rest for you.
@@ -93,8 +94,8 @@ Happy hacking on the Oracle Network!
 [meta tags [: Oracle Network]]
 [meta summary
   The Kenshi Oracle Network is a complete platform for building custom oracles. It takes care of
-  the boring stuff like event sourcing, task queues, security, caching, scaling, nonce management,
-  error management, data delivery, and retries so you can focus on your business logic. ]
+  the boring and time consuming stuff like event sourcing, task queues, security, caching, scaling,
+  nonce management, error management, data delivery, and retries so you can focus on your business logic. ]
 [meta tweet
   Build your custom #blockchain oracle for your custom #Web3 use case in just a few lines of code
   with the Kenshi Oracle Network!]
