@@ -12,15 +12,6 @@ of the rest for you.
     /blog/images/oracle-network-overview.png
     High level overview of the Kenshi Oracle Network]]
 
-[heading :size 2 Why Kenshi Oracle Network?]
-
-We built an excellent oracle infrastructure when we launched our VRF oracle. This infrastructure
-proved to be very performant and efficient. It performed so well that we asked ourselves, shouldn't
-we provide it publicly so others can build their oracles?
-
-After all, this platform provides almost everything you need to make an oracle. Instead of coding
-and maintaining it yourself, you can subscribe to it and focus on your business.
-
 [heading :size 2 What are the Kenshi Oracle Network use cases?]
 
 Your only limitation is your imagination! Whether you want to check if your user owns a specific
