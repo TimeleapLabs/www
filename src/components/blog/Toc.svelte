@@ -1,0 +1,72 @@
+<script>
+  import { ClickableTile, Tag } from "carbon-components-svelte";
+  import { Grid, Column, Row } from "carbon-components-svelte";
+  import ExpressiveHeading from "../carbon/ExpressiveHeading.svelte";
+
+  import nav from "src/lib/blog.nav.js";
+</script>
+
+<div class="articles">
+  {#each nav as article}
+    <ClickableTile class="tile" href={article.url}>
+      <div class="container">
+        <div class="article">
+          <ExpressiveHeading size={3}>
+            <h3>{article.title}</h3>
+          </ExpressiveHeading>
+          <div class="body-compact-02">
+            {article.meta.summary}
+          </div>
+          <div class="spacer" />
+          <div class="tags">
+            {#each article.meta.tags as tag}
+              <Tag>{tag}</Tag>
+            {/each}
+          </div>
+        </div>
+        <div class="banner">
+          <img src={article.meta.banner} alt={article.title} />
+        </div>
+      </div>
+    </ClickableTile>
+  {/each}
+</div>
+
+<style>
+  .spacer {
+    flex: 1;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .article {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    flex: 1;
+  }
+  .article h3 {
+    margin-top: 0 !important;
+  }
+  .banner {
+    width: 384px;
+    height: 216px;
+  }
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.1s linear all;
+  }
+  .articles :global(.tile) {
+    padding: 0;
+  }
+  .articles :global(.tile + .tile) {
+    margin-top: 2em;
+  }
+  .container:hover .banner img {
+    filter: brightness(1.1) contrast(0.9);
+  }
+</style>

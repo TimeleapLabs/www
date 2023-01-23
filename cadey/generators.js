@@ -17,6 +17,7 @@ const componentsMap = {
   Gallery: "src/components/gallery/Gallery.svelte",
   TeamMember: "src/components/TeamMember.svelte",
   Chart: "src/components/Chart.svelte",
+  BlogToc: 'import Toc from "src/components/blog/Toc.svelte"',
 };
 
 const getImport = (c) =>
@@ -37,17 +38,19 @@ const genBread = (bread) => {
   return `<Breadcrumb noTrailingSlash>${items}\n${lastItem}</Breadcrumb>`;
 };
 
-export const getDocPage = (
+export const getPage = (
   parsed,
   imports,
   headings,
   bread,
   next,
   prev,
-  tags
+  tags,
+  meta,
+  type
 ) => `
     <script>
-      import DocPage from "src/components/DocPage.svelte";
+      import ${type}Page from "src/components/${type}Page.svelte";
       import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
       import { Grid, Row, Column, Link, OutboundLink } from "carbon-components-svelte";
       import { ListItem } from "carbon-components-svelte";
@@ -56,17 +59,18 @@ export const getDocPage = (
 
       const next = ${next};
       const prev = ${prev};
+      const meta = ${JSON.stringify(meta)};
     </script>
 
     <svelte:head>
       ${tags}
     </svelte:head>
 
-    <DocPage {next} {prev}>
+    <${type}Page {next} {prev} {meta}>
       ${parsed}
       <svelte:fragment slot="breadcrumb">${genBread(bread)}</svelte:fragment>
       <svelte:fragment slot="headings">${headings}</svelte:fragment>
-    </DocPage>
+    </${type}Page>
   `;
 
 export const getContext = (
@@ -74,11 +78,13 @@ export const getContext = (
   processOne,
   currentFile,
   allHeadings,
-  allTocs
+  allTocs,
+  allMeta
 ) => ({
   ...cadey.getContext(),
   processOne,
   currentFile,
   allHeadings,
   allTocs,
+  allMeta,
 });

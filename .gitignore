@@ -12,6 +12,13 @@ node_modules
 .assets
 
 /static/images/originals
+
+# Docs
 src/routes/docs/**/*.svelte
 src/lib/docs.nav.js
 src/lib/docs.search.js
+
+# Blog
+src/routes/blog/**/*.svelte
+src/lib/blog.nav.js
+src/lib/blog.search.js

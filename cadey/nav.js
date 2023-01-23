@@ -100,9 +100,9 @@ export const getNext = (file, allTocs) => {
   }
 };
 
-export const getSubNav = (tocs, [route, title]) => {
+export const getSubNav = (tocs, meta, [route, title]) => {
   if (!route.endsWith("index.cadey")) {
-    return { url: toUrl(route), title };
+    return { url: toUrl(route), title, meta: meta[route] || null };
   }
   const toc = tocs[route];
   return {
@@ -114,7 +114,7 @@ export const getSubNav = (tocs, [route, title]) => {
   };
 };
 
-export const getNav = (tocs) => {
-  const mainToc = tocs["src/routes/docs/index.cadey"];
-  return Object.entries(mainToc).map((entry) => getSubNav(tocs, entry));
+export const getNav = (tocs, meta, project) => {
+  const mainToc = tocs[`src/routes/${project}/index.cadey`];
+  return Object.entries(mainToc).map((entry) => getSubNav(tocs, meta, entry));
 };

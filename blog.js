@@ -1,3 +1,3 @@
 import { parseAll } from "./cadey/parse.js";
 
-parseAll("docs");
+parseAll("blog");

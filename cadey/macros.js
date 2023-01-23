@@ -108,7 +108,20 @@ export const macros = {
     if (options.alt) {
       atts.push(`alt="${asText(options.alt)}"`);
     } else if (alt) {
-      atts.push(`alt="${asText(alt)}"`);
+      atts.push(`alt="${alt.map(asText).join(" ")}"`);
+    }
+
+    if (options.sm) {
+      atts.push(`sm={${options.sm}}`);
+    }
+    if (options.lg) {
+      atts.push(`lg={${options.lg}}`);
+    }
+    if (options.md) {
+      atts.push(`md={${options.md}}`);
+    }
+    if (options.ar) {
+      atts.push(`aspectRatio="${options.ar}"`);
     }
 
     return `<Image ${atts.join(" ")} />`;
@@ -172,7 +185,7 @@ export const macros = {
     const type = code.includes("\n") ? "multi" : "single";
     return `<CodeSnippet type={"${type}"} code={\`${code}\`}></CodeSnippet>`;
   },
-  async toc(_options, ...args) {
+  async toc(options, ...args) {
     this.components = { ...this.components, Toc: true };
     const files = asArgList(args).map((name) =>
       path.join(path.dirname(this.currentFile), `${name}.cadey`)
@@ -183,6 +196,10 @@ export const macros = {
       headings[file] = this.allHeadings[file][0].title;
     }
     this.allTocs[this.currentFile] = headings;
+    if (options.type === "blog") {
+      this.components = { ...this.components, BlogToc: true };
+      return "<Toc />";
+    }
     const links = Object.entries(headings)
       .map(([file, title]) => [toUrl(file), title])
       .map(([url, title]) => `<Link href="${url}"> ${title} </Link>`)
@@ -229,5 +246,18 @@ export const macros = {
       <InlineNotification hideCloseButton kind={"${type}"}>
         <div slot="subtitle">${asText(text)}</div>
       </InlineNotification>`;
+  },
+  meta(_options, ...args) {
+    const [name, ...value] = args.slice(1);
+    const multivalue = value.some(Array.isArray);
+    this.allMeta[this.currentFile] = {
+      ...this.allMeta[this.currentFile],
+      [name]: multivalue
+        ? value
+            .filter((item) => Array.isArray(item) || !item.match(/^\s+$/))
+            .map(asText)
+        : asText(value),
+    };
+    return "";
   },
 };

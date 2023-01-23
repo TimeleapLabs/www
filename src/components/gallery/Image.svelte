@@ -7,6 +7,10 @@
   export let radius = 0;
   export let height = "auto";
   export let width = "auto";
+  export let lg = 2;
+  export let md = 2;
+  export let sm = 2;
+  export let aspectRatio = "1x1";
 
   let zoom = false;
   let unzoomImage;
@@ -65,23 +69,30 @@
     }
     scrolled = false;
   };
+
+  const large = lg > 4 || height >= 320 || width >= 440;
 </script>
 
-<Column class="gallery-col" lg={2} sm={2} mg={2} aspectRatio={"1x1"}>
+<Column class="gallery-col" {lg} {sm} {md} {aspectRatio}>
   <Tile light>
-    <img
-      bind:this={unzoomImage}
-      class="unzoom"
-      class:faded={zoom}
-      style="--radius: {radius}px; --height: {height}; --width: {width}"
-      {src}
-      {alt}
-      on:click={onClick}
-      on:mousemove={onMouseMove}
-      on:mousedown={onMouseDown}
-      on:mouseleave={onMouseLeave}
-      on:mouseup={onMouseUp}
-    />
+    <div class="wrap">
+      <img
+        bind:this={unzoomImage}
+        class="unzoom"
+        class:faded={zoom}
+        style="--radius: {radius}px; --height: {height}; --width: {width}"
+        {src}
+        {alt}
+        on:click={onClick}
+        on:mousemove={onMouseMove}
+        on:mousedown={onMouseDown}
+        on:mouseleave={onMouseLeave}
+        on:mouseup={onMouseUp}
+      />
+      {#if large}
+        <div class="alt">{alt}</div>
+      {/if}
+    </div>
   </Tile>
 </Column>
 
@@ -125,5 +136,15 @@
   }
   img {
     border-radius: var(--radius);
+  }
+  .alt {
+    font-size: var(--cds-helper-text-01-font-size, 0.75rem);
+    line-height: var(--cds-helper-text-01-line-height, 1.33333);
+    letter-spacing: var(--cds-helper-text-01-letter-spacing, 0.32px);
+    z-index: 0;
+    width: 100%;
+    margin-top: 0.25rem;
+    color: var(--cds-text-02, #525252);
+    opacity: 1;
   }
 </style>

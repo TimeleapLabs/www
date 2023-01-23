@@ -1,16 +1,17 @@
 <script>
   import Footer from "src/components/Footer.svelte";
-  import Nav from "src/components/docs/Nav.svelte";
+  import ExpressiveHeading from "./carbon/ExpressiveHeading.svelte";
 
   import { SvelteToast } from "@zerodevx/svelte-toast";
-
   import { Button, Content, Tile } from "carbon-components-svelte";
   import { Grid, Row, Column, UnorderedList } from "carbon-components-svelte";
   import { ChevronLeft, ChevronRight } from "carbon-icons-svelte";
   import { Search, Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
   import { debounce } from "$lib/utils";
+  import { Share, LogoTwitter } from "carbon-icons-svelte";
+  import { page } from "$app/stores";
 
-  import ExpressiveHeading from "./carbon/ExpressiveHeading.svelte";
+  import { onMount } from "svelte";
 
   import "../common.css";
   import "../ayu.css";
@@ -44,7 +45,7 @@
     }
     isSearching = true;
     searchResults = [];
-    const req = await fetch(`/api/docs/search?q=${encodeURIComponent(query)}`);
+    const req = await fetch(`/api/blog/search?q=${encodeURIComponent(query)}`);
     searchResults = await req.json();
     console.log({ searchResults });
     isSearching = false;
@@ -71,13 +72,54 @@
       .filter(Boolean)
       .join("");
   };
+
+  let share;
+  const sharePage = () => {
+    share({
+      title: document.title,
+      url: window.location.href,
+    });
+  };
+
+  const tweetText = meta.tweet
+    ? encodeURIComponent(
+        [meta.tweet.replace(/\s+/g, " "), $page.url.href].join("\n\n")
+      )
+    : "";
+
+  onMount(() => {
+    share = navigator?.share;
+  });
 </script>
 
 <svelte:window on:hashchange={hashchange} bind:innerWidth />
 
-<Content class="docs-page">
-  <div class="docs">
-    <Nav />
+<Content class="blog-page">
+  <div class="blog">
+    <div class="meta-wrap">
+      <div class="meta">
+        {#if meta.author}
+          <div class="author">
+            By {meta.author}
+          </div>
+        {/if}
+        <span> Help spread the word! </span>
+        <div class="buttons">
+          {#if share}
+            <Button icon={Share} on:click={sharePage}>Share</Button>
+          {/if}
+          {#if meta.tweet}
+            <Button
+              target="_blank"
+              icon={LogoTwitter}
+              href="https://twitter.com/intent/tweet?text={tweetText}"
+            >
+              Tweet
+            </Button>
+          {/if}
+        </div>
+      </div>
+    </div>
 
     <div class="body" bind:this={body}>
       <div class="breadcrumb">
@@ -158,6 +200,14 @@
 <Footer />
 
 <style>
+  .meta {
+    padding: 1em 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: sticky;
+    top: 4em;
+  }
   .breadcrumb {
     display: flex;
     align-items: center;
@@ -194,7 +244,7 @@
     display: inline-flex;
     flex-wrap: wrap;
   }
-  :global(.docs-page) {
+  :global(.blog-page) {
     margin-left: 0 !important;
     padding-top: 0 !important;
     padding-left: 0 !important;
@@ -207,17 +257,17 @@
   .body :global(.alert .message .tabs) {
     margin-top: 1em;
   }
-  .docs .body :global(.alert) {
+  .blog .body :global(.alert) {
     display: flex;
     gap: 1em;
     width: 100%;
     box-sizing: border-box;
   }
-  .docs .body :global(.alert .icon svg) {
+  .blog .body :global(.alert .icon svg) {
     width: 1em;
     fill: currentColor;
   }
-  .docs .body :global(.message) {
+  .blog .body :global(.message) {
     flex: 1;
   }
   .nav-buttons {
@@ -253,42 +303,42 @@
     margin-top: 1em !important;
     margin-bottom: 1em !important;
   }
-  .docs {
+  .blog {
     display: grid;
     grid-template-columns: 16rem 1fr 16rem;
     min-height: calc(100vh - 412px);
   }
-  .docs :global(h1) {
+  .blog :global(h1) {
     margin-top: 0;
   }
-  .docs .body :global(h1),
-  .docs .body :global(h2),
-  .docs .body :global(h3),
-  .docs .body :global(h4),
-  .docs .body :global(h5) {
+  .blog .body :global(h1),
+  .blog .body :global(h2),
+  .blog .body :global(h3),
+  .blog .body :global(h4),
+  .blog .body :global(h5) {
     margin: 0;
   }
-  .docs .body :global(b) {
+  .blog .body :global(b) {
     font-weight: 600;
   }
-  .docs .body > :global(.card) {
+  .blog .body > :global(.card) {
     display: flex;
     gap: 1.25em;
     flex-direction: column;
   }
-  .docs .body :global(li:not(last-of-type)) {
+  .blog .body :global(li:not(last-of-type)) {
     margin-bottom: 0.5em;
   }
-  .docs .body > :global(.card > div) {
+  .blog .body > :global(.card > div) {
     overflow: auto;
   }
-  .docs :global(.nav-buttons a) {
+  .blog :global(.nav-buttons a) {
     text-decoration: none;
   }
-  .docs :global(h1 a) {
+  .blog :global(h1 a) {
     text-decoration: none;
   }
-  .docs :global(.bx--tab-content .bx--inline-notification) {
+  .blog :global(.bx--tab-content .bx--inline-notification) {
     max-width: 48rem;
   }
   :global(.prev-btn-icon) {
@@ -323,17 +373,17 @@
     }
   }
   @media only screen and (max-width: 640px) {
-    .docs :global(.card.padding) {
+    .blog :global(.card.padding) {
       padding: 1.25em;
     }
-    .docs {
+    .blog {
       display: block;
       padding: 1em;
     }
     .body {
       border: none;
     }
-    .docs :global(.docs-side-nav),
+    .blog :global(.blog-side-nav),
     .headings {
       display: none;
     }
@@ -353,7 +403,17 @@
       padding: 1em;
     }
   }
-  .docs :global(.toc ol) {
+  .blog :global(.toc ol) {
     margin-left: 1em;
+  }
+  .buttons {
+    display: flex;
+    gap: 0.5em;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .blog :global(.gallery-col .bx--tile) {
+    padding: 0;
+    background: transparent;
   }
 </style>

@@ -1,0 +1,109 @@
+[heading Introducing the Kenshi Oracle Network]
+
+The Kenshi Oracle Network is a complete platform for building custom oracles. It takes care
+of the boring stuff like event sourcing, task queues, security, caching, scaling, nonce management,
+error management, data delivery, and retries so you can focus on your business logic. With the
+Kenshi [link /docs/services/oracle-network/custom Oracle Network],
+you develop your oracle's logic using the technology of your choice, and we take care
+of the rest for you.
+
+[gallery
+  [image :lg 8 :md 4 :sm 4 :ar 16x9
+    /blog/images/oracle-network-overview.png
+    High level overview of the Kenshi Oracle Network]]
+
+[heading :size 2 Why Kenshi Oracle Network?]
+
+We built an excellent oracle infrastructure when we launched our VRF oracle. This infrastructure
+proved to be very performant and efficient. It performed so well that we asked ourselves, shouldn't
+we provide it publicly so others can build their oracles?
+
+After all, this platform provides almost everything you need to make an oracle. Instead of coding
+and maintaining it yourself, you can subscribe to it and focus on your business.
+
+[heading :size 2 What are the Kenshi Oracle Network use cases?]
+
+Your only limitation is your imagination! Whether you want to check if your user owns a specific
+NFT on another chain, want to check the price of a token or a real-life asset, or check the weather
+data or the results of a sports match, all is possible on the Kenshi Oracle Network.
+
+You can find a few blueprints for custom oracles in our
+[link /docs/services/oracle-network/custom/blueprints documentation]:
+
+[list
+  [:[bold Simple Oracle] shows you how to implement the simplest possible oracle. You can start
+  from this blueprint and build something magical.]
+  [:[bold Price Oracle] shows you how to implement a price oracle, sourcing the price data
+  from CoinGecko.]
+  [:[bold Weather Oracle] is a sample weather oracle using the BrightSky APIs.]
+  [:[bold Proof of Balance Oracle!] Do you want to check if a user owns a specific asset on another chain?
+  This oracle shows you how to do that.]
+  [:[bold VRF Oracle] blueprint uses the Kenshi ECVRF libraries to create a standards-compliant
+  dedicated VRF oracle.]]
+
+[gallery
+  [image :lg 8 :md 4 :sm 4 :ar 16x9
+    /blog/images/oracle-network-use-cases.png
+    Kenshi Oracle Network Use Cases]]
+
+[heading :size 2 How to build an oracle for the Kenshi Oracle Network?]
+
+You need to implement Kenshi's Custom Oracle Protocol using your preferred technologies
+and host them on a serverless (or serverful!) platform such as Vercel, Cloudflare Workers,
+or AWS Lambda. You can use Python, Go, Node.js, or any other programming language.
+
+The Custom Oracle Protocol is simple; you need a public HTTP[:S:] endpoint that receives
+events from the Oracle Network's Event Dispatcher, processes the event, and returns a JSON
+response with instructions on what to do with the event. You can read more about it in our
+[link https://kenshi.io/docs/services/oracle-network/custom/protocol documentation].
+
+You also need a smart contract to make this work. You need to emit an event from your contract;
+we send this event to your custom oracle for processing. The Oracle Network then needs to call
+a method on your smart contract to deliver the results.
+
+Once these are ready, go to the Kenshi Oracle Network [link /dashboard/oracle-network/custom dashboard]
+and click on the create button.
+Then you input your contract's address and ABI, configure a few parameters, and you're good to go.
+
+Kenshi provides the following services:
+
+[heading :size 2 Is the Oracle Network secure?]
+
+I'm glad you asked! We have already prepared a page about security in our
+[link /docs/services/oracle-network/custom/security documentation]. Let's go
+through a few of the critical points!
+
+[list
+  [: We derive the private key of each oracle from an HDWallet stored in a secure secret manager.
+    Private keys and seed phrases are not stored or accessible elsewhere.]
+  [: We recommend you supply the oracle with enough gas for only a few requests. When there's a new
+    request, Kenshi sends it to your oracle's endpoint for processing; you can check the balance
+    of the oracle there and add gas if required.]
+  [: We recommend signing your data and verifying it on-chain as instructed in “EIP-712: Typed
+     structured data hashing and signing.” This way, you can ensure no validator or attacker
+     has manipulated your data in the delivery process.]]
+
+Ultimately, the oracle will be as safe as you, the developer, can make it. You will be safe if you
+follow the security recommendations in our
+[link /docs/services/oracle-network/custom/security documentation].
+
+[heading :size 2 How much does it cost to run a custom oracle?]
+
+Very little. We charge a fixed $49.95 per month plus $0.0002 per request. We will adjust
+the price as we learn more about the oracle needs of our clients!
+
+You can head over to our [link /dashboard/oracle-network/custom dashboard] and create a
+custom oracle. Check the [link /docs/services/oracle-network/custom documentation] and
+[link /docs/services/oracle-network/custom/blueprints blueprints] to get started quickly.
+Happy hacking on the Oracle Network!
+
+[meta author Pouya Eghbali]
+[meta banner /blog/images/oracle-network-overview.png]
+[meta tags [: Oracle Network]]
+[meta summary
+  The Kenshi Oracle Network is a complete platform for building custom oracles. It takes care of
+  the boring stuff like event sourcing, task queues, security, caching, scaling, nonce management,
+  error management, data delivery, and retries so you can focus on your business logic. ]
+[meta tweet
+  Build your custom #blockchain oracle for your custom #Web3 use case in just a few lines of code
+  with the Kenshi Oracle Network!]
