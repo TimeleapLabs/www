@@ -14,6 +14,11 @@ export const asText = (arr) => {
   return arr.map(asText).join("").trim();
 };
 
+export const asCode = (arr) => {
+  if (typeof arr == "string") return arr;
+  return arr.map(asCode).join("");
+};
+
 export const asArgList = (arr) => {
   return arr
     .map(asText)
@@ -22,23 +27,12 @@ export const asArgList = (arr) => {
 };
 
 export const unIndent = (text) => {
-  text = text.replace(/[ \n]+$/, "");
-  let lines = text.split("\n");
-  let sliceIndex = 0;
-  for (const index in lines) {
-    const line = lines[index];
-    if (!line || line.match(/^ +$/)) sliceIndex++;
-    else break;
-  }
-  lines = lines.slice(sliceIndex);
-  const indent = Math.min(
-    ...lines.map((line) => {
-      const match = line.match(/^ +/);
-      if (!match) return 0;
-      return match[0].length;
-    })
-  );
-  return lines.map((line) => line.slice(indent)).join("\n");
+  const trim = text.replace(/^\s*\n/, "");
+  const indent = trim.match(/^ +/)?.[0].length || 0;
+  return trim
+    .split("\n")
+    .map((line) => line.slice(indent))
+    .join("\n");
 };
 
 export const getLang = (src) => extensions[src.split(".").pop()]?.toLowerCase();

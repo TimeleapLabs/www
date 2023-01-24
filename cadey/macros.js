@@ -4,7 +4,7 @@ import slugify from "slugify";
 import fs from "fs";
 import path from "path";
 
-import { asText, asArgList, unIndent, toUrl } from "./utils.js";
+import { asText, asCode, asArgList, unIndent, toUrl } from "./utils.js";
 import { arrayOrNotWhite, removeWhites } from "./utils.js";
 
 export const slug = (str) => slugify(str, { lower: true, strict: true });
@@ -180,7 +180,7 @@ export const macros = {
           .toString()
           .replace(/`/g, "\\`")
           .replace(/{/g, "\\{")
-      : unIndent(asText(args)).replace(/`/g, "\\`").replace(/{/g, "\\{");
+      : unIndent(asCode(args)).replace(/`/g, "\\`").replace(/{/g, "\\{");
 
     const type = code.includes("\n") ? "multi" : "single";
     return `<CodeSnippet type={"${type}"} code={\`${code}\`}></CodeSnippet>`;
