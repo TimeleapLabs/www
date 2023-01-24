@@ -1,5 +1,4 @@
 <script>
-  import Medium from "../icons/Medium.svelte";
   import Discord from "../icons/Discord.svelte";
   import Telegram from "../icons/Telegram.svelte";
   import Twitter from "../icons/Twitter.svelte";
@@ -53,16 +52,6 @@
                 icon={Twitter}
               >
                 Twitter
-              </Button>
-            </Column>
-            <Column>
-              <Button
-                kind="ghost"
-                href="https://blog.kenshi.io"
-                target="_blank"
-                icon={Medium}
-              >
-                Medium
               </Button>
             </Column>
             <Column>
