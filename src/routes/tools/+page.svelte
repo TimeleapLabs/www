@@ -35,9 +35,6 @@
 
   let usdAbleToBuyDisplay = "0";
   let ableToBuyDisplay = "0";
-  let reflections = "0";
-  let reflectionsDisplay = "0";
-  let reflectionsUsdDisplay = "0";
 
   const formatCurrency = (n, unit = "") =>
     unit + formatThousands(trimDecimals(n), ",");
@@ -124,47 +121,7 @@
       .pop()
       .pop();
 
-  const runQuery = (arg) =>
-    fetch(endpoint, {
-      method: "POST",
-      body: JSON.stringify({
-        query: query(arg, ethers.utils.getAddress(userAddress)),
-      }),
-    })
-      .then((r) => r.json())
-      .then((r) =>
-        r.data.getEntries.map((e) => {
-          const amount = getArgByName(e.event.args, "amount");
-          const to = getArgByName(e.event.args, "to");
-          if (to === treasuryAddr) {
-            // Account for reflections going out of this account
-            return ethers.BigNumber.from(amount).mul(2);
-          } else {
-            return amount;
-          }
-        })
-      );
-
-  const sumArr = (arr) =>
-    arr.reduce((a, b) => a.add(b), ethers.BigNumber.from("0"));
-
-  const calculateReflections = async () => {
-    const received = await runQuery("to");
-    const sent = await runQuery("from");
-
-    const receivedAmount = sumArr(received);
-    const sentAmount = sumArr(sent);
-    const diff = receivedAmount.sub(sentAmount);
-
-    reflections = ethers.utils.formatUnits(balance.sub(diff));
-    reflectionsDisplay = toKenshi(balance.sub(diff));
-    reflectionsUsdDisplay = toUsd(balance.sub(diff));
-  };
-
-  $: if (userAddress && unitPrice)
-    updateValues()
-      .then(calculateReflections)
-      .catch(() => null);
+  $: if (userAddress && unitPrice) updateValues().catch(() => null);
 
   const addToMetamask = async () => {
     const params = {
@@ -312,12 +269,6 @@
                 name: "To max",
                 kenshi: ableToBuyDisplay,
                 usd: usdAbleToBuyDisplay,
-              },
-              {
-                id: "2",
-                name: "Reflections",
-                kenshi: reflectionsDisplay,
-                usd: reflectionsUsdDisplay,
               },
             ]}
           />
