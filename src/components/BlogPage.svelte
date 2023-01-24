@@ -13,7 +13,6 @@
 
   import { onMount } from "svelte";
 
-  import "../common.css";
   import "../ayu.css";
 
   export let next = null;

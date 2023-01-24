@@ -12,7 +12,6 @@
 
   import ExpressiveHeading from "./carbon/ExpressiveHeading.svelte";
 
-  import "../common.css";
   import "../ayu.css";
 
   export let next = null;

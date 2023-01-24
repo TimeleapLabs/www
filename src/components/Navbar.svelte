@@ -33,7 +33,6 @@
   import ConnectButton from "src/components/ConnectButton.svelte";
 
   import "carbon-components-svelte/css/all.css";
-  import "../common.css";
 
   let theme = "white"; // "white" | "g10" | "g80" | "g90" | "g100"
   $: if (typeof document !== "undefined") {
