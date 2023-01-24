@@ -993,10 +993,18 @@
             </Column>
             <Column lg={4}>
               <CardButton
+                href="/blog"
+                icon={Blog}
+                title="Blog"
+                description="Read our blog for use cases, examples and technical articles about Kenshi products."
+              />
+            </Column>
+            <Column lg={4}>
+              <CardButton
                 href="https://blog.kenshi.io"
                 icon={Medium}
                 title="Medium"
-                description="Read our blog for use cases, examples and technical articles about Kenshi products."
+                description="Subscribe to our Medium publication to get the latest articles in your inbox."
               />
             </Column>
             <Column lg={4}>

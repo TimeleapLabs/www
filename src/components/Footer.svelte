@@ -217,9 +217,7 @@
         <UnorderedList>
           <ListItem><Link href="/docs/kenshi">About</Link></ListItem>
           <ListItem><Link href="/docs/team">Team</Link></ListItem>
-          <ListItem>
-            <Link href="https://blog.kenshi.io">Blog</Link>
-          </ListItem>
+          <ListItem><Link href="/blog">Blog</Link></ListItem>
           <ListItem>
             <Link
               href="https://www.linkedin.com/company/kenshiio/"

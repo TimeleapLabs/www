@@ -288,6 +288,15 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
+                <ClickableTile href="/blog">
+                  <h4>Blog</h4>
+                  <div class="body">
+                    Latest news about Kenshi, as well as technical articles
+                    about Kenshi products.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile
                   href="https://github.com/KenshiTech"
                   target="_blank"
@@ -303,8 +312,8 @@
                 <ClickableTile href="https://blog.kenshi.io/" target="_blank">
                   <h4 class="external"><span>Medium</span><Launch /></h4>
                   <div class="body">
-                    Latest news about Kenshi, as well as technical articles
-                    about Kenshi products.
+                    Subscribe to and read our latest news and tech articles on
+                    Medium.com!
                   </div>
                 </ClickableTile>
               </Column>
@@ -454,6 +463,7 @@
         text="Medium"
         target="_blank"
       />
+      <SideNavMenuItem href="/blog" text="Blog" />
       <SideNavMenuItem
         href="https://t.me/KenshiTechDevelopers"
         text="DevTalk (Telegram)"
