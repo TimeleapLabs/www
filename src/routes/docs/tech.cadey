@@ -16,7 +16,7 @@
 
 [list
   [: [link https://svelte.dev Svelte] and [link https://kit.svelte.dev SvelteKit]]
-  [: [link https://aws.amazon.com AWS] ECS is used for deployments]
+  [: [link https://vercel.com Vercek] is used for deployments]
   [: [link https://fontawesome.com FontAwesome] icons]
   [: [link https://prettier.io Prettier] for formatting]
   [: [link https://eslint.org ESLint] for linting]]
