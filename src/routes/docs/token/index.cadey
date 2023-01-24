@@ -6,7 +6,7 @@
   The Kenshi token has auto-staking features, and used to have a sales tax
   that decreased over time. This tax was removed on 21 Jan 2023 from PancakeSwap
   so all buys and sells are now tax-free there.
-  Howeveer, the acount to account transfer tax is still in place due to
+  However, the acount to account transfer tax is still in place due to
   auto-staking. To completely remove the tax from your account, head over
   to the Kenshi [link /tools tools] page, connect your wallet and unstake your tokens.]
 
