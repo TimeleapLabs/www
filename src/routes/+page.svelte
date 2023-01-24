@@ -13,7 +13,7 @@
   import { Dashboard, Book, IntentRequestCreate } from "carbon-icons-svelte";
   import { Partnership, AnalyticsReference, Email } from "carbon-icons-svelte";
   import { LogoPython, ArrowDown, ArrowDownRight } from "carbon-icons-svelte";
-  import { IotPlatform, LogoGithub } from "carbon-icons-svelte";
+  import { IotPlatform, LogoGithub, Blog } from "carbon-icons-svelte";
 
   import Go from "src/icons/Go.svelte";
   import Node from "src/icons/Node.svelte";
@@ -26,6 +26,8 @@
   import Aurora from "src/icons/Aurora.svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
+  import BlogToc from "src/components/blog/Toc.svelte";
+
   import Github from "src/icons/Github.svelte";
   import Npm from "src/icons/NPM.svelte";
   import Telegram from "src/icons/Telegram.svelte";
@@ -1162,6 +1164,26 @@
       </Column>
       <Column sm={4} md={4} lg={5}>
         <ImageLoader src="/images/backgrounds/partners.jpg" />
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid noGutter padding>
+    <Row>
+      <Column>
+        <ExpressiveHeading size={2}>
+          <h2>Our latest articles</h2>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+    <Row>
+      <Column>
+        <BlogToc maxCount={4} lg={8} />
+      </Column>
+    </Row>
+    <Row>
+      <Column>
+        <Button href="/blog" icon={Blog}>Read all articles</Button>
       </Column>
     </Row>
   </Grid>

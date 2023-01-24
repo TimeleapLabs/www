@@ -1,35 +1,50 @@
 <script>
   import { ClickableTile, Tag } from "carbon-components-svelte";
-  import { Grid, Column, Row } from "carbon-components-svelte";
+  import { Grid, Row, Column } from "carbon-components-svelte";
+
   import ExpressiveHeading from "../carbon/ExpressiveHeading.svelte";
+  import shave from "shave";
 
   import nav from "src/lib/blog.nav.js";
+
+  export let maxCount = nav.length;
+  export let lg = 16;
+  export let md = 8;
+  export let sm = 4;
+
+  const shaveEl = (el) => shave(el, 84);
 </script>
 
 <div class="articles">
-  {#each nav as article}
-    <ClickableTile class="tile" href={article.url}>
-      <div class="container">
-        <div class="article">
-          <ExpressiveHeading size={3}>
-            <h3>{article.title}</h3>
-          </ExpressiveHeading>
-          <div class="body-compact-02">
-            {article.meta.summary}
-          </div>
-          <div class="spacer" />
-          <div class="tags">
-            {#each article.meta.tags as tag}
-              <Tag>{tag}</Tag>
-            {/each}
-          </div>
-        </div>
-        <div class="banner">
-          <img src={article.meta.banner} alt={article.title} />
-        </div>
-      </div>
-    </ClickableTile>
-  {/each}
+  <Grid fullWidth noGutter padding>
+    <Row>
+      {#each nav.slice(0, maxCount) as article}
+        <Column {lg} {md} {sm}>
+          <ClickableTile class="tile" href={article.url}>
+            <div class="container">
+              <div class="article">
+                <ExpressiveHeading size={3}>
+                  <h3>{article.title}</h3>
+                </ExpressiveHeading>
+                <div class="body-compact-02" use:shaveEl>
+                  {article.meta.summary}
+                </div>
+                <div class="spacer" />
+                <div class="tags">
+                  {#each article.meta.tags as tag}
+                    <Tag>{tag}</Tag>
+                  {/each}
+                </div>
+              </div>
+              <div class="banner">
+                <img src={article.meta.banner} alt={article.title} />
+              </div>
+            </div>
+          </ClickableTile>
+        </Column>
+      {/each}
+    </Row>
+  </Grid>
 </div>
 
 <style>
@@ -51,6 +66,7 @@
     margin-top: 0 !important;
   }
   .banner {
+    max-width: 100%;
     width: 384px;
     height: 216px;
   }

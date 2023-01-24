@@ -63,7 +63,7 @@ export const parseAll = async (project) => {
   for (const file in processed) {
     const { parsed, context } = processed[file];
     const meta = allMeta[file];
-    const tags = getSeoTags(parsed, context);
+    const tags = getSeoTags(parsed, context, project);
     const text = getTextContent(parsed);
     const imports = getImports(context.components);
     const headings = getHeadings(context.headings);

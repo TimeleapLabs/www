@@ -34,7 +34,12 @@ const defaultDescription =
 const absolute = (url) =>
   url.startsWith("/") ? `https://kenshi.io${url}` : url;
 
-export const getSeoTags = (body, context) => {
+const titlesByType = {
+  blog: "Blog",
+  docs: "Documentation",
+};
+
+export const getSeoTags = (body, context, type) => {
   const description = getDescription(body) || defaultDescription;
 
   const { images, headings } = context;
@@ -44,9 +49,9 @@ export const getSeoTags = (body, context) => {
     : "https://kenshi.io/images/social.png";
 
   const title =
-    headings?.length && headings[0].title != "Documentation"
-      ? `Kenshi — ${headings[0].title} — Documentation`
-      : "Kenshi — Documentation";
+    headings?.length && headings[0].title != titlesByType[type]
+      ? `Kenshi — ${headings[0].title} — ${titlesByType[type]}`
+      : `Kenshi — ${titlesByType[type]}`;
 
   return `
     <title>${title}</title>
