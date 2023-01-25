@@ -68,7 +68,7 @@
   .banner {
     max-width: 100%;
     width: 384px;
-    height: 216px;
+    max-height: 224px;
   }
   .banner img {
     width: 100%;

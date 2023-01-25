@@ -4,6 +4,14 @@ There are a few security considerations and best practices to take into account 
 creating a custom oracle and deploying it to the Kenshi Oracle Network. Although not
 required, they are highly recommended.
 
+[heading :size 2 Data Source Verification]
+
+You should always verify the sender address of the caller to your callback function.
+If it is not the address of your oracle or an address you do not trust, you must revert
+the transaction. To view the sender address of your Kenshi Oracle, head to the Kenshi
+Oracle Network dashboard, select your oracle, and view the address in the "Add Credit"
+tab.
+
 [heading :size 2 Gas]
 
 Gas fees stored in associated gas wallets are not insured. Kenshi protects the stored
