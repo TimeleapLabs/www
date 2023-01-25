@@ -11,10 +11,10 @@ oracle using the Kenshi Oracle Network.
 
 [heading :size 2 Before we begin]
 
-To create your custom oracle with the Oracle Network, you can use your prefered programming language. In this tutorial we will
-use JavaScript. We will also write a sample smart contract in Solidity that will interact
-with your new oracle. I will show you how to code, create and deploy your price feed oracle
-and guide you through the best security practices.
+To create your custom oracle with the Oracle Network, you can use your prefered programming language.
+In this tutorial we will use JavaScript. We will also write a sample smart contract in Solidity
+that will interact with your new oracle. I will show you how to code, create and deploy your price
+feed oracle and guide you through the best security practices.
 
 This tutorial uses the CoinGecko APIs for getting the token prices, but you can use any
 other API as you see fit. I will also use Vercel to deploy the oracle, but you can host
@@ -208,8 +208,8 @@ Here's a sample function that fetches price data for the Kenshi token and calcul
   };]
 
 You also need to implement the Kenshi Oracle Network protocol. You only need a simple HTTP
-server that tells the Oracle Network what to do with the incoming request. For example,
-you need to tell which function on your smart contract it should call, what arguments it
+server that tells the Oracle Network what to do with the incoming request. You need to tell
+the Oracle network which function on your smart contract it should call, what arguments it
 should pass to the function, and how much gas it is allowed to spend.
 
 Using Vercel, you can do the following to achieve this:
@@ -233,7 +233,6 @@ Using Vercel, you can do the following to achieve this:
     const price = await fetchPrice();
     response.status(200).json({
       method: "setPrice",
-      // We need to send args as hex:
       args: [:[ethers.utils.parseUnits(price.toFixed(18)).toString()]:],
       maxGas: "10000000000000000", // 0.01 ETH
       abort: false,
