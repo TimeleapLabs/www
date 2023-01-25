@@ -11,18 +11,18 @@ oracle using the Kenshi Oracle Network.
 
 [heading :size 2 Before we begin]
 
-Although you can use any language you'd like for making your oracle, this tutorial will
-be in JavaScript. We will also write a sample smart contract in Solidity that will interact
-with our oracle. I will show you how to code, create and deploy your price feed oracle
+To create your custom oracle with the Oracle Network, you can use your prefered programming language. In this tutorial we will
+use JavaScript. We will also write a sample smart contract in Solidity that will interact
+with your new oracle. I will show you how to code, create and deploy your price feed oracle
 and guide you through the best security practices.
 
 This tutorial uses the CoinGecko APIs for getting the token prices, but you can use any
-other API as you see fit. I will also use Vercel to deploy our oracle, but you can host
+other API as you see fit. I will also use Vercel to deploy the oracle, but you can host
 it anywhere else. To follow this tutorial, you can create a free Vercel account.
 
 [heading :size 2 The smart contract]
 
-You need a smart contract that talks to your oracle and requests price data, so let's make
+First you will need a smart contract that talks to your oracle and requests price data, so let's make
 a simple contract that does just that. Let's create a barebone contract first:
 
 [code 
@@ -63,7 +63,7 @@ and the corresponding event:
       }
   }]
 
-You need a callback function that your oracle will call to deliver the requested price data,
+Next you will need a callback function that your oracle will call to deliver the requested price data,
 and another function to show the price once it is delivered:
 
 [code
@@ -273,15 +273,15 @@ You're now ready to create your oracle on the Kenshi Oracle Network. Head to the
 dashboard and click the "Create Oracle" button. Fill out the form as follows:
 
 [list
-  [: Select your smart contract's chain (BNB Smart Chain for this example) from the "Blockchain"
-     dropdown and put your deployed contract address in the "Contract address" field.]
+  [: Select your smart contract chain (BNB Smart Chain for this example) from the "Blockchain"
+     dropdown and input your deployed contract address in the "Contract address" field.]
   [: Enter the block number of your smart contract into the "Block" field under the "Starting point"
      section. This field tells the Oracle Network to look for price data requests starting from that
      block.]
   [: In the "Endpoint" field under the "Oracle logic" section, enter the deployment address you
      got from Vercel.]
   [: Input the human-readable ABI of your contract into the form's "ABI" field.]
-  [: Enter the event's signature defined in your smart contract into the "Signature" field.]
+  [: Enter the event signature defined in your smart contract into the "Signature" field.]
   [: Finally, you can decide on how many months and for how many requests the Oracle Network
      should keep your oracle alive.]]
 
@@ -293,7 +293,7 @@ logic endpoint:
     /blog/images/coingecko-oracle-filled-form.png
     Your custom oracle filled form should look like this]]
 
-Once deployed, go to the oracle's admin page on the Kenshi Oracle Network dashboard and copy
+Once deployed, go to the oracle admin page on the Kenshi Oracle Network dashboard and copy
 the gas (sender) address of your oracle from the "Add Credit" tab:
 
 [gallery
@@ -308,15 +308,15 @@ You need to transfer a little bit of gas to your oracle so it can fulfill price 
     /blog/images/coingecko-oracle-add-gas.png
     Add gas to the oracle's gas wallet]]
 
-And finally, you need to authorize the oracle address in your smart contract:
+And finally, you will need to authorize the oracle address in your smart contract:
 
 [gallery
   [image :lg 4 :md 4 :sm 4 :ar null
     /blog/images/coingecko-oracle-authorize.png
     Authorize the oracle's address on your smart contract]]
 
-Now you can call the "requestPrice" function of the contract, and if you did nothing wrong
-in your configuration, the oracle should send you a response:
+Now you can call the "requestPrice" function of the contract, and assuming you followed all the previous steps,
+the oracle should send you a response:
 
 [gallery
   [image :lg 8 :md 4 :sm 4 :ar null
@@ -332,9 +332,8 @@ You should be able to see the retrieved token price now:
 
 [heading :size 2 Final words]
 
-Creating a custom oracle on the Kenshi Oracle Network is pretty straightforward. I demonstrated
-a simple price feed oracle in this article, but the possibilities are limitless! Be sure to
-subscribe to our Twitter if you want more news about Kenshi or more awesome articles about
+In this article we demonstrated a simple price feed oracle, however the possibilities of the Kenshi Oracle Network
+are limitless! Be sure to follow us on Twitter if you want more news about Kenshi or more awesome articles about
 the Kenshi Oracle Network.
 
 You can view the source code of this sample oracle
