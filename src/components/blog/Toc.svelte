@@ -51,9 +51,13 @@
   .spacer {
     flex: 1;
   }
+  .articles :global(.bx--row > div > a) {
+    height: 100%;
+  }
   .container {
     display: flex;
     flex-wrap: wrap;
+    height: 100%;
   }
   .article {
     display: flex;
@@ -67,8 +71,8 @@
   }
   .banner {
     max-width: 100%;
-    width: 384px;
-    max-height: 224px;
+    width: 364px;
+    align-self: stretch;
   }
   .banner img {
     width: 100%;
@@ -84,5 +88,26 @@
   }
   .container:hover .banner img {
     filter: brightness(1.1) contrast(0.9);
+  }
+  @media (max-width: 1680px) {
+    .banner {
+      max-width: 100%;
+      width: 260px;
+      align-self: stretch;
+    }
+  }
+  @media (max-width: 720px) {
+    .banner {
+      max-width: 100%;
+      width: 192px;
+      align-self: stretch;
+    }
+  }
+  @media (max-width: 440px) {
+    .banner {
+      max-width: 100%;
+      width: 100%;
+      max-height: 224px;
+    }
   }
 </style>
