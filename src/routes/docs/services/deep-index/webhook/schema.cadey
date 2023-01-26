@@ -73,5 +73,7 @@ Below you can find the Kenshi Reverse-API request body schema.
                 [: "fantom-mainnet"],
                 [: "fantom-testnet"],
                 [: "aurora-mainnet"],
-                [: "aurora-testnet"]]]
+                [: "aurora-testnet"],
+                [: "bitgert-mainnet"],
+                [: "bitgert-testnet"]]]
 ]

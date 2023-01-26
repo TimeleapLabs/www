@@ -88,7 +88,9 @@ You are free to use the technology of your choice to implement the above protoco
                 [: "fantom-mainnet"],
                 [: "fantom-testnet"],
                 [: "aurora-mainnet"],
-                [: "aurora-testnet"]]]
+                [: "aurora-testnet"],
+                [: "bitgert-mainnet"],
+                [: "bitgert-testnet"]]]
 ]
 
 [heading :size 2 Response Schema]
