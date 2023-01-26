@@ -17,7 +17,7 @@ boards. You can find the sketch and the smart contracts
 [heading :size 2 Zephyr RTOS]
 
 Kenshi provides a simple IoT SDK sample app for the Zephyr RTOS. The sample app receives
-a blockchain event and prints the resuls to the console. You can find the sketch and the
+a blockchain event and prints the results to the console. You can find the sketch and the
 smart contracts
 [link https://github.com/KenshiTech/iot-sdk/tree/master/arduino/examples/blinky32 here.]
 
