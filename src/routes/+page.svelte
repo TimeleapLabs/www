@@ -1,8 +1,6 @@
 <script>
   import Footer from "src/components/Footer.svelte";
-  // import Button from "src/components/Button.svelte";
   import CardButton from "src/components/CardButton.svelte";
-  import Article from "src/components/Article.svelte";
 
   import { Grid, Row, Column, Tile } from "carbon-components-svelte";
   import { Button, Content, ClickableTile } from "carbon-components-svelte";
@@ -24,6 +22,7 @@
   import Avalanche from "src/icons/Avalanche.svelte";
   import Polygon from "src/icons/Polygon.svelte";
   import Aurora from "src/icons/Aurora.svelte";
+  import Bitgert from "src/icons/Bitgert.svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import BlogToc from "src/components/blog/Toc.svelte";
@@ -78,10 +77,11 @@
 
           <div class="blockchains">
             <Button kind="tertiary" icon={Ethereum}>Ethereum</Button>
-            <Button kind="tertiary" icon={Fantom}>Fantom</Button>
             <Button kind="tertiary" icon={Aurora}>Aurora</Button>
             <Button kind="tertiary" icon={Avalanche}>Avalanche</Button>
+            <Button kind="tertiary" icon={Bitgert}>Bitgert</Button>
             <Button kind="tertiary" icon={BnbChain}>BNB Chain</Button>
+            <Button kind="tertiary" icon={Fantom}>Fantom</Button>
             <Button kind="tertiary" icon={Polygon}>Polygon</Button>
             <Button kind="ghost">+ All EVM Chains</Button>
           </div>
@@ -1125,11 +1125,6 @@
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://fantom.foundation/">
-                  <ImageLoader src="/images/chains/fantom.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={1} lg={2}>
                 <OutboundLink href="https://aurora.dev/">
                   <ImageLoader src="/images/chains/aurora.svg" />
                 </OutboundLink>
@@ -1140,13 +1135,23 @@
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://polygon.technology">
-                  <ImageLoader src="/images/chains/polygon.svg" />
+                <OutboundLink href="https://www.bnbchain.org">
+                  <ImageLoader src="/images/chains/binance.svg" />
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://www.bnbchain.org">
-                  <ImageLoader src="/images/chains/binance.svg" />
+                <OutboundLink href="https://bitgert.com/">
+                  <ImageLoader src="/images/chains/bitgert.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://fantom.foundation/">
+                  <ImageLoader src="/images/chains/fantom.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://polygon.technology">
+                  <ImageLoader src="/images/chains/polygon.svg" />
                 </OutboundLink>
               </Column>
             </Row>

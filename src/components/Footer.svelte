@@ -126,7 +126,19 @@
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="/docs/services/iot/install">IoT SDK: Arduino IDE</Link>
+            <Link href="/docs/services/iot/install#arduino-boards">
+              IoT SDK: Arduino IDE
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/iot/install#esp32-boards">
+              IoT SDK: ESP32
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/iot/install#zephyr-rtos">
+              IoT SDK: Zephyr RTOS
+            </Link>
           </ListItem>
         </UnorderedList>
       </Column>

@@ -6,6 +6,8 @@ import { default as GaugeMed } from "src/icons/GaugeMed.svelte";
 export const chainOptions = [
   { label: "Ethereum", value: "ethereum-mainnet" },
   { label: "Ethereum Goerli", value: "ethereum-goerli" },
+  { label: "Aurora", value: "aurora-mainnet" },
+  { label: "Aurora Testnet", value: "aurora-testnet" },
   {
     label: "Avalanche C-Chain",
     value: "avalanche-mainnet",
@@ -14,6 +16,8 @@ export const chainOptions = [
     label: "Avalanche Fuji C-Chain",
     value: "avalanche-fuji",
   },
+  { label: "Bitgert", value: "bitgert-mainnet" },
+  { label: "Bitgert Testnet", value: "bitgert-testnet" },
   {
     label: "BNB Smart Chain",
     value: "binance-mainnet",
@@ -26,8 +30,6 @@ export const chainOptions = [
   { label: "Fantom Testnet", value: "fantom-testnet" },
   { label: "Polygon", value: "polygon-mainnet" },
   { label: "Polygon Mumbai", value: "polygon-mumbai" },
-  { label: "Aurora", value: "aurora-mainnet" },
-  { label: "Aurora Testnet", value: "aurora-testnet" },
 ];
 
 export const tiers = {

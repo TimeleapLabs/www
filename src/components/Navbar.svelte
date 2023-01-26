@@ -3,13 +3,11 @@
     Header,
     HeaderUtilities,
     HeaderAction,
-    HeaderGlobalAction,
     HeaderPanelLinks,
     HeaderPanelDivider,
     HeaderPanelLink,
     HeaderNav,
     HeaderNavItem,
-    HeaderNavMenu,
     SideNav,
     SideNavItems,
     SideNavMenu,
@@ -20,6 +18,7 @@
     Column,
     Row,
     ClickableTile,
+    Link,
   } from "carbon-components-svelte";
 
   import Kenshi from "src/icons/Kenshi.svelte";
@@ -360,6 +359,70 @@
         </div>
       </VerticalTabs>
     </FullWidthHeaderNavMenu>
+    <FullWidthHeaderNavMenu text="Community">
+      <VerticalTabs tabs={["Community"]}>
+        <div class="vertical-tab">
+          <Grid padding>
+            <Row>
+              <Column>
+                <h3>The Kenshi Community</h3>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                Join one of our communities to learn more about us or
+                communicate with others interested in Kenshi. Have a question or
+                need support? You can always send an email to
+                <Link href="mailto:hi@kenshi.io">hi@kenshi.io</Link>.
+              </Column>
+            </Row>
+            <Row>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile href="/blog">
+                  <h4>Blog</h4>
+                  <div class="body">
+                    Latest news about Kenshi, as well as technical articles
+                    about Kenshi products.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile href="https://blog.kenshi.io/" target="_blank">
+                  <h4 class="external"><span>Medium</span><Launch /></h4>
+                  <div class="body">
+                    Subscribe to and read our latest news and tech articles on
+                    Medium.com!
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile href="https://t.me/KenshiTech" target="_blank">
+                  <h4 class="external">
+                    <span>Telegram</span><Launch />
+                  </h4>
+                  <div class="body">
+                    Join our community chat to talk Kenshi or get help
+                    integrating our products into your projects.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="https://discord.gg/KenshiTech"
+                  target="_blank"
+                >
+                  <h4 class="external"><span>Discord</span><Launch /></h4>
+                  <div class="body">
+                    Join our community on Discord to get help integrating our
+                    products into your projects.
+                  </div>
+                </ClickableTile>
+              </Column>
+            </Row>
+          </Grid>
+        </div>
+      </VerticalTabs>
+    </FullWidthHeaderNavMenu>
   </HeaderNav>
   <svelte:fragment slot="skip-to-content">
     <SkipToContent />
@@ -477,6 +540,23 @@
       <SideNavMenuItem
         href="https://www.npmjs.com/org/kenshi.io"
         text="NPM"
+        target="_blank"
+      />
+    </SideNavMenu>
+    <SideNavMenu text="Community">
+      <SideNavMenuItem
+        href="https://blog.kenshi.io/"
+        text="Medium"
+        target="_blank"
+      />
+      <SideNavMenuItem
+        href="https://t.me/KenshiTech"
+        text="Telegram"
+        target="_blank"
+      />
+      <SideNavMenuItem
+        href="https://discord.gg/KenshiTech"
+        text="Discord"
         target="_blank"
       />
     </SideNavMenu>
