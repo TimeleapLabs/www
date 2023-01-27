@@ -110,7 +110,7 @@ export class Product {
       toast.push("An unexpected error happened while processing your request");
       return false;
     } else if (statusCode !== 200) {
-      if (!body && retry > 0) {
+      if (retry > 0) {
         return this.makeRequest(payload, successAction, method, retry - 1);
       }
       toast.push(`Server error: ${body}`);
