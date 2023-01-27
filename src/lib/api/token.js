@@ -17,9 +17,7 @@ export const fetchBurnAmount = async () => {
 
 export const fetchSupply = async () => {
   const totalBurned = await fetchBurnAmount();
-  const contractBalance = await contract.balanceOf(contractAddress);
-
-  const circulatingSupply = initialSupply.sub(totalBurned).sub(contractBalance);
+  const circulatingSupply = initialSupply.sub(totalBurned);
 
   return {
     circulating: ethers.utils.formatUnits(circulatingSupply),
