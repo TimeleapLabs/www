@@ -62,7 +62,9 @@ Use values from this enum to initialize your MQL objects.
     PolygonMumbai,
     PolygonMainnet,
     AuroraTestnet,
-    AuroraMainnet
+    AuroraMainnet,
+    BitgertTestnet,
+    BitgertMainnet
   };]
 
 [heading :size 4 The MQL class]
