@@ -69,5 +69,6 @@
   }
   h4 {
     margin-bottom: 1em !important;
+    margin-top: 0 !important;
   }
 </style>
