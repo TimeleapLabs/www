@@ -1,0 +1,529 @@
+[heading How to create a VRF oracle using the Kenshi Oracle Network]
+
+A blockchain VRF (Verifiable Random Function) oracle is a mechanism that generates random
+numbers on a blockchain network in a verifiable and tamper-proof way. You can use VRF oracles
+to generate random numbers for various purposes, such as smart contract-based lottery games,
+decentralized exchanges, and other dApps that require a random number generator.
+
+The need for a VRF oracle arises from the fact that a blockchain is an immutable and decentralized
+system. As such, it is impossible to generate truly random numbers on a blockchain without using an
+external source of entropy. VRF oracles solve this problem by generating random numbers that can be
+verified and audited by all parties on the blockchain network; this ensures that the random numbers
+generated are genuinely random and not influenced by any single party.
+
+[gallery
+  [image :lg 8 :md 4 :sm 4 :ar 16x9
+    /blog/images/oracle-network-vrf-oracle-banner.png
+    How to deliver randomness to your smart contract in a secure way?]]
+
+[heading :size 2 Why should you use a dedicated VRF oracle?]
+
+A dedicated VRF (Verifiable Random Function) oracle has several benefits compared to one that
+shares its private key with many others:
+
+[list
+  [:[bold Security:] A dedicated VRF oracle reduces the risk of key compromise as only one
+  party uses the private key by one party rather than being shared among multiple parties.
+  If a shared VRF oracle's private key is compromised, all parties utilizing the oracle are
+  affected.]
+  [:[bold Privacy:] A dedicated VRF oracle can generate unique and private random numbers for
+  each party using it, preventing any potential cross-contamination of information.]
+  [:[bold Customizability:] With a dedicated VRF oracle, the party using it has complete control
+  over the oracle and can configure it to meet their specific needs. This level of customizability
+  allows the party to tailor the oracle to their particular use case, such as generating random
+  numbers for specific algorithms or protocols.]
+  [:[bold Performance:] A dedicated VRF oracle can have its dedicated resources, ensuring it
+  is always available and responsive to requests. Dedicated resources can result in faster
+  response times and higher throughput, especially for high-traffic applications.]
+  [:[bold Trust:] By having a dedicated VRF oracle, the party using it can have greater trust
+  in the oracle's security and the integrity of the generated random numbers.]
+  [:[bold Compliance:] In some cases, regulations or industry standards may require using a
+  dedicated VRF oracle to ensure that the generated random numbers meet specific requirements.
+  For example, in the financial industry, regulations such as PCI DSS and HIPAA require specific
+  security controls to be in place. Using a dedicated VRF oracle can help financial institutions
+  meet these requirements by ensuring the integrity and security of the generated random numbers.]
+  [:[bold Cost-effectiveness:] Depending on the scale of the application, using a dedicated VRF
+  oracle may be more cost-effective in the long run, as it allows for greater control over the
+  oracle and reduces the risk of key compromise.]]
+
+Organizations in various industries should consider using a dedicated VRF oracle to ensure that
+the generated random numbers meet specific security, integrity, and fairness requirements and
+comply with regulatory standards.
+
+In this article, we will show you how to make your dedicated VRF oracle using the Kenshi Oracle
+Network.
+
+[heading :size 2 Before we begin]
+
+To create your custom oracle with the Oracle Network, you can use your prefered programming language.
+In this tutorial we will use JavaScript. We will also write a sample smart contract in Solidity
+that will interact with your new oracle. I will show you how to code, create and deploy your
+dedicated VRF oracle and guide you through the best security practices.
+
+This tutorial uses the Kenshi VRF library for generating randomness. This library implements
+the [link https://datatracker.ietf.org/doc/draft-irtf-cfrg-vrf/ 10th draft of ECVRF] published
+by the IETF. I will use Vercel to deploy the oracle, but you can host it anywhere else. To
+follow this tutorial, you can create a free Vercel account.
+
+[heading :size 2 The oracle]
+
+The first thing you need is to set up your project tree. Run the following commands to
+create a npm project and install the required dependencies:
+
+[code
+  mkdir vrf-oracle
+  cd vrf-oracle
+  npm init -y
+  npm i -S ethers elliptic @kenshi.io/node-ecvrf
+  mkdir api
+  mkdir misc
+  touch api/oracle.js
+  touch misc/keys.js]
+
+Your oracle needs a private key for to generate secure randomness using the VRF. We can
+use the Kenshi VRF library to get one. Let's write a few lines of code in "misc/keys.js" that
+prints out a key pair when executed:
+
+[code
+  import { keygen } from "@kenshi.io/node-ecvrf";
+
+  const keypair = keygen();
+
+  console.log(`Private key: ${keypair.secret_key}`);
+  console.log(`Public key: ${keypair.public_key.compressed}`);]
+
+Save and run the above file with Node and you'll have your private key and its corresponding
+public key. Write these down in a safe place as we'll need them later. Usually you should
+store these in a secret manager and read them only when needed. However, to keep this tutorial
+simple we won't cover that step. Instead we will just use Vercel environment variables to
+store the private key.
+
+[alert info
+  Keep your private key safe. If you want to let third-parties verify the randomness
+  generated by your oracle, all you need is to share the public key.]
+
+Your oracle logic should go to the "api/oracle.js" file. You need a function that
+takes in the information about a randomness request and generates randomness from it.
+This function should also generate the required parameters for verifying the randomness
+on chain.
+
+[alert warning
+  You should never use a non-cryptographic RNG over a Verifiable Random Function. If you do,
+  your oracle will be vulnerable to attacks and manipulations. Furthermore, the generated
+  randomness won't be verifiable and you won't be able to prove its fairness.]
+
+Here's a sample function that takes in a transaction and generates randomness from it,
+together with the parameters required for verifying it on-chain using the Kenshi VRF library:
+
+[code
+  import { decode, prove, getFastVerifyComponents } from "@kenshi.io/node-ecvrf";
+  import { createHash } from "crypto";
+  import Elliptic from "elliptic";
+
+  const EC = new Elliptic.ec("secp256k1");
+
+  const getPublicKey = (privateKey) => {
+    const key = EC.keyFromPrivate(privateKey);
+    return {
+      key: key.getPublic("hex"),
+      compressed: key.getPublic(true, "hex"),
+      x: key.getPublic().getX(),
+      y: key.getPublic().getY(),
+    };
+  };
+
+  const fromHex = (hex) => Buffer.from(hex.slice(2));
+
+  const hash = (...args) => {
+    const sha256 = createHash("sha256");
+    for (const arg of args) {
+      sha256.update(arg);
+    }
+    return sha256.digest().toString("hex");
+  };
+
+  const generateRandomness = (entry) => {
+    const publicKey = getPublicKey(process.env.VRF_PRIVATE_KEY);
+
+    const alpha = hash(
+      fromHex(entry.transaction.hash),
+      fromHex(entry.log.index),
+      fromHex(entry.block.address),
+      fromHex(entry.event.args.requestId)
+    );
+
+    const proof = prove(process.env.VRF_PRIVATE_KEY, alpha);
+    const fast = getFastVerifyComponents(publicKey.key, proof, alpha);
+    const [:[Gamma, c, s]:] = decode(proof);
+
+    return { alpha, proof, fast, Gamma, c, s }
+  }]
+
+[alert info
+  We encourage going through the
+  [link https://datatracker.ietf.org/doc/draft-irtf-cfrg-vrf/ ECVRF draft] published by
+  the IETF once to better understand the concepts mentioned in this article.]
+
+You also need to implement the Kenshi Oracle Network protocol. You only need a simple HTTP
+server that tells the Oracle Network what to do with the incoming request. You need to tell
+the Oracle network which function on your smart contract it should call, what arguments it
+should pass to the function, and how much gas it is allowed to spend.
+
+Using Vercel, you can do the following to achieve this:
+
+[code
+  import { decode, prove, getFastVerifyComponents } from "@kenshi.io/node-ecvrf";
+  import { createHash } from "crypto";
+  import Elliptic from "elliptic";
+
+  const EC = new Elliptic.ec("secp256k1");
+
+  const getPublicKey = (privateKey) => {
+    const key = EC.keyFromPrivate(privateKey);
+    return {
+      key: key.getPublic("hex"),
+      compressed: key.getPublic(true, "hex"),
+      x: key.getPublic().getX(),
+      y: key.getPublic().getY(),
+    };
+  };
+
+  const fromHex = (hex) => Buffer.from(hex.slice(2));
+
+  const hash = (...args) => {
+    const sha256 = createHash("sha256");
+    for (const arg of args) {
+      sha256.update(arg);
+    }
+    return sha256.digest().toString("hex");
+  };
+
+  const generateRandomness = (entry) => {
+    const publicKey = getPublicKey(process.env.VRF_PRIVATE_KEY);
+
+    const alpha = hash(
+      fromHex(entry.transaction.hash),
+      fromHex(entry.log.index),
+      fromHex(entry.block.address),
+      fromHex(entry.event.args.requestId)
+    );
+
+    const proof = prove(process.env.VRF_PRIVATE_KEY, alpha);
+    const fast = getFastVerifyComponents(publicKey.key, proof, alpha);
+    const [:[Gamma, c, s]:] = decode(proof);
+
+    return { alpha, proof, fast, Gamma, c, s }
+  }
+
+  export default function handler(request, response) {
+    const { entry } = request.body;
+    const { alpha, fast, Gamma, c, s } = generateRandomness(entry);
+    response.status(200).json({
+      method: "setRandomness",
+      args: \[
+        \[Gamma.x.toString(), Gamma.y.toString(), c.toString(), s.toString()\],
+        `0x${alpha}`,
+        \[fast.uX, fast.uY\],
+        \[fast.sHX, fast.sHY, fast.cGX, fast.cGY\],
+        entry.event.args.requestId,
+      \],
+      maxGas: "10000000000000000", // 0.01 ETH
+      abort: false,
+    });
+  }]
+
+To deploy the oracle, you can run this command at the root of the project and follow
+the instructions:
+
+[code vercel .]
+
+You should see an output like this:
+
+[code
+[:  ➜ vercel .
+  Vercel CLI 23.1.2
+  ? Set up and deploy “~/Projects/kenshi/sample-vrf-oracle”? [Y/n] y
+  ? Which scope do you want to deploy to? *****
+  ? Link to existing project? [y/N] n
+  ? What’s your project’s name? sample-vrf-oracle
+  ? In which directory is your code located? ./
+  No framework detected. Default Project Settings:
+  - Build Command: `npm run vercel-build` or `npm run build`
+  - Output Directory: `public` if it exists, or `.`
+  - Development Command: None
+  ? Want to override the settings? [y/N] n
+  🔗  Linked to *****/sample-vrf-oracle (created .vercel and added it to .gitignore)
+  🔍  Inspect: https://vercel.com/*****/sample-vrf-oracle/******** [1s]
+  ✅  Production: https://sample-vrf-oracle.vercel.app [copied to clipboard] [13s]
+  📝  Deployed to production. Run `vercel --prod` to overwrite later (https://vercel.link/2F).:]]
+
+Copy and keep the deployment URL safe, as you will need it later. You need one more step to make
+the project functional. You need to go to the Vercel dashboard, find your project, and enter your
+private key as the value for the "VRF_PRIVATE_KEY" environment variable:
+
+[gallery
+  [image :lg 10 :md 6 :sm 4 :ar null
+    /blog/images/vrf-oracle-vercel-environment-variables.png
+    Add your private key under VRF_PRIVATE_KEY environment variable]]
+
+[heading :size 2 The smart contract]
+
+Now you need a smart contract that talks to your oracle and requests randomness, so let's make
+a simple contract that does just that. Let's create a barebone contract first:
+
+[code 
+  // SPDX-License-Identifier: MIT
+  pragma solidity ^0.8.17;
+
+  contract VRFOracle {
+      address private _owner;
+
+      constructor() {
+          _owner = msg.sender;
+      }
+  }]
+
+Now you need a function that emits an event requesting the randomness. Let's add this function
+and the corresponding event:
+
+[code
+  // SPDX-License-Identifier: MIT
+  pragma solidity ^0.8.17;
+
+  contract VRFOracle {
+      address private _owner;
+
+      constructor() {
+          _owner = msg.sender;
+      }
+
+      // A simple event to make randomness requests
+      event RandomnessRequest();
+
+      /**
+      * Emit an event that will be picked up by the Kenshi
+      * Oracle Network and sent to your oracle for processing
+      */
+      function requestRandomness() external {
+          emit RandomnessRequest();
+      }
+  }]
+
+Next you will need a callback function that your oracle will call to deliver the requested randomness.
+You contract should also emit an event that shows what random number was delivered. Since you want to
+verify the delivered randomness on-chain, you need to accept a few specific parameters and pass them
+to the Kenshi VRF libraries verification function:
+
+[code
+  // SPDX-License-Identifier: MIT
+  pragma solidity ^0.8.17;
+
+  import "@kenshi.io/vrf-consumer/contracts/VRFUtils.sol";
+
+  contract VRFOracle {
+      address private _owner;
+      VRFUtils _utils;
+
+      constructor(bytes memory publicKey) {
+          _owner = msg.sender;
+          _utils = new VRFUtils();
+          _utils.setPublicKey(publicKey);
+      }
+
+      // A simple event to make randomness requests
+      event RandomnessRequest();
+      event RandomnessRequestFulfilled(uint256 randomness);
+
+      /**
+       * Emit an event that will be picked up by the Kenshi
+       * Oracle Network and sent to your oracle for processing
+       */
+      function requestRandomness() external {
+          emit RandomnessRequest();
+      }
+
+      /**
+       * This method will be called by the Kenshi Oracle Network
+       * with the result returned from your oracle
+       *
+       * Note: We encourage reading the IETF ECVRF drafts to understand
+       * what's going on: https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-vrf
+       */
+      function setRandomness(
+          uint256[:[4]:] memory proof,
+          bytes memory message,
+          uint256[:[2]:] memory uPoint,
+          uint256[:[4]:] memory vComponents
+      ) external {
+          bool isValid = _utils.fastVerify(proof, message, uPoint, vComponents);
+          require(isValid, "Delivered randomness is not valid or is tampered with!");
+          bytes32 beta = _utils.gammaToHash(proof[:[0]:], proof[:[1]:]);
+          uint256 randomness = uint256(beta);
+          emit RandomnessRequestFulfilled(randomness);
+      }
+  }]
+
+Let's add some security to the contract and verify that your oracle, not an attacker, is
+calling your callback. You also want to prevent double delivery of randomness by keeping
+track of each request:
+
+[code
+  // SPDX-License-Identifier: MIT
+  pragma solidity ^0.8.17;
+
+  import "@kenshi.io/vrf-consumer/contracts/VRFUtils.sol";
+
+  contract VRFOracle {
+      address private _owner;
+      address private _oracle;
+      uint256 private _requestId;
+      VRFUtils private _utils;
+      mapping(uint256 => bool) private _alreadyFulfilled;
+
+      constructor(bytes memory publicKey) {
+          _owner = msg.sender;
+          _utils = new VRFUtils();
+          _utils.setPublicKey(publicKey);
+      }
+
+      /**
+       * Sets the oracle address to prevent anyone else from
+       * calling the "setVRF" method
+       */
+      function setOracle(address oracle) external {
+          require(msg.sender == _owner, "Only owner can call this");
+          _oracle = oracle;
+      }
+
+      // A simple event to make randomness requests
+      event RandomnessRequest(uint256 requestId);
+      event RandomnessRequestFulfilled(uint256 requestId, uint256 randomness);
+
+      /**
+       * Emit an event that will be picked up by the Kenshi
+       * Oracle Network and sent to your oracle for processing
+       */
+      function requestRandomness() external {
+          emit RandomnessRequest(_requestId++);
+      }
+
+      /**
+       * This method will be called by the Kenshi Oracle Network
+       * with the result returned from your oracle
+       *
+       * Note: We encourage reading the IETF ECVRF drafts to understand
+       * what's going on: https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-vrf
+       */
+      function setRandomness(
+          uint256[:[4]:] memory proof,
+          bytes memory message,
+          uint256[:[2]:] memory uPoint,
+          uint256[:[4]:] memory vComponents,
+          uint256 requestId
+      ) external {
+          require(msg.sender == _oracle, "Only the oracle can deliver!");
+          require(!_alreadyFulfilled[:[requestId]:], "Already fulfilled");
+          _alreadyFulfilled[:[requestId]:] = true;
+          bool isValid = _utils.fastVerify(proof, message, uPoint, vComponents);
+          require(isValid, "Delivered randomness is not valid or is tampered with!");
+          bytes32 beta = _utils.gammaToHash(proof[:[0]:], proof[:[1]:]);
+          uint256 randomness = uint256(beta);
+          emit RandomnessRequestFulfilled(requestId, randomness);
+      }
+  }]
+
+You can now head over to Remix IDE and deploy the above smart contract. You should pass
+the public key you generated to the constructor function of the smart contract, don't forget
+to prefix it with 0x:
+
+[gallery
+  [image :lg 10 :md 6 :sm 4 :ar 16x9
+    /blog/images/oracle-network-vrf-oracle-remix-deploy.png
+    Deploy with Remix and copy the deployment details]]
+
+Copy the deployed contract address and the block number in which you deployed the contract
+somewhere safe, as you will need them later.
+
+[heading :size 2 Deploy on the Kenshi Oracle Network]
+
+You're now ready to create your oracle on the Kenshi Oracle Network. Head to the Kenshi Oracle Network
+dashboard and click the "Create Oracle" button. Fill out the form as follows:
+
+[list
+  [: Select your smart contract chain (BNB Smart Chain for this example) from the "Blockchain"
+     dropdown and input your deployed contract address in the "Contract address" field.]
+  [: Enter the block number of your smart contract into the "Block" field under the "Starting point"
+     section. This field tells the Oracle Network to look for randomness requests starting from that
+     block.]
+  [: In the "Endpoint" field under the "Oracle logic" section, enter the deployment address you
+     got from Vercel.]
+  [: Input the human-readable ABI of your contract into the form's "ABI" field.]
+  [: Enter the event signature defined in your smart contract into the "Signature" field.]
+  [: Finally, you can decide on how many months and for how many requests the Oracle Network
+     should keep your oracle alive.]]
+
+The filled form should look similar to this, except for the contract address and the oracle
+logic endpoint:
+
+[gallery
+  [image :lg 8 :md 4 :sm 4 :ar null
+    /blog/images/vrf-oracle-filled-form.png
+    Your custom oracle filled form should look like this]]
+
+Once deployed, go to the oracle admin page on the Kenshi Oracle Network dashboard and copy
+the gas (sender) address of your oracle from the "Add Credit" tab:
+
+[gallery
+  [image :lg 8 :md 4 :sm 4 :ar null
+    /blog/images/oracle-network-vrf-sender-address.png
+    Get the oracle's gas (sender) address here]]
+
+You need to transfer a little bit of gas to your oracle so it can fulfill randomness requests:
+
+[gallery
+  [image :lg 4 :md 4 :sm 4 :ar null
+    /blog/images/vrf-oracle-add-gas.png
+    Add gas to the oracle's gas wallet]]
+
+And finally, you will need to authorize the oracle address in your smart contract:
+
+[gallery
+  [image :lg 4 :md 4 :sm 4 :ar null
+    /blog/images/vrf-oracle-authorize.png
+    Authorize the oracle's address on your smart contract]]
+
+Now you can call the "requestRandomness" function of the contract, and assuming you followed
+all the previous steps, the oracle should send you a response:
+
+[gallery
+  [image :lg 16 :md 4 :sm 4 :ar null
+    /blog/images/vrf-oracle-response-time.png
+    Kenshi Oracle Network has hyper-fast response times]]
+
+You should be able to see the delivered randomness now:
+
+[gallery
+  [image :lg 14 :md 4 :sm 4 :ar null
+    /blog/images/vrf-oracle-randomness.png
+    You can now check the received randomness in the RandomnessRequestFulfilled event]]
+
+[heading :size 2 Final words]
+
+In this article we demonstrated a simple VRF oracle, however the possibilities of
+the Kenshi Oracle Network are limitless! Be sure to follow us on Twitter if you want more
+news about Kenshi or more awesome articles about the Kenshi Oracle Network.
+
+You can view the source code of this sample oracle
+[link https://github.com/KenshiTech/sample-vrf-oracle here on GitHub].
+
+[meta author Pouya Eghbali]
+[meta banner /blog/images/oracle-network-vrf-oracle-banner.png]
+[meta tags [: Oracle Network] [: Developer Guide] [: VRF Oracle]]
+[meta summary
+  A blockchain VRF (Verifiable Random Function) oracle is a mechanism that generates random
+  numbers on a blockchain network in a verifiable and tamper-proof way. You can use VRF oracles
+  to generate random numbers for various purposes, such as smart contract-based lottery games,
+  decentralized exchanges, and other dApps that require a random number generator.]
+[meta tweet
+  Learn how to build your dedicated VRF oracle in just few lines of code
+  using the Kenshi Oracle Network! #Web3 #blockchain #KenshiTech]

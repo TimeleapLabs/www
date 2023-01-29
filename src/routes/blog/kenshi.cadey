@@ -6,7 +6,7 @@ want to index and query blockchain data or deliver data to the blockchain,
 Kenshi has you covered and enables two-way communication.
 
 [gallery
-  [image :lg 8 :md 4 :sm 4 :ar 16x9 /blog/images/what-is-kenshi.jpg What is Kenshi?]]
+  [image :lg 8 :md 4 :sm 4 :ar 16x9 /blog/images/what-is-kenshi.png What is Kenshi?]]
 
 Our vision is to lift the limitations faced by developers each day and allow
 them to build more innovative blockchain applications with real-world use cases.
@@ -24,7 +24,7 @@ Kenshi provides the following services:
   [: [link /docs/services/oracle-network Oracle Network]: Allows creating custom oracles.]]
 
 [meta author Pouya Eghbali]
-[meta banner /blog/images/what-is-kenshi.jpg]
+[meta banner /blog/images/what-is-kenshi.png]
 [meta tags [: Kenshi]]
 [meta summary
   Kenshi is a full-stack application development platform targeting the blockchain.

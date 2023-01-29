@@ -6,7 +6,7 @@ oracle using the Kenshi Oracle Network.
 
 [gallery
   [image :lg 8 :md 4 :sm 4 :ar 16x9
-    /blog/images/oracle-network-price-oracle-banner.jpg
+    /blog/images/oracle-network-price-oracle-banner.png
     How to deliver price data to your smart contract?]]
 
 [heading :size 2 Before we begin]
@@ -55,7 +55,7 @@ and the corresponding event:
       event PriceRequest();
 
       /**
-      * Emit and event that will be picked up by the Kenshi
+      * Emit an event that will be picked up by the Kenshi
       * Oracle Network and sent to your oracle for processing
       */
       function requestPrice() external {
@@ -82,7 +82,7 @@ and another function to show the price once it is delivered:
       event PriceRequest();
 
       /**
-      * Emit and event that will be picked up by the Kenshi
+      * Emit an event that will be picked up by the Kenshi
       * Oracle Network and sent to your oracle for processing
       */
       function requestPrice() external {
@@ -134,7 +134,7 @@ calling your callback:
       event PriceRequest();
 
       /**
-      * Emit and event that will be picked up by the Kenshi
+      * Emit an event that will be picked up by the Kenshi
       * Oracle Network and sent to your oracle for processing
       */
       function requestPrice() external {
@@ -339,7 +339,7 @@ You can view the source code of this sample oracle
 [link https://github.com/KenshiTech/coingecko-sample-oracle here on GitHub].
 
 [meta author Pouya Eghbali]
-[meta banner /blog/images/oracle-network-price-oracle-banner.jpg]
+[meta banner /blog/images/oracle-network-price-oracle-banner.png]
 [meta tags [: Oracle Network] [: Developer Guide]]
 [meta summary
   Are you looking for a flexible, scalable, and affordable solution for getting token prices
