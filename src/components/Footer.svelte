@@ -98,11 +98,6 @@
           <ListItem><Link href="/dashboard">Dashboard</Link></ListItem>
           <ListItem><Link href="/status">Service Status</Link></ListItem>
           <ListItem>
-            <Link href="https://t.me/KenshiTechDevelopers" target="_blank">
-              Developers chat
-            </Link>
-          </ListItem>
-          <ListItem>
             <Link href="/docs/services/oracle-network/vrf">
               Getting randomness
             </Link>

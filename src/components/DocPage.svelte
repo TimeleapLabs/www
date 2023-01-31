@@ -290,7 +290,7 @@
   .docs :global(.bx--tab-content .bx--inline-notification) {
     max-width: 48rem;
   }
-  :global(.prev-btn-icon) {
+  .docs :global(.prev-btn-icon) {
     margin-right: 1em;
   }
   @keyframes chevron {

@@ -1009,14 +1009,6 @@
             </Column>
             <Column lg={4} md={4} sm={4}>
               <CardButton
-                href="https://t.me/KenshiTechDevelopers"
-                icon={Telegram}
-                title="Telegram"
-                description="Join a community of developers using Kenshi products to develop their projects."
-              />
-            </Column>
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
                 href="https://discord.gg/KenshiTech"
                 icon={Discord}
                 title="Discord"

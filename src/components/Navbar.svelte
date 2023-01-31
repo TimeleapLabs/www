@@ -317,16 +317,13 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile
-                  href="https://t.me/KenshiTechDevelopers"
-                  target="_blank"
-                >
+                <ClickableTile href="https://t.me/KenshiTech" target="_blank">
                   <h4 class="external">
-                    <span>Kenshi Dev Talk</span><Launch />
+                    <span>Telegram</span><Launch />
                   </h4>
                   <div class="body">
-                    Join our developer's chat on Telegram to get help
-                    integrating our products into your projects.
+                    Join our community chat on Telegram to get help integrating
+                    our products into your projects.
                   </div>
                 </ClickableTile>
               </Column>
@@ -527,11 +524,6 @@
         target="_blank"
       />
       <SideNavMenuItem href="/blog" text="Blog" />
-      <SideNavMenuItem
-        href="https://t.me/KenshiTechDevelopers"
-        text="DevTalk (Telegram)"
-        target="_blank"
-      />
       <SideNavMenuItem
         href="https://discord.gg/KenshiTech"
         text="Discord"
