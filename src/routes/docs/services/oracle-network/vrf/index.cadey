@@ -5,12 +5,8 @@ to generate random numbers securely because of its deterministic nature.
 VRFs can be used to implement dynamic NFTs, cryptocurrency betting systems, metaverses assets,
 cryptocurrency games, or anywhere on the blockchain where a random number is needed.
 
-[alert info-square
-   This service is currently in beta test and active on the BNB Chain (BSC),
-   Avalanche (AVAX), Fantom (FTM), Polygon (MATIC) testnets and mainnets, and the Ethereum Goerli
-   testnet. If you have any issues or questions you can join our
-   [link https://t.me/KenshiTech Telegram chat] or send us an email at
-   [link mailto:support@kenshi.io support@kenshi.io].]
+[alert warning
+   This service is deprecated in favor of the new Kenshi Oracle Network.]
 
 Kenshi Verifiable Random Function oracles can generate and verify pseudorandom numbers
 to be used by smart contracts on-chain. These random numbers are safe, secure, and tamper-proof.
