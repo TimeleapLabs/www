@@ -1,14 +1,18 @@
 [heading The Kenshi token]
 
-[alert warning
-  [bold Important notice - MUST READ]
-  
-  The Kenshi token has auto-staking features, and used to have a sales tax
-  that decreased over time. This tax was removed on 21 Jan 2023 from PancakeSwap
-  so all buys and sells are now tax-free there.
-  However, the acount to account transfer tax is still in place due to
-  auto-staking. To completely remove the tax from your account, head over
-  to the Kenshi [link /tools tools] page, connect your wallet and unstake your tokens.]
+[bold ⚠️ Important notice! ⚠️]
+
+Read this if you're buying the token:
+
+We have removed our tax from PancakeSwap, but our account-to-account tax is still in place.
+Disable this tax for your account [link /tools here] by connecting your wallet and clicking "Unstake."
+We will disable this tax globally when our liquidity unlocks, meanwhile:
+
+[list 
+  [:❗️ Buy the token on PancakeSwap only]
+  [:❗️ Unstake your token]
+  [:❗️ Contact our support if you accidentally trigger the tax so we can issue a refund]
+]
 
 [heading :size 2 Technology]
 
