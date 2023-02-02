@@ -492,7 +492,7 @@
         />
         <SideNavMenuItem
           href="/docs/services/oracle-network/custom/blueprints#proof-of-balance-oracle"
-          text="Proof of Balane oracle"
+          text="Proof of Balance oracle"
         />
         <SideNavMenuItem
           href="/docs/services/oracle-network/custom/blueprints#price-oracle"

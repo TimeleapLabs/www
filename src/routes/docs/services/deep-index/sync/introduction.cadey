@@ -13,7 +13,7 @@ the project owners if they have already created a task and if they provide a Ken
 key for public access.
 
 The Kenshi Deep Index Sync task service is fully managed and does not require any external
-servers or setup. To use it head to the Kenshi [link /dashbiard dashboard], connect your wallet
+servers or setup. To use it head to the Kenshi [link /dashboard dashboard], connect your wallet
 and make a task using the new Sync task form.
 
 Continue reading on to get help with the dashboard or see examples of the Sync service.
