@@ -63,7 +63,6 @@
       content,
       refCode,
     };
-    console.log(content);
     try {
       const req = await fetch(endpoint, {
         method: "POST",

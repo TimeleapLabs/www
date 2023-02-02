@@ -326,3 +326,9 @@ ol {
 ul ul {
   padding-left: 1em;
 }
+
+.bx--tile-group.grid > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}

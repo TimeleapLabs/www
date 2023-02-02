@@ -239,6 +239,9 @@ a.bx--header__menu-item:focus svg {
   color: #fff;
   padding: 2em !important;
 }
+.blue-tile a.bx--link {
+  color: #fff !important;
+}
 .flex-column {
   display: flex;
   gap: 1em;
@@ -322,4 +325,10 @@ ol {
 
 ul ul {
   padding-left: 1em;
+}
+
+.bx--tile-group.grid > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
 }
