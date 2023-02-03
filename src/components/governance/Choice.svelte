@@ -185,6 +185,7 @@
   .head {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
   }
   .choice :global(.comment-col) {
     padding-top: 0;

@@ -332,3 +332,9 @@ ul ul {
   grid-template-columns: 1fr 1fr;
   gap: 1em;
 }
+
+@media screen and (max-width: 540px) {
+  .bx--tile-group.grid > div {
+    grid-template-columns: 1fr;
+  }
+}
