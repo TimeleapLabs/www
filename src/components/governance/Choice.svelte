@@ -10,6 +10,8 @@
   import { toast } from "@zerodevx/svelte-toast";
   import { onMount } from "svelte";
 
+  import governanceAbi from "src/lib/abi/governance";
+
   export let poll;
   export let body;
   export let title;
@@ -29,21 +31,23 @@
     readMore = !readMore;
   };
 
-  const abi = ["function balanceOf(address user) view returns (uint256)"];
-  const address = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
+  const address = "0xa57a940ff374f2Ad3f69539c8C7F2a13Ed929da2";
 
   const processVoteData = async (data) => {
-    const contract = new ethers.Contract(address, abi, provider);
+    const contract = new ethers.Contract(address, governanceAbi, provider);
     const computed = {};
 
     let total = ethers.BigNumber.from(0);
 
-    for (const { user, vote } of data) {
-      const balance = await contract.balanceOf(user);
-      const { selected } = vote;
-      computed[selected] ||= ethers.BigNumber.from(0);
-      computed[selected] = computed[selected].add(balance);
-      total = total.add(balance);
+    const options = values.map((value) => value.value);
+
+    for (const value of options) {
+      const users = data
+        .filter((item) => item.vote.selected === value)
+        .map((item) => item.user);
+      const count = await contract.count(users, users.length);
+      computed[value] = count;
+      total = total.add(count);
     }
 
     if (total.toString() === "0") {
