@@ -8,6 +8,7 @@
   import { wallet } from "src/stores/wallet";
   import { ethers } from "ethers";
   import { toast } from "@zerodevx/svelte-toast";
+  import { onMount } from "svelte";
 
   export let poll;
   export let body;
@@ -103,6 +104,13 @@
   };
 
   $: if ($wallet?.provider) onWallet();
+
+  onMount(() => {
+    const interval = setInterval(fetchResults, 60 * 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  });
 </script>
 
 <div class="choice">
