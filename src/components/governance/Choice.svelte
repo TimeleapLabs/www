@@ -64,6 +64,9 @@
   };
 
   const fetchResults = async () => {
+    if (!provider) {
+      return;
+    }
     const res = await fetch(`https://api.kenshi.io/governance/${poll}`);
     const data = await res.json();
     processVoteData(data);
