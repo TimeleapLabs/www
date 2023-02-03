@@ -14,22 +14,24 @@
       <Column max={4}>
         <Tile class="blue-tile">
           <div class="flex-column">
-            <ExpressiveHeading size={4}>
-              <h1>Kenshi Governance</h1>
+            <ExpressiveHeading size={3}>
+              <h1>Kenshi Engagement Protocol</h1>
             </ExpressiveHeading>
             <p>
-              Kenshi governance protocol is a program for engaging the community
-              in specific Kenshi related decisions.
+              The Kenshi Engagement Protocol engages with the community by
+              giving them a voice and considering their insights into relevant
+              topics.
             </p>
           </div>
         </Tile>
       </Column>
-      <Column max={4}>
+      <Column max={6}>
         <div class="flex-column align-start">
           <div class="spacer" />
           <p class="body-02">
-            You need to connect your wallet to vote or check the results of a
-            poll.
+            Kenshi outlines specific, well-defined subjects and values the
+            community's perspective and expertise, seeking to understand their
+            stance on these matters.
           </p>
           <div class="spacer" />
           <ConnectButton primary />
@@ -40,13 +42,15 @@
       <Column lg={8} md={6} sm={4}>
         <Choice
           poll="63dc3f5253725910dcef7036"
-          title="Kenshi Governance"
-          body="Should we create and use a governance protocol to engage the community in making decisions on specific subjects?"
+          title="Kenshi Community Engagement"
+          question="Should we move forward with creating a community engagement protocol?"
+          body="Dear users, as we strive to build a community that is inclusive and responsive to your needs, we are considering the creation of a community engagement protocol. This protocol would provide a platform for you to voice your opinions and suggestions, helping us to better understand and address your concerns. What are your thoughts on this idea? Should we move forward with creating a community engagement protocol?"
           values={[
             { value: 1, title: "Yes" },
             { value: 0, title: "No" },
           ]}
-          pills={["Community", "Governance"]}
+          selected={1}
+          pills={["Community", "Engagement"]}
         />
       </Column>
     </Row>
