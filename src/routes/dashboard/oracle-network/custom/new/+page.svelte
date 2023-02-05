@@ -408,8 +408,7 @@
             <Column>
               <p>
                 Custom oracle's cost a fixed monthly fee for the infrastructure,
-                plus a variable cost depending on how many requests are
-                processed.
+                plus $1 per 5000 requests processed by your oracle.
               </p>
             </Column>
           </Row>
