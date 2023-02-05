@@ -103,8 +103,12 @@
   };
 
   $: price =
-    $creditValues.duration && $creditValues.calls
-      ? getOraclePrice($creditValues.calls, $creditValues.duration)
+    oracleFromId && $creditValues.duration && $creditValues.calls
+      ? getOraclePrice(
+          oracleFromId.tier,
+          $creditValues.calls,
+          $creditValues.duration
+        )
       : 0;
 </script>
 

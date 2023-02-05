@@ -8,12 +8,16 @@
   import { TextInput } from "carbon-components-svelte";
   import { NumberInput } from "carbon-components-svelte";
   import { TextArea } from "carbon-components-svelte";
-  import { Button } from "carbon-components-svelte";
+  import { Button, TileGroup, RadioTile } from "carbon-components-svelte";
   import { Tooltip, InlineNotification } from "carbon-components-svelte";
   import { Email, Information } from "carbon-icons-svelte";
   import { fixLabelTooltip } from "src/lib/tooltip";
   import { Link } from "carbon-components-svelte";
   import { wallet } from "src/stores/wallet";
+
+  import GaugeHigh from "src/icons/GaugeHigh.svelte";
+  import GaugeLow from "src/icons/GaugeLow.svelte";
+  import GaugeMed from "src/icons/GaugeMed.svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
@@ -33,9 +37,39 @@
     calls: 10000,
     fromBlock: 0,
     concurrency: 10,
+    tier: "business",
   };
 
-  $: price = getOraclePrice($values.calls, $values.duration);
+  const selectTier = (t) => ($values.tier = t);
+
+  const tiers = [
+    {
+      value: "develop",
+      name: "Develop",
+      delay: "4 to 5 seconds",
+      price: 9.95,
+      for: "small",
+      gauge: GaugeLow,
+    },
+    {
+      value: "startup",
+      name: "Startup",
+      delay: "1 to 2 seconds",
+      price: 24.95,
+      for: "medium",
+      gauge: GaugeMed,
+    },
+    {
+      value: "business",
+      name: "Business",
+      delay: "Milliseconds",
+      price: 49.95,
+      for: "heavy",
+      gauge: GaugeHigh,
+    },
+  ];
+
+  $: price = getOraclePrice($values.tier, $values.calls, $values.duration);
 
   let creatingOracle = false;
 
@@ -381,6 +415,44 @@
           </Row>
           <Row>
             <Column>
+              <div class="tiers">
+                <TileGroup on:select={({ detail }) => selectTier(detail)}>
+                  {#each tiers as tier}
+                    <RadioTile
+                      value={tier.value}
+                      checked={$values.tier === tier.value}
+                    >
+                      <div class="tier">
+                        <div class="name">
+                          <ExpressiveHeading size={1}>
+                            {tier.name}
+                          </ExpressiveHeading>
+                        </div>
+                        <div class="stats">
+                          <div class="stat">
+                            <span class="name"> Event sourcing </span>
+                            <span class="spacer" />
+                            <span class="value">{tier.delay} delay</span>
+                          </div>
+                          <div class="stat">
+                            <span class="name"> Price</span>
+                            <span class="spacer" />
+                            <span class="value">${tier.price}/Month</span>
+                          </div>
+                        </div>
+                        <div class="for">
+                          <svelte:component this={tier.gauge} />
+                          For {tier.for} workloads
+                        </div>
+                      </div>
+                    </RadioTile>
+                  {/each}
+                </TileGroup>
+              </div>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
               <NumberInput
                 placeholder="Duration (Months)"
                 name="duration"
@@ -456,5 +528,72 @@
     display: flex;
     flex-direction: column;
     gap: 2em;
+  }
+  .tiers {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .tiers :global(.bx--tile-group > div) {
+    margin-top: 1em;
+    display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  }
+  .tier {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: -2rem;
+  }
+  .tier .stats > * {
+    box-sizing: border-box;
+  }
+  .tier > .name {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .tier .for {
+    display: flex;
+    gap: 1em;
+    flex: 1;
+    align-items: center;
+    border-top: 1px solid var(--cds-ui-04);
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+    padding: 1em;
+    padding-bottom: 0;
+  }
+  .tier .name {
+    display: flex;
+    gap: 1em;
+    flex: 1;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .tier .stats {
+    width: 100%;
+    gap: 0.5em;
+    display: flex;
+    flex-direction: column;
+  }
+  .tier .stats .stat {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+  .spacer {
+    flex: 1;
+  }
+  .tier :global(svg) {
+    width: 1.25em;
+    height: 1.25em;
+    max-width: initial;
+  }
+  .tier :global(svg) {
+    fill: currentColor;
   }
 </style>

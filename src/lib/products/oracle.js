@@ -10,6 +10,11 @@ const schema = {
     oneOf: chainOptions.map((option) => option.value),
     methods: ["insert"],
   },
+  tier: {
+    name: "Tier",
+    oneOf: ["develop", "startup", "business"],
+    methods: ["insert"],
+  },
   address: {
     name: "Contract address",
     regex: /^0x[0-9a-f]{40}$/i,
@@ -46,10 +51,10 @@ const name = "Custom oracle";
 
 const prices = {
   insert(values) {
-    return getOraclePrice(values.calls, values.duration);
+    return getOraclePrice(values.tier, values.calls, values.duration);
   },
-  credit(values) {
-    return getOraclePrice(values.calls, values.duration);
+  credit(values, current) {
+    return getOraclePrice(current.tier, values.calls, values.duration);
   },
 };
 
@@ -79,6 +84,7 @@ const query = (owner) => `{
         callsLeft
         endpoint
         concurrency
+        tier
       }
     }
   }`;
