@@ -10,9 +10,16 @@ We will disable this tax globally when our liquidity unlocks, meanwhile:
 
 [list 
   [:❗️ Buy the token on PancakeSwap only]
+  [:❗️ Do not buy with limit orders]
   [:❗️ Unstake your token]
   [:❗️ Contact our support if you accidentally trigger the tax so we can issue a refund]
 ]
+
+[heading :size 2 Contract]
+
+Find the Kenshi token contract address on BNB Smart Chain below:
+
+[code 0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f]
 
 [heading :size 2 Technology]
 
