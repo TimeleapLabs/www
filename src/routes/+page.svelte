@@ -1009,7 +1009,7 @@
             </Column>
             <Column lg={4} md={4} sm={4}>
               <CardButton
-                href="https://discord.gg/KenshiTech"
+                href="https://t.me/KenshiTech"
                 icon={Telegram}
                 title="Telegram"
                 description="Join our community chat on Telegram to discuss everything Kenshi!"
