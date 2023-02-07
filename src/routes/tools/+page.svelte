@@ -176,7 +176,7 @@
 <Content>
   <Grid noGutter narrow padding>
     <Row>
-      <Column max={4}>
+      <Column lg={4} md={4} sm={4}>
         <Tile class="blue-tile">
           <div class="flex-column">
             <ExpressiveHeading size={4}>
@@ -189,7 +189,7 @@
           </div>
         </Tile>
       </Column>
-      <Column max={4}>
+      <Column lg={4} md={4} sm={4}>
         <div class="flex-column align-start">
           <p class="body-02">
             You'll need to connect your wallet to use certain areas of Kenshi

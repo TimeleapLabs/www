@@ -2,9 +2,11 @@
   import ExpressiveHeading from "../carbon/ExpressiveHeading.svelte";
 
   import { Tile, RadioTile, TileGroup } from "carbon-components-svelte";
+  import { CodeSnippet, CodeSnippetSkeleton } from "carbon-components-svelte";
   import { Grid, Column, Row, TextInput } from "carbon-components-svelte";
   import { ProgressBar, Tag, Button } from "carbon-components-svelte";
   import { AddComment, DocumentView } from "carbon-icons-svelte";
+  import { DocumentSigned } from "carbon-icons-svelte";
   import { wallet } from "src/stores/wallet";
   import { ethers } from "ethers";
   import { toast } from "@zerodevx/svelte-toast";
@@ -23,17 +25,33 @@
   let userAddress;
   let provider;
   let votes = {};
+  let signatures = "[]";
   let comment = "";
   let resultsReady = false;
   let readMore = false;
+  let showSignatures = false;
 
   const toggleReadMore = () => {
     readMore = !readMore;
   };
 
+  const toggleSignatures = () => {
+    showSignatures = !showSignatures;
+  };
+
   const address = "0xa57a940ff374f2Ad3f69539c8C7F2a13Ed929da2";
 
+  const rpcEndpoints = [
+    "https://bsc-dataseed.binance.org",
+    "https://bsc-dataseed1.defibit.io",
+    "https://bsc-dataseed1.ninicoin.io",
+    "https://bsc.nodereal.io",
+  ];
+
+  const randomRpc = () => rpcEndpoints[Math.floor(Math.random() * 4)];
+
   const processVoteData = async (data) => {
+    const provider = new ethers.providers.JsonRpcProvider(randomRpc());
     const contract = new ethers.Contract(address, governanceAbi, provider);
     const computed = {};
 
@@ -61,12 +79,17 @@
 
     votes = computed;
     resultsReady = true;
+    signatures = JSON.stringify(
+      data.map((item) => {
+        const { _id, ...rest } = item;
+        return rest;
+      }),
+      null,
+      2
+    );
   };
 
   const fetchResults = async () => {
-    if (!provider) {
-      return;
-    }
     const res = await fetch(`https://api.kenshi.io/governance/${poll}`);
     const data = await res.json();
     processVoteData(data);
@@ -113,6 +136,7 @@
   $: if ($wallet?.provider) onWallet();
 
   onMount(() => {
+    fetchResults().catch(() => null);
     const interval = setInterval(fetchResults, 60 * 1000);
     return () => {
       clearInterval(interval);
@@ -148,13 +172,11 @@
                     labelText={title}
                     helperText={`${votes[value] || 0}% voted for this`}
                   />
-                {:else if userAddress}
+                {:else}
                   <ProgressBar
                     labelText={title}
                     helperText={"Fetching votes"}
                   />
-                {:else}
-                  {title}
                 {/if}
               </RadioTile>
             {/each}
@@ -177,7 +199,21 @@
         {body}
       </div>
     {/if}
+    {#if showSignatures}
+      {#if resultsReady}
+        <CodeSnippet type="multi" light code={signatures} />
+      {:else}
+        <CodeSnippetSkeleton type="multi" />
+      {/if}
+    {/if}
     <div class="buttons">
+      <Button
+        kind="secondary"
+        icon={DocumentSigned}
+        on:click={toggleSignatures}
+      >
+        View signatures
+      </Button>
       <Button kind="secondary" icon={DocumentView} on:click={toggleReadMore}>
         Read more
       </Button>
