@@ -180,7 +180,6 @@
             </Link>
           </ListItem>
           <ListItem><Link href="/tools">Tools</Link></ListItem>
-          <ListItem><Link href="/pegswap">PegSwap</Link></ListItem>
           <ListItem><Link href="/faucet">Faucet</Link></ListItem>
         </UnorderedList>
       </Column>
