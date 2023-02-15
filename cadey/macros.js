@@ -92,6 +92,11 @@ export const macros = {
     const content = text ? asText(text) : href;
     return `<${component} href="${href}">${content}</${component}>`;
   },
+  audio(options) {
+    this.components = { ...this.components, Audio: true };
+    const { file } = options;
+    return `<Audio file="${asText(file)}"/>`;
+  },
   image(options, ...args) {
     this.components = { ...this.components, Image: true };
 

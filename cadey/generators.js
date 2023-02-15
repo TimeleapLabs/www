@@ -17,6 +17,7 @@ const componentsMap = {
   Gallery: "src/components/gallery/Gallery.svelte",
   TeamMember: "src/components/TeamMember.svelte",
   Chart: "src/components/Chart.svelte",
+  Audio: "src/components/Audio.svelte",
   BlogToc: 'import Toc from "src/components/blog/Toc.svelte"',
 };
 
