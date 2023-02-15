@@ -15,7 +15,7 @@
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
   let seedMode = false;
-  let entropy = "";
+  let secret = "";
   let index = 0;
   let visible = false;
 
@@ -40,11 +40,11 @@
     return new ethers.Wallet(key);
   };
 
-  $: if (entropy && typeof index !== "undefined") {
+  $: if (secret && typeof index !== "undefined") {
     if (seedMode) {
-      seedphrase = getMnemonic(entropy, index);
+      seedphrase = getMnemonic(secret, index);
     } else {
-      wallet = getWallet(entropy, index);
+      wallet = getWallet(secret, index);
     }
   }
 </script>
@@ -84,24 +84,25 @@
               <ExpressiveHeading size={3}>
                 <h2>Generator</h2>
               </ExpressiveHeading>
+              The Kenshi VRF Seed is an experimental wallet and seed phrase generator
+              that uses a secret to generate your wallets and BIP-39 seed phrases.
             </Column>
           </Row>
           <Row>
             <Column>
               <ExpressiveHeading size={2}>
-                <h3>Entropy</h3>
+                <h3>Secret</h3>
               </ExpressiveHeading>
-              Your wallets and seed phrases will be generated based on this secret.
-              You can use this secret to recover your wallets later.<br />It's
-              important to choose something memorable, yet difficult to guess,
-              and you must keep this secret safe.
+              You can recover your wallets at any time using this secret, which must
+              be kept safe. It's important to select a memorable and hard-to-guess
+              secret for safety.
             </Column>
           </Row>
           <Row>
             <Column>
               <TextInput
-                bind:value={entropy}
-                labelText="Entropy"
+                bind:value={secret}
+                labelText="Secret"
                 placeholder="A memorable, yet difficult to guess secret"
                 helperText="Enter a long and difficult to guess secret here."
               />
@@ -112,8 +113,9 @@
               <ExpressiveHeading size={2}>
                 <h3>Index</h3>
               </ExpressiveHeading>
-              Each entropy or secret can be used to generate multiple wallets and
-              seed phrases. Here you can enter an account name or number.
+              The generator is capable of producing multiple wallets and seed phrases
+              from a single secret, here you must select which account name or account
+              index you want to recover or generate.
             </Column>
           </Row>
           <Row>
@@ -131,7 +133,8 @@
               <ExpressiveHeading size={2}>
                 <h3>Mode</h3>
               </ExpressiveHeading>
-              This generator can either produce a private key, or a BIP-39 seed phrase.
+              This tool can generate both private keys and BIP-39 seed phrases. Select
+              BIP-39 if you prefer to get a seed phrase.
             </Column>
           </Row>
           <Row>
@@ -142,7 +145,7 @@
               />
             </Column>
           </Row>
-          {#if entropy && typeof index !== "undefined"}
+          {#if secret && typeof index !== "undefined"}
             <Row>
               <Column>
                 <ExpressiveHeading size={2}>
@@ -211,6 +214,7 @@
   .buttons :global(svg) {
     width: 1em;
   }
+  h2,
   h3,
   h5 {
     margin-bottom: 1em;
