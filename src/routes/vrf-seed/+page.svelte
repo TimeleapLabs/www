@@ -7,9 +7,10 @@
   import { Information } from "carbon-icons-svelte";
   import { Checkbox } from "carbon-components-svelte";
   import { CodeSnippet } from "carbon-components-svelte";
-  import { ViewOff, View } from "carbon-icons-svelte";
+  import { ViewOff, View, Copy } from "carbon-icons-svelte";
   import { toast } from "@zerodevx/svelte-toast";
   import { generate } from "src/lib/vrf-seed";
+  import { ethers } from "ethers";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
@@ -18,13 +19,16 @@
   let index = 0;
   let visible = false;
 
-  const copy = (text) => () => {
+  const copy = (text) => {
     navigator.clipboard?.writeText?.(text);
     toast.push("Copied to clipboard.");
   };
 
   let wallet;
   let seedphrase;
+
+  const copySecret = () => copy(seedMode ? seedphrase : wallet.privateKey);
+  const toggleView = () => (visible = !visible);
 
   const getMnemonic = (seed, index) => {
     const key = generate(seed, index);
@@ -118,7 +122,7 @@
                 bind:value={index}
                 labelText="Index"
                 placeholder="Account number or name"
-                helperText="This selects a specific wallet on your multi-account VRF based seed phrase"
+                helperText="This selects a specific wallet on your multi-account VRF based seed phrase."
               />
             </Column>
           </Row>
@@ -144,9 +148,23 @@
                 <ExpressiveHeading size={2}>
                   <h3>Results</h3>
                 </ExpressiveHeading>
+                Use the Copy button to copy the
+                {#if seedMode}
+                  seed phrase.
+                {:else}
+                  private key.
+                {/if}
               </Column>
             </Row>
-            {#if !visible}
+            {#if !seedMode}
+              <Row>
+                <Column>
+                  <h5>Address</h5>
+                  <CodeSnippet code={wallet.address} />
+                </Column>
+              </Row>
+            {/if}
+            {#if visible}
               <Row>
                 <Column>
                   {#if seedMode}
@@ -157,6 +175,18 @@
                 </Column>
               </Row>
             {/if}
+            <Row>
+              <Column>
+                <Button on:click={copySecret} icon={Copy}>Copy</Button>
+                <Button
+                  kind="secondary"
+                  on:click={toggleView}
+                  icon={visible ? ViewOff : View}
+                >
+                  View
+                </Button>
+              </Column>
+            </Row>
           {/if}
         </Grid>
       </Column>
@@ -181,7 +211,8 @@
   .buttons :global(svg) {
     width: 1em;
   }
-  h3 {
+  h3,
+  h5 {
     margin-bottom: 1em;
   }
 </style>

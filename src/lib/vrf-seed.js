@@ -1,11 +1,11 @@
 // https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-vrf-10.html
 
-const elliptic = require("elliptic");
-const BN = require("bn.js");
-const { createHmac, createHash } = require("crypto");
+import elliptic from "elliptic";
+import BN from "bn.js";
+import CryptoJS from "crypto-js";
+import { Buffer } from "buffer";
 
 const EC = new elliptic.ec("secp256k1");
-
 const suite_string = [0xfe]; //ECVRF-SECP256K1-SHA256-TAI
 
 /**
@@ -19,15 +19,19 @@ const suite_string = [0xfe]; //ECVRF-SECP256K1-SHA256-TAI
  */
 
 const Hash = (...args) => {
-  const sha = createHash("sha256");
-  for (const arg of args) sha.update(Buffer.from(arg));
-  return sha.digest();
+  const sha = CryptoJS.algo.SHA256.create();
+  for (const arg of args) {
+    sha.update(CryptoJS.lib.WordArray.create(Buffer.from(arg)));
+  }
+  return Buffer.from(sha.finalize().toString(), "hex");
 };
 
 const HMAC = (secret, ...args) => {
-  const hmac = createHmac("sha256", secret);
-  for (const arg of args) hmac.update(Buffer.from(arg));
-  return hmac.digest();
+  const hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, secret);
+  for (const arg of args) {
+    hmac.update(CryptoJS.lib.WordArray.create(Buffer.from(arg)));
+  }
+  return Buffer.from(hmac.finalize().toString(), "hex");
 };
 
 const Hex = (string) => Buffer.from(string).toString("hex");
@@ -155,7 +159,7 @@ const arbitrary_string_to_point = (s) => {
   if (s.length !== 32) {
     throw new Error("s should be 32 byte");
   }
-  return string_to_point([0x02, ...s]);
+  return string_to_point([0x02, ...Buffer.from(s, "hex")]);
 };
 
 const ECVRF_hash_points = (...points) => {
@@ -198,11 +202,9 @@ const proofToHash = ECVRF_proof_to_hash;
 const privateKey = Buffer.from("Kenshi VRF-SEED V1").toString("hex");
 
 const hash = (...args) => {
-  const sha256 = createHash("sha256");
-  for (const arg of args) {
-    sha256.update(arg);
-  }
-  return sha256.digest().toString("hex");
+  const sha = CryptoJS.algo.SHA256.create();
+  for (const arg of args) sha.update(arg.toString());
+  return sha.finalize().toString();
 };
 
 export const generate = (seed, index) => {
