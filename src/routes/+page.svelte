@@ -1071,11 +1071,7 @@
             <Button href="/dashboard" icon={Partnership}>
               Contact us for partnership
             </Button>
-            <Button
-              href="/docs/services/deep-index/webhook"
-              kind="secondary"
-              icon={AnalyticsReference}
-            >
+            <Button href="/refer" kind="secondary" icon={AnalyticsReference}>
               Referral program
             </Button>
           </div>

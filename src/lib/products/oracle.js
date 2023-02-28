@@ -3,6 +3,7 @@ import { chainOptions } from "src/lib/dash/deep-index";
 import { form } from "src/lib/form";
 import { abiValidator } from "src/lib/dash/validators";
 import { getOraclePrice } from "src/lib/dash/pricing";
+import { Interface, FormatTypes } from "ethers/lib/utils";
 
 const schema = {
   chain: {
@@ -58,12 +59,19 @@ const prices = {
   },
 };
 
+const abiToHumanReadable = (abiJSON) =>
+  new Interface(JSON.parse(abiJSON)).format(FormatTypes.full);
+
 const valuesFromForm = {
   insert(values) {
-    return { ...values, abi: JSON.parse(values.abi) };
+    return { ...values, abi: abiToHumanReadable(values.abi) };
   },
   update(values, current) {
-    return { ...values, abi: JSON.parse(values.abi), id: current.id };
+    return {
+      ...values,
+      abi: abiToHumanReadable(values.abi),
+      id: current.id,
+    };
   },
   credit(values, current) {
     return { ...values, id: current.id };

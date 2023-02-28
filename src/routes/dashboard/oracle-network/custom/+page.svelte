@@ -12,6 +12,7 @@
   import { Button, Link } from "carbon-components-svelte";
   import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
   import { Add, Book, UpdateNow } from "carbon-icons-svelte";
+  import { WatsonHealthAiStatus } from "carbon-icons-svelte";
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
   import { OracleProduct } from "src/lib/products/oracle";
@@ -154,12 +155,20 @@
           </Toolbar>
           <svelte:fragment slot="cell" let:row let:cell>
             {#if cell.key === "actions"}
-              <Link
-                icon={UpdateNow}
-                href="/dashboard/oracle-network/custom/edit/{row.id}"
-              >
-                Update
-              </Link>
+              <span class="actions">
+                <Link
+                  icon={UpdateNow}
+                  href="/dashboard/oracle-network/custom/edit/{row.id}"
+                >
+                  Update
+                </Link>
+                <Link
+                  icon={WatsonHealthAiStatus}
+                  href="/dashboard/oracle-network/custom/logs/{row.id}"
+                >
+                  Logs
+                </Link>
+              </span>
             {:else if cell.key === "expiresAt"}
               {new Date(cell.value).toLocaleDateString()}
             {:else if cell.key === "blockchain"}
@@ -197,5 +206,9 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
+  }
+  .actions {
+    display: flex;
+    gap: 1em;
   }
 </style>
