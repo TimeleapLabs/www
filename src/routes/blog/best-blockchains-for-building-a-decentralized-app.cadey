@@ -1,0 +1,253 @@
+[heading Best Blockchains for Building a Decentralized App]
+
+When a new technology emerges and finds its early adopters, some people, and organizations
+quickly become household names. They find avid fans ready to yell at everyone about the
+greatness of their favorite person or project. Blockchain technology has followed the same
+trajectory, especially regarding the best blockchains for building a decentralized app.
+
+[gallery
+  [image :lg 8 :md 4 :sm 4 :ar 16x9
+    /blog/images/best-blockchains-for-building-a-decentralized-app.png
+    Best Blockchains for Building a Decentralized App]]
+
+All the arguments about the best blockchains, further obscured by the arguments about
+the best cryptocurrencies, need to be clarified for many beginner developers. That's why
+today, we will list the best blockchains for building a decentralized app (dApp).
+
+So if you want to become a web3 developer and start building on a blockchain, stick around
+till the end. And who knows? Your project may have avid fans of its own someday.
+
+[heading :size 2 1. Ethereum]
+
+Regarding the best blockchains for building a decentralized app (dApp), no list will be
+complete without Ethereum. From its launch (in 2015) till 2021, it was the only reasonable
+option for building dApps and creating smart contracts.
+
+Now it has serious competition, but many competitors also use EVM or Ethereum Virtual Machine.
+You can say that Ethereum paved the way for what we see in the industry today. The native
+programming language for the Ethereum blockchain is Solidity, and the native coin for the
+network is called Ether (eth).
+
+Ethereum was a proof-of-work blockchain like Bitcoin, but it has started using proof of
+stake as its consensus mechanism; this is part of the upgrade from Ethereum 1.0 to Ethereum 2.0,
+which will also bring sharding to this network in the near future.
+
+[bold Pros:]
+
+[list
+  [: Detailed documentations :]
+  [: Biggest community of builders :]
+  [: Big decentralized network of nodes (which means better security) :]
+  [: You can build on Ethereum and deploy on other EVM chains as well (with minor changes) :]]
+
+[bold Cons:]
+
+[list
+  [: Gas fees can be high right now :]
+  [: With lots of users and no sharding yet, it's not very scalable unless you use a layer2
+     blockchain (transactions can be slow right now) :]]
+
+[heading :size 2 2. BNB Chain]
+
+Binance was already one of the biggest crypto exchanges when it built its blockchain. 
+First, they created the "Binance Chain" to handle large amounts of data quickly.
+
+This blockchain was dApp compatible but mainly focused on Binance's needs
+(i.e., trading cryptocurrencies). So when they decided to attract more developers and
+companies to their ecosystem, a second blockchain was born. This one supported smart
+contracts. It was also EVM compatible.
+
+Later, Binance rebranded the Binance Chain as the "Beacon Chain" or "BC" and renamed
+Binance Smart Chain to "BNB Smart Chain" or "BSC." Now, they run parallel with a
+third blockchain called the "Sidechain."
+
+These three blockchains have different purposes and use different standards, but
+they work together to make the BNB Chain. Beacon Chain is the governance arm of
+the BNB Chain. Sidechain allows developers to create and run their blockchains,
+and Binance Smart Chain is where you'll build your dApps and smart contracts.
+
+[bold Pros:]
+
+[list
+  [: EVM compatible :]
+  [: Big community :]
+  [: Fast transactions :]
+  [: Low gas fees :]
+  [: Incentives and programs for developers (backed by Binance) :]
+  [: Binance Bridge allows users to move assets to and from BNB Chain easily :]]
+
+[bold Cons:]
+
+[list
+  [: More centralized than some other blockchains :]
+  [: Most innovations happen on Ethereum and then arrive on BSC :]]
+
+[heading :size 2 3. Avalanche]
+
+Avalanche is another EVM-compatible blockchain with a unique proof of stake consensus
+mechanism. In a regular proof of work or proof of stake, when most nodes agree on something,
+it becomes the new state of the blockchain.
+
+But in Avalanche, not all nodes are asked about every transaction. Instead, random nodes
+are asked about their opinion on a transaction, and when a certain number is reached,
+it becomes the new state of the blockchain. This method allows Avalanche to be extremely
+fast and low-cost.
+
+Also, Avalanche is three blockchains working together. One is the Platform Chain, the 
+other is the Contract Chain, and the last is the Exchange Chain. These three blockchains
+are secured and validated by all the Avalanche validators. There are also sovereign networks
+called subnets, which can have their own rules. Subnets make Avalanche entirely scalable.
+
+[bold Pros:]
+
+[list
+  [: EVM compatible :]
+  [: Blazing Fast :]
+  [: Low gas fees :]
+  [: Innovative new network with high potential :]
+  [: Can become truly decentralized :]
+  [: Higher security with a unique consensus mechanism (instead of 51%, an attack on Avalnche will need 88% to take control of the whole network) :]
+  [: Incentives for web3 builders :]
+  [: Eco friendly :]]
+
+[bold Cons:]
+
+[list  
+  [: Avalanche Bridge only supports asset transfer between Avalanche and Ethereum right now :]
+  [: There are no defined punishments for bad actors and malicious nodes (no slashing can be
+     considered reasonable in some scenarios, but it increases the overall risk for network
+     participants) :]]
+
+[heading :size 2 4. Polygon]
+
+Polygon (formerly called Matic) started as a solution to Ethereum's scaling problem.
+Their main objective was lower gas fees and faster transactions, compared to Ethereum,
+without sacrificing security; Polygon does this using a sidechain or a layer two blockchain.
+However, Polygon is developing other solutions as well. So if you like Ethereum but hate its
+occasional high gas fees and slow transactions, Polygon can be your choice.
+
+[bold Pros:]
+
+[list
+  [: Low cost :]
+  [: Fast transactions :]
+  [: Built by developers for developers (offers many valuable tools) :]
+  [: Big community of builders :]
+  [: A large number of active dApps and games :]
+  [: Many partnerships and acquisitions :]
+  [: Polygon Bridge works well with assets that sit on Ethereum :]]
+
+[bold Cons:]
+
+[list
+  [: Its first chain is more centralized than Ethereum :]
+  [: With Ethereum 2.0, some of Polygons's solutions may become obsolete over time :]]
+
+[heading :size 2 5. Cardano]
+
+Cardano is a unique project. It tries to solve real problems and create positive changes in
+a very systematic and academic way. Cardano is built to be scalable, sustainable, and
+interoperable with other blockchains.
+
+Cardano has created a unique protocol called "Ouroboros" to make its blockchain scalable
+and truly decentralized. It uses proof of stake for sustainability and allows everyone to
+easily stake their "ADA" (Cardano's native cryptocurrency) by delegating power to a pool.
+
+Finally, Cardano is building bridges between itself and other blockchains for
+interoperability. There are few bridges available right now, but more are under development.
+
+Cardano is written in a programming language called Haskell, but you can build dApps and
+create smart contracts using many other languages on this blockchain.
+
+[bold Pros:]
+
+[list
+  [: Huge community :]
+  [: Many prestigious partnerships :]
+  [: Very academic and methodical :]
+  [: It has special programs for investing in innovative ideas to be built on Cardano :]]
+
+[bold Cons:]
+
+[list
+  [: Many features are still under development :]
+  [: Not EVM compatible :]
+  [: ADA's price doesn't accurately reflect Cardano's strong fundamentals :]]
+
+[heading :size 2 6. Fantom]
+
+Fantom is a network of blockchains with a focus on speed and scalability. It uses a consensus
+mechanism called "Lachesis," a unique proof of stake that makes the network ultra-fast and secure.
+
+Most Blockchains offer incentives to regular users at their start, but Fantom tried a different
+approach and made a massive investment to get more developers building on its network. The result
+was many dApps and games that brought many users and die-hard fans to the Fantom ecosystem.
+
+[bold Pros:]
+
+[list
+  [: Great marketing and branding :]
+  [: Many incentives for developers :]
+  [: Vibrant community :]
+  [: EVM compatible :]
+  [: Very fast :]]
+
+[bold Cons:]
+
+[list
+  [: More centralized than some other blockchains :]]
+
+[heading :size 2 7. Solana]
+
+Like many other blockchains that try to offer an alternative to Ethereum, Solana has built a
+fast and cheap network, but unlike many others, they didn't do it by copying Ethereum's
+code. That's why Solana isn't EVM-compatible.
+
+They use proof of history, another version of proof of stake, to make transactions fast and the
+whole process of building blocks very efficient. Another innovation that helps with this
+efficiency is called "Sealevel" runtime, a fancy term for saying that validators or nodes can
+run multiple smart contracts simultaneously.
+
+Solana uses the Rust programming language, which allows developers to create more complex smart
+contracts and dApps.
+
+[bold Pros:]
+
+[list
+  [: Extremely fast and cheap :]
+  [: Big community :]
+  [: Offers grants to innovative projects :]]
+
+[bold Cons:]
+
+[list
+  [: More centralized than some other blockchains :]
+  [: Not EVM compatible :]
+  [: Has experienced downtimes on different occasions :]]
+
+[heading :size 2 Conclusion]
+
+There is no one best blockchain for building a dApp. So if you ask, "what is the best blockchain?"
+we have to answer with a big "it depends."
+
+If you're a beginner looking to start with web3 and blockchain technology, you should go for one
+of the more famous names (anyone on our list will do). If you want to change blockchains easily
+in the future, consider EVM-compatible ones.
+
+Other than that, for the more experienced developers, you should define your project clearly
+and list the features you need to build and maintain it. Only then can you choose the best
+blockchain for building your dApp.
+
+Go to the [link /dashbiard Kenshi dashboard] and connect your wallet to get started with Kenshi's tools for all
+EVM-compatible blockchains. Begin building with Kenshi today!
+
+[meta author Hamed Derakhshani]
+[meta banner /blog/images/best-blockchains-for-building-a-decentralized-app-sm.png]
+[meta tags [: Blockchains]]
+[meta summary
+  When a new technology emerges and finds its early adopters, some people, and organizations
+  quickly become household names. They find avid fans ready to yell at everyone about the
+  greatness of their favorite person or project.]
+[meta tweet
+  Learn what are the best blockchains for building your next decentralized application!
+  #Web3 #blockchain #KenshiTech]
