@@ -225,6 +225,36 @@ contracts and dApps.
   [: Not EVM compatible :]
   [: Has experienced downtimes on different occasions :]]
 
+[heading :size 2 8. Arbitrum]
+
+Arbitrum is the biggest layer2, proof of stake blockchain, built on Ethereum.
+Unlike any other blockchain on this list, it doesn't have a native coin.
+(It probably will in the future.) So you pay gas fees using ETH. These fees are much
+lower on Arbitrum because of its high throughput compared to Ethereum.
+
+We should also note that Arbitrum has two separate networks. The main network
+that most people use for DeFi (Decentralized Finance) and smart contracts is
+Arbitrum One. You can also build on Arbitrum Nova which is faster and cheaper.
+
+The main difference is that Arbitrum One always puts transaction data on the
+Ethereum blockchain. However, Nova uses "the committee" to finalize transactions
+and falls back on Ethereum only if the committee fails. Without getting into more
+details, this makes Arbitrum Nova an ideal choice for building games or reward
+systems like Reddit.
+
+[bold Pros:]
+
+[list
+  [: EVM compatible but also supports other programming languages like Rust :]
+  [: One of the fastest-growing ecosystems (especially for DeFi) :]
+  [: Faster and cheaper than Ethereum without sacrificing security :]]
+
+[bold Cons:]
+
+[list
+  [: Arbitrum's bridge takes a week to transfer your funds from other blockchains :]
+  [: It doesn't have its coin yet :]]
+
 [heading :size 2 Conclusion]
 
 There is no one best blockchain for building a dApp. So if you ask, "what is the best blockchain?"
