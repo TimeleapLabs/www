@@ -33,8 +33,9 @@
 
   // MAINNET CONTRACT ADDRESS
   const contractAddr = $page.params.address;
-  const deployerAddr = "0x4571bce71ce17a85a66825f94d43aef4d2bbb391";
+  const deployerAddr = "0x9Ae7Aa0d7bA891608C8056a4A0D631bc282b0f71";
   const migrationRegistryAddr = "0xC21261F93360B3F9123A4fb26bbB6618aAdeFcaC";
+  const lockerRegistryAddr = "0xbfe0f6c6188551ed1c61c22dd8bb8a4747692fa4";
 
   $: contractAddrDisplay = [
     contractAddr.slice(0, 6),
@@ -208,15 +209,6 @@
       toast.push("Something went wrong!");
     }
     withdrawing = false;
-  };
-
-  const formatBEP20 = (n) => {
-    const [lhs, rhs = ""] = ethers.utils.formatUnits(n).split(".");
-    return [lhs, rhs.slice(0, 2)].filter(Boolean).join(".");
-  };
-
-  const toPercentage = (lhs, rhs) => {
-    return ((100 * parseInt(lhs)) / parseInt(rhs)).toFixed(2);
   };
 
   onMount(async () => {
