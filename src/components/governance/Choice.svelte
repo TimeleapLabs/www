@@ -6,7 +6,7 @@
   import { Grid, Column, Row, TextInput } from "carbon-components-svelte";
   import { ProgressBar, Tag, Button } from "carbon-components-svelte";
   import { AddComment, DocumentView } from "carbon-icons-svelte";
-  import { DocumentSigned } from "carbon-icons-svelte";
+  import { DocumentSigned, Checkmark } from "carbon-icons-svelte";
   import { wallet } from "src/stores/wallet";
   import { ethers } from "ethers";
   import { toast } from "@zerodevx/svelte-toast";
@@ -21,6 +21,7 @@
   export let values;
   export let question;
   export let selected;
+  export let finished = false;
 
   let userAddress;
   let provider;
@@ -124,6 +125,9 @@
   };
 
   const onSelect = async ({ detail }) => {
+    if (finished) {
+      return;
+    }
     selected = detail;
   };
 
@@ -155,6 +159,9 @@
         {#each pills as pill}
           <Tag>{pill}</Tag>
         {/each}
+        {#if finished}
+          <Tag icon={Checkmark} type="blue">Concluded</Tag>
+        {/if}
       </div>
     </div>
     <div class="question">
@@ -165,7 +172,12 @@
         <Column>
           <TileGroup on:select={onSelect} class="grid">
             {#each values as { value, title }}
-              <RadioTile light {value} checked={selected === value}>
+              <RadioTile
+                light
+                {value}
+                checked={selected === value}
+                disabled={finished}
+              >
                 {#if resultsReady}
                   <ProgressBar
                     value={votes[value] || 0}
@@ -183,16 +195,18 @@
           </TileGroup>
         </Column>
       </Row>
-      <Row>
-        <Column class="comment-col">
-          <TextInput
-            bind:value={comment}
-            light
-            labelText="Comment"
-            placeholder="Want to share more about your decision? Let Kenshi hear what you think."
-          />
-        </Column>
-      </Row>
+      {#if !finished}
+        <Row>
+          <Column class="comment-col">
+            <TextInput
+              bind:value={comment}
+              light
+              labelText="Comment"
+              placeholder="Want to share more about your decision? Let Kenshi hear what you think."
+            />
+          </Column>
+        </Row>
+      {/if}
     </Grid>
     {#if readMore}
       <div class="body body-02">
@@ -217,7 +231,9 @@
       <Button kind="secondary" icon={DocumentView} on:click={toggleReadMore}>
         Read more
       </Button>
-      <Button icon={AddComment} on:click={doVote}>Vote</Button>
+      {#if !finished}
+        <Button icon={AddComment} on:click={doVote}>Vote</Button>
+      {/if}
     </div>
   </Tile>
 </div>

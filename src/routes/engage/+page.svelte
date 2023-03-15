@@ -41,6 +41,23 @@
     <Row>
       <Column lg={8} md={6} sm={4}>
         <Choice
+          poll="6412410e4e7872b2a336b113"
+          title="Kenshi Token New Chain"
+          question="Which blockchain should we deploy our token on? This will be our token's primary chain."
+          body="Dear users, we are excited to have you as part of our growing community! As we prepare to re-launch our token, we'd like to hear your thoughts on which blockchain we should deploy it on. Your feedback will help us make a well-informed decision that best serves the needs of our users."
+          values={[
+            { value: 0, title: "Ethereum" },
+            { value: 1, title: "Avalanche" },
+            { value: 2, title: "Arbitrum" },
+            { value: 3, title: "Polygon" },
+            { value: 4, title: "Fantom" },
+          ]}
+          selected={0}
+          pills={["Relaunch", "Chain"]}
+        />
+      </Column>
+      <Column lg={8} md={6} sm={4}>
+        <Choice
           poll="63dc3f5253725910dcef7036"
           title="Kenshi Community Engagement"
           question="Should we move forward with creating a community engagement protocol?"
@@ -49,8 +66,8 @@
             { value: 1, title: "Yes" },
             { value: 0, title: "No" },
           ]}
-          selected={1}
           pills={["Community", "Engagement"]}
+          finished
         />
       </Column>
     </Row>
