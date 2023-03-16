@@ -5,7 +5,7 @@
   import { ClickableTile, Tile } from "carbon-components-svelte";
   import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
   import { DataTable, DataTableSkeleton } from "carbon-components-svelte";
-  import { Pagination } from "carbon-components-svelte";
+  import { Pagination, TextArea } from "carbon-components-svelte";
   import { CodeSnippet, CodeSnippetSkeleton } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
   import { Email, Information } from "carbon-icons-svelte";
@@ -88,6 +88,14 @@
       new Date(iso).toLocaleDateString(),
       new Date(iso).toLocaleTimeString(),
     ].join(" ");
+
+  const getErrorMessage = (error) => {
+    try {
+      return JSON.parse(error).errorMessage || error;
+    } catch (_err) {
+      return error;
+    }
+  };
 
   onMount(() => {
     const interval = setInterval(fetchLogs, 10000);
@@ -199,12 +207,21 @@
             <Column>
               {#if oracleStats}
                 <DataTable
+                  expandable
+                  nonExpandableRowIds={rows
+                    .filter((row) => !row.error)
+                    .map((row) => row.id)}
                   sortable
                   {pageSize}
                   page={tableCurrentPage}
                   {headers}
                   {rows}
                 >
+                  <svelte:fragment slot="expanded-row" let:row>
+                    <div class="expanded-error">
+                      <TextArea readonly value={getErrorMessage(row.error)} />
+                    </div>
+                  </svelte:fragment>
                   <svelte:fragment slot="cell" let:row let:cell>
                     {#if cell.key === "status"}
                       <span class="status">
@@ -233,6 +250,10 @@
                       </span>
                     {:else if cell.key === "error" && row.success}
                       N/A
+                    {:else if cell.key === "error"}
+                      <span class="error-message">
+                        {getErrorMessage(cell.value)}
+                      </span>
                     {:else}
                       {cell.value}
                     {/if}
@@ -286,5 +307,16 @@
     display: inline-flex;
     gap: 0.5em;
     align-items: center;
+  }
+  .error-message {
+    white-space: pre;
+    max-width: 440px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+  .expanded-error {
+    box-sizing: border-box;
+    padding: 1em;
   }
 </style>
