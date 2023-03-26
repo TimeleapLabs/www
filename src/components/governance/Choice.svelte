@@ -7,6 +7,7 @@
   import { ProgressBar, Tag, Button } from "carbon-components-svelte";
   import { AddComment, DocumentView } from "carbon-icons-svelte";
   import { DocumentSigned, Checkmark } from "carbon-icons-svelte";
+  import { Forum } from "carbon-icons-svelte";
   import { wallet } from "src/stores/wallet";
   import { ethers } from "ethers";
   import { toast } from "@zerodevx/svelte-toast";
@@ -22,6 +23,7 @@
   export let question;
   export let selected;
   export let finished = false;
+  export let discussions = "";
 
   let userAddress;
   let provider;
@@ -231,6 +233,16 @@
       <Button kind="secondary" icon={DocumentView} on:click={toggleReadMore}>
         Read more
       </Button>
+      {#if discussions}
+        <Button
+          kind="secondary"
+          icon={Forum}
+          target="_blank"
+          href={discussions}
+        >
+          Discuss
+        </Button>
+      {/if}
       {#if !finished}
         <Button icon={AddComment} on:click={doVote}>Vote</Button>
       {/if}

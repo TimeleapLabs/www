@@ -41,6 +41,24 @@
     <Row>
       <Column lg={8} md={6} sm={4}>
         <Choice
+          poll="6420a98b4e7872b2a336b12b"
+          title="Kenshi Token New Supply"
+          question="What should the new token supply be?"
+          body="Dear users, we've decided to reduce our token's total supply from 10 trillion. Your input is essential in determining the new total supply. Please cast your vote on the most suitable option for our token. Thank you for your valuable participation!"
+          values={[
+            { value: 0, title: "100 Million" },
+            { value: 1, title: "500 Million" },
+            { value: 2, title: "1 Billion" },
+            { value: 3, title: "5 Billion" },
+            { value: 4, title: "10 Billion" },
+          ]}
+          selected={2}
+          pills={["Relaunch", "Supply"]}
+          discussions="https://forum.kenshi.io/t/poll-kenshi-token-new-supply/71"
+        />
+      </Column>
+      <Column lg={8} md={6} sm={4}>
+        <Choice
           poll="6412410e4e7872b2a336b113"
           title="Kenshi Token New Chain"
           question="Which blockchain should we deploy our token on? This will be our token's primary chain."
@@ -54,6 +72,7 @@
           ]}
           selected={0}
           pills={["Relaunch", "Chain"]}
+          discussions="https://forum.kenshi.io/t/poll-kenshi-token-new-chain/67"
         />
       </Column>
       <Column lg={8} md={6} sm={4}>
