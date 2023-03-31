@@ -287,6 +287,15 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
+                <ClickableTile target="_blank" href="https://forum.kenshi.io">
+                  <h4 class="external"><span>Forum</span><Launch /></h4>
+                  <div class="body">
+                    A community of blockchain developers and enthusiasts. Learn,
+                    discuss, and share!
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/blog">
                   <h4>Blog</h4>
                   <div class="body">
@@ -513,6 +522,11 @@
     <SideNavMenu text="Developers">
       <SideNavMenuItem href="/dashboard" text="Dashboard" />
       <SideNavMenuItem href="/docs" text="Documentation" />
+      <SideNavMenuItem
+        href="https://forum.kenshi.io"
+        text="Forum"
+        target="_blank"
+      />
       <SideNavMenuItem
         href="https://github.com/KenshiTech"
         text="GitHub"

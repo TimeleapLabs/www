@@ -11,7 +11,7 @@
   import { Dashboard, Book, IntentRequestCreate } from "carbon-icons-svelte";
   import { Partnership, AnalyticsReference, Email } from "carbon-icons-svelte";
   import { LogoPython, ArrowDown, ArrowDownRight } from "carbon-icons-svelte";
-  import { IotPlatform, LogoGithub, Blog } from "carbon-icons-svelte";
+  import { IotPlatform, LogoGithub, Blog, Forum } from "carbon-icons-svelte";
 
   import Go from "src/icons/Go.svelte";
   import Node from "src/icons/Node.svelte";
@@ -975,6 +975,14 @@
       <Column lg={12}>
         <Grid noGutterRight padding fullWidth class="full-height no-padding">
           <Row class="full-height">
+            <Column lg={4} md={4} sm={4}>
+              <CardButton
+                href="https://forum.kenshi.io"
+                icon={Forum}
+                title="Forum"
+                description="A community of blockchain developers and enthusiasts. Learn, discuss, and share!"
+              />
+            </Column>
             <Column lg={4} md={4} sm={4}>
               <CardButton
                 href="https://github.com/KenshiTech"

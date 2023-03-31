@@ -94,6 +94,9 @@
           <h3>Developers</h3>
         </ExpressiveHeading>
         <UnorderedList>
+          <ListItem>
+            <Link target="_blank" href="https://forum.kenshi.io">Forum</Link>
+          </ListItem>
           <ListItem><Link href="/docs">Documentation</Link></ListItem>
           <ListItem><Link href="/dashboard">Dashboard</Link></ListItem>
           <ListItem><Link href="/status">Service Status</Link></ListItem>
