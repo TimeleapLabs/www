@@ -37,6 +37,8 @@ Available blockchains are:
   [:header Blockchain                 [: MQL Value]]
   [:row    [: Ethereum]               "ethereum-mainnet"]
   [:row    [: Ethereum Goerli]        "ethereum-goerli"]
+  [:row    [: Arbitrum One]               "arbitrum-mainnet"]
+  [:row    [: Arbitrum Goerli]        "arbitrum-goerli"]
   [:row    [: BNB Chain]              "binance-mainnet"]
   [:row    [: BNB Chain testnet]      "binance-testnet"]
   [:row    [: Polygon]                "polygon-mainnet"]

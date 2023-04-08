@@ -1,6 +1,8 @@
 export const blockTimes = {
   "ethereum-mainnet": 15,
   "ethereum-goerli": 15,
+  "arbitrum-mainnet": 15,
+  "arbitrum-goerli": 15,
   "binance-testnet": 3,
   "binance-mainnet": 3,
   "fantom-testnet": 1,

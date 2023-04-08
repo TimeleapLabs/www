@@ -110,37 +110,20 @@
         <Tile class="blue-tile full-height">
           <div class="flex-column">
             <ExpressiveHeading size={5}>
-              <h1>Oracle Network</h1>
+              <h2>Oracle Network</h2>
             </ExpressiveHeading>
 
             <div class="spacer" />
 
             <div class="body-02 ">
               Kenshi Oracle Network is a high-performance asynchronous oracle
-              platform currently hosting the Kenshi VRF.
+              platform that allows creating custom oracles in a few lines of
+              code.
             </div>
 
             <div class="spacer" />
           </div>
         </Tile>
-      </Column>
-      <Column sm={4} md={4} lg={4} max={4}>
-        <ClickableTile class="full-height" href="/dashboard/oracle-network/vrf">
-          <div class="flex-column">
-            <Shuffle />
-            <ExpressiveHeading size={3}>
-              <h2>VRF</h2>
-            </ExpressiveHeading>
-            <div class="body-compact-02">
-              Get randomness on the blockchain in a secure, reliable and
-              tamper-proof way.
-            </div>
-            <div class="spacer" />
-            <div class="arrow">
-              <ArrowRight />
-            </div>
-          </div>
-        </ClickableTile>
       </Column>
       <Column sm={4} md={4} lg={4} max={4}>
         <ClickableTile
@@ -150,7 +133,7 @@
           <div class="flex-column">
             <BuildTool />
             <ExpressiveHeading size={3}>
-              <h2>Custom</h2>
+              <h2>Custom Oracles</h2>
             </ExpressiveHeading>
             <div class="body-compact-02">
               Create and deploy your custom oracle on top of Kenshi's blazing
