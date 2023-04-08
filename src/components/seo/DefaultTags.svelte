@@ -3,7 +3,7 @@
   <meta name="title" content="Kenshi — A Blockchain Tech Company" />
   <meta
     name="description"
-    content="Kenshi is a blockchain tech company offering services such as Custom Oracle Network, blockchain IoT SDK, and Deep Indexing on Ethereum, Aurora, Avalanche, Fantom, Polygon, Bitgert and the BNB Smart Chain."
+    content="Kenshi is a blockchain tech company offering services such as Custom Oracle Network, blockchain IoT SDK, and Deep Indexing on Ethereum, Arbitrum, Aurora, Avalanche, Fantom, Polygon, Bitgert and the BNB Smart Chain."
   />
 
   <!-- Open Graph / Facebook -->
@@ -12,7 +12,7 @@
   <meta property="og:title" content="Kenshi — A Blockchain Tech Company" />
   <meta
     property="og:description"
-    content="Kenshi is a blockchain tech company offering services such as Custom Oracle Network, blockchain IoT SDK, and Deep Indexing on Ethereum, Aurora, Avalanche, Fantom, Polygon, Bitgert and the BNB Smart Chain."
+    content="Kenshi is a blockchain tech company offering services such as Custom Oracle Network, blockchain IoT SDK, and Deep Indexing on Ethereum, Arbitrum, Aurora, Avalanche, Fantom, Polygon, Bitgert and the BNB Smart Chain."
   />
   <meta property="og:image" content="https://kenshi.io/images/social.png" />
 
@@ -22,7 +22,7 @@
   <meta property="twitter:title" content="Kenshi — A Blockchain Tech Company" />
   <meta
     property="twitter:description"
-    content="Kenshi is a blockchain tech company offering services such as Custom Oracle Network, blockchain IoT SDK, and Deep Indexing on Ethereum, Aurora, Avalanche, Fantom, Polygon, Bitgert and the BNB Smart Chain."
+    content="Kenshi is a blockchain tech company offering services such as Custom Oracle Network, blockchain IoT SDK, and Deep Indexing on Ethereum, Arbitrum, Aurora, Avalanche, Fantom, Polygon, Bitgert and the BNB Smart Chain."
   />
   <meta
     property="twitter:image"

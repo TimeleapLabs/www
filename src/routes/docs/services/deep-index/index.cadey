@@ -17,7 +17,7 @@ and processing blockchain data:
   [image /images/docs/screenshots/6_Register_a_POST_HTTP_endpoint_and_get_notified_of_the_events_as.png screenshot]]
 
 [alert info-square
-  This service is available on Ethereum, BNB Smart Chain (BSC),
+  This service is available on Ethereum (ETH), Arbitrum (ETH), BNB Smart Chain (BSC),
   Fantom (FTM), Polygon (MATIC), Avalanche (AVAX), Bitgert (BRISE), and Aurora (AURORA)
   testnets and mainnets.
   If you need any help don't hesitate to join our communities
