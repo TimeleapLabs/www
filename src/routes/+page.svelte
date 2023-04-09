@@ -23,6 +23,7 @@
   import Polygon from "src/icons/Polygon.svelte";
   import Aurora from "src/icons/Aurora.svelte";
   import Bitgert from "src/icons/Bitgert.svelte";
+  import Arbitrum from "src/icons/Arbitrum.svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import BlogToc from "src/components/blog/Toc.svelte";
@@ -77,6 +78,7 @@
 
           <div class="blockchains">
             <Button kind="tertiary" icon={Ethereum}>Ethereum</Button>
+            <Button kind="tertiary" icon={Arbitrum}>Arbitrum</Button>
             <Button kind="tertiary" icon={Aurora}>Aurora</Button>
             <Button kind="tertiary" icon={Avalanche}>Avalanche</Button>
             <Button kind="tertiary" icon={Bitgert}>Bitgert</Button>

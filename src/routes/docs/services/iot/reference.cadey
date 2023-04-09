@@ -57,6 +57,8 @@ Use values from this enum to initialize your MQL objects.
     BinanceMainnet,
     EthereumGoerli,
     EthereumMainnet,
+    ArbitrumGoerli,
+    ArbitrumMainnet,
     AvalancheTestnet,
     AvalancheMainnet,
     PolygonMumbai,

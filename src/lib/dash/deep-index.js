@@ -6,6 +6,8 @@ import { default as GaugeMed } from "src/icons/GaugeMed.svelte";
 export const chainOptions = [
   { label: "Ethereum", value: "ethereum-mainnet" },
   { label: "Ethereum Goerli", value: "ethereum-goerli" },
+  { label: "Arbitrum One", value: "arbitrum-mainnet" },
+  { label: "Arbitrum Goerli", value: "arbitrum-goerli" },
   { label: "Aurora", value: "aurora-mainnet" },
   { label: "Aurora Testnet", value: "aurora-testnet" },
   {

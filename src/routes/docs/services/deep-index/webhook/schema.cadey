@@ -64,6 +64,8 @@ Below you can find the Kenshi Reverse-API request body schema.
              [: Name of the chain, possible values are:
                 [: "ethereum-mainnet"],
                 [: "ethereum-goerli"],
+                [: "arbitrum-mainnet"],
+                [: "arbitrum-goerli"],
                 [: "avalanche-mainnet"],
                 [: "avalanche-fuji"],
                 [: "binance-mainnet"],

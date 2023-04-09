@@ -70,9 +70,9 @@
             { value: 3, title: "Polygon" },
             { value: 4, title: "Fantom" },
           ]}
-          selected={0}
           pills={["Relaunch", "Chain"]}
           discussions="https://forum.kenshi.io/t/poll-kenshi-token-new-chain/67"
+          finished
         />
       </Column>
       <Column lg={8} md={6} sm={4}>
