@@ -130,7 +130,7 @@
             <Row>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/dashboard/oracle-network/custom">
-                  <h4>Custom oracle</h4>
+                  <h4>Custom Oracle</h4>
                   <div class="body">
                     Create and deplpoy your custom oracle with the technologies
                     you know.
@@ -459,7 +459,7 @@
         </HeaderPanelLink>
         <HeaderPanelDivider>Oracle Network</HeaderPanelDivider>
         <HeaderPanelLink href="/dashboard/oracle-network/custom">
-          Custom oracles
+          Custom Oracles
         </HeaderPanelLink>
       </HeaderPanelLinks>
     </HeaderAction>
@@ -487,7 +487,7 @@
       <SideNavMenu text="Oracle Network">
         <SideNavMenuItem
           href="/dashboard/oracle-network/custom"
-          text="Custom oracles"
+          text="Custom Oracles"
         />
       </SideNavMenu>
       <SideNavMenu text="Oracle Blueprints">

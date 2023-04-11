@@ -74,7 +74,7 @@
         <Breadcrumb>
           <BreadcrumbItem href="/dashboard">Dashboard</BreadcrumbItem>
           <BreadcrumbItem href="/dashboard/oracle-network/custom" isCurrentPage>
-            Custom oracle
+            Custom Oracle
           </BreadcrumbItem>
         </Breadcrumb>
       </Column>
@@ -85,7 +85,7 @@
         <Tile class="blue-tile">
           <div class="flex-column">
             <ExpressiveHeading size={5}>
-              <h1>Custom oracle</h1>
+              <h1>Custom Oracle</h1>
             </ExpressiveHeading>
             <p>This is the first step to make your own custom oracle.</p>
           </div>

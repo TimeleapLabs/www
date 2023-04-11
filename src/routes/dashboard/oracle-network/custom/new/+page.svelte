@@ -434,7 +434,7 @@
           <Row>
             <Column>
               <p>
-                Custom oracle's cost a fixed monthly fee for the infrastructure,
+                Custom Oracle's cost a fixed monthly fee for the infrastructure,
                 plus $1 per 5000 requests processed by your oracle.
               </p>
             </Column>
