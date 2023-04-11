@@ -47,3 +47,9 @@ it is easy to verify the sender of such data, and to make sure they are not mani
 generated and verified by your oracle endpoint.
 You can use [link https://eips.ethereum.org/EIPS/eip-712 EIP712] to sign and later verify them on
 the blockchain.
+
+[heading :size 2 Block confirmations]
+
+Choose an appropriate number for block confirmations if sensitive business logic or transfer of funds
+is involved. A transaction can revert, get reorganized or get cancelled before finality is reached.
+Learn more about finality [link https://academy.binance.com/en/glossary/finality here].

@@ -38,6 +38,7 @@
     fromBlock: 0,
     concurrency: 10,
     tier: "business",
+    confirmations: 0,
   };
 
   const selectTier = (t) => ($values.tier = t);
@@ -204,7 +205,9 @@
           </Row>
           <Row>
             <Column>
-              <ExpressiveHeading size={2}>Starting point</ExpressiveHeading>
+              <ExpressiveHeading size={2}>
+                Starting point & confirmations
+              </ExpressiveHeading>
             </Column>
           </Row>
           <Row>
@@ -234,6 +237,30 @@
                       <p>
                         Defines the start point of event sourcing. From which
                         block should we start looking for events?
+                      </p>
+                    </Tooltip>
+                  </div>
+                </svelte:fragment>
+              </NumberInput>
+            </Column>
+            <Column>
+              <NumberInput
+                placeholder="Confirmations"
+                label="Confirmations"
+                name="confirmations"
+                helperText="Oracle Network waits for {$values.confirmations ||
+                  0} blocks before sending an event to your oracle."
+                required
+                bind:value={$values.confirmations}
+                invalid={$values.confirmations && !!$invalids.confirmations}
+                invalidText={$invalids.confirmations}
+              >
+                <svelte:fragment slot="label">
+                  <div use:fixLabelTooltip>
+                    <Tooltip triggerText="Confirmations">
+                      <p>
+                        How many block confirmations do you need before
+                        processing an event?
                       </p>
                     </Tooltip>
                   </div>
@@ -407,7 +434,7 @@
           <Row>
             <Column>
               <p>
-                Custom oracle's cost a fixed monthly fee for the infrastructure,
+                Custom Oracle's cost a fixed monthly fee for the infrastructure,
                 plus $1 per 5000 requests processed by your oracle.
               </p>
             </Column>
