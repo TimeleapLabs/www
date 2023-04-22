@@ -1,5 +1,5 @@
 import { Product } from "src/lib/product";
-import { chainOptions, tiers } from "src/lib/dash/deep-index";
+import { chainOptions, frequencyOptions } from "src/lib/dash/deep-index";
 import { form } from "src/lib/form";
 import { abiValidator } from "src/lib/dash/validators";
 import { getSyncPrice } from "src/lib/dash/pricing";
@@ -15,13 +15,14 @@ const schema = {
     regex: /^0x[0-9a-f]{40}$/i,
     methods: ["insert", "update"],
   },
-  tier: {
+  frequency: {
     name: "Tier",
-    oneOf: Object.keys(tiers),
-    methods: ["insert"],
+    oneOf: frequencyOptions.map((option) => option.value),
+    methods: ["insert", "credit"],
   },
   duration: form.types.positiveNumber("Duration", ["insert", "credit"]),
   fromBlock: form.types.positiveNumber("Block", ["insert"]),
+  storage: form.types.positiveNumber("Storage", ["insert", "credit"]),
   abi: {
     name: "ABI",
     validate(value) {
@@ -37,19 +38,12 @@ const endpoint = "https://api.kenshi.io/subscriptions/sync";
 const payloadKey = "task";
 const name = "Sync task";
 
-const tierMap = {
-  15: "startup",
-  10: "growth",
-  5: "business",
-  1: "enterprise",
-};
-
 const prices = {
   insert(values) {
-    return getSyncPrice(values.tier, values.duration);
+    return getSyncPrice(values.frequency, values.storage, values.duration);
   },
-  credit(values, current) {
-    return getSyncPrice(tierMap[current.interval], values.duration);
+  credit(values) {
+    return getSyncPrice(values.frequency, values.storage, values.duration);
   },
 };
 

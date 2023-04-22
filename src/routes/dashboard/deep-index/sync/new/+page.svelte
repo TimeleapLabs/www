@@ -7,12 +7,11 @@
   import { Select, SelectItem } from "carbon-components-svelte";
   import { TextInput } from "carbon-components-svelte";
   import { NumberInput } from "carbon-components-svelte";
-  import { TextArea } from "carbon-components-svelte";
+  import { TextArea, Slider } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
   import { Tooltip, InlineNotification } from "carbon-components-svelte";
   import { Email, Information } from "carbon-icons-svelte";
   import { fixLabelTooltip } from "src/lib/tooltip";
-  import { TileGroup, RadioTile } from "carbon-components-svelte";
   import { wallet } from "src/stores/wallet";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
@@ -21,26 +20,21 @@
   import { SyncProduct } from "$lib/products/sync";
   import { goto } from "$app/navigation";
 
-  import Db from "src/icons/DB.svelte";
-  import CreditCard from "src/icons/CreditCard.svelte";
-  import Timer from "src/icons/Timer.svelte";
-  import MessageCode from "src/icons/MessageCode.svelte";
-
   import { SpinLine } from "svelte-loading-spinners";
   import { getSyncPrice } from "src/lib/dash/pricing";
-  import { chainOptions, tiers } from "src/lib/dash/deep-index";
+  import { chainOptions, frequencyOptions } from "src/lib/dash/deep-index";
 
   const { values, invalids, check } = SyncProduct.getForm("insert");
-  const selectTier = (t) => ($values.tier = t);
 
   $values = {
     chain: "ethereum-mainnet",
-    tier: "business",
     duration: 1,
     fromBlock: 0,
+    frequency: 5,
+    storage: 0.5,
   };
 
-  $: price = getSyncPrice($values.tier, $values.duration);
+  $: price = getSyncPrice($values.frequency, $values.storage, $values.duration);
 
   let creatingTask = false;
 
@@ -251,55 +245,53 @@
           <Row>
             <Column>
               <p>
-                Each indexing task's tier class determines how fast events are
-                retrieved from the blockchain and how many events can be
-                indexed.
+                Each indexing task's frequency determines how fast events are
+                retrieved from the blockchain. Storage defines how many events
+                can be indexed.
               </p>
             </Column>
           </Row>
           <Row>
             <Column>
-              <div class="tiers">
-                <TileGroup on:select={({ detail }) => selectTier(detail)}>
-                  {#each Object.entries(tiers) as [value, plan]}
-                    <RadioTile {value} checked={$values.tier === value}>
-                      <div class="tier">
-                        <div class="name">
-                          <ExpressiveHeading size={1}>
-                            {plan.name}
-                          </ExpressiveHeading>
-                        </div>
-                        <div class="stats">
-                          <div class="stat">
-                            <span class="name"><Db /> Storage</span>
-                            <span class="spacer" />
-                            <span class="value">{plan.storage} Gb</span>
-                          </div>
-                          <div class="stat">
-                            <span class="name"><MessageCode /> Max events</span>
-                            <span class="spacer" />
-                            <span class="value">{plan.events}M</span>
-                          </div>
-                          <div class="stat">
-                            <span class="name"><Timer /> Indexing</span>
-                            <span class="spacer" />
-                            <span class="value">{plan.speed}</span>
-                          </div>
-                          <div class="stat">
-                            <span class="name"><CreditCard /> Price</span>
-                            <span class="spacer" />
-                            <span class="value">${plan.price}/Month</span>
-                          </div>
-                        </div>
-                        <div class="for">
-                          <svelte:component this={plan.gauge} />
-                          For {plan.for} workloads
-                        </div>
-                      </div>
-                    </RadioTile>
-                  {/each}
-                </TileGroup>
-              </div>
+              <Slider
+                step={0.1}
+                min={0.1}
+                max={400}
+                bind:value={$values.storage}
+                maxLabel={"400GB"}
+                labelText="Storage"
+              >
+                <svelte:fragment slot="labelText">
+                  <div use:fixLabelTooltip>
+                    <Tooltip triggerText="Storage">
+                      <p>Each 0.1GB stores approximately 30,000 events.</p>
+                    </Tooltip>
+                  </div>
+                </svelte:fragment>
+              </Slider>
+            </Column>
+            <Column>
+              <Select
+                bind:selected={$values.frequency}
+                required
+                helperText="You will have {$values.frequency === 1
+                  ? 'a few milliseconds'
+                  : `up to ${$values.frequency} seconds`} of delay for indexing new events"
+              >
+                <svelte:fragment slot="labelText">
+                  <div use:fixLabelTooltip>
+                    <Tooltip triggerText="Frequency">
+                      <p>
+                        This property defines how often we look for your events
+                        on the blockchain.
+                      </p>
+                    </Tooltip>
+                  </div>
+                </svelte:fragment>
+                {#each frequencyOptions as option}
+                  <SelectItem value={option.value} text={option.label} />
+                {/each}
+              </Select>
             </Column>
           </Row>
 
@@ -364,73 +356,6 @@
     flex-direction: column;
     gap: 2em;
     align-items: flex-start;
-  }
-  .tiers {
-    display: grid;
-    gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-  .tiers :global(.bx--tile-group > div) {
-    margin-top: 1em;
-    display: grid;
-    gap: 2em;
-    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
-  }
-  .tier {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    cursor: pointer;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-right: -2rem;
-  }
-  .tier .stats > * {
-    box-sizing: border-box;
-  }
-  .tier > .name {
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .tier .for {
-    display: flex;
-    gap: 1em;
-    flex: 1;
-    align-items: center;
-    border-top: 1px solid var(--cds-ui-04);
-    width: calc(100% + 2rem);
-    margin-left: -1rem;
-    padding: 1em;
-    padding-bottom: 0;
-  }
-  .tier .name {
-    display: flex;
-    gap: 1em;
-    flex: 1;
-    align-items: center;
-    white-space: nowrap;
-  }
-  .tier .stats {
-    width: 100%;
-    gap: 0.5em;
-    display: flex;
-    flex-direction: column;
-  }
-  .tier .stats .stat {
-    display: flex;
-    width: 100%;
-    align-items: center;
-  }
-  .spacer {
-    flex: 1;
-  }
-  .tier :global(svg) {
-    width: 1.25em;
-    height: 1.25em;
-    max-width: initial;
-  }
-  .tier :global(svg) {
-    fill: currentColor;
   }
   .form-info {
     display: flex;

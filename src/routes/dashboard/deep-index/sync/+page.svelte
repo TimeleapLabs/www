@@ -16,13 +16,6 @@
 
   import { chainIcons, chainNames } from "src/lib/chains";
 
-  const tierMap = {
-    15: "Basic",
-    10: "Growth",
-    5: "Business",
-    1: "Enterprise",
-  };
-
   import {
     DataTable,
     Toolbar,
@@ -54,11 +47,10 @@
           value
         }
         fromBlock
-        step
         chain
         address
-        interval
-        timeout
+        frequency
+        storage
         expiresAt
       }
     }
@@ -69,7 +61,8 @@
     { key: "chain", value: "Blockchain" },
     { key: "address", value: "Contract address" },
     { key: "fromBlock", value: "From block" },
-    { key: "interval", value: "Tier" },
+    { key: "storage", value: "Storage" },
+    { key: "frequency", value: "Frequency" },
     { key: "expiresAt", value: "Expires" },
     { key: "actions", value: "Actions" },
   ];
@@ -187,8 +180,10 @@
               >
                 Update
               </Link>
-            {:else if cell.key === "interval"}
-              {tierMap[cell.value]}
+            {:else if cell.key === "storage"}
+              {cell.value} GB
+            {:else if cell.key === "frequency"}
+              Every {cell.value} seconds
             {:else if cell.key === "expiresAt"}
               {new Date(cell.value).toLocaleDateString()}
             {:else if cell.key === "chain"}

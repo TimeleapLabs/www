@@ -6,8 +6,8 @@
   import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
   import { TextInput } from "carbon-components-svelte";
   import { NumberInput } from "carbon-components-svelte";
-  import { TextArea } from "carbon-components-svelte";
-  import { Button } from "carbon-components-svelte";
+  import { TextArea, Slider } from "carbon-components-svelte";
+  import { Button, Select, SelectItem } from "carbon-components-svelte";
   import { Tooltip, InlineNotification } from "carbon-components-svelte";
   import { Email, Information } from "carbon-icons-svelte";
   import { fixLabelTooltip } from "src/lib/tooltip";
@@ -25,6 +25,7 @@
   import { getSyncPrice } from "src/lib/dash/pricing";
   import { SyncProduct } from "$lib/products/sync";
   import { page } from "$app/stores";
+  import { frequencyOptions } from "$lib/dash/deep-index";
 
   let userAddress;
   let userSyncTasks = [];
@@ -74,6 +75,11 @@
       abi: JSON.stringify(taskFromId.abi, null, 2),
       address: taskFromId.address,
     };
+    $creditValues = {
+      duration: 1,
+      frequency: taskFromId.frequency,
+      storage: taskFromId.storage,
+    };
   }
 
   let isUpdating = false;
@@ -98,14 +104,10 @@
     isAddingCredit = false;
   };
 
-  const tierMap = {
-    15: "startup",
-    10: "growth",
-    5: "business",
-    1: "enterprise",
-  };
-
-  $: unitPrice = taskFromId ? getSyncPrice(tierMap[taskFromId.interval], 1) : 0;
+  $: unitPrice =
+    $creditValues.frequency && $creditValues.storage
+      ? getSyncPrice($creditValues.frequency, $creditValues.storage, 1)
+      : 0;
 </script>
 
 <Content>
@@ -301,9 +303,60 @@
                       <Row>
                         <Column>
                           <p>
-                            Existing Deep Indexing tasks can be extended to
-                            function for a longer period of time.
+                            Each indexing task's frequency determines how fast
+                            events are retrieved from the blockchain. Storage
+                            defines how many events can be indexed.
                           </p>
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <Slider
+                            step={0.1}
+                            min={0.1}
+                            max={400}
+                            bind:value={$creditValues.storage}
+                            maxLabel={"400GB"}
+                            labelText="Storage"
+                          >
+                            <svelte:fragment slot="labelText">
+                              <div use:fixLabelTooltip>
+                                <Tooltip triggerText="Storage">
+                                  <p>
+                                    Each 0.1GB stores approximately 30,000
+                                    events.
+                                  </p>
+                                </Tooltip>
+                              </div>
+                            </svelte:fragment>
+                          </Slider>
+                        </Column>
+                        <Column>
+                          <Select
+                            bind:selected={$creditValues.frequency}
+                            required
+                            helperText="You will have {$creditValues.frequency ===
+                            1
+                              ? 'a few milliseconds'
+                              : `up to ${$creditValues.frequency} seconds`} of delay for indexing new events"
+                          >
+                            <svelte:fragment slot="labelText">
+                              <div use:fixLabelTooltip>
+                                <Tooltip triggerText="Frequency">
+                                  <p>
+                                    This property defines how often we look for
+                                    your events on the blockchain.
+                                  </p>
+                                </Tooltip>
+                              </div>
+                            </svelte:fragment>
+                            {#each frequencyOptions as option}
+                              <SelectItem
+                                value={option.value}
+                                text={option.label}
+                              />
+                            {/each}
+                          </Select>
                         </Column>
                       </Row>
                       <Row>
@@ -331,6 +384,19 @@
                         </Column>
                       </Row>
 
+                      {#if $creditValues.storage < taskFromId.storage}
+                        <Row>
+                          <Column>
+                            <InlineNotification
+                              kind="info"
+                              title="Storage"
+                              subtitle="New storage size cannot be smaller than the current one."
+                              hideCloseButton
+                            />
+                          </Column>
+                        </Row>
+                      {/if}
+
                       <Row>
                         <Column>
                           <InlineNotification
@@ -342,32 +408,34 @@
                         </Column>
                       </Row>
 
-                      <Row>
-                        <Column>
-                          <Button
-                            on:click={credit}
-                            disabled={isAddingCredit}
-                            icon={Purchase}
-                          >
-                            {#if isAddingCredit}
-                              <SpinLine
-                                size="32"
-                                color="currentColor"
-                                unit="px"
-                                duration="4s"
-                              />
-                              Processing
-                            {:else}
-                              Extend
-                              {#if $creditValues.duration && unitPrice}
-                                for ${(
-                                  unitPrice * $creditValues.duration
-                                ).toFixed(2)}
+                      {#if $creditValues.storage >= taskFromId.storage}
+                        <Row>
+                          <Column>
+                            <Button
+                              on:click={credit}
+                              disabled={isAddingCredit}
+                              icon={Purchase}
+                            >
+                              {#if isAddingCredit}
+                                <SpinLine
+                                  size="32"
+                                  color="currentColor"
+                                  unit="px"
+                                  duration="4s"
+                                />
+                                Processing
+                              {:else}
+                                Extend
+                                {#if $creditValues.duration && unitPrice}
+                                  for ${(
+                                    unitPrice * $creditValues.duration
+                                  ).toFixed(2)}
+                                {/if}
                               {/if}
-                            {/if}
-                          </Button>
-                        </Column>
-                      </Row>
+                            </Button>
+                          </Column>
+                        </Row>
+                      {/if}
                     </Grid>
                   </TabContent>
                 </svelte:fragment>

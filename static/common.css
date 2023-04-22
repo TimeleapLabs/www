@@ -338,3 +338,7 @@ ul ul {
     grid-template-columns: 1fr;
   }
 }
+
+.bx--slider {
+  z-index: 0;
+}

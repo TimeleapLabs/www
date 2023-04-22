@@ -1,18 +1,15 @@
-const syncTierPrices = {
-  startup: 49.95,
-  growth: 99.95,
-  business: 199.95,
-  enterprise: 399.95,
-};
-
 const oracleTierPrices = {
   develop: 9.95,
   startup: 24.95,
   business: 49.95,
 };
 
-export const getSyncPrice = (tier, duration) => {
-  return Math.round(duration * syncTierPrices[tier] * 100) / 100;
+const syncComputePrice = 49.95;
+
+export const getSyncPrice = (frequency, storage, duration) => {
+  const computePrice = syncComputePrice / frequency;
+  const storagePrice = 12 * storage;
+  return Math.round(duration * (storagePrice + computePrice) * 100) / 100;
 };
 
 export const getReverseAPIPrice = (duration, requests) => {
@@ -25,4 +22,4 @@ export const getOraclePrice = (tier, calls, duration) => {
 };
 
 export const getGraphQLPrice = (requests) =>
-  Math.round((requests / 1e6) * 24.95 * 100) / 100;
+  Math.round((requests / 1e6) * 14.95 * 100) / 100;
