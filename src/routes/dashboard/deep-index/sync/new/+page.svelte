@@ -264,7 +264,7 @@
                 <svelte:fragment slot="labelText">
                   <div use:fixLabelTooltip>
                     <Tooltip triggerText="Storage">
-                      <p>Each 0.1GB stores approximately 30,000 events.</p>
+                      <p>Each 0.1GB stores approximately 325,000 events.</p>
                     </Tooltip>
                   </div>
                 </svelte:fragment>

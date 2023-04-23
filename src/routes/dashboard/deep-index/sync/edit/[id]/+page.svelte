@@ -323,7 +323,7 @@
                               <div use:fixLabelTooltip>
                                 <Tooltip triggerText="Storage">
                                   <p>
-                                    Each 0.1GB stores approximately 30,000
+                                    Each 0.1GB stores approximately 325,000
                                     events.
                                   </p>
                                 </Tooltip>
