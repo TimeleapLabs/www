@@ -8,7 +8,7 @@
   import { ChevronLeft, ChevronRight } from "carbon-icons-svelte";
   import { Search, Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
   import { debounce } from "$lib/utils";
-  import { Share, LogoTwitter } from "carbon-icons-svelte";
+  import { Share, LogoTwitter, Forum } from "carbon-icons-svelte";
   import { page } from "$app/stores";
 
   import { onMount } from "svelte";
@@ -113,6 +113,11 @@
               href="https://twitter.com/intent/tweet?text={tweetText}"
             >
               Tweet
+            </Button>
+          {/if}
+          {#if meta.forum}
+            <Button target="_blank" icon={Forum} href={meta.forum}>
+              Discuss on Forum
             </Button>
           {/if}
         </div>
@@ -326,6 +331,9 @@
   }
   .blog .body :global(li:not(last-of-type)) {
     margin-bottom: 0.5em;
+  }
+  .blog .body :global(li div + div) {
+    margin-top: 1em;
   }
   .blog .body > :global(.card > div) {
     overflow: auto;

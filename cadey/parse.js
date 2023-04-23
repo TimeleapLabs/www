@@ -81,7 +81,7 @@ export const parseAll = async (project) => {
       meta,
       project === "docs" ? "Doc" : "Blog"
     );
-    const dirname = file.replace(/(index)?\.cadey$/, "").replace(/\/$/, "");
+    const dirname = file.replace(/(\/index)?\.cadey$/, "").replace(/\/$/, "");
     const url = "/" + dirname.slice("src/routes/".length);
     allTexts.push({
       text,

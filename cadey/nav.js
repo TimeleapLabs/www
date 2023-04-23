@@ -36,7 +36,7 @@ export const getPrev = (file, allTocs, allHeadings) => {
   if (currTocEntries[currTocI - 1]) {
     const entry = currTocEntries[currTocI - 1];
     return JSON.stringify({ url: toUrl(entry[0]), title: entry[1] });
-  } else if (!file.endsWith("index.cadey")) {
+  } else if (!file.endsWith("/index.cadey")) {
     const parentIndex = `${currDir}/index.cadey`;
     return allHeadings[parentIndex]
       ? JSON.stringify({
@@ -101,7 +101,7 @@ export const getNext = (file, allTocs) => {
 };
 
 export const getSubNav = (tocs, meta, [route, title]) => {
-  if (!route.endsWith("index.cadey")) {
+  if (!route.endsWith("/index.cadey")) {
     return { url: toUrl(route), title, meta: meta[route] || null };
   }
   const toc = tocs[route];

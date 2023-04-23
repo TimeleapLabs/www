@@ -178,7 +178,7 @@ export const macros = {
   },
   code(options, ...args) {
     this.components = { ...this.components, Code: true };
-    const { content } = options;
+    const { content, inline } = options;
     const code = content
       ? fs
           .readFileSync(content.trim())
@@ -187,7 +187,7 @@ export const macros = {
           .replace(/{/g, "\\{")
       : unIndent(asCode(args)).replace(/`/g, "\\`").replace(/{/g, "\\{");
 
-    const type = code.includes("\n") ? "multi" : "single";
+    const type = inline ? "inline" : code.includes("\n") ? "multi" : "single";
     return `<CodeSnippet type={"${type}"} code={\`${code}\`}></CodeSnippet>`;
   },
   async toc(options, ...args) {

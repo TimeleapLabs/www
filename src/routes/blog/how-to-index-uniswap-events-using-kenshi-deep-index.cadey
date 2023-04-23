@@ -1,0 +1,154 @@
+[heading How to Index UniSwap Events Using Kenshi Deep Index]
+
+UniSwap is a leading decentralized cryptocurrency exchange (DEX) that operates
+on the Ethereum blockchain. It uses an automated market-making (AMM) model,
+allowing users to trade tokens without needing an order book or centralized
+intermediaries. Users can earn a share of trading fees by providing liquidity to
+the platform. UniSwap has played a significant role in the growth of the
+decentralized finance (DeFi) ecosystem and continues to be a popular choice for
+traders and developers alike.
+
+Kenshi Deep Index provides a robust and easy-to-use platform for indexing
+blockchain events, such as those on the popular decentralized exchange, UniSwap.
+For just $15, users can index about one million events and run thousands of
+queries per month. The geographically distributed indexed data ensures high
+availability and fast access times. This tutorial will guide you through
+indexing UniSwap events using the Kenshi Deep Index Sync task service. Following
+these steps, you can query UniSwap events via the Kenshi GraphQL API or set up
+webhooks to receive notifications when events occur.
+
+[gallery
+  [image :lg 8 :md 4 :sm 4 :ar 16x9
+    /blog/images/how-to-index-uniswap-events-using-kenshi-deep-index-sm.png
+    How to Index UniSwap Events Using Kenshi Deep Index]]
+
+[heading :size 2 Prerequisites]
+
+Before diving into the tutorial, please make sure you have the following:
+
+[list
+  [: Access to the Kenshi [link /dashboard dashboard]]
+  [: A connected wallet]
+  [: The UniSwap contract address and ABI]]
+
+[heading :size 2 Step 1: Access the Kenshi Dashboard and Create a New Sync Task]
+
+[list
+  [: Go to the Kenshi dashboard and connect your wallet.]
+  [: Click on the "New Sync Task" button to open the "New Deep Indexing Task" form.]]
+
+[heading :size 2 Step 2: Fill in the Sync Task Form]
+
+Follow these guidelines to fill in the form with the relevant information for UniSwap:
+
+[list
+  [: [bold Chain:] Select the appropriate chain where the UniSwap data is. For example,
+      if you want to index events from UniSwap deployed on the Ethereum Mainnet, choose
+      "Ethereum" from the dropdown menu.]
+  [: [bold Starting block:] Input the block number from which you want to start syncing
+      events. For UniSwap, you should input the block number at which the UniSwap contract
+      is deployed or from which you want to start indexing.]
+  [: [bold Contract address:] Provide the UniSwap contract address as the source of events.
+      The contract address for the UniSwap router on Ethereum is
+      [code :inline true 0x1F98431c8aD98523631AE4a59f267346ea31F984].]
+  [: [bold Contract ABI:] Input the ABI (Application Binary Interface) of the UniSwap smart
+      contract. You can either input the entire ABI or include only the ABI of the events
+      you are interested in. The ABI can be in Human-Readable ABI or the JSON format emitted
+      by the Solidity compiler. You can use
+
+      [code \["event PoolCreated(address indexed token0, address indexed token1, uint24 indexed fee, int24 tickSpacing, address pool)"\]]
+
+      to index [code :inline true PoolCreated] events.]
+  [: [bold Storage:] Choose how much storage you need for storing these events. You can
+      choose a value between 100MB to 400GB. Each 100MB of storage can hold about 350,000 events.]
+  [: [bold Frequency:] Choose at which frequency you would like to index the events. If
+      you need real-time data, choose Instant. Otherwise, you can select a small delay to
+      save on indexing costs.]
+  [: [bold Duration:] Define the duration for which the service should run in months.]]
+
+[heading :size 2 Step 3: Submit the Sync Task Form]
+
+Once you have filled in the form with the correct information, click the
+"Submit" button to create the Sync task. The Kenshi Deep Index Sync task service
+will fetch UniSwap events and store them in the Kenshi blockchain data clusters
+for you to query or receive notifications.
+
+[heading :size 2 Step 4: Querying the Indexed Data Using GraphQL]
+
+Now that you have set up the Kenshi Deep Index Sync task and indexed the UniSwap
+events, it's time to query the data using the Kenshi GraphQL service.
+
+[list 
+  [: [bold Obtain an API key:] Visit the Kenshi dashboard, connect your wallet, fill out and
+  submit the "New GraphQL + MQL API Key" form. Make sure to choose an appropriate
+  number of requests for your needs. Remember that each successful or unsuccessful
+  call counts as one usage.]
+  [: [bold Use a GraphQL library or make an HTTP POST request:] To interact with the Kenshi
+  Deep Index GraphQL endpoint, you can either use a GraphQL library for your
+  preferred programming language or make an HTTP POST request directly to the
+  endpoint. The endpoint address and examples for making GraphQL requests can be
+  found in the Kenshi documentation.]
+  [: [bold Use the provided schema:] Kenshi documentation provides the schema for making
+  requests to the GraphQL endpoint and for returned data types. This schema can be
+  used in languages like Go, where an interface is required for unpacking the
+  received GraphQL data.]]
+
+With these steps, you can query the indexed UniSwap events and analyze the data
+as needed. Remember to consult the Kenshi documentation for more information on
+using the dashboard and understanding the Sync service. Here's a sample code to
+get you started with Node.js:
+
+[code 
+  import axios from "axios";
+
+  /**
+  * This is the Kenshi Deep Index endpoint for GraphQL
+  */
+  const endpoint = "https://api.kenshi.io/index/graphql";
+  const apikey = "YOU_API_KEY";
+  const owner = "YOUR_WALLET_ADDRESS";
+
+  /**
+  * Define your GraphQL query here
+  */
+  const query = `{
+    getEntries(
+      blockchain: "binance-testnet",
+      apikey: "${apikey}",
+      owner: "${owner}",
+      address: "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+      event: "PoolCreated") {
+      event {
+        name
+        args
+      }
+    }
+  }`;
+
+  /**
+  * POST request sending the GraphQL query to the
+  * Kenshi Deep Index endpoint, receive the data and print
+  */
+  const { data } = await axios.post(endpoint, { query });
+  console.log(data);]
+
+[heading :size 2 Conclusion]
+
+Congratulations! You have successfully created a Kenshi Deep Index Sync task to
+index UniSwap events. You can now use the Kenshi GraphQL or MQL API to query the
+indexed data or set up the Kenshi Reverse-API (Webhooks) service to receive
+event notifications. Remember to check the Kenshi [link /docs/services/deep-index documentation]
+for more information on using the dashboard and understanding the Sync service.
+
+[meta author Pouya Eghbali]
+[meta banner /blog/images/how-to-index-uniswap-events-using-kenshi-deep-index.png]
+[meta tags [: Deep Index] [: Developer Guide]]
+[meta summary
+  This tutorial guides users through indexing UniSwap events using
+  Kenshi Deep Index. For $15, index one million events and run thousands of
+  queries monthly with geographically distributed data. Access UniSwap events via
+  Kenshi GraphQL API or webhooks for comprehensive data analysis.]
+[meta tweet
+  🚀 Learn to index #UniSwap events with Kenshi Deep Index! For just $15,
+  index 1M events & run thousands of queries monthly. Geographically distributed
+  data for optimal performance. #KenshiTech]
