@@ -21,6 +21,8 @@ export const form = (schema, method = "insert") => {
             }
             if (!value && value !== 0 && !field.optional) {
               return [key, `${field.name} is required.`];
+            } else if (field.optional) {
+              return null;
             }
             if (field.regex && !value.match(field.regex)) {
               return [key, `${field.name} is invalid.`];

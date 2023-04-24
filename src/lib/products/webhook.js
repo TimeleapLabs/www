@@ -29,6 +29,12 @@ const schema = {
     regex: /.+/,
     methods: ["insert"],
   },
+  bearer: {
+    name: "Authorization token",
+    regex: /.+/,
+    methods: ["insert", "update"],
+    optional: true,
+  },
   fromBlock: form.types.positiveNumber("From block", ["insert"]),
   address: {
     name: "Contract address",
@@ -80,6 +86,7 @@ const query = (owner) => `{
         endpoint
         requests
         abi
+        bearer
         address
         expiresAt
       }

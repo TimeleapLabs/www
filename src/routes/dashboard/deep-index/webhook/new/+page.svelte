@@ -134,7 +134,35 @@
                 <svelte:fragment slot="labelText">
                   <div use:fixLabelTooltip>
                     <Tooltip triggerText="R-API endpoint">
-                      <p>Blockchain events will be sent to this endpoint.</p>
+                      <p>
+                        Blockchain events will be sent to this endpoint. You can
+                        incorporate &#123;event&#125; into your URL, and the
+                        R-API will substitute it with the name of each event
+                        sent to your endpoint.
+                      </p>
+                    </Tooltip>
+                  </div>
+                </svelte:fragment>
+              </TextInput>
+            </Column>
+            <Column>
+              <TextInput
+                name="bearer"
+                labelText="Authorization token"
+                placeholder="Bearer"
+                helperText="Sent to your endpoint in the Authorization header"
+                bind:value={$values.bearer}
+                invalid={$values.bearer && !!$invalids.bearer}
+                invalidText={$invalids.bearer}
+              >
+                <svelte:fragment slot="labelText">
+                  <div use:fixLabelTooltip>
+                    <Tooltip triggerText="Authorization token">
+                      <p>
+                        This token will be sent to your endpoint in the
+                        Authorization header in the form of "Bearer
+                        &#123;token&#125;"
+                      </p>
                     </Tooltip>
                   </div>
                 </svelte:fragment>

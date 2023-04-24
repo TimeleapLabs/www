@@ -14,8 +14,9 @@ You can use the following list as a guide for each of the fields in this form.
 
 [list :type ordered
    [: [bold Endpoint]: Your Reverse-API endpoint. This endpoint needs to be accessible over the internet.
-      This endpoint should accept post requests and return a "200" success code on
-      successful receiving of the events.]
+      This endpoint should accept post requests and return a "200" success code on successful receiving
+      of the events. You can incorporate &#123;event&#125; into your URL, and the R-API will automatically
+      substitute it with the name of each individual event sent to your designated endpoint.]
 
    [: [bold Chain]: The blockchain you are interested in. This is a part of the query that will run against
       the Kenshi blockchain data clusters. This field cannot be modified later.]
