@@ -14,8 +14,6 @@
   import { Purchase } from "carbon-icons-svelte";
   import { fixLabelTooltip } from "src/lib/tooltip";
 
-  import ArgumentFilter from "src/components/dash/ArgumentFilter.svelte";
-  import ObjectArrayField from "src/components/ObjectArrayField.svelte";
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
 
@@ -28,15 +26,10 @@
 
   const { values, invalids, check } = WebhookProduct.getForm("insert");
 
-  let rowId = 0;
-
   $values = {
-    requests: 1000000,
+    requests: 100000,
     fromBlock: 0,
     duration: 1,
-    maxBlock: 0,
-    arguments: [{ argument: "", value: "", id: rowId++ }],
-    query: [],
   };
 
   $: price = getReverseAPIPrice($values.duration, $values.requests);
@@ -150,15 +143,14 @@
           </Row>
           <Row>
             <Column>
-              <ExpressiveHeading size={2}>Linked Sync task</ExpressiveHeading>
+              <ExpressiveHeading size={2}>Your contract</ExpressiveHeading>
             </Column>
           </Row>
           <Row>
             <Column>
               <p>
-                All R-API subscriptions need to be linked with a Deep Index Sync
-                task. Metadata from the Sync task is used by R-API to keep track
-                of sourced events from the blockchain.
+                Tell us where your smart contract is so we can start listening
+                to it.
               </p>
             </Column>
           </Row>
@@ -186,21 +178,19 @@
             <Column>
               <TextInput
                 required
-                name="sync-task"
-                labelText="Sync task ID"
-                placeholder="Sync task ID"
-                helperText="Sync task ID matching the criteria of this R-API subscription"
-                bind:value={$values.syncTaskId}
-                invalid={$values.syncTaskId && !!$invalids.syncTaskId}
-                invalidText={$invalids.syncTaskId}
+                placeholder="Contract address"
+                name="address"
+                helperText="Address of your smart contract, starts with 0x"
+                bind:value={$values.address}
+                invalid={$values.address && !!$invalids.address}
+                invalidText={$invalids.address}
               >
                 <svelte:fragment slot="labelText">
                   <div use:fixLabelTooltip>
-                    <Tooltip triggerText="Sync task ID">
+                    <Tooltip triggerText="Contract address">
                       <p>
-                        A Deep Index Sync task id for this R-API task to keep
-                        track of the sourced events in Kenshi's geographically
-                        distributed data cluster.
+                        Address of your smart contract on the selected
+                        blockchain.
                       </p>
                     </Tooltip>
                   </div>
@@ -218,9 +208,7 @@
             <Column>
               <p>
                 Choose a starting point. R-API sends blockchain events to your
-                endpoint starting from this point. You can choose a block number
-                in the past, but it should be bigger than the starting block of
-                the linked Sync task.
+                endpoint starting from this point.
               </p>
             </Column>
           </Row>
@@ -247,6 +235,40 @@
                   </div>
                 </svelte:fragment>
               </NumberInput>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <ExpressiveHeading size={2}>Event information</ExpressiveHeading>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <p>
+                Kenshi needs to understand your smart contract's events before
+                it can notify you of them.
+              </p>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <TextArea
+                required
+                placeholder="Human readable contract ABI"
+                helperText="Human readable ABI of your contract. Exclude any events you don't want to be notified of."
+                name="abi"
+                bind:value={$values.abi}
+                invalid={$values.abi && !!$invalids.abi}
+                invalidText={$invalids.abi}
+              >
+                <svelte:fragment slot="labelText">
+                  <div use:fixLabelTooltip>
+                    <Tooltip triggerText="ABI">
+                      <p>Human readable ABI of your smart contract.</p>
+                    </Tooltip>
+                  </div>
+                </svelte:fragment>
+              </TextArea>
             </Column>
           </Row>
           <Row>
@@ -296,7 +318,7 @@
                 bind:value={$values.requests}
                 invalid={$values.requests && !!$invalids.requests}
                 invalidText={$invalids.requests}
-                step={100000}
+                step={10000}
               >
                 <svelte:fragment slot="label">
                   <div use:fixLabelTooltip>
@@ -309,88 +331,6 @@
                   </div>
                 </svelte:fragment>
               </NumberInput>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <ExpressiveHeading size={2}>Query</ExpressiveHeading>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <p>
-                All events matching these criteria will be sent to your webhook
-                endpoint.
-              </p>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <TextArea
-                placeholder="Contract addresses, one per line"
-                helperText="Allowed contract addresses, one per line. This is required."
-                name="contracts"
-                required
-                bind:value={$values.contracts}
-              >
-                <svelte:fragment slot="labelText">
-                  <div use:fixLabelTooltip>
-                    <Tooltip triggerText="Contracts">
-                      <p>
-                        List of contract addresses to add to the R-API query.
-                      </p>
-                    </Tooltip>
-                  </div>
-                </svelte:fragment>
-              </TextArea>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <TextArea
-                placeholder="Event names, one per line"
-                helperText="Event names, one per line. Leave empty to include all events."
-                name="events"
-                bind:value={$values.events}
-              >
-                <svelte:fragment slot="labelText">
-                  <div use:fixLabelTooltip>
-                    <Tooltip triggerText="Events">
-                      <p>
-                        List of event names to add to the R-API query. Leave
-                        empty to include all events.
-                      </p>
-                    </Tooltip>
-                  </div>
-                </svelte:fragment>
-              </TextArea>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <NumberInput
-                placeholder="Maximum block number"
-                label="Max block"
-                name="maxBlock"
-                helperText="Maximum block number to query"
-                bind:value={$values.maxBlock}
-              >
-                <svelte:fragment slot="label">
-                  <div use:fixLabelTooltip>
-                    <Tooltip triggerText="Max block">
-                      <p>Maximum block number to be queried.</p>
-                    </Tooltip>
-                  </div>
-                </svelte:fragment>
-              </NumberInput>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <ObjectArrayField
-                bind:values={$values.arguments}
-                component={ArgumentFilter}
-              />
             </Column>
           </Row>
 

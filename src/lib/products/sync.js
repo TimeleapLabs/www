@@ -65,17 +65,12 @@ const query = (owner) => `{
         id
         signature
         abi
-        args {
-          name
-          value
-        }
         fromBlock
-        step
         chain
         address
-        interval
-        timeout
         expiresAt
+        storage
+        frequency
       }
     }
   }`;

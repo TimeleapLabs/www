@@ -13,7 +13,7 @@ export const getSyncPrice = (frequency, storage, duration) => {
 };
 
 export const getReverseAPIPrice = (duration, requests) => {
-  return Math.round((duration * 24.95 + (requests * 25) / 1e6) * 100) / 100;
+  return Math.round((duration * 49.95 + (requests * 49.95) / 1e6) * 100) / 100;
 };
 
 export const getOraclePrice = (tier, calls, duration) => {

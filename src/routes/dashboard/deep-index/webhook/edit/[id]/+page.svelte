@@ -7,8 +7,8 @@
   import { ClickableTile, Tile } from "carbon-components-svelte";
   import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
   import { TextInput } from "carbon-components-svelte";
-  import { NumberInput } from "carbon-components-svelte";
-  import { TextArea } from "carbon-components-svelte";
+  import { NumberInput, TextInputSkeleton } from "carbon-components-svelte";
+  import { TextArea, TextAreaSkeleton } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
   import { Tooltip, InlineNotification } from "carbon-components-svelte";
   import { Email, Information } from "carbon-icons-svelte";
@@ -16,8 +16,6 @@
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
   import { UpdateNow, Purchase } from "carbon-icons-svelte";
 
-  import ArgumentFilter from "src/components/dash/ArgumentFilter.svelte";
-  import ObjectArrayField from "src/components/ObjectArrayField.svelte";
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
 
@@ -26,7 +24,6 @@
   import { getReverseAPIPrice } from "src/lib/dash/pricing";
   import { wallet } from "src/stores/wallet";
   import { ethers } from "ethers";
-  import { valuesFromAllow } from "src/lib/utils";
 
   let userAddress;
 
@@ -70,16 +67,13 @@
     invalids: creditInvalids,
   } = WebhookProduct.getForm("credit");
 
-  let contractAddress;
-  let abi;
-  let duration = 1;
-
-  $creditValues = { duration: 1, requests: 1000000 };
+  $creditValues = { duration: 1, requests: 100000 };
 
   $: if (hookFromId) {
     $updateValues = {
       endpoint: hookFromId.endpoint,
-      ...valuesFromAllow(hookFromId.query),
+      abi: JSON.stringify(hookFromId.abi, null, 2),
+      address: hookFromId.address,
     };
   }
 
@@ -221,85 +215,89 @@
                       </Row>
                       <Row>
                         <Column>
-                          <ExpressiveHeading size={2}>Query</ExpressiveHeading>
+                          <ExpressiveHeading size={2}>
+                            Contract details
+                          </ExpressiveHeading>
                         </Column>
                       </Row>
                       <Row>
                         <Column>
                           <p>
-                            All events matching these criteria will be sent to
-                            your webhook endpoint.
+                            You can change the contract address of an already
+                            existing task.
                           </p>
                         </Column>
                       </Row>
                       <Row>
                         <Column>
-                          <TextArea
-                            placeholder="Contract addresses, one per line"
-                            helperText="Allowed contract addresses, one per line. This is required."
-                            name="contracts"
-                            required
-                            bind:value={$updateValues.contracts}
-                          >
-                            <svelte:fragment slot="labelText">
-                              <div use:fixLabelTooltip>
-                                <Tooltip triggerText="Contracts">
-                                  <p>
-                                    List of contract addresses to add to the
-                                    R-API query.
-                                  </p>
-                                </Tooltip>
-                              </div>
-                            </svelte:fragment>
-                          </TextArea>
+                          {#if hookFromId}
+                            <TextInput
+                              required
+                              placeholder="Contract address"
+                              name="address"
+                              helperText="Address of your smart contract, starts with 0x"
+                              bind:value={$updateValues.address}
+                              invalid={$updateValues.address &&
+                                !!$updateInvalids.address}
+                              invalidText={$updateInvalids.address}
+                            >
+                              <svelte:fragment slot="labelText">
+                                <div use:fixLabelTooltip>
+                                  <Tooltip triggerText="Contract address">
+                                    <p>
+                                      Address of your smart contract on the
+                                      selected blockchain.
+                                    </p>
+                                  </Tooltip>
+                                </div>
+                              </svelte:fragment>
+                            </TextInput>
+                          {:else}
+                            <TextInputSkeleton />
+                          {/if}
                         </Column>
                       </Row>
                       <Row>
                         <Column>
-                          <TextArea
-                            placeholder="Event names, one per line"
-                            helperText="Event names, one per line. Leave empty to include all events."
-                            name="events"
-                            bind:value={$updateValues.events}
-                          >
-                            <svelte:fragment slot="labelText">
-                              <div use:fixLabelTooltip>
-                                <Tooltip triggerText="Events">
-                                  <p>
-                                    List of event names to add to the R-API
-                                    query. Leave empty to include all events.
-                                  </p>
-                                </Tooltip>
-                              </div>
-                            </svelte:fragment>
-                          </TextArea>
+                          <ExpressiveHeading size={2}>
+                            Event information
+                          </ExpressiveHeading>
                         </Column>
                       </Row>
                       <Row>
                         <Column>
-                          <NumberInput
-                            placeholder="Maximum block number"
-                            label="Max block"
-                            name="maxBlock"
-                            helperText="Maximum block number to query"
-                            bind:value={$updateValues.maxBlock}
-                          >
-                            <svelte:fragment slot="label">
-                              <div use:fixLabelTooltip>
-                                <Tooltip triggerText="Max block">
-                                  <p>Maximum block number to be queried.</p>
-                                </Tooltip>
-                              </div>
-                            </svelte:fragment>
-                          </NumberInput>
+                          <p>
+                            Contract ABI can be updated if you want to include
+                            or exclude some tasks.
+                          </p>
                         </Column>
                       </Row>
                       <Row>
                         <Column>
-                          <ObjectArrayField
-                            bind:values={$updateValues.arguments}
-                            component={ArgumentFilter}
-                          />
+                          {#if hookFromId}
+                            <TextArea
+                              required
+                              placeholder="Human readable contract ABI"
+                              helperText="Human readable ABI of your contract. Exclude any events you don't want to index."
+                              name="abi"
+                              bind:value={$updateValues.abi}
+                              invalid={$updateValues.abi &&
+                                !!$updateInvalids.abi}
+                              invalidText={$updateInvalids.abi}
+                            >
+                              <svelte:fragment slot="labelText">
+                                <div use:fixLabelTooltip>
+                                  <Tooltip triggerText="ABI">
+                                    <p>
+                                      Human readable ABI of your smart contract.
+                                    </p>
+                                  </Tooltip>
+                                </div>
+                              </svelte:fragment>
+                            </TextArea>
+                          {:else}
+                            <TextAreaSkeleton />
+                          {/if}
                         </Column>
                       </Row>
 
@@ -377,7 +375,7 @@
                             invalid={$creditValues.requests &&
                               !!$creditInvalids.requests}
                             invalidText={$creditInvalids.requests}
-                            step={1000000}
+                            step={100000}
                           >
                             <svelte:fragment slot="labelText">
                               <div use:fixLabelTooltip>

@@ -1,7 +1,7 @@
 import { Product } from "src/lib/product";
 import { form } from "src/lib/form";
 import { getReverseAPIPrice } from "src/lib/dash/pricing";
-import { allowFromValues } from "src/lib/utils";
+import { abiValidator } from "src/lib/dash/validators";
 
 const schema = {
   endpoint: {
@@ -24,21 +24,25 @@ const schema = {
     },
   },
   requests: form.types.positiveNumber("Requests", ["insert", "credit"]),
-  query: {
-    name: "Query",
-    optional: true,
-    methods: ["insert", "update"],
-  },
   chain: {
     name: "Blockchain",
     regex: /.+/,
     methods: ["insert"],
   },
   fromBlock: form.types.positiveNumber("From block", ["insert"]),
-  syncTaskId: {
-    name: "Sync task",
-    regex: /.+/,
-    methods: ["insert"],
+  address: {
+    name: "Contract address",
+    regex: /^0x[0-9a-f]{40}$/i,
+    methods: ["insert", "update"],
+  },
+  abi: {
+    name: "ABI",
+    validate(value) {
+      if (!abiValidator(value)) {
+        return "ABI is invalid";
+      }
+    },
+    methods: ["insert", "update"],
   },
 };
 
@@ -57,44 +61,10 @@ const prices = {
 
 const valuesFromForm = {
   insert(values) {
-    const {
-      contracts,
-      events,
-      minBlock,
-      maxBlock,
-      arguments: args,
-      ...rest
-    } = values;
-
-    const query = allowFromValues({
-      contracts,
-      events,
-      minBlock,
-      maxBlock,
-      args,
-    });
-
-    return { ...rest, query };
+    return { ...values, abi: JSON.parse(values.abi) };
   },
   update(values, current) {
-    const {
-      contracts,
-      events,
-      minBlock,
-      maxBlock,
-      arguments: args,
-      ...rest
-    } = values;
-
-    const query = allowFromValues({
-      contracts,
-      events,
-      minBlock,
-      maxBlock,
-      args,
-    });
-
-    return { ...rest, query, id: current.id };
+    return { ...values, abi: JSON.parse(values.abi), id: current.id };
   },
   credit(values, current) {
     return { ...values, id: current.id };
@@ -105,20 +75,12 @@ const query = (owner) => `{
     getUserSubs(owner: "${owner}", webhooks: true) {
       webhooks {
         id
-        syncTaskId
         fromBlock
-        step
         chain
         endpoint
-        interval
-        timeout
         requests
-        query {
-          condition
-          value
-          comparison
-          arg
-        }
+        abi
+        address
         expiresAt
       }
     }

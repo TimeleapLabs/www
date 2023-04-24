@@ -30,7 +30,6 @@
 
   const headers = [
     { key: "chain", value: "Blockchain" },
-    { key: "syncTaskId", value: "Sync task" },
     { key: "endpoint", value: "Endpoint" },
     { key: "requests", value: "Requests left" },
     { key: "expiresAt", value: "Expires" },

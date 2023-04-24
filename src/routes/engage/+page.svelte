@@ -55,6 +55,7 @@
           selected={2}
           pills={["Relaunch", "Supply"]}
           discussions="https://forum.kenshi.io/t/poll-kenshi-token-new-supply/71"
+          finished
         />
       </Column>
       <Column lg={8} md={6} sm={4}>

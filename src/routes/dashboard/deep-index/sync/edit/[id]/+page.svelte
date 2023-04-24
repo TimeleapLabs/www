@@ -384,7 +384,7 @@
                         </Column>
                       </Row>
 
-                      {#if $creditValues.storage < taskFromId.storage}
+                      {#if $creditValues.storage < taskFromId?.storage}
                         <Row>
                           <Column>
                             <InlineNotification
@@ -408,7 +408,7 @@
                         </Column>
                       </Row>
 
-                      {#if $creditValues.storage >= taskFromId.storage}
+                      {#if $creditValues.storage >= taskFromId?.storage}
                         <Row>
                           <Column>
                             <Button

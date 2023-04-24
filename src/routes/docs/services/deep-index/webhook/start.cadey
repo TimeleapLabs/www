@@ -7,8 +7,6 @@ dispatcher can find relevant events for you and notify your endpoint whenever
 it finds them. Creating a task and registering your endpoint can be done using
 the Kenshi [link https://kenshi.io/dashboard dashboard].
 
-[gallery [image /images/docs/screenshots/hook.png New Reverse-API form]]
-
 [heading :size 2 How to fill the form?]
 
 To register a new Reverse-API endpoint you'll need to fill and submit the New Reverse-API form.
@@ -25,23 +23,19 @@ You can use the following list as a guide for each of the fields in this form.
    [: [bold Starting block]: From which block should we start informing you of the events? You can choose a
       block number in the past if you're looking for historical data. This field cannot be modified later.]
 
-   [: [bold Sync task ID]: A Sync task ID is needed to determine the last synced block matching the
-      query of your Reverse-API task.]
+   [: [bold Contract address]: The source of the events you want to listen to. This is usually the
+      address of your smart contract, or the smart contract that emits the events you are looking for.]
+
+  [: [bold Contract ABI]: Put ABI of the smart contract (from the [bold Contract address]) field here.
+      You can either put the entire ABI, or just inlcude the ABI of the events you are interested in.
+      The ABI can be Human-Readable ABI or the ABI emitted by the Solidity compiler, in JSON format.]
       
    [: [bold Duration]: For how many months should this task run?]
       
    [: [bold Requests]: Amount of request credits you need for this endpoint. Each time a request is made to
-      your endpoint one request credit is charged.]
+      your endpoint one request credit is charged.]]
 
-   [: [bold Query]: Define a query for this Reverse-API. Here you need to add contract addresses, event signatures,
-      event names or any other required info for querying the events from the Kenshi blockchain data clusters.
-      The Kenshi event Dispatcher uses this query against the data cluster on each run, then sends every matched
-      record to your Reverse-API endpoint in a separate request.]]
-
-[alert info-square
-   If you're filtering based on an event argument with an "address" type,
-   you need to provide a checksummed address. For other argument types, the hex values must be all lower.]
-
-[alert info-square
+[alert warning
   The Kenshi event dispatcher for Reverse-API caches all events in a "memcached"
-  instance to prevent sending duplicate events to your endpoints. The TTL of the cache is 15 minutes.]
+  instance to prevent sending duplicate events to your endpoints. The TTL of the cache is 15 minutes.
+  However, you should make sure your endpoint knows how to handle duplicated calls.]
