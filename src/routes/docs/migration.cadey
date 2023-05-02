@@ -1,0 +1,34 @@
+[heading Kenshi V3 Migration]
+
+The Kenshi migration is scheduled for Wednesday, May 31st. For further information on the migration,
+please visit [link https://forum.kenshi.io/t/the-official-announcement-of-kenshi-v3/89 
+The official announcement of Kenshi v3]. 
+
+[heading :size 2 What will exactly happen?]
+
+On May 31st, we will transition our liquidity from the BNB Smart Chain to both Arbitrum and Ethereum
+networks, thereby introducing a new token. This new token will be distributed to our users through
+an airdrop, with the allocation proportionate to the amount of the existing token they possess at the
+time of migration.
+
+[heading :size 2 Connect your wallet to Arbitrum One]
+
+Connect your wallet to Arbitrum One in anticipation of your migrated tokens.
+
+[list :type ordered
+  [: [bold Visit Chainlist.org:] Open a new browser tab and go to [link chainlist.org chainlist.org].]
+  [: [bold Search for Arbitrum:] Use the search bar to find the 'Arbitrum One' to add to MetaMask.]
+  [: [bold Add to MetaMask:] Click on the "Connect Wallet" button and then click "Add to MetaMask."
+     This will open a MetaMask prompt with the pre-filled network details.]
+  [: [bold Confirm and connect:] Review the network details in the MetaMask prompt and click "Approve"
+     to add the network. Click "Switch Network" to connect to 'Arbitrum One'. Your MetaMask wallet
+     is now set up to interact with the selected blockchain.]
+  [: [bold Add Kenshi V3:] If you are using MetaMask, you can head over to the Kenshi [link /tools tools]
+     page, connect your wallet, and click on the "Add Kenshi" button. If you are using any other
+     wallet you will need to manually import the new contract address to your wallet.]]
+
+[heading :size 2 Links and Resources]
+
+[list
+  [: [link https://forum.kenshi.io/t/the-official-announcement-of-kenshi-v3/89 Official Announcement]]
+  [: [link https://forum.kenshi.io/t/kenshi-migration-q-a/91 Official Q&A Topic]]]
