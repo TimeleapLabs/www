@@ -1122,7 +1122,7 @@
                 </Column>
                 <Column sm={4} lg={8}>
                   <OutboundLink href="https://lazyfi.gg/">
-                    <ImageLoader src="/images/partners/lazyfi.{$theme}.png" />
+                    <ImageLoader src="/images/partners/lazyfi.{$theme}.svg" />
                   </OutboundLink>
                 </Column>
               </Row>
