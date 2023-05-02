@@ -1140,7 +1140,12 @@
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://aurora.dev/">
+                <OutboundLink href="https://arbitrum.io">
+                  <ImageLoader src="/images/chains/arbitrum.svg" />
+                </OutboundLink>
+              </Column>
+              <Column sm={1} lg={2}>
+                <OutboundLink href="https://aurora.dev">
                   <ImageLoader src="/images/chains/aurora.svg" />
                 </OutboundLink>
               </Column>
@@ -1155,12 +1160,12 @@
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://bitgert.com/">
+                <OutboundLink href="https://bitgert.com">
                   <ImageLoader src="/images/chains/bitgert.svg" />
                 </OutboundLink>
               </Column>
               <Column sm={1} lg={2}>
-                <OutboundLink href="https://fantom.foundation/">
+                <OutboundLink href="https://fantom.foundation">
                   <ImageLoader src="/images/chains/fantom.svg" />
                 </OutboundLink>
               </Column>
