@@ -35,6 +35,8 @@
   import Discord from "src/icons/Discord.svelte";
   import Pancake from "src/icons/Pancake.svelte";
 
+  import { theme } from "src/stores/theme";
+
   import {
     apollo,
     mql,
@@ -1100,25 +1102,32 @@
             companies and industry leaders.
           </p>
           <div class="spacer" />
-          <Grid noGutter padding fullWidth>
-            <Row class="center">
-              <Column sm={4} lg={8}>
-                <OutboundLink href="https://chainstack.com">
-                  <ImageLoader src="/images/partners/chainstack.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={4} lg={8}>
-                <OutboundLink href="https://unstoppabledomains.com/">
-                  <ImageLoader src="/images/partners/ud.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={4} lg={8}>
-                <OutboundLink href="https://cls.global/">
-                  <ImageLoader src="/images/partners/cls.svg" />
-                </OutboundLink>
-              </Column>
-            </Row>
-          </Grid>
+          <div class="partners">
+            <Grid noGutter padding fullWidth>
+              <Row class="center">
+                <Column sm={4} lg={8}>
+                  <OutboundLink href="https://chainstack.com">
+                    <ImageLoader src="/images/partners/chainstack.svg" />
+                  </OutboundLink>
+                </Column>
+                <Column sm={4} lg={8}>
+                  <OutboundLink href="https://unstoppabledomains.com/">
+                    <ImageLoader src="/images/partners/ud.svg" />
+                  </OutboundLink>
+                </Column>
+                <Column sm={4} lg={8}>
+                  <OutboundLink href="https://cls.global/">
+                    <ImageLoader src="/images/partners/cls.svg" />
+                  </OutboundLink>
+                </Column>
+                <Column sm={4} lg={8}>
+                  <OutboundLink href="https://lazyfi.gg/">
+                    <ImageLoader src="/images/partners/lazyfi.{$theme}.png" />
+                  </OutboundLink>
+                </Column>
+              </Row>
+            </Grid>
+          </div>
           <div class="spacer" />
           <ExpressiveHeading size={4}>
             <h3>Supported blockchains</h3>
@@ -1280,5 +1289,8 @@
   }
   .spacer {
     flex: 1;
+  }
+  .partners :global(img) {
+    max-height: 48px;
   }
 </style>

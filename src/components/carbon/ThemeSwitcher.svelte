@@ -1,12 +1,16 @@
 <script>
   import { Theme } from "carbon-components-svelte";
   import { Moon } from "carbon-icons-svelte";
+  import { theme } from "src/stores/theme";
+
+  let localTheme;
+  $: $theme = localTheme;
 </script>
 
 <div class="switcher">
   <Theme
     persist
-    theme="white"
+    bind:theme={localTheme}
     render="toggle"
     toggle={{
       themes: ["white", "g100"],
