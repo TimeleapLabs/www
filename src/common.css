@@ -342,3 +342,7 @@ ul ul {
 .bx--slider {
   z-index: 0;
 }
+
+.bx--inline-notification__action-button:hover {
+  text-decoration: none;
+}
