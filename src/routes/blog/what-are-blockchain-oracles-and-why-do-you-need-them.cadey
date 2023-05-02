@@ -1,0 +1,182 @@
+[heading What Are Blockchain Oracles and Why Do You Need Them?]
+
+Blockchain technology is created to address a few main problems: privacy and
+data security. Due to this focus, blockchains are designed to be run on
+closed-off networks that can't natively communicate with legacy systems and web2
+APIs. What can you do when you want to use off-chain, real-world data in your
+dApps? The short answer is that you need to use blockchain oracles. For the long
+explanation, read on.
+
+[gallery
+  [image :lg 10 :md 8 :sm 4 :ar 16x9
+    /blog/images/what-are-blockchain-oracles-and-why-do-you-need-them-sm.png
+    What Are Blockchain Oracles and Why Do You Need Them?]]
+
+[heading :size 2 Blockchains Nodes Need to Reach a Consensus for It to Work]
+
+Most blockchains are secured and validated by a peer-to-peer (P2P) network of
+computers. These validators work together to reach a consensus and determine the
+current state of the blockchain.
+
+Each blockchain has a different mechanism for reaching consensus. Whatever the
+mechanism, all nodes need the same access to the same data, and most of them
+must reach the same conclusion for the state of the blockchain to change and for
+the transactions to happen.
+
+In other words, blockchains are deterministic networks, meaning that every
+transaction must produce the same result, no matter which validator tries to
+process it and when. This is why they are closed off by design.
+
+[heading :size 2 Why Do We Need Blockchain Oracles?]
+
+Imagine that I want to send you some money in the form of cryptocurrency. For
+this to happen, all validators must check my wallet to see if I have enough to
+cover the amount I want to send + the transaction fee.
+
+If I have enough, the gas fee will go to one of the validators, and the
+transaction will happen. Now, the nodes will subtract the transaction amount
+from my wallet and add it to yours. The state of the blockchain will also change
+to reflect these new changes.
+
+What if I wanted to write a smart contract to let people exchange one
+cryptocurrency for another? This contract would need access to the real-time
+exchange rates of these cryptocurrencies. As we all know, these exchange rates
+can vary from one second to another, unlike the balance in my wallet.
+
+In this scenario, if I use a regular web2 API, it could give a different answer
+each time a blockchain node asks it for the exchange rate to validate a
+transaction. This uncertainty would make reaching a consensus impossible, which
+is precisely why we need blockchain oracles.
+
+[heading :size 2 What Are Blockchain Oracles and What Do They Do?]
+
+An oracle is a device or entity that brings off-chain data to a blockchain. How
+do oracles avoid the problem we mentioned above?
+
+First, they call the API and get the data. Then, they report the result in a
+transaction. This way, your smart contract will have the data it needs, and the
+nodes will have everything they need to reach a consensus.
+
+In our trading smart contract example, we can use a trusted source as an oracle
+to get the real-time exchange rates onto the blockchain. This oracle will report
+the exchange rate for any transaction that wants to occur in another prior
+transaction.
+
+Because blockchains are immutable, once a transaction occurs, no one can change
+its data without simultaneously attacking most validators. When the price is
+reported in a transaction, it is there for everyone to see, and no one can
+change it.
+
+This is how our first problem is solved.
+
+[heading :size 2 Second Part of the Oracle Problem]
+
+We need help with off-chain data and blockchains. That's when oracles become a
+single point of failure and hurt the decentralized nature of the blockchains.
+
+Blockchains are designed as trustless and decentralized systems. When you want
+to bridge the gap between web3 and web2, you introduce the old problems to the
+new system.
+
+When it comes to using oracles, you need to be careful. Either use a source
+you've tested and trust completely or get help from a team of blockchain
+development experts.
+
+(If you have a web2 online business and want to bring it to web3, read our guide
+for making your business web3 ready or contact us to be your guide!)
+
+[heading :size 2 Different Types of Blockchain Oracles]
+
+[list
+
+  [: [bold Software Oracles:] If the data you want to bring to the blockchain exists online
+    and in a digital format, you'll use a software oracle. Software oracles utilize
+    web2 APIs and databases as their source. Oracles that deliver exchange rates are
+    an example of this.]
+  [: [bold Hardware Oracles:] There aren't many hardware oracles right now. As IoT (Internet
+    of Things) grows, there'll be more use cases for this type of oracle. Hardware
+    oracles get their data from the real world via hardware like a sensor.]
+  [: [bold Human Oracles:] Using a human oracle, you can have an expert's input for your dApp
+    or smart contract. Human oracles can gather the information you need or manually
+    check the accuracy of data and deliver the results to the blockchain.]
+  [: [bold Inbound Oracles:] Any oracle that brings off-chain data to a blockchain is inbound.
+    All of the above examples were of this kind.]
+  [: [bold Outbound Oracles:] Outbound oracles are rare right now. They do the opposite of a
+    regular oracle and deliver on-chain data from the blockchain to the outside
+    world. For example, an outbound oracle may provide some data about liquidity or
+    the aggregate amount of transactions from a smart contract to a website.]
+  ]
+
+
+[alert info Fun fact: the word oracle was used in ancient times to refer someone who could
+provide valuable or divine insights. The concept of human oracles in web3 is
+close to the original meaning.]
+
+[heading :size 2 Oracles Use Case]
+
+As with any other new technology, it mostly depends on your creativity. We've
+seen the use of blockchain oracles in games, betting systems, NFTs, DeFi, and
+even insurance-related products.
+
+If you want to build an online business on web3, you'll need to use some
+blockchain oracle at some point. If you have a web2 company that offers any
+APIs, you can bring them to web3 using an oracle network like Kenshi's.
+
+[heading :size 2 How Kenshi's Oracle Network Solves Your Problems]
+
+Bringing your online business to web3 can seem like a daunting task. A lot of
+stuff is different when you build on a blockchain. Not everything has to be,
+though. That's why we've built Kenshi's Oracle Network as a platform.
+
+Kenshi has a high-performance oracle network that can host your custom oracles.
+You can use the technology you're already familiar with, even on web3. This
+network uses the same asynchronous, serverless technology as the Kenshi Deep
+Index to bring you these features and more:
+
+[list
+ [: [bold Event sourcing:] you can source any event on a blockchain and send it
+    to your oracle to be processed.]
+ [: [bold Caching:] so that no requests get processed twice.]
+ [: [bold Gas station:] to calculate gas fees with "fast" transactions.]
+ [: [bold Delivery:] 10 retries if something goes wrong with your initial request.]
+ [: [bold Nonce management:] keeping your transactions in order and ensuring that
+    nonces are not skipped.]]
+
+You can do all this using your preferred technology and the tools you already
+employ. It would help if you implemented Kenshi's Custom Oracle Protocol.
+
+To learn more about custom oracles on Kenshi's Oracle Network, read our
+documentation [link /docs/services/oracle-network/custom here] or start with one of our
+[link /docs/services/oracle-network/custom/blueprints oracle blueprints] or sample codes.
+
+[heading :size 3 Bonus: VRF Oracles (Verifiable Random Function)]
+
+We need randomness in many dApps and smart contracts. Because of the
+deterministic nature of the blockchain, you can't use an on-chain solution to
+create it. If you want genuine unpredictability in your games, NFTs, betting
+systems, and more, you must use a VRF oracle.
+
+Fortunately, Kenshi's got you covered here too. Our VRF oracle can generate
+random numbers and deliver them to your app or contract, complete with
+verifiable proof that shows it hasn't been tampered with. You can learn more
+about Kenshi's VRF oracle
+[link /blog/how-to-create-a-vrf-oracle-using-the-kenshi-oracle-network here].
+
+[heading :size 2 Getting Started]
+
+To start with Kenshi's Custom Oracle Network, connect your wallet to the
+[link /dashboard dashboard]. If your business offers a web2 API,
+[link mailto:inquiries@kenshi.io contact us] to bring it to web3 quickly.
+A whole new market is waiting for you!
+
+[meta author Hamed Derakhshani]
+[meta banner /blog/images/what-are-blockchain-oracles-and-why-do-you-need-them.png]
+[meta tags [: Blockchain Development] [: Oracles]]
+[meta summary
+  To bring off-chain data from an API or the real world to a
+  blockchain, you must learn more about blockchain oracles and how they work.
+  Start here!]
+[meta tweet
+  To bring off-chain data from an API or the real world to a
+  blockchain, you must learn more about blockchain oracles and how they work.
+  Start here!]
