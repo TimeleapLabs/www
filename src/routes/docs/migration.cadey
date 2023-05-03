@@ -16,7 +16,7 @@ time of migration.
 Connect your wallet to Arbitrum One in anticipation of your migrated tokens.
 
 [list :type ordered
-  [: [bold Visit Chainlist.org:] Open a new browser tab and go to [link chainlist.org chainlist.org].]
+  [: [bold Visit Chainlist.org:] Open a new browser tab and go to [link https://chainlist.org chainlist.org].]
   [: [bold Search for Arbitrum:] Use the search bar to find the 'Arbitrum One' to add to MetaMask.]
   [: [bold Add to MetaMask:] Click on the "Connect Wallet" button and then click "Add to MetaMask."
      This will open a MetaMask prompt with the pre-filled network details.]
