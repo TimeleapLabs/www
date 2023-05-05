@@ -156,9 +156,6 @@
           <ListItem>
             <Link href="/docs/services/iot">Blockchain IoT SDK</Link>
           </ListItem>
-          <ListItem>
-            <Link href="/docs/services/locker">Lockers</Link>
-          </ListItem>
         </UnorderedList>
       </Column>
       <Column>
@@ -183,7 +180,6 @@
             </Link>
           </ListItem>
           <ListItem><Link href="/tools">Tools</Link></ListItem>
-          <ListItem><Link href="/faucet">Faucet</Link></ListItem>
         </UnorderedList>
       </Column>
       <Column>

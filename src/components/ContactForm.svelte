@@ -73,7 +73,6 @@
         <option disabled value=""> Select Topic </option>
         <option value="devel"> Development </option>
         <option value="audit"> Security Audits </option>
-        <option value="locker"> Locker Service </option>
         <option value="lbp"> Liquidity Bootstrapping </option>
         <option value="token"> Kenshi Token </option>
         <option value="other"> Other </option>

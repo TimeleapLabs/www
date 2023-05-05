@@ -4,7 +4,7 @@ export const GET = () => {
     import.meta.glob("/src/routes/**/!(_)*.svelte")
   )
     .filter((page) => {
-      const filters = ["]", "+layout", "/src/routes/index.svelte"];
+      const filters = ["]", "+layout", "+error", "/src/routes/index.svelte"];
       return !filters.find((filter) => page.includes(filter));
     })
     .map((page) => {

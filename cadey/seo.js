@@ -29,7 +29,7 @@ const getDescription = (body) => {
 };
 
 const defaultDescription =
-  "Kenshi is a Swiss based blockchain company offering blockchain services such as deep indexing, VRF, product development, security audits, and more.";
+  "Kenshi is a start-up in Switzerland that provides blockchain technology services, including data indexing, oracles, IoT SDK, and product development.";
 
 const absolute = (url) =>
   url.startsWith("/") ? `https://kenshi.io${url}` : url;

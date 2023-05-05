@@ -74,6 +74,7 @@
       endpoint: hookFromId.endpoint,
       abi: JSON.stringify(hookFromId.abi, null, 2),
       address: hookFromId.address,
+      bearer: hookFromId.bearer,
     };
   }
 
