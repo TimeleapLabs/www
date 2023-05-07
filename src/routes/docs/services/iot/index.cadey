@@ -1,8 +1,10 @@
 [heading Kenshi IoT SDK]
 
-The Kenshi IoT SDK allows using the Kenshi Deep Index service on embedded devices.
-Using this library you can receive and process blockchain events on your embedded
-devices.
+The Kenshi Blockchain IoT SDK is a revolutionary solution designed to empower
+IoT and embedded devices with seamless integration to receive and process
+blockchain events. Enhance your connected systems' capabilities and harness
+blockchain technology's power with this user-friendly and versatile SDK tailored
+for the rapidly evolving IoT landscape.
 
 [toc
   install

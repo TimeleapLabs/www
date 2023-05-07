@@ -1,9 +1,11 @@
 [heading Introduction to GraphQL]
 
-The Kenshi Deep Indexing GraphQL service is your gateway to query the blockchain data
-stored on the Kenshi blockchain data clusters. This endpoint implements the standard
-GraphQL specification and is accessible over the HTTP protocol using POST requests.
+The Kenshi Deep Indexing GraphQL service serves as your gateway to efficiently
+query blockchain data stored within Kenshi's blockchain data clusters. Adhering
+to the standard GraphQL specification, this user-friendly endpoint is accessible
+via HTTP protocol using POST requests, streamlining data retrieval and
+management in the blockchain ecosystem.
 
-To use the GraphQL service, you will need an API key. To create an API key you can visit
-the Kenshi [link https://kenshi.io/dashboard dashboard]. Continue reading on to get help
+To use the GraphQL service, you will need an API key. To create an API key, visit
+the Kenshi [link https://kenshi.io/dashboard dashboard]. Continue reading to get help
 with the dashboard or see examples of the Sync service.

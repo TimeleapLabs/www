@@ -1,9 +1,11 @@
 [heading Deep Index Sync]
 
-The Kenshi Deep Index Sync oracle allows retrieving, storing and indexing desired
-blockchain data into the Kenshi database clusters. This data can later be queried
-or consumed using either the Kenshi Deep Index endpoint for GraphQL or the Kenshi
-Reverse-API service.
+The Kenshi Deep Index Sync enables efficient blockchain data indexing, providing
+seamless retrieval, storage, and integration of vital blockchain data into
+Kenshi's robust database clusters. Access and analyze this information
+effortlessly with the Kenshi Deep Index GraphQL endpoint, MQL endpoint, or the
+Kenshi Reverse-API service, delivering versatile options for data consumption in
+the blockchain ecosystem.
 
 [toc
   introduction

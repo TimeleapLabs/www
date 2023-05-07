@@ -69,8 +69,9 @@
             </Row>
             <Row>
               <Column>
-                Kenshi Deep Index is a full-stack data consumption and data
-                processing solution for the blockchain.
+                Kenshi Deep Index is a powerful blockchain data indexing and
+                processing solution, providing full-stack data consumption for
+                efficient event management on the blockchain.
               </Column>
             </Row>
             <Row>
@@ -78,8 +79,9 @@
                 <ClickableTile href="/docs/services/deep-index/sync">
                   <h4>Deep Index Sync</h4>
                   <div class="body">
-                    Sync and index events emitted from your smart contract to
-                    enable fast querying.
+                    Seamlessly synchronize and index events emitted by your
+                    smart contracts, enabling rapid blockchain data querying and
+                    analysis.
                   </div>
                 </ClickableTile>
               </Column>
@@ -87,8 +89,9 @@
                 <ClickableTile href="/docs/services/deep-index/graphql">
                   <h4>Deep Index GraphQL</h4>
                   <div class="body">
-                    Use GraphQL to query events emitted from your smart
-                    contracts.
+                    Utilize GraphQL for efficient querying of events emitted
+                    from your smart contracts, streamlining data retrieval and
+                    analysis.
                   </div>
                 </ClickableTile>
               </Column>
@@ -96,8 +99,9 @@
                 <ClickableTile href="/docs/services/deep-index/mql">
                   <h4>Deep Index MQL</h4>
                   <div class="body">
-                    Use MongoDB Query Language to run complex queries on
-                    blockchain data.
+                    Leverage MongoDB Query Language to execute intricate
+                    searches and analysis on blockchain data, enhancing the
+                    depth and flexibility of your queries.
                   </div>
                 </ClickableTile>
               </Column>
@@ -105,8 +109,9 @@
                 <ClickableTile href="/docs/services/deep-index/webhook">
                   <h4>Deep Index R-API</h4>
                   <div class="body">
-                    Receive push notifications from the blockchain on your HTTP
-                    endpoints.
+                    Utilize webhooks to receive real-time push notifications
+                    from the blockchain directly to your HTTP endpoints, keeping
+                    you informed and up-to-date.
                   </div>
                 </ClickableTile>
               </Column>
@@ -122,9 +127,9 @@
             </Row>
             <Row>
               <Column>
-                Kenshi Oracle Network is an asynchronous, fault-tolerant,
-                serverless framework for creating, deploying and operating
-                oracles for EVM chains.
+                Kenshi Oracle Network is an asynchronous, fault-tolerant, and
+                serverless framework designed for creating, deploying, and
+                operating custom oracles on EVM-based blockchain networks.
               </Column>
             </Row>
             <Row>
@@ -132,8 +137,9 @@
                 <ClickableTile href="/dashboard/oracle-network/custom">
                   <h4>Custom Oracle</h4>
                   <div class="body">
-                    Create and deplpoy your custom oracle with the technologies
-                    you know.
+                    Design and deploy your custom oracle using familiar
+                    technologies, providing a seamless and personalized
+                    experience.
                   </div>
                 </ClickableTile>
               </Column>
@@ -143,7 +149,9 @@
                 >
                   <h4>Simple oracle</h4>
                   <div class="body">
-                    Learn how to create your oracle using a simple example.
+                    Discover how to create your own oracle with an
+                    easy-to-follow example, guiding you through the process step
+                    by step.
                   </div>
                 </ClickableTile>
               </Column>
@@ -153,7 +161,9 @@
                 >
                   <h4>Weather</h4>
                   <div class="body">
-                    Looking for weather data on the blockchain? Start here.
+                    Need weather data on the blockchain? Begin your journey with
+                    our comprehensive guide to integrating meteorological
+                    information.
                   </div>
                 </ClickableTile>
               </Column>
@@ -163,8 +173,9 @@
                 >
                   <h4>Proof of Balance</h4>
                   <div class="body">
-                    Check if your users own a specific asset on another
-                    blockchain.
+                    Verify your users' ownership of specific assets on
+                    alternative blockchains, enhancing security and trust within
+                    your platform.
                   </div>
                 </ClickableTile>
               </Column>
@@ -172,9 +183,11 @@
                 <ClickableTile
                   href="/docs/services/oracle-network/custom/blueprints#price-oracle"
                 >
-                  <h4>Price feed</h4>
+                  <h4>Price Feed</h4>
                   <div class="body">
-                    Learn how to create and deploy your own price feed oracle.
+                    Discover the process of creating and deploying your custom
+                    price feed oracle, enabling accurate and up-to-date market
+                    data retrieval.
                   </div>
                 </ClickableTile>
               </Column>
@@ -184,8 +197,9 @@
                 >
                   <h4>VRF</h4>
                   <div class="body">
-                    Looking for randomness? Learn how to deploy your dedicated
-                    VRF oracle.
+                    In search of randomness on the blockchain? Explore the steps
+                    to deploy your dedicated VRF oracle, ensuring unbiased and
+                    unpredictable results for your applications.
                   </div>
                 </ClickableTile>
               </Column>
@@ -201,8 +215,9 @@
             </Row>
             <Row>
               <Column>
-                The Kenshi IoT SDK allows receiving and processing blockchain
-                events on embedded devices.
+                The Kenshi Blockchain IoT SDK enables embedded devices to
+                receive and process blockchain events efficiently, providing
+                seamless integration for IoT and connected systems.
               </Column>
             </Row>
             <Row>
@@ -210,8 +225,9 @@
                 <ClickableTile href="/docs/iot/install">
                   <h4>Arduino IDE</h4>
                   <div class="body">
-                    Use the Kenshi IoT SDK on ESP32 and Arduino boards with the
-                    Arduino IDE.
+                    Utilize the Kenshi Blockchain IoT SDK with ESP32 and Arduino
+                    boards, leveraging the Arduino IDE for streamlined
+                    development and integration on connected devices.
                   </div>
                 </ClickableTile>
               </Column>
@@ -225,8 +241,9 @@
                     <Launch />
                   </h4>
                   <div class="body">
-                    Learn how to use the Kenshi IoT SDK for Arduino to receive
-                    blockchain events on ESP32.
+                    Discover the process of utilizing the Kenshi Blockchain IoT
+                    SDK for Arduino to efficiently receive blockchain events on
+                    ESP32 devices, enhancing your embedded systems capabilities.
                   </div>
                 </ClickableTile>
               </Column>
@@ -240,8 +257,10 @@
                     <Launch />
                   </h4>
                   <div class="body">
-                    Learn how to use the Kenshi IoT SDK to receive blockchain
-                    events on Arduino MKR WiFi.
+                    Explore the steps to effectively employ the Kenshi
+                    Blockchain IoT SDK for receiving blockchain events on
+                    Arduino MKR WiFi boards, expanding the functionality of your
+                    connected devices.
                   </div>
                 </ClickableTile>
               </Column>
@@ -587,6 +606,9 @@
   .vertical-tab {
     padding: 17px 0;
   }
+  .vertical-tab :global(.bx--tile--clickable) {
+    height: 100%;
+  }
   .logo {
     display: flex;
     margin-right: -1em;
@@ -597,5 +619,8 @@
   }
   h4.external span {
     flex: 1;
+  }
+  .body {
+    margin-top: 1em;
   }
 </style>
