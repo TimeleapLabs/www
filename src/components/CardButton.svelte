@@ -6,13 +6,21 @@
   export let href;
   export let title;
   export let description;
+  export let icon;
+
+  const Icon = icon;
 </script>
 
 <div class="wrap">
   <ClickableTile {href}>
     <div class="inner">
       <ExpressiveHeading size={3}>
-        <h4>{title}</h4>
+        <div class="title">
+          <Icon />
+          <h4>
+            {title}
+          </h4>
+        </div>
       </ExpressiveHeading>
       <p>
         {description}
@@ -38,5 +46,12 @@
     gap: 1em;
     align-items: flex-start;
     height: 100%;
+    padding: 1em;
+  }
+  .title {
+    display: flex;
+    width: 100%;
+    gap: 0.5em;
+    align-items: center;
   }
 </style>
