@@ -175,6 +175,18 @@ a.bx--header__menu-item {
   font-weight: 400;
   letter-spacing: 0;
 }
+.body-01 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.16px;
+}
+.legal-01 {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+}
 .body-compact-02 {
   font-size: 1rem;
   line-height: 1.375rem;
@@ -187,12 +199,21 @@ a.bx--header__menu-item {
   font-weight: 400;
   letter-spacing: 0.32px;
 }
-.bx--content.gap > *:not(:last-of-type) {
-  margin-bottom: 4em;
+.bx--content {
+  padding: 0;
+}
+.bx--content.gap > * {
+  margin-bottom: 12em;
+}
+.bx--content.gap > *:not(:first-of-type) {
+  margin-top: 12em;
 }
 @media (max-width: 640px) {
-  .bx--content.gap > *:not(:last-of-type) {
-    margin-bottom: 0;
+  .bx--content.gap > * {
+    margin-bottom: 2em;
+  }
+  .bx--content.gap > *:not(:first-of-type) {
+    margin-top: 2em;
   }
 }
 .extra-padding > .bx--row > div:not(:last-of-type) {
@@ -238,6 +259,7 @@ a.bx--header__menu-item:focus svg {
   background-color: var(--cds-interactive-01) !important;
   color: #fff;
   padding: 2em !important;
+  box-sizing: border-box;
 }
 .blue-tile a.bx--link {
   color: #fff !important;
@@ -345,4 +367,52 @@ ul ul {
 
 .bx--inline-notification__action-button:hover {
   text-decoration: none;
+}
+
+.bx--tile.padding {
+  padding: 1em 2em;
+  box-sizing: border-box;
+}
+
+.hero {
+  height: calc(100vh - 48px);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.hero-image {
+  max-height: calc(100vh - 48px);
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-body {
+  padding: 8em;
+  box-sizing: border-box;
+  max-height: calc(100vh - 48px);
+}
+@media (max-width: 1080px) {
+  .hero-body {
+    padding: 4em;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 720px) {
+  .hero-body {
+    padding: 2em;
+    box-sizing: border-box;
+  }
+  .hero-image {
+    height: 100vw;
+    width: 100%;
+  }
+  .hero {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    height: auto;
+  }
 }

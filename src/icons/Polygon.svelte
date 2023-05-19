@@ -41,6 +41,6 @@
 
 <style>
   .st0 {
-    fill: #8247e5;
+    fill: currentColor;
   }
 </style>

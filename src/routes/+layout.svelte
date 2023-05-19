@@ -11,7 +11,9 @@
   } from "carbon-components-svelte";
   import { fade } from "svelte/transition";
 
-  $: needsHead = !$page?.url?.pathname?.match(/^(\/docs|\/blog)/);
+  $: needsHead = !$page?.url?.pathname?.match(
+    /^\/(docs|blog|iot-sdk|deep-index|oracle-network)/
+  );
 
   import "carbon-components-svelte/css/all.css";
   import "../common.css";
@@ -62,5 +64,6 @@
     left: 50%;
     bottom: 2em;
     transform: translateX(-50%);
+    z-index: 8;
   }
 </style>
