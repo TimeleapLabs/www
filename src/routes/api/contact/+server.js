@@ -23,23 +23,18 @@ export async function POST({ request }) {
   }
 
   const msg = {
-    to: "contact@kenshi.io",
+    to: "admin@kenshi.io",
     from: "noreply@kenshi.io",
     subject,
-    text: `\
-      Subject: ${subject}
-      Body: ${body}
-      Topic: ${topic}
-      Name: ${name}
-      Email: ${email}
-    `,
-    html: `\
-      <strong>Subject<Subject>: <p>${subject}</p>
-      <strong>Body<Body>: <p>${body}</p>
-      <strong>Topic<Topic>: <p>${topic}</p>
-      <strong>Name<Name>: <p>${name}</p>
-      <strong>Email<Email>: <p>${email}</p>
-    `,
+    text: [
+      `Subject: ${subject}`,
+      `Topic: ${topic}`,
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "Body:",
+      "",
+      body,
+    ].join("\n"),
   };
 
   await sg.send(msg);

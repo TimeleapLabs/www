@@ -1,82 +1,106 @@
 <script>
   import Footer from "src/components/Footer.svelte";
-  import CardButton from "src/components/CardButton.svelte";
 
-  import { Grid, Row, Column, Tile } from "carbon-components-svelte";
+  import { Grid, Row, Column, CodeSnippet } from "carbon-components-svelte";
   import { Button, Content, ClickableTile } from "carbon-components-svelte";
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
-  import { CodeSnippet } from "carbon-components-svelte";
-  import { ImageLoader, OutboundLink, Link } from "carbon-components-svelte";
+  import { Accordion, AccordionItem } from "carbon-components-svelte";
+  import { ImageLoader, OutboundLink } from "carbon-components-svelte";
 
-  import { Dashboard, Book, IntentRequestCreate } from "carbon-icons-svelte";
-  import { Partnership, AnalyticsReference, Email } from "carbon-icons-svelte";
-  import { LogoPython, ArrowDown, ArrowDownRight } from "carbon-icons-svelte";
-  import { IotPlatform, LogoGithub, Blog, Forum } from "carbon-icons-svelte";
+  import { Dashboard, Book, ArrowRight } from "carbon-icons-svelte";
+  import { LogoPython, ArrowDownRight } from "carbon-icons-svelte";
 
   import Go from "src/icons/Go.svelte";
   import Node from "src/icons/Node.svelte";
 
-  import Fantom from "src/icons/Fantom.svelte";
-  import Ethereum from "src/icons/Ethereum.svelte";
-  import BnbChain from "src/icons/BNBChain.svelte";
-  import Avalanche from "src/icons/Avalanche.svelte";
-  import Polygon from "src/icons/Polygon.svelte";
-  import Aurora from "src/icons/Aurora.svelte";
-  import Bitgert from "src/icons/Bitgert.svelte";
-  import Arbitrum from "src/icons/Arbitrum.svelte";
+  import DeveloperResources from "src/components/home/DeveloperResources.svelte";
+  import HereToHelp from "src/components/home/HereToHelp.svelte";
+  import Articles from "src/components/home/Articles.svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
-  import BlogToc from "src/components/blog/Toc.svelte";
 
-  import Github from "src/icons/Github.svelte";
-  import Npm from "src/icons/NPM.svelte";
-  import Telegram from "src/icons/Telegram.svelte";
-  import Medium from "src/icons/Medium.svelte";
-  import Discord from "src/icons/Discord.svelte";
-  import Pancake from "src/icons/Pancake.svelte";
-
-  import { theme } from "src/stores/theme";
-
-  import {
-    apollo,
-    mql,
-    rapi,
-    simple,
-    vrf,
-    price,
-    weather,
-    balance,
-  } from "src/lib/snippets/all";
+  import { apollo, mql, rapi } from "src/lib/snippets/all";
+  import DefaultTags from "src/components/seo/DefaultTags.svelte";
 </script>
+
+<DefaultTags
+  title="Kenshi — Deep Index"
+  description="Unlock the power of blockchain data with Kenshi's Deep Index. Effortlessly manage, index, and analyze blockchain events. Explore our advanced features and get started today."
+/>
 
 <!-- Hero -->
 
 <Content class="gap">
-  <Grid noGutter padding id="deep-index">
+  <div class="hero">
+    <div class="flex-column hero-body">
+      <h1>Deep Index.</h1>
+      <span class="blue">
+        <ArrowDownRight size={48} />
+        <ArrowDownRight size={48} />
+        <ArrowDownRight size={48} />
+      </span>
+
+      <ExpressiveHeading size={4}>
+        Unlock the Power of Data with Deep Index
+      </ExpressiveHeading>
+
+      <p class="body-02">
+        Harness the strength of blockchain technology and make data access more
+        efficient than ever before with Kenshi's Deep Index. This innovative
+        blockchain indexing solution offers real-time data access and event
+        notifications, revolutionizing the way you interact with your blockchain
+        data.
+      </p>
+
+      <p class="body-01">
+        With compatibility across multiple query languages and a fully managed
+        service, Deep Index ensures seamless integration into your existing
+        systems. Discover a new dimension of data accessibility today.
+      </p>
+
+      <div class="buttons">
+        <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
+        <Button href="/docs/services/deep-index" kind="secondary" icon={Book}>
+          Documentation
+        </Button>
+      </div>
+    </div>
+
+    <div class="hero-image ">
+      <ImageLoader src="/images/backgrounds/data.jpg" />
+    </div>
+  </div>
+
+  <Grid>
     <Row>
-      <Column sm={4} md={4} lg={5}>
-        <ImageLoader src="/images/backgrounds/data-flow.jpg" />
-      </Column>
-      <Column sm={4} md={4} lg={5}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={5}>
-            <h2>
-              Deliver data to your users, <span class="blue">FAST</span>
-            </h2>
+      <Column sm={4} lg={5}>
+        <div class="flex-column padding onboarding">
+          <ExpressiveHeading size={2}>
+            <h2>Revolutionizing Blockchain Data Management</h2>
           </ExpressiveHeading>
-
-          <div class="spacer" />
-
-          <div class="fluid-paragraph-01">
-            Kenshi deep index allows retrieving, storing, and indexing
-            blockchain events into Kenshi's geographically distributed data
-            clusters for faster access.
+          <div class="body-01">
+            Kenshi Deep Index is a revolutionary product designed to empower
+            businesses and developers in their journey through the ever-evolving
+            landscape of blockchain technology. It offers a suite of powerful
+            tools and functionalities aimed at addressing the challenges of
+            managing, analyzing, and utilizing blockchain data.
           </div>
-
-          <div class="spacer" />
-
+          <div class="body-01">
+            In the rapidly evolving landscape of blockchain technology, the
+            ability to efficiently process and analyze data is paramount. The
+            Kenshi Deep Index addresses this need by providing a seamless
+            experience in handling and interpreting blockchain events.
+          </div>
+          <div class="body-01">
+            Whether you're a startup looking to build a robust foundation or an
+            established enterprise aiming to optimize your blockchain
+            operations, the Kenshi Deep Index offers a crucial advantage. By
+            simplifying data management, it empowers you to make informed
+            decisions, respond swiftly to changes, and leverage blockchain
+            technology to its fullest potential.
+          </div>
           <div class="buttons">
-            <Button href="/dashboard" icon={Dashboard}>Subscribe now</Button>
+            <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
             <Button
               href="/docs/services/deep-index"
               kind="secondary"
@@ -85,13 +109,321 @@
               Documentation
             </Button>
           </div>
-
-          <div class="spacer" />
-          <div class="spacer" />
-          <div class="spacer" />
         </div>
       </Column>
-      <Column sm={4} md={10} lg={6}>
+      <Column lg={1} />
+      <Column>
+        <Grid noGutter fullWidth padding>
+          <Row>
+            <Column lg={8}>
+              <ClickableTile href="/docs/services/deep-index/sync">
+                <div class="product">
+                  <ExpressiveHeading size={4}>
+                    <h3>Deep Index Sync</h3>
+                  </ExpressiveHeading>
+                  <div class="body-02">
+                    Streamlined Synchronization and Indexing
+                  </div>
+                  <div class="body-01">
+                    Deep Index Sync is an integral part of the Kenshi Deep Index
+                    ecosystem. It's designed to seamlessly synchronize and index
+                    events emitted by your smart contracts. This feature enables
+                    you to rapidly query and analyze blockchain data. By
+                    integrating Deep Index Sync into your blockchain
+                    infrastructure, you can ensure that every crucial event is
+                    captured and indexed efficiently, improving the overall
+                    performance and responsiveness of your system.
+                  </div>
+                  <div class="buttons">
+                    <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
+                  </div>
+                </div>
+              </ClickableTile>
+            </Column>
+            <Column lg={8}>
+              <ClickableTile href="/docs/services/deep-index/graphql">
+                <div class="product">
+                  <ExpressiveHeading size={4}>
+                    <h3>Deep Index GraphQL</h3>
+                  </ExpressiveHeading>
+                  <div class="body-02">Efficient Querying with GraphQL</div>
+                  <div class="body-01">
+                    Deep Index GraphQL provides a powerful tool for querying
+                    events emitted from your smart contracts. With GraphQL, you
+                    can streamline the data retrieval and analysis process. This
+                    feature offers precise and efficient data querying, allowing
+                    you to fetch exactly what you need from the blockchain.
+                    Whether you're dealing with complex data structures or
+                    requiring real-time updates, Deep Index GraphQL equips you
+                    with the tools to handle your data effectively.
+                  </div>
+                  <div class="buttons">
+                    <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
+                  </div>
+                </div>
+              </ClickableTile>
+            </Column>
+            <Column lg={8}>
+              <ClickableTile href="/docs/services/deep-index/mql">
+                <div class="product">
+                  <ExpressiveHeading size={4}>
+                    <h3>Deep Index MQL</h3>
+                  </ExpressiveHeading>
+                  <div class="body-02">
+                    Intricate Searches with MongoDB Query Language
+                  </div>
+                  <div class="body-01">
+                    Deep Index MQL leverages the MongoDB Query Language,
+                    enabling you to execute intricate searches and analysis on
+                    blockchain data. This feature enhances the depth and
+                    flexibility of your queries. With MQL, you can perform
+                    detailed, nuanced searches across your blockchain data,
+                    digging deeper into data patterns and insights. Deep Index
+                    MQL empowers you with flexible and intuitive interface for
+                    blockchain data analysis.
+                  </div>
+                  <div class="buttons">
+                    <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
+                  </div>
+                </div>
+              </ClickableTile>
+            </Column>
+            <Column lg={8}>
+              <ClickableTile href="/docs/services/deep-index/webhook">
+                <div class="product">
+                  <ExpressiveHeading size={4}>
+                    <h3>Deep Index R-API</h3>
+                  </ExpressiveHeading>
+                  <div class="body-02">Real-Time Blockchain Notifications</div>
+                  <div class="body-01">
+                    Deep Index R-API allows you to utilize webhooks to receive
+                    real-time push notifications from the blockchain directly to
+                    your HTTP endpoints. By keeping you informed and up-to-date
+                    with the latest events, this feature enables you to respond
+                    quickly to changes in the blockchain. Whether it's a new
+                    transaction or a contract event, Deep Index R-API ensures
+                    you never miss a beat in your blockchain operations.
+                  </div>
+                  <div class="buttons">
+                    <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
+                  </div>
+                </div>
+              </ClickableTile>
+            </Column>
+          </Row>
+        </Grid>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column sm={4} md={4} lg={4}>
+        <div class="flex-column padding">
+          <ExpressiveHeading size={2}>
+            <h2>
+              Unleashing the Power of Blockchain Data with Kenshi Deep Index
+            </h2>
+          </ExpressiveHeading>
+          <div class="body-01">
+            In the complex world of blockchain, having the right tools to manage
+            and interpret data is invaluable. The Kenshi Deep Index brings
+            unparalleled advantages to businesses and developers navigating the
+            blockchain landscape.
+          </div>
+        </div>
+      </Column>
+      <Column lg={1} />
+      <Column>
+        <Accordion>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Efficient Data Management</h5>
+              <div>Unlocking Productivity through Precision</div>
+            </svelte:fragment>
+            <p>
+              Harness the power of our technology to process large volumes of
+              blockchain data seamlessly. Experience faster and more efficient
+              querying and analysis, unlocking new levels of productivity.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Real-Time Notifications</h5>
+              <div>Stay Updated, Stay Ahead</div>
+            </svelte:fragment>
+            <p>
+              Stay ahead of the curve with real-time push notifications. Kenshi
+              Deep Index connects directly with the blockchain to your HTTP
+              endpoints, delivering updates as they happen.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Flexible Query Capabilities</h5>
+              <div>Dive Deeper into Your Data</div>
+            </svelte:fragment>
+            <p>
+              Explore the depth of your data like never before. With our
+              versatile data retrieval system, featuring GraphQL and MongoDB
+              Query Language, you can execute intricate searches and detailed
+              data analysis with ease.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Scalable Solution</h5>
+              <div>Grow With Confidence</div>
+            </svelte:fragment>
+            <p>
+              From fledgling startups to established enterprises, the Kenshi
+              Deep Index scales to meet your needs. Our solution is designed to
+              handle the data demands of any project size with the same level of
+              efficiency and reliability.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Integration Ease</h5>
+              <div>Simplifying Processes, Amplifying Results</div>
+            </svelte:fragment>
+            <p>
+              We believe in making things simpler. Kenshi Deep Index
+              effortlessly integrates with your existing systems and processes,
+              significantly reducing development time and effort.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Informed Decision Making</h5>
+              <div>Transforming Data into Decisions</div>
+            </svelte:fragment>
+            <p>
+              Turn data into actionable insights. With easy access to blockchain
+              events and data, Kenshi Deep Index empowers you to make quick,
+              accurate, and data-driven decisions.
+            </p>
+          </AccordionItem>
+        </Accordion>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column sm={4} lg={5}>
+        <div class="flex-column padding integrations">
+          <ExpressiveHeading size={2}>
+            <h2>Low-Code and No-Code Integrations with Deep Index R-API</h2>
+          </ExpressiveHeading>
+
+          <div class="body-01">
+            Harness the power of Kenshi's Deep Index R-API, even with minimal
+            coding knowledge. Our solution integrates seamlessly with various
+            low-code and no-code platforms, providing you with an accessible,
+            efficient way to handle blockchain data.
+          </div>
+
+          <div class="spacer" />
+
+          <ImageLoader src="/images/backgrounds/code.jpg" />
+        </div>
+      </Column>
+      <Column lg={1} />
+      <Column>
+        <Grid noGutter fullWidth padding>
+          <Row>
+            <Column lg={8}>
+              <ClickableTile href="/docs/services/deep-index">
+                <div class="product">
+                  <ExpressiveHeading size={4}>
+                    <h3>Workflow Automation</h3>
+                  </ExpressiveHeading>
+                  <div class="body-01">
+                    Easily connect Deep Index R-API with popular low-code
+                    platforms like Zapier, Integromat, or n8n. Automate your
+                    workflows to receive real-time push notifications from the
+                    blockchain directly to your desired endpoints.
+                  </div>
+                  <div class="buttons">
+                    <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
+                  </div>
+                </div>
+              </ClickableTile>
+            </Column>
+            <Column lg={8}>
+              <ClickableTile href="/docs/services/deep-index">
+                <div class="product">
+                  <ExpressiveHeading size={4}>
+                    <h3>Data Visualization</h3>
+                  </ExpressiveHeading>
+                  <div class="body-01">
+                    Integrate with no-code tools like Google Data Studio or
+                    Tableau. Use the rich blockchain data indexed by Deep Index
+                    to create insightful visualizations and reports without
+                    writing a single line of code.
+                  </div>
+                  <div class="buttons">
+                    <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
+                  </div>
+                </div>
+              </ClickableTile>
+            </Column>
+            <Column lg={8}>
+              <ClickableTile href="/docs/services/deep-index">
+                <div class="product">
+                  <ExpressiveHeading size={4}>
+                    <h3>Event Management</h3>
+                  </ExpressiveHeading>
+                  <div class="body-01">
+                    Leverage the power of Deep Index R-API to manage blockchain
+                    events in real-time. Connect with platforms like Airtable or
+                    Microsoft Power Automate for efficient event tracking and
+                    management.
+                  </div>
+                  <div class="buttons">
+                    <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
+                  </div>
+                </div>
+              </ClickableTile>
+            </Column>
+          </Row>
+        </Grid>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column sm={4} lg={5}>
+        <div class="flex-column padding onboarding">
+          <ExpressiveHeading size={2}>
+            <h2>Deep Index: Empowering Examples and Seamless Integration</h2>
+          </ExpressiveHeading>
+
+          <div class="body-01">
+            Our Deep Index offers a range of comprehensive, hands-on examples to
+            smoothly integrate our service into your blockchain project. Whether
+            you prefer JavaScript, Python, or another language, our platform
+            adapts to your needs, ensuring a seamless user experience. Get
+            started with Deep Index and unlock the true potential of your
+            blockchain data.
+          </div>
+
+          <div class="buttons">
+            <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
+            <Button
+              href="/docs/services/deep-index"
+              kind="secondary"
+              icon={Book}
+            >
+              Documentation
+            </Button>
+          </div>
+        </div>
+      </Column>
+      <Column lg={1} />
+      <Column>
         <div class="condensed-tabs">
           <Tabs autoWidth>
             <Tab label="GraphQL" />
@@ -125,7 +457,7 @@
                   </Row>
                   <Row>
                     <Column>
-                      <div class="buttons">
+                      <div class="buttons no-margin">
                         <Button
                           kind="secondary"
                           href="https://github.com/KenshiTech/graphql-example-node-axios"
@@ -178,7 +510,7 @@
                   </Row>
                   <Row>
                     <Column>
-                      <div class="buttons">
+                      <div class="buttons no-margin">
                         <Button
                           kind="secondary"
                           href="https://github.com/KenshiTech/mql-example-node-axios"
@@ -235,7 +567,7 @@
                   </Row>
                   <Row>
                     <Column>
-                      <div class="buttons">
+                      <div class="buttons no-margin">
                         <Button
                           kind="secondary"
                           href="https://github.com/KenshiTech/reverse-api-example-node"
@@ -262,899 +594,19 @@
     </Row>
   </Grid>
 
-  <Grid noGutter padding id="deep-index">
-    <Row>
-      <Column sm={4} md={4} lg={5}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={5}>
-            <h2>
-              Kenshi blockchain <span class="blue">IoT SDK</span>
-            </h2>
-          </ExpressiveHeading>
-
-          <div class="spacer" />
-
-          <div class="fluid-paragraph-01">
-            From supply chain and vending machines that accept crypto, to smart
-            home appliances and smart cities.
-          </div>
-
-          <div class="spacer" />
-
-          <div class="body-02">
-            Kenshi IoT SDK enables you to connect your embedded devices to the
-            blockchain. Have an idea and don't know where to start? Contact us
-            and we will help bring your idea to life.
-          </div>
-
-          <div class="spacer" />
-
-          <div class="buttons">
-            <Button href="mailto:chains@kenshi.io" icon={Email}>
-              Contact us
-            </Button>
-            <Button href="/docs/services/iot" kind="secondary" icon={Book}>
-              Documentation
-            </Button>
-          </div>
-
-          <div class="spacer" />
-          <div class="spacer" />
-        </div>
-      </Column>
-      <Column sm={4} md={4} lg={5}>
-        <ImageLoader src="/images/backgrounds/iot.jpg" />
-      </Column>
-      <Column sm={4} md={10} lg={6}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={4}>
-            <h3>Supports 200+ development boards!</h3>
-          </ExpressiveHeading>
-          <p>
-            Kenshi blockchain IoT SDK supports more than 200 development boards.
-          </p>
-          <div class="spacer" />
-          <Grid noGutter padding fullWidth>
-            <Row>
-              <Column sm={4} lg={8}>
-                <ClickableTile
-                  href="/docs/services/iot/install#linux-bsd-and-windows-sbcs"
-                >
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>Linux</ExpressiveHeading>
-                    <div>
-                      Use your favorite Linux-compatible technology to
-                      communicate with the Kenshi Deep Index.
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-              <Column sm={4} lg={8}>
-                <ClickableTile href="/docs/services/iot/install#zephyr-rtos">
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>Zephyr</ExpressiveHeading>
-                    <div>
-                      You can use the Kenshi IoT SDK on Zephyr RTOS. Find an
-                      example app
-                      <OutboundLink
-                        href="https://github.com/KenshiTech/iot-sdk"
-                      >
-                        here.
-                      </OutboundLink>
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-              <Column sm={4} lg={8}>
-                <ClickableTile href="/docs/services/iot/install#arduino-boards">
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>
-                      Arduino boards
-                    </ExpressiveHeading>
-                    <div>
-                      The Kenshi IoT SDK supports all internet-enabled Arduino
-                      boards. Check the library
-                      <OutboundLink
-                        href="https://github.com/KenshiTech/iot-sdk"
-                      >
-                        here.
-                      </OutboundLink>
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-              <Column sm={4} lg={8}>
-                <ClickableTile href="/docs/services/iot/install#esp32-boards">
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>ESP32</ExpressiveHeading>
-                    <div>
-                      The Kenshi IoT SDK for Arduino is compatible with ESP32
-                      boards that support the Arduino IDE.
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-            </Row>
-          </Grid>
-          <div class="spacer" />
-
-          <div class="body-02">
-            Don't hesitate to reach out if you cannot find your favorite boards.
-          </div>
-
-          <div class="spacer" />
-          <div class="buttons">
-            <Button href="/docs/services/iot/devices" icon={IotPlatform}>
-              See all boards
-            </Button>
-
-            <Button
-              href="https://github.com/KenshiTech/iot-sdk"
-              icon={LogoGithub}
-            >
-              Github
-            </Button>
-          </div>
-
-          <div class="spacer" />
-          <div class="spacer" />
-          <div class="spacer" />
-        </div>
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid noGutter padding>
-    <Row>
-      <Column sm={4} md={10} lg={5}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={5}>
-            <h2>
-              <span class="blue">Automate</span> the world, with blockchain
-            </h2>
-          </ExpressiveHeading>
-
-          <div class="spacer" />
-
-          <div class="fluid-paragraph-01">
-            Connect your smart contract to the world! Kenshi R-API directly
-            streams events from your smart contracts to already existing
-            automation tools!
-          </div>
-
-          <div class="spacer" />
-          <div class="spacer" />
-
-          <div class="buttons">
-            <Button href="/dashboard" icon={Dashboard}>Subscribe now</Button>
-            <Button
-              href="/docs/services/deep-index/webhook"
-              kind="secondary"
-              icon={Book}
-            >
-              Documentation
-            </Button>
-          </div>
-
-          <div class="spacer" />
-          <div class="spacer" />
-        </div>
-      </Column>
-      <Column sm={4} md={4} lg={6}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={4}>
-            <h3>Integrate with the tools you already know</h3>
-          </ExpressiveHeading>
-          <p>
-            The Kenshi R-API integrations with existing automation and data flow
-            tools.
-          </p>
-          <div class="spacer" />
-          <Grid noGutter padding fullWidth>
-            <Row>
-              <Column sm={4} lg={8}>
-                <ClickableTile
-                  href="/docs/services/deep-index/webhook/integrations"
-                >
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>AWS Lambda</ExpressiveHeading>
-                    <div>
-                      Learn how to integrate the Kenshi Deep Index with AWS
-                      <OutboundLink href="https://aws.com">Lambda.</OutboundLink
-                      >
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-              <Column sm={4} lg={8}>
-                <ClickableTile
-                  href="/docs/services/deep-index/webhook/integrations"
-                >
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>Zapier</ExpressiveHeading>
-                    <div>
-                      Learn how to integrate the Kenshi Deep Index with
-                      <OutboundLink href="https://zapier.com">
-                        Zapier.
-                      </OutboundLink>
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-              <Column sm={4} lg={8}>
-                <ClickableTile
-                  href="/docs/services/deep-index/webhook/integrations"
-                >
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>Make.com</ExpressiveHeading>
-                    <div>
-                      Learn how to integrate the Kenshi Deep Index with
-                      <OutboundLink href="https://make.com">
-                        make.com.
-                      </OutboundLink>
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-              <Column sm={4} lg={8}>
-                <ClickableTile
-                  href="/docs/services/deep-index/webhook/integrations"
-                >
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>IFTTT</ExpressiveHeading>
-                    <div>
-                      Learn how to integrate the Kenshi Deep Index with
-                      <OutboundLink href="https://ifttt.com">
-                        IFTTT.
-                      </OutboundLink>
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-              <Column sm={4} lg={8}>
-                <ClickableTile
-                  href="/docs/services/deep-index/webhook/integrations"
-                >
-                  <div class="integration">
-                    <ExpressiveHeading size={2}>Webhooks</ExpressiveHeading>
-                    <div>
-                      Learn how to integrate the Kenshi Deep Index with
-                      <OutboundLink
-                        href="https://en.wikipedia.org/wiki/Webhook"
-                      >
-                        webhooks.
-                      </OutboundLink>
-                    </div>
-                  </div>
-                </ClickableTile>
-              </Column>
-            </Row>
-          </Grid>
-          <div class="spacer" />
-          <div class="spacer" />
-        </div>
-      </Column>
-      <Column sm={4} md={4} lg={5}>
-        <ImageLoader src="/images/backgrounds/automate.jpg" />
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid noGutter padding id="oracle-network">
-    <Row>
-      <Column sm={4} md={4} lg={5}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={5}>
-            <h2>
-              <span class="blue">Connect</span>
-              your smart contract
-            </h2>
-          </ExpressiveHeading>
-
-          <div class="spacer" />
-
-          <div class="fluid-paragraph-01">
-            Kenshi Oracle Network is a high-performance asynchronous oracle
-            platform that allows creating and hosting of custom oracles.
-          </div>
-
-          <div class="spacer" />
-
-          <div class="body-02">
-            Kenshi takes care of event sourcing, scheduling, security, error
-            handling, and data delivery so you can focus on your business.
-          </div>
-
-          <div class="spacer" />
-
-          <div class="buttons">
-            <Button href="/dashboard" icon={Dashboard}>Subscribe now</Button>
-            <Button
-              href="/docs/services/oracle-network/vrf"
-              kind="secondary"
-              icon={Book}
-            >
-              Documentation
-            </Button>
-          </div>
-
-          <div class="spacer" />
-        </div>
-      </Column>
-      <Column sm={4} md={4} lg={5}>
-        <ImageLoader src="/images/backgrounds/connect.jpg" />
-      </Column>
-      <Column sm={4} md={10} lg={6}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={5}>
-            <h3>Get started</h3>
-          </ExpressiveHeading>
-          <p>
-            Use one of our <Link
-              href="/docs/services/oracle-network/custom/blueprints"
-            >
-              Oracle blueprints
-            </Link> or sample codes to get started in no time.
-          </p>
-          <div class="spacer" />
-          <div class="condensed-tabs">
-            <Tabs autoWidth>
-              <Tab label="Simple" />
-              <Tab label="Price" />
-              <Tab label="Balance" />
-              <Tab label="Weather" />
-              <Tab label="VRF" />
-              <svelte:fragment slot="content">
-                <TabContent>
-                  <Grid noGutter padding fullWidth>
-                    <Row>
-                      <Column>
-                        <p>
-                          A very simple blueprint to start from. Extend this to
-                          create your custom functionality.
-                        </p>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <div class="condensed-tabs">
-                          <Tabs autoWidth>
-                            <Tab label="Oracle" />
-                            <Tab label="Contract" />
-                            <svelte:fragment slot="content">
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={simple.oracle}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={simple.contract}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                            </svelte:fragment>
-                          </Tabs>
-                        </div>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <Link
-                          href="/docs/services/oracle-network/custom/blueprints#simple-oracle"
-                        >
-                          Learn more.
-                        </Link>
-                      </Column>
-                    </Row>
-                  </Grid>
-                </TabContent>
-                <TabContent>
-                  <Grid noGutter padding fullWidth>
-                    <Row>
-                      <Column>
-                        <p>
-                          The following blueprint shows how to get price data
-                          from <OutboundLink href="https://coingecko.com">
-                            coingecko.com
-                          </OutboundLink>.
-                        </p>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <div class="condensed-tabs">
-                          <Tabs autoWidth>
-                            <Tab label="Oracle" />
-                            <Tab label="Contract" />
-                            <svelte:fragment slot="content">
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={price.oracle}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={price.contract}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                            </svelte:fragment>
-                          </Tabs>
-                        </div>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <Link
-                          href="/docs/services/oracle-network/custom/blueprints#price-oracle"
-                        >
-                          Learn more.
-                        </Link>
-                      </Column>
-                    </Row>
-                  </Grid>
-                </TabContent>
-                <TabContent>
-                  <Grid noGutter padding fullWidth>
-                    <Row>
-                      <Column>
-                        <p>
-                          The following blueprint shows how to check if the user
-                          owns a specific amount of tokens or NFTs on another
-                          chain.
-                        </p>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <div class="condensed-tabs">
-                          <Tabs autoWidth>
-                            <Tab label="Oracle" />
-                            <Tab label="Contract" />
-                            <svelte:fragment slot="content">
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={balance.oracle}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={balance.contract}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                            </svelte:fragment>
-                          </Tabs>
-                        </div>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <Link
-                          href="/docs/services/oracle-network/custom/blueprints#proof-of-balance-oracle"
-                        >
-                          Learn more.
-                        </Link>
-                      </Column>
-                    </Row>
-                  </Grid>
-                </TabContent>
-                <TabContent>
-                  <Grid noGutter padding fullWidth>
-                    <Row>
-                      <Column>
-                        <p>
-                          The following blueprint shows how to get weather data
-                          from
-                          <OutboundLink href="https://brightsky.dev">
-                            brightsky.dev
-                          </OutboundLink>.
-                        </p>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <div class="condensed-tabs">
-                          <Tabs autoWidth>
-                            <Tab label="Oracle" />
-                            <Tab label="Contract" />
-                            <svelte:fragment slot="content">
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={weather.oracle}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={weather.contract}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                            </svelte:fragment>
-                          </Tabs>
-                        </div>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <Link
-                          href="/docs/services/oracle-network/custom/blueprints#weather-oracle"
-                        >
-                          Learn more.
-                        </Link>
-                      </Column>
-                    </Row>
-                  </Grid>
-                </TabContent>
-                <TabContent>
-                  <Grid noGutter padding fullWidth>
-                    <Row>
-                      <Column>
-                        <p>
-                          The following blueprint shows how to create your own
-                          VRF oracle. This example uses the Kenshi VRF
-                          libraries, which implement draft 10 of the IETF ECVRF.
-                        </p>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <div class="condensed-tabs">
-                          <Tabs autoWidth>
-                            <Tab label="Oracle" />
-                            <Tab label="Contract" />
-                            <svelte:fragment slot="content">
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={vrf.oracle}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                              <TabContent>
-                                <CodeSnippet
-                                  type="multi"
-                                  code={vrf.contract}
-                                  class="full-width"
-                                />
-                              </TabContent>
-                            </svelte:fragment>
-                          </Tabs>
-                        </div>
-                      </Column>
-                    </Row>
-                    <Row>
-                      <Column>
-                        <Link
-                          href="/docs/services/oracle-network/custom/blueprints#vrf-oracle"
-                        >
-                          Learn more.
-                        </Link>
-                      </Column>
-                    </Row>
-                  </Grid>
-                </TabContent>
-              </svelte:fragment>
-            </Tabs>
-          </div>
-          <div class="spacer" />
-          <div class="spacer" />
-        </div>
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid noGutter padding>
-    <Row>
-      <Column lg={4} md={4}>
-        <Grid noGutter padding fullWidth class="full-height">
-          <Row class="full-height">
-            <Column>
-              <Tile class="blue-tile full-height">
-                <div class="flex-column fast">
-                  <ExpressiveHeading size={5}>
-                    <h2>Developer resources</h2>
-                  </ExpressiveHeading>
-
-                  <div class="spacer" />
-
-                  <div class="fluid-paragraph-01">
-                    Find examples, tools and documents for integrating the
-                    Kenshi products and services into your projects.
-                  </div>
-
-                  <div class="spacer" />
-                </div>
-              </Tile>
-            </Column>
-          </Row>
-        </Grid>
-      </Column>
-      <Column lg={12}>
-        <Grid noGutterRight padding fullWidth class="full-height no-padding">
-          <Row class="full-height">
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
-                href="https://forum.kenshi.io"
-                icon={Forum}
-                title="Forum"
-                description="A community of blockchain developers and enthusiasts. Learn, discuss, and share!"
-              />
-            </Column>
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
-                href="https://github.com/KenshiTech"
-                icon={Github}
-                title="GitHub"
-                description="Find examples for the Kenshi services and contribute to our open-source projects."
-              />
-            </Column>
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
-                href="https://www.npmjs.com/org/kenshi.io"
-                icon={Npm}
-                title="NPM"
-                description="Check out all the JavaScript and Solidity packages published by Kenshi to NPM."
-              />
-            </Column>
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
-                href="/blog"
-                icon={Blog}
-                title="Blog"
-                description="Read our blog for use cases, examples and technical articles about Kenshi products."
-              />
-            </Column>
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
-                href="https://blog.kenshi.io"
-                icon={Medium}
-                title="Medium"
-                description="Subscribe to our Medium publication to get the latest articles in your inbox."
-              />
-            </Column>
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
-                href="https://t.me/KenshiTech"
-                icon={Telegram}
-                title="Telegram"
-                description="Join our community chat on Telegram to discuss everything Kenshi!"
-              />
-            </Column>
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
-                href="https://discord.gg/KenshiTech"
-                icon={Discord}
-                title="Discord"
-                description="Join Kenshi Discord server to discuss the tech or get help with the products."
-              />
-            </Column>
-            <Column lg={4} md={4} sm={4}>
-              <CardButton
-                href="/docs"
-                icon={Book}
-                title="Docs"
-                description="Read the docs to learn how to integrate the Kenshi products into your projects."
-              />
-            </Column>
-          </Row>
-        </Grid>
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid noGutter padding>
-    <Row>
-      <Column sm={4} md={10} lg={5}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={5}>
-            <h2>
-              <span class="blue">Together,</span> we drive forward!
-            </h2>
-          </ExpressiveHeading>
-
-          <div class="spacer" />
-
-          <div class="fluid-paragraph-01">
-            Join Kenshi's network of partners to enjoy exclusive offers, volume
-            discounts, premium support, and closer collaboration.
-          </div>
-
-          <div class="spacer" />
-
-          <ExpressiveHeading size={3}>
-            <h4>Influencers and Content Creators</h4>
-          </ExpressiveHeading>
-
-          <div class="body-compact-02">
-            Earn up to 20% commission by joining one of our referral programs.
-            Curious? See who is <Link href="/docs/refer">eligible</Link>.
-          </div>
-
-          <div class="spacer" />
-
-          <div class="buttons">
-            <Button href="/dashboard" icon={Partnership}>
-              Contact us for partnership
-            </Button>
-            <Button href="/refer" kind="secondary" icon={AnalyticsReference}>
-              Referral program
-            </Button>
-          </div>
-
-          <div class="spacer" />
-          <div class="spacer" />
-        </div>
-      </Column>
-      <Column sm={4} md={4} lg={6}>
-        <div class="flex-column fast">
-          <ExpressiveHeading size={4}>
-            <h3>Partner to amazing businesses</h3>
-          </ExpressiveHeading>
-          <p>
-            We are on a constant lookout for collaborating with top-notch
-            companies and industry leaders.
-          </p>
-          <div class="spacer" />
-          <div class="partners">
-            <Grid noGutter padding fullWidth>
-              <Row class="center">
-                <Column sm={4} lg={8}>
-                  <OutboundLink href="https://chainstack.com">
-                    <ImageLoader src="/images/partners/chainstack.svg" />
-                  </OutboundLink>
-                </Column>
-                <Column sm={4} lg={8}>
-                  <OutboundLink href="https://unstoppabledomains.com/">
-                    <ImageLoader src="/images/partners/ud.svg" />
-                  </OutboundLink>
-                </Column>
-                <Column sm={4} lg={8}>
-                  <OutboundLink href="https://cls.global/">
-                    <ImageLoader src="/images/partners/cls.svg" />
-                  </OutboundLink>
-                </Column>
-                <Column sm={4} lg={8}>
-                  <OutboundLink href="https://lazyfi.gg/">
-                    <ImageLoader src="/images/partners/lazyfi.{$theme}.svg" />
-                  </OutboundLink>
-                </Column>
-              </Row>
-            </Grid>
-          </div>
-          <div class="spacer" />
-          <ExpressiveHeading size={4}>
-            <h3>Supported blockchains</h3>
-          </ExpressiveHeading>
-          <Grid noGutter padding fullWidth>
-            <Row class="supported-chains">
-              <Column sm={1} lg={2}>
-                <OutboundLink href="https://ethereum.org">
-                  <ImageLoader src="/images/chains/ethereum.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={1} lg={2}>
-                <OutboundLink href="https://arbitrum.io">
-                  <ImageLoader src="/images/chains/arbitrum.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={1} lg={2}>
-                <OutboundLink href="https://aurora.dev">
-                  <ImageLoader src="/images/chains/aurora.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={1} lg={2}>
-                <OutboundLink href="https://www.avax.network">
-                  <ImageLoader src="/images/chains/avalanche.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={1} lg={2}>
-                <OutboundLink href="https://www.bnbchain.org">
-                  <ImageLoader src="/images/chains/binance.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={1} lg={2}>
-                <OutboundLink href="https://bitgert.com">
-                  <ImageLoader src="/images/chains/bitgert.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={1} lg={2}>
-                <OutboundLink href="https://fantom.foundation">
-                  <ImageLoader src="/images/chains/fantom.svg" />
-                </OutboundLink>
-              </Column>
-              <Column sm={1} lg={2}>
-                <OutboundLink href="https://polygon.technology">
-                  <ImageLoader src="/images/chains/polygon.svg" />
-                </OutboundLink>
-              </Column>
-            </Row>
-          </Grid>
-          <div class="spacer" />
-          <p>Reach out to us to launch Kenshi services on your blockchain.</p>
-          <Grid noGutter padding fullWidth>
-            <Row>
-              <Column sm={4} lg={6}>
-                <Button
-                  href="mailto:chains@kenshi.io"
-                  icon={IntentRequestCreate}
-                >
-                  Add Your Chain
-                </Button>
-              </Column>
-            </Row>
-          </Grid>
-          <div class="spacer" />
-          <div class="spacer" />
-          <div class="spacer" />
-        </div>
-      </Column>
-      <Column sm={4} md={4} lg={5}>
-        <ImageLoader src="/images/backgrounds/partners.jpg" />
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid noGutter padding>
-    <Row>
-      <Column>
-        <ExpressiveHeading size={2}>
-          <h2>Read our latest articles</h2>
-        </ExpressiveHeading>
-      </Column>
-    </Row>
-    <Row>
-      <Column>
-        <BlogToc maxCount={4} lg={8} />
-      </Column>
-    </Row>
-    <Row>
-      <Column>
-        <Button href="/blog" icon={Blog}>Read all articles</Button>
-      </Column>
-    </Row>
-  </Grid>
+  <DeveloperResources />
+  <HereToHelp />
+  <Articles />
 </Content>
 
 <Footer />
 
 <style>
-  .text-normal {
-    font-size: 1rem;
-    color: var(--cds-text-01, #161616);
-  }
-  .head-link {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    font-size: 2rem;
-    font-weight: 300;
-  }
-  .head-link:hover span {
-    text-decoration: underline;
-  }
   h1 {
     font-weight: 300;
     font-size: 5rem;
   }
-  .fast h2,
-  .fast h2 span {
-    font-weight: 300;
-    font-size: 3.25rem;
-  }
+
   @media (max-width: 760px) {
     h1 {
       font-size: 2.5rem;
@@ -1163,35 +615,7 @@
   .blue {
     color: var(--cds-interactive-01);
   }
-  .blockchains {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1em;
-    padding-right: 8em;
-  }
-  @media (max-width: 720px) {
-    .blockchains {
-      padding-right: 0em;
-    }
-    .fast {
-      padding: 0;
-    }
-  }
-  .integration {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-  }
-  .integration :global(img) {
-    height: 40px;
-    max-width: 70%;
-    width: auto !important;
-    align-self: flex-start;
-    filter: grayscale(1) brightness(0.5) contrast(1.5);
-  }
-  :global([theme="g100"]) .integration :global(img) {
-    filter: grayscale(1) brightness(0.5) contrast(1.5) invert(1);
-  }
+
   .buttons {
     display: flex;
     gap: 1em;
@@ -1202,7 +626,24 @@
   .spacer {
     flex: 1;
   }
-  .partners :global(img) {
-    max-height: 48px;
+
+  .product {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  .product > :global(*:not(.buttons)) {
+    padding: 0 1.2rem;
+  }
+  .product :global(h3) {
+    margin-top: 1rem;
+  }
+
+  .buttons:not(.no-margin) {
+    margin-top: 4em;
+  }
+
+  .integrations {
+    padding-bottom: 1em;
   }
 </style>

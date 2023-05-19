@@ -19,7 +19,6 @@
   let email;
   let body;
 
-  let message;
   let disabled = undefined;
   let hideForm = false;
 
@@ -74,14 +73,27 @@
   {#if hideForm}
     <Row>
       <Column>
-        <p>
-          We've received your message and will contact you as soon as possible!
-        </p>
+        <div class="success">
+          <p class="body-02">
+            Thank you for reaching out to us! We have received your message and
+            appreciate you taking the time to contact us. One of our team
+            members will review your inquiry and respond to you as soon as
+            possible.
+          </p>
+          <p class="body-01">
+            In the meantime, we encourage you to explore our website further and
+            learn more about our innovative blockchain solutions.
+          </p>
+          <p class="body-01">
+            Thank you for your interest in Kenshi. We look forward to connecting
+            with you soon!
+          </p>
+        </div>
       </Column>
     </Row>
   {:else}
     <Row>
-      <Column>
+      <Column sm={4} lg={6}>
         <TextInput
           bind:value={name}
           labelText={"Your name"}
@@ -89,7 +101,7 @@
           required
         />
       </Column>
-      <Column>
+      <Column sm={4} lg={6}>
         <TextInput
           bind:value={email}
           labelText={"Your email"}
@@ -97,7 +109,7 @@
           required
         />
       </Column>
-      <Column>
+      <Column sm={4} lg={4}>
         <Select bind:selected={topic} labelText={"Topic"} required>
           <SelectItem value={"general"} text={"General Inquiry"} />
           <SelectItem value={"support"} text={"Tech Support"} />
@@ -119,7 +131,7 @@
     <Row>
       <Column>
         <TextArea
-          bind:value={message}
+          bind:value={body}
           labelText={"Your inquiry"}
           placeholder={"Hi! I'm writing you for..."}
           required
@@ -146,3 +158,11 @@
     </Row>
   {/if}
 </Grid>
+
+<style>
+  .success {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+</style>
