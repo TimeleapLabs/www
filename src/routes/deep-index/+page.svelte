@@ -643,7 +643,17 @@
     margin-top: 4em;
   }
 
+  .padding {
+    padding-bottom: 2em;
+  }
+
   .integrations {
     padding-bottom: 1em;
+  }
+
+  @media (max-width: 760px) {
+    .integrations {
+      padding-bottom: 2em;
+    }
   }
 </style>

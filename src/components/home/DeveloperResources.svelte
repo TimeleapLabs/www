@@ -110,4 +110,7 @@
   .resources h2 {
     margin-bottom: 2rem;
   }
+  .resources {
+    padding-bottom: 2em;
+  }
 </style>

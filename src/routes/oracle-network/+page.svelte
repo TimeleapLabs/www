@@ -63,8 +63,10 @@
         <Button
           href="/docs/services/oracle-network/custom"
           kind="secondary"
-          icon={Book}>Documentation</Button
+          icon={Book}
         >
+          Documentation
+        </Button>
       </div>
     </div>
 
@@ -651,10 +653,6 @@
     margin-top: 4em;
   }
 
-  .use-cases {
-    padding-bottom: 1em;
-  }
-
   .use-case {
     display: flex;
     flex-direction: column;
@@ -667,5 +665,18 @@
   }
   .use-case :global(h3) {
     margin-top: 1rem;
+  }
+  .padding {
+    padding-bottom: 2em;
+  }
+
+  .use-cases {
+    padding-bottom: 1em;
+  }
+
+  @media (max-width: 760px) {
+    .use-cases {
+      padding-bottom: 2em;
+    }
   }
 </style>
