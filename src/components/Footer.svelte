@@ -165,7 +165,7 @@
         <UnorderedList>
           <ListItem>
             <Link
-              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f&chain=bsc"
               target="_blank"
             >
               Buy Kenshi

@@ -22,6 +22,8 @@
   import DeveloperResources from "src/components/home/DeveloperResources.svelte";
   import HereToHelp from "src/components/home/HereToHelp.svelte";
   import Articles from "src/components/home/Articles.svelte";
+
+  import Pancake from "src/icons/Pancake.svelte";
 </script>
 
 <!-- Hero -->
@@ -46,6 +48,21 @@
       <ExpressiveHeading size={3}>
         Build faster and better decentralized apps in no-time.
       </ExpressiveHeading>
+
+      <div class="spacer" />
+
+      <div class="buttons">
+        <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
+        <Button href="/docs" kind="secondary" icon={Book}>Documentation</Button>
+        <Button
+          href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f&chain=bsc&chain=bsc"
+          target="_blank"
+          kind="secondary"
+          icon={Pancake}
+        >
+          Token
+        </Button>
+      </div>
 
       <div class="spacer" />
 
@@ -367,9 +384,6 @@
     flex-wrap: wrap;
     width: 100%;
     flex-wrap: wrap;
-  }
-  .spacer {
-    flex: 1;
   }
 
   .product {
