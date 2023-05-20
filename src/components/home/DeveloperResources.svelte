@@ -33,8 +33,8 @@
       </div>
     </Column>
     <Column />
-    <Column lg={10}>
-      <Grid padding condensed fullWidth>
+    <Column lg={11}>
+      <Grid padding noGutter fullWidth>
         <Row>
           <Column lg={5} md={4} sm={4}>
             <CardButton

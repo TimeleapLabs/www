@@ -174,7 +174,7 @@
 </script>
 
 <Content>
-  <Grid noGutter narrow padding>
+  <Grid padding>
     <Row>
       <Column lg={4} md={4} sm={4}>
         <Tile class="blue-tile">

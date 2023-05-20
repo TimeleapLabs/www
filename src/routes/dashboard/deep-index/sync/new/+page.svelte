@@ -47,7 +47,7 @@
 </script>
 
 <Content>
-  <Grid noGutter padding narrow>
+  <Grid padding>
     <Row>
       <Column>
         <Breadcrumb>

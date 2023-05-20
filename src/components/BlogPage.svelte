@@ -92,7 +92,7 @@
 
 <svelte:window on:hashchange={hashchange} bind:innerWidth />
 
-<Content class="blog-page">
+<Content class="blog-page no-margin">
   <div class="blog">
     <div class="meta-wrap">
       <div class="meta">

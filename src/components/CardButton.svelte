@@ -22,12 +22,10 @@
           </h4>
         </div>
       </ExpressiveHeading>
-      <p>
+      <div class="description body-01">
         {description}
-      </p>
-      <div class="icon">
-        <Launch />
       </div>
+      <Launch />
     </div>
   </ClickableTile>
 </div>
@@ -37,7 +35,7 @@
   .wrap :global(.bx--tile) {
     height: 100%;
   }
-  p {
+  .description {
     flex: 1;
   }
   .inner {

@@ -345,14 +345,14 @@
   }
   .blockchains {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
-    gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 1em 2em;
     padding-right: 8em;
     margin-top: 1em;
   }
   .blockchain {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 16px;
     fill: #fff;
   }
   @media (max-width: 720px) {
@@ -390,6 +390,7 @@
     height: 100vh;
     display: flex;
     align-items: center;
+    min-height: 768px;
   }
   .onboarding .buttons {
     margin-top: 4em;

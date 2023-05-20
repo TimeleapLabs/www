@@ -208,6 +208,12 @@ a.bx--header__menu-item {
 .bx--content.gap > *:not(:first-of-type) {
   margin-top: 12em;
 }
+.bx--content:not(.gap):not(.no-margin) > *:last-of-type {
+  margin-bottom: 8em;
+}
+.bx--content:not(.gap):not(.no-margin) > *:first-of-type {
+  margin-top: 4em;
+}
 @media (max-width: 640px) {
   .bx--content.gap > * {
     margin-bottom: 2em;
@@ -240,6 +246,7 @@ a.bx--header__menu-item {
   position: initial;
   z-index: 0;
   box-sizing: border-box;
+  padding-bottom: 2em;
 }
 
 a.bx--header__menu-item:focus {
@@ -404,6 +411,7 @@ ul ul {
   .hero-body {
     padding: 2em;
     box-sizing: border-box;
+    min-height: 720px;
   }
   .hero-image {
     height: 100vw;

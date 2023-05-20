@@ -110,7 +110,7 @@
 </script>
 
 <Content>
-  <Grid noGutter padding narrow>
+  <Grid padding>
     <Row>
       <Column>
         <Breadcrumb>
@@ -181,9 +181,9 @@
                     <Grid fullWidth noGutter>
                       <Row>
                         <Column>
-                          <ExpressiveHeading size={2}
-                            >Your API key</ExpressiveHeading
-                          >
+                          <ExpressiveHeading size={2}>
+                            Your API key
+                          </ExpressiveHeading>
                         </Column>
                       </Row>
                       <Row>

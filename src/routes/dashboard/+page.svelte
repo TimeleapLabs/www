@@ -10,7 +10,7 @@
 </script>
 
 <Content>
-  <Grid noGutter padding narrow>
+  <Grid padding>
     <Row>
       <Column>
         <ExpressiveHeading size={5}>

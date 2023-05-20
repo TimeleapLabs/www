@@ -74,7 +74,7 @@
 
 <svelte:window on:hashchange={hashchange} bind:innerWidth />
 
-<Content class="docs-page">
+<Content class="docs-page no-margin">
   <div class="docs">
     <Nav />
 
