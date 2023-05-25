@@ -43,7 +43,7 @@
     <InlineNotification
       kind="warning"
       title="Migration"
-      subtitle="The Kenshi V3 migration is scheduled for Wednesday, May 31st."
+      subtitle="The Kenshi V3 migration is scheduled for Wednesday, June 14th."
       on:close={(e) => {
         e.preventDefault();
         notice = false;

@@ -81,9 +81,10 @@
       <div class="spacer" />
     </div>
 
-    <div class="hero-image">
-      <ImageLoader src="/images/backgrounds/office.jpg" />
-    </div>
+    <div
+      class="hero-image"
+      style="background-image: url(/images/backgrounds/office.jpg);"
+    />
   </div>
 
   <Grid>
@@ -117,7 +118,7 @@
         <Grid noGutter fullWidth padding>
           <Row>
             <Column lg={8}>
-              <ClickableTile href="/deep-index">
+              <ClickableTile href="/deep-index" class="full-height">
                 <div class="product">
                   <ExpressiveHeading size={4}>
                     <h3>Indexing.</h3>
@@ -138,7 +139,7 @@
               </ClickableTile>
             </Column>
             <Column lg={8}>
-              <ClickableTile href="/oracle-network">
+              <ClickableTile href="/oracle-network" class="full-height">
                 <div class="product">
                   <ExpressiveHeading size={4}>
                     <h3>Oracles.</h3>
@@ -158,7 +159,7 @@
               </ClickableTile>
             </Column>
             <Column lg={8}>
-              <ClickableTile href="/iot-sdk">
+              <ClickableTile href="/iot-sdk" class="full-height">
                 <div class="product">
                   <ExpressiveHeading size={4}>
                     <h3>IoT.</h3>
@@ -171,6 +172,27 @@
                     Enable bidirectional communication and seamless integration
                     for innovative IoT applications. Broaden the horizons of Web
                     3.0 technologies.
+                  </div>
+                  <div class="buttons">
+                    <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
+                  </div>
+                </div>
+              </ClickableTile>
+            </Column>
+            <Column lg={8}>
+              <ClickableTile href="/solidquery" class="full-height">
+                <div class="product">
+                  <ExpressiveHeading size={4}>
+                    <h3>SolidQuery.</h3>
+                  </ExpressiveHeading>
+                  <div class="body-02">
+                    Your Personalized Decentralized Database Generator.
+                  </div>
+                  <div class="body-01">
+                    SolidQuery transforms your data schema into a custom
+                    decentralized database. Experience streamlined CRUD
+                    operations, on-chain indexing, and personalized data
+                    management.
                   </div>
                   <div class="buttons">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>

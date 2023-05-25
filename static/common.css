@@ -211,6 +211,7 @@ a.bx--header__menu-item {
 .bx--content:not(.gap):not(.no-margin) > *:last-of-type {
   margin-bottom: 8em;
 }
+.bx--content.distance > *:first-of-type,
 .bx--content:not(.gap):not(.no-margin) > *:first-of-type {
   margin-top: 4em;
 }
@@ -218,6 +219,7 @@ a.bx--header__menu-item {
   .bx--content.gap > * {
     margin-bottom: 2em;
   }
+  .bx--content.distance > *:first-of-type,
   .bx--content.gap > *:not(:first-of-type) {
     margin-top: 2em;
   }
@@ -382,24 +384,20 @@ ul ul {
 }
 
 .hero {
-  height: calc(100vh - 48px);
+  min-height: calc(100vh - 48px);
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 .hero-image {
-  max-height: calc(100vh - 48px);
-}
-.hero-image img {
-  width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center center;
 }
-
 .hero-body {
   padding: 8em;
   box-sizing: border-box;
-  max-height: calc(100vh - 48px);
+  min-height: calc(100vh - 48px);
 }
 @media (max-width: 1080px) {
   .hero-body {
@@ -422,4 +420,9 @@ ul ul {
     flex-direction: column;
     height: auto;
   }
+}
+
+.monaco-editor {
+  padding-top: 1.5em;
+  box-sizing: border-box;
 }

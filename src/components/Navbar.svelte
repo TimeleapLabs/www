@@ -59,7 +59,9 @@
     <HeaderNavItem href="/docs" text="Docs" />
     <!-- <HeaderNavItem href="/" text="Link 2" /> -->
     <FullWidthHeaderNavMenu text="Products">
-      <VerticalTabs tabs={["Deep Index", "Oracle Network", "IoT SDK"]}>
+      <VerticalTabs
+        tabs={["Deep Index", "Oracle Network", "IoT SDK", "SolidQuery"]}
+      >
         <div class="vertical-tab">
           <Grid padding>
             <Row>
@@ -261,6 +263,52 @@
                     Blockchain IoT SDK for receiving blockchain events on
                     Arduino MKR WiFi boards, expanding the functionality of your
                     connected devices.
+                  </div>
+                </ClickableTile>
+              </Column>
+            </Row>
+          </Grid>
+        </div>
+        <div class="vertical-tab">
+          <Grid padding>
+            <Row>
+              <Column>
+                <h3>SolidQuery</h3>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                Unleash the power of blockchain data management with SolidQuery.
+                Discover our product, explore the playground, and start building
+                sophisticated decentralized databases tailored to your needs.
+              </Column>
+            </Row>
+            <Row>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile href="/docs/iot/install">
+                  <h4>SolidQuery</h4>
+                  <div class="body">
+                    Dive into the vast functionality of SolidQuery. Learn about
+                    its innovative decentralized database generation
+                    capabilities, view its potential use cases, and start
+                    building your own blockchain data solutions.
+                  </div>
+                </ClickableTile>
+              </Column>
+              <Column lg={4} md={6} sm={12}>
+                <ClickableTile
+                  href="https://github.com/KenshiTech/iot-sdk/tree/master/SDK/Arduino/examples/blinky32"
+                  target="_blank"
+                >
+                  <h4 class="external">
+                    <span>SolidQuery Playground</span>
+                    <Launch />
+                  </h4>
+                  <div class="body">
+                    Engage with SolidQuery's playground. Experiment with
+                    real-time generation of Solidity contracts from your data
+                    schema. Witness firsthand how SolidQuery can revolutionize
+                    your blockchain projects.
                   </div>
                 </ClickableTile>
               </Column>
@@ -545,6 +593,9 @@
           href="/docs/services/iot/install"
           text="Install for Arduino IDE"
         />
+      </SideNavMenu>
+      <SideNavMenu text="SolidQuery">
+        <SideNavMenuItem href="/solidquery/playground" text="Playground" />
       </SideNavMenu>
     </SideNavMenu>
     <SideNavMenu text="Developers">

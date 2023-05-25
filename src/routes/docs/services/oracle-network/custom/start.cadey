@@ -22,7 +22,7 @@ custom oracle.
 
 Once you deploy your oracle, you can see the address of the gas wallet associated with your oracle on the
 [link /dashboard/oracle-network/custom Custom Oracle Dashboard.] You must supply enough gas to this address
-for oracle network to fulfil your oracle's requests.
+for oracle network to fulfill your oracle's requests.
 
 [alert warning
        Once you transfer gas to the associated address, the gas belongs to Kenshi and its Oracle Network

@@ -66,9 +66,10 @@
       </div>
     </div>
 
-    <div class="hero-image ">
-      <ImageLoader src="/images/backgrounds/data.jpg" />
-    </div>
+    <div
+      class="hero-image"
+      style="background-image: url(/images/backgrounds/data.jpg);"
+    />
   </div>
 
   <Grid>

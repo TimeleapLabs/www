@@ -70,9 +70,10 @@
       </div>
     </div>
 
-    <div class="hero-image ">
-      <ImageLoader src="/images/backgrounds/network.jpg" />
-    </div>
+    <div
+      class="hero-image"
+      style="background-image: url(/images/backgrounds/network.jpg);"
+    />
   </div>
 
   <Grid>

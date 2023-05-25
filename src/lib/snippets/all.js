@@ -6,3 +6,4 @@ export { balance } from "./balance.js";
 export { price } from "./price.js";
 export { simple } from "./simple.js";
 export { weather } from "./weather.js";
+export { solidqInstall, solidqSchema, solidqGenerate } from "./solidq.js";

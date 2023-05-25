@@ -101,9 +101,7 @@
           <ListItem><Link href="/dashboard">Dashboard</Link></ListItem>
           <ListItem><Link href="/status">Service Status</Link></ListItem>
           <ListItem>
-            <Link href="/docs/services/oracle-network/vrf">
-              Getting randomness
-            </Link>
+            <Link href="/solidquery/playground">SolidQuery: Playground</Link>
           </ListItem>
           <ListItem>
             <Link href="/docs/services/deep-index/graphql">
@@ -155,6 +153,9 @@
           </ListItem>
           <ListItem>
             <Link href="/docs/services/iot">Blockchain IoT SDK</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/docs/services/iot">SolidQuery</Link>
           </ListItem>
         </UnorderedList>
       </Column>
