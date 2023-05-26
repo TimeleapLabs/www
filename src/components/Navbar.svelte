@@ -224,7 +224,7 @@
             </Row>
             <Row>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="/docs/iot/install">
+                <ClickableTile href="/docs/services/iot/install">
                   <h4>Arduino IDE</h4>
                   <div class="body">
                     Utilize the Kenshi Blockchain IoT SDK with ESP32 and Arduino
@@ -235,7 +235,7 @@
               </Column>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile
-                  href="https://github.com/KenshiTech/iot-sdk/tree/master/SDK/Arduino/examples/blinky32"
+                  href="https://github.com/KenshiTech/iot-sdk/tree/master/arduino/examples/blinky32"
                   target="_blank"
                 >
                   <h4 class="external">
@@ -251,7 +251,7 @@
               </Column>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile
-                  href="https://github.com/KenshiTech/iot-sdk/tree/master/SDK/Arduino/examples/blinky"
+                  href="https://github.com/KenshiTech/iot-sdk/tree/master/arduino/examples/blinky"
                   target="_blank"
                 >
                   <h4 class="external">
@@ -285,7 +285,7 @@
             </Row>
             <Row>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile href="/docs/iot/install">
+                <ClickableTile href="/solidquery">
                   <h4>SolidQuery</h4>
                   <div class="body">
                     Dive into the vast functionality of SolidQuery. Learn about
@@ -296,10 +296,7 @@
                 </ClickableTile>
               </Column>
               <Column lg={4} md={6} sm={12}>
-                <ClickableTile
-                  href="https://github.com/KenshiTech/iot-sdk/tree/master/SDK/Arduino/examples/blinky32"
-                  target="_blank"
-                >
+                <ClickableTile href="/solidquery/playground">
                   <h4 class="external">
                     <span>SolidQuery Playground</span>
                     <Launch />
