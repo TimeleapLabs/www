@@ -297,10 +297,7 @@
               </Column>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile href="/solidquery/playground">
-                  <h4 class="external">
-                    <span>SolidQuery Playground</span>
-                    <Launch />
-                  </h4>
+                  <h4>SolidQuery Playground</h4>
                   <div class="body">
                     Engage with SolidQuery's playground. Experiment with
                     real-time generation of Solidity contracts from your data
