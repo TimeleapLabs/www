@@ -99,7 +99,7 @@
       </Column>
     </Row>
     <Row>
-      <Column>
+      <Column sm={4} lg={8}>
         <div class="body-02">
           Here at the SolidQuery Playground, you have the chance to experiment
           and engage with SolidQuery's powerful capabilities. This interactive
@@ -267,6 +267,9 @@
       grid-template-columns: 1fr;
       gap: 1em;
       box-sizing: border-box;
+    }
+    .editor {
+      width: 100%;
     }
   }
 </style>
