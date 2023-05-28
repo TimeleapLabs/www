@@ -176,7 +176,7 @@
 <Content>
   <Grid padding>
     <Row>
-      <Column lg={4} md={4} sm={4}>
+      <Column xlg={4} lg={6} md={6} sm={4}>
         <Tile class="blue-tile">
           <div class="flex-column">
             <ExpressiveHeading size={4}>
@@ -189,7 +189,7 @@
           </div>
         </Tile>
       </Column>
-      <Column lg={4} md={4} sm={4}>
+      <Column xlg={4} lg={6} md={4} sm={4}>
         <div class="flex-column align-start">
           <p class="body-02">
             You'll need to connect your wallet to use certain areas of Kenshi
@@ -208,7 +208,7 @@
       </Column>
     </Row>
     <Row>
-      <Column lg={4}>
+      <Column xlg={4} lg={6}>
         <Tile>
           <div class="card-inner forms">
             <div class="field">
