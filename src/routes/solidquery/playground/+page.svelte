@@ -39,16 +39,22 @@
     ? Base64.decode(code)
     : [
         "Book:",
-        "  Title: string",
+        "  Id: uint256 id auto",
+        "  Name: string",
         "  Author: string indexed",
-        "  Published: uint256 indexed",
+        "  Published: uint256 indexed get set",
         "",
         "Person:",
         "  Name: string",
         "  Birth: uint256 indexed",
+        "",
+        "User:",
+        "  Address: address id",
+        "  Balance: uint256",
       ].join("\n");
 
-  const defaultResult = generate(parse(defaultValue));
+  const options = { contract: "MyStorage", solidity: "^0.8.0" };
+  const defaultResult = generate(parse(defaultValue), options);
 
   let base64 = Base64.encodeURI(defaultValue);
   let url;
@@ -60,7 +66,7 @@
   const onContentChange = debounce(() => {
     try {
       const input = inputEditor.getValue();
-      const output = generate(parse(input));
+      const output = generate(parse(input), options);
       outputEditor.setValue(output);
       base64 = Base64.encodeURI(input);
     } catch (_error) {}
@@ -74,6 +80,7 @@
     inputEditor = Monaco.editor.create(inputEl, {
       value: defaultValue,
       language: "yaml",
+      fontFamily: "IBM Plex Mono",
     });
 
     inputEditor.onDidChangeModelContent(onContentChange);
@@ -82,6 +89,7 @@
       value: defaultResult,
       language: "sol",
       readOnly: true,
+      fontFamily: "IBM Plex Mono",
     });
 
     return () => {

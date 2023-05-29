@@ -31,7 +31,7 @@
   "type": "module",
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.53.0",
-    "@kenshi.io/solidquery": "^0.1.0",
+    "@kenshi.io/solidquery": "^0.2.0",
     "@sendgrid/mail": "^7.7.0",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.5.0",
