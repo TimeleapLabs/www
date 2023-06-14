@@ -55,7 +55,7 @@
         <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
         <Button href="/docs" kind="secondary" icon={Book}>Documentation</Button>
         <Button
-          href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f&chain=bsc&chain=bsc"
+          href="https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=bsc"
           target="_blank"
           kind="secondary"
           icon={Pancake}

@@ -19,7 +19,7 @@ We will disable this tax globally when our liquidity unlocks, meanwhile:
 
 Find the Kenshi token contract address on BNB Smart Chain below:
 
-[code 0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f]
+[code 0xf1264873436A0771E440E2b28072FAfcC5EEBd01]
 
 [heading :size 2 Technology]
 
@@ -29,7 +29,7 @@ and is deployed to BNB Smart Chain.
 [heading :size 2 How to buy?]
 
 You can buy the token on
-[link https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f&chain=bsc PancakeSwap.]
+[link https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01 PancakeSwap.]
 
 [heading :size 2 Utility]
 

@@ -5,7 +5,7 @@ import { toast } from "@zerodevx/svelte-toast";
 import kenshiAbi from "../abi/kenshi";
 
 const collectorAddress = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
-const kenshiAddress = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
+const kenshiAddress = "0xf1264873436A0771E440E2b28072FAfcC5EEBd01";
 
 const usdToKenshi = async (usd) => {
   const { price } = await fetchTokenPriceFromPair();

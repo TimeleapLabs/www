@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 const provider = new ethers.providers.JsonRpcProvider(
   "https://bsc-dataseed.binance.org"
 );
-const contractAddress = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
+const contractAddress = "0xf1264873436A0771E440E2b28072FAfcC5EEBd01";
 const usdcAddress = "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d";
 const ethUsdcPairAddress = "0xea26b78255df2bbc31c1ebf60010d78670185bd0";
 const dexAddress = "0x28e276A456266E5576FFbc33868B9b30CB2AE2E3";

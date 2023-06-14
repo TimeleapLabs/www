@@ -41,9 +41,9 @@
 {#if notice}
   <div class="notice" transition:fade>
     <InlineNotification
-      kind="warning"
+      kind="success"
       title="Migration"
-      subtitle="The Kenshi V3 migration is scheduled for Wednesday, June 14th."
+      subtitle="The Kenshi V3 migration took place on Wednesday, June 14th."
       on:close={(e) => {
         e.preventDefault();
         notice = false;

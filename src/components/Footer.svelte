@@ -166,7 +166,7 @@
         <UnorderedList>
           <ListItem>
             <Link
-              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f&chain=bsc"
+              href="https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01"
               target="_blank"
             >
               Buy Kenshi
@@ -174,7 +174,7 @@
           </ListItem>
           <ListItem>
             <Link
-              href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+              href="https://dexscreener.com/arbitrum/0x68c685fd52a56f04665b491d491355a624540e85"
               target="_blank"
             >
               View charts

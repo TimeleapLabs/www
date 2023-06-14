@@ -1,8 +1,15 @@
 [heading Kenshi V3 Migration]
 
-The Kenshi migration is scheduled for Wednesday, June 14th. For further information on the migration,
+The Kenshi migration took place on Wednesday, June 14th. For further information on the migration,
 please visit [link https://forum.kenshi.io/t/the-official-announcement-of-kenshi-v3/89 
-The official announcement of Kenshi v3]. 
+The official announcement of Kenshi v3].
+
+[alert success
+   The Kenshi V3 contract address on Arbitrum is 0xf1264873436A0771E440E2b28072FAfcC5EEBd01]
+
+Click on the copy button to copy the contract address:
+
+[code 0xf1264873436A0771E440E2b28072FAfcC5EEBd01]
 
 [heading :size 2 What will exactly happen?]
 

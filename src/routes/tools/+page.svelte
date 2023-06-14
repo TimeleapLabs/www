@@ -69,7 +69,7 @@
   $: usdTreasuryDisplay = treasury && unitPrice ? toUsd(treasury) : "0";
   $: usdMaxBalanceDisplay = maxBalance && unitPrice ? toUsd(maxBalance) : "0";
 
-  const kenshiAddr = "0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f";
+  const kenshiAddr = "0xf1264873436A0771E440E2b28072FAfcC5EEBd01";
   const unstakeAddr = "0xA5b18FF6189031d977db28B3D31d15F067eBD1C4";
   const treasuryAddr = "0xD59321c8266534dac369F0eFABDD5b815F1a5eb6";
   const jsonRpcUrl = "https://bsc-dataseed.binance.org";
@@ -227,7 +227,7 @@
           </div>
           <div class="buttons">
             <Button
-              href="https://pancakeswap.finance/swap?outputCurrency=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f&chain=bsc"
+              href="https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01"
               icon={Purchase}
               kind="primary"
             >
@@ -237,7 +237,7 @@
               Add ₭enshi
             </Button>
             <Button
-              href="https://charts.bogged.finance/?c=bsc&t=0x42f9c5a27a2647a64f7D3d58d8f896C60a727b0f"
+              href="https://dexscreener.com/arbitrum/0x68c685fd52a56f04665b491d491355a624540e85"
               solid
               icon={Launch}
               kind="tertiary"
