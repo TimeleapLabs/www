@@ -2,7 +2,7 @@ import abi from "$lib/abi/kenshi";
 import { ethers } from "ethers";
 
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://bsc-dataseed.binance.org"
+  "https://arbitrum-one.publicnode.com"
 );
 const contractAddress = "0xf1264873436A0771E440E2b28072FAfcC5EEBd01";
 const usdcAddress = "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d";
@@ -12,19 +12,15 @@ const ethAddress = "0x2170ed0880ac9a755fd29b2688956bd959f933f8";
 const contract = new ethers.Contract(contractAddress, abi, provider);
 const usdcContract = new ethers.Contract(usdcAddress, abi, provider);
 const ethContract = new ethers.Contract(ethAddress, abi, provider);
-const initialSupply = ethers.BigNumber.from("10000000000000000000000000000000");
-
-export const fetchBurnAmount = async () => {
-  return await contract.getTotalBurned();
-};
+const initialSupply = ethers.BigNumber.from("1000000000000000000000000000");
+const reservedSupply = ethers.BigNumber.from("150000000000000000000000000");
 
 export const fetchSupply = async () => {
-  const totalBurned = await fetchBurnAmount();
-  const circulatingSupply = initialSupply.sub(totalBurned);
+  const circulatingSupply = initialSupply.sub(reservedSupply);
 
   return {
     circulating: ethers.utils.formatUnits(circulatingSupply),
-    burned: ethers.utils.formatUnits(totalBurned),
+    burned: "0",
   };
 };
 
