@@ -21,7 +21,6 @@
 
   import formatThousands from "format-thousands";
   import kenshiAbi from "src/lib/abi/kenshi";
-  import unstakeAbi from "src/lib/abi/unstake";
 
   import { fetchTokenPriceFromPair } from "src/lib/api/token";
   import { page } from "$app/stores";
@@ -29,12 +28,7 @@
   let balance;
   let userAddress = $page?.url?.searchParams?.get?.("address");
   let unitPrice;
-  let maxBalance;
   let treasury;
-  let ableToBuy;
-
-  let usdAbleToBuyDisplay = "0";
-  let ableToBuyDisplay = "0";
 
   const formatCurrency = (n, unit = "") =>
     unit + formatThousands(trimDecimals(n), ",");
@@ -45,34 +39,20 @@
   const toKenshi = (n) =>
     formatCurrency(ethers.utils.formatUnits(n || "0")) || "0";
 
-  $: if (maxBalance && balance) {
-    const diff = maxBalance.sub(balance);
-    if (diff.gt(0)) {
-      ableToBuy = diff;
-    } else {
-      ableToBuy = ethers.BigNumber.from("0");
-    }
-    ableToBuyDisplay = toKenshi(ableToBuy);
-    usdAbleToBuyDisplay = toUsd(ableToBuy);
-  }
-
   const trimDecimals = (n) => {
     const [lhs, rhs = ""] = n.toString().split(".");
     return [lhs, rhs.slice(0, 2).replace(/0+$/, "")].filter(Boolean).join(".");
   };
 
   $: balanceDisplay = toKenshi(balance || "0");
-  $: maxBalanceDisplay = toKenshi(maxBalance || "0");
   $: treasuryDisplay = toKenshi(treasury || "0");
 
   $: usdBalanceDisplay = balance && unitPrice ? toUsd(balance) : "0";
   $: usdTreasuryDisplay = treasury && unitPrice ? toUsd(treasury) : "0";
-  $: usdMaxBalanceDisplay = maxBalance && unitPrice ? toUsd(maxBalance) : "0";
 
   const kenshiAddr = "0xf1264873436A0771E440E2b28072FAfcC5EEBd01";
-  const unstakeAddr = "0xA5b18FF6189031d977db28B3D31d15F067eBD1C4";
   const treasuryAddr = "0xD59321c8266534dac369F0eFABDD5b815F1a5eb6";
-  const jsonRpcUrl = "https://bsc-dataseed.binance.org";
+  const jsonRpcUrl = "https://arbitrum.blockpi.network/v1/rpc/public";
   const provider = new ethers.providers.JsonRpcProvider(jsonRpcUrl);
   const contract = new ethers.Contract(kenshiAddr, kenshiAbi, provider);
 
@@ -91,7 +71,6 @@
     if (!userAddress) return;
     balance = await contract.balanceOf(userAddress);
     treasury = await contract.balanceOf(treasuryAddr);
-    maxBalance = await contract.getMaxBalance();
   };
 
   $: if ($wallet?.provider) onWallet();
@@ -135,9 +114,9 @@
     };
 
     try {
-      await onboard.setChain({ chainId: "0x38" });
+      await onboard.setChain({ chainId: "0xa4b1" });
     } catch (error) {
-      return toast.push("Couldn't switch to the BSC network.");
+      return toast.push("Couldn't switch to the Arbitrum One network.");
     }
 
     $wallet.provider
@@ -145,21 +124,6 @@
       .catch(() => {
         toast.push("Couldn't add the token to your wallet.");
       });
-  };
-
-  let isUnstaking = false;
-  const unstake = async () => {
-    isUnstaking = true;
-    try {
-      const provider = new ethers.providers.Web3Provider($wallet.provider);
-      const signer = provider.getSigner(userAddress);
-      const contract = new ethers.Contract(unstakeAddr, unstakeAbi, signer);
-      await contract.unstake();
-      toast.push("Unstaking was successful.");
-    } catch (error) {
-      toast.push("There was a problem with unstaking. Retry later.");
-    }
-    isUnstaking = false;
   };
 
   onMount(() => {
@@ -264,12 +228,6 @@
                 kenshi: balanceDisplay,
                 usd: usdBalanceDisplay,
               },
-              {
-                id: "1",
-                name: "To max",
-                kenshi: ableToBuyDisplay,
-                usd: usdAbleToBuyDisplay,
-              },
             ]}
           />
         </Column>
@@ -289,40 +247,8 @@
                 kenshi: treasuryDisplay,
                 usd: usdTreasuryDisplay,
               },
-              {
-                id: "1",
-                name: "Max Balance",
-                kenshi: maxBalanceDisplay,
-                usd: usdMaxBalanceDisplay,
-              },
             ]}
           />
-        </Column>
-        <Column>
-          <Tile>
-            <ExpressiveHeading size={3}>Unstake</ExpressiveHeading>
-            <div class="body-02 tax">Make your account tax-free</div>
-            <InlineNotification hideCloseButton kind="info">
-              You can click on the button below to completely remove the tax
-              from your account. You only need to do this once.
-            </InlineNotification>
-            <Button
-              disabled={isUnstaking}
-              on:click={unstake}
-              icon={IntentRequestUninstall}
-            >
-              {#if isUnstaking}
-                <SpinLine
-                  size="32"
-                  color="currentColor"
-                  unit="px"
-                  duration="4s"
-                /> Unstaking..
-              {:else}
-                Unstake
-              {/if}
-            </Button>
-          </Tile>
         </Column>
       {/if}
     </Row>

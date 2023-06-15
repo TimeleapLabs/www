@@ -45,7 +45,6 @@
     searchResults = [];
     const req = await fetch(`/api/docs/search?q=${encodeURIComponent(query)}`);
     searchResults = await req.json();
-    console.log({ searchResults });
     isSearching = false;
   });
 

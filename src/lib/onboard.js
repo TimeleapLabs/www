@@ -77,6 +77,12 @@ const options = {
       label: "Avalanche C-Chain",
       rpcUrl: "https://api.avax.network/ext/bc/C/rpc",
     },
+    {
+      id: "0xa4b1",
+      token: "ETH",
+      label: "Arbitrum One",
+      rpcUrl: "https://arbitrum.blockpi.network/v1/rpc/public",
+    },
   ],
   wallets: [walletConnect, injected, uauth],
 };

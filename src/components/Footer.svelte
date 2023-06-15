@@ -180,6 +180,14 @@
               View charts
             </Link>
           </ListItem>
+          <ListItem>
+            <Link
+              href="https://www.coingecko.com/en/coins/kenshi"
+              target="_blank"
+            >
+              Track on CoinGecko
+            </Link>
+          </ListItem>
           <ListItem><Link href="/tools">Tools</Link></ListItem>
         </UnorderedList>
       </Column>
