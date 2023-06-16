@@ -25,7 +25,7 @@ export const makeKenshiPayment = async (
   }
 
   try {
-    await onboard.setChain({ chainId: "0x38" });
+    await onboard.setChain({ chainId: "0xa4b1" });
   } catch (error) {
     toast.push("Couldn't change to BSC network.");
     return null;
