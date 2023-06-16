@@ -1,35 +1,20 @@
 [heading The Kenshi token]
 
-[bold ⚠️ Important notice! ⚠️]
-
-Read this if you're buying the token:
-
-We have removed our tax from PancakeSwap, but our account-to-account tax is still in place.
-Disable this tax for your account [link /tools here] by connecting your wallet and clicking "Unstake."
-We will disable this tax globally when our liquidity unlocks, meanwhile:
-
-[list 
-  [:❗️ Buy the token on PancakeSwap only]
-  [:❗️ Do not buy with limit orders]
-  [:❗️ Unstake your token]
-  [:❗️ Contact our support if you accidentally trigger the tax so we can issue a refund]
-]
-
 [heading :size 2 Contract]
 
-Find the Kenshi token contract address on BNB Smart Chain below:
+Find the Kenshi token contract address on Arbitrum below:
 
 [code 0xf1264873436A0771E440E2b28072FAfcC5EEBd01]
 
 [heading :size 2 Technology]
 
-Kenshi implements the [link https://eips.ethereum.org/EIPS/eip-1363 ERC-1363] token standard
-and is deployed to BNB Smart Chain.
+Kenshi implements the [link https://eips.ethereum.org/EIPS/eip-20 ERC-20] token standard
+and is deployed to Arbitrum.
 
 [heading :size 2 How to buy?]
 
 You can buy the token on
-[link https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01 PancakeSwap.]
+[link https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01 UniSwap.]
 
 [heading :size 2 Utility]
 
@@ -39,7 +24,5 @@ blockchain-based infrastructure.
 
 [heading :size 2 Tokenomics]
 
-Kenshi started with a total supply of 10T tokens. Fifty percent of the total supply was burned
-during liquidity bootstrapping and in v2 release of the token. There was no team allocations.
-All tokens were offered to the public on PancakeSwap, and the liquidity is locked in a Kenshi
-locker.
+Kenshi started with a total supply of 1B tokens.
+Tokens are offered to the public on UniSwap.
