@@ -23,7 +23,7 @@
   import HereToHelp from "src/components/home/HereToHelp.svelte";
   import Articles from "src/components/home/Articles.svelte";
 
-  import Pancake from "src/icons/Pancake.svelte";
+  import UniSwap from "src/icons/UniSwap.svelte";
 </script>
 
 <!-- Hero -->
@@ -58,7 +58,7 @@
           href="https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=bsc"
           target="_blank"
           kind="secondary"
-          icon={Pancake}
+          icon={UniSwap}
         >
           Token
         </Button>
