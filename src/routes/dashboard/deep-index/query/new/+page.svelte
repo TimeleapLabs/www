@@ -320,7 +320,7 @@
               <InlineNotification
                 kind="info"
                 title="Payments"
-                subtitle="Currently all payments for the Kenshi services are done on the BNB Chain."
+                subtitle="Currently all payments for the Kenshi services are done on Arbitrum One."
                 hideCloseButton
               />
             </Column>
