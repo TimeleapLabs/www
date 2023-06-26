@@ -35,7 +35,10 @@ const schema = {
   concurrency: form.types.positiveNumber("Concurrency", ["insert", "update"]),
   duration: form.types.positiveNumber("Duration", ["insert", "credit"]),
   fromBlock: form.types.positiveNumber("Block", ["insert"]),
-  confirmations: form.types.positiveNumber("Block", ["insert", "update"]),
+  confirmations: form.types.positiveNumber("Confirmations", [
+    "insert",
+    "update",
+  ]),
   abi: {
     name: "ABI",
     validate(value) {
@@ -93,6 +96,7 @@ const query = (owner) => `{
         callsLeft
         endpoint
         concurrency
+        confirmations
         tier
       }
     }

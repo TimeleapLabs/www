@@ -36,6 +36,10 @@ const schema = {
     optional: true,
   },
   fromBlock: form.types.positiveNumber("From block", ["insert"]),
+  confirmations: form.types.positiveNumber("Confirmations", [
+    "insert",
+    "update",
+  ]),
   address: {
     name: "Contract address",
     regex: /^0x[0-9a-f]{40}$/i,
@@ -88,6 +92,7 @@ const query = (owner) => `{
         abi
         bearer
         address
+        confirmations
         expiresAt
       }
     }

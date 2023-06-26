@@ -276,9 +276,9 @@
                       </Row>
                       <Row>
                         <Column>
-                          <ExpressiveHeading size={2}
-                            >Oracle logic</ExpressiveHeading
-                          >
+                          <ExpressiveHeading size={2}>
+                            Oracle logic
+                          </ExpressiveHeading>
                         </Column>
                       </Row>
                       <Row>

@@ -15,6 +15,7 @@
   import { fixLabelTooltip } from "src/lib/tooltip";
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
   import { UpdateNow, Purchase } from "carbon-icons-svelte";
+  import { NumberInputSkeleton } from "carbon-components-svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
@@ -75,6 +76,7 @@
       abi: JSON.stringify(hookFromId.abi, null, 2),
       address: hookFromId.address,
       bearer: hookFromId.bearer,
+      confirmations: hookFromId.confirmations || 0,
     };
   }
 
@@ -282,6 +284,52 @@
                             </TextInput>
                           {:else}
                             <TextInputSkeleton />
+                          {/if}
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <ExpressiveHeading size={2}>
+                            Confirmations
+                          </ExpressiveHeading>
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          <p>
+                            How many block confirmations do you need before
+                            processing an event?
+                          </p>
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column>
+                          {#if hookFromId}
+                            <NumberInput
+                              placeholder="Confirmations"
+                              label="Confirmations"
+                              name="confirmations"
+                              helperText="Deep Index waits for {$updateValues.confirmations ||
+                                0} blocks before sending an event to your endpoint."
+                              required
+                              bind:value={$updateValues.confirmations}
+                              invalid={$updateValues.confirmations &&
+                                !!$updateInvalids.confirmations}
+                              invalidText={$updateInvalids.confirmations}
+                            >
+                              <svelte:fragment slot="label">
+                                <div use:fixLabelTooltip>
+                                  <Tooltip triggerText="Confirmations">
+                                    <p>
+                                      How many block confirmations do you need
+                                      before processing an event?
+                                    </p>
+                                  </Tooltip>
+                                </div>
+                              </svelte:fragment>
+                            </NumberInput>
+                          {:else}
+                            <NumberInputSkeleton />
                           {/if}
                         </Column>
                       </Row>

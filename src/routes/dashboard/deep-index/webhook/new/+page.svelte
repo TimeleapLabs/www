@@ -30,6 +30,7 @@
     requests: 100000,
     fromBlock: 0,
     duration: 1,
+    confirmations: 0,
   };
 
   $: price = getReverseAPIPrice($values.duration, $values.requests);
@@ -229,7 +230,9 @@
 
           <Row>
             <Column>
-              <ExpressiveHeading size={2}>Starting point</ExpressiveHeading>
+              <ExpressiveHeading size={2}>
+                Starting point & confirmations
+              </ExpressiveHeading>
             </Column>
           </Row>
           <Row>
@@ -258,6 +261,30 @@
                       <p>
                         From which block number should R-API start notifying
                         your endpoint?
+                      </p>
+                    </Tooltip>
+                  </div>
+                </svelte:fragment>
+              </NumberInput>
+            </Column>
+            <Column>
+              <NumberInput
+                placeholder="Confirmations"
+                label="Confirmations"
+                name="confirmations"
+                helperText="Deep Index waits for {$values.confirmations ||
+                  0} blocks before sending an event to your endpoint."
+                required
+                bind:value={$values.confirmations}
+                invalid={$values.confirmations && !!$invalids.confirmations}
+                invalidText={$invalids.confirmations}
+              >
+                <svelte:fragment slot="label">
+                  <div use:fixLabelTooltip>
+                    <Tooltip triggerText="Confirmations">
+                      <p>
+                        How many block confirmations do you need before
+                        processing an event?
                       </p>
                     </Tooltip>
                   </div>
