@@ -188,7 +188,16 @@
               Track on CoinGecko
             </Link>
           </ListItem>
+          <ListItem>
+            <Link
+              href="https://coinmarketcap.com/currencies/kenshi-v3/"
+              target="_blank"
+            >
+              Follow on CoinMarketCap
+            </Link>
+          </ListItem>
           <ListItem><Link href="/tools">Tools</Link></ListItem>
+          <ListItem><Link href="/bridge">Bridge</Link></ListItem>
         </UnorderedList>
       </Column>
       <Column>
