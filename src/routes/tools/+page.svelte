@@ -7,16 +7,14 @@
   import ConnectButton from "src/components/ConnectButton.svelte";
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import { Launch, Purchase } from "carbon-icons-svelte";
-  import { IntentRequestUninstall } from "carbon-icons-svelte";
   import { TextInput, CopyButton } from "carbon-components-svelte";
-  import { DataTable, InlineNotification } from "carbon-components-svelte";
+  import { DataTable } from "carbon-components-svelte";
 
   import { wallet } from "src/stores/wallet";
 
   import { toast } from "@zerodevx/svelte-toast";
   import { ethers } from "ethers";
   import { onMount } from "svelte";
-  import { SpinLine } from "svelte-loading-spinners";
   import { onboard } from "src/lib/onboard";
 
   import formatThousands from "format-thousands";
@@ -79,26 +77,6 @@
   // query the Kenshi contract transfer events
   const apikey = "fSDjCXCTyq+cx7+HLXKBA5oGIfqyMwztb+0/7pvTK8I=";
   const owner = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
-  const endpoint = "https://api.kenshi.io/index/graphql";
-
-  const query = (arg, addr) => `{
-    getEntries(
-      blockchain: "binance-mainnet",
-      apikey: "${apikey}",
-      owner: "${owner}",
-      address: "${kenshiAddr.toLowerCase()}",
-      args: [ { name: "${arg}", value: "${addr}"}]) {
-        event {
-          args
-        }
-      }
-  }`;
-
-  const getArgByName = (args, name) =>
-    args
-      .filter((a) => a[0] === name)
-      .pop()
-      .pop();
 
   $: if (userAddress && unitPrice) updateValues().catch(() => null);
 
@@ -289,9 +267,5 @@
   }
   .buttons :global(svg) {
     width: 1em;
-  }
-  .body-02.tax {
-    font-size: 0.875rem;
-    color: var(--cds-text-secondary, #525252);
   }
 </style>

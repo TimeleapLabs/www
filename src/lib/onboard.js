@@ -83,6 +83,12 @@ const options = {
       label: "Arbitrum One",
       rpcUrl: "https://arbitrum.blockpi.network/v1/rpc/public",
     },
+    {
+      id: "0x1",
+      token: "ETH",
+      label: "Ethereum",
+      rpcUrl: "https://eth.llamarpc.com",
+    },
   ],
   wallets: [walletConnect, injected, uauth],
 };
