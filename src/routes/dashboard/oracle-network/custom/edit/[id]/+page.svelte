@@ -79,6 +79,7 @@
       signature: oracleFromId.signature,
       concurrency: oracleFromId.concurrency,
       confirmations: oracleFromId.confirmations || 0,
+      bearer: oracleFromId.bearer,
     };
   }
 
@@ -317,6 +318,30 @@
                                     endpoint and calls your smart contract with
                                     the response. This endpoint needs to
                                     implement the Kenshi Custom Oracle Protocol.
+                                  </p>
+                                </Tooltip>
+                              </div>
+                            </svelte:fragment>
+                          </TextInput>
+                        </Column>
+                        <Column>
+                          <TextInput
+                            name="bearer"
+                            labelText="Authorization token"
+                            placeholder="Bearer"
+                            helperText="Sent to your endpoint in the Authorization header"
+                            bind:value={$updateValues.bearer}
+                            invalid={$updateValues.bearer &&
+                              !!$updateInvalids.bearer}
+                            invalidText={$updateInvalids.bearer}
+                          >
+                            <svelte:fragment slot="labelText">
+                              <div use:fixLabelTooltip>
+                                <Tooltip triggerText="Authorization token">
+                                  <p>
+                                    This token will be sent to your endpoint in
+                                    the Authorization header in the form of
+                                    "Bearer &#123;token&#125;"
                                   </p>
                                 </Tooltip>
                               </div>

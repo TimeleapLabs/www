@@ -31,6 +31,12 @@ const schema = {
     regex: /https?:\/\/.+/,
     methods: ["insert", "update"],
   },
+  bearer: {
+    name: "Authorization token",
+    regex: /.+/,
+    methods: ["insert", "update"],
+    optional: true,
+  },
   calls: form.types.positiveNumber("Calls", ["insert", "credit"]),
   concurrency: form.types.positiveNumber("Concurrency", ["insert", "update"]),
   duration: form.types.positiveNumber("Duration", ["insert", "credit"]),
@@ -98,6 +104,7 @@ const query = (owner) => `{
         concurrency
         confirmations
         tier
+        bearer
       }
     }
   }`;
