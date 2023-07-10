@@ -12,7 +12,7 @@
   import { fade } from "svelte/transition";
 
   $: needsHead = !$page?.url?.pathname?.match(
-    /^\/(docs|blog|iot-sdk|deep-index|oracle-network)/
+    /^\/(docs|blog|iot-sdk|deep-index|oracle-network|nft)/
   );
 
   import "carbon-components-svelte/css/all.css";
