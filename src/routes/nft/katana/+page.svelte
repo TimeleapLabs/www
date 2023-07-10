@@ -30,7 +30,7 @@
   let available = [];
   let userAddress;
 
-  const contractAddr = "";
+  const contractAddr = "0x13B8046B98c7D86D719fC34e5C3DF5E5e8da897A";
 
   let minting = false;
 
