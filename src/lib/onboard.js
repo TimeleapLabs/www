@@ -3,16 +3,22 @@ import walletConnectModule from "@web3-onboard/walletconnect";
 import injectedModule from "@web3-onboard/injected-wallets";
 import uauthModule from "@web3-onboard/uauth";
 
+const walletConnectProjectId = "cd75e040ea5fcb69967fff012c27bc00";
+
 const uauth = uauthModule({
   clientID: "d2c1ef00-bab8-4f6d-b851-8fe9926ae01e",
   redirectUri: "https://kenshi.io",
   scope: "openid wallet",
+  walletConnectProjectId,
 });
 
 const appName = "Kenshi";
 
 const injected = injectedModule();
-const walletConnect = walletConnectModule();
+const walletConnect = walletConnectModule({
+  projectId: walletConnectProjectId,
+  requiredChains: ["0xa4b1"],
+});
 
 const options = {
   appMetadata: {

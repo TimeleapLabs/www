@@ -23,6 +23,7 @@
   import HereToHelp from "src/components/home/HereToHelp.svelte";
   import Articles from "src/components/home/Articles.svelte";
 
+  import Katanas from "src/components/home/Katanas.svelte";
   import UniSwap from "src/icons/UniSwap.svelte";
 </script>
 
@@ -86,6 +87,8 @@
       style="background-image: url(/images/backgrounds/office.jpg);"
     />
   </div>
+
+  <Katanas />
 
   <Grid>
     <Row>

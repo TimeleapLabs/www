@@ -124,7 +124,9 @@ a.bx--header__menu-item:hover {
 .bx--side-nav__item:not(.bx--side-nav__item--active)
   > .bx--side-nav__link:hover,
 .bx--side-nav__menu
-  a.bx--side-nav__link:not(.bx--side-nav__link--current):not([aria-current="page"]):hover,
+  a.bx--side-nav__link:not(.bx--side-nav__link--current):not(
+    [aria-current="page"]
+  ):hover,
 .bx--side-nav a.bx--header__menu-item:hover,
 .bx--side-nav .bx--header__menu-title[aria-expanded="true"]:hover {
   background-color: var(--cds-ui-03);
