@@ -11,13 +11,13 @@
   export let available = null;
 
   const getRarity = (rarity) => {
-    if (rarity <= 10) {
+    if (rarity <= 1) {
       return { name: "Frequent Find", color: "gray" };
-    } else if (rarity <= 50) {
+    } else if (rarity <= 5) {
       return { name: "Uncommon Unearth", color: "cyan" };
-    } else if (rarity <= 100) {
+    } else if (rarity <= 50) {
       return { name: "Scarce Stumble", color: "blue" };
-    } else if (rarity <= 500) {
+    } else if (rarity <= 150) {
       return { name: "Rare Reveal", color: "purple" };
     } else {
       return { name: "Exclusive Encounter", color: "magenta" };
