@@ -143,11 +143,13 @@
 
 <DefaultTags
   title="Kenshi — Katana NFT"
-  description="In the age of the Shogunate, the Kenshi were the revered guardians of
-          balance, each trained in the ancient arts of combat and strategy.
-          Their weapon, the Katana, was a symbol of honor, valor, and duty.
-          Forged with precision and imbued with spiritual energy, these swords
-          became extensions of the Kenshi themselves."
+  description={[
+    "In the age of the Shogunate, the Kenshi were the revered guardians of",
+    "balance, each trained in the ancient arts of combat and strategy.",
+    "Their weapon, the Katana, was a symbol of honor, valor, and duty.",
+    "Forged with precision and imbued with spiritual energy, these swords",
+    "became extensions of the Kenshi themselves.",
+  ].join(" ")}
 />
 
 <Content>
