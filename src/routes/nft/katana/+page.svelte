@@ -66,6 +66,8 @@
       );
     } catch (error) {
       toast.push("There was an issue minting the NFT!");
+      toast.push(error.data?.message || error.message);
+      console.log(error.message);
     }
 
     minting = false;

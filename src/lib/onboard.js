@@ -90,6 +90,12 @@ const options = {
       rpcUrl: "https://arbitrum.blockpi.network/v1/rpc/public",
     },
     {
+      id: "0x66eed",
+      token: "AGOR",
+      label: "Arbitrum Goerli",
+      rpcUrl: "https://arbitrum-goerli.blockpi.network/v1/rpc/public	",
+    },
+    {
       id: "0x1",
       token: "ETH",
       label: "Ethereum",
