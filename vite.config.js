@@ -37,6 +37,7 @@ const config = {
   resolve: {
     alias: {
       src: path.resolve("./src"),
+      "d3-sankey": path.resolve("./src/lib/sankey.js"),
       // ↓ see https://github.com/vitejs/vite/issues/6085
       "@ensdomains/address-encoder":
         "@ensdomains/address-encoder/lib/index.umd.js",
@@ -44,6 +45,9 @@ const config = {
   },
   define: {
     "process.env.VITE_BUILD_TIME": JSON.stringify(new Date().toISOString()),
+  },
+  ssr: {
+    noExternal: process.env.NODE_ENV === "production" ? ["@carbon/charts"] : [],
   },
 };
 

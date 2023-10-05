@@ -156,7 +156,7 @@
       <ExpressiveHeading size={3}>
         <h3>{title}</h3>
       </ExpressiveHeading>
-      <div class="spacer" />
+      <div class="flex-spacer" />
       <div class="tags">
         {#each pills as pill}
           <Tag>{pill}</Tag>

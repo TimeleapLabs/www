@@ -6,7 +6,7 @@
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
   import { AssemblyCluster, Query, Webhook } from "carbon-icons-svelte";
-  import { ArrowRight, Shuffle, BuildTool } from "carbon-icons-svelte";
+  import { ArrowRight, Dashboard, BuildTool } from "carbon-icons-svelte";
 </script>
 
 <Content>
@@ -33,16 +33,37 @@
               <h2>Deep Index</h2>
             </ExpressiveHeading>
 
-            <div class="spacer" />
+            <div class="flex-spacer" />
 
-            <div class="body-02 ">
+            <div class="body-02">
               Deep Index is an all-in-one data consumption, data processing, and
               data flow solution that connects web3 data to web2.
             </div>
 
-            <div class="spacer" />
+            <div class="flex-spacer" />
           </div>
         </Tile>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <ClickableTile
+          class="full-height"
+          href="/dashboard/deep-index/analytics"
+        >
+          <div class="flex-column">
+            <Dashboard />
+            <ExpressiveHeading size={3}>
+              <h2>Analytics</h2>
+            </ExpressiveHeading>
+            <div class="body-compact-02">
+              Index, analyze and visualize your smart contract data and plot how
+              your users interact with it.
+            </div>
+            <div class="flex-spacer" />
+            <div class="arrow">
+              <ArrowRight />
+            </div>
+          </div>
+        </ClickableTile>
       </Column>
       <Column sm={4} md={4} lg={4}>
         <ClickableTile class="full-height" href="/dashboard/deep-index/sync">
@@ -55,7 +76,7 @@
               Store and index data from your smart contracts into Kenshi's
               geographically distributed data clusters.
             </div>
-            <div class="spacer" />
+            <div class="flex-spacer" />
             <div class="arrow">
               <ArrowRight />
             </div>
@@ -72,7 +93,7 @@
             <div class="body-compact-02">
               Query data from Kenshi's data clusters using MQL or GraphQL.
             </div>
-            <div class="spacer" />
+            <div class="flex-spacer" />
             <div class="arrow">
               <ArrowRight />
             </div>
@@ -90,7 +111,7 @@
               Directly listen to events as they happen on the blockchain and get
               them delivered to you.
             </div>
-            <div class="spacer" />
+            <div class="flex-spacer" />
             <div class="arrow">
               <ArrowRight />
             </div>
@@ -113,15 +134,15 @@
               <h2>Oracle Network</h2>
             </ExpressiveHeading>
 
-            <div class="spacer" />
+            <div class="flex-spacer" />
 
-            <div class="body-02 ">
+            <div class="body-02">
               Kenshi Oracle Network is a high-performance asynchronous oracle
               platform that allows creating custom oracles in a few lines of
               code.
             </div>
 
-            <div class="spacer" />
+            <div class="flex-spacer" />
           </div>
         </Tile>
       </Column>
@@ -139,7 +160,7 @@
               Create and deploy your custom oracle on top of Kenshi's blazing
               fast oracle network.
             </div>
-            <div class="spacer" />
+            <div class="flex-spacer" />
             <div class="arrow">
               <ArrowRight />
             </div>

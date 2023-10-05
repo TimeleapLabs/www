@@ -29,7 +29,7 @@
                 <div class="body-compact-02" use:shaveEl>
                   {article.meta.summary}
                 </div>
-                <div class="spacer" />
+                <div class="flex-spacer" />
                 <div class="tags">
                   {#each article.meta.tags as tag}
                     <Tag>{tag}</Tag>
@@ -48,7 +48,7 @@
 </div>
 
 <style>
-  .spacer {
+  .flex-spacer {
     flex: 1;
   }
   .articles :global(.bx--row > div > a) {

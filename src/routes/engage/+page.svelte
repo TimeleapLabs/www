@@ -27,13 +27,13 @@
       </Column>
       <Column lg={4} md={4} sm={4}>
         <div class="flex-column align-start">
-          <div class="spacer" />
+          <div class="flex-spacer" />
           <p class="body-02">
             Kenshi outlines specific, well-defined subjects and values the
             community's perspective and expertise, seeking to understand their
             stance on these matters.
           </p>
-          <div class="spacer" />
+          <div class="flex-spacer" />
           <ConnectButton primary />
         </div>
       </Column>

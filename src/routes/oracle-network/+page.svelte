@@ -196,7 +196,7 @@
             Oracle Network can be utilized in numerous other scenarios, fueling
             innovation in the blockchain space.
           </div>
-          <div class="spacer" />
+          <div class="flex-spacer" />
           <ImageLoader src="/images/backgrounds/orb.jpg" />
         </div>
       </Column>
@@ -218,7 +218,7 @@
                     real-time price feeds and other off-chain data, allowing for
                     more accurate and secure financial products.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -240,7 +240,7 @@
                     data, opening up a new world of climate-related financial
                     products.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -261,7 +261,7 @@
                     chain to verify and track goods in real-time, enhancing
                     transparency and accountability.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -283,7 +283,7 @@
                     trust within platforms, leading to safer transactions and
                     more reliable applications.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -304,7 +304,7 @@
                     insurance contracts that trigger payouts based on real-world
                     events, such as natural disasters or flight delays.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -646,7 +646,7 @@
     width: 100%;
     flex-wrap: wrap;
   }
-  .spacer {
+  .flex-spacer {
     flex: 1;
   }
 

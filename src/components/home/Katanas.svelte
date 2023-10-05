@@ -24,13 +24,6 @@
 {#if nfts.length && show >= 0}
   <Grid padding>
     <Row>
-      <Column lg={7}>
-        <div class="nft">
-          {#key show}
-            <Katana nft={nfts[show]} />
-          {/key}
-        </div>
-      </Column>
       <Column>
         <div class="description">
           <ExpressiveHeading size={5}>
@@ -50,6 +43,13 @@
             <Button href="/nft/katana" icon={IntentRequestCreate}>Mint</Button>
             <Button href="/nft/katana" icon={Image}>Catalogue</Button>
           </div>
+        </div>
+      </Column>
+      <Column lg={7}>
+        <div class="nft">
+          {#key show}
+            <Katana nft={nfts[show]} />
+          {/key}
         </div>
       </Column>
     </Row>

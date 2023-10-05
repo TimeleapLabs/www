@@ -137,7 +137,7 @@
             You'll need to connect your wallet to use certain areas of Kenshi
             tools.
           </p>
-          <div class="spacer" />
+          <div class="flex-spacer" />
           <ConnectButton primary />
         </div>
       </Column>
