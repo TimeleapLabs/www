@@ -24,8 +24,11 @@
     OutboundLink,
     InlineNotification,
   } from "carbon-components-svelte";
+
   import { Button, Content } from "carbon-components-svelte";
   import { ContentSwitcher, Switch } from "carbon-components-svelte";
+
+  import formatThousands from "format-thousands";
 
   import {
     Events,
@@ -58,7 +61,32 @@
 
   export let data;
 
-  const { transactions = [], metadata = {} } = data;
+  const { transactions = [], metadata = {}, chain } = data;
+
+  const explorers = {
+    binance: "https://bscscan.com",
+    polygon: "https://polygonscan.com",
+    fantom: "https://ftmscan.com",
+    avalanche: "https://snowtrace.io",
+    ethereum: "https://etherscan.com",
+    arbitrum: "https://arbiscan.io",
+    aurora: "https://explorer.aurora.dev",
+    base: "https://basescan.org",
+  };
+
+  const explorerNames = {
+    binance: "BscScan",
+    polygon: "PolygonScan",
+    fantom: "FtmScan",
+    avalanche: "SnowTrace",
+    ethereum: "EtherScan",
+    arbitrum: "ArbiScan",
+    aurora: "Aurora Explorer",
+    base: "BaseScan",
+  };
+
+  const explorer = explorers[chain];
+  const explorerName = explorerNames[chain];
 
   const pages = {
     HOLDERS: 0,
@@ -275,6 +303,7 @@
 <DefaultTags
   description={metadata.summary}
   title="Kenshi — Analytics — {metadata.name}"
+  image="/images/social.analytics.png"
 />
 
 <Content>
@@ -388,7 +417,9 @@
           <div slot="subtitle">
             Looking for API access to this data? Get an
             <OutboundLink href="/dashboard">API Key</OutboundLink> or read the
-            <OutboundLink href="/docs">Documentation</OutboundLink>.
+            <OutboundLink href="/docs/services/deep-index">
+              Documentation
+            </OutboundLink>.
           </div>
         </InlineNotification>
       </Column>
@@ -446,7 +477,7 @@
                   <ToolbarMenu>
                     <ToolbarMenuItem
                       primaryFocus
-                      href="/docs/services/deep-index/sync"
+                      href="/docs/services/deep-index"
                     >
                       Documentation
                     </ToolbarMenuItem>
@@ -455,9 +486,12 @@
               </Toolbar>
               <svelte:fragment slot="cell" let:row let:cell>
                 {#if cell.key === "balance"}
-                  {ethers.utils
-                    .formatUnits(cell.value)
-                    .replace(/(\.\d{4}).*/, "$1")}
+                  {formatThousands(
+                    ethers.utils
+                      .formatUnits(cell.value)
+                      .replace(/(\.\d{4}).*/, "$1"),
+                    ","
+                  )}
                   {metadata.symbol || ""}
                 {:else}
                   {cell.value}
@@ -584,7 +618,7 @@
                   <ToolbarMenu>
                     <ToolbarMenuItem
                       primaryFocus
-                      href="/docs/services/deep-index/sync"
+                      href="/docs/services/deep-index"
                     >
                       Documentation
                     </ToolbarMenuItem>
@@ -593,13 +627,16 @@
               </Toolbar>
               <svelte:fragment slot="cell" let:row let:cell>
                 {#if cell.key === "amount"}
-                  {ethers.utils
-                    .formatUnits(cell.value)
-                    .replace(/(\.\d{4}).*/, "$1")}
+                  {formatThousands(
+                    ethers.utils
+                      .formatUnits(cell.value)
+                      .replace(/(\.\d{4}).*/, "$1"),
+                    ","
+                  )}
                   {metadata.symbol || ""}
                 {:else if cell.key === "hash"}
-                  <OutboundLink href="https://arbiscan/tx/{cell.value}">
-                    ArbiScan
+                  <OutboundLink href="${explorer}/tx/{cell.value}">
+                    {explorerName}
                   </OutboundLink>
                 {:else}
                   {cell.value}

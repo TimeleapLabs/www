@@ -66,5 +66,5 @@ export const load = async ({ params }) => {
   const { address, chain } = params;
   const transactions = await fetchTransactions(chain, address);
   const metadata = await fetchMetadata(chain, address);
-  return { transactions, metadata };
+  return { transactions, metadata, chain, address };
 };

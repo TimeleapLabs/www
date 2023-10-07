@@ -27,8 +27,8 @@
     "jsdom": "^20.0.1",
     "layercake": "^6.1.0",
     "ora": "^6.1.1",
-    "prettier": "^3.0.3",
-    "prettier-plugin-svelte": "^3.0.3",
+    "prettier": "^2.8.8",
+    "prettier-plugin-svelte": "^2.8.8",
     "rollup-plugin-polyfill-node": "^0.8.0",
     "svelte": "^4.2.1",
     "svelte-loading-spinners": "^0.1.7"

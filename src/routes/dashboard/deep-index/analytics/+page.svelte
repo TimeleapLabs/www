@@ -126,7 +126,7 @@
             <Column>
               <Button
                 kind="secondary"
-                href="/docs/services/deep-index/sync"
+                href="/docs/services/deep-index/analytics"
                 icon={Book}
               >
                 Documentation

@@ -76,6 +76,7 @@
             your smart contract data. Get actionable insights about your token
             and offer transparency to your users."
   title="Kenshi — Analytics"
+  image="/images/social.analytics.png"
 />
 
 <Content>
