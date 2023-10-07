@@ -480,12 +480,12 @@
                         <div class="stats">
                           <div class="stat">
                             <span class="name"> Event sourcing </span>
-                            <span class="spacer" />
+                            <span class="flex-spacer" />
                             <span class="value">{tier.delay} delay</span>
                           </div>
                           <div class="stat">
                             <span class="name"> Price</span>
-                            <span class="spacer" />
+                            <span class="flex-spacer" />
                             <span class="value">${tier.price}/Month</span>
                           </div>
                         </div>
@@ -634,7 +634,7 @@
     width: 100%;
     align-items: center;
   }
-  .spacer {
+  .flex-spacer {
     flex: 1;
   }
   .tier :global(svg) {

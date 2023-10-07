@@ -132,7 +132,7 @@
             {prev.title}
           </Button>
         {/if}
-        <div class="spacer" />
+        <div class="flex-spacer" />
         {#if next}
           <Button href={next.url} icon={ChevronRight}>
             {next.title}
@@ -225,7 +225,7 @@
     line-height: initial;
     padding: 2em;
   }
-  .nav-buttons .spacer {
+  .nav-buttons .flex-spacer {
     flex: 1;
   }
   .body {

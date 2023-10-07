@@ -201,7 +201,7 @@
             schema, SolidQuery opens new horizons for businesses looking to
             leverage the power of blockchain.
           </div>
-          <div class="spacer" />
+          <div class="flex-spacer" />
           <ImageLoader src="/images/backgrounds/decentralized.jpg" />
         </div>
       </Column>
@@ -228,7 +228,7 @@
                     databases for managing dynamic NFT metadata, making it
                     easier to handle various categories of digital assets.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -256,7 +256,7 @@
                     and transparency - a huge value proposition in today's
                     digital world.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -282,7 +282,7 @@
                     management of members and proposals easier and more
                     efficient.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -309,7 +309,7 @@
                     products by generating custom, decentralized databases for
                     various DeFi protocols.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -398,7 +398,7 @@
     width: 100%;
     flex-wrap: wrap;
   }
-  .spacer {
+  .flex-spacer {
     flex: 1;
   }
 

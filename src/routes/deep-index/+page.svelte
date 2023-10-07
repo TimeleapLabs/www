@@ -325,7 +325,7 @@
             efficient way to handle blockchain data.
           </div>
 
-          <div class="spacer" />
+          <div class="flex-spacer" />
 
           <ImageLoader src="/images/backgrounds/code.jpg" />
         </div>
@@ -624,7 +624,7 @@
     width: 100%;
     flex-wrap: wrap;
   }
-  .spacer {
+  .flex-spacer {
     flex: 1;
   }
 

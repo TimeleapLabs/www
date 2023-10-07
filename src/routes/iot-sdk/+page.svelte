@@ -173,7 +173,7 @@
             unlock new realms of possibilities, and our Blockchain IoT SDK is
             designed to help you tap into this potential.
           </div>
-          <div class="spacer" />
+          <div class="flex-spacer" />
           <ImageLoader src="/images/backgrounds/city.jpg" />
         </div>
       </Column>
@@ -194,7 +194,7 @@
                     tamper-proof, auditable trail of a product's journey from
                     production to consumer.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -214,7 +214,7 @@
                     asset management across various industries, such as
                     logistics, manufacturing, and healthcare.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -233,7 +233,7 @@
                     blockchain. This can enable more efficient use of renewable
                     energy sources, fostering a more sustainable future.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -254,7 +254,7 @@
                     everything from traffic management to environmental
                     monitoring.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -273,7 +273,7 @@
                     improve patient care by ensuring accurate, accessible, and
                     secure health data.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -292,7 +292,7 @@
                     via the blockchain, enabling more resilient and efficient
                     networks free from single points of failure.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -315,7 +315,7 @@
                     reduces dependency on traditional banking systems, making
                     vending machines truly autonomous and globally accessible.
                   </div>
-                  <div class="spacer" />
+                  <div class="flex-spacer" />
                   <div class="buttons no-margin">
                     <Button kind="ghost" icon={ArrowRight}>Learn more</Button>
                   </div>
@@ -409,7 +409,7 @@
     width: 100%;
     flex-wrap: wrap;
   }
-  .spacer {
+  .flex-spacer {
     flex: 1;
   }
   .buttons:not(.no-margin) {

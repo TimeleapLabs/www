@@ -28,7 +28,7 @@
           {title}
         </span>
       </Button>
-      <div class="spacer" />
+      <div class="flex-spacer" />
       {#if download}
         <a href={download} download=""> <FileArrowDown /> </a>
       {/if}
@@ -47,7 +47,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
   }
-  .spacer {
+  .flex-spacer {
     flex: 1;
   }
   .copy {

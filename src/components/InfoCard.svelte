@@ -21,7 +21,7 @@
         <div>
           {description}
         </div>
-        <div class="spacer" />
+        <div class="flex-spacer" />
         <div class="buttons">
           {#each buttons as button}
             <Button
@@ -52,7 +52,7 @@
     display: flex;
     gap: 3em;
   }
-  .spacer {
+  .flex-spacer {
     flex: 1;
   }
   .card-inner .content {

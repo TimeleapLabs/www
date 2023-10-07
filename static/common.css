@@ -38,33 +38,6 @@ html {
   flex: 1;
 }
 
-@font-face {
-  font-family: "Syabil";
-  src: url("/fonts/Syabil-Regular.woff2") format("woff2"),
-    url("/fonts/Syabil-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Syabil";
-  src: url("/fonts/Syabil-Bold.woff2") format("woff2"),
-    url("/fonts/Syabil-Bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Frank";
-  src: url("/fonts/Frank-Regular.woff2") format("woff2"),
-    url("/fonts/Frank-Regular.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
 .grecaptcha-badge {
   visibility: hidden;
 }
@@ -261,7 +234,6 @@ a.bx--header__menu-item:focus {
 a.bx--header__menu-item:focus svg {
   fill: var(--cds-text-01) !important;
 }
-
 .bx--header__menu-title[aria-expanded="true"] {
   color: var(--cds-text-01) !important;
   background-color: var(--cds-ui-03);
@@ -280,9 +252,6 @@ a.bx--header__menu-item:focus svg {
   gap: 1em;
   flex-direction: column;
   height: 100%;
-}
-.spacer {
-  flex: 1;
 }
 .full-height {
   height: 100%;
@@ -411,6 +380,7 @@ ul ul {
   .hero-body {
     padding: 2em;
     box-sizing: border-box;
+    min-height: 720px;
   }
   .hero-image {
     height: 100vw;
@@ -423,8 +393,10 @@ ul ul {
     height: auto;
   }
 }
-
 .monaco-editor {
   padding-top: 1.5em;
   box-sizing: border-box;
+}
+.flex-spacer {
+  flex: 1
 }

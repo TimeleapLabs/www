@@ -12,7 +12,7 @@
   import { fade } from "svelte/transition";
 
   $: needsHead = !$page?.url?.pathname?.match(
-    /^\/(docs|blog|iot-sdk|deep-index|oracle-network|nft)/
+    /^\/(docs|blog|iot-sdk|deep-index|oracle-network|nft|analytics)/
   );
 
   import "carbon-components-svelte/css/all.css";
@@ -24,8 +24,6 @@
   }
 
   onMount(setRef);
-
-  let notice = true;
 </script>
 
 <Navbar />
@@ -37,33 +35,3 @@
 {#if needsHead}
   <DefaultTags />
 {/if}
-
-{#if notice}
-  <div class="notice" transition:fade>
-    <InlineNotification
-      kind="success"
-      title="Migration"
-      subtitle="The Kenshi V3 migration took place on Wednesday, June 14th."
-      on:close={(e) => {
-        e.preventDefault();
-        notice = false;
-      }}
-    >
-      <svelte:fragment slot="actions">
-        <NotificationActionButton href="/docs/migration">
-          Learn more
-        </NotificationActionButton>
-      </svelte:fragment>
-    </InlineNotification>
-  </div>
-{/if}
-
-<style>
-  .notice {
-    position: fixed;
-    left: 50%;
-    bottom: 2em;
-    transform: translateX(-50%);
-    z-index: 8;
-  }
-</style>
