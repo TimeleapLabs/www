@@ -53,6 +53,7 @@
     "dotenv": "^10.0.0",
     "ethers": "^5.5.1",
     "format-thousands": "^2.0.0",
+    "intl-messageformat": "^10.5.3",
     "js-base64": "^3.7.5",
     "monaco-editor": "^0.38.0",
     "monaco-themes": "^0.4.4",

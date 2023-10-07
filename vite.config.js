@@ -18,20 +18,12 @@ const config = {
         })
       : "",
   ],
-  optimizeDeps: {
-    include: ["@web3-onboard/core"],
-  },
   build: {
     rollupOptions: {
       plugins: [
         // ↓ Needed for build
         nodePolyfills(),
       ],
-    },
-    // ↓ Needed for build
-    commonjsOptions: {
-      transformMixedEsModules: true,
-      include: [/@web3-onboard/, /node_modules/],
     },
   },
   resolve: {
