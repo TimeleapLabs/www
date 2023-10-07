@@ -105,6 +105,7 @@
 
   let currentPage = pages.HOLDERS;
   let totalSupply = 0;
+  let innerWidth = 1920;
 
   const richTable = {
     headers: [
@@ -179,7 +180,7 @@
       }))
       .filter((rich) => rich.balance > 0)
       .sort((a, b) => b.balance - a.balance)
-      .slice(0, 25);
+      .slice(0, innerWidth > 400 ? 25 : 15);
   };
 
   const distributionCircle = () => {
@@ -300,13 +301,15 @@
   });
 </script>
 
+<svelte:window bind:innerWidth />
+
 <DefaultTags
   description={metadata.summary}
   title="Kenshi — Analytics — {metadata.name}"
   image="/images/social.analytics.png"
 />
 
-<Content>
+<Content class="gap">
   <Grid padding>
     <Row>
       <Column lg={2}>
@@ -320,7 +323,14 @@
         <div class="flex-column padding">
           {#if metadata.symbol && metadata.name}
             <ExpressiveHeading size={5}>
-              <h1>{metadata.name} ({metadata.symbol})</h1>
+              <h1>
+                <img
+                  src={https(metadata.logo)}
+                  class="inline-logo"
+                  alt={metadata.name}
+                />
+                {metadata.name} ({metadata.symbol})
+              </h1>
             </ExpressiveHeading>
           {:else}
             <Skeleton width="240" height="16">
@@ -413,15 +423,17 @@
         </div>
       </Column>
       <Column>
-        <InlineNotification kind="info" hideCloseButton title="API Access">
-          <div slot="subtitle">
-            Looking for API access to this data? Get an
-            <OutboundLink href="/dashboard">API Key</OutboundLink> or read the
-            <OutboundLink href="/docs/services/deep-index">
-              Documentation
-            </OutboundLink>.
-          </div>
-        </InlineNotification>
+        <div class="notification">
+          <InlineNotification kind="info" hideCloseButton title="API Access">
+            <div slot="subtitle">
+              Looking for API access to this data? Get an
+              <OutboundLink href="/dashboard">API Key</OutboundLink> or read the
+              <OutboundLink href="/docs/services/deep-index">
+                Documentation
+              </OutboundLink>.
+            </div>
+          </InlineNotification>
+        </div>
       </Column>
     </Row>
     <Row>
@@ -441,7 +453,12 @@
           </Switch>
           <Switch>
             <div style="display: flex; align-items: center;">
-              <AnalyticsReference style="margin-right: 0.5rem;" /> Transactions
+              <AnalyticsReference style="margin-right: 0.5rem;" />
+              {#if innerWidth > 400}
+                Transactions
+              {:else}
+                Txns
+              {/if}
             </div>
           </Switch>
           <Switch>
@@ -536,7 +553,7 @@
             <BarChartSimple
               data={distributionBarData}
               options={{
-                title: "Balance Chart - Top 25",
+                title: `Balance Chart - Top ${innerWidth > 400 ? 25 : 15}`,
                 points: {
                   enabled: false,
                 },
@@ -710,7 +727,7 @@
     {/if}
     <Row>
       <Column>
-        <div class="buttons">
+        <div class="footer-buttons buttons">
           <Button href="/analytics" icon={DashboardReference}>
             See All Projects
           </Button>
@@ -735,14 +752,41 @@
     margin-bottom: 1rem;
     flex-wrap: wrap;
   }
+  .inline-logo {
+    height: 1em;
+    display: none;
+  }
   @media (max-width: 640px) {
     .table-holder :global(.bx--pagination) {
       overflow: hidden;
+    }
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .logo {
+      display: none;
+    }
+    .inline-logo {
+      display: inline-block;
     }
     .table-holder :global(table) {
       display: block;
       overflow-x: auto;
       white-space: nowrap;
+    }
+    .notification :global(.bx--inline-notification) {
+      max-width: 100%;
+    }
+    .buttons {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer-buttons {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.5em;
     }
   }
 </style>
