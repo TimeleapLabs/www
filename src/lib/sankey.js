@@ -1,11 +1,11 @@
 export {
-	sankeyCircular as sankey,
-	sankeyLeft,
-	sankeyRight,
-	sankeyJustify
-} from 'd3-sankey-circular'
+  sankeyCircular as sankey,
+  sankeyLeft,
+  sankeyRight,
+  sankeyJustify,
+} from "d3-sankey-circular";
 
-import {linkHorizontal} from "d3-shape";
+import { linkHorizontal } from "d3-shape";
 
 function horizontalSource(d) {
   return [d.source.x1, d.y0];
@@ -16,7 +16,5 @@ function horizontalTarget(d) {
 }
 
 export function sankeyLinkHorizontal() {
-  return linkHorizontal()
-      .source(horizontalSource)
-      .target(horizontalTarget);
+  return linkHorizontal().source(horizontalSource).target(horizontalTarget);
 }

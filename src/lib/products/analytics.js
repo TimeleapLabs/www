@@ -44,7 +44,7 @@ const schema = {
     methods: ["insert", "update"],
     optional: true,
   },
-  website: {
+  logo: {
     name: "Logo",
     regex: /^.+/,
     methods: ["insert", "update"],
