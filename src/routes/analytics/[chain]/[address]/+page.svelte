@@ -333,7 +333,7 @@
 <Content class="gap">
   <Grid padding>
     <Row>
-      <Column lg={2}>
+      <Column lg={2} sm={0}>
         {#if metadata.logo}
           <img src={https(metadata.logo)} class="logo" alt={metadata.name} />
         {:else}
@@ -341,7 +341,7 @@
         {/if}
       </Column>
       <Column>
-        <div class="flex-column padding">
+        <div class="flex-column padding details">
           {#if metadata.symbol && metadata.name}
             <ExpressiveHeading size={5}>
               <h1>
@@ -765,6 +765,10 @@
 <style>
   .logo {
     width: 128px;
+    margin-top: 2em;
+  }
+  .details {
+    margin-top: 2em;
   }
   .buttons {
     display: flex;
@@ -808,6 +812,9 @@
     .footer-buttons {
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 0.5em;
+    }
+    .details {
+      margin-top: 1em;
     }
   }
 </style>
