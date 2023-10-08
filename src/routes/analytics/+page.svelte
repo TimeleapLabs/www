@@ -11,6 +11,7 @@
     Tag,
     Button,
     Search,
+    ProgressBar,
   } from "carbon-components-svelte";
 
   import { Dashboard, DashboardReference } from "carbon-icons-svelte";
@@ -151,6 +152,10 @@
               </div>
             </div>
           </ClickableTile>
+        </Column>
+      {:else}
+        <Column>
+          <ProgressBar helperText="Loading..." />
         </Column>
       {/each}
     </Row>

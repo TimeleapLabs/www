@@ -60,8 +60,8 @@
   import { theme } from "src/stores/theme";
 
   export let data;
-
-  const { transactions = [], metadata = {}, chain } = data;
+  let transactions;
+  const { metadata = {}, chain, address } = data;
 
   const explorers = {
     binance: "https://bscscan.com",
@@ -294,7 +294,28 @@
       .slice(-100);
   };
 
+  const endpoint = "https://api.kenshi.io/index/mql";
+  const apikey = "fSDjCXCTyq+cx7+HLXKBA5oGIfqyMwztb+0/7pvTK8I=";
+  const owner = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
+
+  const fetchTransactions = async (chain, address) => {
+    const request = {
+      blockchain: `${chain}-mainnet`,
+      owner,
+      apikey,
+      query: { "event.name": "Transfer", "block.address": address },
+    };
+
+    const response = await fetch(endpoint, {
+      method: "POST",
+      body: JSON.stringify(request),
+    });
+
+    return await response.json();
+  };
+
   onMount(async () => {
+    transactions = await fetchTransactions(chain, address);
     populateTxTable();
     richList();
     populateTxChart();
