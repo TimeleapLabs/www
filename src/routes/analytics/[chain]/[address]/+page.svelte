@@ -24,6 +24,7 @@
     OutboundLink,
     InlineNotification,
     ProgressBar,
+    Slider,
   } from "carbon-components-svelte";
 
   import { Button, Content } from "carbon-components-svelte";
@@ -59,9 +60,10 @@
   import { ethers } from "ethers";
   import { onMount } from "svelte";
   import { theme } from "src/stores/theme";
+  import { debounce } from "$lib/utils.js";
 
   export let data;
-  let transactions;
+  let transactions, allTransactions;
   const { metadata = {}, chain, address } = data;
 
   const explorers = {
@@ -315,11 +317,24 @@
     return await response.json();
   };
 
-  onMount(async () => {
-    transactions = await fetchTransactions(chain, address);
+  const sliceTransactions = debounce(() => {
+    transactions = allTransactions.filter((tx) => tx.block.number <= toBlock);
     populateTxTable();
     richList();
     populateTxChart();
+  });
+
+  $: if (allTransactions && toBlock) {
+    sliceTransactions();
+  }
+
+  let minBlock, maxBlock, toBlock;
+
+  onMount(async () => {
+    allTransactions = await fetchTransactions(chain, address);
+    minBlock = allTransactions[0].block.number;
+    maxBlock = allTransactions[allTransactions.length - 1].block.number;
+    toBlock = maxBlock;
   });
 </script>
 
@@ -465,6 +480,22 @@
         </ExpressiveHeading>
       </Column>
     </Row>
+    {#if minBlock && maxBlock}
+      <Row>
+        <Column>
+          <div class="time-machine">
+            <Slider
+              min={minBlock}
+              max={maxBlock}
+              bind:value={toBlock}
+              labelText="Time Machine: {toBlock}"
+              fullWidth
+              hideTextInput
+            />
+          </div>
+        </Column>
+      </Row>
+    {/if}
     <Row>
       <Column>
         <ContentSwitcher bind:selectedIndex={currentPage}>
@@ -787,6 +818,9 @@
   .inline-logo {
     height: 1em;
     display: none;
+  }
+  .time-machine :global(.bx--slider) {
+    min-width: auto;
   }
   @media (max-width: 640px) {
     .table-holder :global(.bx--pagination) {
