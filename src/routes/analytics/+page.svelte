@@ -83,7 +83,7 @@
 <Content>
   <Grid padding>
     <Row>
-      <Column>
+      <Column sm={4} lg={8}>
         <div class="flex-column">
           <ExpressiveHeading size={5}>
             <h1>Kenshi Analytics</h1>
@@ -121,7 +121,14 @@
               />
               <div class="body">
                 <ExpressiveHeading size={5}>
-                  <h1>{profile.metadata.name} ({profile.metadata.symbol})</h1>
+                  <h2>
+                    <img
+                      src={https(profile.metadata.logo)}
+                      class="inline-logo"
+                      alt={profile.metadata.name}
+                    />
+                    {profile.metadata.name} ({profile.metadata.symbol})
+                  </h2>
                 </ExpressiveHeading>
                 <div class="body-01">
                   {profile.metadata.summary}
@@ -196,5 +203,22 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+  }
+  .inline-logo {
+    height: 1em;
+    display: none;
+  }
+  h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  @media (max-width: 640px) {
+    .logo {
+      display: none;
+    }
+    .inline-logo {
+      display: inline-block;
+    }
   }
 </style>

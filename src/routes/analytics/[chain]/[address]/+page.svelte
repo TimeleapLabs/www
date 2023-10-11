@@ -23,6 +23,7 @@
     Column,
     OutboundLink,
     InlineNotification,
+    ProgressBar,
   } from "carbon-components-svelte";
 
   import { Button, Content } from "carbon-components-svelte";
@@ -490,7 +491,13 @@
         </ContentSwitcher>
       </Column>
     </Row>
-    {#if currentPage === pages.HOLDERS}
+    {#if !transactions}
+      <Row>
+        <Column>
+          <ProgressBar helperText="Loading..." />
+        </Column>
+      </Row>
+    {:else if currentPage === pages.HOLDERS}
       <Row>
         <Column sm={4} lg={8}>
           <div class="table-holder">
@@ -742,7 +749,7 @@
         </Column>
       </Row>
     {:else if currentPage === pages.EDGE_MAP}
-      {#if transactions.length}
+      {#if transactions}
         <EdgeMap {transactions} />
       {/if}
     {/if}
