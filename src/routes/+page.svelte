@@ -5,8 +5,9 @@
   import { Button, Content, ClickableTile } from "carbon-components-svelte";
 
   import { Dashboard, Book, ArrowDownRight } from "carbon-icons-svelte";
-  import { ArrowRight, CategoryNewEach } from "carbon-icons-svelte";
+  import { ArrowRight, SendAltFilled } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
+  import { OutboundLink } from "carbon-components-svelte";
 
   import Fantom from "src/icons/Fantom.svelte";
   import Ethereum from "src/icons/Ethereum.svelte";
@@ -24,7 +25,6 @@
 
   import Katanas from "src/components/home/Katanas.svelte";
   import UniSwap from "src/icons/UniSwap.svelte";
-  import Charts from "src/components/analytics/Charts.svelte";
 </script>
 
 <!-- Hero -->
@@ -41,14 +41,24 @@
 
       <div class="flex-spacer" />
 
-      <ExpressiveHeading size={4}>
-        Kenshi gives you all the tools you need to build custom solutions on the
-        blockchain.
-      </ExpressiveHeading>
+      <div>
+        <ExpressiveHeading size={4}>
+          All the tools you need to build for the blockchain.
+        </ExpressiveHeading>
 
-      <ExpressiveHeading size={3}>
-        Build faster and better decentralized apps in no-time.
-      </ExpressiveHeading>
+        <ExpressiveHeading size={3}>
+          Build faster and better decentralized apps in no-time.
+        </ExpressiveHeading>
+      </div>
+
+      <div>
+        <ExpressiveHeading size={2}>
+          Visit our
+          <OutboundLink href="https://t.me/kenshi">Telegram chat</OutboundLink>
+          to learn more about Kenshi Unchained:<br /> The decentralized network for
+          data validation.
+        </ExpressiveHeading>
+      </div>
 
       <div class="flex-spacer" />
 
@@ -84,54 +94,9 @@
 
     <div
       class="hero-image"
-      style="background-image: url(/images/backgrounds/office.jpg);"
+      style="background-image: url(/images/backgrounds/samurai.jpg);"
     />
   </div>
-
-  <Grid>
-    <Row>
-      <Column>
-        <Charts />
-      </Column>
-      <Column>
-        <div class="flex-column">
-          <ExpressiveHeading size={5}>
-            <h2 class="large">Kenshi Analytics</h2>
-          </ExpressiveHeading>
-
-          <div class="flex-spacer" />
-          <ExpressiveHeading size={4}>
-            Get actionable insights about your token and offer transparency to
-            your users.
-          </ExpressiveHeading>
-          <div class="flex-spacer" />
-
-          <p class="body-02">
-            Kenshi Analytics offers a fully-featured dashboard for visualizing
-            your smart contract data.
-          </p>
-
-          <div class="flex-spacer" />
-
-          <div class="buttons">
-            <Button href="/analytics" icon={CategoryNewEach}>
-              Analytics Directory
-            </Button>
-            <Button href="/dashboard" icon={Dashboard}>Start Now</Button>
-          </div>
-
-          <div class="flex-spacer" />
-          <div class="flex-spacer" />
-          <div class="flex-spacer" />
-          <div class="flex-spacer" />
-          <div class="flex-spacer" />
-          <div class="flex-spacer" />
-        </div>
-      </Column>
-    </Row>
-  </Grid>
-
-  <Katanas />
 
   <Grid>
     <Row>
@@ -405,6 +370,7 @@
   <DeveloperResources />
   <HereToHelp />
   <Articles />
+  <Katanas />
 </Content>
 
 <Footer />
@@ -476,10 +442,5 @@
   }
   .onboarding .buttons {
     margin-top: 4em;
-  }
-
-  h2.large {
-    font-weight: 300;
-    font-size: 3.75rem;
   }
 </style>

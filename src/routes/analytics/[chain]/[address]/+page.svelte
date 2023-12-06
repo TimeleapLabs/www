@@ -153,6 +153,7 @@
 
   const allu = () => {
     alluData = transactions
+      .slice(-20)
       .map((tx) => tx.event.args)
       .filter(
         (args) => args.from !== "0x0000000000000000000000000000000000000000"
@@ -164,8 +165,7 @@
           parseFloat(ethers.utils.formatUnits(args.amount)).toFixed(4)
         ),
       }))
-      .filter((link) => link.value > 0)
-      .slice(-20);
+      .filter((link) => link.value > 0);
     const users = new Set();
     for (const tx of alluData) {
       users.add(tx.source);
@@ -285,6 +285,7 @@
 
   const populateTxChart = () => {
     txChart = transactions
+      .slice(-100)
       .filter(
         (tx) =>
           tx.event.args.from !== "0x0000000000000000000000000000000000000000"
@@ -293,8 +294,7 @@
         group: "Transfers",
         block: tx.block.number,
         amount: parseFloat(ethers.utils.formatUnits(tx.event.args.amount)),
-      }))
-      .slice(-100);
+      }));
   };
 
   const endpoint = "https://api.kenshi.io/index/mql";
