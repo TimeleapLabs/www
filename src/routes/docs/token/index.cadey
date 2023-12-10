@@ -4,66 +4,8 @@ The Kenshi token is a utility token that grants users access to the Kenshi
 ecosystem. The token implements the ERC20 interface, is natively deployed on the
 Arbitrum One blockchain, and has a 10/10 perfect audit score by Hacken.
 
-The Kenshi token follows the regulatory definition of utility tokens in
-Switzerland:
+See [link /docs/tokenomics Tokenomics] for more information on the token.
 
-[alert info
-  FINMA defines utility tokens as tokens intended to provide access digitally
-  to an application or service by means of a blockchain-based infrastructure.]
-
-[list 
-  [link https://arbiscan.io/token/0xf1264873436a0771e440e2b28072fafcc5eebd01 ArbiScan]
-  [link https://info.uniswap.org/#/arbitrum/tokens/0xf1264873436a0771e440e2b28072fafcc5eebd01 UniSwap Pool]
-  [link https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=arbitrum Buy on UniSwap]
-  [link https://hacken.io/audits/kenshi/ Hacken Audit]
-  [link https://github.com/kenshitech/contracts Contract Source Code]]
-
-[heading :size 2 Contract]
-
-The Kenshi ERC20 token contract address on Arbitrum is:
-
-[code 0xf1264873436A0771E440E2b28072FAfcC5EEBd01]
-
-[heading :size 2 Utility]
-
-The Kenshi utility token is closely tied to the Kenshi ecosystem. Some of the
-utilities of this token are:
-
-[list
-  [:[bold Products & Services]: The token can be used to unlock access to the
-    products and services provided by Kenshi.]
-  [:[bold Voting]: The token can be used to vote on community matters, or the
-    direction of the Unchained network. See the [link /engage Kenshi Engagement Protocol].]
-  [:[bold Unchained Nodes]: The Unchained protocol implements a
-    [link https://opentezos.com/tezos-basics/liquid-proof-of-stake/ Liquid Proof of Stake]
-    conensus mechanism. Unchained validators stake KNS tokens to improve the
-    security of the Unchained network.]
-  [:[bold Unchained Consumers]:  Consumers use KNS to access validated data stored
-    on the Unchained network. Validators receive these tokens as a reward for running
-    an active node.]
-]
-
-[heading :size 2 Tokenomics]
-
-The Kenshi v3 token has a total supply of 1B tokens. The majority of the tokens
-are offered to the public on UniSwap. You can see an overview of the token
-distribution in the chart below.
-
-[donut
-  [:title Token Distribution]
-  [:label Total Supply]
-  :data static/charts/distribution.json]
-
-[list
-  [:[bold Users]: Includes tokens currently held by the users, and tokens in the
-    UniSwap liquidity pool.]
-  [:[bold Treasury]: Includes tokens accumulated by Kenshi due to direct or
-    indirect product sales.]
-  [:[bold Reserve]: Is the buy back address.]
-  [:[bold Staking Rewards]: Is the amount of tokens allocated as staking rewards.
-    Currently 10M of these tokens are stored in the Kenshi staking contract.]
-  [:[bold Partners & Ecosystem]: Reserved for future partnerships; for example,
-    CEX or DEX listings, new chains, etc.]
-  [:[bold Grants, Academy & Incentives]: Reserved for projects building on Kenshi,
-    academy rewards, and community rewards.]
-  ]
+[toc
+  tokenomics
+  migration]
