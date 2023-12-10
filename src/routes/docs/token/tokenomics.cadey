@@ -9,8 +9,8 @@ Switzerland:
 
 [list 
   [link https://arbiscan.io/token/0xf1264873436a0771e440e2b28072fafcc5eebd01 ArbiScan]
-  [link https://info.uniswap.org/#/arbitrum/tokens/0xf1264873436a0771e440e2b28072fafcc5eebd01 UniSwap Pool]
-  [link https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=arbitrum Buy on UniSwap]
+  [link https://info.uniswap.org/arbitrum/tokens/0xf1264873436a0771e440e2b28072fafcc5eebd01 UniSwap Pool]
+  [link https://app.uniswap.org/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=arbitrum Buy on UniSwap]
   [link https://hacken.io/audits/kenshi/ Hacken Audit]
   [link https://github.com/kenshitech/contracts Contract Source Code]]
 

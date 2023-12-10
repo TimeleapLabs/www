@@ -66,7 +66,7 @@
         <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
         <Button href="/docs" kind="secondary" icon={Book}>Documentation</Button>
         <Button
-          href="https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=arbitrum"
+          href="https://app.uniswap.org/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=arbitrum"
           target="_blank"
           kind="secondary"
           icon={UniSwap}

@@ -169,7 +169,7 @@
           </div>
           <div class="buttons">
             <Button
-              href="https://app.uniswap.org/#/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01"
+              href="https://app.uniswap.org/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01"
               icon={Purchase}
               kind="primary"
             >
