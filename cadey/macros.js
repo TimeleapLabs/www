@@ -244,6 +244,14 @@ export const macros = {
     const titleTag = title ? `"${asText(title)}"` : null;
     return `<Chart title={${titleTag}} data={${chartData}} />`;
   },
+  donut(options, ..._args) {
+    this.components = { ...this.components, Donut: true };
+    const { data, label, title } = options;
+    const chartData = fs.readFileSync(data.trim()).toString();
+    const labelTag = label ? `"${asText(label)}"` : null;
+    const titleTag = title ? `"${asText(title)}"` : null;
+    return `<Donut label={${labelTag}} title={${titleTag}} data={${chartData}} />`;
+  },
   alert(_options, ...args) {
     const [type, ...text] = args.slice(1);
     this.components = { ...this.components, Alert: true };
