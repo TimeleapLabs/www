@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { getKenshiUSDPrice } from "$lib/uniswap";
 
 const initialSupply = ethers.BigNumber.from("1000000000000000000000000000");
-const reservedSupply = ethers.BigNumber.from("150000000000000000000000000");
+const reservedSupply = ethers.BigNumber.from("140000000000000000000000000");
 
 export const fetchSupply = async () => {
   const circulatingSupply = initialSupply.sub(reservedSupply);

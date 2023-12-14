@@ -27,6 +27,8 @@
   let userAddress = $page?.url?.searchParams?.get?.("address");
   let unitPrice;
   let treasury;
+  let reserve;
+  let staked;
 
   const formatCurrency = (n, unit = "") =>
     unit + formatThousands(trimDecimals(n), ",");
@@ -44,12 +46,18 @@
 
   $: balanceDisplay = toKenshi(balance || "0");
   $: treasuryDisplay = toKenshi(treasury || "0");
+  $: reserveDisplay = toKenshi(reserve || "0");
+  $: stakedDisplay = toKenshi(staked || "0");
 
   $: usdBalanceDisplay = balance && unitPrice ? toUsd(balance) : "0";
   $: usdTreasuryDisplay = treasury && unitPrice ? toUsd(treasury) : "0";
+  $: usdReserveDisplay = reserve && unitPrice ? toUsd(reserve) : "0";
+  $: usdStakedDisplay = staked && unitPrice ? toUsd(staked) : "0";
 
   const kenshiAddr = "0xf1264873436A0771E440E2b28072FAfcC5EEBd01";
   const treasuryAddr = "0xD59321c8266534dac369F0eFABDD5b815F1a5eb6";
+  const reserveAddr = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
+  const stakeAddr = "0xE894BD5Ec531EC8AAe856AFC3E0Fc948Ab22Efb4";
   const jsonRpcUrl = "https://arbitrum.blockpi.network/v1/rpc/public";
   const provider = new ethers.providers.JsonRpcProvider(jsonRpcUrl);
   const contract = new ethers.Contract(kenshiAddr, kenshiAbi, provider);
@@ -69,15 +77,11 @@
     if (!userAddress) return;
     balance = await contract.balanceOf(userAddress);
     treasury = await contract.balanceOf(treasuryAddr);
+    reserve = await contract.balanceOf(reserveAddr);
+    staked = await contract.balanceOf(stakeAddr);
   };
 
   $: if ($wallet?.provider) onWallet();
-
-  // This API key is available for free to those who want to
-  // query the Kenshi contract transfer events
-  const apikey = "fSDjCXCTyq+cx7+HLXKBA5oGIfqyMwztb+0/7pvTK8I=";
-  const owner = "0x51DD193630806aDCFFa9E72569a71A9c12591C33";
-
   $: if (userAddress && unitPrice) updateValues().catch(() => null);
 
   const addToMetamask = async () => {
@@ -224,6 +228,18 @@
                 name: "Treasury",
                 kenshi: treasuryDisplay,
                 usd: usdTreasuryDisplay,
+              },
+              {
+                id: "1",
+                name: "Reserve",
+                kenshi: reserveDisplay,
+                usd: usdReserveDisplay,
+              },
+              {
+                id: "2",
+                name: "Staked",
+                kenshi: stakedDisplay,
+                usd: usdStakedDisplay,
               },
             ]}
           />
