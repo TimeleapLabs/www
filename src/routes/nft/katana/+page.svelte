@@ -3,6 +3,7 @@
 
   import { Grid, Row, Column } from "carbon-components-svelte";
   import { Button, Content } from "carbon-components-svelte";
+  import { InlineNotification } from "carbon-components-svelte";
 
   import { Number_1, Number_3, Number_6, Number_9 } from "carbon-icons-svelte";
   import { SpinLine } from "svelte-loading-spinners";
@@ -176,68 +177,70 @@
           and wisdom. As a holder, you are not only a collector but also a
           custodian of this rich history and mythology.
         </p>
-        {#if contractAddr}
-          <div class="buttons">
-            {#if !$wallet?.provider}
-              <ConnectButton primary />
-            {:else}
-              <Button disabled={minting} on:click={mintOne} icon={Number_1}>
-                {#if minting}
-                  <SpinLine
-                    size="32"
-                    color="currentColor"
-                    unit="px"
-                    duration="4s"
-                  />
-                  Minting
-                {:else}
-                  Mint One
-                {/if}
-              </Button>
-              <Button disabled={minting} on:click={mintMany(3)} icon={Number_3}>
-                {#if minting}
-                  <SpinLine
-                    size="32"
-                    color="currentColor"
-                    unit="px"
-                    duration="4s"
-                  />
-                  Minting
-                {:else}
-                  Mint Three
-                {/if}
-              </Button>
-              <Button disabled={minting} on:click={mintMany(6)} icon={Number_6}>
-                {#if minting}
-                  <SpinLine
-                    size="32"
-                    color="currentColor"
-                    unit="px"
-                    duration="4s"
-                  />
-                  Minting
-                {:else}
-                  Mint Six
-                {/if}
-              </Button>
-              <Button disabled={minting} on:click={mintMany(9)} icon={Number_9}>
-                {#if minting}
-                  <SpinLine
-                    size="32"
-                    color="currentColor"
-                    unit="px"
-                    duration="4s"
-                  />
-                  Minting
-                {:else}
-                  Mint Nine
-                {/if}
-              </Button>
-            {/if}
-          </div>
-        {:else}
-          Coming soon.
+        {#if !$wallet?.provider}
+          <InlineNotification kind="info" title="Price">
+            Kenshi Katana NFT minting costs 0.15 ETH plus gas fees on Arbitrum.
+            Connect your wallet to continue.
+          </InlineNotification>
         {/if}
+        <div class="buttons">
+          {#if !$wallet?.provider}
+            <ConnectButton primary />
+          {:else}
+            <Button disabled={minting} on:click={mintOne} icon={Number_1}>
+              {#if minting}
+                <SpinLine
+                  size="32"
+                  color="currentColor"
+                  unit="px"
+                  duration="4s"
+                />
+                Minting
+              {:else}
+                Mint One
+              {/if}
+            </Button>
+            <Button disabled={minting} on:click={mintMany(3)} icon={Number_3}>
+              {#if minting}
+                <SpinLine
+                  size="32"
+                  color="currentColor"
+                  unit="px"
+                  duration="4s"
+                />
+                Minting
+              {:else}
+                Mint Three
+              {/if}
+            </Button>
+            <Button disabled={minting} on:click={mintMany(6)} icon={Number_6}>
+              {#if minting}
+                <SpinLine
+                  size="32"
+                  color="currentColor"
+                  unit="px"
+                  duration="4s"
+                />
+                Minting
+              {:else}
+                Mint Six
+              {/if}
+            </Button>
+            <Button disabled={minting} on:click={mintMany(9)} icon={Number_9}>
+              {#if minting}
+                <SpinLine
+                  size="32"
+                  color="currentColor"
+                  unit="px"
+                  duration="4s"
+                />
+                Minting
+              {:else}
+                Mint Nine
+              {/if}
+            </Button>
+          {/if}
+        </div>
       </Column>
     </Row>
 

@@ -173,6 +173,9 @@
             </Link>
           </ListItem>
           <ListItem>
+            <Link href="/nft/katana">Buy Katana NFT</Link>
+          </ListItem>
+          <ListItem>
             <Link
               href="https://dexscreener.com/arbitrum/0x68c685fd52a56f04665b491d491355a624540e85"
               target="_blank"
@@ -197,7 +200,7 @@
             </Link>
           </ListItem>
           <ListItem><Link href="/tools">Tools</Link></ListItem>
-          <ListItem><Link href="/bridge">Bridge</Link></ListItem>
+          <ListItem><Link href="/stake">Stake</Link></ListItem>
         </UnorderedList>
       </Column>
       <Column>
