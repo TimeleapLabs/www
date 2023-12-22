@@ -398,5 +398,8 @@ ul ul {
   box-sizing: border-box;
 }
 .flex-spacer {
-  flex: 1
+  flex: 1;
+}
+.no-node-groups .node-group {
+  display: none;
 }
