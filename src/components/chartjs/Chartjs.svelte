@@ -5,6 +5,7 @@
   export let data;
   export let options;
   export let type = "line";
+  export let height = "180px";
 
   let canvas;
   let chart;
@@ -21,4 +22,4 @@
   onMount(() => () => chart?.destroy());
 </script>
 
-<canvas bind:this={canvas} />
+<canvas bind:this={canvas} {height} />

@@ -124,6 +124,10 @@
             text: "Block",
           },
           max: Math.max(...data.data.map((item) => item.block)),
+          ticks: {
+            maxRotation: 45,
+            minRotation: 45,
+          },
         },
         y: {
           title: {
@@ -172,6 +176,10 @@
             text: "Block",
           },
           max: Math.max(...data.data.map((item) => item.block)),
+          ticks: {
+            maxRotation: 45,
+            minRotation: 45,
+          },
         },
         y: {
           title: {
