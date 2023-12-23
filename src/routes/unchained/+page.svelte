@@ -245,7 +245,7 @@
           </div>
         </div>
       </Column>
-      <Column />
+      <Column sm={0} />
     </Row>
     {#if data}
       <Row>
@@ -283,7 +283,7 @@
         {/if}
       </Row>
       <Row>
-        <Column xlg={4} md={6}>
+        <Column xlg={4} md={4}>
           <Tile>
             <div class="info-card">
               <ExpressiveHeading size={2}>Unique Peers</ExpressiveHeading>
@@ -294,7 +294,7 @@
             </div>
           </Tile>
         </Column>
-        <Column xlg={4} md={6}>
+        <Column xlg={4} md={4}>
           <Tile>
             <div class="info-card">
               <ExpressiveHeading size={2}>Data Points</ExpressiveHeading>
@@ -305,7 +305,7 @@
             </div>
           </Tile>
         </Column>
-        <Column xlg={4} md={6}>
+        <Column xlg={4} md={4}>
           <Tile>
             <div class="info-card">
               <ExpressiveHeading size={2}>Total Validations</ExpressiveHeading>
@@ -316,7 +316,7 @@
             </div>
           </Tile>
         </Column>
-        <Column xlg={4} md={6}>
+        <Column xlg={4} md={4}>
           <Tile>
             <div class="info-card">
               <ExpressiveHeading size={2}>Peer Activity</ExpressiveHeading>
