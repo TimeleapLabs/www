@@ -11,12 +11,17 @@
   let chart;
 
   $: if (canvas && data && options) {
-    chart?.destroy();
-    chart = new Chart(canvas.getContext("2d"), {
-      type,
-      data,
-      options,
-    });
+    if (!chart) {
+      chart = new Chart(canvas.getContext("2d"), {
+        type,
+        data,
+        options,
+      });
+    } else {
+      chart.data = data;
+      chart.options = options;
+      chart.update();
+    }
   }
 
   onMount(() => () => chart?.destroy());
