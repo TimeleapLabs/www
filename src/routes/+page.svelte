@@ -5,7 +5,7 @@
   import { Button, Content, ClickableTile } from "carbon-components-svelte";
 
   import { Dashboard, Book, ArrowDownRight } from "carbon-icons-svelte";
-  import { ArrowRight, SendAltFilled } from "carbon-icons-svelte";
+  import { ArrowRight, Play } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
   import { OutboundLink } from "carbon-components-svelte";
 
@@ -25,6 +25,9 @@
 
   import Katanas from "src/components/home/Katanas.svelte";
   import UniSwap from "src/icons/UniSwap.svelte";
+  import Unchained from "src/icons/Unchained.svelte";
+
+  import { theme } from "src/stores/theme";
 </script>
 
 <!-- Hero -->
@@ -97,6 +100,45 @@
       style="background-image: url(/images/backgrounds/samurai.jpg);"
     />
   </div>
+
+  <Grid>
+    <Row>
+      <Column xlg={8} sm={4}>
+        <div class="description flex-column padding">
+          <ExpressiveHeading size={4}>
+            Introducing Kenshi Unchained
+          </ExpressiveHeading>
+          <p>
+            Unchained is a decentralized, peer-to-peer network for data
+            validation. Unchained nodes work to validate data together and are
+            rewarded in KNS tokens. The validated data can then be queried by
+            consumer in exchange for KNS tokens. This model makes Unchained an
+            economically autonomous platform for data validation and exchange.
+          </p>
+          <div class="buttons">
+            <Button href="/unchained" icon={Dashboard}>Testnet stats</Button>
+            <Button
+              target="_blank"
+              href="https://github.com/KenshiTech/unchained/blob/master/quickstart.md"
+              icon={Play}
+              kind={"secondary"}
+            >
+              Run a Node
+            </Button>
+          </div>
+        </div>
+      </Column>
+      <Column lg={1} />
+      <Column xlg={7} sm={4}>
+        <div class="unchained">
+          <Unchained
+            textColor={$theme === "white" ? "#000" : "#ccc"}
+            color={$theme === "white" ? "#333" : "#000"}
+          />
+        </div>
+      </Column>
+    </Row>
+  </Grid>
 
   <Grid>
     <Row>
@@ -442,5 +484,12 @@
   }
   .onboarding .buttons {
     margin-top: 4em;
+  }
+  .description {
+    display: flex;
+    height: 100%;
+  }
+  .description p {
+    flex: 1;
   }
 </style>

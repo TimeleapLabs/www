@@ -1,73 +1,35 @@
 <script>
   import "@carbon/charts-svelte/styles.css";
 
-  import Skeleton from "svelte-skeleton/Skeleton.svelte";
   import DefaultTags from "src/components/seo/DefaultTags.svelte";
-
-  import {
-    BarChartSimple,
-    DonutChart,
-    AlluvialChart,
-    CirclePackChart,
-    TreemapChart,
-    MeterChart,
-    AreaChart,
-  } from "@carbon/charts-svelte";
-
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import Chartjs from "src/components/chartjs/Chartjs.svelte";
   import colors from "src/components/chartjs/colors.js";
-
+  import formatThousands from "format-thousands";
   import Footer from "src/components/Footer.svelte";
-  import EdgeMap from "src/components/analytics/EdgeMap.svelte";
+  import Unchained from "src/icons/Unchained.svelte";
 
   import {
     Grid,
     Row,
     Column,
-    OutboundLink,
-    InlineNotification,
     ProgressBar,
-    Slider,
     Tile,
-    TileGroup,
-    CodeSnippet,
   } from "carbon-components-svelte";
 
   import { Button, Content } from "carbon-components-svelte";
-  import { ContentSwitcher, Switch } from "carbon-components-svelte";
-
-  import formatThousands from "format-thousands";
-
-  import {
-    Events,
-    AnalyticsReference,
-    Globe,
-    Http,
-    LogoTwitter,
-    LogoDiscord,
-    Book,
-    Dashboard,
-    DashboardReference,
-    SendAlt,
-    LogoGithub,
-    ShoppingCart,
-  } from "carbon-icons-svelte";
+  import { Book, Play } from "carbon-icons-svelte";
 
   import {
     DataTable,
     Toolbar,
-    ToolbarMenu,
-    ToolbarMenuItem,
     ToolbarContent,
     ToolbarSearch,
     Pagination,
   } from "carbon-components-svelte";
 
-  import { ethers } from "ethers";
   import { onMount } from "svelte";
   import { theme } from "src/stores/theme";
-  import { debounce } from "$lib/utils.js";
 
   let data, interval;
   let peerData, peerOptions;
@@ -86,6 +48,7 @@
     tableData = data.scores.map((item) => ({
       id: item._id,
       score: item.count,
+      name: data.names[item._id] || "",
     }));
   }
 
@@ -101,8 +64,8 @@
             }))
             .sort((a, b) => a.x - b.x),
           fill: true, // Enable fill
-          backgroundColor: colors[$theme]["--cds-charts-1-1-1"],
-          borderColor: colors[$theme]["--cds-charts-1-1-1-hovered"],
+          backgroundColor: colors[$theme]["--cds-charts-5-2-5"],
+          borderColor: colors[$theme]["--cds-charts-5-2-5-hovered"],
           borderWidth: 0.2,
           tension: 0.4,
           pointRadius: 0,
@@ -153,8 +116,8 @@
             }))
             .sort((a, b) => a.x - b.x),
           fill: true, // Enable fill
-          backgroundColor: colors[$theme]["--cds-charts-1-1-1"],
-          borderColor: colors[$theme]["--cds-charts-1-1-1-hovered"],
+          backgroundColor: colors[$theme]["--cds-charts-5-2-5"],
+          borderColor: colors[$theme]["--cds-charts-5-2-5-hovered"],
           borderWidth: 0.2,
           tension: 0.4,
           pointRadius: 0,
@@ -193,26 +156,6 @@
     };
   }
 
-  function createGradient(colors, width) {
-    // Create an offscreen canvas
-    const offscreenCanvas = document.createElement("canvas");
-    offscreenCanvas.width = width;
-    offscreenCanvas.height = 1; // Height can be 1 as we only need a horizontal gradient
-
-    const ctx = offscreenCanvas.getContext("2d");
-
-    // Create a linear gradient across the offscreen canvas
-    const gradient = ctx.createLinearGradient(0, 0, width, 0);
-
-    // Add color stops to the gradient
-    colors.forEach((color, index) => {
-      const position = index / (colors.length - 1);
-      gradient.addColorStop(position, color);
-    });
-
-    return gradient;
-  }
-
   onMount(async () => {
     await fetchData();
     interval = setInterval(fetchData, 60000);
@@ -230,7 +173,7 @@
 <Content class="gap">
   <Grid padding>
     <Row>
-      <Column>
+      <Column xlg={8} sm={4}>
         <div class="description">
           <ExpressiveHeading size={4}>Kenshi Unchained</ExpressiveHeading>
           <p>
@@ -242,10 +185,24 @@
           </p>
           <div class="buttons">
             <Button href="/docs/unchained" icon={Book}>Learn more</Button>
+            <Button
+              target="_blank"
+              href="https://github.com/KenshiTech/unchained/blob/master/quickstart.md"
+              icon={Play}
+            >
+              Run a Node
+            </Button>
           </div>
         </div>
       </Column>
-      <Column sm={0} />
+      <Column xlg={8} sm={4}>
+        <div class="unchained">
+          <Unchained
+            textColor={$theme === "white" ? "#000" : "#ccc"}
+            color={$theme === "white" ? "#333" : "#000"}
+          />
+        </div>
+      </Column>
     </Row>
     {#if data}
       <Row>
@@ -335,6 +292,7 @@
               <DataTable
                 headers={[
                   { key: "id", value: "Public Key" },
+                  { key: "name", value: "Name" },
                   { key: "score", value: "Score" },
                 ]}
                 rows={tableData}
@@ -351,9 +309,11 @@
                     <ToolbarSearch
                       persistent
                       shouldFilterRows={(row, value) => {
-                        return row.id
-                          .toLowerCase()
-                          .includes(value.toLowerCase());
+                        const q = value.toLowerCase();
+                        return (
+                          row.id.toLowerCase().includes(q) ||
+                          row.name.toLowerCase().includes(q)
+                        );
                       }}
                       bind:filteredRowIds
                     />

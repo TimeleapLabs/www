@@ -5,11 +5,10 @@ import { json } from "@sveltejs/kit";
 export async function GET() {
   const client = await getUnchainedDbClient();
   const db = client.db("unchained");
-  const collection = db.collection("assetPrices");
+  const assetPrices = db.collection("assetPrices");
+  const nodeNames = db.collection("nodeNames");
 
-  //const data = await collection.find({ block: { $gt } }).limit(2500).toArray();
-
-  const scores = await collection
+  const scores = await assetPrices
     .aggregate([
       { $unwind: "$signers" },
       { $group: { _id: "$signers", count: { $sum: 1 } } },
@@ -19,7 +18,7 @@ export async function GET() {
   const hoursAgo24 = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
   const hoursAgo48 = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
 
-  const activity = await collection
+  const activity = await assetPrices
     .aggregate([
       { $match: { timestamp: { $gte: hoursAgo24 } } },
       { $project: { signersLength: { $size: "$signers" } } },
@@ -33,7 +32,7 @@ export async function GET() {
     ])
     .toArray();
 
-  const validations = await collection
+  const validations = await assetPrices
     .aggregate([
       { $match: { timestamp: { $gte: hoursAgo24 } } },
       { $project: { signersLength: { $size: "$signers" } } },
@@ -41,7 +40,7 @@ export async function GET() {
     ])
     .toArray();
 
-  const uniquePeers = await collection
+  const uniquePeers = await assetPrices
     .aggregate([
       { $match: { timestamp: { $gte: hoursAgo24 } } },
       { $unwind: "$signers" },
@@ -50,14 +49,14 @@ export async function GET() {
     ])
     .toArray();
 
-  const points = await collection
+  const points = await assetPrices
     .aggregate([
       { $match: { timestamp: { $gte: hoursAgo24 } } },
       { $group: { _id: null, count: { $sum: 1 } } },
     ])
     .toArray();
 
-  const data = await collection
+  const data = await assetPrices
     .aggregate([
       { $match: { timestamp: { $gte: hoursAgo48 } } },
       {
@@ -71,6 +70,8 @@ export async function GET() {
     ])
     .toArray();
 
+  const names = await nodeNames.find().toArray();
+
   return json({
     scores,
     activity: activity.pop(),
@@ -78,5 +79,6 @@ export async function GET() {
     points: points.pop().count,
     validations: validations.pop().total,
     data,
+    names: Object.fromEntries(names.map((item) => [item.address, item.name])),
   });
 }
