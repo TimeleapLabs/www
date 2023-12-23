@@ -20,7 +20,7 @@
     } else {
       chart.data = data;
       chart.options = options;
-      chart.update();
+      chart.update("none");
     }
   }
 
