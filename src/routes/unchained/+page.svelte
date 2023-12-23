@@ -350,7 +350,11 @@
                   <ToolbarContent>
                     <ToolbarSearch
                       persistent
-                      shouldFilterRows
+                      shouldFilterRows={(row, value) => {
+                        return row.id
+                          .toLowerCase()
+                          .includes(value.toLowerCase());
+                      }}
                       bind:filteredRowIds
                     />
                   </ToolbarContent>
