@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("UNCHAINED_POSTGRES")
+}
+
+model AssetPrice {
+  id                  Int                   @id @default(autoincrement())
+  dataSetId           Int
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  block               Int?
+  price               Decimal
+  signature           String
+  dataset             DataSet               @relation(fields: [dataSetId], references: [id])
+  signersOnAssetPrice SignersOnAssetPrice[]
+
+  @@unique([dataSetId, block])
+}
+
+model DataSet {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  AssetPrice AssetPrice[]
+}
+
+model Signer {
+  id                  Int                   @id @default(autoincrement())
+  key                 String                @unique
+  name                String?
+  signersOnAssetPrice SignersOnAssetPrice[]
+}
+
+model SignersOnAssetPrice {
+  assetPrice   AssetPrice @relation(fields: [assetPriceId], references: [id])
+  signer       Signer     @relation(fields: [signerId], references: [id])
+  signerId     Int
+  assetPriceId Int
+
+  @@id([signerId, assetPriceId])
+}

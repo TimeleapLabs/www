@@ -1,17 +1,14 @@
 import dotenv from "dotenv";
-import { MongoClient } from "mongodb";
+import { PrismaClient } from "@prisma/client";
 
 dotenv.config();
 
 export let db;
 export let client;
 
-export const getUnchainedDbClient = async () => {
+export const getUnchainedDbClient = () => {
   if (!client) {
-    client = new MongoClient(process.env.UNCHAINED_MONGO, {
-      compressors: ["zstd"],
-    });
-    await client.connect();
+    client = new PrismaClient();
   }
   return client;
 };

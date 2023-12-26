@@ -44,12 +44,17 @@
     data = await req.json();
   };
 
+  const averageSigners = (prices) =>
+    Math.ceil(
+      prices.map((price) => price.signers).reduce((a, b) => a + b) /
+        prices.length
+    );
+
+  const maxSigners = (prices) =>
+    Math.max(...prices.map((price) => price.signers));
+
   $: if (data && $theme) {
-    tableData = data.scores.map((item) => ({
-      id: item._id,
-      score: item.count,
-      name: data.names[item._id] || "",
-    }));
+    tableData = data.scores;
   }
 
   $: if (data && $theme) {
@@ -57,10 +62,10 @@
       datasets: [
         {
           label: "Active Peers",
-          data: data.data
+          data: data.prices
             .map((item) => ({
               x: item.block,
-              y: item.validations,
+              y: item.signers,
             }))
             .sort((a, b) => a.x - b.x),
           fill: true, // Enable fill
@@ -86,7 +91,7 @@
             display: true,
             text: "Block",
           },
-          max: Math.max(...data.data.map((item) => item.block)),
+          max: Math.max(...data.prices.map((item) => item.block)),
           ticks: {
             maxRotation: 45,
             minRotation: 45,
@@ -109,7 +114,7 @@
       datasets: [
         {
           label: "Ethereum Price",
-          data: data.data
+          data: data.prices
             .map((item) => ({
               x: item.block,
               y: item.price,
@@ -138,7 +143,7 @@
             display: true,
             text: "Block",
           },
-          max: Math.max(...data.data.map((item) => item.block)),
+          max: Math.max(...data.prices.map((item) => item.block)),
           ticks: {
             maxRotation: 45,
             minRotation: 45,
@@ -212,7 +217,8 @@
               <div class="tile-title">
                 <ExpressiveHeading size={2}>Ethereum Price</ExpressiveHeading>
                 <div class="body-compact-02">
-                  Ethereum price as validated by the Unchained network — 7 days
+                  Ethereum price as validated by the Unchained network — 48
+                  hours
                 </div>
               </div>
               <div>
@@ -229,7 +235,7 @@
                   Active Validators
                 </ExpressiveHeading>
                 <div class="body-compact-02">
-                  Active validators on the Unchained network — 7 days
+                  Active validators on the Unchained network — 48 hours
                 </div>
               </div>
               <div>
@@ -244,9 +250,9 @@
           <Tile>
             <div class="info-card">
               <ExpressiveHeading size={2}>Unique Peers</ExpressiveHeading>
-              <div class="body-compact-02">Distinct peers — 24hr</div>
+              <div class="body-compact-02">Distinct peers</div>
               <div class="number">
-                {data.peers}
+                {formatThousands(data.stats.signers, { separator: "," })}
               </div>
             </div>
           </Tile>
@@ -257,7 +263,7 @@
               <ExpressiveHeading size={2}>Data Points</ExpressiveHeading>
               <div class="body-compact-02">Validated data points — 24hr</div>
               <div class="number">
-                {data.points}
+                {formatThousands(data.stats.points, { separator: "," })}
               </div>
             </div>
           </Tile>
@@ -268,7 +274,7 @@
               <ExpressiveHeading size={2}>Total Validations</ExpressiveHeading>
               <div class="body-compact-02">Total signatures — 24hr</div>
               <div class="number">
-                {formatThousands(data.validations, { separator: "," })}
+                {formatThousands(data.stats.validations, { separator: "," })}
               </div>
             </div>
           </Tile>
@@ -279,7 +285,7 @@
               <ExpressiveHeading size={2}>Peer Activity</ExpressiveHeading>
               <div class="body-compact-02">Average/Max — 24hr</div>
               <div class="number">
-                {Math.ceil(data.activity.average)}/{data.activity.max}
+                {averageSigners(data.prices)}/{maxSigners(data.prices)}
               </div>
             </div>
           </Tile>
@@ -291,7 +297,7 @@
             <Tile>
               <DataTable
                 headers={[
-                  { key: "id", value: "Public Key" },
+                  { key: "key", value: "Public Key" },
                   { key: "name", value: "Name" },
                   { key: "score", value: "Score" },
                 ]}
@@ -304,6 +310,13 @@
                 title="Leaderboard"
                 description="Peer contributions scores — All-time"
               >
+                <svelte:fragment slot="cell" let:cell>
+                  {#if cell.key === "name"}
+                    {cell.value || ""}
+                  {:else}
+                    {cell.value}
+                  {/if}
+                </svelte:fragment>
                 <Toolbar>
                   <ToolbarContent>
                     <ToolbarSearch

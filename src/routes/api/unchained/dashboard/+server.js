@@ -3,82 +3,59 @@ import { json } from "@sveltejs/kit";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {
-  const client = await getUnchainedDbClient();
-  const db = client.db("unchained");
-  const assetPrices = db.collection("assetPrices");
-  const nodeNames = db.collection("nodeNames");
+  const prisma = getUnchainedDbClient();
 
-  const scores = await assetPrices
-    .aggregate([
-      { $unwind: "$signers" },
-      { $group: { _id: "$signers", count: { $sum: 1 } } },
-    ])
-    .toArray();
-
-  const hoursAgo24 = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-  const hoursAgo48 = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
-
-  const activity = await assetPrices
-    .aggregate([
-      { $match: { timestamp: { $gte: hoursAgo24 } } },
-      { $project: { signersLength: { $size: "$signers" } } },
-      {
-        $group: {
-          _id: null,
-          max: { $max: "$signersLength" },
-          average: { $avg: "$signersLength" },
+  const scores = await prisma.signer.findMany({
+    select: {
+      id: true,
+      name: true,
+      key: true,
+      _count: {
+        select: {
+          signersOnAssetPrice: true,
         },
       },
-    ])
-    .toArray();
+    },
+  });
 
-  const validations = await assetPrices
-    .aggregate([
-      { $match: { timestamp: { $gte: hoursAgo24 } } },
-      { $project: { signersLength: { $size: "$signers" } } },
-      { $group: { _id: null, total: { $sum: "$signersLength" } } },
-    ])
-    .toArray();
+  const signers = await prisma.signer.count();
+  const points = await prisma.assetPrice.count();
+  const validations = await prisma.signersOnAssetPrice.count();
 
-  const uniquePeers = await assetPrices
-    .aggregate([
-      { $match: { timestamp: { $gte: hoursAgo24 } } },
-      { $unwind: "$signers" },
-      { $group: { _id: "$signers" } },
-      { $group: { _id: null, count: { $sum: 1 } } },
-    ])
-    .toArray();
+  const now = new Date();
+  const twoDaysAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
 
-  const points = await assetPrices
-    .aggregate([
-      { $match: { timestamp: { $gte: hoursAgo24 } } },
-      { $group: { _id: null, count: { $sum: 1 } } },
-    ])
-    .toArray();
-
-  const data = await assetPrices
-    .aggregate([
-      { $match: { timestamp: { $gte: hoursAgo48 } } },
-      {
-        $project: {
-          validations: { $size: "$signers" },
-          block: 1,
-          timestamp: 1,
-          price: 1,
-        },
+  const prices = await prisma.assetPrice.findMany({
+    where: {
+      createdAt: {
+        gte: twoDaysAgo,
       },
-    ])
-    .toArray();
-
-  const names = await nodeNames.find().toArray();
+    },
+    select: {
+      price: true,
+      block: true,
+      _count: {
+        select: { signersOnAssetPrice: true },
+      },
+    },
+  });
 
   return json({
-    scores,
-    activity: activity.pop(),
-    peers: uniquePeers.pop().count,
-    points: points.pop().count,
-    validations: validations.pop().total,
-    data,
-    names: Object.fromEntries(names.map((item) => [item.address, item.name])),
+    scores: scores.map((score) => ({
+      id: score.id,
+      name: score.name,
+      key: score.key,
+      score: score._count.signersOnAssetPrice,
+    })),
+    prices: prices.map((price) => ({
+      price: price.price,
+      block: price.block,
+      signers: price._count.signersOnAssetPrice,
+    })),
+    stats: {
+      signers,
+      points,
+      validations,
+    },
   });
 }
