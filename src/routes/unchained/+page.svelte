@@ -250,7 +250,7 @@
           <Tile>
             <div class="info-card">
               <ExpressiveHeading size={2}>Unique Peers</ExpressiveHeading>
-              <div class="body-compact-02">Distinct peers</div>
+              <div class="body-compact-02">Distinct peers — All-Time</div>
               <div class="number">
                 {formatThousands(data.stats.signers, { separator: "," })}
               </div>
@@ -261,7 +261,9 @@
           <Tile>
             <div class="info-card">
               <ExpressiveHeading size={2}>Data Points</ExpressiveHeading>
-              <div class="body-compact-02">Validated data points — 24hr</div>
+              <div class="body-compact-02">
+                Validated data points — All-Time
+              </div>
               <div class="number">
                 {formatThousands(data.stats.points, { separator: "," })}
               </div>
@@ -272,7 +274,7 @@
           <Tile>
             <div class="info-card">
               <ExpressiveHeading size={2}>Total Validations</ExpressiveHeading>
-              <div class="body-compact-02">Total signatures — 24hr</div>
+              <div class="body-compact-02">Total signatures — All-Time</div>
               <div class="number">
                 {formatThousands(data.stats.validations, { separator: "," })}
               </div>
