@@ -326,8 +326,8 @@
                       shouldFilterRows={(row, value) => {
                         const q = value.toLowerCase();
                         return (
-                          row.id.toLowerCase().includes(q) ||
-                          row.name.toLowerCase().includes(q)
+                          row.key.toLowerCase().includes(q) ||
+                          (row.name && row.name.toLowerCase().includes(q))
                         );
                       }}
                       bind:filteredRowIds
