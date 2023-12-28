@@ -22,15 +22,11 @@ export async function GET() {
   const points = await prisma.assetPrice.count();
   const validations = await prisma.signersOnAssetPrice.count();
 
-  const now = new Date();
-  const twoDaysAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
+  const twoDaysAgo = 2 * 7200;
 
   const prices = await prisma.assetPrice.findMany({
-    where: {
-      createdAt: {
-        gte: twoDaysAgo,
-      },
-    },
+    orderBy: [{ block: "desc" }],
+    take: twoDaysAgo,
     select: {
       price: true,
       block: true,
