@@ -173,6 +173,7 @@
 <DefaultTags
   description="Unchained is a decentralized, peer-to-peer network for data validation. Unchained nodes work to validate data together and are rewarded in KNS tokens."
   title="Kenshi — Unchained"
+  image="/images/social.unchained.png"
 />
 
 <Content class="gap">
