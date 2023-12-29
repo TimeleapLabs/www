@@ -54,7 +54,9 @@
     Math.max(...prices.map((price) => price.signers));
 
   $: if (data && $theme) {
-    tableData = data.scores;
+    tableData = data.scores
+      .sort((a, b) => b.score - a.score)
+      .map((item, index) => ({ ...item, rank: index + 1 }));
   }
 
   $: if (data && $theme) {
@@ -300,6 +302,7 @@
             <Tile>
               <DataTable
                 headers={[
+                  { key: "rank", value: "Rank" },
                   { key: "key", value: "Public Key" },
                   { key: "name", value: "Name" },
                   { key: "score", value: "Score" },
