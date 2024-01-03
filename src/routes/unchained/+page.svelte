@@ -26,6 +26,7 @@
     ToolbarContent,
     ToolbarSearch,
     Pagination,
+    InlineNotification,
   } from "carbon-components-svelte";
 
   import { onMount } from "svelte";
@@ -210,6 +211,16 @@
             color={$theme === "white" ? "#333" : "#000"}
           />
         </div>
+      </Column>
+    </Row>
+    <Row>
+      <Column>
+        <InlineNotification kind="warning-alt">
+          The Unchained network is still under construction, so some features
+          like the leaderboard might not be working perfectly yet. We're
+          actively testing and improving everything, so expect a few bumps along
+          the way. But don't worry, we'll keep you updated!
+        </InlineNotification>
       </Column>
     </Row>
     {#if data}
