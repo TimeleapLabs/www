@@ -54,11 +54,11 @@
   const maxSigners = (prices) =>
     Math.max(...prices.map((price) => price.signers));
 
-  // $: if (data && $theme) {
-  //   tableData = data.scores
-  //     .sort((a, b) => b.score - a.score)
-  //     .map((item, index) => ({ ...item, rank: index + 1 }));
-  // }
+  $: if (data && $theme) {
+    tableData = data.scores
+      .sort((a, b) => b.score - a.score)
+      .map((item, index) => ({ ...item, rank: index + 1 }));
+  }
 
   $: if (data && $theme) {
     peerData = {

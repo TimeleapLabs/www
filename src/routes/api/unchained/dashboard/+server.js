@@ -7,18 +7,22 @@ const cache = new Map();
 export async function GET() {
   const prisma = getUnchainedDbClient();
 
-  // const scores = await prisma.signer.findMany({
-  //   select: {
-  //     id: true,
-  //     name: true,
-  //     key: true,
-  //     _count: {
-  //       select: {
-  //         signersOnAssetPrice: true,
-  //       },
-  //     },
-  //   },
-  // });
+  const scores =
+    cache.get("scores") ||
+    (await prisma.signer.findMany({
+      select: {
+        id: true,
+        name: true,
+        key: true,
+        _count: {
+          select: {
+            signersOnAssetPrice: true,
+          },
+        },
+      },
+    }));
+
+  cache.set("scores", scores);
 
   const signers = cache.get("signers") || (await prisma.signer.count());
   const points = cache.get("points") || (await prisma.assetPrice.count());
@@ -31,25 +35,29 @@ export async function GET() {
 
   const twoDaysAgo = 2 * 7200;
 
-  const prices = await prisma.assetPrice.findMany({
-    orderBy: [{ block: "desc" }],
-    take: twoDaysAgo,
-    select: {
-      price: true,
-      block: true,
-      _count: {
-        select: { signersOnAssetPrice: true },
+  const prices =
+    cache.get("prices") ||
+    (await prisma.assetPrice.findMany({
+      orderBy: [{ block: "desc" }],
+      take: twoDaysAgo,
+      select: {
+        price: true,
+        block: true,
+        _count: {
+          select: { signersOnAssetPrice: true },
+        },
       },
-    },
-  });
+    }));
+
+  cache.set("prices", prices);
 
   return json({
-    // scores: scores.map((score) => ({
-    //   id: score.id,
-    //   name: score.name,
-    //   key: score.key,
-    //   score: score._count.signersOnAssetPrice,
-    // })),
+    scores: scores.map((score) => ({
+      id: score.id,
+      name: score.name,
+      key: score.key,
+      score: score._count.signersOnAssetPrice,
+    })),
     prices: prices.map((price) => ({
       price: price.price,
       block: price.block,
