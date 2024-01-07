@@ -346,7 +346,7 @@
       <Column>
         <ExpressiveHeading size={3}>Joined programs</ExpressiveHeading>
         <div class="helper-text-01">
-          Connect your wallet to see your the staking programs you've joined.
+          Connect your wallet to see the staking programs you've joined.
         </div>
       </Column>
     </Row>
