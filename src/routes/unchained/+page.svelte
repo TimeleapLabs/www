@@ -32,6 +32,7 @@
   import { onMount } from "svelte";
   import { theme } from "src/stores/theme";
 
+  let sprint = Math.ceil(new Date().valueOf() / 300000);
   let data, interval;
   let peerData, peerOptions;
   let priceData, priceOptions;
@@ -43,20 +44,12 @@
   const fetchData = async () => {
     const req = await fetch("/api/unchained/dashboard");
     data = await req.json();
+    sprint = Math.ceil(new Date().valueOf() / 300000);
   };
 
-  const averageSigners = (prices) =>
-    Math.ceil(
-      prices.map((price) => price.signers).reduce((a, b) => a + b) /
-        prices.length
-    );
-
-  const maxSigners = (prices) =>
-    Math.max(...prices.map((price) => price.signers));
-
   $: if (data && $theme) {
-    tableData = data.scores
-      .sort((a, b) => b.score - a.score)
+    tableData = data.signers
+      .sort((a, b) => b.points - a.points)
       .map((item, index) => ({ ...item, rank: index + 1 }));
   }
 
@@ -266,7 +259,18 @@
               <ExpressiveHeading size={2}>Unique Peers</ExpressiveHeading>
               <div class="body-compact-02">Distinct peers — All-Time</div>
               <div class="number">
-                {formatThousands(data.stats.signers, { separator: "," })}
+                {formatThousands(data.signers.length, { separator: "," })}
+              </div>
+            </div>
+          </Tile>
+        </Column>
+        <Column xlg={4} md={4}>
+          <Tile>
+            <div class="info-card">
+              <ExpressiveHeading size={2}>Sprint</ExpressiveHeading>
+              <div class="body-compact-02">Unchained Sprint — Current</div>
+              <div class="number">
+                {formatThousands(sprint, { separator: "," })}
               </div>
             </div>
           </Tile>
@@ -279,7 +283,7 @@
                 Validated data points — All-Time
               </div>
               <div class="number">
-                {formatThousands(data.stats.points, { separator: "," })}
+                {formatThousands(data.stats.datapoints, { separator: "," })}
               </div>
             </div>
           </Tile>
@@ -295,17 +299,6 @@
             </div>
           </Tile>
         </Column>
-        <Column xlg={4} md={4}>
-          <Tile>
-            <div class="info-card">
-              <ExpressiveHeading size={2}>Peer Activity</ExpressiveHeading>
-              <div class="body-compact-02">Average/Max — 24hr</div>
-              <div class="number">
-                {averageSigners(data.prices)}/{maxSigners(data.prices)}
-              </div>
-            </div>
-          </Tile>
-        </Column>
       </Row>
       {#if tableData}
         <Row>
@@ -316,7 +309,7 @@
                   { key: "rank", value: "Rank" },
                   { key: "key", value: "Public Key" },
                   { key: "name", value: "Name" },
-                  { key: "score", value: "Score" },
+                  { key: "points", value: "Points" },
                 ]}
                 rows={tableData}
                 sortable={true}
