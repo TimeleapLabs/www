@@ -4,6 +4,14 @@ import { json } from "@sveltejs/kit";
 const cache = new Map();
 let currentSprint;
 
+const count = async (prisma, table) => {
+  const [{ estimate }] = await prisma.$queryRaw`
+      SELECT reltuples AS estimate
+        FROM pg_class
+        WHERE oid = ${table}::regclass;`;
+  return estimate;
+};
+
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {
   const prisma = getUnchainedDbClient();
@@ -19,11 +27,11 @@ export async function GET() {
   cache.set("signers", signers);
 
   const datapoints =
-    cache.get("datapoints") || (await prisma.assetPrice.count());
+    cache.get("datapoints") || (await count(prisma, '"AssetPrice"'));
   cache.set("datapoints", datapoints);
 
   const validations =
-    cache.get("validations") || (await prisma.signersOnAssetPrice.count());
+    cache.get("validations") || (await count(prisma, '"SignersOnAssetPrice"'));
   cache.set("validations", validations);
 
   const twoDaysAgo = 2 * 7200;
