@@ -34,14 +34,14 @@ export async function GET() {
     cache.get("validations") || (await count(prisma, '"SignersOnAssetPrice"'));
   cache.set("validations", validations);
 
-  const twoDaysAgo = 2 * 7200;
+  const lastDay = 1 * 7200;
 
   const prices =
     sprint === currentSprint
       ? cache.get("prices")
       : await prisma.assetPrice.findMany({
           orderBy: [{ block: "desc" }],
-          take: twoDaysAgo,
+          take: lastDay,
           select: {
             price: true,
             block: true,
