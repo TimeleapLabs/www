@@ -55,7 +55,7 @@ Network.
 
 [heading :size 2 Before we begin]
 
-To create your custom oracle with the Oracle Network, you can use your prefered programming language.
+To create your custom oracle with the Oracle Network, you can use your preferred programming language.
 In this tutorial we will use JavaScript. We will also write a sample smart contract in Solidity
 that will interact with your new oracle. I will show you how to code, create and deploy your
 dedicated VRF oracle and guide you through the best security practices.

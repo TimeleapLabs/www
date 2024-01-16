@@ -32,7 +32,7 @@ request randomness on the blockchain.
 To fill the form, you can refer to the following guide:
 
 [list 
-  [: [bold Chain] is the chain you are targeting. This is the chain yoru smart contract is deployed to.]
+  [: [bold Chain] is the chain you are targeting. This is the chain where your smart contract is deployed to.]
   [: [bold Credit] is the amount of Kenshi you want to send to this subscription. This amount is consumed
     for paying the VRF fees requested by the [bold allow] list.]
   [: The [bold allow] list is a list of smart contract addresses you want to use this subscription for.
@@ -93,7 +93,7 @@ VRF coordinator, it receives a "requestId". The Kenshi VRF coordinator keeps rec
 of the "requestId" for your smart contracts and increments it by one every time this
 function is called from your smart contract.
 
-An event is then emitted from the VRF coordinator that incldues this "requestId"
+An event is then emitted from the VRF coordinator that includes this "requestId"
 as well as the address of your smart contract. This event is then picked up by the
 Kenshi Deep Index Sync oracle, and passed to the Kenshi VRF oracle using the Kenshi
 Deep Index Event Dispatcher.

@@ -22,7 +22,7 @@ provides the following functions:
     randomness on the chain. This library is also used to derive the beta value and generate a random
     number from the VRF proof.]
 
-  [:[bold setVRFShouldVerify]: Sets if the randomness should be verified on the chain. This will increas
+  [:[bold setVRFShouldVerify]: Sets if the randomness should be verified on the chain. This will increase
     the gas used significantly.]
 
   [:[bold setVRFIsSilent]: Sets if the "randomnessFulfilled" should be emitted. Turn off for gas saving.]
@@ -37,7 +37,7 @@ provides the following functions:
     function when a VRF result is received and verified. You need to re-implement this in your smart contract.
     Anything you need to do with the randomness you requested should be implemented here.]]
 
-For function signatures check the [link https://github.com/KenshiTech/vrf-consumer VRF consumer repositorty].
+For function signatures check the [link https://github.com/KenshiTech/vrf-consumer VRF consumer repository].
 
 [heading :size 2 VRF Utils]
 

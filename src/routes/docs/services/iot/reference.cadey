@@ -14,7 +14,7 @@ need to have a secure network Client.
 On ESP32 the HTTPS connection is handled by the SDK automatically; all you need is to
 be connected to a Wi-Fi access point. On certain Arduino boards, however, you need to
 manage the HTTPS connection yourself. For example, on Arduino MKR 1010, you should use
-an instnce of "WiFiSSLClient", but you won't need to register the Kenshi/AWS root
+an instance of "WiFiSSLClient", but you won't need to register the Kenshi/AWS root
 certificate as it is already shipped with the Arduino MKR 1010. Refer to the developer
 documentation of your board to learn how you can install a root certificate. Check
 [link #the-kenshi-root-certificate "The Kenshi root certificate"] section on this page
@@ -295,7 +295,7 @@ This macro is used to send an MQL query and wait for a response.
    * @param mql_name: Name of the initialized MQL query.
    * @param query: Buffer name that stores the serialized query.
    * @param buffer_size: Size of the buffer to receive HTTP
-   * packets. Currently the entire MQL respons needs to fit in
+   * packets. Currently the entire MQL response needs to fit in
    * this buffer, this behavior might change in the future.
    *
    * @example:

@@ -32,7 +32,7 @@ and informed about our progress and direction.
     [:✅ [bold Oracle Network]: Kenshi Oracle Network, a serverless, asynchronous,
       fault-tolerant network for creating custom oracles is live on 8 EVM blockchains.]
     [:⏳ [bold IoT Boards / HSM]: Kenshi is building embedded devices that are able to
-      securly connect to the blockchain, manage crypto-assets, manage secrets, make
+      securely connect to the blockchain, manage crypto-assets, manage secrets, make
       secure API requests, and more.]
     [:⏳ [bold Unchained]: Kenshi Unchained is peer-to-peer decentralized network for
       validating data. Unchained is the future of Kenshi, aiming to decentralize all of
@@ -55,7 +55,7 @@ You can find our Unchained progress here:
     [:✅ [bold Data Validation]: The underlying decentralized protocol for
       validating pieces of data is in place. BLS signature aggregation is
       used by peers to sign data.]
-    [:✅ [bold Persistance]: The validated data is persisted in MongoDB
+    [:✅ [bold Persistence]: The validated data is persisted in MongoDB
       clusters.]
     [:⏳ [bold Smart Contracts]: Unchained uses a Liquid Proof of Stake consensus
       mechanism. We are working on smart contracts to allow users to stake their
@@ -78,7 +78,7 @@ You can find our Unchained progress here:
   [: The Kenshi HSM can be used as a more secure alternative to existing
     secret managers, such as HashiCorp Vault.]
   [: These devices can also be used for decentralized oracles, data
-    collection networks, supply chain managent, and plenty of other use
+    collection networks, supply chain management, and plenty of other use
     cases.]
 ]
 

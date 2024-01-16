@@ -14,7 +14,7 @@ contract Weather {
      * Oracle Network and sent to your oracle for processing
      *
      * Note: Solidity doesn't have floating point numbers,
-     * we assume lat and long are multiplied by 100 to elliminate
+     * we assume lat and long are multiplied by 100 to eliminate
      * the decimal part of them
      */
     function requestWeather(uint256 lat, uint256 long) external {
