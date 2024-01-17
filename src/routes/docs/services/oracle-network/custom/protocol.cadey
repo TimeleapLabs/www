@@ -14,8 +14,8 @@ host it on your own infrastructure. The logic part needs to implement the follow
   [: [bold Response Code:] You must return a HTTP success code, otherwise the Kenshi event
       dispatcher will attempt retries.]
   [: [bold Response Body:] You must respond with the instructions on how to process the event
-      and what data should be sent to your smart contract on the blockchain. Respone body
-      should be JSON formatted.]]
+      and what data should be sent to your smart contract on the blockchain. Response body
+      should be JSON-formatted.]]
 
 You are free to use the technology of your choice to implement the above protocol.
 

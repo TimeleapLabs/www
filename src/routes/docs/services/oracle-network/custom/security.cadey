@@ -41,7 +41,7 @@ a one hour average or percentile of an asset's price, instead of its spot price)
 
 [heading :size 2 Signature]
 
-Certain types of data are easily verifable on the blockchain. For example, randomness generated
+Certain types of data are easily verifiable on the blockchain. For example, randomness generated
 by a VRF. Other types of data, such as market data, sport or weather are not so verifiable. However,
 it is easy to verify the sender of such data, and to make sure they are not manipulated after being 
 generated and verified by your oracle endpoint.

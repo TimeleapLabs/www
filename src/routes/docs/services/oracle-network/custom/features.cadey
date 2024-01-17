@@ -3,7 +3,7 @@
 Kenshi Oracle Network takes care of the following for your oracles:
 
 [list
-  [: [bold Event Sourcing:] Kenshi uses the same asynchronous, severless technology as the Kenshi Deep index
+  [: [bold Event Sourcing:] Kenshi uses the same asynchronous, serverless technology as the Kenshi Deep index
      to source blockchain events for your oracle. The only difference is that the events are not indexed, but
      are sent directly to your oracle to be processed.]
   [: [bold Caching:] Kenshi caches your events in memory (Memcached with a TTL of 900s) to prevent a request

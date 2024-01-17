@@ -32,7 +32,7 @@ utilities of this token are:
     direction of the Unchained network. See the [link /engage Kenshi Engagement Protocol].]
   [:[bold Unchained Nodes]: The Unchained protocol implements a
     [link https://opentezos.com/tezos-basics/liquid-proof-of-stake/ Liquid Proof of Stake]
-    conensus mechanism. Unchained validators stake KNS tokens to improve the
+    consensus mechanism. Unchained validators stake KNS tokens to improve the
     security of the Unchained network.]
   [:[bold Unchained Consumers]:  Consumers use KNS to access validated data stored
     on the Unchained network. Validators receive these tokens as a reward for running
