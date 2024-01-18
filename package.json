@@ -48,6 +48,7 @@
     "@web3-onboard/injected-wallets": "^2.10.2",
     "@web3-onboard/uauth": "^2.1.1",
     "@web3-onboard/walletconnect": "^2.4.1",
+    "base-ex": "^0.8.1",
     "cadey": "^1.0.5",
     "carbon-components-svelte": "^0.80.0",
     "carbon-icons-svelte": "^12.3.0",

@@ -1,5 +1,8 @@
 import { getUnchainedDbClient } from "$lib/unchained/db";
 import { json } from "@sveltejs/kit";
+import { Base58 } from "base-ex";
+
+const encoder = new Base58("bitcoin");
 
 const cache = new Map();
 let currentSprint;
@@ -12,19 +15,38 @@ const count = async (prisma, table) => {
   return estimate;
 };
 
+const encode = (input) => {
+  if (!input) {
+    return "N/A";
+  }
+  return encoder.encode(input);
+};
+
+const getSigners = async (prisma, sprint) => {
+  if (sprint === currentSprint) {
+    return cache.get("signers");
+  }
+
+  const rawSigners = await prisma.signer.findMany({
+    select: { id: true, name: true, key: true, points: true },
+  });
+
+  const signers = rawSigners.map((signer) => ({
+    ...signer,
+    key: encode(signer.key),
+  }));
+
+  cache.set("signers", signers);
+
+  return signers;
+};
+
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {
   const prisma = getUnchainedDbClient();
   const sprint = Math.ceil(new Date().valueOf() / 300000);
 
-  const signers =
-    sprint === currentSprint
-      ? cache.get("signers")
-      : await prisma.signer.findMany({
-          select: { id: true, name: true, key: true, points: true },
-        });
-
-  cache.set("signers", signers);
+  const signers = await getSigners(prisma, sprint);
 
   const datapoints =
     cache.get("datapoints") || (await count(prisma, '"AssetPrice"'));
