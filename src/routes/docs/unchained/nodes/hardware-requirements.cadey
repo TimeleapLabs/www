@@ -1,0 +1,32 @@
+[heading :size 1 Hardware Requirements]
+
+Unchained supports two types of nodes:
+
+[list
+  [: [bold Lite nodes] only validate data, but don't store it.]
+  [: [bold Full nodes] validate data, and store it.]]
+
+Full nodes can use an [italic external] database, in which case
+they'll require less resource. You can find the hardware
+requirements for each one of the node types here.
+
+[table
+  [:header  Resource          Lite       Full           [: Full+External DB]     ]
+  [:row     [: Storage]       [: 10GiB]  [: 4TiB SSD]   [: 10GiB]                ]
+  [:row     [: Memory]        [: 1GiB]   [: 16GiB]      [: 1GiB]                 ]
+  [:row     [: CPU]
+                              [: 1 CPU Core, AArch64 or AMD64]
+                              [: 8 CPU Cores, AArch64 or AMD64]
+                              [: 1 CPU Core, AArch64 or AMD64]                   ]
+  [:row     [: Network]       [: 10Mbps symmetric]
+                              [: 100Mbps symmetric] 
+                              [: 100Mbps symmetric]                              ]
+]
+
+Please note that the above values are the [italic minimum] recommended levels. As
+the network grows, the requirements for running nodes will change as well.
+Learn more about GiB vs GB [link https://simple.wikipedia.org/wiki/Gibibyte here].
+
+[alert info
+  To run a full node on the Unchained testnet, you can use a much smaller storage.
+  The data on testnet can be safely purged.]

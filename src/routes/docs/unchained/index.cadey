@@ -1,0 +1,15 @@
+[heading Unchained]
+
+Unchained is a decentralized, peer-to-peer network for data validation.
+Unchained nodes work to validate data together and are rewarded in KNS tokens.
+The validated data can then be queried by consumer in exchange for KNS tokens.
+This model makes Unchained an economically autonomous platform for data
+validation and exchange.
+
+[alert warning
+  This section of the Kenshi documentation is a work in progress.]
+
+[toc
+  about
+  nodes/index
+  resources]

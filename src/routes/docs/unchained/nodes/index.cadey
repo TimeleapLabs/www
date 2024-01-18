@@ -1,0 +1,9 @@
+[heading :size 1 Running a Node]
+
+You can find here the instructions on how to run an Unchained node.
+
+[toc
+  hardware-requirements
+  install
+  update
+  configure]

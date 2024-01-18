@@ -1,0 +1,108 @@
+[heading :size 1 Configuring the Unchained Client]
+
+Once you have Unchained installed, you need to configure a few things first.
+
+[heading :size 2 Configuring a Docker Installation]
+
+There are three ways to run Unchained with Docker, each requiring a different
+type of configuration.
+
+[heading :size 3 Lite Nodes with Docker]
+
+Make a copy of the lite node config template file in the release directory:
+
+[code cp conf.lite.yaml.template conf.yaml]
+
+Modify the config file with your favorite text editor and set a name for your
+node.
+
+[heading :size 3 Full Nodes with Docker]
+
+Make a copy of the .env template file in the release directory:
+
+[code cp .env.template .env]
+
+Modify and set the following parameters in the .env file:
+
+[list
+  [: [bold POSTGRES_USER]: Choose a username for your Unchained DB instance.]
+  [: [bold POSTGRES_PASSWORD]: Choose a secure password for your Unchained DB.]
+  [: [bold POSTGRES_DB]: Choose an alphanumeric name for the Unchained database.]
+  [: [bold GF_SECURITY_ADMIN_USER]: Choose a username for your Unchained Grafana dashboard.]
+  [: [bold GF_SECURITY_ADMIN_PASSWORD]: Choose a password for your Unchained Grafana dashboard.]
+]
+
+Make a copy of the full node config template file in the release directory:
+
+[code cp conf.full.yaml.template conf.yaml]
+
+Modify the config file with your favorite text editor, and make the following changes:
+
+[list
+  [: [bold Name]: Choose a name for your Unchained node.]
+  [: [bold Database URI]:
+    [list
+      [: [bold &ltuser&gt]: Replace with the Postgres user set in your .env file.]
+      [: [bold &ltpass&gt]: Replace with the Postgres password set in your .env file.]
+      [: [bold &lthost&gt]: Replace with postgres.]
+      [: [bold &ltport&gt]: Replace with 5432.]
+      [: [bold &ltdb&gt]: Replace with the database name set in your .env file.]
+    ]
+  ]
+]
+
+[heading :size 3 Remote Nodes with Docker]
+
+Make a copy of the remote node config template file in the release directory:
+
+[code cp conf.remote.yaml.template conf.yaml]
+
+Modify the config file with your favorite text editor, and make the following changes:
+
+[list
+  [: [bold Name]: Choose a name for your Unchained node.]
+  [: [bold Database URI]:
+    [list
+      [: [bold &ltuser&gt]: Replace with your Postgres user.]
+      [: [bold &ltpass&gt]: Replace with your Postgres password.]
+      [: [bold &lthost&gt]: Replace with your Postgres host name.]
+      [: [bold &ltport&gt]: Replace with your Postgres port.]
+      [: [bold &ltdb&gt]: Replace with your Postgres database name.]
+    ]
+  ]
+]
+
+[heading :size 2 Configuring a Node.js/NPM Installation]
+
+There are two ways to run Unchained with Node.js, each requiring a different
+type of configuration.
+
+[heading :size 3 Lite Nodes with Node.js/NPM]
+
+Make a copy of the lite node config template file from
+[link https://github.com/KenshiTech/unchained/blob/master/conf.lite.yaml.template GitHub].
+Modify the config file with your favorite text editor and set a name for your
+node.
+
+[heading :size 3 Full Nodes with Node.js/NPM]
+
+Make a copy of the lite node config template file from
+[link https://github.com/KenshiTech/unchained/blob/master/conf.lite.yaml.template GitHub].
+Modify the config file to fit your setup:
+
+[list
+  [: [bold Name]: Choose a name for your Unchained node.]
+  [: [bold Database URI]:
+    [list
+      [: [bold &ltuser&gt]: Replace with your Postgres user.]
+      [: [bold &ltpass&gt]: Replace with your Postgres password.]
+      [: [bold &lthost&gt]: Replace with your Postgres host name.]
+      [: [bold &ltport&gt]: Replace with your Postgres port.]
+      [: [bold &ltdb&gt]: Replace with your Postgres database name.]
+    ]
+  ]
+]
+
+Note that you'll need Postgres to run a full node. It should either be installed and
+configured locally, or you can use a DBaaS. Installing and configuring Postgres is out
+of the scope of this documentation.
