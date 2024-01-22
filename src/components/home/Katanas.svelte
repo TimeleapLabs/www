@@ -45,7 +45,7 @@
           </div>
         </div>
       </Column>
-      <Column lg={7}>
+      <Column xlg={7}>
         <div class="nft">
           {#key show}
             <Katana nft={nfts[show]} />
@@ -68,6 +68,9 @@
   }
   .buttons {
     margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
   }
   .nft {
     display: grid;

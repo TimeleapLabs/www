@@ -5,9 +5,11 @@
   import { Button, Content, ClickableTile } from "carbon-components-svelte";
 
   import { Dashboard, Book, ArrowDownRight } from "carbon-icons-svelte";
+  import { AssemblyCluster } from "carbon-icons-svelte";
   import { ArrowRight, Play } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
   import { OutboundLink } from "carbon-components-svelte";
+  import { ImageLoader } from "carbon-components-svelte";
 
   import Fantom from "src/icons/Fantom.svelte";
   import Ethereum from "src/icons/Ethereum.svelte";
@@ -409,10 +411,33 @@
     </Grid>
   </div>
 
+  <Grid>
+    <Row>
+      <Column>
+        <div class="stake">
+          <Tile href="/stake">
+            <div class="body">
+              <div class="text">
+                Looking for KNS staking? Learn more and stake here.
+              </div>
+              <Button href="/stake" icon={AssemblyCluster}>Stake</Button>
+            </div>
+          </Tile>
+          <div class="image">
+            <ImageLoader
+              src="/images/backgrounds/cubes.png"
+              alt="KNS staking"
+            />
+          </div>
+        </div>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Katanas />
   <DeveloperResources />
   <HereToHelp />
   <Articles />
-  <Katanas />
 </Content>
 
 <Footer />
@@ -491,5 +516,40 @@
   }
   .description p {
     flex: 1;
+  }
+  .stake {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+  }
+  @media (max-width: 1440px) {
+    .stake {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .stake .body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1em 2em;
+    box-sizing: border-box;
+    gap: 1em;
+    line-height: 1.2em;
+  }
+  @media (max-width: 640px) {
+    .stake {
+      grid-template-columns: 1fr;
+    }
+    .stake .body {
+      padding: 1em;
+    }
+  }
+  .stake .body .text {
+    flex: 1;
+  }
+  .stake .image :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 </style>
