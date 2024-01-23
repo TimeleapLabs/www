@@ -224,8 +224,7 @@
               <div class="tile-title">
                 <ExpressiveHeading size={2}>Ethereum Price</ExpressiveHeading>
                 <div class="body-compact-02">
-                  Ethereum price as validated by the Unchained network — 24
-                  hours
+                  Ethereum price as validated by the Unchained network — 8 hours
                 </div>
               </div>
               <div>
@@ -242,7 +241,7 @@
                   Active Validators
                 </ExpressiveHeading>
                 <div class="body-compact-02">
-                  Active validators on the Unchained network — 24 hours
+                  Active validators on the Unchained network — 8 hours
                 </div>
               </div>
               <div>
