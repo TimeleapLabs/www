@@ -98,7 +98,7 @@
     </div>
 
     <div
-      class="hero-image"
+      class="hero-image noise"
       style="background-image: url(/images/backgrounds/samurai.jpg);"
     />
   </div>
@@ -423,7 +423,7 @@
               <Button href="/stake" icon={AssemblyCluster}>Stake</Button>
             </div>
           </Tile>
-          <div class="image">
+          <div class="image noise">
             <ImageLoader
               src="/images/backgrounds/cubes.png"
               alt="KNS staking"
