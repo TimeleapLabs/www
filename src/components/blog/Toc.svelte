@@ -21,7 +21,7 @@
       {#each nav.slice(0, maxCount) as article}
         <Column {lg} {md} {sm}>
           <ClickableTile class="tile" href={article.url}>
-            <div class="container">
+            <div class="container force-round">
               <div class="article">
                 <ExpressiveHeading size={3}>
                   <h3>{article.title}</h3>

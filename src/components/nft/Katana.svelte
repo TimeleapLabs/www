@@ -54,9 +54,11 @@
   };
 </script>
 
-<div class="katana" transition:fade={{ duration: 500 }}>
-  <img src={parsedNft.metadata.image} alt={parsedNft.metadata.name} />
-  <Tile>
+<div class="katana force-round" transition:fade={{ duration: 500 }}>
+  <div class="image noise">
+    <img src={parsedNft.metadata.image} alt={parsedNft.metadata.name} />
+  </div>
+  <Tile class="edge-top">
     <div class="title">
       <ExpressiveHeading size={3}>
         <h4>{parsedNft.metadata.name}</h4>
@@ -94,7 +96,9 @@
     flex-direction: column;
   }
   .katana img {
-    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
   .katana .title {
     margin-bottom: 1em;

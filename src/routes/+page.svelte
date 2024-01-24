@@ -98,7 +98,7 @@
     </div>
 
     <div
-      class="hero-image noise"
+      class="hero-image contrast noise"
       style="background-image: url(/images/backgrounds/samurai.jpg);"
     />
   </div>
@@ -368,7 +368,7 @@
   </Grid>
 
   <div class="matterhorn">
-    <div class="background noise" />
+    <div class="background contrast noise" />
     <div class="content">
       <Grid padding>
         <Row>
@@ -418,7 +418,7 @@
   <Grid>
     <Row>
       <Column>
-        <div class="stake">
+        <div class="stake force-round">
           <Tile href="/stake">
             <div class="body">
               <div class="text">
@@ -427,7 +427,7 @@
               <Button href="/stake" icon={AssemblyCluster}>Stake</Button>
             </div>
           </Tile>
-          <div class="image noise">
+          <div class="image contrast noise">
             <ImageLoader
               src="/images/backgrounds/cubes.png"
               alt="KNS staking"
