@@ -368,47 +368,51 @@
   </Grid>
 
   <div class="matterhorn">
-    <Grid padding>
-      <Row>
-        <Column lg={6}>
-          <Tile class="padding">
-            <Grid noGutter padding>
-              <Row>
-                <Column>
-                  <ExpressiveHeading size={4}>
-                    <h3>About</h3>
-                  </ExpressiveHeading>
-                </Column>
-              </Row>
-              <Row>
-                <Column lg={14}>
-                  <p>
-                    Founded in December 2021, Kenshi is a pioneering blockchain
-                    technology company headquartered in the heart of
-                    Switzerland. With a commitment to innovation and excellence,
-                    Kenshi aims to bridge the gap between the traditional web
-                    (Web 2.0) and the decentralized future (Web 3.0).
-                  </p>
-                </Column>
-              </Row>
-              <Row>
-                <Column>
-                  <div class="buttons">
-                    <Button
-                      href="/docs/kenshi"
-                      kind="secondary"
-                      icon={ArrowRight}
-                    >
-                      Learn more
-                    </Button>
-                  </div>
-                </Column>
-              </Row>
-            </Grid>
-          </Tile>
-        </Column>
-      </Row>
-    </Grid>
+    <div class="background noise" />
+    <div class="content">
+      <Grid padding>
+        <Row>
+          <Column lg={6}>
+            <Tile class="padding">
+              <Grid noGutter padding>
+                <Row>
+                  <Column>
+                    <ExpressiveHeading size={4}>
+                      <h3>About</h3>
+                    </ExpressiveHeading>
+                  </Column>
+                </Row>
+                <Row>
+                  <Column lg={14}>
+                    <p>
+                      Founded in December 2021, Kenshi is a pioneering
+                      blockchain technology company headquartered in the heart
+                      of Switzerland. With a commitment to innovation and
+                      excellence, Kenshi aims to bridge the gap between the
+                      traditional web (Web 2.0) and the decentralized future
+                      (Web 3.0).
+                    </p>
+                  </Column>
+                </Row>
+                <Row>
+                  <Column>
+                    <div class="buttons">
+                      <Button
+                        href="/docs/kenshi"
+                        kind="secondary"
+                        icon={ArrowRight}
+                      >
+                        Learn more
+                      </Button>
+                    </div>
+                  </Column>
+                </Row>
+              </Grid>
+            </Tile>
+          </Column>
+        </Row>
+      </Grid>
+    </div>
   </div>
 
   <Grid>
@@ -499,13 +503,28 @@
     margin-top: 1rem;
   }
   .matterhorn {
+    height: 100vh;
+    min-height: 768px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .matterhorn .background {
     background-image: url(/images/backgrounds/matterhorn.jpg);
     background-size: cover;
     background-position: center center;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .matterhorn .content {
+    z-index: 5;
     display: flex;
     align-items: center;
-    min-height: 768px;
+    width: 100%;
+    height: 100%;
   }
   .onboarding .buttons {
     margin-top: 4em;
