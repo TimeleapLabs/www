@@ -19,6 +19,9 @@
           <Icon />
           <h4>
             {title}
+            <div class="launch-small">
+              <Launch />
+            </div>
           </h4>
         </div>
       </ExpressiveHeading>
@@ -59,20 +62,34 @@
     .description {
       display: none;
     }
-    .title :global(svg) {
-      height: 1.25em;
-      width: 1.25em;
+    .launch-small {
+      display: none;
+    }
+    .title > :global(svg) {
+      height: 1.75em;
+      width: 1.75em;
     }
     .title {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: row;
+      flex-direction: column;
       gap: 1rem;
+      width: 100%;
     }
     .title h4 {
       flex: 1;
-      font-size: 0.9em;
+      display: flex;
+      gap: 0.75rem;
+    }
+    .title h4 :global(svg) {
+      margin-bottom: -2px;
+    }
+    .inner :global(.expressive-heading) {
+      width: 100%;
+    }
+    .launch-small {
+      display: inline-block;
     }
   }
 </style>
