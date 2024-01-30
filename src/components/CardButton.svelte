@@ -25,7 +25,9 @@
       <div class="description body-01">
         {description}
       </div>
-      <Launch />
+      <div class="launch">
+        <Launch />
+      </div>
     </div>
   </ClickableTile>
 </div>
@@ -51,5 +53,26 @@
     width: 100%;
     gap: 0.5em;
     align-items: center;
+  }
+  @media (max-width: 640px) {
+    .launch,
+    .description {
+      display: none;
+    }
+    .title :global(svg) {
+      height: 1.25em;
+      width: 1.25em;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      gap: 1rem;
+    }
+    .title h4 {
+      flex: 1;
+      font-size: 0.9em;
+    }
   }
 </style>

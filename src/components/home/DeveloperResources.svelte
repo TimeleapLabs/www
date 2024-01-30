@@ -36,7 +36,7 @@
     <Column lg={11}>
       <Grid padding noGutter fullWidth>
         <Row>
-          <Column lg={5} md={4} sm={4}>
+          <Column lg={5} md={4} sm={2}>
             <CardButton
               href="https://forum.kenshi.io"
               icon={Forum}
@@ -44,7 +44,7 @@
               description="A community of blockchain developers and enthusiasts. Learn, discuss, and share!"
             />
           </Column>
-          <Column lg={5} md={4} sm={4}>
+          <Column lg={5} md={4} sm={2}>
             <CardButton
               href="https://github.com/KenshiTech"
               icon={LogoGithub}
@@ -52,7 +52,7 @@
               description="Find examples for the Kenshi services and contribute to our open-source projects."
             />
           </Column>
-          <Column lg={5} md={4} sm={4}>
+          <Column lg={5} md={4} sm={2}>
             <CardButton
               href="https://www.npmjs.com/org/kenshi.io"
               icon={LogoNpm}
@@ -60,7 +60,7 @@
               description="Check out all the JavaScript and Solidity packages published by Kenshi to NPM."
             />
           </Column>
-          <Column lg={5} md={4} sm={4}>
+          <Column lg={5} md={4} sm={2}>
             <CardButton
               href="/blog"
               icon={Blog}
@@ -68,7 +68,7 @@
               description="Read our blog for use cases, examples and technical articles about Kenshi products."
             />
           </Column>
-          <Column lg={5} md={4} sm={4}>
+          <Column lg={5} md={4} sm={2}>
             <CardButton
               href="https://blog.kenshi.io"
               icon={LogoMedium}
@@ -76,7 +76,7 @@
               description="Subscribe to our Medium publication to get the latest articles in your inbox."
             />
           </Column>
-          <Column lg={5} md={4} sm={4}>
+          <Column lg={5} md={4} sm={2}>
             <CardButton
               href="https://t.me/KenshiTech"
               icon={Telegram}
@@ -84,7 +84,7 @@
               description="Join our community chat on Telegram to discuss everything Kenshi!"
             />
           </Column>
-          <Column lg={5} md={4} sm={4}>
+          <Column lg={5} md={4} sm={2}>
             <CardButton
               href="https://discord.gg/KenshiTech"
               icon={LogoDiscord}
@@ -92,7 +92,7 @@
               description="Join Kenshi Discord server to discuss the tech or get help with the products."
             />
           </Column>
-          <Column lg={5} md={4} sm={4}>
+          <Column lg={5} md={4} sm={2}>
             <CardButton
               href="/docs"
               icon={Book}
