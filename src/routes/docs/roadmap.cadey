@@ -50,13 +50,12 @@ Unchained is a peer-to-peer, decentralized network for data validation.
 You can find our Unchained progress here:
 
 [list
-    [:✅ [bold P2P Network]: The Unchained testnet is available. The
+    [:✅ [bold Federated Network]: The Unchained testnet is available. The
       Unchained client is able to auto-recover and connect to peers.]
     [:✅ [bold Data Validation]: The underlying decentralized protocol for
       validating pieces of data is in place. BLS signature aggregation is
       used by peers to sign data.]
-    [:✅ [bold Persistence]: The validated data is persisted in MongoDB
-      clusters.]
+    [:✅ [bold Persistence]: The validated data is persisted in PostgreSQL.]
     [:⏳ [bold Smart Contracts]: Unchained uses a Liquid Proof of Stake consensus
       mechanism. We are working on smart contracts to allow users to stake their
       KNS tokens for the Unchained network.]

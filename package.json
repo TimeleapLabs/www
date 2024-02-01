@@ -30,7 +30,7 @@
     "ora": "^6.1.1",
     "prettier": "^2.8.8",
     "prettier-plugin-svelte": "^2.8.8",
-    "prisma": "^5.7.1",
+    "prisma": "^5.9.0",
     "rollup-plugin-polyfill-node": "^0.8.0",
     "svelte": "^4.2.1",
     "svelte-loading-spinners": "^0.1.7"
@@ -40,7 +40,7 @@
     "@aws-sdk/client-secrets-manager": "^3.53.0",
     "@kenshi.io/solidquery": "^0.2.0",
     "@mongodb-js/zstd": "^1.2.0",
-    "@prisma/client": "^5.7.1",
+    "@prisma/client": "^5.9.0",
     "@sendgrid/mail": "^7.7.0",
     "@sveltejs/adapter-auto": "^2.1.0",
     "@sveltejs/kit": "^1.25.1",

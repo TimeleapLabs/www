@@ -59,13 +59,10 @@
         {
           label: "Active Peers",
           data: data.prices
-            .map((item) => ({
-              x: item.block,
-              y: item.signers,
-            }))
+            .map((item) => ({ x: item.block, y: item.signers_count }))
             .sort((a, b) => a.x - b.x),
           fill: true, // Enable fill
-          backgroundColor: colors[$theme]["--cds-charts-5-2-5"],
+          backgroundColor: gradient(colors[$theme]["--cds-charts-5-2-5"]),
           borderColor: colors[$theme]["--cds-charts-5-2-5-hovered"],
           borderWidth: 0.2,
           tension: 0.4,
@@ -74,36 +71,39 @@
       ],
     };
     peerOptions = {
-      plugins: {
-        legend: {
-          display: false, // Hide legend
-        },
-      },
+      plugins: { legend: { display: false } },
       scales: {
         x: {
           type: "linear",
           position: "bottom",
-          title: {
-            display: true,
-            text: "Block",
-          },
+          title: { display: true, text: "Block" },
           max: Math.max(...data.prices.map((item) => item.block)),
-          ticks: {
-            maxRotation: 45,
-            minRotation: 45,
-          },
+          ticks: { maxRotation: 45, minRotation: 45 },
         },
-        y: {
-          title: {
-            display: true,
-            text: "Peers",
-          },
-        },
+        y: { title: { display: true, text: "Peers" } },
       },
       responsive: true,
       maintainAspectRatio: false,
     };
   }
+
+  const gradient = (color) => {
+    const offscreenCanvas = document.createElement("canvas");
+    offscreenCanvas.width = "400px";
+    offscreenCanvas.height = "180px";
+
+    const ctx = offscreenCanvas.getContext("2d");
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, 180);
+
+    gradient.addColorStop(0, color);
+    gradient.addColorStop(1, "rgba(0,0,0,0)");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 400, 180);
+
+    return gradient;
+  };
 
   $: if (data && $theme) {
     priceData = {
@@ -111,13 +111,10 @@
         {
           label: "Ethereum Price",
           data: data.prices
-            .map((item) => ({
-              x: item.block,
-              y: item.price,
-            }))
+            .map((item) => ({ x: item.block, y: item.price / 1e18 }))
             .sort((a, b) => a.x - b.x),
           fill: true, // Enable fill
-          backgroundColor: colors[$theme]["--cds-charts-5-2-5"],
+          backgroundColor: gradient(colors[$theme]["--cds-charts-5-2-5"]),
           borderColor: colors[$theme]["--cds-charts-5-2-5-hovered"],
           borderWidth: 0.2,
           tension: 0.4,
@@ -126,31 +123,16 @@
       ],
     };
     priceOptions = {
-      plugins: {
-        legend: {
-          display: false, // Hide legend
-        },
-      },
+      plugins: { legend: { display: false } },
       scales: {
         x: {
           type: "linear",
           position: "bottom",
-          title: {
-            display: true,
-            text: "Block",
-          },
+          title: { display: true, text: "Block" },
           max: Math.max(...data.prices.map((item) => item.block)),
-          ticks: {
-            maxRotation: 45,
-            minRotation: 45,
-          },
+          ticks: { maxRotation: 45, minRotation: 45 },
         },
-        y: {
-          title: {
-            display: true,
-            text: "Price",
-          },
-        },
+        y: { title: { display: true, text: "Price" } },
       },
       responsive: true,
       maintainAspectRatio: false,
@@ -392,5 +374,10 @@
   }
   .tile-title {
     margin-bottom: 2rem;
+  }
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
   }
 </style>

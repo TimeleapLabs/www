@@ -4,9 +4,6 @@ import { Base58 } from "base-ex";
 
 const encoder = new Base58("bitcoin");
 
-const cache = new Map();
-let currentSprint;
-
 const count = async (prisma, table) => {
   const [{ estimate }] = await prisma.$queryRaw`
       SELECT reltuples AS estimate
@@ -22,12 +19,8 @@ const encode = (input) => {
   return encoder.encode(input);
 };
 
-const getSigners = async (prisma, sprint) => {
-  if (sprint === currentSprint) {
-    return cache.get("signers");
-  }
-
-  const rawSigners = await prisma.signer.findMany({
+const getSigners = async (prisma) => {
+  const rawSigners = await prisma.signers.findMany({
     select: { id: true, name: true, key: true, points: true },
   });
 
@@ -36,54 +29,38 @@ const getSigners = async (prisma, sprint) => {
     key: encode(signer.key),
   }));
 
-  cache.set("signers", signers);
-
   return signers;
 };
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {
   const prisma = getUnchainedDbClient();
-  const sprint = Math.ceil(new Date().valueOf() / 300000);
 
-  const signers = await getSigners(prisma, sprint);
+  const signers = await getSigners(prisma);
 
   const datapoints =
-    cache.get("datapoints") || (await count(prisma, '"AssetPrice"'));
-  cache.set("datapoints", datapoints);
+    (await count(prisma, '"AssetPrice"')) +
+    (await count(prisma, '"asset_prices"'));
 
   const validations =
-    cache.get("validations") || (await count(prisma, '"SignersOnAssetPrice"'));
-  cache.set("validations", validations);
+    (await count(prisma, '"SignersOnAssetPrice"')) +
+    (await count(prisma, '"asset_price_signers"'));
 
   const lastEightHours = 2400;
 
-  const prices =
-    sprint === currentSprint
-      ? cache.get("prices")
-      : await prisma.assetPrice.findMany({
-          orderBy: [{ block: "desc" }],
-          take: lastEightHours,
-          select: {
-            price: true,
-            block: true,
-            _count: {
-              select: { signersOnAssetPrice: true },
-            },
-          },
-        });
-
-  cache.set("prices", prices);
-
-  currentSprint = sprint;
+  const prices = await prisma.asset_prices.findMany({
+    orderBy: [{ block: "desc" }],
+    take: lastEightHours,
+    select: {
+      price: true,
+      block: true,
+      signers_count: true,
+    },
+  });
 
   return json({
     signers,
-    prices: prices.map((price) => ({
-      price: price.price,
-      block: price.block,
-      signers: price._count.signersOnAssetPrice,
-    })),
+    prices,
     stats: {
       datapoints,
       validations,
