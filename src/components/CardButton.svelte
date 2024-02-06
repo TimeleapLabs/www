@@ -57,12 +57,12 @@
     gap: 0.5em;
     align-items: center;
   }
+  .launch-small {
+    display: none;
+  }
   @media (max-width: 640px) {
     .launch,
     .description {
-      display: none;
-    }
-    .launch-small {
       display: none;
     }
     .title > :global(svg) {

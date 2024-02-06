@@ -8,6 +8,7 @@
   import formatThousands from "format-thousands";
   import Footer from "src/components/Footer.svelte";
   import Unchained from "src/icons/Unchained.svelte";
+  import Sworn from "src/icons/Sworn.svelte";
 
   import {
     Grid,
@@ -15,6 +16,8 @@
     Column,
     ProgressBar,
     Tile,
+    OutboundLink,
+    ClickableTile,
   } from "carbon-components-svelte";
 
   import { Button, Content } from "carbon-components-svelte";
@@ -26,7 +29,6 @@
     ToolbarContent,
     ToolbarSearch,
     Pagination,
-    InlineNotification,
   } from "carbon-components-svelte";
 
   import { onMount } from "svelte";
@@ -190,12 +192,26 @@
     </Row>
     <Row>
       <Column>
-        <InlineNotification kind="warning-alt">
-          The Unchained network is still under construction, so some features
-          like the leaderboard might not be working perfectly yet. We're
-          actively testing and improving everything, so expect a few bumps along
-          the way. But don't worry, we'll keep you updated!
-        </InlineNotification>
+        <ClickableTile
+          href="https://opencollective.com/unchained"
+          target="_blank"
+        >
+          <ExpressiveHeading size={2}>Sponsor Unchained</ExpressiveHeading>
+          <div class="open-collective">
+            Learn more about sponsorship and support the project on our
+            <OutboundLink href="https://opencollective.com/unchained">
+              OpenCollective.
+            </OutboundLink>
+          </div>
+        </ClickableTile>
+      </Column>
+      <Column>
+        <ExpressiveHeading size={2}>Partners</ExpressiveHeading>
+        <div class="partners">
+          <OutboundLink href="https://sworn.network/">
+            <Sworn />
+          </OutboundLink>
+        </div>
       </Column>
     </Row>
     {#if data}
@@ -379,5 +395,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
+  }
+  .partners :global(a) {
+    color: var(--cds-text-01);
+  }
+  .partners {
+    margin-top: 0.5em;
   }
 </style>
