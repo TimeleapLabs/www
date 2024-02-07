@@ -1,4 +1,4 @@
-import { shake256 } from "js-sha3";
+import sha3 from "js-sha3";
 
 const chars = "0123456789ABCDEFGHJKMNPQTSTUVXYZ";
 
@@ -27,7 +27,7 @@ export const toBase32 = (input) => {
   return output;
 };
 
-export const shake = (input) => Buffer.from(shake256(input, 512), "hex");
+export const shake = (input) => Buffer.from(sha3.shake256(input, 512), "hex");
 
 export const calculateAddress = (input) => {
   const hash = shake(input);
