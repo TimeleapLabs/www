@@ -54,6 +54,7 @@
     "carbon-icons-svelte": "^12.3.0",
     "carbon-pictograms-svelte": "^12.8.0",
     "chart.js": "^4.4.1",
+    "chartjs-plugin-annotation": "^3.0.1",
     "clipboard-copy": "^4.0.1",
     "d3-shape": "^3.1.0",
     "dotenv": "^10.0.0",

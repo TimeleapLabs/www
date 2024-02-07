@@ -1,6 +1,9 @@
 <script>
   import { onMount } from "svelte";
-  import Chart from "chart.js/auto";
+  import Chart, { registerables } from "chart.js/auto";
+  import annotationPlugin from "chartjs-plugin-annotation";
+
+  Chart.register(...registerables, annotationPlugin);
 
   export let data;
   export let options;

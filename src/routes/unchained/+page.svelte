@@ -73,7 +73,35 @@
       ],
     };
     peerOptions = {
-      plugins: { legend: { display: false } },
+      plugins: {
+        legend: { display: false },
+        ...(Math.min(...data.prices.map((item) => item.block)) < 19178191
+          ? {
+              annotation: {
+                annotations: {
+                  line1: {
+                    // Identifier for your annotation
+                    type: "line",
+                    mode: "vertical", // This specifies a vertical line
+                    scaleID: "x", // Assuming 'x' is your x-axis ID
+                    value: 19178191, // Position of the line on the x-axis
+                    borderColor: "red",
+                    borderWidth: 1,
+                    label: {
+                      content: "v0.11.3",
+                      enabled: true,
+                      display: true,
+                      position: "top",
+                      font: {
+                        weight: "bold",
+                      },
+                    },
+                  },
+                },
+              },
+            }
+          : {}),
+      },
       scales: {
         x: {
           type: "linear",
