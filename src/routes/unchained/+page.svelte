@@ -304,7 +304,7 @@
               <DataTable
                 headers={[
                   { key: "rank", value: "Rank" },
-                  { key: "key", value: "Public Key" },
+                  { key: "key", value: "Address" },
                   { key: "name", value: "Name" },
                   { key: "points", value: "Points" },
                 ]}

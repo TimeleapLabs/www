@@ -1,8 +1,6 @@
 import { getUnchainedDbClient } from "$lib/unchained/db";
 import { json } from "@sveltejs/kit";
-import { Base58 } from "base-ex";
-
-const encoder = new Base58("bitcoin");
+import { calculateAddress } from "$lib/base32";
 
 const count = async (prisma, table) => {
   const [{ estimate }] = await prisma.$queryRaw`
@@ -16,7 +14,7 @@ const encode = (input) => {
   if (!input) {
     return "N/A";
   }
-  return encoder.encode(input);
+  return calculateAddress(input);
 };
 
 const getSigners = async (prisma) => {
