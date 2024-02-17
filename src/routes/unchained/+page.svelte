@@ -80,7 +80,7 @@
           annotations: {
             ...(Math.min(...data.prices.map((item) => item.block)) < 19249606
               ? {
-                  "v0.11.2": {
+                  "v0.11.5": {
                     type: "line",
                     mode: "vertical",
                     scaleID: "x",
