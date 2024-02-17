@@ -78,40 +78,17 @@
 
         annotation: {
           annotations: {
-            ...(Math.min(...data.prices.map((item) => item.block)) < 19178191
+            ...(Math.min(...data.prices.map((item) => item.block)) < 19249606
               ? {
                   "v0.11.2": {
-                    // Identifier for your annotation
                     type: "line",
-                    mode: "vertical", // This specifies a vertical line
-                    scaleID: "x", // Assuming 'x' is your x-axis ID
-                    value: 19178191, // Position of the line on the x-axis
+                    mode: "vertical",
+                    scaleID: "x",
+                    value: 19249606,
                     borderColor: "red",
                     borderWidth: 1,
                     label: {
-                      content: "v0.11.2",
-                      enabled: true,
-                      display: true,
-                      position: "top",
-                      font: {
-                        weight: "bold",
-                      },
-                    },
-                  },
-                }
-              : {}),
-            ...(Math.min(...data.prices.map((item) => item.block)) < 19178191
-              ? {
-                  "v0.11.3": {
-                    // Identifier for your annotation
-                    type: "line",
-                    mode: "vertical", // This specifies a vertical line
-                    scaleID: "x", // Assuming 'x' is your x-axis ID
-                    value: 19178750, // Position of the line on the x-axis
-                    borderColor: "red",
-                    borderWidth: 1,
-                    label: {
-                      content: "v0.11.3",
+                      content: "v0.11.5",
                       enabled: true,
                       display: true,
                       position: "top",
