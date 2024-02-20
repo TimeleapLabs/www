@@ -65,7 +65,7 @@
         borderColor: "red",
         borderWidth: 1,
         label: {
-          content: "v0.11.5",
+          content: "v0.11.7",
           enabled: true,
           display: true,
           position: "top",
