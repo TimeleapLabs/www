@@ -11,7 +11,8 @@ model asset_prices {
   id            Int     @id @default(autoincrement())
   signers_count Int?
   block         Int?
-  price         Decimal @unique
+  price         Decimal
+  asset         String?
 }
 
 model signers {

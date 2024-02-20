@@ -53,6 +53,12 @@ export async function GET() {
       price: true,
       block: true,
       signers_count: true,
+      asset: true,
+    },
+    where: {
+      NOT: {
+        asset: null,
+      },
     },
   });
 

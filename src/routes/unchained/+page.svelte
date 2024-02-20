@@ -37,7 +37,7 @@
   let sprint = Math.ceil(new Date().valueOf() / 300000);
   let data, interval;
   let peerData, peerOptions;
-  let priceData, priceOptions;
+  let ethPriceData, btcPriceData, arbPriceData, priceOptions;
   let tableData,
     page = 1,
     pageSize = 10,
@@ -56,11 +56,32 @@
   }
 
   $: if (data && $theme) {
+    const annotations = {
+      "v0.11.7": {
+        type: "line",
+        mode: "vertical",
+        scaleID: "x",
+        value: 19268370,
+        borderColor: "red",
+        borderWidth: 1,
+        label: {
+          content: "v0.11.5",
+          enabled: true,
+          display: true,
+          position: "top",
+          font: {
+            weight: "bold",
+          },
+        },
+      },
+    };
+
     peerData = {
       datasets: [
         {
           label: "Active Peers",
           data: data.prices
+            .filter(({ asset }) => asset === "ethereum")
             .map((item) => ({ x: item.block, y: item.signers_count }))
             .sort((a, b) => a.x - b.x),
           fill: true, // Enable fill
@@ -72,35 +93,11 @@
         },
       ],
     };
+
     peerOptions = {
       plugins: {
         legend: { display: false },
-
-        annotation: {
-          annotations: {
-            ...(Math.min(...data.prices.map((item) => item.block)) < 19249606
-              ? {
-                  "v0.11.5": {
-                    type: "line",
-                    mode: "vertical",
-                    scaleID: "x",
-                    value: 19249606,
-                    borderColor: "red",
-                    borderWidth: 1,
-                    label: {
-                      content: "v0.11.5",
-                      enabled: true,
-                      display: true,
-                      position: "top",
-                      font: {
-                        weight: "bold",
-                      },
-                    },
-                  },
-                }
-              : {}),
-          },
-        },
+        annotation: { annotations },
       },
       scales: {
         x: {
@@ -136,22 +133,63 @@
   };
 
   $: if (data && $theme) {
-    priceData = {
+    const commondata = {
+      fill: true, // Enable fill
+      backgroundColor: gradient(colors[$theme]["--cds-charts-5-2-5"]),
+      borderColor: colors[$theme]["--cds-charts-5-2-5-hovered"],
+      borderWidth: 0.2,
+      tension: 0.4,
+      pointRadius: 0,
+    };
+
+    ethPriceData = {
       datasets: [
         {
           label: "Ethereum Price",
           data: data.prices
+            .filter(({ asset }) => asset === "ethereum")
             .map((item) => ({ x: item.block, y: item.price / 1e18 }))
             .sort((a, b) => a.x - b.x),
-          fill: true, // Enable fill
-          backgroundColor: gradient(colors[$theme]["--cds-charts-5-2-5"]),
-          borderColor: colors[$theme]["--cds-charts-5-2-5-hovered"],
-          borderWidth: 0.2,
-          tension: 0.4,
-          pointRadius: 0,
+          ...commondata,
         },
       ],
     };
+
+    btcPriceData = {
+      datasets: [
+        {
+          label: "Bitcoin Price",
+          data: data.prices
+            .filter(({ asset }) => asset === "bitcoin")
+            .map((item) => ({ x: item.block, y: item.price / 1e18 }))
+            .sort((a, b) => a.x - b.x),
+          ...commondata,
+        },
+      ],
+    };
+
+    const ethPriceByBlock = Object.fromEntries(
+      data.prices
+        .filter(({ asset }) => asset === "ethereum")
+        .map((asset) => [asset.block, asset.price / 1e18])
+    );
+
+    arbPriceData = {
+      datasets: [
+        {
+          label: "Arbitrum Price",
+          data: data.prices
+            .filter(({ asset }) => asset === "arbitrum")
+            .map((item) => ({
+              x: item.block,
+              y: (ethPriceByBlock[item.block] * item.price) / 1e18,
+            }))
+            .sort((a, b) => a.x - b.x),
+          ...commondata,
+        },
+      ],
+    };
+
     priceOptions = {
       plugins: { legend: { display: false } },
       scales: {
@@ -244,21 +282,6 @@
     </Row>
     {#if data}
       <Row>
-        {#if priceData}
-          <Column>
-            <Tile>
-              <div class="tile-title">
-                <ExpressiveHeading size={2}>Ethereum Price</ExpressiveHeading>
-                <div class="body-compact-02">
-                  Ethereum price as validated by the Unchained network — 8 hours
-                </div>
-              </div>
-              <div>
-                <Chartjs data={priceData} options={priceOptions} />
-              </div>
-            </Tile>
-          </Column>
-        {/if}
         {#if peerData}
           <Column>
             <Tile>
@@ -272,6 +295,53 @@
               </div>
               <div>
                 <Chartjs data={peerData} options={peerOptions} />
+              </div>
+            </Tile>
+          </Column>
+        {/if}
+        {#if ethPriceData}
+          <Column>
+            <Tile>
+              <div class="tile-title">
+                <ExpressiveHeading size={2}>Ethereum Price</ExpressiveHeading>
+                <div class="body-compact-02">
+                  Ethereum price as validated by the Unchained network — 8 hours
+                </div>
+              </div>
+              <div>
+                <Chartjs data={ethPriceData} options={priceOptions} />
+              </div>
+            </Tile>
+          </Column>
+        {/if}
+      </Row>
+      <Row>
+        {#if btcPriceData}
+          <Column>
+            <Tile>
+              <div class="tile-title">
+                <ExpressiveHeading size={2}>Bitcoin Price</ExpressiveHeading>
+                <div class="body-compact-02">
+                  Bitcoin price as validated by the Unchained network — 8 hours
+                </div>
+              </div>
+              <div>
+                <Chartjs data={btcPriceData} options={priceOptions} />
+              </div>
+            </Tile>
+          </Column>
+        {/if}
+        {#if arbPriceData}
+          <Column>
+            <Tile>
+              <div class="tile-title">
+                <ExpressiveHeading size={2}>Arbitrum Price</ExpressiveHeading>
+                <div class="body-compact-02">
+                  Arbitrum price as validated by the Unchained network — 8 hours
+                </div>
+              </div>
+              <div>
+                <Chartjs data={arbPriceData} options={priceOptions} />
               </div>
             </Tile>
           </Column>
