@@ -56,23 +56,29 @@
   }
 
   $: if (data && $theme) {
-    const annotations = {
-      "v0.11.7": {
-        type: "line",
-        mode: "vertical",
-        scaleID: "x",
-        value: 19268370,
-        borderColor: "red",
-        borderWidth: 1,
-        label: {
-          content: "v0.11.7",
-          enabled: true,
-          display: true,
-          position: "top",
-          font: {
-            weight: "bold",
-          },
-        },
+    const annotation = {
+      annotations: {
+        ...(Math.min(...data.prices.map((item) => item.block)) < 19268565
+          ? {
+              "v0.11.7": {
+                type: "line",
+                mode: "vertical",
+                scaleID: "x",
+                value: 19268370,
+                borderColor: "red",
+                borderWidth: 1,
+                label: {
+                  content: "v0.11.7",
+                  enabled: true,
+                  display: true,
+                  position: "top",
+                  font: {
+                    weight: "bold",
+                  },
+                },
+              },
+            }
+          : {}),
       },
     };
 
@@ -97,7 +103,7 @@
     peerOptions = {
       plugins: {
         legend: { display: false },
-        annotation: { annotations },
+        annotation,
       },
       scales: {
         x: {
