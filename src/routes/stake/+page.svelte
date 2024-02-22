@@ -10,20 +10,14 @@
   import { Grid, Row, Column, Content } from "carbon-components-svelte";
   import { Button, Tile } from "carbon-components-svelte";
   import { Breadcrumb, BreadcrumbItem } from "carbon-components-svelte";
-  import { IntentRequestCreate, UpdateNow } from "carbon-icons-svelte";
+  import { IntentRequestCreate } from "carbon-icons-svelte";
   import { Upload, Download } from "carbon-icons-svelte";
-  import { CodeSigningService } from "carbon-icons-svelte";
-  import { DataTable, Toolbar, ToolbarMenu } from "carbon-components-svelte";
-  import { ToolbarMenuItem, ToolbarContent } from "carbon-components-svelte";
+  import { DataTable } from "carbon-components-svelte";
   import { Checkbox, Pagination } from "carbon-components-svelte";
-  import { Select, SelectItem, NumberInput } from "carbon-components-svelte";
+  import { Select, SelectItem, TextInput } from "carbon-components-svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
-  import ApiKeyView from "src/components/dash/ApiKeyView.svelte";
 
-  import { GraphProduct } from "src/lib/products/graph";
-  import { signedKeys } from "src/stores/signed-keys";
-  import { chainIcons, chainNames } from "src/lib/chains";
   import { toast } from "@zerodevx/svelte-toast";
   import { onboard } from "$lib/onboard";
 
@@ -48,8 +42,9 @@
 
   let programs;
   let userStakes;
+  let userNfts = [];
 
-  let amount = 100000;
+  let amount = "100000";
   let nftId = 0;
   let programId;
   let withNft;
@@ -108,6 +103,25 @@
     readStakeStats();
   }
 
+  const readUserNfts = async () => {
+    const bigNfts = await nft.tokensOfOwner(userAddress);
+    userNfts = bigNfts.map((n) => parseInt(n));
+    nftId = userNfts[0];
+  };
+
+  $: if (nft && userAddress) {
+    readUserNfts();
+  }
+
+  const setMax = async () => {
+    const balance = await token.balanceOf(userAddress);
+    amount = ethers.utils.formatUnits(balance);
+  };
+
+  $: if (token && userAddress) {
+    setMax();
+  }
+
   onMount(async () => {
     nfts = await fetch("https://nft.kenshi.io/katana/data.json")
       .then((res) => res.json())
@@ -131,7 +145,7 @@
   };
 
   const stakeHelper = async () => {
-    if (!amount || !ethers.BigNumber.from(amount.toString()).gt(0)) {
+    if (!amount || !ethers.BigNumber.from(amount).gt(0)) {
       return toast.push("You need to stake more than 0 tokens!");
     }
     if (withNft && (!Number.isInteger(nftId) || nftId >= 444)) {
@@ -143,7 +157,7 @@
       return toast.push("Couldn't change to the Arbitrum network.");
     }
     // approve the tokens
-    const tokenAmount = ethers.utils.parseUnits(amount.toString());
+    const tokenAmount = ethers.utils.parseUnits(amount);
     try {
       const tx = await token.approve(stakingAddr, tokenAmount);
       await tx.wait();
@@ -242,14 +256,16 @@
           </Row>
           <Row>
             <Column>
-              <Button
-                kind="secondary"
-                href="/nft/katana"
-                icon={IntentRequestCreate}
-              >
-                Mint a Katana
-              </Button>
-              <ConnectButton primary />
+              <div class="button-group">
+                <Button
+                  kind="secondary"
+                  href="/nft/katana"
+                  icon={IntentRequestCreate}
+                >
+                  Mint a Katana
+                </Button>
+                <ConnectButton primary />
+              </div>
             </Column>
           </Row>
         </Grid>
@@ -286,10 +302,10 @@
           </Select>
         </Column>
         <Column>
-          <NumberInput
+          <TextInput
             bind:value={amount}
             placeholder="KNS to stake"
-            label="Amount"
+            labelText="Amount"
             helperText="This is the amount of KNS you will be staking"
           />
         </Column>
@@ -307,12 +323,16 @@
       {#if withNft}
         <Row>
           <Column>
-            <NumberInput
-              bind:value={nftId}
+            <Select
+              bind:selected={nftId}
               placeholder="Your Katana NFT Token ID"
               label="Katana"
               helperText="This is the token ID of the Katana you will be staking"
-            />
+            >
+              {#each userNfts as id}
+                <SelectItem value={id} text={nfts[id].metadata.name} />
+              {/each}
+            </Select>
             <div class="buttons">
               <Button disabled={isStaking} on:click={stake} icon={Upload}>
                 Stake now!
@@ -412,5 +432,9 @@
   }
   .buttons {
     margin-top: 2em;
+  }
+  .button-group {
+    gap: 1em;
+    display: flex;
   }
 </style>

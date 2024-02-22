@@ -72,9 +72,7 @@
                   enabled: true,
                   display: true,
                   position: "top",
-                  font: {
-                    weight: "bold",
-                  },
+                  font: { weight: "bold" },
                 },
               },
             }
@@ -101,10 +99,7 @@
     };
 
     peerOptions = {
-      plugins: {
-        legend: { display: false },
-        annotation,
-      },
+      plugins: { legend: { display: false }, annotation },
       scales: {
         x: {
           type: "linear",
