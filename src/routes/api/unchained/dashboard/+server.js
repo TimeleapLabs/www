@@ -44,11 +44,11 @@ export async function GET() {
     (await count(prisma, '"SignersOnAssetPrice"')) +
     (await count(prisma, '"asset_price_signers"'));
 
-  const lastEightHours = 2400;
+  const lastTwentyFourHours = 7200;
 
   const prices = await prisma.asset_prices.findMany({
     orderBy: [{ block: "desc" }],
-    take: lastEightHours,
+    take: lastTwentyFourHours,
     select: {
       price: true,
       block: true,

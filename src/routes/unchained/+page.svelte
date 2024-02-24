@@ -58,17 +58,17 @@
   $: if (data && $theme) {
     const annotation = {
       annotations: {
-        ...(Math.min(...data.prices.map((item) => item.block)) < 19268565
+        ...(Math.min(...data.prices.map((item) => item.block)) < 19300142
           ? {
-              "v0.11.7": {
+              "v0.11.9": {
                 type: "line",
                 mode: "vertical",
                 scaleID: "x",
-                value: 19268370,
+                value: 19300142,
                 borderColor: "red",
                 borderWidth: 1,
                 label: {
-                  content: "v0.11.7",
+                  content: "v0.11.9",
                   enabled: true,
                   display: true,
                   position: "top",
@@ -291,7 +291,7 @@
                   Active Validators
                 </ExpressiveHeading>
                 <div class="body-compact-02">
-                  Active validators on the Unchained network — 8 hours
+                  Active validators on the Unchained network — 24 hours
                 </div>
               </div>
               <div>
@@ -306,7 +306,8 @@
               <div class="tile-title">
                 <ExpressiveHeading size={2}>Ethereum Price</ExpressiveHeading>
                 <div class="body-compact-02">
-                  Ethereum price as validated by the Unchained network — 8 hours
+                  Ethereum price as validated by the Unchained network — 24
+                  hours
                 </div>
               </div>
               <div>
@@ -323,7 +324,7 @@
               <div class="tile-title">
                 <ExpressiveHeading size={2}>Bitcoin Price</ExpressiveHeading>
                 <div class="body-compact-02">
-                  Bitcoin price as validated by the Unchained network — 8 hours
+                  Bitcoin price as validated by the Unchained network — 24 hours
                 </div>
               </div>
               <div>
@@ -338,7 +339,8 @@
               <div class="tile-title">
                 <ExpressiveHeading size={2}>Arbitrum Price</ExpressiveHeading>
                 <div class="body-compact-02">
-                  Arbitrum price as validated by the Unchained network — 8 hours
+                  Arbitrum price as validated by the Unchained network — 24
+                  hours
                 </div>
               </div>
               <div>
