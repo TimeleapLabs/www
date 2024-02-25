@@ -291,7 +291,7 @@
                   Active Validators
                 </ExpressiveHeading>
                 <div class="body-compact-02">
-                  Active validators on the Unchained network — 24 hours
+                  Active validators on the Unchained network — 8 hours
                 </div>
               </div>
               <div>
@@ -306,8 +306,7 @@
               <div class="tile-title">
                 <ExpressiveHeading size={2}>Ethereum Price</ExpressiveHeading>
                 <div class="body-compact-02">
-                  Ethereum price as validated by the Unchained network — 24
-                  hours
+                  Ethereum price as validated by the Unchained network — 8 hours
                 </div>
               </div>
               <div>
@@ -324,7 +323,7 @@
               <div class="tile-title">
                 <ExpressiveHeading size={2}>Bitcoin Price</ExpressiveHeading>
                 <div class="body-compact-02">
-                  Bitcoin price as validated by the Unchained network — 24 hours
+                  Bitcoin price as validated by the Unchained network — 8 hours
                 </div>
               </div>
               <div>
@@ -339,8 +338,7 @@
               <div class="tile-title">
                 <ExpressiveHeading size={2}>Arbitrum Price</ExpressiveHeading>
                 <div class="body-compact-02">
-                  Arbitrum price as validated by the Unchained network — 24
-                  hours
+                  Arbitrum price as validated by the Unchained network — 8 hours
                 </div>
               </div>
               <div>
