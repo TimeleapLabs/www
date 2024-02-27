@@ -34,11 +34,7 @@ function* walkSync(dir) {
   }
 }
 
-export const parseAll = async (project) => {
-  const processed = {};
-  const allHeadings = {};
-  const allTocs = {};
-  const allMeta = {};
+export const makeProcessOne = (processed, allHeadings, allTocs, allMeta) => {
   const processOne = async (file) => {
     if (file.endsWith(".cadey") && !processed[file]) {
       console.log(`Processing ${file}`);
@@ -56,8 +52,22 @@ export const parseAll = async (project) => {
       processed[file] = { parsed, context };
     }
   };
-  for (const file of walkSync(`./src/routes/${project}`)) {
-    await processOne(file);
+
+  return processOne;
+};
+
+export const parseAll = async (project) => {
+  const processed = {};
+  const allHeadings = {};
+  const allTocs = {};
+  const allMeta = {};
+  const processOne = makeProcessOne(processed, allHeadings, allTocs, allMeta);
+  if (project.endsWith(".cadey")) {
+    processOne(project);
+  } else {
+    for (const file of walkSync(`./src/routes/${project}`)) {
+      await processOne(file);
+    }
   }
   const allTexts = [];
   for (const file in processed) {

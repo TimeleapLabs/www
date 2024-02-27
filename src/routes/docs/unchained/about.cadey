@@ -1,6 +1,6 @@
 [heading :size 1 About]
 
-Unchained is a decentralized, peer-to-peer network for data validation.
+Unchained is a decentralized, federated network for data validation.
 Unchained nodes work to validate data together and are rewarded in KNS tokens.
 The validated data can then be queried by consumer in exchange for KNS tokens.
 This model makes Unchained an economically autonomous platform for data
@@ -23,7 +23,7 @@ processing and analysis.
 
 To achieve its objectives, Unchained is not required to function as a blockchain
 in the traditional sense, where data is organized chronologically, compiled into
-blocks, and linked sequentially to preceding ones. Unchained allows its nodes
+blocks, and linked sequentially to the preceding ones. Unchained allows its nodes
 the flexibility to validate and verify data at their own pace. Unlike
 traditional blockchain models where there's competition to propose a block, in
 Unchained, each piece of data independently validated by a node is acknowledged
