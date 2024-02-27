@@ -145,7 +145,7 @@
   };
 
   const stakeHelper = async () => {
-    if (!amount || !ethers.BigNumber.from(amount).gt(0)) {
+    if (!amount || !ethers.utils.parseUnits(amount).gt(0)) {
       return toast.push("You need to stake more than 0 tokens!");
     }
     if (withNft && (!Number.isInteger(nftId) || nftId >= 444)) {
