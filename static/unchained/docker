@@ -75,3 +75,11 @@ mv /tmp/unchained-$TAG-docker/* $INSTALL_PATH
 rm -rf /tmp/unchained-$TAG-docker
 
 echo "Unchained $TAG has been installed to $INSTALL_PATH"
+echo ""
+echo "┌───────────────────────────────────────────────────────────────┐"
+echo "│ To finish the installation, make the required changes to your │"
+echo "│ config file in conf/conf.NODE_TYPE.yaml and run:              │"
+echo "│                                                               │"
+echo "│ ./unchained.sh [node] pull                                    │"
+echo "│ ./unchained.sh [node] up -d                                   │"
+echo "└───────────────────────────────────────────────────────────────┘"
