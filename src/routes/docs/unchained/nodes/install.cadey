@@ -1,0 +1,48 @@
+[heading :size 1 Installing the Unchained Client]
+
+Installation with Docker or Node.js/NPM are currently the only officially
+supported ways of installing Unchained.
+
+The following operating systems are [italic officially] supported:
+
+[list
+  [: [bold Linux]: Any Linux distro running the Linux kernel v5.15+, with systemd.]
+  [: [bold macOS]: macOS v12+ running on an [italic official] Apple hardware.]
+  [: [bold Windows]: Windows 10 Vibranium and above, or Windows Server 20H2 and above.]
+]
+
+[alert warning Always make a backup of your secret keys before an update]
+
+[heading :size 2 Installation Script]
+
+[heading :size 3 Installation with Docker]
+
+If you'd like to run Unchained with Docker, you can run the following command in
+a new empty directory:
+
+[code curl https://kenshi.io/unchained/docker | sh]
+
+Run again in the same directory and follow the instructions to update.
+
+[heading :size 3 Direct Installation]
+
+For advanced use cases it is better to install and run the Unchained client
+directly. To do so, run the following command:
+
+[code curl https://kenshi.io/unchained/install | sh]
+
+[heading :size 2 Installation with Docker]
+
+Head to the Unchained
+[link https://github.com/KenshiTech/unchained/releases releases page] and grab
+the latest release for Docker. Unzip the release file and switch to the newly
+created directory.
+
+[heading :size 2 Direct Installation]
+
+Head to the Unchained
+[link https://github.com/KenshiTech/unchained/releases releases page] and grab
+the latest release for your OS and CPU architecture. Move the binary file to an
+appropriate place and make it executable:
+
+[code chmod +x PATH_TO_UNCHAINED]

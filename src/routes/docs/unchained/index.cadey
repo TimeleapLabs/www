@@ -1,0 +1,31 @@
+[heading Unchained]
+
+Unchained is a decentralized, federated network for data indexing, validation,
+analysis, processing, and delivery.
+
+Unchained can be used as:
+
+[list
+  [: A federated [bold public network] with centralized or decentralized
+      consensus where nodes work for a common goal.]
+  [: A federated [bold private] or [bold local] network with full data privacy and custom rulesets.]
+  [: A [bold standalone] application as a part of a bigger architecture.]
+]
+
+Unchained can be used for:
+
+[list
+  [: Indexing data from on-chain or off-chain sources.]
+  [: Delivering data to on-chain or off-chain consumers (e.g. Oracles or webhooks).]
+  [: Validating data for analytical or practical purposes (e.g. dashboards or AI).]
+  [: Running computational heavy tasks in a verified, validated way.]
+]
+
+[alert warning
+  This section of the Kenshi documentation is a work in progress.]
+
+[toc
+  about
+  nodes/index
+  resources
+  license]

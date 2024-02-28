@@ -1,0 +1,23 @@
+[heading :size 1 Resources]
+
+You can find resources related to the Unchained network on this page.
+
+[heading :size 2 Community]
+
+[list
+  [link https://github.com/KenshiTech/unchained GitHub]
+  [link https://t.me/kenshi/85602 Telegram]
+  [link https://forum.kenshi.io/c/unchained/33 Forum]]
+
+[heading :size 2 Articles and Blog Posts]
+
+[list
+  [link https://medium.com/@pouyae/introducing-unchained-a-decentralized-network-for-data-processing-and-validation-92d8333eb304
+        Introducing Unchained]
+  [link https://pouyae.medium.com/a-practical-guide-to-unchained-index-events-and-token-prices-on-any-evm-chain-10074b6f346e
+        A Practical Guide to Unchained: Index Events and Token Prices on Any EVM Chain]
+]
+
+[heading :size 2 Videos]
+
+TODO.

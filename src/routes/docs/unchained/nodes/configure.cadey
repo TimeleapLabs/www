@@ -1,0 +1,87 @@
+[heading :size 1 Configuring the Unchained Client]
+
+Once you have Unchained installed, you need to configure a few things first.
+
+[heading :size 2 Configuration File]
+
+[heading :size 3 With Docker]
+
+If you are running Unchained with Docker, your configuration file will be at
+the following path from in your installation directory:
+
+[code conf/conf.worker.yaml]
+
+You can find your secrets file at:
+
+[code conf/secrets.worker.yaml]
+
+[heading :size 3 Direct Install]
+
+If you are running Unchained directly, you can pass the path to your config file
+using -c, and the path to your secrets file using -s. You can also specify the
+path to the context DB directory using -x.
+
+The default values are:
+
+[list 
+  [: [bold Config file]: ./conf.yaml]
+  [: [bold Secrets file]: ./secrets.yaml]
+  [: [bold Context DB]: ./context]
+]
+
+[heading :size 2 Worker Nodes]
+
+[heading :size 3 The Unchained Testnet Public Network]
+
+The minimum required config for running a worker node is the following:
+
+[code
+log: info
+name: <NODE_NAME>
+
+broker:
+  uri: wss://shinobi.brokers.kenshi.io
+
+rpc:
+  ethereum: 
+    - <ETHEREUM_RPC_ADDRESS>
+
+plugins:
+  uniswap:
+    schedule:
+      ethereum: 5000
+    
+    tokens:
+      - name: ethereum
+        chain: ethereum
+        pair: "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+        delta: 12
+        invert: true
+        unit: USDT
+        send: true
+
+      - name: arbitrum
+        chain: ethereum
+        pair: "0x59354356Ec5d56306791873f567d61EBf11dfbD5"
+        delta: 0
+        invert: false
+        unit: ETH
+        send: true
+
+      - name: bitcoin
+        chain: ethereum
+        pair: "0x9db9e0e53058c89e5b94e29621a205198648425b"
+        delta: 2
+        invert: false
+        unit: USDT
+        send: true
+]
+
+Please note that the value &ltNODE_NAME&gt and &ltETHEREUM_RPC_ADDRESS&gt
+values need to be modified.
+
+[heading :size 3 Private, Local, or Independent nodes]
+
+This section is a work in progress. See
+[link https://pouyae.medium.com/a-practical-guide-to-unchained-index-events-and-token-prices-on-any-evm-chain-10074b6f346e
+A Practical Guide to Unchained: Index Events and Token Prices on Any EVM Chain].

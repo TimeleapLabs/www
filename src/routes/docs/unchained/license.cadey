@@ -1,0 +1,22 @@
+[heading :size 1 License]
+
+Unchained is released under BUSL 1.1 License with the following use grants:
+
+[list
+  [: [bold Official Networks]: You may run Unchained to join the official Unchained
+    mainnet or testnet networks.]
+  [: [bold Non-commercial]: You may run Unchained as a private network, local network,
+    or an independent application for non-commercial use cases.]
+  [: [bold Small Businesses]: You may run Unchained as a private network, local network,
+    or an independent application if your annual revenue is under 100,000 CHF.]
+]
+
+Contact us for a license or agreement for any other use case.
+Read the full license text
+[link https://github.com/KenshiTech/unchained/blob/master/LICENSE here].
+
+[heading :size 2 Open Source]
+
+The entire Unchained software source code is available to be viewed or modified to
+your specific use cases. All code is open sourced under AGPL 3.0 after 10 years of
+release.

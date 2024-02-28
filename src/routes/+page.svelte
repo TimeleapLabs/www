@@ -118,7 +118,8 @@
             economically autonomous platform for data validation and exchange.
           </p>
           <div class="buttons">
-            <Button href="/unchained" icon={Dashboard}>Testnet stats</Button>
+            <Button href="/docs/unchained" icon={Book}>Documentation</Button>
+            <Button href="/unchained" icon={Dashboard}>Testnet Stats</Button>
             <Button
               target="_blank"
               href="https://github.com/KenshiTech/unchained/blob/master/quickstart.md"
