@@ -11,6 +11,7 @@
     "docs:build": "node docs.js",
     "blog:watch": "chokidar \"src/routes/blog/**/*.cadey\" -c \"node blog.js\"",
     "blog:build": "node blog.js",
+    "unchained:install:cp": "for file in ../unchained/install/*; do filename=$(basename $file .sh); cp $file static/unchained/$filename; done;",
     "postinstall": "prisma generate"
   },
   "devDependencies": {
