@@ -1,7 +1,7 @@
 [heading :size 1 Installing the Unchained Client]
 
-Installation with Docker or Node.js/NPM are currently the only officially
-supported ways of installing Unchained.
+Installation with Docker or running the Unchained Go client directly are
+currently the only officially supported ways of installing Unchained.
 
 The following operating systems are [italic officially] supported:
 
