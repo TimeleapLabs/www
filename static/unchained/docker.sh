@@ -1,3 +1,27 @@
+#!/bin/bash
+
+# List of required commands
+required_commands=("unzip" "curl" "diff")
+
+# Loop through the list and check each command
+missing_commands=()
+for cmd in "${required_commands[@]}"; do
+  if ! command -v $cmd &>/dev/null; then
+    # Command is missing, add it to the list of missing commands
+    missing_commands+=($cmd)
+  fi
+done
+
+# Check if there are any missing commands
+if [ ${#missing_commands[@]} -ne 0 ]; then
+  echo "The following required command(s) could not be found:"
+  for cmd in "${missing_commands[@]}"; do
+    echo "- $cmd"
+  done
+  echo "Please install the missing command(s) and try again."
+  exit 1
+fi
+
 # GitHub repository details
 REPO="KenshiTech/unchained"
 GITHUB_API_URL="https://api.github.com/repos/$REPO/releases/latest"
