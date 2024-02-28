@@ -1,0 +1,26 @@
+[heading :size 1 Running the Unchained Client]
+
+Once you have configured your node, you can run it with one of the following
+commands.
+
+[heading :size 2 With Docker]
+
+Run in the directory where your installation is located:
+
+[code ./unchained.sh worker up -d]
+
+[heading :size 3 Direct Run]
+
+To use the default locations for config file, secrets file, and the context DB,
+run this command:
+
+[code unchained worker]
+
+To specify the path to your config file, secrets file, and the context DB, run
+this command:
+
+[code unchained worker -c conf.yaml -s secrets.yaml -x context]
+
+You can run the following command to see all the available options:
+
+[code unchained help]

@@ -2,107 +2,86 @@
 
 Once you have Unchained installed, you need to configure a few things first.
 
-[heading :size 2 Configuring a Docker Installation]
+[heading :size 2 Configuration File]
 
-There are three ways to run Unchained with Docker, each requiring a different
-type of configuration.
+[heading :size 3 With Docker]
 
-[heading :size 3 Lite Nodes with Docker]
+If you are running Unchained with Docker, your configuration file will be at
+the following path from in your installation directory:
 
-Make a copy of the lite node config template file in the release directory:
+[code conf/conf.worker.yaml]
 
-[code cp conf.lite.yaml.template conf.yaml]
+You can find your secrets file at:
 
-Modify the config file with your favorite text editor and set a name for your
-node.
+[code conf/secrets.worker.yaml]
 
-[heading :size 3 Full Nodes with Docker]
+[heading :size 3 Direct Install]
 
-Make a copy of the .env template file in the release directory:
+If you are running Unchained directly, you can pass the path to your config file
+using -c, and the path to your secrets file using -s. You can also specify the
+path to the context DB directory using -x.
 
-[code cp .env.template .env]
+The default values are:
 
-Modify and set the following parameters in the .env file:
-
-[list
-  [: [bold POSTGRES_USER]: Choose a username for your Unchained DB instance.]
-  [: [bold POSTGRES_PASSWORD]: Choose a secure password for your Unchained DB.]
-  [: [bold POSTGRES_DB]: Choose an alphanumeric name for the Unchained database.]
-  [: [bold GF_SECURITY_ADMIN_USER]: Choose a username for your Unchained Grafana dashboard.]
-  [: [bold GF_SECURITY_ADMIN_PASSWORD]: Choose a password for your Unchained Grafana dashboard.]
+[list 
+  [: [bold Config file]: ./conf.yaml]
+  [: [bold Secrets file]: ./secrets.yaml]
+  [: [bold Context DB]: ./context]
 ]
 
-Make a copy of the full node config template file in the release directory:
+[heading :size 2 Worker Nodes]
 
-[code cp conf.full.yaml.template conf.yaml]
+[heading :size 3 The Unchained Testnet Public Network]
 
-Modify the config file with your favorite text editor, and make the following changes:
+The minimum required config for running a worker node is the following:
 
-[list
-  [: [bold Name]: Choose a name for your Unchained node.]
-  [: [bold Database URI]:
-    [list
-      [: [bold &ltuser&gt]: Replace with the Postgres user set in your .env file.]
-      [: [bold &ltpass&gt]: Replace with the Postgres password set in your .env file.]
-      [: [bold &lthost&gt]: Replace with postgres.]
-      [: [bold &ltport&gt]: Replace with 5432.]
-      [: [bold &ltdb&gt]: Replace with the database name set in your .env file.]
-    ]
-  ]
+[code
+log: info
+name: <NODE_NAME>
+
+broker:
+  uri: wss://shinobi.brokers.kenshi.io
+
+rpc:
+  ethereum: 
+    - <ETHEREUM_RPC_ADDRESS>
+
+plugins:
+  uniswap:
+    schedule:
+      ethereum: 5000
+    
+    tokens:
+      - name: ethereum
+        chain: ethereum
+        pair: "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+        delta: 12
+        invert: true
+        unit: USDT
+        send: true
+
+      - name: arbitrum
+        chain: ethereum
+        pair: "0x59354356Ec5d56306791873f567d61EBf11dfbD5"
+        delta: 0
+        invert: false
+        unit: ETH
+        send: true
+
+      - name: bitcoin
+        chain: ethereum
+        pair: "0x9db9e0e53058c89e5b94e29621a205198648425b"
+        delta: 2
+        invert: false
+        unit: USDT
+        send: true
 ]
 
-[heading :size 3 Remote Nodes with Docker]
+Please note that the value &ltNODE_NAME&gt and &ltETHEREUM_RPC_ADDRESS&gt
+values need to be modified.
 
-Make a copy of the remote node config template file in the release directory:
+[heading :size 3 Private, Local, or Independent nodes]
 
-[code cp conf.remote.yaml.template conf.yaml]
-
-Modify the config file with your favorite text editor, and make the following changes:
-
-[list
-  [: [bold Name]: Choose a name for your Unchained node.]
-  [: [bold Database URI]:
-    [list
-      [: [bold &ltuser&gt]: Replace with your Postgres user.]
-      [: [bold &ltpass&gt]: Replace with your Postgres password.]
-      [: [bold &lthost&gt]: Replace with your Postgres host name.]
-      [: [bold &ltport&gt]: Replace with your Postgres port.]
-      [: [bold &ltdb&gt]: Replace with your Postgres database name.]
-    ]
-  ]
-]
-
-[heading :size 2 Configuring a Node.js/NPM Installation]
-
-There are two ways to run Unchained with Node.js, each requiring a different
-type of configuration.
-
-[heading :size 3 Lite Nodes with Node.js/NPM]
-
-Make a copy of the lite node config template file from
-[link https://github.com/KenshiTech/unchained/blob/master/conf.lite.yaml.template GitHub].
-Modify the config file with your favorite text editor and set a name for your
-node.
-
-[heading :size 3 Full Nodes with Node.js/NPM]
-
-Make a copy of the lite node config template file from
-[link https://github.com/KenshiTech/unchained/blob/master/conf.lite.yaml.template GitHub].
-Modify the config file to fit your setup:
-
-[list
-  [: [bold Name]: Choose a name for your Unchained node.]
-  [: [bold Database URI]:
-    [list
-      [: [bold &ltuser&gt]: Replace with your Postgres user.]
-      [: [bold &ltpass&gt]: Replace with your Postgres password.]
-      [: [bold &lthost&gt]: Replace with your Postgres host name.]
-      [: [bold &ltport&gt]: Replace with your Postgres port.]
-      [: [bold &ltdb&gt]: Replace with your Postgres database name.]
-    ]
-  ]
-]
-
-Note that you'll need Postgres to run a full node. It should either be installed and
-configured locally, or you can use a DBaaS. Installing and configuring Postgres is out
-of the scope of this documentation.
+This section is a work in progress. See
+[link https://pouyae.medium.com/a-practical-guide-to-unchained-index-events-and-token-prices-on-any-evm-chain-10074b6f346e
+A Practical Guide to Unchained: Index Events and Token Prices on Any EVM Chain].

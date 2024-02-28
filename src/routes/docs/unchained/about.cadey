@@ -1,10 +1,9 @@
 [heading :size 1 About]
 
-Unchained is a decentralized, federated network for data validation.
-Unchained nodes work to validate data together and are rewarded in KNS tokens.
-The validated data can then be queried by consumer in exchange for KNS tokens.
-This model makes Unchained an economically autonomous platform for data
-validation and exchange.
+Unchained is a decentralized, federated network for data validation. Unchained
+nodes work to validate data together and are rewarded in KNS tokens. It is also
+possible to run Unchained as a private or local network, or independently as a
+part of a bigger application.
 
 [heading :size 2 Purpose]
 
@@ -17,71 +16,72 @@ existing blockchains.
 Unchained is a standalone platform suitable for various applications that need
 validated and verified data. This data remains valuable even without being sent
 to the blockchain. Unchained enables direct use of verified data by analytical
-tools, data explorers, or for training AI models. Moreover, the Unchained
-network offers not just raw data, but also the necessary tools for data
-processing and analysis.
+tools, data explorers, for training AI models, or any other use case requiring
+trusted data.
+
+Moreover, the Unchained network offers not just raw data, but also the necessary
+tools for data processing and analysis. It can be used as a grid computing
+platform where users lend their computation power to the consumers, or as an
+edge computing platform where users are re-routed to the nearest available node.
 
 To achieve its objectives, Unchained is not required to function as a blockchain
 in the traditional sense, where data is organized chronologically, compiled into
-blocks, and linked sequentially to the preceding ones. Unchained allows its nodes
-the flexibility to validate and verify data at their own pace. Unlike
+blocks, and linked sequentially to the preceding ones. Unchained allows its
+nodes the flexibility to validate and verify data at their own pace. Unlike
 traditional blockchain models where there's competition to propose a block, in
-Unchained, each piece of data independently validated by a node is acknowledged
-and recorded by other peers as additional verification for that data.
+Unchained, each piece of data validated by a peer is acknowledged and recorded
+by other peers as additional verification.
 
-Moreover, nodes within Unchained are not obligated to focus on identical data
-sets. Each peer has the autonomy to choose which data to validate and store, and
-which to bypass for any given reason. This approach grants Unchained exceptional
+Nodes within Unchained are not obligated to focus on identical data sets. Each
+peer has the autonomy to choose which data to validate and store, and which to
+bypass for any given reason. This approach grants Unchained exceptional
 flexibility and scalability, as data is effectively sharded and made available
 on a demand-driven basis.
 
-[heading :size 2 Consensus]
-
-[heading :size 3 Leaderless]
+[heading :size 3 Federated]
 
 The consensus mechanism in Unchained is multifaceted. The first aspect concerns
-how peers communicate and acknowledge data within the network. Unchained
-operates on a leaderless, trustless model, allowing each node to independently
-verify data and identify consensus among other network participants. This
-decentralized approach ensures that no single node or group of nodes holds
-authority over the rest, promoting a more democratic and resilient system.
+how peers communicate and acknowledge data within the network. The networking
+model in Unchained is federated. Nodes in this federated network can assume
+different roles; workers, for example, have the task of sourcing, validating,
+and processing data, while brokers are tasked with re-routing messages and
+supervising the workers.
 
-The benefits of a leaderless system, as opposed to centralized consensus
-mechanisms like RAFT or blockchain models like Ethereum, are manifold. This
-structure enhances security, as it reduces the risk of single points of failure
-and targeted attacks. It also fosters a more egalitarian network, where each
-participant has an equal opportunity to contribute to and validate the data.
-This contrasts with systems where certain nodes or leaders have disproportionate
-control or influence. Furthermore, it enables greater scalability, as the
-network can grow without the need for complex leader selection processes or the
-risk of bottlenecks at central points.
+The federated network and the separation in functionality allows
+resource-constraint devices to join the Unchained network and benefit from its
+features as well. As an example, a small IoT sensor can send validated sensor
+data to Unchained without the need of running a "full" node, or a small device
+can call a computationally heavy algorithm on the Unchained grid and harness its
+computation power.
 
-[heading :size 3 Liquid Proof of Stake]
+[heading :size 2 Liquid Proof of Stake]
 
-The second aspect of Unchained's consensus mechanism relates to majority voting
-and the validation of data. In situations where nodes present different values
-for a specific data metric (M), the resolution hinges on the voting power of
+In situations where nodes present different values for a specific data metric
+(M), or the result of a process, the resolution hinges on the voting power of
 each validator. This is where
 [link https://opentezos.com/tezos-basics/liquid-proof-of-stake/#delegated-proof-of-stake-dpos
-  Liquid Proof of Stake (LPoS)]
-comes into play. The voting power of each node is determined by the amount of KNS
-tokens they have staked, plus any KNS tokens delegated to them by other users.
+Liquid Proof of Stake (LPoS)] comes into play.
+  
+The voting power of each node is determined by the amount of KNS tokens they
+have staked, plus any staked Katana NFTs, and any KNS tokens or Katana NFTs
+delegated to them by the other users.
 
 Consumers or peers assessing the validity of data must consider the aggregated
-voting powers backing different values of the data. A threshold is set by the
-consumers (e.g., +51% or +90%), above which data is deemed valid. This mechanism
-ensures that the majority decision, weighted by stake, dictates the accepted
-truth within the network.
+voting powers backing the different reported values for each dataset or
+computation. A threshold is set by the consumers (e.g., +51% or +90%), above
+which data is deemed valid. This mechanism ensures that the majority decision,
+weighted by stake, dictates the accepted truth within the network.
 
 The LPoS system offers several advantages. It aligns validators' incentives with
 the network's health and integrity, as their influence depends on their stake.
 This reduces the likelihood of malicious behavior, as acting against the
-network's interests would directly impact a validator's own stake. Additionally,
-LPoS enables more dynamic participation and decentralization, as stakeholders
-can delegate their tokens, thus contributing to the network's governance without
-being active validators themselves. This method also allows for more flexibility
-and diversity in network decision-making, as it incorporates the perspectives of
-a broader range of participants.
+network's interests would directly impact a validator's own stake.
+
+Additionally, LPoS enables more dynamic participation and decentralization, as
+stakeholders can delegate their tokens, thus contributing to the network's
+governance without being active validators themselves. This method also allows
+for more flexibility and diversity in network decision-making, as it
+incorporates the perspectives of a broader range of participants.
 
 [heading :size 2 Auth and Security]
 
@@ -121,71 +121,3 @@ seamlessly interact with Ethereum's network and services. This compatibility is
 crucial for users and applications that operate across both Unchained and
 Ethereum platforms, as it simplifies processes and enhances user experience by
 allowing the use of the same cryptographic standards and tools.
-
-[heading :size 3 Peer Communication]
-
-The Unchained network enhances its security by using the Noise protocol
-framework to secure connections between peers. Noise is a versatile toolkit for
-building cryptographic protocols, which Hyperswarm employs to ensure encrypted
-and authenticated communication channels.
-
-This approach safeguards data from unauthorized access and interception,
-offering benefits like robust end-to-end encryption and strong identity
-verification. By integrating Noise, Unchained reinforces the privacy and
-security of its network, ensuring that all peer-to-peer communications are
-protected against potential cyber threats.
-
-[heading :size 2 Networking Layer]
-
-[heading :size 3 Peer-to-Peer Connection]
-
-Unchained incorporates Hyperswarm for efficient peer-to-peer communication and
-automatic discovery of peers. Hyperswarm is based on Distributed Hash Tables
-(DHTs), and it specifically uses the
-[link https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf Kademlia]
-DHT protocol for its network operations.
-
-A Distributed Hash Table (DHT) is essential in decentralized networks for
-storing and finding data. In a DHT, every piece of data is given a unique key,
-making it easy to locate the node that holds the data linked to that key. The
-Kademlia protocol, used by Hyperswarm, simplifies the process of finding nodes
-and accessing data. It arranges nodes based on their distance from each other in
-a unique identifier space. Each node in a Kademlia-based DHT keeps a list of
-other nodes, organized by how close they are in this space, allowing for quick
-and reliable data searches.
-
-By using these techniques, Hyperswarm effectively finds and connects peers
-within the Unchained network. This method is key to building and maintaining a
-network of nodes, providing efficient data routing and stable peer-to-peer
-connections.
-
-[heading :size 3 Gossip Protocol]
-
-In addition to the existing network framework, Unchained leverages a Gossip
-Protocol to enhance message broadcasting and peer communication. This protocol
-is integral for distributing messages across the network efficiently. When a
-node has a message that needs to be shared, it initially sends this message to
-three randomly chosen peers that it is directly connected with.
-
-Each node that receives a message marks it as seen, processes the content, and
-then relays it to three additional nodes that have not yet received it. This
-process continues, ensuring widespread dissemination of the message throughout
-the network.
-
-The Gossip Protocol offers several key benefits to Unchained. It ensures that
-even nodes not directly connected can communicate effectively through
-intermediate peers. This indirect method of communication guarantees that
-information reaches every corner of the network, keeping all nodes informed and
-synchronized.
-
-Gossip protocol contributes to the Unchained network's resilience. By
-disseminating messages along multiple paths, the network can maintain
-communication even if some nodes become unavailable. This redundancy safeguards
-against potential disruptions, ensuring consistent and reliable message flow
-throughout Unchained.
-
-Additionally, the Gossip Protocol supports the scalability of Unchained. As the
-network expands, the protocol adapts, facilitating efficient communication
-without the need for a centralized control point. This decentralized approach is
-consistent with Unchained’s principles, enhancing the network's ability to grow
-and adapt seamlessly.
