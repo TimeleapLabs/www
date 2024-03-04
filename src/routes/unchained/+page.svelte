@@ -108,7 +108,7 @@
           max: Math.max(...data.prices.map((item) => item.block)),
           ticks: { maxRotation: 45, minRotation: 45 },
         },
-        y: { title: { display: true, text: "Peers" } },
+        y: { title: { display: true, text: "Peers" }, beginAtZero: true },
       },
       responsive: true,
       maintainAspectRatio: false,
