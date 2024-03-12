@@ -1,7 +1,7 @@
 import sha3 from "js-sha3";
 import { Buffer } from "buffer";
 
-const chars = "0123456789ABCDEFGHJKMNPQTSTUVXYZ";
+const chars = "0123456789ABCDEFGHJKMNPQRSTUVXYZ";
 
 export const toBase32 = (input) => {
   let output = "";
