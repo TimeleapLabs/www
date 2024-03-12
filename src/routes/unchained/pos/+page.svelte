@@ -348,6 +348,7 @@
                   bind:value={stake.amount}
                   placeholder="0"
                   labelText="Stake amount"
+                  helperText="Enter the amount of KNS tokens you want to stake."
                 />
               </Column>
               <Column>
@@ -355,6 +356,7 @@
                   <DatePickerInput
                     placeholder="Unlock date"
                     labelText="Choose a date"
+                    helperText="Select the date when you want to unlock your stake."
                   />
                 </DatePicker>
               </Column>
@@ -365,6 +367,7 @@
                   <div class="nft-select">
                     <MultiSelect
                       bind:selectedIds={stake.nftIds}
+                      helperText="Select NFTs to stake in addition to the KNS tokens."
                       titleText="NFTs"
                       label="Select NFTs to stake"
                       items={userNfts.map((id) => ({
@@ -408,8 +411,9 @@
               <Column>
                 <TextInput
                   bind:value={bls.key}
-                  placeholder="Your Unchained BLS address"
+                  placeholder="Your Unchained address"
                   labelText="Unchained address"
+                  helperText="Enter your Unchained address as displayed by the Unchained client."
                   invalidText={bls.error}
                   invalid={bls.error.length > 0}
                 />
@@ -421,6 +425,7 @@
                   bind:value={bls.hex}
                   placeholder="0x..."
                   labelText="Hex"
+                  helperText="The hexadecimal representation of your Unchained address."
                   readonly
                 />
               </Column>
