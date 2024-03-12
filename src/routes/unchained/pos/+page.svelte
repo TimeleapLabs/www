@@ -15,7 +15,7 @@
     Grid,
     Row,
     Column,
-    ProgressBar,
+    InlineNotification,
     Tile,
     OutboundLink,
     ClickableTile,
@@ -336,148 +336,158 @@
         </div>
       </Column>
     </Row>
-    <Row>
-      <Column>
-        <Tile>
-          <ExpressiveHeading size={2}>Stake</ExpressiveHeading>
-
-          <Row>
-            <Column lg={9} md={6}>
-              <TextInput
-                bind:value={stake.amount}
-                placeholder="0"
-                labelText="Stake amount"
-              />
-            </Column>
-            <Column>
-              <DatePicker datePickerType="single" bind:value={stake.until}>
-                <DatePickerInput
-                  placeholder="Unlock date"
-                  labelText="Choose a date"
-                />
-              </DatePicker>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              {#if nfts.length > 0}
-                <div class="nft-select">
-                  <MultiSelect
-                    bind:selectedIds={stake.nftIds}
-                    titleText="NFTs"
-                    label="Select NFTs to stake"
-                    items={userNfts.map((id) => ({
-                      ...nfts[id],
-                      text: nfts[id].metadata.name,
-                      id,
-                    }))}
-                    let:item
-                  >
-                    <div class="nft">
-                      <div>
-                        <strong>
-                          {item.metadata.name}
-                        </strong>
-                        <div>
-                          NFT ID: {item.id}
-                        </div>
-                      </div>
-                      <img
-                        src={item.metadata.image}
-                        alt={item.metadata.name}
-                        width="100"
-                      />
-                    </div>
-                  </MultiSelect>
-                </div>
-              {/if}
-            </Column>
-          </Row>
-          <div class="form-buttons">
-            <Button on:click={extendStake} icon={AlarmAdd}>Extend</Button>
-            <Button on:click={increaseStake} icon={AddAlt}>Increase</Button>
-            <Button on:click={performStake} icon={ArrowRight}>Stake</Button>
-          </div>
-        </Tile>
-      </Column>
-      <Column>
-        <Tile>
-          <ExpressiveHeading size={2}>Register BLS Address</ExpressiveHeading>
-          <Row>
-            <Column>
-              <TextInput
-                bind:value={bls.key}
-                placeholder="Your Unchained BLS address"
-                labelText="Unchained address"
-                invalidText={bls.error}
-                invalid={bls.error.length > 0}
-              />
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <TextInput
-                bind:value={bls.hex}
-                placeholder="0x..."
-                labelText="Hex"
-                readonly
-              />
-            </Column>
-          </Row>
-          <div class="form-buttons">
-            <Button on:click={registerBls} icon={ArrowRight}>Register</Button>
-          </div>
-        </Tile>
-      </Column>
-    </Row>
-    {#if userStake}
+    {#if $wallet?.provider}
       <Row>
         <Column>
-          <DataTable
-            headers={[
-              { key: "amount", value: "Amount" },
-              { key: "nftIds", value: "NFTs" },
-              { key: "unlock", value: "Unlock" },
-            ]}
-            rows={[
-              {
-                id: 1,
-                amount: ethers.utils.formatUnits(userStake.amount, 18),
-                nftIds: userStake.nftIds,
-                unlock: userStake.unlock,
-              },
-            ]}
-          >
-            <svelte:fragment slot="title">
-              <ExpressiveHeading size={2}>Your Stake</ExpressiveHeading>
-            </svelte:fragment>
-            <span slot="description">
-              Your current stake in the Unchained network.
-            </span>
-            <svelte:fragment slot="cell" let:row let:cell>
-              {#if cell.key === "nftIds"}
-                {#each cell.value as nftId}
-                  <img
-                    src={nfts[nftId].metadata.image}
-                    alt={nfts[nftId].metadata.name}
-                    width="50"
+          <Tile>
+            <ExpressiveHeading size={2}>Stake</ExpressiveHeading>
+
+            <Row>
+              <Column lg={9} md={6}>
+                <TextInput
+                  bind:value={stake.amount}
+                  placeholder="0"
+                  labelText="Stake amount"
+                />
+              </Column>
+              <Column>
+                <DatePicker datePickerType="single" bind:value={stake.until}>
+                  <DatePickerInput
+                    placeholder="Unlock date"
+                    labelText="Choose a date"
                   />
-                {:else}
-                  No NFTs
-                {/each}
-              {:else if cell.key === "unlock"}
-                {#if cell.value.eq(0)}
-                  Unlocked
-                {:else}
-                  {new Date(cell.value * 1000).toLocaleString()}
+                </DatePicker>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                {#if nfts.length > 0}
+                  <div class="nft-select">
+                    <MultiSelect
+                      bind:selectedIds={stake.nftIds}
+                      titleText="NFTs"
+                      label="Select NFTs to stake"
+                      items={userNfts.map((id) => ({
+                        ...nfts[id],
+                        text: nfts[id].metadata.name,
+                        id,
+                      }))}
+                      let:item
+                    >
+                      <div class="nft">
+                        <div>
+                          <strong>
+                            {item.metadata.name}
+                          </strong>
+                          <div>
+                            NFT ID: {item.id}
+                          </div>
+                        </div>
+                        <img
+                          src={item.metadata.image}
+                          alt={item.metadata.name}
+                          width="100"
+                        />
+                      </div>
+                    </MultiSelect>
+                  </div>
                 {/if}
-              {:else}
-                {cell.value}
-              {/if}
-            </svelte:fragment>
-          </DataTable>
+              </Column>
+            </Row>
+            <div class="form-buttons">
+              <Button on:click={extendStake} icon={AlarmAdd}>Extend</Button>
+              <Button on:click={increaseStake} icon={AddAlt}>Increase</Button>
+              <Button on:click={performStake} icon={ArrowRight}>Stake</Button>
+            </div>
+          </Tile>
+        </Column>
+        <Column>
+          <Tile>
+            <ExpressiveHeading size={2}>Register BLS Address</ExpressiveHeading>
+            <Row>
+              <Column>
+                <TextInput
+                  bind:value={bls.key}
+                  placeholder="Your Unchained BLS address"
+                  labelText="Unchained address"
+                  invalidText={bls.error}
+                  invalid={bls.error.length > 0}
+                />
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                <TextInput
+                  bind:value={bls.hex}
+                  placeholder="0x..."
+                  labelText="Hex"
+                  readonly
+                />
+              </Column>
+            </Row>
+            <div class="form-buttons">
+              <Button on:click={registerBls} icon={ArrowRight}>Register</Button>
+            </div>
+          </Tile>
         </Column>
       </Row>
+      {#if userStake}
+        <Row>
+          <Column>
+            <DataTable
+              headers={[
+                { key: "amount", value: "Amount" },
+                { key: "nftIds", value: "NFTs" },
+                { key: "unlock", value: "Unlock" },
+              ]}
+              rows={[
+                {
+                  id: 1,
+                  amount: ethers.utils.formatUnits(userStake.amount, 18),
+                  nftIds: userStake.nftIds,
+                  unlock: userStake.unlock,
+                },
+              ]}
+            >
+              <svelte:fragment slot="title">
+                <ExpressiveHeading size={2}>Your Stake</ExpressiveHeading>
+              </svelte:fragment>
+              <span slot="description">
+                Your current stake in the Unchained network.
+              </span>
+              <svelte:fragment slot="cell" let:row let:cell>
+                {#if cell.key === "nftIds"}
+                  <div class="nfts">
+                    {#each cell.value as nftId}
+                      <img
+                        src={nfts[nftId].metadata.image}
+                        alt={nfts[nftId].metadata.name}
+                        width="50"
+                      />
+                    {:else}
+                      No NFTs
+                    {/each}
+                  </div>
+                {:else if cell.key === "unlock"}
+                  {#if cell.value.eq(0)}
+                    Unlocked
+                  {:else}
+                    {new Date(cell.value * 1000).toLocaleString()}
+                  {/if}
+                {:else}
+                  {cell.value}
+                {/if}
+              </svelte:fragment>
+            </DataTable>
+          </Column>
+        </Row>
+      {/if}
+    {:else}
+      <InlineNotification
+        kind="info"
+        title="Connect your wallet"
+        subtitle="To use the Unchained PoS Manager, you need to connect your wallet."
+      />
     {/if}
   </Grid>
 </Content>
@@ -529,5 +539,10 @@
   }
   .nft > div {
     flex: 1;
+  }
+  .nfts {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
   }
 </style>
