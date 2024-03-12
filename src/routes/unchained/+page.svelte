@@ -21,7 +21,7 @@
   } from "carbon-components-svelte";
 
   import { Button, Content } from "carbon-components-svelte";
-  import { Book, Play } from "carbon-icons-svelte";
+  import { Book, Play, Chemistry } from "carbon-icons-svelte";
 
   import {
     DataTable,
@@ -237,7 +237,8 @@
             economically autonomous platform for data validation and exchange.
           </p>
           <div class="buttons">
-            <Button href="/docs/unchained" icon={Book}>Learn more</Button>
+            <Button href="/docs/unchained" icon={Book}>Learn More</Button>
+            <Button href="/unchained/pos" icon={Chemistry}>PoS Manager</Button>
             <Button
               target="_blank"
               href="https://github.com/KenshiTech/unchained/blob/master/quickstart.md"

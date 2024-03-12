@@ -93,7 +93,13 @@ const options = {
       id: "0x66eed",
       token: "AGOR",
       label: "Arbitrum Goerli",
-      rpcUrl: "https://arbitrum-goerli.blockpi.network/v1/rpc/public	",
+      rpcUrl: "https://arbitrum-goerli.blockpi.network/v1/rpc/public",
+    },
+    {
+      id: "0x66eee",
+      token: "SepETH",
+      label: "Arbitrum Sepolia",
+      rpcUrl: "https://arbitrum-sepolia.blockpi.network/v1/rpc/public",
     },
     {
       id: "0x1",
