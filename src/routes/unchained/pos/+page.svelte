@@ -26,15 +26,7 @@
 
   import { Button, Content } from "carbon-components-svelte";
   import { Book, ArrowRight, AddAlt, AlarmAdd } from "carbon-icons-svelte";
-
-  import {
-    DataTable,
-    Toolbar,
-    ToolbarContent,
-    ToolbarSearch,
-    Pagination,
-    MultiSelect,
-  } from "carbon-components-svelte";
+  import { DataTable, Tag, MultiSelect } from "carbon-components-svelte";
 
   import { theme } from "src/stores/theme";
   import { recoverAddress, addressFromShake } from "$lib/base32";
@@ -290,7 +282,13 @@
     <Row>
       <Column xlg={8} sm={4}>
         <div class="description">
-          <ExpressiveHeading size={4}>Unchained PoS Manager</ExpressiveHeading>
+          <div class="title">
+            <Tag type="red">Testnet</Tag>
+            <ExpressiveHeading size={4}>
+              Unchained PoS Manager
+            </ExpressiveHeading>
+          </div>
+
           <p>
             Unchained PoS Manager is your dashboard to manage your voting power
             in the Unchained network. Use this dashboard to stake KNS or Katana,
@@ -549,5 +547,10 @@
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
   }
 </style>
