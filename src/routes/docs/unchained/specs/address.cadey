@@ -10,8 +10,8 @@ first calculating the Shake256 hash of the public key, then taking the first 20
 bytes of the hash, and finally encoding the result in Base32.
 
 Two checksum bytes are appended to the address, which is calculated by taking
-the first 2 bytes of the Shake256 hash of the address, and encoding the result
-in Base32.
+the first 2 bytes of the Shake256 hash of the address, calculating the modulo 32
+of each byte, and then encoding the result in Base32.
 
 The final address format is as follows:
 
@@ -20,7 +20,7 @@ The final address format is as follows:
 block-beta
   columns 4
 
-  addr["FCB64Q7Y72N123NED23N0C0TEHHXZF"]:3 sum["SE8B"]:1
+  addr["FCB64Q7Y72N123NED23N0C0TEHHXZFSE"]:3 sum["8B"]:1
   space:4
   addrb["Address"]:3 sumb["Checksum"]:1
 
