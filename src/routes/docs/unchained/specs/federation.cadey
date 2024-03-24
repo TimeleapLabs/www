@@ -1,0 +1,73 @@
+[heading :size 1 Federated Network]
+
+Unchained is a federated network of independent and self-hosted nodes with
+different functions and responsibilities. Each instance is owned and operated by
+a different person or organization and has its own rules and moderation
+policies. This means that Unchained is not a single centralized service, but a
+network of interconnected communities that share the same values and principles.
+
+[heading :size 2 Terminology]
+
+[heading :size 3 Worker]
+
+A worker is a node that is responsible for processing and validating data that
+is requested either by the network or by other nodes. Workers are the backbone
+of the network and are responsible for maintaining the integrity and security of
+the system.
+
+[heading :size 3 Broker]
+
+A broker is a node that acts as an intermediary between workers and consumers.
+Brokers are responsible for routing requests to the appropriate worker and
+ensuring that the data is delivered in a timely and efficient manner.
+
+[heading :size 3 Consumer]
+
+A consumer is a node that requests data from the network. Consumers can be
+individual users, applications, or other nodes that need a piece of data to
+be processed or validated.
+
+[heading :size 2 Rationale]
+
+The Unchained network is designed to be decentralized and resilient to
+censorship and control. By distributing the responsibilities of processing and
+validating data across multiple nodes, the network can operate
+independently of any single entity or organization.
+
+The federated nature of the network also allows for greater diversity and
+flexibility in terms of governance and moderation. Each node is free to set its
+own rules and policies, which means that the network as a whole can
+accommodate a wide range of different communities and use cases.
+
+With a federated network, each node is responsible for its data and resources,
+which means that the network as a whole is more resilient to attacks and
+failures. In a peer-to-peer network, all nodes are equal and share the same
+responsibilities, which can make the network more vulnerable to centralization
+and control.
+
+Furthermore, a federated network allows for greater scalability and efficiency
+by distributing the workload across multiple nodes. This means that the network
+can handle a larger number of requests and process data more quickly and
+reliably.
+
+By separating responsibilities between workers, brokers, and consumers, we allow
+each node to focus on its core functions and optimize its performance. Each node
+can choose to specialize in a particular area or provide a general purpose
+service to the network, which allows for greater diversity and innovation in the
+ecosystem.
+
+For example, a worker node might specialize in processing large datasets
+performing complex computations, or to simply signing and sending sensor data on
+a small IoT device. A broker node might specialize in routing requests to the
+appropriate worker or optimizing the network topology for better performance.
+
+A consumer node might specialize in aggregating data from multiple sources or
+providing a user-friendly interface for interacting with the network. Consumers
+are also free to store data in different backends. For example, a consumer might
+choose to store data in a decentralized storage network like IPFS or a
+traditional cloud storage provider like AWS or send it to a blockchain
+(Oracles).
+
+By allowing each node to focus on its core functions, we can create a more
+efficient and resilient network that can adapt to a wide range of different use
+cases and requirements.

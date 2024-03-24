@@ -1,0 +1,19 @@
+[heading :size 1 RPC]
+
+Communication between the nodes is done using the Remote Procedure Call (RPC)
+protocol. The RPC protocol is a simple protocol that allows a client to call a
+function on the network. The network will execute the function and return the
+result to the client.
+
+Unchained implements a simple RPC protocol as follows:
+
+[code :inline true Payload \:= \[\]Byte{opcode, data...}]
+
+Where:
+
+[list
+  [: [bold opcode] is a 1-byte field that specifies the operation to be performed.]
+  [: [bold data] is a variable-length field that contains the data for the operation.
+                 Data is serialized using the MessagePack format.]
+]
+

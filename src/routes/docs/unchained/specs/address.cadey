@@ -25,9 +25,7 @@ block-beta
   addrb["Address"]:3 sumb["Checksum"]:1
 
   addr --> addrb
-  sum --> sumb
-
-:]]
+  sum --> sumb :]]
 
 This address format is used for the Unchained system and is the default address
 format for the client. The address is used to identify the client in the system

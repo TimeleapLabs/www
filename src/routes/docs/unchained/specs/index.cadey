@@ -6,4 +6,7 @@ Unchained Network.
 [alert warning This is a work in progress]
 
 [toc
+  federation
+  rpc
+  connection
   address]
