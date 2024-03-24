@@ -20,6 +20,7 @@ const componentsMap = {
   Donut: "src/components/docs/Donut.svelte",
   Audio: "src/components/Audio.svelte",
   BlogToc: 'import Toc from "src/components/blog/Toc.svelte"',
+  Mermaid: 'import Mermaid from "src/components/charts/Mermaid.svelte"',
 };
 
 const getImport = (c) =>

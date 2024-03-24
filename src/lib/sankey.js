@@ -3,6 +3,7 @@ export {
   sankeyLeft,
   sankeyRight,
   sankeyJustify,
+  sankeyCenter,
 } from "d3-sankey-circular";
 
 import { linkHorizontal } from "d3-shape";

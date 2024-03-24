@@ -244,6 +244,17 @@ export const macros = {
     const titleTag = title ? `"${asText(title)}"` : null;
     return `<Chart title={${titleTag}} data={${chartData}} />`;
   },
+  mermaid(options, ...args) {
+    this.components = { ...this.components, Mermaid: true };
+    const { id, title, description } = options;
+    const titleTag = title ? `"${asText(title)}"` : null;
+    const idTag = id ? `"${asText(id)}"` : null;
+    const descriptionTag = description ? `"${asText(description)}"` : null;
+    return `
+    <Mermaid id={${idTag}} description={${descriptionTag}} title={${titleTag}}>
+      ${unIndent(asCode(args)).replace(/`/g, "\\`").replace(/{/g, "\\{")}
+    </Mermaid>`;
+  },
   donut(options, ..._args) {
     this.components = { ...this.components, Donut: true };
     const { data, label, title } = options;
