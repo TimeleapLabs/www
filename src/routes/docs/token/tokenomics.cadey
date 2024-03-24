@@ -36,7 +36,7 @@ utilities of this token are:
     security of the Unchained network.]
   [:[bold Unchained Consumers]:  Consumers use KNS to access validated data stored
     on the Unchained network. Validators receive these tokens as a reward for running
-    an active node.]
+    an active node. This is the equivalent of using ETH on the Ethereum network for gas.]
 ]
 
 [heading :size 2 Tokenomics]
