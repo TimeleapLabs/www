@@ -44,7 +44,7 @@ transcribe than the standard Base32 encoding scheme.
 
 The custom Base32 encoding scheme uses the following character set:
 
-[code code :inline true 0123456789ABCDEFGHJKMNPQRSTUVXYZ]
+[code :inline true 0123456789ABCDEFGHJKMNPQRSTUVXYZ]
 
 As you can see, the custom Base32 encoding scheme excludes the letters "I", "L", and "O"
 to avoid confusion with the numbers "1", and "0". It also drops the letter "W" to avoid
