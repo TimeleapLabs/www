@@ -179,15 +179,15 @@
         </p>
         {#if !$wallet?.provider}
           <InlineNotification kind="info" title="Price">
-            Kenshi Katana NFT minting costs 0.15 ETH plus gas fees on Arbitrum.
-            Connect your wallet to continue.
+            Kenshi Katana NFTs are sold out! Check out OpenSea for available
+            listings.
           </InlineNotification>
         {/if}
         <div class="buttons">
           {#if !$wallet?.provider}
             <ConnectButton primary />
           {:else}
-            <Button disabled={minting} on:click={mintOne} icon={Number_1}>
+            <Button disabled={true} on:click={mintOne} icon={Number_1}>
               {#if minting}
                 <SpinLine
                   size="32"
@@ -200,7 +200,7 @@
                 Mint One
               {/if}
             </Button>
-            <Button disabled={minting} on:click={mintMany(3)} icon={Number_3}>
+            <Button disabled={true} on:click={mintMany(3)} icon={Number_3}>
               {#if minting}
                 <SpinLine
                   size="32"
@@ -213,7 +213,7 @@
                 Mint Three
               {/if}
             </Button>
-            <Button disabled={minting} on:click={mintMany(6)} icon={Number_6}>
+            <Button disabled={true} on:click={mintMany(6)} icon={Number_6}>
               {#if minting}
                 <SpinLine
                   size="32"
@@ -226,7 +226,7 @@
                 Mint Six
               {/if}
             </Button>
-            <Button disabled={minting} on:click={mintMany(9)} icon={Number_9}>
+            <Button disabled={true} on:click={mintMany(9)} icon={Number_9}>
               {#if minting}
                 <SpinLine
                   size="32"
