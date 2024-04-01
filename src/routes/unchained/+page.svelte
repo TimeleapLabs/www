@@ -7,7 +7,7 @@
   import colors from "src/components/chartjs/colors.js";
   import formatThousands from "format-thousands";
   import Footer from "src/components/Footer.svelte";
-  import Unchained from "src/icons/Unchained.svelte";
+  import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
   import Sworn from "src/icons/Sworn.svelte";
 
   import {
@@ -226,9 +226,11 @@
 <Content class="gap">
   <Grid padding>
     <Row>
-      <Column xlg={8} sm={4}>
+      <Column xlg={12} md={6} sm={4}>
         <div class="description">
-          <ExpressiveHeading size={4}>Kenshi Unchained</ExpressiveHeading>
+          <ExpressiveHeading size={4}>
+            <h1>Kenshi Unchained</h1>
+          </ExpressiveHeading>
           <p>
             Unchained is a decentralized, peer-to-peer network for data
             validation. Unchained nodes work to validate data together and are
@@ -249,13 +251,12 @@
           </div>
         </div>
       </Column>
-      <Column xlg={8} sm={4}>
-        <div class="unchained">
-          <Unchained
-            textColor={$theme === "white" ? "#000" : "#ccc"}
-            color={$theme === "white" ? "#333" : "#000"}
-          />
-        </div>
+      <Column xlg={3} md={2} sm={4}>
+        <AdaptiveProductIcon
+          product="unchained"
+          alt="Kenshi Unchained"
+          width={"240px"}
+        />
       </Column>
     </Row>
     <Row>

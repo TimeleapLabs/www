@@ -3,11 +3,8 @@
 
   import DefaultTags from "src/components/seo/DefaultTags.svelte";
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
-  import Chartjs from "src/components/chartjs/Chartjs.svelte";
-  import colors from "src/components/chartjs/colors.js";
-  import formatThousands from "format-thousands";
   import Footer from "src/components/Footer.svelte";
-  import Unchained from "src/icons/Unchained.svelte";
+  import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
   import Sworn from "src/icons/Sworn.svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
 
@@ -280,7 +277,7 @@
 <Content class="gap">
   <Grid padding>
     <Row>
-      <Column xlg={8} sm={4}>
+      <Column xlg={8} md={6} sm={4}>
         <div class="description">
           <div class="title">
             <Tag type="red">Testnet</Tag>
@@ -301,13 +298,12 @@
           </div>
         </div>
       </Column>
-      <Column xlg={8} sm={4}>
-        <div class="unchained">
-          <Unchained
-            textColor={$theme === "white" ? "#000" : "#ccc"}
-            color={$theme === "white" ? "#333" : "#000"}
-          />
-        </div>
+      <Column xlg={3} md={2} sm={4}>
+        <AdaptiveProductIcon
+          product="unchained"
+          alt="Kenshi Unchained"
+          width={"240px"}
+        />
       </Column>
     </Row>
     <Row>

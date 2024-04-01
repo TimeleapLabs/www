@@ -27,9 +27,7 @@
 
   import Katanas from "src/components/home/Katanas.svelte";
   import UniSwap from "src/icons/UniSwap.svelte";
-  import Unchained from "src/icons/Unchained.svelte";
-
-  import { theme } from "src/stores/theme";
+  import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
 </script>
 
 <!-- Hero -->
@@ -105,7 +103,7 @@
 
   <Grid>
     <Row>
-      <Column xlg={8} sm={4}>
+      <Column xlg={12} md={6} sm={4}>
         <div class="description flex-column padding">
           <ExpressiveHeading size={4}>
             Introducing Kenshi Unchained
@@ -117,7 +115,7 @@
             consumer in exchange for KNS tokens. This model makes Unchained an
             economically autonomous platform for data validation and exchange.
           </p>
-          <div class="buttons">
+          <div class="buttons margin">
             <Button href="/docs/unchained" icon={Book}>Documentation</Button>
             <Button href="/unchained" icon={Dashboard}>Testnet Stats</Button>
             <Button
@@ -131,14 +129,12 @@
           </div>
         </div>
       </Column>
-      <Column lg={1} />
-      <Column xlg={7} sm={4}>
-        <div class="unchained">
-          <Unchained
-            textColor={$theme === "white" ? "#000" : "#ccc"}
-            color={$theme === "white" ? "#333" : "#000"}
-          />
-        </div>
+      <Column xlg={4} md={2} sm={4}>
+        <AdaptiveProductIcon
+          product="unchained"
+          alt="Kenshi Unchained"
+          width={"240px"}
+        />
       </Column>
     </Row>
   </Grid>
@@ -490,6 +486,10 @@
     flex-wrap: wrap;
     width: 100%;
     flex-wrap: wrap;
+  }
+
+  .buttons.margin {
+    margin-top: 1em;
   }
 
   .product {
