@@ -55,19 +55,12 @@ export async function GET() {
       signers_count: true,
       asset: true,
     },
-    where: {
-      NOT: {
-        asset: null,
-      },
-    },
+    where: { consensus: true, NOT: { asset: null } },
   });
 
   return json({
     signers,
     prices,
-    stats: {
-      datapoints,
-      validations,
-    },
+    stats: { datapoints, validations },
   });
 }

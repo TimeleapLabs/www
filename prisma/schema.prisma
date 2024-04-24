@@ -13,6 +13,7 @@ model asset_prices {
   block         Int?
   price         Decimal
   asset         String?
+  consensus     Boolean
 }
 
 model signers {
