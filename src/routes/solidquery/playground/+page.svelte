@@ -163,7 +163,7 @@
           </div>
           <div class="buttons">
             <Button
-              href="https://github.com/KenshiTech/SolidQuery"
+              href="https://github.com/TimeleapLabs/SolidQuery"
               target="_blank"
               icon={LogoGithub}
             >

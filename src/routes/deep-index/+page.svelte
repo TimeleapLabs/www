@@ -461,23 +461,23 @@
                       <div class="buttons no-margin">
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/graphql-example-node-axios"
+                          href="https://github.com/TimeleapLabs/graphql-example-node-axios"
                           icon={Node}>Node Axios</Button
                         >
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/graphql-example-node-fetch"
+                          href="https://github.com/TimeleapLabs/graphql-example-node-fetch"
                           icon={Node}>Node Fetch</Button
                         >
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/graphql-example-python"
+                          href="https://github.com/TimeleapLabs/graphql-example-python"
                           icon={LogoPython}
                         >
                           Python Requests
                         </Button>
                         <Button
-                          href="https://github.com/KenshiTech/graphql-example-go"
+                          href="https://github.com/TimeleapLabs/graphql-example-go"
                           kind="secondary"
                           icon={Go}>Go Shurcool</Button
                         >
@@ -514,24 +514,24 @@
                       <div class="buttons no-margin">
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/mql-example-node-axios"
+                          href="https://github.com/TimeleapLabs/mql-example-node-axios"
                           icon={Node}>Node Axios</Button
                         >
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/mql-example-node-fetch"
+                          href="https://github.com/TimeleapLabs/mql-example-node-fetch"
                           icon={Node}>Node Fetch</Button
                         >
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/mql-example-python"
+                          href="https://github.com/TimeleapLabs/mql-example-python"
                           icon={LogoPython}
                         >
                           Python Requests
                         </Button>
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/mql-example-go"
+                          href="https://github.com/TimeleapLabs/mql-example-go"
                           icon={Go}>Go net/http</Button
                         >
                       </div>
@@ -571,14 +571,14 @@
                       <div class="buttons no-margin">
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/reverse-api-example-node"
+                          href="https://github.com/TimeleapLabs/reverse-api-example-node"
                           icon={Node}
                         >
                           Node Express
                         </Button>
                         <Button
                           kind="secondary"
-                          href="https://github.com/KenshiTech/reverse-api-example-python"
+                          href="https://github.com/TimeleapLabs/reverse-api-example-python"
                           icon={LogoPython}
                         >
                           Python Flask

@@ -34,14 +34,14 @@ directly. To do so, run the following command:
 [heading :size 2 Installation with Docker]
 
 Head to the Unchained
-[link https://github.com/KenshiTech/unchained/releases releases page] and grab
+[link https://github.com/TimeleapLabs/unchained/releases releases page] and grab
 the latest release for Docker. Unzip the release file and switch to the newly
 created directory.
 
 [heading :size 2 Direct Installation]
 
 Head to the Unchained
-[link https://github.com/KenshiTech/unchained/releases releases page] and grab
+[link https://github.com/TimeleapLabs/unchained/releases releases page] and grab
 the latest release for your OS and CPU architecture. Move the binary file to an
 appropriate place and make it executable:
 

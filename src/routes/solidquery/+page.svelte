@@ -64,7 +64,7 @@
 
       <div class="buttons">
         <Button
-          href="https://github.com/KenshiTech/SolidQuery"
+          href="https://github.com/TimeleapLabs/SolidQuery"
           target="_blank"
           icon={Book}
         >
@@ -212,7 +212,7 @@
             <Column lg={8}>
               <ClickableTile
                 class="full-height"
-                href="https://github.com/KenshiTech/SolidQuery"
+                href="https://github.com/TimeleapLabs/SolidQuery"
                 target="_blank"
               >
                 <div class="use-case">
@@ -238,7 +238,7 @@
             <Column lg={8}>
               <ClickableTile
                 class="full-height"
-                href="https://github.com/KenshiTech/SolidQuery"
+                href="https://github.com/TimeleapLabs/SolidQuery"
                 target="_blank"
               >
                 <div class="use-case">
@@ -266,7 +266,7 @@
             <Column lg={8}>
               <ClickableTile
                 class="full-height"
-                href="https://github.com/KenshiTech/SolidQuery"
+                href="https://github.com/TimeleapLabs/SolidQuery"
                 target="_blank"
               >
                 <div class="use-case">
@@ -292,7 +292,7 @@
             <Column lg={8}>
               <ClickableTile
                 class="full-height"
-                href="https://github.com/KenshiTech/SolidQuery"
+                href="https://github.com/TimeleapLabs/SolidQuery"
                 target="_blank"
               >
                 <div class="use-case">
@@ -338,7 +338,7 @@
 
           <div class="buttons">
             <Button
-              href="https://github.com/KenshiTech/SolidQuery"
+              href="https://github.com/TimeleapLabs/SolidQuery"
               target="_blank"
               icon={Book}
             >

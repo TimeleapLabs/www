@@ -243,7 +243,7 @@
             <Button href="/unchained/pos" icon={Chemistry}>PoS Manager</Button>
             <Button
               target="_blank"
-              href="https://github.com/KenshiTech/unchained/blob/master/quickstart.md"
+              href="https://github.com/TimeleapLabs/unchained/blob/master/quickstart.md"
               icon={Play}
             >
               Run a Node

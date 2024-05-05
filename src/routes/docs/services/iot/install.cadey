@@ -6,7 +6,7 @@ for your favorite platform.
 [heading :size 2 Arduino boards]
 
 To install the Kenshi IoT SDK for Arduino, go to the Kenshi IoT SDK
-[link https://github.com/KenshiTech/iot-sdk/releases release page] on Github
+[link https://github.com/TimeleapLabs/iot-sdk/releases release page] on Github
 and download the latest release.
 
 Then open the Arduino IDE and select Sketch > Include Library > Add ZIP Library...
@@ -28,7 +28,7 @@ To bootstrap a Zephyr project with the Kenshi IoT SDK, you can run the following
 commands:
 
 [code 
-west init -m https://github.com/KenshiTech/iot-sdk.git --mf west.yml
+west init -m https://github.com/TimeleapLabs/iot-sdk.git --mf west.yml
 west update]
 
 Alternatively, to add the SDK to an existing project, first find the path to your
@@ -44,7 +44,7 @@ in the projects section:
     - name: kenshi
       path: modules/lib/kenshi
       revision: master
-      url: https://github.com/KenshiTech/iot-sdk.git]
+      url: https://github.com/TimeleapLabs/iot-sdk.git]
 
 Now run:
 

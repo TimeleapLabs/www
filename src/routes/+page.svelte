@@ -120,7 +120,7 @@
             <Button href="/unchained" icon={Dashboard}>Testnet Stats</Button>
             <Button
               target="_blank"
-              href="https://github.com/KenshiTech/unchained/blob/master/quickstart.md"
+              href="https://github.com/TimeleapLabs/unchained/blob/master/quickstart.md"
               icon={Play}
               kind={"secondary"}
             >
@@ -147,15 +147,15 @@
             <h2>Easing your Web 3.0 onboarding</h2>
           </ExpressiveHeading>
           <div class="body-01">
-            Kenshi offers innovative blockchain solutions for businesses and
-            enterprises seeking to harness the power of this transformative
-            technology.
+            Kenshi offers innovative blockchain and distributed computation
+            solutions for businesses and enterprises seeking to harness the
+            power of this transformative technology.
           </div>
           <div class="body-01">
-            From data indexing and event management to custom oracles and IoT
-            integration, Kenshi provides cutting-edge tools designed to
-            streamline your operations and unlock new possibilities for your
-            business in the blockchain ecosystem.
+            From data indexing and event management to custom oracles, IoT and
+            HSM, Kenshi provides cutting-edge tools designed to streamline your
+            operations and unlock new possibilities for your business in the
+            blockchain ecosystem.
           </div>
           <div class="buttons">
             <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
@@ -384,10 +384,17 @@
                     <p>
                       Founded in December 2021, Kenshi is a pioneering
                       blockchain technology company headquartered in the heart
-                      of Switzerland. With a commitment to innovation and
-                      excellence, Kenshi aims to bridge the gap between the
-                      traditional web (Web 2.0) and the decentralized future
-                      (Web 3.0).
+                      of Switzerland, with a commitment to innovation and
+                      excellence.
+                    </p>
+                  </Column>
+                </Row>
+                <Row>
+                  <Column>
+                    <p>
+                      As of April 2024, Kenshi has rebranded and registered as
+                      Timeleap SA, a company dedicated to providing cutting-edge
+                      blockchain solutions for businesses and enterprises.
                     </p>
                   </Column>
                 </Row>

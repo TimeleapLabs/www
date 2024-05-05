@@ -2,7 +2,7 @@
 
 [heading :size 2 Arduino/ESP32 library]
 
-Check the [link https://github.com/KenshiTech/iot-sdk/tree/master/arduino arduino]
+Check the [link https://github.com/TimeleapLabs/iot-sdk/tree/master/arduino arduino]
 directory on Github for header files and samples.
 
 [heading :size 3 Arduino/ESP32 library usage guide]
@@ -31,7 +31,7 @@ package for building queries and parsing MQL responses. To learn more, refer to 
 ArduinoJson documentation.
 
 Full examples are provided for Arduino MKR 1010 and ESP32 on Kenshi IoT SDK
-[link https://github.com/KenshiTech/iot-sdk/tree/master/arduino/examples repository] on
+[link https://github.com/TimeleapLabs/iot-sdk/tree/master/arduino/examples repository] on
 Github.
 
 [heading :size 3 Arduino/ESP32 library reference]
@@ -190,7 +190,7 @@ to your secure Client instance on specific boards.
 
 [heading :size 2 Zephyr RTOS]
 
-Check the [link https://github.com/KenshiTech/iot-sdk/tree/master/zephyr zephyr]
+Check the [link https://github.com/TimeleapLabs/iot-sdk/tree/master/zephyr zephyr]
 directory on Github for header files and samples.
 
 [heading :size 3 Zephyr library usage guide]
