@@ -26,8180 +26,5454 @@ Command: npx @threlte/gltf@2.0.3 ../../../static/3d/HSM.glb -s
     <slot name="fallback" />
   {:then gltf}
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_0.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_2.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_3.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_4.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_5.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_6.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_7.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_8.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_9.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_10.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_11.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_12.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_13.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_14.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_15.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_16.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_17.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_18.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_19.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_20.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_21.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_22.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_23.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_24.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_25.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_26.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_27.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_28.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_29.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_30.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_31.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_32.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_33.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_34.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_35.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_36.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_37.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_38.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_39.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_40.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_41.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_42.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_43.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_44.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_45.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_46.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_47.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_48.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_49.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_50.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_51.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_52.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_53.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_54.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_55.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_56.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_57.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_58.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_59.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_60.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_61.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_62.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_63.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_64.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_65.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_66.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_67.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_68.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_69.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_70.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_71.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_72.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_73.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_74.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_75.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_76.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_77.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_78.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_79.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_80.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_81.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_82.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_83.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_84.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_85.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_86.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_87.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_88.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_89.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_90.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_91.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_92.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_93.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_94.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_95.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_96.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_97.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_98.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_99.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_100.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_101.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_102.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_103.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_104.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_105.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_106.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_107.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_108.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_109.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_110.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_111.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_112.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_113.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_114.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_115.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_116.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_117.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_118.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_119.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_120.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_121.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_122.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_123.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_124.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_125.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_126.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_127.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_128.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_129.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_130.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_131.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_132.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_133.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_134.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_135.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_136.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_137.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_138.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_139.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_140.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_141.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_142.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_143.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_144.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_145.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_146.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_147.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_148.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_149.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_150.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_151.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_152.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_153.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_154.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_155.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_156.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_157.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_158.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_159.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_160.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_161.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_162.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_163.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_164.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_165.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_166.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_167.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_168.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_169.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_170.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_171.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_172.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_173.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_174.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_175.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_176.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_177.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_178.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_179.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_180.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_181.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_182.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_183.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_184.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_185.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_186.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_187.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_188.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_189.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_190.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_191.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_192.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_193.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_194.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_195.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_196.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_197.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_198.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_199.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_200.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_201.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_202.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_203.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_204.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_205.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_206.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_207.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_208.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_209.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_210.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_211.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_212.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_213.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_214.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_215.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_216.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_217.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_218.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_219.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_220.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_221.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_222.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_223.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_224.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_225.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_226.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_227.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_228.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_229.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_230.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_231.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_232.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_233.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_234.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_235.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_236.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_237.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_238.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_239.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_240.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_241.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_242.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_243.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_244.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_245.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_246.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_247.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_248.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_249.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_250_instance_0.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_250_instance_1.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_251_instance_0.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_251_instance_1.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_252_instance_0.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_252_instance_1.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_253_instance_0.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_253_instance_1.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_254_instance_0.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_254_instance_1.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_255_instance_0.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_255_instance_1.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_256_instance_0.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_256_instance_1.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_257_instance_0.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_257_instance_1.geometry}
       material={gltf.materials.mat8}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_258_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_258_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_259_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_259_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_260_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_260_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_261_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_261_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_262_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_262_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_263_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_263_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_264_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_264_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_265_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_265_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_266_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_266_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_267_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_267_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_268_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_268_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_269_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_269_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_270_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_270_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_271_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_271_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_272_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_272_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_273_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_273_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_274_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_274_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_275_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_275_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_276_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_276_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_277_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_277_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_278_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_278_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_279_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_279_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_280_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_280_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_281_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_281_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_282_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_282_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_283_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_283_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_284_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_284_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_285_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_285_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_286_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_286_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_287_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_287_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_288_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_288_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_289_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_289_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_290_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_290_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_291_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_291_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_292_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_292_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_293_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_293_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_294_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_294_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_295_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_295_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_296_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_296_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_297_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_297_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_298_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_298_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_299_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_299_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_300_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_300_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_301_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_301_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_302_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_302_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_303_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_303_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_304_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_304_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_305_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_305_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_306_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_306_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_307_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_307_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_308_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_308_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_309_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_309_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_310_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_310_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_311_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_311_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_312_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_312_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_313_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_313_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_314_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_314_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_315_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_315_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_316_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_316_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_317_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_317_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_318_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_318_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_319_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_319_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_320_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_320_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_321_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_321_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_322_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_322_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_323_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_323_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_324_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_324_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_325_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_325_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_326_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_326_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_327_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_327_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_328_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_328_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_329_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_329_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_330_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_330_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_331_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_331_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_332_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_332_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_333_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_333_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_334_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_334_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_335_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_335_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_336_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_336_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_337_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_337_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_338_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_338_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_339_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_339_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_340_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_340_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_341_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_341_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_342_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_342_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_343_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_343_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_344_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_344_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_345_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_345_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_346_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_346_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_347_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_347_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_348_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_348_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_349_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_349_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_350_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_350_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_351_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_351_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_352_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_352_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_353_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_353_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_354_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_354_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_355_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_355_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_356_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_356_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_357_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_357_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_358_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_358_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_359_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_359_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_360_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_360_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_361_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_361_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_362_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_362_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_363_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_363_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_364_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_364_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_365_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_365_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_366_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_366_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_367_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_367_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_368_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_368_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_369_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_369_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_370_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_370_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_371_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_371_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_372_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_372_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_373_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_373_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_374_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_374_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_375_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_375_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_376_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_376_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_377_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_377_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_378_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_378_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_379_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_379_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_380_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_380_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_381_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_381_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_382_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_382_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_383_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_383_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_384_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_384_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_385_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_385_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_386_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_386_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_387_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_387_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_388_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_388_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_389_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_389_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_390_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_390_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_391_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_391_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_392_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_392_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_393_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_393_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_394_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_394_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_395_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_395_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_396_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_396_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_397_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_397_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_398_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_398_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_399_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_399_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_400_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_400_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_401_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_401_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_402_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_402_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_403_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_403_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_404_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_404_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_405_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_405_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_406_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_406_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_407_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_407_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_408_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_408_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_409_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_409_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_410_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_410_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_411_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_411_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_412_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_412_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_413_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_413_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_414_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_414_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_415_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_415_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_416_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_416_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_417_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_417_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_418_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_418_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_419_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_419_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_420_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_420_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_421_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_421_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_422_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_422_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_423_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_423_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_424_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_424_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_425_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_425_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_426_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_426_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_427_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_427_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_428_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_428_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_429_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_429_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_430_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_430_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_431_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_431_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_432_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_432_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_433_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_433_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_434_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_434_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_435_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_435_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_436_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_436_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_437_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_437_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_438_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_438_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_439_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_439_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_440_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_440_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_441_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_441_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_442_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_442_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_443_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_443_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_444_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_444_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_445_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_445_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_446_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_446_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_447_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_447_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_448_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_448_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_449_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_449_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_450_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_450_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_451_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_451_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_452_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_452_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_453_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_453_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_454_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_454_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_455_instance_0.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_455_instance_1.geometry}
       material={gltf.materials.mat9}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_456.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_457.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_458.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_459.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_460.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_461.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_462.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_463.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_464.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_465.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_466.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_467.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_468.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_469.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_470.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_471.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_472.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_473.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_474.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_475.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_476.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_477.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_478.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_479.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_480.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_481.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_482.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_483.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_484.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_485.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_486.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_487.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_488.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_489.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_490.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_491.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_492.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_493.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_494.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_495.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_496.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_497.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_498.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_499.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_500.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_501.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_502.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_503.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_504.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_505.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_506.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_507.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_508.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_509.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_510.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_511.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_512.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_513.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_514.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_515.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_516.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_517.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_518.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_519.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_520.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_521.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_522.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_523.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_524.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_525.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_526.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_527.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_528.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_529.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_530.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_531.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_532.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_533.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_534.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_535.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_536.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_537.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_538.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_539.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_540.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_541.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_542.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_543.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_544.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_545.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_546.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_547.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_548.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_549.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_550.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_551.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_552.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_553.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_554.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_555.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_556.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_557.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_558.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_559.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_560.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_561.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_562.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_563.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_564.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_565.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_566.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_567.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_568.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_569.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_570.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_571.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_572.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_573.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_574.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_575.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_576.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_577.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_578.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_579.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_580.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_581.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_582.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_583.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_584.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_585.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_586.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_587.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_588.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_589.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_590.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_591.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_592.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_593.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_594.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_595.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_596.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_597.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_598.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_599.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_600.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_601.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_602.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_603.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_604.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_605.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_606.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_607.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_608.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_609.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_610.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_611.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_612.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_613.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_614.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_615.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_616.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_617.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_618.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_619.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_620.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_621.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_622.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_623.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_624.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_625.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_626.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_627.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_628.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_629.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_630.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_631.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_632.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_633.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_634.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_635.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_636.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_637.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_638.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_639.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_640.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_641.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_642.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_643.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_644.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_645.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_646.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_647.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_648.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_649.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_650.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_651.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_652.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_653.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_654.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_655.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_656.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_657.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_658.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_659.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_660.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_661.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_662.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_663.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_664.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_665.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_666.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_667.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_668.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_669.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_670.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_671.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_672.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_673.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_674.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_675.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_676.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_677.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_678.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_679.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_680.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_681.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_682.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_683.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_684.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_685.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_686.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_687.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_688.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_689.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_690.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_691.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_692.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_693.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_694.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_695.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_696.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_697.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_698.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_699.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_700.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_701.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_702.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_703.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_704.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_705.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_706.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_707.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_708.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_709.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_710.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_711.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_712.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_713.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_714.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_715.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_716.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_717.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_718.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_719.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_720.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_721.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_722.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_723.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_724.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_725.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_726.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_727.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_728.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_729.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_730.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_731.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_732.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_733.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_734.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_735.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_736.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_737.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_738.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_739.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_740.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_741.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_742.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_743.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_744.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_745.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_746.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_747.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_748.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_749.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_750.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_751.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_752.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_753.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_754.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_755.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_756.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_757.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_758.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_759.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_760.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_761.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_762.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_763.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_764.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_765.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_766.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_767.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_768.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_769.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_770.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_771.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_772.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_773.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_774.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_775.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_776.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_777.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_778.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_779.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_780.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_781.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_782.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_783.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_784.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_785.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_786.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_787.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_788.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_789.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_790.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_791.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_792.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_793.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_794.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_795.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_796.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_797.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_798.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_799.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_800.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_801.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_802.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_803.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_804.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_805.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_806.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_807.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_808.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_809.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_810.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_811.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_812.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_813.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_814.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_815.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_816.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_817.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_818.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_819.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_820.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_821.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_822.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_823.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_824.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_825.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_826.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_827.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_828.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_829.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_830.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_831.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_832.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_833.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_834.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_835.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_836.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_837.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_838.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_839.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_840.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_841.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_842.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_843.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_844.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_845.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_846.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_847.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_848.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_849.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_850.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_851.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_852.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_853.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_854.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_855.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_856.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_857.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_858.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_859.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_860.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_861.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_862.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_863.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_864.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_865.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_866.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_867.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_868.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_869.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_870.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_871.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_872.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_873.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_874.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_875.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_876.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_877.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_878.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_879.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_880.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_881.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_882.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_883.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_884.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_885.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_886.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_887.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_888.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_889.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_890.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_891.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_892.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_893.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_894.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_895.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_896.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_897.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_898.geometry}
       material={gltf.materials.mat7}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_899.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_900.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_901.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_902.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_903.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_904.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_905.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_906.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_907.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_908.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_909.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_910.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_911.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_912.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_913.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_914.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_915.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_916.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_917.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_918.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_919.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_920.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_921.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_922.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_923.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_924.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_925.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_926.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_927.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_928.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_929.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_930.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_931.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_932.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_933.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_934.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_935.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_936.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_937.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_938.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_939.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_940.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_941.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_942.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_943.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_944.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_945.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_946.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_947.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_948.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_949.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_950.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_951.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_952.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_953.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_954.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_955.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_956.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_957.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_958.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_959.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_960.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_961.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_962.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_963.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_964.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_965.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_966.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_967.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_968.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_969.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_970.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_971.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_972.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_973.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_974.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_975.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_976.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_977.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_978.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_979.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_980.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_981.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_982.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_983.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_984.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_985.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_986.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_987.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_988.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_989.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_990.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_991.geometry}
       material={gltf.materials.mat1}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_992.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_993.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_994.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_995.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_996.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_997.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_998.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_999.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1000.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1001.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1002.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1003.geometry}
       material={gltf.materials.mat0}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1004.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1005.geometry}
       material={gltf.materials.mat2}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1006.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1007.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1008.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1009.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1010.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1011.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1012.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1013.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1014.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1015.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1016.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1017.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1018.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1019.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1020.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1021.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1022.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1023.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1024.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1025.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1026.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1027.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1028.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1029.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1030.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1031.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1032.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1033.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1034.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1035.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1036.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1037.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1038.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1039.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1040.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1041.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1042.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1043.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1044.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1045.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1046.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1047.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1048.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1049.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1050.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1051.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1052.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1053.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1054.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1055.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1056.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1057.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1058.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1059.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1060.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1061.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1062.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1063.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1064.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1065.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1066.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1067.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1068.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1069.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1070.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1071.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1072.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1073.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1074.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1075.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1076.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1077.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1078.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1079.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1080.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1081.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1082.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1083.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1084.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1085.geometry}
       material={gltf.materials.mat4}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1086.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1087.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1088.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1089.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1090.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1091.geometry}
       material={gltf.materials.mat3}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1092.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1093.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1094.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1095.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1096.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1097.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1098.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1099.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1100.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1101.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1102.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1103.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1104.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1105.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1106.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1107.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1108.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1109.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1110.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1111.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1112.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1113.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1114.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1115.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1116.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1117.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1118.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1119.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1120.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1121.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1122.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1123.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1124.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1125.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1126.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1127.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1128.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1129.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1130.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1131.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1132.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1133.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1134.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1135.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1136.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1137.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1138.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1139.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1140.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1141.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1142.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1143.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1144.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1145.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1146.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1147.geometry}
       material={gltf.materials.mat5}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1148.geometry}
       material={gltf.materials.mat10}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1149.geometry}
       material={gltf.materials.mat10}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1150.geometry}
       material={toBlack(gltf.materials.mat11)}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1151.geometry}
       material={gltf.materials.mat12}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1152.geometry}
       material={gltf.materials.mat13}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1153.geometry}
-      material={gltf.materials.mat11}
+      material={toBlack(gltf.materials.mat11)}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1154.geometry}
       material={gltf.materials.mat13}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1155.geometry}
       material={gltf.materials.mat15}
     />
     <T.Mesh
-      castShadow
-      receiveShadow
       geometry={gltf.nodes.mesh_1156.geometry}
       material={gltf.materials.mat15}
     />
