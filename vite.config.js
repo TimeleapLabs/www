@@ -41,8 +41,8 @@ const config = {
   ssr: {
     noExternal:
       process.env.NODE_ENV === "production"
-        ? ["@carbon/charts", "three", "@threlte/extras", "@threlte/core"]
-        : ["three", "@threlte/extras", "@threlte/core"],
+        ? ["@carbon/charts", "three"]
+        : ["three"],
   },
 };
 
