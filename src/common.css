@@ -200,7 +200,7 @@ a.bx--header__menu-item {
   }
   .bx--content.distance > *:first-of-type,
   .bx--content.gap > *:not(:first-of-type) {
-    margin-top: 2em;
+    margin-top: 4em;
   }
 }
 .extra-padding > .bx--row > div:not(:last-of-type) {

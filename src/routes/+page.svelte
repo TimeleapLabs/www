@@ -293,7 +293,7 @@
   </Grid>
 
   <Grid>
-    <Row>
+    <Row padding>
       <Column xlg={12} md={6} sm={4}>
         <div class="description flex-column padding">
           <ExpressiveHeading size={4}>
