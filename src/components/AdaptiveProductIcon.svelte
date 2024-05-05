@@ -24,5 +24,6 @@
   .image {
     max-width: var(--max-width);
     width: 100%;
+    display: flex;
   }
 </style>

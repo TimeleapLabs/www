@@ -9,7 +9,7 @@
   import { ArrowRight, Play } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
   import { OutboundLink } from "carbon-components-svelte";
-  import { ImageLoader } from "carbon-components-svelte";
+  import { ImageLoader, Tag } from "carbon-components-svelte";
 
   import Fantom from "src/icons/Fantom.svelte";
   import Ethereum from "src/icons/Ethereum.svelte";
@@ -28,71 +28,85 @@
   import Katanas from "src/components/home/Katanas.svelte";
   import UniSwap from "src/icons/UniSwap.svelte";
   import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
+  import Product from "src/components/Product.svelte";
+
+  import X from "src/components/animations/X.svelte";
+  import HSM from "src/components/3d/view/HSM.svelte";
 </script>
 
 <!-- Hero -->
 
 <Content class="gap">
   <div class="hero">
-    <div class="flex-column hero-body">
-      <h1>Indexing. Oracles. IoT.</h1>
-      <span class="blue">
-        <ArrowDownRight size={48} />
-        <ArrowDownRight size={48} />
-        <ArrowDownRight size={48} />
-      </span>
-
-      <div class="flex-spacer" />
-
-      <div>
-        <ExpressiveHeading size={4}>
-          All the tools you need to build for the blockchain.
-        </ExpressiveHeading>
-
-        <ExpressiveHeading size={3}>
-          Build faster and better decentralized apps in no-time.
-        </ExpressiveHeading>
+    <div class="x-wrap">
+      <div class="x">
+        <X />
       </div>
+      <div class="flex-column hero-body">
+        <h1>Indexing. Oracles. IoT.</h1>
+        <span class="blue">
+          <ArrowDownRight size={48} />
+          <ArrowDownRight size={48} />
+          <ArrowDownRight size={48} />
+        </span>
 
-      <div>
-        <ExpressiveHeading size={2}>
-          Visit our
-          <OutboundLink href="https://t.me/kenshi">Telegram chat</OutboundLink>
-          to learn more about Kenshi Unchained:<br /> The decentralized network for
-          data validation.
-        </ExpressiveHeading>
+        <div class="flex-spacer" />
+
+        <div>
+          <ExpressiveHeading size={4}>
+            All the tools you need to build for the blockchain.
+          </ExpressiveHeading>
+
+          <ExpressiveHeading size={3}>
+            <div class="muted">
+              Build faster and better decentralized apps in no-time.
+            </div>
+          </ExpressiveHeading>
+        </div>
+
+        <div>
+          <ExpressiveHeading size={2}>
+            Visit our
+            <OutboundLink href="https://t.me/kenshi">Telegram chat</OutboundLink
+            >
+            to learn more about Kenshi Unchained:<br /> The decentralized network
+            for data validation.
+          </ExpressiveHeading>
+        </div>
+
+        <div class="flex-spacer" />
+
+        <div class="buttons">
+          <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
+          <Button href="/docs" kind="secondary" icon={Book}
+            >Documentation</Button
+          >
+          <Button
+            href="https://app.uniswap.org/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=arbitrum"
+            target="_blank"
+            kind="secondary"
+            icon={UniSwap}
+          >
+            Token
+          </Button>
+        </div>
+
+        <div class="flex-spacer" />
+
+        <div class="body-02">Available on 8 blockchains and growing</div>
+        <div class="blockchains">
+          <div class="blockchain">Ethereum <Ethereum /></div>
+          <div class="blockchain">Arbitrum <Arbitrum /></div>
+          <div class="blockchain">Aurora <Aurora /></div>
+          <div class="blockchain">Avalanche <Avalanche /></div>
+          <div class="blockchain">Bitgert <Bitgert /></div>
+          <div class="blockchain">BNB Chain <BnbChain /></div>
+          <div class="blockchain">Fantom <Fantom /></div>
+          <div class="blockchain">Polygon <Polygon /></div>
+        </div>
+
+        <div class="flex-spacer" />
       </div>
-
-      <div class="flex-spacer" />
-
-      <div class="buttons">
-        <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
-        <Button href="/docs" kind="secondary" icon={Book}>Documentation</Button>
-        <Button
-          href="https://app.uniswap.org/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01&chain=arbitrum"
-          target="_blank"
-          kind="secondary"
-          icon={UniSwap}
-        >
-          Token
-        </Button>
-      </div>
-
-      <div class="flex-spacer" />
-
-      <div class="body-02">Available on 8 blockchains and growing</div>
-      <div class="blockchains">
-        <div class="blockchain">Ethereum <Ethereum /></div>
-        <div class="blockchain">Arbitrum <Arbitrum /></div>
-        <div class="blockchain">Aurora <Aurora /></div>
-        <div class="blockchain">Avalanche <Avalanche /></div>
-        <div class="blockchain">Bitgert <Bitgert /></div>
-        <div class="blockchain">BNB Chain <BnbChain /></div>
-        <div class="blockchain">Fantom <Fantom /></div>
-        <div class="blockchain">Polygon <Polygon /></div>
-      </div>
-
-      <div class="flex-spacer" />
     </div>
 
     <div
@@ -103,48 +117,10 @@
 
   <Grid>
     <Row>
-      <Column xlg={12} md={6} sm={4}>
-        <div class="description flex-column padding">
-          <ExpressiveHeading size={4}>
-            Introducing Kenshi Unchained
-          </ExpressiveHeading>
-          <p>
-            Unchained is a decentralized, peer-to-peer network for data
-            validation. Unchained nodes work to validate data together and are
-            rewarded in KNS tokens. The validated data can then be queried by
-            consumer in exchange for KNS tokens. This model makes Unchained an
-            economically autonomous platform for data validation and exchange.
-          </p>
-          <div class="buttons margin">
-            <Button href="/docs/unchained" icon={Book}>Documentation</Button>
-            <Button href="/unchained" icon={Dashboard}>Testnet Stats</Button>
-            <Button
-              target="_blank"
-              href="https://github.com/TimeleapLabs/unchained/blob/master/quickstart.md"
-              icon={Play}
-              kind={"secondary"}
-            >
-              Run a Node
-            </Button>
-          </div>
-        </div>
-      </Column>
-      <Column xlg={4} md={2} sm={4}>
-        <AdaptiveProductIcon
-          product="unchained"
-          alt="Kenshi Unchained"
-          width={"240px"}
-        />
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid>
-    <Row>
       <Column sm={4} lg={6}>
         <div class="flex-column padding onboarding">
           <ExpressiveHeading size={5}>
-            <h2>Easing your Web 3.0 onboarding</h2>
+            <h2>Distributed and Decentralized</h2>
           </ExpressiveHeading>
           <div class="body-01">
             Kenshi offers innovative blockchain and distributed computation
@@ -152,10 +128,10 @@
             power of this transformative technology.
           </div>
           <div class="body-01">
-            From data indexing and event management to custom oracles, IoT and
-            HSM, Kenshi provides cutting-edge tools designed to streamline your
-            operations and unlock new possibilities for your business in the
-            blockchain ecosystem.
+            From data indexing and event management to IoT and HSM, Kenshi
+            provides cutting-edge tools designed to streamline your operations
+            and unlock new possibilities for your business in the blockchain
+            ecosystem.
           </div>
           <div class="buttons">
             <Button href="/dashboard" icon={Dashboard}>Dashboard</Button>
@@ -254,6 +230,137 @@
             </Column>
           </Row>
         </Grid>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column>
+        <ExpressiveHeading size={4}>
+          <h2 class="highlight">Product Highlights</h2>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+    <Row padding>
+      <Column sm={4} md={4} lg={4}>
+        <Product icon="unchained" title="Unchained">
+          Unchained is a distributed computation platform to run heavy workloads
+          such as 3D rendering or training AI models on a decentralized network.
+        </Product>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <Product icon="ghostfs" title="GhostFS" tags={["Coming soon"]}>
+          GhostFS is a distributed remote storage backend that enables
+          developers to analyze large data sets efficiently within a distributed
+          network.
+        </Product>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <Product icon="tachyon" title="Tachyon" tags={["Coming soon"]}>
+          Tachyon (formerly known as Clio) is a programming language targeting
+          distributed systems.
+        </Product>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <Product icon="sia" title="Sia" tags={["Coming soon"]}>
+          Sia is a binary serialization format that is both fast and compact. It
+          is specifically designed for communication between distributed
+          systems.
+        </Product>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <Product icon="hsm" title="HSM" tags={["Coming soon"]}>
+          HSM, soon to be released, is a hardware security module that enables
+          developers to store and manage cryptographic keys in a secure
+          environment.
+        </Product>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <Product icon="oracle.network" title="Oracle Network">
+          Oracle Network, soon to be merged with Unchained, is a platform that
+          enables developers to build their own Oracles and connect Web2 and
+          Web3 applications.
+        </Product>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <Product icon="deep.index" title="Deep Index">
+          Deep Index, soon to be merged with Unchained, is a platform that
+          enables developers to index and query data from the blockchain.
+        </Product>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column xlg={12} md={6} sm={4}>
+        <div class="description flex-column padding">
+          <ExpressiveHeading size={4}>
+            Introducing Kenshi Unchained
+          </ExpressiveHeading>
+          <p>
+            Unchained is a decentralized, peer-to-peer network for data
+            validation. Unchained nodes work to validate data together and are
+            rewarded in KNS tokens. The validated data can then be queried by
+            consumer in exchange for KNS tokens. This model makes Unchained an
+            economically autonomous platform for data validation and exchange.
+          </p>
+          <div class="buttons margin">
+            <Button href="/docs/unchained" icon={Book}>Documentation</Button>
+            <Button href="/unchained" icon={Dashboard}>Testnet Stats</Button>
+            <Button
+              target="_blank"
+              href="https://github.com/TimeleapLabs/unchained/blob/master/quickstart.md"
+              icon={Play}
+              kind={"secondary"}
+            >
+              Run a Node
+            </Button>
+          </div>
+        </div>
+      </Column>
+      <Column xlg={4} md={2} sm={4}>
+        <AdaptiveProductIcon
+          product="unchained"
+          alt="Kenshi Unchained"
+          width={"240px"}
+        />
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column lg={8} md={6} sm={4}>
+        <Tile class="noise no-padding">
+          <div class="hsm">
+            <HSM />
+          </div>
+        </Tile>
+      </Column>
+      <Column lg={8} md={6} sm={4}>
+        <div class="flex-column padding full-height">
+          <ExpressiveHeading size={4}>
+            <h2>Hardware Security Module (HSM)</h2>
+          </ExpressiveHeading>
+          <div class="body-01">
+            The Hardware Security Module (HSM) is a secure, tamper-resistant
+            device that safeguards and manages cryptographic keys. It provides
+            secure key storage and cryptographic operations, ensuring the
+            integrity and confidentiality of your data.
+          </div>
+          <div class="body-01">
+            With Timeleap HSM, you can securely store and manage your
+            cryptographic keys, API keys, and other secrets; protecting your
+            data from unauthorized access and ensuring the security of your
+            applications.
+          </div>
+          <div class="spacer" />
+          <div class="tags">
+            <Tag>Coming soon</Tag>
+          </div>
+        </div>
       </Column>
     </Row>
   </Grid>
@@ -422,7 +529,7 @@
   <Grid>
     <Row>
       <Column>
-        <div class="stake force-round">
+        <div class="stake">
           <Tile href="/stake">
             <div class="body">
               <div class="text">
@@ -578,5 +685,31 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .x {
+    position: absolute;
+    opacity: 0.2;
+    mask-image: radial-gradient(ellipse at center, transparent 50%, black 100%);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 0;
+  }
+  .x-wrap {
+    position: relative;
+  }
+  .hero-body {
+    z-index: 1;
+    position: relative;
+  }
+  h2.highlight {
+    margin-bottom: 1em;
+  }
+  .hsm {
+    height: 360px;
+  }
+  .spacer {
+    flex: 1;
   }
 </style>

@@ -46,7 +46,7 @@
           </Column>
           <Column lg={5} md={4} sm={2}>
             <CardButton
-              href="https://github.com/KenshiTech"
+              href="https://github.com/TimeleapLabs"
               icon={LogoGithub}
               title="GitHub"
               description="Find examples for the Kenshi services and contribute to our open-source projects."

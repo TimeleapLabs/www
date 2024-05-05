@@ -67,7 +67,7 @@
             <Column>
               <Button
                 kind="ghost"
-                href="https://github.com/KenshiTech"
+                href="https://github.com/TimeleapLabs"
                 target="_blank"
                 icon={Github}
               >

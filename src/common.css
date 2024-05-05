@@ -425,14 +425,6 @@ ul ul {
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 299 299' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='5.36' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
-.bx--tile,
-.bx--btn {
-  border-radius: 5px;
-}
-.force-round {
-  border-radius: 5px;
-  overflow: hidden;
-}
 .bx--tile.edge-top {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
@@ -440,4 +432,7 @@ ul ul {
 .bx--tile.edge-right {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+.muted {
+  color: var(--cds-text-02);
 }

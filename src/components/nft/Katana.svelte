@@ -54,7 +54,7 @@
   };
 </script>
 
-<div class="katana force-round" transition:fade={{ duration: 500 }}>
+<div class="katana" transition:fade={{ duration: 500 }}>
   <div class="image noise">
     <img src={parsedNft.metadata.image} alt={parsedNft.metadata.name} />
   </div>

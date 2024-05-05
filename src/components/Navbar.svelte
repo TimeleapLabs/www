@@ -233,7 +233,7 @@
               </Column>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile
-                  href="https://github.com/KenshiTech/iot-sdk/tree/master/arduino/examples/blinky32"
+                  href="https://github.com/TimeleapLabs/iot-sdk/tree/master/arduino/examples/blinky32"
                   target="_blank"
                 >
                   <h4 class="external">
@@ -249,7 +249,7 @@
               </Column>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile
-                  href="https://github.com/KenshiTech/iot-sdk/tree/master/arduino/examples/blinky"
+                  href="https://github.com/TimeleapLabs/iot-sdk/tree/master/arduino/examples/blinky"
                   target="_blank"
                 >
                   <h4 class="external">
@@ -365,7 +365,7 @@
               </Column>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile
-                  href="https://github.com/KenshiTech"
+                  href="https://github.com/TimeleapLabs"
                   target="_blank"
                 >
                   <h4 class="external"><span>GitHub</span><Launch /></h4>
@@ -599,7 +599,7 @@
         target="_blank"
       />
       <SideNavMenuItem
-        href="https://github.com/KenshiTech"
+        href="https://github.com/TimeleapLabs"
         text="GitHub"
         target="_blank"
       />

@@ -1,62 +1,67 @@
 <script>
-  //import Button from "src/components/Button.svelte";
-  //import ChevronRight from "src/icons/ChevronRight.svelte";
-  //import External from "src/icons/External.svelte";
-
-  import { Button, Tile } from "carbon-components-svelte";
+  import { Button, Tile, Tag } from "carbon-components-svelte";
   import { Launch, ChevronRight } from "carbon-icons-svelte";
+  import AdaptiveProductIcon from "./AdaptiveProductIcon.svelte";
 
   export let title;
-  export let description;
-  export let buttons;
+  export let icon;
+  export let buttons = [];
+  export let tags = [];
 </script>
 
-<Tile>
+<Tile class="full-height">
   <div class="product">
-    <div class="usecases">
+    <h2>
+      <AdaptiveProductIcon product={icon} alt={title} />
+      {title}
+    </h2>
+    <div class="description body-01">
       <slot />
     </div>
-    <h2>{title}</h2>
-    <div class="description">
-      {description}
-    </div>
-    <div class="buttons">
-      {#each buttons as button}
-        <Button
-          kind={button.external ? "secondary" : "primary"}
-          icon={button.external ? Launch : ChevronRight}
-          href={button.href}
-          target={button.external ? "_blank" : ""}
-        >
-          {button.label}
-        </Button>
+    <div class="tags">
+      {#each tags as tag}
+        <Tag>{tag}</Tag>
       {/each}
     </div>
+    {#if buttons.length > 0}
+      <div class="buttons">
+        {#each buttons as button}
+          <Button
+            kind={button.external ? "secondary" : "primary"}
+            icon={button.external ? Launch : ChevronRight}
+            href={button.href}
+            target={button.external ? "_blank" : ""}
+          >
+            {button.label}
+          </Button>
+        {/each}
+      </div>
+    {/if}
   </div>
 </Tile>
 
 <style>
-  .product .description {
-    flex: 1;
-  }
-  .product .usecases {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 5fr;
-    gap: 1em;
+  h2 {
+    display: flex;
+    gap: 0.5em;
     align-items: center;
   }
-  .product .usecases :global(svg) {
-    max-height: 1.5em;
+  h2 :global(img) {
+    max-width: 1em;
+    width: auto !important;
+    height: auto !important;
   }
   .product {
     display: flex;
     gap: 1em;
     flex-direction: column;
+    justify-content: start;
   }
-  .product .buttons {
+  .product .buttons,
+  .tags {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 2em;
     flex-wrap: wrap;
+    gap: 0.5em;
   }
 </style>
