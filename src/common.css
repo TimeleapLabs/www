@@ -57,14 +57,6 @@ html {
   height: 100%;
 }
 
-nav + .hero {
-  margin-top: 3rem;
-}
-
-.hero + #main-content {
-  margin-top: 0rem;
-}
-
 .bx--tab-content .bx--row--narrow .bx--col:last-of-type,
 .bx--tab-content .bx--grid--narrow .bx--col:last-of-type {
   padding-right: 0;
@@ -357,44 +349,15 @@ ul ul {
   padding: 1em 2em;
   box-sizing: border-box;
 }
-
-.hero {
-  min-height: calc(100vh - 48px);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
 .hero-image {
   height: 100%;
   background-size: cover;
   background-position: center center;
 }
-.hero-body {
-  padding: 8em;
-  box-sizing: border-box;
-  min-height: calc(100vh - 48px);
-}
-@media (max-width: 1080px) {
-  .hero-body {
-    padding: 4em;
-    box-sizing: border-box;
-  }
-}
 @media (max-width: 720px) {
-  .hero-body {
-    padding: 2em;
-    box-sizing: border-box;
-    min-height: 720px;
-  }
   .hero-image {
     height: 100vw;
     width: 100%;
-  }
-  .hero {
-    display: flex;
-    gap: 1em;
-    flex-direction: column;
-    height: auto;
   }
 }
 .monaco-editor {
@@ -435,4 +398,7 @@ ul ul {
 }
 .muted {
   color: var(--cds-text-02);
+}
+.blue {
+  color: var(--cds-interactive-01);
 }

@@ -5,15 +5,17 @@
 
   import Model from "../model/HSM.svelte";
 
-  let width = 0;
+  let innerWidth = 0;
   let cameraZoom = 1;
 
-  $: if (width < 640) {
+  $: if (innerWidth < 640) {
     cameraZoom = 0.5;
+  } else {
+    cameraZoom = 1;
   }
 </script>
 
-<window bind:clientWidth={width} />
+<svelte:window bind:innerWidth />
 
 <Canvas>
   <T.PerspectiveCamera

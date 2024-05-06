@@ -9,7 +9,11 @@
 
 <div class="wrap">
   <div class="image" style="--max-width: {width}">
-    <ImageLoader src="/images/products/{product}.{$theme}.svg" {alt} {width} />
+    <ImageLoader
+      src="/images/products/{product}.{$theme || 'white'}.svg"
+      {alt}
+      {width}
+    />
   </div>
 </div>
 
