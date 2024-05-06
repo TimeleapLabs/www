@@ -29,7 +29,7 @@
 <Content class="gap">
   <Grid>
     <Row>
-      <Column padding sm={4}>
+      <Column padding lg={7} md={5} sm={4}>
         <div class="hero flex-column">
           <div>
             <h1>Distributed and Decentralized Computation Solutions.</h1>
@@ -60,13 +60,13 @@
           </div>
         </div>
       </Column>
-      <Column sm={4}>
+      <Column lg={6} md={5} sm={4}>
         <div
           class="hero-image contrast noise"
           style="background-image: url(/images/backgrounds/samurai.jpg);"
         />
       </Column>
-      <Column lg={3} md={8} sm={4}>
+      <Column lg={3} md={3} sm={4}>
         <Grid noGutter fullWidth>
           <Row>
             <Column padding>
