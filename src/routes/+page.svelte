@@ -22,8 +22,6 @@
   import UniSwap from "src/icons/UniSwap.svelte";
   import X from "src/components/animations/X.svelte";
   import Product from "src/components/Product.svelte";
-
-  import HSM from "src/components/3d/view/HSM.svelte";
 </script>
 
 <!-- Hero -->
@@ -224,41 +222,6 @@
       <Column lg={8} md={6} sm={4}>
         <div class="x-wrap full-height">
           <X />
-        </div>
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid>
-    <Row>
-      <Column lg={8} md={6} sm={4}>
-        <Tile class="noise no-padding">
-          <div class="hsm">
-            <HSM />
-          </div>
-        </Tile>
-      </Column>
-      <Column lg={8} md={6} sm={4}>
-        <div class="flex-column padding full-height">
-          <ExpressiveHeading size={4}>
-            <h2>Hardware Security Module (HSM)</h2>
-          </ExpressiveHeading>
-          <div class="body-01">
-            The Hardware Security Module (HSM) is a secure, tamper-resistant
-            device that safeguards and manages cryptographic keys. It provides
-            secure key storage and cryptographic operations, ensuring the
-            integrity and confidentiality of your data.
-          </div>
-          <div class="body-01">
-            With Timeleap HSM, you can securely store and manage your
-            cryptographic keys, API keys, and other secrets; protecting your
-            data from unauthorized access and ensuring the security of your
-            applications.
-          </div>
-          <div class="spacer" />
-          <div class="tags">
-            <Tag>Coming soon</Tag>
-          </div>
         </div>
       </Column>
     </Row>
