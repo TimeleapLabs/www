@@ -1,12 +1,12 @@
 <script>
-  import { Button, Tile, Tag } from "carbon-components-svelte";
-  import { Launch, ChevronRight } from "carbon-icons-svelte";
+  import { Tile, Tag, Link } from "carbon-components-svelte";
+  import { ArrowRight } from "carbon-icons-svelte";
   import AdaptiveProductIcon from "./AdaptiveProductIcon.svelte";
 
   export let title;
   export let icon;
-  export let buttons = [];
   export let tags = [];
+  export let href;
 </script>
 
 <Tile class="full-height">
@@ -23,18 +23,9 @@
         <Tag>{tag}</Tag>
       {/each}
     </div>
-    {#if buttons.length > 0}
-      <div class="buttons">
-        {#each buttons as button}
-          <Button
-            kind={button.external ? "secondary" : "primary"}
-            icon={button.external ? Launch : ChevronRight}
-            href={button.href}
-            target={button.external ? "_blank" : ""}
-          >
-            {button.label}
-          </Button>
-        {/each}
+    {#if href}
+      <div class="link">
+        <Link {href} icon={ArrowRight}>Learn more</Link>
       </div>
     {/if}
   </div>
@@ -57,7 +48,7 @@
     flex-direction: column;
     justify-content: start;
   }
-  .product .buttons,
+  .link,
   .tags {
     display: flex;
     flex-wrap: wrap;

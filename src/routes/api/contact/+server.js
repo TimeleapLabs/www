@@ -18,7 +18,7 @@ export async function POST({ request }) {
   const captchaReq = await fetch(captchaUrl, { method: "POST" });
   const captchaRes = await captchaReq.json();
 
-  if (!captchaRes.success || captchaReq.score < 0.5) {
+  if (!captchaRes.success || captchaRes.score < 0.5) {
     return new Response("Verification failed", { status: 401 });
   }
 

@@ -2,7 +2,7 @@
   import Footer from "src/components/Footer.svelte";
 
   import { Grid, Row, Column, Tile } from "carbon-components-svelte";
-  import { Button, Content, ClickableTile } from "carbon-components-svelte";
+  import { Button, Content } from "carbon-components-svelte";
 
   import { Dashboard, Book, ArrowDownRight } from "carbon-icons-svelte";
   import { AssemblyCluster } from "carbon-icons-svelte";
@@ -20,14 +20,13 @@
 
   import Katanas from "src/components/home/Katanas.svelte";
   import UniSwap from "src/icons/UniSwap.svelte";
-  import X from "src/components/animations/X.svelte";
   import Product from "src/components/Product.svelte";
 </script>
 
 <!-- Hero -->
 
 <Content class="gap">
-  <Grid>
+  <Grid padding>
     <Row>
       <Column padding lg={7} md={5} sm={4}>
         <div class="hero flex-column">
@@ -63,7 +62,7 @@
       <Column lg={6} md={5} sm={4}>
         <div
           class="hero-image contrast noise"
-          style="background-image: url(/images/backgrounds/samurai.jpg);"
+          style="background-image: url(/images/backgrounds/connected-cubes.jpg);"
         />
       </Column>
       <Column lg={3} md={3} sm={4}>
@@ -143,7 +142,7 @@
         </Product>
       </Column>
       <Column sm={4} md={4} lg={4}>
-        <Product icon="ghostfs" title="GhostFS" tags={["Coming soon"]}>
+        <Product href="/ghostfs" icon="ghostfs" title="GhostFS">
           GhostFS is a distributed remote storage backend that enables
           developers to analyze large data sets efficiently within a distributed
           network.
@@ -185,16 +184,16 @@
     </Row>
   </Grid>
 
-  <Grid>
-    <Row padding>
+  <Grid condensed>
+    <Row>
       <Column lg={8} md={6} sm={4}>
         <Tile>
           <div class="unchained flex-column padding">
             <ExpressiveHeading size={5}>
               <h3>
-                A Decentralized Network for
+                A Decentralized Network
                 <br />
-                Heavy Workloads and Data Validation
+                for Heavy Workloads
               </h3>
             </ExpressiveHeading>
             <p>
@@ -220,9 +219,10 @@
         </Tile>
       </Column>
       <Column lg={8} md={6} sm={4}>
-        <div class="x-wrap full-height">
-          <X />
-        </div>
+        <div
+          class="hero-image contrast noise"
+          style="background-image: url(/images/backgrounds/robots.jpg);"
+        />
       </Column>
     </Row>
   </Grid>
@@ -232,7 +232,7 @@
       <Column sm={4} md={4} lg={4}>
         <div class="flex-column padding">
           <ExpressiveHeading size={2}>
-            <h2>Unleash the Power of Web 3.0 with Kenshi</h2>
+            <h3>Unleash the Power of Web 3.0 with Kenshi</h3>
           </ExpressiveHeading>
           <div class="body-01">
             Transform your digital experience with Kenshi's comprehensive suite
@@ -482,6 +482,9 @@
     flex-direction: column;
     gap: 4em;
   }
+  .unchained .buttons {
+    margin-top: 8em;
+  }
   .stake {
     display: grid;
     grid-template-columns: 5fr 7fr;
@@ -517,14 +520,10 @@
     height: 100%;
     object-fit: cover;
   }
-  .hsm {
-    height: 360px;
-  }
-  .spacer {
-    flex: 1;
-  }
   .hero {
     gap: 4em;
+    padding-top: 2em;
+    padding-bottom: 2em;
   }
   .x-wrap {
     background-image: url(/images/backgrounds/cubes.jpg);
