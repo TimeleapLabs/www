@@ -8,15 +8,18 @@
   export let description;
   export let href;
   export let image;
+  export let external = false;
+  export let target = external ? "_blank" : "_self";
+  export let vertical = false;
 </script>
 
 <div class="article">
   <Grid condensed noGutter fullWidth>
     <Row>
-      <Column sm={4}>
+      <Column md={vertical && 12} sm={4} class="noise">
         <ImageLoader src={image} alt={title} ratio={"1x1"} />
       </Column>
-      <Column sm={4}>
+      <Column md={vertical && 12} sm={4}>
         <Tile>
           <div class="article-inner">
             <div class="padded">
@@ -25,7 +28,7 @@
                 {description}
               </div>
               <div class="buttons">
-                <Button {href} kind="secondary" icon={Launch}>
+                <Button {href} kind="secondary" icon={Launch} {target}>
                   Read article
                 </Button>
               </div>

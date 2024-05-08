@@ -27,6 +27,9 @@
 
 <Content class="gap">
   <Grid padding>
+    <Row padding>
+      <Column padding />
+    </Row>
     <Row>
       <Column padding lg={8} md={6} sm={4}>
         <div class="hero flex-column">

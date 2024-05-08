@@ -1,506 +1,388 @@
 <script>
-  import "@carbon/charts-svelte/styles.css";
-
-  import DefaultTags from "src/components/seo/DefaultTags.svelte";
-  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
-  import Chartjs from "src/components/chartjs/Chartjs.svelte";
-  import colors from "src/components/chartjs/colors.js";
-  import formatThousands from "format-thousands";
   import Footer from "src/components/Footer.svelte";
-  import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
-  import Sworn from "src/icons/Sworn.svelte";
 
-  import {
-    Grid,
-    Row,
-    Column,
-    ProgressBar,
-    Tile,
-    OutboundLink,
-    ClickableTile,
-  } from "carbon-components-svelte";
-
+  import { Grid, Row, Column, Tile } from "carbon-components-svelte";
   import { Button, Content } from "carbon-components-svelte";
-  import { Book, Play, Chemistry } from "carbon-icons-svelte";
+
+  import { ArrowUpRight, ArrowRight } from "carbon-icons-svelte";
+  import { LogoGithub } from "carbon-icons-svelte";
+  import { Accordion, AccordionItem } from "carbon-components-svelte";
+  import { Link, OutboundLink } from "carbon-components-svelte";
+  import Article from "src/components/Article.svelte";
 
   import {
-    DataTable,
-    Toolbar,
-    ToolbarContent,
-    ToolbarSearch,
-    Pagination,
+    StructuredList,
+    StructuredListHead,
+    StructuredListRow,
+    StructuredListCell,
+    StructuredListBody,
   } from "carbon-components-svelte";
 
-  import { onMount } from "svelte";
-  import { theme } from "src/stores/theme";
-
-  let sprint = Math.ceil(new Date().valueOf() / 300000);
-  let data, interval;
-  let peerData, peerOptions;
-  let ethPriceData, btcPriceData, arbPriceData, priceOptions;
-  let tableData,
-    page = 1,
-    pageSize = 10,
-    filteredRowIds = [];
-
-  const fetchData = async () => {
-    const req = await fetch("/api/unchained/dashboard");
-    data = await req.json();
-    sprint = Math.ceil(new Date().valueOf() / 300000);
-  };
-
-  $: if (data && $theme) {
-    tableData = data.signers
-      .sort((a, b) => b.points - a.points)
-      .map((item, index) => ({ ...item, rank: index + 1 }));
-  }
-
-  $: if (data && $theme) {
-    const annotation = {
-      annotations: {
-        ...(Math.min(...data.prices.map((item) => item.block)) < 19300142
-          ? {
-              "v0.11.9": {
-                type: "line",
-                mode: "vertical",
-                scaleID: "x",
-                value: 19300142,
-                borderColor: "red",
-                borderWidth: 1,
-                label: {
-                  content: "v0.11.9",
-                  enabled: true,
-                  display: true,
-                  position: "top",
-                  font: { weight: "bold" },
-                },
-              },
-            }
-          : {}),
-      },
-    };
-
-    peerData = {
-      datasets: [
-        {
-          label: "Active Peers",
-          data: data.prices
-            .filter(({ asset }) => asset === "ethereum")
-            .map((item) => ({ x: item.block, y: item.signers_count }))
-            .sort((a, b) => a.x - b.x),
-          fill: true, // Enable fill
-          backgroundColor: gradient(colors[$theme]["--cds-charts-5-2-5"]),
-          borderColor: colors[$theme]["--cds-charts-5-2-5-hovered"],
-          borderWidth: 0.2,
-          tension: 0.4,
-          pointRadius: 0,
-        },
-      ],
-    };
-
-    peerOptions = {
-      plugins: { legend: { display: false }, annotation },
-      scales: {
-        x: {
-          type: "linear",
-          position: "bottom",
-          title: { display: true, text: "Block" },
-          max: Math.max(...data.prices.map((item) => item.block)),
-          ticks: { maxRotation: 45, minRotation: 45 },
-        },
-        y: { title: { display: true, text: "Peers" }, beginAtZero: true },
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-    };
-  }
-
-  const gradient = (color) => {
-    const offscreenCanvas = document.createElement("canvas");
-    offscreenCanvas.width = "400px";
-    offscreenCanvas.height = "180px";
-
-    const ctx = offscreenCanvas.getContext("2d");
-
-    const gradient = ctx.createLinearGradient(0, 0, 0, 180);
-
-    gradient.addColorStop(0, color);
-    gradient.addColorStop(1, "rgba(0,0,0,0)");
-
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 400, 180);
-
-    return gradient;
-  };
-
-  $: if (data && $theme) {
-    const commondata = {
-      fill: true, // Enable fill
-      backgroundColor: gradient(colors[$theme]["--cds-charts-5-2-5"]),
-      borderColor: colors[$theme]["--cds-charts-5-2-5-hovered"],
-      borderWidth: 0.2,
-      tension: 0.4,
-      pointRadius: 0,
-    };
-
-    ethPriceData = {
-      datasets: [
-        {
-          label: "Ethereum Price",
-          data: data.prices
-            .filter(({ asset }) => asset === "ethereum")
-            .map((item) => ({ x: item.block, y: item.price / 1e18 }))
-            .sort((a, b) => a.x - b.x),
-          ...commondata,
-        },
-      ],
-    };
-
-    btcPriceData = {
-      datasets: [
-        {
-          label: "Bitcoin Price",
-          data: data.prices
-            .filter(({ asset }) => asset === "bitcoin")
-            .map((item) => ({ x: item.block, y: item.price / 1e18 }))
-            .sort((a, b) => a.x - b.x),
-          ...commondata,
-        },
-      ],
-    };
-
-    const ethPriceByBlock = Object.fromEntries(
-      data.prices
-        .filter(({ asset }) => asset === "ethereum")
-        .map((asset) => [asset.block, asset.price / 1e18])
-    );
-
-    arbPriceData = {
-      datasets: [
-        {
-          label: "Arbitrum Price",
-          data: data.prices
-            .filter(({ asset }) => asset === "arbitrum")
-            .map((item) => ({
-              x: item.block,
-              y: (ethPriceByBlock[item.block] * item.price) / 1e18,
-            }))
-            .sort((a, b) => a.x - b.x),
-          ...commondata,
-        },
-      ],
-    };
-
-    priceOptions = {
-      plugins: { legend: { display: false } },
-      scales: {
-        x: {
-          type: "linear",
-          position: "bottom",
-          title: { display: true, text: "Block" },
-          max: Math.max(...data.prices.map((item) => item.block)),
-          ticks: { maxRotation: 45, minRotation: 45 },
-        },
-        y: { title: { display: true, text: "Price" } },
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-    };
-  }
-
-  onMount(async () => {
-    await fetchData();
-    interval = setInterval(fetchData, 60000);
-    return () => {
-      clearInterval(interval);
-    };
-  });
+  import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
+  import DeveloperResources from "src/components/home/DeveloperResources.svelte";
+  import HereToHelp from "src/components/home/HereToHelp.svelte";
+  import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
 </script>
 
-<DefaultTags
-  description="Unchained is a decentralized, peer-to-peer network for data validation. Unchained nodes work to validate data together and are rewarded in KNS tokens."
-  title="Kenshi — Unchained"
-  image="/images/social.unchained.png"
-/>
+<!-- Hero -->
 
 <Content class="gap">
   <Grid padding>
+    <Row padding>
+      <Column padding />
+    </Row>
     <Row>
-      <Column xlg={12} md={6} sm={4}>
-        <div class="description">
-          <ExpressiveHeading size={4}>
-            <h1>Kenshi Unchained</h1>
-          </ExpressiveHeading>
-          <p>
-            Unchained is a decentralized, peer-to-peer network for data
-            validation. Unchained nodes work to validate data together and are
-            rewarded in KNS tokens. The validated data can then be queried by
-            consumer in exchange for KNS tokens. This model makes Unchained an
-            economically autonomous platform for data validation and exchange.
-          </p>
+      <Column padding lg={8} md={6} sm={4}>
+        <div class="hero flex-column">
+          <div class="product-icon">
+            <AdaptiveProductIcon
+              width="128px"
+              product="unchained"
+              alt="Unchained"
+            />
+          </div>
+
+          <div>
+            <h1>Timeleap Unchained</h1>
+          </div>
+
+          <div class="flex-spacer">
+            <ExpressiveHeading size={3}>
+              <div class="muted">
+                Unchained is a decentralized, federated network for heavy
+                computations and data processing. It enables developers to
+                leverage the power of distributed computing to analyze large
+                data sets and run complex algorithms efficiently.
+              </div>
+            </ExpressiveHeading>
+          </div>
+
           <div class="buttons">
-            <Button href="/docs/unchained" icon={Book}>Learn More</Button>
-            <Button href="/unchained/pos" icon={Chemistry}>PoS Manager</Button>
             <Button
+              href="https://github.com/TimeleapLabs/unchained"
+              icon={LogoGithub}
               target="_blank"
-              href="https://github.com/TimeleapLabs/unchained/blob/master/quickstart.md"
-              icon={Play}
             >
-              Run a Node
+              See Project on GitHub
             </Button>
+            <Button href="/unchained/explore" icon={ArrowRight}>Testnet</Button>
           </div>
         </div>
       </Column>
-      <Column xlg={3} md={2} sm={4}>
-        <AdaptiveProductIcon
-          product="unchained"
-          alt="Kenshi Unchained"
-          width={"240px"}
+      <Column lg={8} md={6} sm={4}>
+        <div
+          class="hero-image contrast noise"
+          style="background-image: url(/images/backgrounds/connected-nodes.jpg);"
         />
       </Column>
     </Row>
+  </Grid>
+
+  <Grid>
     <Row>
-      <Column>
-        <ClickableTile
-          href="https://opencollective.com/unchained"
-          target="_blank"
-        >
-          <ExpressiveHeading size={2}>Sponsor Unchained</ExpressiveHeading>
-          <div class="open-collective">
-            Learn more about sponsorship and support the project on our
-            <OutboundLink href="https://opencollective.com/unchained">
-              OpenCollective.
-            </OutboundLink>
-          </div>
-        </ClickableTile>
+      <Column sm={4} lg={4}>
+        <div class="flex-column padding onboarding">
+          <ExpressiveHeading size={5}>
+            <h2>Product Overview</h2>
+          </ExpressiveHeading>
+        </div>
       </Column>
-      <Column>
-        <ExpressiveHeading size={2}>Partners</ExpressiveHeading>
-        <div class="partners">
-          <OutboundLink href="https://sworn.network/">
-            <Sworn />
-          </OutboundLink>
+      <Column sm={4} lg={12}>
+        <div class="flex-column padding onboarding">
+          <div class="body-02">
+            Unchained is a distributed network of nodes lending their computing
+            power to run heavy computations and data processing tasks. From
+            simple tasks like image processing to complex algorithms like
+            machine learning models, Unchained can handle it all.
+          </div>
+          <div class="body-01">
+            Unchained is built to integrate with existing technologies and
+            platforms. Whether you are looking to index blockchain data, create
+            a decentralized Oracle, run machine learning models, or process
+            large data sets, Unchained can help you achieve your goals.
+          </div>
+          <div class="buttons">
+            <Link
+              href="https://github.com/TimeleapLabs/ghostfs/releases"
+              icon={ArrowRight}
+            >
+              Read the Docs
+            </Link>
+          </div>
         </div>
       </Column>
     </Row>
-    {#if data}
-      <Row>
-        {#if peerData}
-          <Column>
-            <Tile>
-              <div class="tile-title">
-                <ExpressiveHeading size={2}>
-                  Active Validators
-                </ExpressiveHeading>
-                <div class="body-compact-02">
-                  Active validators on the Unchained network — 8 hours
-                </div>
-              </div>
-              <div>
-                <Chartjs data={peerData} options={peerOptions} />
-              </div>
-            </Tile>
-          </Column>
-        {/if}
-        {#if ethPriceData}
-          <Column>
-            <Tile>
-              <div class="tile-title">
-                <ExpressiveHeading size={2}>Ethereum Price</ExpressiveHeading>
-                <div class="body-compact-02">
-                  Ethereum price as validated by the Unchained network — 8 hours
-                </div>
-              </div>
-              <div>
-                <Chartjs data={ethPriceData} options={priceOptions} />
-              </div>
-            </Tile>
-          </Column>
-        {/if}
-      </Row>
-      <Row>
-        {#if btcPriceData}
-          <Column>
-            <Tile>
-              <div class="tile-title">
-                <ExpressiveHeading size={2}>Bitcoin Price</ExpressiveHeading>
-                <div class="body-compact-02">
-                  Bitcoin price as validated by the Unchained network — 8 hours
-                </div>
-              </div>
-              <div>
-                <Chartjs data={btcPriceData} options={priceOptions} />
-              </div>
-            </Tile>
-          </Column>
-        {/if}
-        {#if arbPriceData}
-          <Column>
-            <Tile>
-              <div class="tile-title">
-                <ExpressiveHeading size={2}>Arbitrum Price</ExpressiveHeading>
-                <div class="body-compact-02">
-                  Arbitrum price as validated by the Unchained network — 8 hours
-                </div>
-              </div>
-              <div>
-                <Chartjs data={arbPriceData} options={priceOptions} />
-              </div>
-            </Tile>
-          </Column>
-        {/if}
-      </Row>
-      <Row>
-        <Column xlg={4} md={4}>
-          <Tile>
-            <div class="info-card">
-              <ExpressiveHeading size={2}>Unique Peers</ExpressiveHeading>
-              <div class="body-compact-02">Distinct peers — All-Time</div>
-              <div class="number">
-                {formatThousands(data.signers.length, { separator: "," })}
-              </div>
-            </div>
-          </Tile>
-        </Column>
-        <Column xlg={4} md={4}>
-          <Tile>
-            <div class="info-card">
-              <ExpressiveHeading size={2}>Sprint</ExpressiveHeading>
-              <div class="body-compact-02">Unchained Sprint — Current</div>
-              <div class="number">
-                {formatThousands(sprint, { separator: "," })}
-              </div>
-            </div>
-          </Tile>
-        </Column>
-        <Column xlg={4} md={4}>
-          <Tile>
-            <div class="info-card">
-              <ExpressiveHeading size={2}>Data Points</ExpressiveHeading>
-              <div class="body-compact-02">
-                Validated data points — All-Time
-              </div>
-              <div class="number">
-                {formatThousands(data.stats.datapoints, { separator: "," })}
-              </div>
-            </div>
-          </Tile>
-        </Column>
-        <Column xlg={4} md={4}>
-          <Tile>
-            <div class="info-card">
-              <ExpressiveHeading size={2}>Total Validations</ExpressiveHeading>
-              <div class="body-compact-02">Total signatures — All-Time</div>
-              <div class="number">
-                {formatThousands(data.stats.validations, { separator: "," })}
-              </div>
-            </div>
-          </Tile>
-        </Column>
-      </Row>
-      {#if tableData}
-        <Row>
-          <Column>
-            <Tile>
-              <DataTable
-                headers={[
-                  { key: "rank", value: "Rank" },
-                  { key: "key", value: "Address" },
-                  { key: "name", value: "Name" },
-                  { key: "points", value: "Points" },
-                ]}
-                rows={tableData}
-                sortable={true}
-                sortKey={"score"}
-                sortDirection="descending"
-                {pageSize}
-                {page}
-                title="Leaderboard"
-                description="Peer contributions scores — All-time"
-              >
-                <svelte:fragment slot="cell" let:cell>
-                  {#if cell.key === "name"}
-                    {cell.value || ""}
-                  {:else}
-                    {cell.value}
-                  {/if}
-                </svelte:fragment>
-                <Toolbar>
-                  <ToolbarContent>
-                    <ToolbarSearch
-                      persistent
-                      shouldFilterRows={(row, value) => {
-                        const q = value.toLowerCase();
-                        return (
-                          row.key.toLowerCase().includes(q) ||
-                          (row.name && row.name.toLowerCase().includes(q))
-                        );
-                      }}
-                      bind:filteredRowIds
-                    />
-                  </ToolbarContent>
-                </Toolbar>
-              </DataTable>
-
-              <Pagination
-                bind:pageSize
-                bind:page
-                totalItems={filteredRowIds.length}
-                pageSizeInputDisabled
-              />
-            </Tile>
-          </Column>
-        </Row>
-      {/if}
-    {:else}
-      <Row>
-        <Column>
-          <ProgressBar />
-        </Column>
-      </Row>
-    {/if}
   </Grid>
+
+  <Grid padding>
+    <Row>
+      <Column>
+        <ExpressiveHeading size={4}>
+          <h2>Unchained Resources</h2>
+        </ExpressiveHeading>
+      </Column>
+    </Row>
+    <Row>
+      <Column lg={6} sm={4}>
+        <Article
+          title="A Practical Guide to Unchained: Index Events and Token Prices on Any EVM Chain"
+          description="Unchained is a decentralized network for creating, indexing, validating, analyzing, and processing data. It can run cooperatively with multiple peers who join forces and attest to data validity or process it as a grid..."
+          href="https://pouyae.medium.com/introducing-unchained-a-decentralized-network-for-data-processing-and-validation-92d8333eb304"
+          image="/images/backgrounds/charts.jpg"
+          external
+          vertical
+        />
+      </Column>
+      <Column lg={6} sm={4}>
+        <Article
+          title="Introducing Unchained: A Decentralized Network for Data Processing and Validation"
+          description="Unchained is a decentralized network, just like Ethereum or any other blockchain; it’s peer-to-peer, has validated and verified data, can host smart contracts and plugins, has an RPC system similar to Ethereum..."
+          href="https://pouyae.medium.com/introducing-unchained-a-decentralized-network-for-data-processing-and-validation-92d8333eb304"
+          image="/images/backgrounds/data-orb.jpg"
+          external
+          vertical
+        />
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column sm={4} md={4} lg={4}>
+        <div class="flex-column padding">
+          <ExpressiveHeading size={2}>
+            <h3>
+              All the benefits of the blockchain, without the limitations.
+            </h3>
+          </ExpressiveHeading>
+          <div class="body-01">
+            Unchained is made to be technology-agnostic, meaning it can work
+            with any blockchain, programming language, or platform. This
+            flexibility enables developers to build powerful applications that
+            leverage the benefits of the blockchain without the limitations.
+          </div>
+          <div class="body-02">
+            Disclaimer: Unchained is currently in development and may be subject
+            to change. Please refer to the project's GitHub repository for the
+            latest updates and information.
+          </div>
+        </div>
+      </Column>
+      <Column lg={1} />
+      <Column>
+        <Accordion>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Data Indexing</h5>
+              <div>
+                Index any data whether it's on-chain or off-chain, public or
+                private
+              </div>
+            </svelte:fragment>
+            <p>
+              Unchained is a decentralized network for creating, indexing,
+              validating, analyzing, and processing data. It can run
+              cooperatively with multiple peers who join forces and attest to
+              data validity or process it as a grid. Unchained can index any
+              data whether it's on-chain or off-chain, public or private.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Decentralized Oracles</h5>
+              <div>
+                Create Decentralized Oracles to Fetch Data from External Sources
+              </div>
+            </svelte:fragment>
+            <p>
+              Data validated by Unchained can be used to create decentralized
+              oracles that fetch data from external sources. This data can be
+              used to trigger smart contracts, provide real-time data to
+              applications, and more. Unchained enables developers to create
+              decentralized oracles that are secure, reliable, and tamper-proof.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Cross-chain Messaging</h5>
+              <div>
+                Send Messages and Data Between Different Blockchains and
+                Networks
+              </div>
+            </svelte:fragment>
+            <p>
+              Unchained enables cross-chain messaging, allowing developers to
+              send messages and data between different blockchains and networks.
+              This feature enables interoperability between different
+              blockchains, allowing them to communicate and share data securely
+              and efficiently.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Fully Compliant Token Bridges</h5>
+              <div>
+                Create Token Bridges to Transfer Assets Between Blockchains
+              </div>
+            </svelte:fragment>
+            <p>
+              Unchained enables developers to create fully compliant token
+              bridges that allow users to transfer assets between different
+              blockchains. These token bridges are secure, reliable, and
+              tamper-proof, ensuring that assets are transferred safely and
+              efficiently.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Heavy Computations</h5>
+              <div>Run Heavy Computations and Data Processing Tasks</div>
+            </svelte:fragment>
+            <p>
+              Unchained is a decentralized network of nodes lending their
+              computing power to run heavy computations and data processing
+              tasks. From simple tasks like image processing to complex
+              algorithms like machine learning models, Unchained can handle it
+              all.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>API Hosting</h5>
+              <div>Host APIs and Serve Data to Applications and Services</div>
+            </svelte:fragment>
+            <p>
+              Unchained enables developers to host APIs and serve data to
+              applications and services. This feature allows developers to
+              create decentralized APIs that are secure, reliable, and
+              tamper-proof. Unchained APIs can be used to provide real-time data
+              to applications, trigger smart contracts, and more.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Technology-Agnostic</h5>
+              <div>
+                Works with Any Blockchain, Programming Language, or Platform
+              </div>
+            </svelte:fragment>
+            <p>
+              Unchained is made to be technology-agnostic, meaning it can work
+              with any blockchain, programming language, or platform. This
+              flexibility enables developers to build powerful applications that
+              leverage the benefits of the blockchain without the limitations.
+            </p>
+          </AccordionItem>
+        </Accordion>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column sm={4} lg={4}>
+        <div class="flex-column padding onboarding">
+          <ExpressiveHeading size={5}>
+            <h2>Pricing</h2>
+          </ExpressiveHeading>
+        </div>
+      </Column>
+      <Column sm={4} lg={12}>
+        <StructuredList>
+          <StructuredListHead>
+            <StructuredListRow head>
+              <StructuredListCell head>Tier</StructuredListCell>
+              <StructuredListCell head>Price</StructuredListCell>
+              <StructuredListCell head>Notes</StructuredListCell>
+            </StructuredListRow>
+          </StructuredListHead>
+          <StructuredListBody>
+            <StructuredListRow>
+              <StructuredListCell noWrap>Public</StructuredListCell>
+              <StructuredListCell>Varies</StructuredListCell>
+              <StructuredListCell>
+                The KNS utility token is used to pay for storage and processing
+                power on the Unchained network. The price of storage and
+                processing power is determined by the market and varies based on
+                supply and demand.
+              </StructuredListCell>
+            </StructuredListRow>
+            <StructuredListRow>
+              <StructuredListCell noWrap>Enterprise</StructuredListCell>
+              <StructuredListCell>Contact Us</StructuredListCell>
+              <StructuredListCell>
+                Enterprise customers can contact us to discuss custom pricing
+                options and service level agreements. We offer dedicated support
+                and tailored solutions to meet the needs of enterprise
+                customers.
+              </StructuredListCell>
+            </StructuredListRow>
+            <StructuredListRow>
+              <StructuredListCell noWrap>Sovereign Networks</StructuredListCell>
+              <StructuredListCell>Contact Us</StructuredListCell>
+              <StructuredListCell>
+                Sovereign Networks are independent networks that run on the
+                Unchained platform. They have their own governance, token
+                economy, and rules. Contact us to learn more about creating a
+                Sovereign Network.
+              </StructuredListCell>
+            </StructuredListRow>
+          </StructuredListBody>
+        </StructuredList>
+      </Column>
+    </Row>
+  </Grid>
+
+  <DeveloperResources />
+  <HereToHelp />
 </Content>
 
 <Footer />
 
 <style>
-  .description {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    padding-top: 2em;
-  }
-  .number {
-    font-family: var(
-      --cds-code-01-font-family,
-      "IBM Plex Mono",
-      "Menlo",
-      "DejaVu Sans Mono",
-      "Bitstream Vera Sans Mono",
-      Courier,
-      monospace
-    );
-    text-align: center;
-    font-size: 2rem;
-    padding: 2rem;
+  .padding {
+    padding: 1em;
     box-sizing: border-box;
   }
-  .info-card {
-    text-align: center;
+
+  h1 {
+    font-weight: 300;
+    font-size: 4.5rem;
   }
-  .tile-title {
-    margin-bottom: 2rem;
+
+  @media (max-width: 760px) {
+    h1 {
+      font-size: 2.5rem;
+    }
   }
   .buttons {
     display: flex;
-    flex-wrap: wrap;
     gap: 1em;
+    flex-wrap: wrap;
+    width: 100%;
+    flex-wrap: wrap;
   }
-  .partners :global(a) {
-    color: var(--cds-text-01);
+
+  .buttons.margin {
+    margin-top: 1em;
   }
-  .partners {
-    margin-top: 0.5em;
+  .onboarding .buttons {
+    margin-top: 4em;
+  }
+  .unchained {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+  }
+  .unchained .buttons {
+    margin-top: 8em;
+  }
+  .hero {
+    gap: 4em;
+    padding-top: 8em;
+    padding-bottom: 4em;
+  }
+  .product-icon :global(.wrap) {
+    justify-content: start;
   }
 </style>

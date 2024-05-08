@@ -4,12 +4,12 @@
   import { Grid, Row, Column, Tile } from "carbon-components-svelte";
   import { Button, Content } from "carbon-components-svelte";
 
-  import { Dashboard, Book, ArrowDownRight } from "carbon-icons-svelte";
+  import { Blockchain, Book, ArrowDownRight } from "carbon-icons-svelte";
   import { AssemblyCluster } from "carbon-icons-svelte";
   import { ArrowRight, Play } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
-  import { Link } from "carbon-components-svelte";
-  import { ImageLoader, Tag } from "carbon-components-svelte";
+  import { Link, OutboundLink } from "carbon-components-svelte";
+  import { ImageLoader, ToastNotification } from "carbon-components-svelte";
 
   import News from "src/components/News.svelte";
 
@@ -27,6 +27,9 @@
 
 <Content class="gap">
   <Grid padding>
+    <Row padding>
+      <Column padding />
+    </Row>
     <Row>
       <Column padding lg={7} md={5} sm={4}>
         <div class="hero flex-column">
@@ -106,6 +109,31 @@
 
   <Grid>
     <Row>
+      <Column>
+        <ToastNotification
+          fullWidth
+          kind="info"
+          title="We are now Timeleap!"
+          hideCloseButton
+        >
+          <div slot="caption">
+            After our
+            <OutboundLink
+              href="https://www.zefix.ch/en/search/entity/list/firm/1635807"
+            >
+              company registration in Switzerland
+            </OutboundLink>
+            , we are now known as Timeleap. We are excited to continue our journey
+            with you! We are working on updating our website and documentation. Please
+            bear with us.
+          </div>
+        </ToastNotification>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid padding>
+    <Row>
       <Column sm={4} lg={8}>
         <div class="flex-column padding onboarding">
           <ExpressiveHeading size={5}>
@@ -136,7 +164,7 @@
     </Row>
     <Row padding>
       <Column sm={4} md={4} lg={4}>
-        <Product icon="unchained" title="Unchained">
+        <Product href="/unchained" icon="unchained" title="Unchained">
           Unchained is a distributed computation platform to run heavy workloads
           such as 3D rendering or training AI models on a decentralized network.
         </Product>
@@ -205,7 +233,7 @@
             </p>
             <div class="buttons margin">
               <Button href="/docs/unchained" icon={Book}>Documentation</Button>
-              <Button href="/unchained" icon={Dashboard}>Testnet Stats</Button>
+              <Button href="/unchained" icon={Blockchain}>Product Page</Button>
               <Button
                 target="_blank"
                 href="https://github.com/TimeleapLabs/unchained/blob/master/quickstart.md"
