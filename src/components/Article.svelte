@@ -1,8 +1,9 @@
 <script>
   import { Tile, Button } from "carbon-components-svelte";
-  import { Launch } from "carbon-icons-svelte";
+  import { ArrowUpRight, ArrowRight } from "carbon-icons-svelte";
   import { ImageLoader } from "carbon-components-svelte";
   import { Grid, Row, Column } from "carbon-components-svelte";
+  import { Tag } from "carbon-components-svelte";
 
   export let title;
   export let description;
@@ -11,6 +12,8 @@
   export let external = false;
   export let target = external ? "_blank" : "_self";
   export let vertical = false;
+  export let buttonText = "Read article";
+  export let soon = false;
 </script>
 
 <div class="article">
@@ -27,11 +30,23 @@
               <div class="content body-02">
                 {description}
               </div>
-              <div class="buttons">
-                <Button {href} kind="secondary" icon={Launch} {target}>
-                  Read article
-                </Button>
-              </div>
+
+              {#if soon}
+                <div class="buttons">
+                  <Tag type="teal">Coming soon</Tag>
+                </div>
+              {:else if href}
+                <div class="buttons">
+                  <Button
+                    {href}
+                    kind="secondary"
+                    icon={external ? ArrowUpRight : ArrowRight}
+                    {target}
+                  >
+                    {buttonText}
+                  </Button>
+                </div>
+              {/if}
             </div>
           </div>
         </Tile>
@@ -41,6 +56,9 @@
 </div>
 
 <style>
+  .article {
+    height: 100%;
+  }
   .article :global(.bx--grid) {
     padding: 0 1rem;
   }
@@ -60,12 +78,17 @@
   .article :global(.bx--aspect-ratio--object img) {
     height: 100%;
     object-fit: cover;
+    transform: scale(1.02);
+  }
+  .article :global(.bx--aspect-ratio--object) {
+    overflow: hidden;
   }
   .article-inner {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     height: 100%;
+    min-height: 288px;
   }
   .article h3 {
     margin-top: 0;

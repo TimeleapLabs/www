@@ -260,6 +260,9 @@ a.bx--header__menu-item:focus svg {
 .full-height {
   height: 100%;
 }
+.height-auto {
+  height: auto;
+}
 .stick {
   position: sticky;
   top: 4rem;

@@ -2,9 +2,10 @@
   import { Grid, Row, Column, OutboundLink } from "carbon-components-svelte";
   import ExpressiveHeading from "../carbon/ExpressiveHeading.svelte";
   import ContactForm from "../ContactForm.svelte";
+  export let subject = "";
 </script>
 
-<Grid>
+<Grid id="contact">
   <Row>
     <Column lg={4}>
       <div class="flex-column">
@@ -37,7 +38,7 @@
     </Column>
     <Column />
     <Column lg={10}>
-      <ContactForm />
+      <ContactForm {subject} />
     </Column>
   </Row>
 </Grid>

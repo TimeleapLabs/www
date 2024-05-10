@@ -21,6 +21,8 @@
   import Katanas from "src/components/home/Katanas.svelte";
   import UniSwap from "src/icons/UniSwap.svelte";
   import Product from "src/components/Product.svelte";
+
+  import Article from "src/components/Article.svelte";
 </script>
 
 <!-- Hero -->
@@ -177,6 +179,13 @@
         </Product>
       </Column>
       <Column sm={4} md={4} lg={4}>
+        <Product icon="hsm" title="HSM" href="/hsm">
+          HSM, soon to be released, is a hardware security module that enables
+          developers to store and manage cryptographic keys in a secure
+          environment.
+        </Product>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
         <Product icon="tachyon" title="Tachyon" tags={["Coming soon"]}>
           Tachyon (formerly known as Clio) is a programming language targeting
           distributed systems.
@@ -187,13 +196,6 @@
           Sia is a binary serialization format that is both fast and compact. It
           is specifically designed for communication between distributed
           systems.
-        </Product>
-      </Column>
-      <Column sm={4} md={4} lg={4}>
-        <Product icon="hsm" title="HSM" tags={["Coming soon"]}>
-          HSM, soon to be released, is a hardware security module that enables
-          developers to store and manage cryptographic keys in a secure
-          environment.
         </Product>
       </Column>
       <Column sm={4} md={4} lg={4}>
@@ -250,6 +252,31 @@
         <div
           class="hero-image contrast noise"
           style="background-image: url(/images/backgrounds/robots.jpg);"
+        />
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column lg={8} md={6} sm={4} class="height-auto">
+        <Article
+          vertical
+          image="/images/backgrounds/wallet.png"
+          title="Timeleap Wallet-as-a-Service"
+          description="Timeleap Wallet-as-a-Service is a secure and user-friendly solution for managing your digital assets. With Timeleap Wallet-as-a-Service, you can easily store, send, and receive cryptocurrencies, tokens, and NFTs, all in one place."
+          buttonText="Learn more"
+          href="/wallet"
+        />
+      </Column>
+      <Column lg={8} md={6} sm={4} class="height-auto">
+        <Article
+          vertical
+          image="/images/backgrounds/HSM.png"
+          title="Timeleap Hardware Security Module Mini"
+          description="Timeleap Hardware Security Module Mini is a secure and portable device that enables you to store and manage your cryptographic keys in a secure environment. With Timeleap HSM Mini, you can protect your digital assets and secure your transactions."
+          buttonText="Learn more"
+          href="/hsm"
         />
       </Column>
     </Row>
