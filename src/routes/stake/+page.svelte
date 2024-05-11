@@ -49,6 +49,13 @@
   let programId;
   let withNft;
 
+  const formatDate = (date) =>
+    date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
   const setAddress = async () => {
     const provider = new ethers.providers.Web3Provider($wallet.provider);
     const signer = provider.getSigner($wallet.accounts?.[0]?.address);
@@ -132,7 +139,7 @@
 
   const durationOf = (program) => {
     const date = new Date(new Date().valueOf() + program.duration * 1000);
-    return `${date.toLocaleDateString()}`;
+    return `${formatDate(date)}`;
   };
 
   const yieldOf = (program, withNft) => {
@@ -395,7 +402,7 @@
             {:else if cell.key === "rewards"}
               {ethers.utils.formatUnits(cell.value)} KNS
             {:else if cell.key === "unlock"}
-              {new Date(cell.value * 1000).toLocaleDateString()}
+              {formatDate(new Date(cell.value * 1000))}
               {new Date(cell.value * 1000).toLocaleTimeString()}
             {:else if cell.key === "nftId"}
               {#if row.hasNft}
