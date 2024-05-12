@@ -146,17 +146,18 @@
         <Grid>
           <Row>
             <Column>
-              <ExpressiveHeading size={2}>
-                First things first!
-              </ExpressiveHeading>
+              <ExpressiveHeading size={2}>Deprecated!</ExpressiveHeading>
             </Column>
           </Row>
           <Row>
             <Column>
-              <p>
-                Tell us where your smart contract is so we can read your events
-                from it.
-              </p>
+              <InlineNotification
+                kind="warning"
+                title="This service is deprecated"
+                subtitle="This service is deprecated in favor of the new Unchained
+                software and is no longer available for new customers. If you are
+                an existing customer, you can still manage your oracles."
+              />
             </Column>
           </Row>
           <Row>
@@ -541,19 +542,7 @@
               {#if !$wallet?.provider}
                 <ConnectButton primary />
               {:else}
-                <Button on:click={createOracle} disabled={creatingOracle}>
-                  {#if creatingOracle}
-                    <SpinLine
-                      size="32"
-                      color="currentColor"
-                      unit="px"
-                      duration="4s"
-                    />
-                    Processing
-                  {:else}
-                    Create Oracle ${price}
-                  {/if}
-                </Button>
+                <Button disabled>Deprecated</Button>
               {/if}
             </Column>
           </Row>

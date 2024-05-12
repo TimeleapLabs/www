@@ -4,7 +4,7 @@
 
 To request a verifiable random number, your smart contract should inherit from this
 library. To see an example of doing that refer to our
-[link https://github.com/KenshiTech/d20 D20 example]. The VRF Consumer
+[link https://github.com/TimeleapLabs/d20 D20 example]. The VRF Consumer
 provides the following functions:
 
 [list
@@ -37,7 +37,7 @@ provides the following functions:
     function when a VRF result is received and verified. You need to re-implement this in your smart contract.
     Anything you need to do with the randomness you requested should be implemented here.]]
 
-For function signatures check the [link https://github.com/KenshiTech/vrf-consumer VRF consumer repository].
+For function signatures check the [link https://github.com/TimeleapLabs/vrf-consumer VRF consumer repository].
 
 [heading :size 2 VRF Utils]
 
@@ -47,7 +47,7 @@ a use for it. This library is used by the Kenshi consumer for calculating the VR
 generate randomness on chain. It is also used to verify the VRF results on chain.
 
 Refer to the
-[link https://github.com/KenshiTech/vrf-consumer/blob/master/contracts/VRFUtils.sol VRFUtils.sol file]
+[link https://github.com/TimeleapLabs/vrf-consumer/blob/master/contracts/VRFUtils.sol VRFUtils.sol file]
 on Github to check the available functions. Read the
 [link https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-vrf-10.html ECVRF draft] to
 learn more about each function.
