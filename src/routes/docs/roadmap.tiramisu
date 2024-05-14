@@ -13,7 +13,7 @@ list {
   [ ✅ bold { Community }: "Active communities on Telegram, Discord, Twitter." ],
   [ ✅ bold { Community Engagement }: "Kenshi Engagement Protocol is functional.
       Zealy.io is used for community-centric collaborations."],
-  [ ✅ bold { Staking }: "Kenshi staking program is publicly available to all KNS users."]
+  [ ✅ bold { Staking }: "Kenshi staking program is publicly available to all KNS users."],
   [ ✅ bold { DEX }: "Kenshi token is listed on UniSwap."],
   [ ☑️ bold { CEX }: "Kenshi token is not listed on a CEX. The target for a CEX listing
       is a +$25M market cap."]
