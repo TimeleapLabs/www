@@ -118,6 +118,37 @@
     </Row>
   </Grid>
 
+  <Grid condensed>
+    <Row>
+      <Column lg={8} md={6} sm={4}>
+        <Tile>
+          <div class="banner flex-column padding">
+            <ExpressiveHeading size={5}>
+              <h2>Secure Your Sensitive<br /> Data with Timeleap HSM</h2>
+            </ExpressiveHeading>
+            <p>
+              Storing sensitive data such as private keys, API keys, and
+              cryptographic material in a secure and tamper-resistant device is
+              essential for protecting your assets and data from unauthorized
+              access. Timeleap HSM provides top-notch security for your
+              sensitive data, ensuring that your assets and data are protected
+              from unauthorized access and theft.
+            </p>
+            <div class="buttons margin">
+              <Tag type="blue">Coming Soon</Tag>
+            </div>
+          </div>
+        </Tile>
+      </Column>
+      <Column lg={8} md={6} sm={4}>
+        <div
+          class="hero-image contrast noise"
+          style="background-image: url(/images/backgrounds/HSM-dark.png);"
+        />
+      </Column>
+    </Row>
+  </Grid>
+
   <Grid>
     <Row>
       <Column sm={4} md={4} lg={4}>
@@ -272,37 +303,6 @@
           description="Timeleap HSM can be used to securely store and manage secrets such as API keys, encryption keys, and other sensitive data. With Timeleap HSM, you can protect your secrets from unauthorized access and ensure that they are only accessible to authorized users. Timeleap HSM is suitable for projects that require a high level of security for their secrets."
           image="/images/backgrounds/secret.jpg"
           vertical
-        />
-      </Column>
-    </Row>
-  </Grid>
-
-  <Grid condensed>
-    <Row>
-      <Column lg={8} md={6} sm={4}>
-        <Tile>
-          <div class="banner flex-column padding">
-            <ExpressiveHeading size={5}>
-              <h2>Secure Your Sensitive<br /> Data with Timeleap HSM</h2>
-            </ExpressiveHeading>
-            <p>
-              Storing sensitive data such as private keys, API keys, and
-              cryptographic material in a secure and tamper-resistant device is
-              essential for protecting your assets and data from unauthorized
-              access. Timeleap HSM provides top-notch security for your
-              sensitive data, ensuring that your assets and data are protected
-              from unauthorized access and theft.
-            </p>
-            <div class="buttons margin">
-              <Tag type="blue">Coming Soon</Tag>
-            </div>
-          </div>
-        </Tile>
-      </Column>
-      <Column lg={8} md={6} sm={4}>
-        <div
-          class="hero-image contrast noise"
-          style="background-image: url(/images/backgrounds/HSM-dark.png);"
         />
       </Column>
     </Row>
