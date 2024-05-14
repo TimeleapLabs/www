@@ -3,13 +3,12 @@
 
   import { Grid, Row, Column, Tile } from "carbon-components-svelte";
   import { Button, Content } from "carbon-components-svelte";
-
-  import { ArrowUpRight, ArrowRight, ArrowDown } from "carbon-icons-svelte";
-  import { LogoGithub } from "carbon-icons-svelte";
+  import { Bullhorn } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
-  import { Link, ImageLoader } from "carbon-components-svelte";
+  import { ImageLoader } from "carbon-components-svelte";
+  import { Tag, FluidForm, TextInput } from "carbon-components-svelte";
+
   import Article from "src/components/Article.svelte";
-  import { Tag } from "carbon-components-svelte";
 
   import {
     StructuredList,
@@ -22,11 +21,36 @@
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import DeveloperResources from "src/components/home/DeveloperResources.svelte";
   import HereToHelp from "src/components/home/HereToHelp.svelte";
-  import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
 
-  const goToContact = (e) => {
-    e.preventDefault();
-    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+  import { toast } from "@zerodevx/svelte-toast";
+  import { subscribe } from "src/lib/api/subscribe";
+
+  let showSubscribe = true;
+  let email;
+  let disabled = undefined;
+
+  const handleSubscribe = () => {
+    if (!email) {
+      toast.push("Please enter your email address");
+      return;
+    }
+    grecaptcha.ready(async () => {
+      disabled = true;
+      const token = await grecaptcha.execute(
+        "6LcFm-UdAAAAAA2HsCcTFj7dA_okrJlKKoYR0rKf",
+        { action: "submit" }
+      );
+      const resp = await subscribe(email, "hsm", token);
+      if (resp.status === 200) {
+        showSubscribe = false;
+        toast.push("You have successfully subscribed!");
+      } else {
+        toast.push(
+          "An error occurred while subscribing. Please try again later."
+        );
+        disabled = undefined;
+      }
+    });
   };
 </script>
 
@@ -59,6 +83,27 @@
           <div class="buttons">
             <Tag type="blue">Coming Soon</Tag>
           </div>
+
+          {#if showSubscribe}
+            <p class="suppress">
+              Sign-Up for our product update notifications and be the first to
+              know when it's available for purchase.
+            </p>
+            <div class="subscribe suppress">
+              <FluidForm>
+                <TextInput
+                  id="email"
+                  type="email"
+                  labelText="Email Address"
+                  placeholder="Enter your email address"
+                  bind:value={email}
+                />
+              </FluidForm>
+              <Button kind="primary" on:click={handleSubscribe} icon={Bullhorn}
+                >Notify Me</Button
+              >
+            </div>
+          {/if}
         </div>
       </Column>
       <Column lg={8} md={6} sm={4}>
@@ -378,13 +423,19 @@
   .suppress {
     max-width: 540px;
   }
-  .margin-fix {
-    margin-top: -4em;
-  }
   .hero-image {
     overflow: hidden;
   }
   .hero-image :global(img) {
     transform: scale(1.01);
+  }
+  .subscribe {
+    display: flex;
+    gap: 0;
+    margin-top: 1em;
+    width: 100%;
+  }
+  .subscribe :global(.bx--form--fluid) {
+    flex: 1;
   }
 </style>
