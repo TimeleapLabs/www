@@ -19,21 +19,20 @@
     Row,
     ClickableTile,
     Link,
+    ImageLoader,
   } from "carbon-components-svelte";
-
-  import Kenshi from "src/icons/Kenshi.svelte";
 
   import FullWidthHeaderNavMenu from "src/components/carbon/FullWidthHeaderNavMenu.svelte";
   import VerticalTabs from "src/components/carbon/VerticalTabs.svelte";
   import ThemeSwitcher from "src/components/carbon/ThemeSwitcher.svelte";
-
-  import { UserAvatarFilledAlt, Launch } from "carbon-icons-svelte";
-
   import ConnectButton from "src/components/ConnectButton.svelte";
 
-  let theme = "white"; // "white" | "g10" | "g80" | "g90" | "g100"
+  import { UserAvatarFilledAlt, Launch } from "carbon-icons-svelte";
+  import { theme } from "src/stores/theme";
+
+  let documentTheme = $theme || "white"; // "white" | "g10" | "g80" | "g90" | "g100"
   $: if (typeof document !== "undefined") {
-    document.documentElement.setAttribute("theme", theme);
+    document.documentElement.setAttribute("theme", documentTheme);
   }
 
   let isSideNavOpen = false;
@@ -42,17 +41,21 @@
 </script>
 
 <Header
-  _company="Kenshi"
-  _platformName="Kenshi"
+  _company="Timeleap"
+  _platformName="Timeleap"
   persistentHamburgerMenu={true}
   href="/"
   bind:isSideNavOpen
 >
   <span slot="platform" class="logo">
-    <Kenshi size={24} fill={"#fff"} />
+    <ImageLoader
+      src="/images/tl.{$theme}.svg"
+      alt="Timeleap"
+      aspectRatio="1x1"
+    />
   </span>
   <HeaderNav>
-    <HeaderNavItem href="/" text="Kenshi" />
+    <HeaderNavItem href="/" text="Timeleap" />
     <HeaderNavItem href="/dashboard" text="Dashboard" />
     <HeaderNavItem href="/docs" text="Docs" />
     <!-- <HeaderNavItem href="/" text="Link 2" /> -->
@@ -536,7 +539,7 @@
 
 <SideNav bind:isOpen={isSideNavOpen}>
   <SideNavItems>
-    <SideNavLink href="/" text="Kenshi" />
+    <SideNavLink href="/" text="Timeleap" />
     <SideNavLink href="/dashboard" text="Dashboard" />
     <SideNavLink href="/docs" text="Documentation" />
     <SideNavMenu text="Products">
@@ -655,6 +658,9 @@
   .logo {
     display: flex;
     margin-right: -1em;
+  }
+  .logo :global(img) {
+    max-height: 1em;
   }
   h4.external {
     display: flex;

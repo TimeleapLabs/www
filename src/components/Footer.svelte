@@ -12,13 +12,21 @@
   import { UnorderedList, ListItem } from "carbon-components-svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
+
+  import { theme } from "src/stores/theme";
 </script>
 
 <Tile>
   <Grid noGutterRight padding>
     <Row>
       <Column sm={4} lg={2}>
-        <div class="logo" />
+        {#key $theme}
+          <div
+            class="logo"
+            style="--background-image: url(/images/timeleap.{$theme ||
+              'white'}.svg)"
+          />
+        {/key}
       </Column>
       <Column sm={0} lg={4} />
       <Column>
@@ -299,7 +307,7 @@
   }
 
   .logo {
-    background: url("/images/logo.typography.svg");
+    background: var(--background-image);
     background-size: contain;
     background-repeat: no-repeat;
     background-origin: content-box;

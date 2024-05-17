@@ -8,6 +8,6 @@ The Kenshi Reverse-API service allows you to input a contract address, contract 
 and an API endpoint (your HTTPS endpoint, AWS Lambda function...). Every time an event is emitted by
 your contract address the Reverse-API service sends it to your endpoint.
 
-To use this service head to the Kenshi [link https://kenshi.io/dashboard dashboard], connect
+To use this service head to the Kenshi [link https://timeleap.swiss/dashboard dashboard], connect
 your wallet and register an endpoint using the new Reverse-API form. Continue reading on to
 get help with the dashboard or see examples of the Reverse-API service.

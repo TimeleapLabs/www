@@ -87,7 +87,8 @@ export const macros = {
   },
   link(options, ...args) {
     const [href, ...text] = args.slice(1);
-    const local = href.startsWith("https://kenshi.io") || href.startsWith("/");
+    const local =
+      href.startsWith("https://timeleap.swiss") || href.startsWith("/");
     const component = local ? "Link" : "OutboundLink";
     const content = text ? asText(text) : href;
     return `<${component} href="${href}">${content}</${component}>`;

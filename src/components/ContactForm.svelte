@@ -85,8 +85,8 @@
             learn more about our innovative blockchain solutions.
           </p>
           <p class="body-01">
-            Thank you for your interest in Kenshi. We look forward to connecting
-            with you soon!
+            Thank you for your interest in Timeleap. We look forward to
+            connecting with you soon!
           </p>
         </div>
       </Column>

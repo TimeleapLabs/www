@@ -1,7 +1,7 @@
 const body = `\
 User-agent: *
 Allow: /
-Sitemap: https://kenshi.io/sitemap.xml`;
+Sitemap: https://timeleap.swiss/sitemap.xml`;
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export const GET = () => {

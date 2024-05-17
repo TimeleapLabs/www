@@ -20,7 +20,7 @@ The following operating systems are [italic officially] supported:
 If you'd like to run Unchained with Docker, you can run the following command in
 a new empty directory:
 
-[code curl https://kenshi.io/unchained/docker | sh]
+[code curl https://timeleap.swiss/unchained/docker | sh]
 
 Run again in the same directory and follow the instructions to update.
 
@@ -29,7 +29,7 @@ Run again in the same directory and follow the instructions to update.
 For advanced use cases it is better to install and run the Unchained client
 directly. To do so, run the following command:
 
-[code curl https://kenshi.io/unchained/install | sh]
+[code curl https://timeleap.swiss/unchained/install | sh]
 
 [heading :size 2 Installation with Docker]
 

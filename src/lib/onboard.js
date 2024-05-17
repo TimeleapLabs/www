@@ -7,12 +7,12 @@ const walletConnectProjectId = "cd75e040ea5fcb69967fff012c27bc00";
 
 const uauth = uauthModule({
   clientID: "d2c1ef00-bab8-4f6d-b851-8fe9926ae01e",
-  redirectUri: "https://kenshi.io",
+  redirectUri: "https://timeleap.swiss",
   scope: "openid wallet",
   walletConnectProjectId,
 });
 
-const appName = "Kenshi";
+const appName = "Timeleap";
 
 const injected = injectedModule();
 const walletConnect = walletConnectModule({
@@ -23,8 +23,8 @@ const walletConnect = walletConnectModule({
 const options = {
   appMetadata: {
     name: appName,
-    description: "Kenshi dApp",
-    icon: "/images/logo.svg",
+    description: "Timeleap dApp",
+    icon: "/images/tl.svg",
   },
   accountCenter: {
     desktop: {

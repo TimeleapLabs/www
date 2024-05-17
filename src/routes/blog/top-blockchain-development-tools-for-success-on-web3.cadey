@@ -122,9 +122,9 @@ If you want to use oracles, you need to be familiar with these tools:
 
 Kenshi has built a high-performance asynchronous oracle network for hosting custom oracles. This
 network will let you develop your oracles using the tools and technology you already know.
-(Read the documentation [link https://kenshi.io/docs/services/oracle-network here].)
+(Read the documentation [link https://timeleap.swiss/docs/services/oracle-network here].)
 
-You can also use our [link https://kenshi.io/docs/services/oracle-network/custom/blueprints blueprints]
+You can also use our [link https://timeleap.swiss/docs/services/oracle-network/custom/blueprints blueprints]
 as a guide to get started with a price oracle, weather oracle, proof of balance oracle, and more.
 
 Kenshi also offers all the tools you need to build a VRF (verifiable random function) oracle
@@ -200,7 +200,7 @@ final results for your app. Finally, you can get notifications about new blockch
 on your HTTP endpoints, which you can do through Reverse-API.
 
 You can learn more about these services by reading the
-[link https://kenshi.io/docs/services/deep-index documentation].
+[link https://timeleap.swiss/docs/services/deep-index documentation].
 
 [heading :size 2 Wallets]
 

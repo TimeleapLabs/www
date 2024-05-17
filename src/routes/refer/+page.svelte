@@ -46,8 +46,8 @@
   let spin = false;
 
   $: if (refCode) {
-    referralLink = `https://kenshi.io/?ref=${refCode}`;
-    referralLinkToDocs = `https://kenshi.io/docs/?ref=${refCode}`;
+    referralLink = `https://timeleap.swiss/?ref=${refCode}`;
+    referralLinkToDocs = `https://timeleap.swiss/docs/?ref=${refCode}`;
   }
 
   const selectRefType = ({ detail }) => {

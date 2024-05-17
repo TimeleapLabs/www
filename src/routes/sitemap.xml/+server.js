@@ -9,7 +9,7 @@ export const GET = () => {
     })
     .map((page) => {
       return page
-        .replace("/src/routes", "https://kenshi.io")
+        .replace("/src/routes", "https://timeleap.swiss")
         .replace("/+page.svelte", "")
         .replace(".svelte", "");
     });

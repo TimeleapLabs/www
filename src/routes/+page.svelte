@@ -146,19 +146,19 @@
       <Column sm={4} lg={8}>
         <div class="flex-column padding onboarding">
           <div class="body-02">
-            Kenshi offers innovative blockchain and distributed computation
+            Timeleap offers innovative blockchain and distributed computation
             solutions for businesses and enterprises seeking to harness the
             power of this transformative technology.
           </div>
           <div class="body-01">
-            From data indexing and event management to IoT and HSM, Kenshi
+            From data indexing and event management to IoT and HSM, Timeleap
             provides cutting-edge tools designed to streamline your operations
             and unlock new possibilities for your business in the blockchain
             ecosystem.
           </div>
           <div class="buttons">
             <Link href="/dashboard" icon={ArrowRight}>
-              Go to the Kenshi Dashboard
+              Go to the Timeleap Dashboard
             </Link>
           </div>
         </div>
