@@ -4,6 +4,14 @@ On this page, you'll find detailed information about our ongoing projects,
 completed achievements, and future plans. Explore each section to stay updated
 and informed about our progress and direction.
 
+heading { level = 2, Terminology }
+
+table {
+  [ ✅, Completed ],
+  [ ⏳, In Progress ],
+  [ 🗓, Planned ]
+}
+
 heading { level = 2, General }
 
 list {
@@ -15,7 +23,7 @@ list {
       Zealy.io is used for community-centric collaborations."],
   [ ✅ bold { Staking }: "Kenshi staking program is publicly available to all KNS users."],
   [ ✅ bold { DEX }: "Kenshi token is listed on UniSwap."],
-  [ ☑️ bold { CEX }: "Kenshi token is not listed on a CEX. The target for a CEX listing
+  [ 🗓 bold { CEX }: "Kenshi token is not listed on a CEX. The target for a CEX listing
       is a +$25M market cap."]
 }
 
@@ -60,10 +68,10 @@ list {
     KNS tokens for the Unchained network."],
   [ ⏳ bold { RPC }: "We need an interface for consumers to be able to query
     validated data on the Unchained network."],
-  [ ☑️ bold { Plugins }: "Plugins for the different Unchained use cases still
+  [ 🗓 bold { Plugins }: "Plugins for the different Unchained use cases still
     need to be developed."],
-  [ ☑️ bold { Documentation }: "Unchained isn't fully documented yet."],
-  [ ☑️ bold { Explorer }: "We need an explorer and status page for Unchained."]
+  [ 🗓 bold { Documentation }: "Unchained isn't fully documented yet."],
+  [ 🗓 bold { Explorer }: "We need an explorer and status page for Unchained."]
 }
 
 heading { level = 3, HSM }
@@ -90,7 +98,7 @@ list {
     that is easily sourceable on the market."],
   [ ⏳ bold { Partnerships }: "We are in contact with Swiss semiconductor and
     secure hardware manufacturers."],
-  [ ☑️ bold { Firmwares }: "Firmwares for different use cases, and a GUI app for
+  [ 🗓 bold { Firmwares }: "Firmwares for different use cases, and a GUI app for
     managing the software on the HSM devices are required before HSM release."],
-  [ ☑️ bold { Certification }: "The custom-made electronics need to be certified."]
+  [ 🗓 bold { Certification }: "The custom-made electronics need to be certified."]
 }
