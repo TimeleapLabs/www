@@ -14,9 +14,10 @@
   export let vertical = false;
   export let buttonText = "Read article";
   export let soon = false;
+  export let fullHeight = false;
 </script>
 
-<div class="article">
+<div class="article" class:full-height={fullHeight}>
   <Grid condensed noGutter fullWidth>
     <Row>
       <Column md={vertical && 12} sm={4} class="noise">
@@ -116,5 +117,14 @@
     .padded {
       padding: 1em;
     }
+  }
+
+  .full-height {
+    height: 100%;
+  }
+
+  .full-height :global(.bx--grid),
+  .full-height :global(.bx--row) {
+    height: 100%;
   }
 </style>

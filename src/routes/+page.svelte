@@ -8,8 +8,8 @@
   import { AssemblyCluster } from "carbon-icons-svelte";
   import { ArrowRight, Play } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
-  import { Link, OutboundLink } from "carbon-components-svelte";
-  import { ImageLoader, ToastNotification } from "carbon-components-svelte";
+  import { Link } from "carbon-components-svelte";
+  import { ImageLoader } from "carbon-components-svelte";
 
   import News from "src/components/News.svelte";
 
@@ -23,6 +23,7 @@
   import Product from "src/components/Product.svelte";
 
   import Article from "src/components/Article.svelte";
+  import MailingList from "src/components/MailingList.svelte";
 </script>
 
 <!-- Hero -->
@@ -67,7 +68,7 @@
       <Column lg={6} md={5} sm={4}>
         <div
           class="hero-image contrast noise"
-          style="background-image: url(/images/backgrounds/connected-cubes.jpg);"
+          style="background-image: url(/images/backgrounds/three-cubes.jpg);"
         />
       </Column>
       <Column lg={3} md={3} sm={4}>
@@ -112,24 +113,12 @@
   <Grid>
     <Row>
       <Column>
-        <ToastNotification
-          fullWidth
-          kind="info"
-          title="We are now Timeleap!"
-          hideCloseButton
-        >
-          <div slot="caption">
-            After our
-            <OutboundLink
-              href="https://www.zefix.ch/en/search/entity/list/firm/1635807"
-            >
-              company registration in Switzerland
-            </OutboundLink>
-            , we are now known as Timeleap. We are excited to continue our journey
-            with you! We are working on updating our website and documentation. Please
-            bear with us.
-          </div>
-        </ToastNotification>
+        <MailingList topic="newsletter" buttonText="Subscribe">
+          <p class="muted">
+            Subscribe to our newsletter to stay up-to-date with the latest news
+            and updates.
+          </p>
+        </MailingList>
       </Column>
     </Row>
   </Grid>
@@ -169,6 +158,13 @@
         <Product href="/unchained" icon="unchained" title="Unchained">
           Unchained is a distributed computation platform to run heavy workloads
           such as 3D rendering or training AI models on a decentralized network.
+        </Product>
+      </Column>
+      <Column sm={4} md={4} lg={4}>
+        <Product href="/blockchain" icon="baas" title="Blockchain">
+          Timeleap's Blockchain-as-a-Service (BaaS) is a comprehensive solution
+          for businesses seeking to integrate blockchain technology into their
+          operations.
         </Product>
       </Column>
       <Column sm={4} md={4} lg={4}>
@@ -579,13 +575,5 @@
     gap: 4em;
     padding-top: 2em;
     padding-bottom: 2em;
-  }
-  .x-wrap {
-    background-image: url(/images/backgrounds/cubes.jpg);
-    background-size: cover;
-  }
-  .x-wrap :global(canvas) {
-    mask-image: radial-gradient(ellipse at center, transparent 50%, black 100%);
-    opacity: 0.4;
   }
 </style>

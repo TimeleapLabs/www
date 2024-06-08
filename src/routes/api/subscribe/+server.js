@@ -6,6 +6,11 @@ sg.setApiKey(process.env.SENDGRID_API_KEY);
 
 const listIds = {
   hsm: "4656db07-16fe-4d22-ad4a-453ad15df40a",
+  newsletter: "2d65d30a-d6be-48c0-925a-5d4eb8959a06",
+  baas: "db91464e-8500-4612-8dd7-7429a33b57f3",
+  ghostfs: "7ef760b6-928c-45d2-9768-986636f4891d",
+  wallet: "0dff84df-a1b5-412c-bd75-06fde5b4ac41",
+  unchained: "b5574f0c-cb5f-451b-b200-9330c1217701",
 };
 
 /** @type {import('@sveltejs/kit').RequestHandler} */

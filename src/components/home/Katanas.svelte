@@ -1,6 +1,6 @@
 <script>
   import { Grid, Row, Column, Button } from "carbon-components-svelte";
-  import { Renew, Image, IntentRequestCreate } from "carbon-icons-svelte";
+  import { Renew, Image, SailboatOffshore } from "carbon-icons-svelte";
   import ExpressiveHeading from "../carbon/ExpressiveHeading.svelte";
 
   import Katana from "../nft/Katana.svelte";
@@ -40,7 +40,11 @@
           </p>
           <div class="buttons">
             <Button icon={Renew} on:click={random}>See another</Button>
-            <Button href="/nft/katana" icon={IntentRequestCreate}>Mint</Button>
+            <Button
+              href="https://opensea.io/collection/kenshi-katana"
+              target="_blank"
+              icon={SailboatOffshore}>OpenSea</Button
+            >
             <Button href="/nft/katana" icon={Image}>Catalogue</Button>
           </div>
         </div>

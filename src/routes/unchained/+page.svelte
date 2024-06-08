@@ -22,6 +22,7 @@
   import DeveloperResources from "src/components/home/DeveloperResources.svelte";
   import HereToHelp from "src/components/home/HereToHelp.svelte";
   import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
+  import MailingList from "src/components/MailingList.svelte";
 </script>
 
 <!-- Hero -->
@@ -55,6 +56,15 @@
                 data sets and run complex algorithms efficiently.
               </div>
             </ExpressiveHeading>
+          </div>
+
+          <div class="flex-spacer body-02">
+            <MailingList topic="wallet" buttonText="Sign Up">
+              <p class="muted">
+                Sign-Up for the latest news and updates on Timeleap Unchained
+                distributed network.
+              </p>
+            </MailingList>
           </div>
 
           <div class="buttons">
@@ -362,20 +372,8 @@
     width: 100%;
     flex-wrap: wrap;
   }
-
-  .buttons.margin {
-    margin-top: 1em;
-  }
   .onboarding .buttons {
     margin-top: 4em;
-  }
-  .unchained {
-    display: flex;
-    flex-direction: column;
-    gap: 4em;
-  }
-  .unchained .buttons {
-    margin-top: 8em;
   }
   .hero {
     gap: 4em;

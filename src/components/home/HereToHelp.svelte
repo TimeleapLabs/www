@@ -24,8 +24,8 @@
           our platform, your inquiries are always welcome.
         </p>
         <p class="body-01">
-          You can contact us directly through this form or reach us at our
-          email: <OutboundLink href="mailto:inquiries@kenshi.io">
+          You can contact us directly through this form or reach us at our email
+          <OutboundLink href="mailto:inquiries@kenshi.io">
             inquiries@kenshi.io
           </OutboundLink>.
         </p>

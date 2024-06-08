@@ -21,38 +21,14 @@
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import DeveloperResources from "src/components/home/DeveloperResources.svelte";
   import HereToHelp from "src/components/home/HereToHelp.svelte";
-
-  import { toast } from "@zerodevx/svelte-toast";
-  import { subscribe } from "src/lib/api/subscribe";
-
-  let showSubscribe = true;
-  let email;
-  let disabled = undefined;
-
-  const handleSubscribe = () => {
-    if (!email) {
-      toast.push("Please enter your email address");
-      return;
-    }
-    grecaptcha.ready(async () => {
-      disabled = true;
-      const token = await grecaptcha.execute(
-        "6LcFm-UdAAAAAA2HsCcTFj7dA_okrJlKKoYR0rKf",
-        { action: "submit" }
-      );
-      const resp = await subscribe(email, "hsm", token);
-      if (resp.status === 200) {
-        showSubscribe = false;
-        toast.push("You have successfully subscribed!");
-      } else {
-        toast.push(
-          "An error occurred while subscribing. Please try again later."
-        );
-        disabled = undefined;
-      }
-    });
-  };
+  import MailingList from "src/components/MailingList.svelte";
+  import DefaultTags from "src/components/seo/DefaultTags.svelte";
 </script>
+
+<DefaultTags
+  description="Timeleap Hardware Security Module (HSM) is a secure and tamper-resistant device that provides top-notch security for your sensitive data. With Timeleap HSM, you can securely store private keys, manage cryptographic operations, and protect your assets, data or API keys from unauthorized access."
+  title="Kenshi — Hardware Security Module"
+/>
 
 <!-- Hero -->
 
@@ -84,26 +60,10 @@
             <Tag type="blue">Coming Soon</Tag>
           </div>
 
-          {#if showSubscribe}
-            <p class="suppress">
-              Sign-Up for our product update notifications and be the first to
-              know when it's available for purchase.
-            </p>
-            <div class="subscribe suppress">
-              <FluidForm>
-                <TextInput
-                  id="email"
-                  type="email"
-                  labelText="Email Address"
-                  placeholder="Enter your email address"
-                  bind:value={email}
-                />
-              </FluidForm>
-              <Button kind="primary" on:click={handleSubscribe} icon={Bullhorn}
-                >Notify Me</Button
-              >
-            </div>
-          {/if}
+          <MailingList topic={"hsm"}>
+            Sign-Up for our product update notifications and be the first to
+            know when it's available for purchase.
+          </MailingList>
         </div>
       </Column>
       <Column lg={8} md={6} sm={4}>
@@ -428,14 +388,5 @@
   }
   .hero-image :global(img) {
     transform: scale(1.01);
-  }
-  .subscribe {
-    display: flex;
-    gap: 0;
-    margin-top: 1em;
-    width: 100%;
-  }
-  .subscribe :global(.bx--form--fluid) {
-    flex: 1;
   }
 </style>

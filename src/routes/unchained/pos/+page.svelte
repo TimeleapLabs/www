@@ -25,13 +25,11 @@
   import { Book, ArrowRight, AddAlt, AlarmAdd } from "carbon-icons-svelte";
   import { DataTable, Tag } from "carbon-components-svelte";
 
-  import { recoverAddress, addressFromShake } from "$lib/base32";
   import { toast } from "@zerodevx/svelte-toast";
   import { onboard } from "src/lib/onboard";
   import { onMount } from "svelte";
   import { wallet } from "src/stores/wallet";
   import { ethers } from "ethers";
-  import { Buffer } from "buffer";
 
   import kenshiAbi from "$lib/abi/kenshi";
   import unchainedAbi from "$lib/abi/unchained";

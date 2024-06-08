@@ -39,6 +39,7 @@
   }
   h2 :global(img) {
     max-width: 1em;
+    max-height: 1em;
     width: auto !important;
     height: auto !important;
   }
@@ -47,6 +48,10 @@
     gap: 1em;
     flex-direction: column;
     justify-content: start;
+    height: 100%;
+  }
+  .description {
+    flex: 1;
   }
   .link,
   .tags {

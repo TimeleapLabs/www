@@ -21,6 +21,7 @@
   import DeveloperResources from "src/components/home/DeveloperResources.svelte";
   import HereToHelp from "src/components/home/HereToHelp.svelte";
   import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
+  import MailingList from "src/components/MailingList.svelte";
 </script>
 
 <!-- Hero -->
@@ -301,6 +302,19 @@
             </StructuredListRow>
           </StructuredListBody>
         </StructuredList>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column>
+        <MailingList topic="wallet" buttonText="Sign Up">
+          <p class="muted">
+            Sign-Up for the latest news and updates on Timeleap GhostFS remote
+            file storage.
+          </p>
+        </MailingList>
       </Column>
     </Row>
   </Grid>

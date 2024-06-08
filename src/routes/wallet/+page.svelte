@@ -4,11 +4,9 @@
   import { Grid, Row, Column, Tile } from "carbon-components-svelte";
   import { Button, Content } from "carbon-components-svelte";
 
-  import { ArrowUpRight, ArrowRight, ArrowDown } from "carbon-icons-svelte";
-  import { LogoGithub } from "carbon-icons-svelte";
+  import { ArrowDown } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
-  import { Link, ImageLoader } from "carbon-components-svelte";
-  import Article from "src/components/Article.svelte";
+  import { ImageLoader } from "carbon-components-svelte";
 
   import {
     StructuredList,
@@ -21,13 +19,19 @@
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import DeveloperResources from "src/components/home/DeveloperResources.svelte";
   import HereToHelp from "src/components/home/HereToHelp.svelte";
-  import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
+  import MailingList from "src/components/MailingList.svelte";
+  import DefaultTags from "src/components/seo/DefaultTags.svelte";
 
   const goToContact = (e) => {
     e.preventDefault();
     document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
   };
 </script>
+
+<DefaultTags
+  description="Timeleap Wallet is a white-label and customizable wallet solution for blockchain projects. It is designed to be easy to use, secure, and scalable. Project-specific branding, custom features, and integrations with third-party services can be added to Timeleap Wallet to create a unique and tailored user experience."
+  title="Kenshi — Wallet as a Service"
+/>
 
 <!-- Hero -->
 
@@ -292,6 +296,19 @@
             </StructuredListRow>
           </StructuredListBody>
         </StructuredList>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column>
+        <MailingList topic="wallet" buttonText="Sign Up">
+          <p class="muted">
+            Sign-Up for the latest news and updates on Timeleap
+            Wallet-as-a-Service.
+          </p>
+        </MailingList>
       </Column>
     </Row>
   </Grid>
