@@ -113,7 +113,7 @@
     </Row>
   </Grid>
 
-  <Grid padding>
+  <!--Grid padding>
     <Row>
       <Column lg={4}>
         <Tile>
@@ -162,7 +162,7 @@
         </Tile>
       </Column>
     </Row>
-  </Grid>
+  </Grid!-->
 
   <Grid padding>
     <Row>
@@ -297,7 +297,7 @@
               store, send, and receive tokens on your custom blockchain.
             </p>
           </AccordionItem>
-          <AccordionItem>
+          <!--AccordionItem>
             <svelte:fragment slot="title">
               <h5>Battle Tested</h5>
               <div>
@@ -310,7 +310,7 @@
               environments. Fantom Sonic is designed to provide fast, secure,
               and reliable blockchain services for enterprises and developers.
             </p>
-          </AccordionItem>
+          </AccordionItem-->
         </Accordion>
       </Column>
     </Row>
