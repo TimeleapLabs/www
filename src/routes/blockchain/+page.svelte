@@ -113,12 +113,12 @@
     </Row>
   </Grid>
 
-  <!--Grid padding>
+  <Grid padding>
     <Row>
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">+2,000</code>
+            <code class="numeric">+6,000</code>
             <ExpressiveHeading size={3}>
               Transactions per Second
             </ExpressiveHeading>
@@ -128,7 +128,7 @@
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">~0.9s</code>
+            <code class="numeric">0s</code>
             <ExpressiveHeading size={3}>Time to Finality</ExpressiveHeading>
           </div>
         </Tile>
@@ -136,7 +136,7 @@
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">~0.4s</code>
+            <code class="numeric">~2.4s</code>
             <ExpressiveHeading size={3}>Average Block Time</ExpressiveHeading>
           </div>
         </Tile>
@@ -144,7 +144,7 @@
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">~60 Gb</code>
+            <code class="numeric">~128 Gb</code>
             <ExpressiveHeading size={3}>
               Validator Disk Size (100M txns)
             </ExpressiveHeading>
@@ -154,15 +154,23 @@
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">~160 Gb</code>
+            <code class="numeric">EVM</code>
             <ExpressiveHeading size={3}>
-              Archive Disk Size (100M txns)
+              Full EVM Compatibility
             </ExpressiveHeading>
           </div>
         </Tile>
       </Column>
+      <Column lg={4}>
+        <Tile>
+          <div class="scale">
+            <code class="numeric">WASM</code>
+            <ExpressiveHeading size={3}>WebAssembly Support</ExpressiveHeading>
+          </div>
+        </Tile>
+      </Column>
     </Row>
-  </Grid!-->
+  </Grid>
 
   <Grid padding>
     <Row>
@@ -235,6 +243,63 @@
         <Accordion>
           <AccordionItem>
             <svelte:fragment slot="title">
+              <h5>Utility for Your Token</h5>
+              <div>
+                Add Utility to Your Token with Timeleap's Customizable Features
+              </div>
+            </svelte:fragment>
+            <p>
+              Your token can be used to pay for gas fees, governance, or
+              proof-of-stake on your custom blockchain. Timeleap's customizable
+              features allow you to add utility to your token and create a
+              unique user experience.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Fully Managed</h5>
+              <div>
+                Focus on Building Your Business While We Manage Your Blockchain
+              </div>
+            </svelte:fragment>
+            <p>
+              Timeleap BaaS is a fully managed solution that takes care of
+              blockchain deployment, infrastructure, and maintenance. Our team
+              of experts will handle the technical details so you can focus on
+              building your business.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Customizable</h5>
+              <div>
+                Build a Custom Blockchain Network with Timeleap's Flexible
+                Platform
+              </div>
+            </svelte:fragment>
+            <p>
+              Timeleap BaaS is a flexible platform that allows you to build a
+              custom blockchain network tailored to your specific needs. You can
+              choose the block time, gas fees, and other parameters for your
+              blockchain.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
+              <h5>Enterprise Support</h5>
+              <div>
+                Get Expert Support from the Timeleap Team for Your Blockchain
+              </div>
+            </svelte:fragment>
+            <p>
+              The Timeleap team is here to help you every step of the way. From
+              setting up your blockchain to deploying smart contracts and
+              complex customizations , our team of experts will provide the
+              support you need to succeed.
+            </p>
+          </AccordionItem>
+          <AccordionItem>
+            <svelte:fragment slot="title">
               <h5>EVM Compatible</h5>
               <div>Deploy Custom EVM Blockchains at Scale with Timeleap</div>
             </svelte:fragment>
@@ -246,16 +311,16 @@
           </AccordionItem>
           <AccordionItem>
             <svelte:fragment slot="title">
-              <h5>Utility for Your Token</h5>
+              <h5>WASM Compatible</h5>
               <div>
-                Add Utility to Your Token with Timeleap's Customizable Features
+                Deploy Custom WebAssembly Blockchains at Scale with Timeleap
               </div>
             </svelte:fragment>
             <p>
-              Your token can be used to pay for gas fees, governance, or
-              proof-of-stake on your custom blockchain. Timeleap's customizable
-              features allow you to add utility to your token and create a
-              unique user experience.
+              Timeleap BaaS supports WebAssembly (WASM) for building custom
+              blockchains with high-performance smart contracts. WASM is a
+              portable binary instruction format that is designed for efficient
+              execution on modern hardware.
             </p>
           </AccordionItem>
           <AccordionItem>
@@ -297,21 +362,32 @@
               store, send, and receive tokens on your custom blockchain.
             </p>
           </AccordionItem>
-          <!--AccordionItem>
+          <AccordionItem>
             <svelte:fragment slot="title">
               <h5>Battle Tested</h5>
-              <div>
-                Timeleap BaaS is built on the latest blockchain technology
-              </div>
+              <div>Timeleap BaaS is Built on Proven Blockchain Technology</div>
             </svelte:fragment>
             <p>
-              Timeleap BaaS is based on Fantom Sonic, a high-performance
-              blockchain platform that has been battle-tested in production
-              environments. Fantom Sonic is designed to provide fast, secure,
-              and reliable blockchain services for enterprises and developers.
+              Timeleap BaaS is based on Cosmos SDK and Tendermint Core, with
+              Ethermint for EVM compatibility. Our platform has been
+              battle-tested on the Cosmos Hub and other high-profile blockchain
+              networks.
             </p>
-          </AccordionItem-->
+          </AccordionItem>
         </Accordion>
+      </Column>
+    </Row>
+  </Grid>
+
+  <Grid>
+    <Row>
+      <Column>
+        <MailingList topic="baas" buttonText="Sign Up">
+          <p class="muted">
+            Sign-Up for the latest news and updates on Timeleap
+            Blockchain-as-a-Service.
+          </p>
+        </MailingList>
       </Column>
     </Row>
   </Grid>
@@ -336,8 +412,10 @@
           </StructuredListHead>
           <StructuredListBody>
             <StructuredListRow>
-              <StructuredListCell noWrap>Chain Setup</StructuredListCell>
-              <StructuredListCell>$50,000</StructuredListCell>
+              <StructuredListCell noWrap>
+                Chain Setup & License
+              </StructuredListCell>
+              <StructuredListCell>$125,000</StructuredListCell>
               <StructuredListCell>
                 Includes deployment of a custom EVM blockchain with 4
                 validators, 1 archive node, and a block explorer. Our team will
@@ -345,21 +423,11 @@
               </StructuredListCell>
             </StructuredListRow>
             <StructuredListRow>
-              <StructuredListCell noWrap>Wallet</StructuredListCell>
-              <StructuredListCell>$50,000</StructuredListCell>
+              <StructuredListCell noWrap>Enterprise</StructuredListCell>
+              <StructuredListCell>Contact Us</StructuredListCell>
               <StructuredListCell>
-                Includes deployment of a white-label wallet for your custom
-                blockchain. Pricing varies based on customization and features.
-                Contact us for a quote.
-              </StructuredListCell>
-            </StructuredListRow>
-            <StructuredListRow>
-              <StructuredListCell noWrap>Bridge</StructuredListCell>
-              <StructuredListCell>$50,000</StructuredListCell>
-              <StructuredListCell>
-                Includes deployment of a secure asset transfer bridge between
-                your custom blockchain and Ethereum. Our team will help you
-                configure the bridge and ensure secure asset transfers.
+                Suitable for enterprises with high transaction volumes and
+                complex requirements. Contact us for a custom quote.
               </StructuredListCell>
             </StructuredListRow>
             <StructuredListRow>
@@ -367,17 +435,9 @@
               <StructuredListCell>$500+/month/node</StructuredListCell>
               <StructuredListCell>
                 Includes hosting, monitoring, and maintenance of your custom
-                blockchain infrastructure in Switzerland. Pricing varies based
-                on node configuration and usage. Contact us for a quote.
-              </StructuredListCell>
-            </StructuredListRow>
-            <StructuredListRow>
-              <StructuredListCell noWrap>Indexing & Oracles</StructuredListCell>
-              <StructuredListCell>Contact Us</StructuredListCell>
-              <StructuredListCell>
-                Comprehensive indexing for efficient data retrieval and reliable
-                oracles for accurate external data integration. Contact us for
-                pricing and availability.
+                blockchain infrastructure in Swiss-based data centers. Pricing
+                varies based on node configuration and usage. Contact us for a
+                quote.
               </StructuredListCell>
             </StructuredListRow>
             <StructuredListRow>
@@ -402,17 +462,53 @@
         </StructuredList>
       </Column>
     </Row>
-  </Grid>
-
-  <Grid>
     <Row>
-      <Column>
-        <MailingList topic="baas" buttonText="Sign Up">
-          <p class="muted">
-            Sign-Up for the latest news and updates on Timeleap
-            Blockchain-as-a-Service.
-          </p>
-        </MailingList>
+      <Column sm={4} lg={4}>
+        <div class="flex-column padding onboarding">
+          <ExpressiveHeading size={3}>
+            <h3>Addons</h3>
+          </ExpressiveHeading>
+        </div>
+      </Column>
+      <Column sm={4} lg={12}>
+        <StructuredList>
+          <StructuredListHead>
+            <StructuredListRow head>
+              <StructuredListCell head>Component</StructuredListCell>
+              <StructuredListCell head>Price</StructuredListCell>
+              <StructuredListCell head>Notes</StructuredListCell>
+            </StructuredListRow>
+          </StructuredListHead>
+          <StructuredListBody>
+            <StructuredListRow>
+              <StructuredListCell noWrap>Wallet</StructuredListCell>
+              <StructuredListCell>$75,000</StructuredListCell>
+              <StructuredListCell>
+                Includes deployment of a white-label wallet for your custom
+                blockchain. Pricing varies based on customization and features.
+                Contact us for a quote.
+              </StructuredListCell>
+            </StructuredListRow>
+            <StructuredListRow>
+              <StructuredListCell noWrap>Bridge</StructuredListCell>
+              <StructuredListCell>$75,000</StructuredListCell>
+              <StructuredListCell>
+                Includes deployment of a secure asset transfer bridge between
+                your custom blockchain and Ethereum. Our team will help you
+                configure the bridge and ensure secure asset transfers.
+              </StructuredListCell>
+            </StructuredListRow>
+            <StructuredListRow>
+              <StructuredListCell noWrap>Indexing & Oracles</StructuredListCell>
+              <StructuredListCell>Contact Us</StructuredListCell>
+              <StructuredListCell>
+                Comprehensive indexing for efficient data retrieval and reliable
+                oracles for accurate external data integration. Contact us for
+                pricing and availability.
+              </StructuredListCell>
+            </StructuredListRow>
+          </StructuredListBody>
+        </StructuredList>
       </Column>
     </Row>
   </Grid>
