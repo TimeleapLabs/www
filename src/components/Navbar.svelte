@@ -49,7 +49,7 @@
 >
   <span slot="platform" class="logo">
     <ImageLoader
-      src="/images/tl.{$theme}.svg"
+      src="/images/tl.{$theme || 'white'}.svg"
       alt="Timeleap"
       aspectRatio="1x1"
     />

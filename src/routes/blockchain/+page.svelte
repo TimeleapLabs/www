@@ -5,9 +5,9 @@
   import { Button, Content } from "carbon-components-svelte";
 
   import { ArrowDown, ArrowRight } from "carbon-icons-svelte";
-  import { LogoGithub } from "carbon-icons-svelte";
+  import { Launch } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
-  import { Link, OutboundLink } from "carbon-components-svelte";
+  import { Link } from "carbon-components-svelte";
   import Article from "src/components/Article.svelte";
 
   import {
@@ -33,6 +33,7 @@
 <DefaultTags
   description="Timeleap Blockchain-as-a-Service (BaaS) offers a fully managed solution for deploying custom EVM blockchains at scale. With Timeleap, you get more than just a blockchain platform; you gain access to a suite of optional components designed to enhance your blockchain experience."
   title="Kenshi — Blockchain-as-a-Service"
+  image="/images/og/baas.png"
 />
 
 <!-- Hero -->
@@ -65,6 +66,14 @@
           </div>
 
           <div class="buttons">
+            <Button
+              href="https://devnet.timeleap.swiss"
+              icon={Launch}
+              kind="tertiary"
+              target="_blank"
+            >
+              Try the Devnet
+            </Button>
             <Button href="#contact" on:click={goToContact} icon={ArrowDown}>
               Request Free Consultation
             </Button>
