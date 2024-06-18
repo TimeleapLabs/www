@@ -153,16 +153,6 @@
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">~128 Gb</code>
-            <ExpressiveHeading size={3}>
-              Validator Disk Size (100M txns)
-            </ExpressiveHeading>
-          </div>
-        </Tile>
-      </Column>
-      <Column lg={4}>
-        <Tile>
-          <div class="scale">
             <code class="numeric">EVM</code>
             <ExpressiveHeading size={3}>
               Full EVM Compatibility
