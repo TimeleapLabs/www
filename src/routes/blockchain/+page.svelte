@@ -127,7 +127,7 @@
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">+6,000</code>
+            <code class="numeric">+12,500</code>
             <ExpressiveHeading size={3}>
               Transactions per Second
             </ExpressiveHeading>
@@ -137,16 +137,16 @@
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">0s</code>
-            <ExpressiveHeading size={3}>Time to Finality</ExpressiveHeading>
+            <code class="numeric">~0.2s</code>
+            <ExpressiveHeading size={3}>Average Block Time</ExpressiveHeading>
           </div>
         </Tile>
       </Column>
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">~2.4s</code>
-            <ExpressiveHeading size={3}>Average Block Time</ExpressiveHeading>
+            <code class="numeric">0.38s</code>
+            <ExpressiveHeading size={3}>Time to Finality</ExpressiveHeading>
           </div>
         </Tile>
       </Column>
