@@ -145,7 +145,7 @@
       <Column lg={4}>
         <Tile>
           <div class="scale">
-            <code class="numeric">0.38s</code>
+            <code class="numeric">~0.38s</code>
             <ExpressiveHeading size={3}>Time to Finality</ExpressiveHeading>
           </div>
         </Tile>
