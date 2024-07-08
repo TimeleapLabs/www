@@ -107,6 +107,12 @@ const options = {
       label: "Ethereum",
       rpcUrl: "https://eth.llamarpc.com",
     },
+    {
+      id: "0x157b",
+      token: "TLP",
+      label: "Timeleap Devnet",
+      rpcUrl: "https://devnet.timeleap.swiss/rpc",
+    },
   ],
   wallets: [walletConnect, injected, uauth],
 };
