@@ -42,6 +42,9 @@
     broker.onopen = () => {
       console.log("Connected to broker");
     };
+    broker.onclose = () => {
+      console.log("Disconnected from broker");
+    };
     broker.onmessage = async (event) => {
       const sia = new Sia();
       const arrayBuffer = await event.data.arrayBuffer();
