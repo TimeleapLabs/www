@@ -1,15 +1,22 @@
 <script>
   import Discord from "../icons/Discord.svelte";
+  import Github from "../icons/Github.svelte";
+  import Heart from "../icons/Heart.svelte";
+  import LinkedIn from "../icons/LinkedIn.svelte";
+  import Reddit from "../icons/Reddit.svelte";
   import Telegram from "../icons/Telegram.svelte";
   import Twitter from "../icons/Twitter.svelte";
-  import Github from "../icons/Github.svelte";
-  import Reddit from "../icons/Reddit.svelte";
-  import LinkedIn from "../icons/LinkedIn.svelte";
-  import Heart from "../icons/Heart.svelte";
 
-  import { Link, Tile, Button } from "carbon-components-svelte";
-  import { Grid, Column, Row } from "carbon-components-svelte";
-  import { UnorderedList, ListItem } from "carbon-components-svelte";
+  import {
+    Button,
+    Column,
+    Grid,
+    Link,
+    ListItem,
+    Row,
+    Tile,
+    UnorderedList,
+  } from "carbon-components-svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
 
@@ -45,7 +52,7 @@
             <Column>
               <Button
                 kind="ghost"
-                href="https://discord.gg/KenshiTech"
+                href="https://discord.com/invite/timeleap"
                 target="_blank"
                 icon={Discord}
               >
