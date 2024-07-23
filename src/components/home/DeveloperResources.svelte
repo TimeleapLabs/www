@@ -1,10 +1,17 @@
 <script>
-  import { Grid, Row, Column } from "carbon-components-svelte";
+  import { Column, Grid, Row } from "carbon-components-svelte";
   import ExpressiveHeading from "../carbon/ExpressiveHeading.svelte";
   import CardButton from "../CardButton.svelte";
 
-  import { Book, LogoGithub, Blog, Forum } from "carbon-icons-svelte";
-  import { LogoMedium, LogoNpm, LogoDiscord } from "carbon-icons-svelte";
+  import {
+    Blog,
+    Book,
+    Forum,
+    LogoDiscord,
+    LogoGithub,
+    LogoMedium,
+    LogoNpm,
+  } from "carbon-icons-svelte";
 
   import Telegram from "src/icons/Telegram.svelte";
 </script>
@@ -86,7 +93,7 @@
           </Column>
           <Column lg={5} md={4} sm={2}>
             <CardButton
-              href="https://discord.gg/KenshiTech"
+              href="https://discord.com/invite/timeleap"
               icon={LogoDiscord}
               title="Discord"
               description="Join Kenshi Discord server to discuss the tech or get help with the products."

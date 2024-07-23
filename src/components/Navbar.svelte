@@ -1,33 +1,33 @@
 <script>
   import {
+    ClickableTile,
+    Column,
+    Grid,
     Header,
-    HeaderUtilities,
     HeaderAction,
-    HeaderPanelLinks,
-    HeaderPanelDivider,
-    HeaderPanelLink,
     HeaderNav,
     HeaderNavItem,
+    HeaderPanelDivider,
+    HeaderPanelLink,
+    HeaderPanelLinks,
+    HeaderUtilities,
+    ImageLoader,
+    Link,
+    Row,
     SideNav,
     SideNavItems,
+    SideNavLink,
     SideNavMenu,
     SideNavMenuItem,
-    SideNavLink,
     SkipToContent,
-    Grid,
-    Column,
-    Row,
-    ClickableTile,
-    Link,
-    ImageLoader,
   } from "carbon-components-svelte";
 
   import FullWidthHeaderNavMenu from "src/components/carbon/FullWidthHeaderNavMenu.svelte";
-  import VerticalTabs from "src/components/carbon/VerticalTabs.svelte";
   import ThemeSwitcher from "src/components/carbon/ThemeSwitcher.svelte";
+  import VerticalTabs from "src/components/carbon/VerticalTabs.svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
 
-  import { UserAvatarFilledAlt, Launch } from "carbon-icons-svelte";
+  import { Launch, UserAvatarFilledAlt } from "carbon-icons-svelte";
   import { theme } from "src/stores/theme";
 
   let documentTheme = $theme || "white"; // "white" | "g10" | "g80" | "g90" | "g100"
@@ -400,7 +400,7 @@
               </Column>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile
-                  href="https://discord.gg/KenshiTech"
+                  href="https://discord.com/invite/timeleap"
                   target="_blank"
                 >
                   <h4 class="external"><span>Discord</span><Launch /></h4>
@@ -485,7 +485,7 @@
               </Column>
               <Column lg={4} md={6} sm={12}>
                 <ClickableTile
-                  href="https://discord.gg/KenshiTech"
+                  href="https://discord.com/invite/timeleap"
                   target="_blank"
                 >
                   <h4 class="external"><span>Discord</span><Launch /></h4>
@@ -613,7 +613,7 @@
       />
       <SideNavMenuItem href="/blog" text="Blog" />
       <SideNavMenuItem
-        href="https://discord.gg/KenshiTech"
+        href="https://discord.com/invite/timeleap"
         text="Discord"
         target="_blank"
       />
@@ -640,7 +640,7 @@
         target="_blank"
       />
       <SideNavMenuItem
-        href="https://discord.gg/KenshiTech"
+        href="https://discord.com/invite/timeleap"
         text="Discord"
         target="_blank"
       />
