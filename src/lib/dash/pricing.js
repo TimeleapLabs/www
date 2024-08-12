@@ -25,4 +25,4 @@ export const getOraclePrice = (tier, calls, duration) => {
 };
 
 export const getGraphQLPrice = (requests) =>
-  Math.round((requests / 1e6) * 149.95 * 100) / 100;
+  Math.round((requests / 1e6) * 199.95 * 100) / 100;
