@@ -24,7 +24,7 @@ const options = {
   appMetadata: {
     name: appName,
     description: "Timeleap dApp",
-    icon: "/images/tl.svg",
+    icon: "/images/tl.white.svg",
   },
   accountCenter: {
     desktop: {
