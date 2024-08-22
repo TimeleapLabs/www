@@ -48,12 +48,23 @@
     broker.onmessage = async (event) => {
       const sia = new Sia();
       const arrayBuffer = await event.data.arrayBuffer();
+
+      console.log("Received message", arrayBuffer.length);
+
       sia.setContent(new Uint8Array(arrayBuffer));
-      sia.readByteArrayN(1);
+      sia.readByteArrayN(1); // read out the opcode
       const uuid = sia.readByteArray8();
-      const signature = sia.readByteArray8();
+      const error = sia.readUInt64();
+
+      if (error) {
+        console.log("Error", error);
+        generating = false;
+        // TODO: Show error message
+        toast.push(`Error generating image: ${error}`, { theme: "error" });
+        return;
+      }
+
       const image = sia.readByteArray32();
-      console.log({ uuid, signature });
       const blob = new Blob([image], { type: "image/png" });
       const url = URL.createObjectURL(blob);
       imageEl.src = url;
@@ -117,7 +128,7 @@
       .addByteArrayN([13])
       .addByteArray8(uuidv7obj().bytes)
       .addByteArray8(uuidv7obj().bytes) // We don't care about the signature for now
-      .addString8(tx.hash) // We don't care about the tx hash for now
+      .addString8(tx.hash)
       .addString8("Unchained.AI.TextToImage")
       .addString16(prompt)
       .addString16("")
