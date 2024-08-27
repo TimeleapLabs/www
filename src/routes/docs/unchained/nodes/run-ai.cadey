@@ -1,0 +1,125 @@
+[heading :size 1 Run a Local AI Node]
+
+To run an AI node locally, you need to have the Unchained client installed. You'll
+also need to have installed the Unchained AI plugin and the additional Broker
+dependencies.
+
+[heading :size 2 Create a Project Directory]
+
+Create a new directory for your Unchained AI testnet and navigate to it:
+
+[code
+  mkdir unchained-ai
+  cd unchained-ai
+]
+
+[heading :size 2 Run the Unchained Broker]
+
+First, generate a certificate for the broker by running the following command:
+
+[code
+  mkcert -install
+  mkcert localhost
+]
+
+Then, create a configuration file for the broker named `broker.yaml` with the
+following content:
+
+[code
+system:
+  log: info
+  name: YOUR_BROKER_NAME
+
+network:
+  bind: 127.0.0.1:9123
+  certFile: localhost.pem
+  keyFile: localhost-key.pem
+
+rpc:
+  - name: arbitrumSepolia
+    nodes:
+      - https://sepolia-rollup.arbitrum.io/rpc
+]
+
+Finally, run the broker with the following command:
+
+[code
+  unchained broker -c broker.yaml -a
+]
+
+[alert warning Remove the -a flag if you already have a secrets file]
+
+[heading :size 2 Run the Unchained AI Plugin]
+
+Navigate to the directory where you cloned the `py-unchained-ai` repository and run
+the following command:
+
+[code
+  source venv/bin/activate
+  python src/main.py us --file /tmp/unchained.sock
+]
+
+[heading :size 2 Run the Unchained Worker]
+
+Create a configuration file for the worker named `worker.yaml` with the following
+content:
+
+[code
+system:
+  log: info
+  name: YOUR_WORKER_NAME
+
+network:
+  brokerUri: wss://localhost:9123
+
+rpc:
+  - name: arbitrumSepolia
+    nodes:
+      - https://sepolia-rollup.arbitrum.io/rpc
+
+functions:
+  - name: Unchained.AI.TextToImage
+    endpoint: /tmp/unchained.sock
+    type: unix
+
+plugins:
+  uniswap:
+    schedule:
+]
+
+Finally, run the worker with the following command:
+
+[code
+  unchained worker -c worker.yaml
+]
+
+[heading :size 2 Connect with the Unchained GUI]
+
+Head over to the [link /unchained/ai Unchained GUI], connect your wallet, and start
+using the AI features.
+
+[heading :size 2 Additional Notes]
+
+[heading :size 3 Available AI Models]
+
+The following AI models are available for use with the Unchained AI plugin:
+
+[list
+  [: segmind/SSD-1B]
+  [: Corcelio/mobius]
+  [: segmind/Segmind-Vega]
+  [: Corcelio/openvision]
+  [: SimianLuo/LCM_Dreamshaper_v7]
+  [: OEvortex/PixelGen]
+  [: fluently/Fluently-XL-Final]
+  [: alvdansen/littletinies]
+  [: cagliostrolab/animagine-xl-3.1]
+  [: SG161222/Realistic_Vision_V6.0_B1_noVAE]
+  [: Lykon/dreamshaper-xl-v2-turbo]
+  [: UnfilteredAI/NSFW-gen-v2.1]
+]
+
+Please note that the availability of AI models may change over time. When using a
+model for the first time, it may take a while to download the model files. You can
+follow the progress in the logs of the AI plugin. Make sure to have enough disk space
+available for the downloaded model files.

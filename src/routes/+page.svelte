@@ -68,7 +68,7 @@
       <Column lg={6} md={5} sm={4}>
         <div
           class="hero-image contrast noise"
-          style="background-image: url(/images/backgrounds/three-cubes.jpg);"
+          style="background-image: url(/images/backgrounds/baas.jpg);"
         />
       </Column>
       <Column lg={3} md={3} sm={4}>

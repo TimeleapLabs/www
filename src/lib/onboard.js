@@ -24,7 +24,7 @@ const options = {
   appMetadata: {
     name: appName,
     description: "Timeleap dApp",
-    icon: "/images/tl.svg",
+    icon: "/images/tl.white.svg",
   },
   accountCenter: {
     desktop: {
@@ -106,6 +106,12 @@ const options = {
       token: "ETH",
       label: "Ethereum",
       rpcUrl: "https://eth.llamarpc.com",
+    },
+    {
+      id: "0x157b",
+      token: "TLP",
+      label: "Timeleap Devnet",
+      rpcUrl: "https://devnet.timeleap.swiss/rpc",
     },
   ],
   wallets: [walletConnect, injected, uauth],
