@@ -81,6 +81,10 @@ functions:
   - name: Unchained.AI.TextToImage
     endpoint: /tmp/unchained.sock
     type: unix
+
+plugins:
+  uniswap:
+    schedule:
 ]
 
 Finally, run the worker with the following command:
