@@ -44,8 +44,10 @@ rpc:
 Finally, run the broker with the following command:
 
 [code
-  unchained broker -c broker.yaml
+  unchained broker -c broker.yaml -a
 ]
+
+[alert warning Remove the -a flag if you already have a secrets file]
 
 [heading :size 2 Run the Unchained AI Plugin]
 
