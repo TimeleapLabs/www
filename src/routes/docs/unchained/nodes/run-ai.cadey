@@ -4,6 +4,15 @@ To run an AI node locally, you need to have the Unchained client installed. You'
 also need to have installed the Unchained AI plugin and the additional Broker
 dependencies.
 
+[heading :size 2 Create a Project Directory]
+
+Create a new directory for your Unchained AI testnet and navigate to it:
+
+[code
+  mkdir unchained-ai
+  cd unchained-ai
+]
+
 [heading :size 2 Run the Unchained Broker]
 
 First, generate a certificate for the broker by running the following command:
