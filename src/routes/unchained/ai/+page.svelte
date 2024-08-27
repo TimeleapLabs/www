@@ -24,7 +24,7 @@
   import { onboard } from "$lib/onboard";
   import { ethers } from "ethers";
 
-  const brokerUrl = "wss://localhost:9123/0.13.0-ai-preview";
+  const brokerUrl = "wss://localhost:9123/0.13.0";
 
   let broker;
   let imageEl;
