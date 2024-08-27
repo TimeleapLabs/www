@@ -1,7 +1,8 @@
-[heading :size 1 Installing the Unchained Client]
+[heading :size 1 Install Unchained]
 
-Installation with Docker or running the Unchained Go client directly are
-currently the only officially supported ways of installing Unchained.
+[heading :size 2 Installing the Unchained Client]
+
+[alert info This page is under construction]
 
 The following operating systems are [italic officially] supported:
 
@@ -13,32 +14,14 @@ The following operating systems are [italic officially] supported:
 
 [alert warning Always make a backup of your secret keys before an update]
 
-[heading :size 2 Installation Script]
+[heading :size 3 Install Script]
 
-[heading :size 3 Installation with Docker]
-
-If you'd like to run Unchained with Docker, you can run the following command in
-a new empty directory:
-
-[code curl https://timeleap.swiss/unchained/docker | sh]
-
-Run again in the same directory and follow the instructions to update.
-
-[heading :size 3 Direct Installation]
-
-For advanced use cases it is better to install and run the Unchained client
-directly. To do so, run the following command:
+The easiest way to install the Unchained client is by using the install script. To
+do so, run the following command in your terminal:
 
 [code curl https://timeleap.swiss/unchained/install | sh]
 
-[heading :size 2 Installation with Docker]
-
-Head to the Unchained
-[link https://github.com/TimeleapLabs/unchained/releases releases page] and grab
-the latest release for Docker. Unzip the release file and switch to the newly
-created directory.
-
-[heading :size 2 Direct Installation]
+[heading :size 3 Manual Installation]
 
 Head to the Unchained
 [link https://github.com/TimeleapLabs/unchained/releases releases page] and grab
@@ -46,3 +29,36 @@ the latest release for your OS and CPU architecture. Move the binary file to an
 appropriate place and make it executable:
 
 [code chmod +x PATH_TO_UNCHAINED]
+
+[heading :size 2 Installing the Unchained AI Plugin]
+
+To install the Unchained AI plugin, you need to have the Unchained client installed.
+You'll also need to have the following dependencies installed:
+
+[list
+  [: [bold pyenv]: See installation instructions [link https://github.com/pyenv/pyenv here].]
+  [: [bold Git]: See installation instructions [link https://git-scm.com/downloads here].]
+]
+
+Once you have the dependencies installed, run the following command in your terminal:
+
+[code git clone https://github.com/TimeleapLabs/py-unchained-ai.git]
+
+Then run the following commands one by one:
+
+[code
+  cd py-unchained-ai
+  pyenv install 3.8.19
+  pyenv local 3.8.19
+  python -m venv venv
+  source venv/bin/activate
+  pip install -r requirements.txt]
+
+[heading :size 2 Additional dependencies]
+
+To connect from the Unchained GUI to the Unchained Broker when testing locally, you
+need to install the following dependencies:
+
+[list
+  [: [bold mkcert]: See installation instructions [link https://github.com/FiloSottile/mkcert here].]
+]
