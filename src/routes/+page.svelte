@@ -234,7 +234,7 @@
               <Button href="/unchained" icon={Blockchain}>Product Page</Button>
               <Button
                 target="_blank"
-                href="https://github.com/TimeleapLabs/unchained/blob/master/quickstart.md"
+                href="/docs/unchained/nodes"
                 icon={Play}
                 kind={"secondary"}
               >

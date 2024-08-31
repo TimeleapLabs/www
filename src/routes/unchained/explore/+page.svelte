@@ -241,11 +241,7 @@
           <div class="buttons">
             <Button href="/docs/unchained" icon={Book}>Learn More</Button>
             <Button href="/unchained/pos" icon={Chemistry}>PoS Manager</Button>
-            <Button
-              target="_blank"
-              href="https://github.com/TimeleapLabs/unchained/blob/master/quickstart.md"
-              icon={Play}
-            >
+            <Button target="_blank" href="/docs/unchained/nodes" icon={Play}>
               Run a Node
             </Button>
           </div>
