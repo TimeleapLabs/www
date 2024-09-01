@@ -10,6 +10,8 @@
   import { ProgressBar } from "carbon-components-svelte";
   import { wallet } from "src/stores/wallet";
   import { TextInput } from "carbon-components-svelte";
+  import { Slider } from "carbon-components-svelte";
+  import { Select, SelectItem } from "carbon-components-svelte";
 
   import ExpressiveHeading from "src/components/carbon/ExpressiveHeading.svelte";
   import DeveloperResources from "src/components/home/DeveloperResources.svelte";
@@ -34,15 +36,35 @@
   let showAdvanced = false;
   let model = "SimianLuo/LCM_Dreamshaper_v7";
   let loraWeights = "";
+  let connected = false;
+  let steps = 16;
 
   const payTo = "0xA2dEc4f8089f89F426e6beB76B555f3Cf9E7f499";
+
+  const models = [
+    "segmind/SSD-1B",
+    "Corcelio/mobius",
+    "segmind/Segmind-Vega",
+    "Corcelio/openvision",
+    "SimianLuo/LCM_Dreamshaper_v7",
+    "OEvortex/PixelGen",
+    "black-forest-labs/FLUX.1-schnell",
+    "fluently/Fluently-XL-Final",
+    "alvdansen/littletinies",
+    "cagliostrolab/animagine-xl-3.1",
+    "SG161222/Realistic_Vision_V6.0_B1_noVAE",
+    "Lykon/dreamshaper-xl-v2-turbo",
+    "UnfilteredAI/NSFW-gen-v2.1",
+  ];
 
   const connect = () => {
     broker = new WebSocket(brokerUrl);
     broker.onopen = () => {
+      connected = true;
       console.log("Connected to broker");
     };
     broker.onclose = () => {
+      connected = false;
       console.log("Disconnected from broker");
     };
     broker.onmessage = async (event) => {
@@ -134,7 +156,7 @@
       .addString16("")
       .addString8(model)
       .addString8(loraWeights)
-      .addUInt8(16).content;
+      .addUInt8(steps).content;
 
     broker.send(payload);
   };
@@ -248,7 +270,11 @@
     {#if showAdvanced}
       <Row>
         <Column>
-          <TextInput labelText="Model" placeholder="Model" bind:value={model} />
+          <Select labelText="Carbon theme" bind:selected={model}>
+            {#each models as model}
+              <SelectItem value={model}>{model}</SelectItem>
+            {/each}
+          </Select>
         </Column>
         <Column>
           <TextInput
@@ -257,11 +283,18 @@
             bind:value={loraWeights}
           />
         </Column>
+        <Column>
+          <Slider labelText="Steps" min={8} max={40} bind:value={steps} />
+        </Column>
       </Row>
     {/if}
     <Row>
       <Column>
-        <Button icon={AiGenerate} on:click={generate} disabled={generating}>
+        <Button
+          icon={AiGenerate}
+          on:click={generate}
+          disabled={!connected || generating}
+        >
           Generate
         </Button>
         <Button on:click={() => (showAdvanced = !showAdvanced)} icon={Tuning}>
