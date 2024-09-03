@@ -23,7 +23,7 @@ export async function POST({ request }) {
   }
 
   const msg = {
-    to: "admin@kenshi.io",
+    to: "inquiries@kenshi.io",
     from: "noreply@kenshi.io",
     subject,
     text: [
