@@ -23,8 +23,8 @@ export async function POST({ request }) {
   }
 
   const msg = {
-    to: "inquiries@kenshi.io",
-    from: "noreply@kenshi.io",
+    to: "inquiries@timeleap.swiss",
+    from: "noreply@timeleap.swiss",
     subject,
     text: [
       `Subject: ${subject}`,
