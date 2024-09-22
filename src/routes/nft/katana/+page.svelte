@@ -145,7 +145,7 @@
 </script>
 
 <DefaultTags
-  title="Kenshi — Katana NFT"
+  title="Timeleap — Katana NFT"
   description={[
     "In the age of the Shogunate, the Kenshi were the revered guardians of",
     "balance, each trained in the ancient arts of combat and strategy.",

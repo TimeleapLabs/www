@@ -18,7 +18,7 @@
 </script>
 
 <DefaultTags
-  title="Kenshi — Oracle Network"
+  title="Timeleap — Oracle Network"
   description="Unlock the power of blockchain on your IoT devices with Kenshi's Blockchain IoT SDK. Effortlessly process blockchain events on popular platforms like Arduino and ESP32. Discover an unprecedented level of integration and efficiency."
 />
 

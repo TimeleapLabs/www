@@ -32,7 +32,7 @@
 
 <DefaultTags
   description="Timeleap Blockchain-as-a-Service (BaaS) offers a fully managed solution for deploying custom EVM blockchains at scale. With Timeleap, you get more than just a blockchain platform; you gain access to a suite of optional components designed to enhance your blockchain experience."
-  title="Kenshi — Blockchain-as-a-Service"
+  title="Timeleap — Blockchain-as-a-Service"
   image="/images/og/baas.png"
 />
 

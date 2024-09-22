@@ -27,7 +27,7 @@
 
 <DefaultTags
   description="Timeleap Hardware Security Module (HSM) is a secure and tamper-resistant device that provides top-notch security for your sensitive data. With Timeleap HSM, you can securely store private keys, manage cryptographic operations, and protect your assets, data or API keys from unauthorized access."
-  title="Kenshi — Hardware Security Module"
+  title="Timeleap — Hardware Security Module"
 />
 
 <!-- Hero -->

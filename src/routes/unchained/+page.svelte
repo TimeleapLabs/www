@@ -1,14 +1,15 @@
 <script>
   import Footer from "src/components/Footer.svelte";
 
-  import { Grid, Row, Column, Tile } from "carbon-components-svelte";
+  import { Grid, Row, Column } from "carbon-components-svelte";
   import { Button, Content } from "carbon-components-svelte";
 
-  import { ArrowUpRight, ArrowRight } from "carbon-icons-svelte";
+  import { ArrowRight } from "carbon-icons-svelte";
   import { LogoGithub } from "carbon-icons-svelte";
   import { Accordion, AccordionItem } from "carbon-components-svelte";
-  import { Link, OutboundLink } from "carbon-components-svelte";
+  import { Link } from "carbon-components-svelte";
   import Article from "src/components/Article.svelte";
+  import DefaultTags from "src/components/seo/DefaultTags.svelte";
 
   import {
     StructuredList,
@@ -24,6 +25,12 @@
   import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
   import MailingList from "src/components/MailingList.svelte";
 </script>
+
+<DefaultTags
+  description="Unchained is a decentralized, federated network for data validation. Unchained nodes work to validate data together and are rewarded in KNS tokens."
+  title="Timeleap — Unchained"
+  image="/images/social.unchained.png"
+/>
 
 <!-- Hero -->
 

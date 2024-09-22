@@ -27,7 +27,7 @@
 </script>
 
 <DefaultTags
-  title="Kenshi — SolidQuery"
+  title="Timeleap — SolidQuery"
   description="The ultimate tool for generating custom, indexed, and decentralized databases from YAML schemas. Transform your data architecture and leverage the power of blockchain technology for increased transparency, security, and scalability in your data management. Try SolidQuery today and discover a whole new way of handling data."
 />
 <!-- Hero -->

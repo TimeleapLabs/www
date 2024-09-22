@@ -22,7 +22,7 @@
 </script>
 
 <DefaultTags
-  title="Kenshi — Oracle Network"
+  title="Timeleap — Oracle Network"
   description="Experience an advanced level of customization with Kenshi's Oracle Network. Design and deploy your custom oracles on EVM-based blockchain networks, ensuring a seamless and personalized experience. Enhance your platform's security and trust with our robust solutions."
 />
 <!-- Hero -->

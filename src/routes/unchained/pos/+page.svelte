@@ -185,8 +185,8 @@
 </script>
 
 <DefaultTags
-  description="Unchained is a decentralized, peer-to-peer network for data validation. Unchained nodes work to validate data together and are rewarded in KNS tokens."
-  title="Kenshi — Unchained"
+  description="Unchained is a decentralized, federated network for data validation. Unchained nodes work to validate data together and are rewarded in KNS tokens."
+  title="Timeleap — Unchained"
   image="/images/social.unchained.png"
 />
 

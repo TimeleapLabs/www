@@ -19,6 +19,7 @@
   import AdaptiveProductIcon from "src/components/AdaptiveProductIcon.svelte";
   import MailingList from "src/components/MailingList.svelte";
   import ConnectButton from "src/components/ConnectButton.svelte";
+  import DefaultTags from "src/components/seo/DefaultTags.svelte";
 
   import { Sia } from "sializer";
   import { uuidv7obj } from "uuidv7";
@@ -31,6 +32,7 @@
   let broker;
   let imageEl;
   let prompt = "A beautiful sunset over the ocean";
+  let negativePrompt = "";
   let hasImage = false;
   let generating = false;
   let showAdvanced = false;
@@ -153,7 +155,7 @@
       .addString8(tx.hash)
       .addString8("Unchained.AI.TextToImage")
       .addString16(prompt)
-      .addString16("")
+      .addString16(negativePrompt || "")
       .addString8(model)
       .addString8(loraWeights)
       .addUInt8(steps).content;
@@ -165,6 +167,12 @@
     connect();
   });
 </script>
+
+<DefaultTags
+  description="Unchained is a decentralized, federated network for data validation. Unchained nodes work to validate data together and are rewarded in KNS tokens."
+  title="Timeleap — Unchained"
+  image="/images/social.unchained.png"
+/>
 
 <!-- Hero -->
 
@@ -268,6 +276,15 @@
       </Column>
     </Row>
     {#if showAdvanced}
+      <Row>
+        <Column>
+          <TextInput
+            labelText="Negative Prompt"
+            placeholder="Enter a negative prompt to exclude from the image"
+            bind:value={negativePrompt}
+          />
+        </Column>
+      </Row>
       <Row>
         <Column>
           <Select labelText="Carbon theme" bind:selected={model}>

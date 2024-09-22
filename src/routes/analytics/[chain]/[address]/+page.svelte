@@ -342,7 +342,7 @@
 
 <DefaultTags
   description={metadata.summary}
-  title="Kenshi — Analytics — {metadata.name}"
+  title="Timeleap — Analytics — {metadata.name}"
   image="/images/social.analytics.png"
 />
 

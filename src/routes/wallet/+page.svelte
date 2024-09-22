@@ -30,7 +30,7 @@
 
 <DefaultTags
   description="Timeleap Wallet is a white-label and customizable wallet solution for blockchain projects. It is designed to be easy to use, secure, and scalable. Project-specific branding, custom features, and integrations with third-party services can be added to Timeleap Wallet to create a unique and tailored user experience."
-  title="Kenshi — Wallet as a Service"
+  title="Timeleap — Wallet as a Service"
 />
 
 <!-- Hero -->

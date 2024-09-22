@@ -24,7 +24,7 @@
 </script>
 
 <DefaultTags
-  title="Kenshi — Deep Index"
+  title="Timeleap — Deep Index"
   description="Unlock the power of blockchain data with Kenshi's Deep Index. Effortlessly manage, index, and analyze blockchain events. Explore our advanced features and get started today."
 />
 
