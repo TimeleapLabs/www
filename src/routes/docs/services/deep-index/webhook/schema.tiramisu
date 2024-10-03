@@ -1,0 +1,43 @@
+heading { level = 1, R-API Schema }
+
+Below you can find the Timeleap Reverse-API request body schema.
+
+table {
+  header = [ Field, Type, Description ],
+  row = [ entry, Object, The parsed log entry received from the blockchain ],
+  row = [ entry._id, String, String ID of this record in the Timeleap database cluster ],
+  row = [ entry.log, Object, Information about the event log ],
+  row = [ entry.log.index, String, Hex representation of the log index ],
+  row = [ entry.transaction, Object, Information about the transaction ],
+  row = [ entry.transaction.index, String, Hex representation of the transaction index ],
+  row = [ entry.transaction.hash, String, Hex representation of the transaction hash ],
+  row = [ entry.block, Object, Information about the block ],
+  row = [ entry.block.address, String, Hex representation of the contract address emitting the event ],
+  row = [ entry.block.hash, String, Hex representation of the block hash ],
+  row = [ entry.block.number, Number, The block number ],
+  row = [ entry.event, Object, Information about the emitted event ],
+  row = [ entry.event.name, String, Name of the emitted event ],
+  row = [ entry.event.signature, String, Signature of the emitted event ],
+  row = [ entry.event.args, Object, Parsed arguments for the emitted event ],
+  row = [ entry.event.args.$, String, Hex value of an argument where $ is the argument name ],
+  row = [ entry.createdAt, String, ISO string of the date when this record was created in the Timeleap database cluster ],
+  row = [ taskId, String, The "taskId" associated with your event listener task ],
+  row = [ blockchain, String, Name of the chain, list {
+    "ethereum-mainnet",
+    "ethereum-goerli",
+    "arbitrum-mainnet",
+    "arbitrum-goerli",
+    "avalanche-mainnet",
+    "avalanche-fuji",
+    "binance-mainnet",
+    "binance-testnet",
+    "polygon-mainnet",
+    "polygon-mumbai",
+    "fantom-mainnet",
+    "fantom-testnet",
+    "aurora-mainnet",
+    "aurora-testnet",
+    "bitgert-mainnet",
+    "bitgert-testnet"
+  }]
+}

@@ -1,0 +1,55 @@
+heading { level = 1, Security Considerations }
+
+There are a few security considerations and best practices to take into account when
+creating a custom oracle and deploying it to the Kenshi Oracle Network. Although not
+required, they are highly recommended.
+
+heading { level = 2, Data Source Verification }
+
+You should always verify the sender address of the caller to your callback function.
+If it is not the address of your oracle or an address you do not trust, you must revert
+the transaction. To view the sender address of your Kenshi Oracle, head to the Kenshi
+Oracle Network dashboard, select your oracle, and view the address in the "Add Credit"
+tab.
+
+heading { level = 2, Gas }
+
+Gas fees stored in associated gas wallets are not insured. Kenshi protects the stored
+gas on a best effort basis. Addresses are derived from a common BIP39 seed, stored in
+a secret manager for API usage. Make sure you do not supply more gas than your oracle 
+needs. You can always check the balance of this address in a call to your oracle endpoint
+and supply more gas if needed.
+
+heading { level = 2, Idempotency }
+
+Kenshi caches requests to avoid sending an event for processing twice and to prevent delivering it
+to your smart contract twice. In case of retries, Kenshi re-sends events to your endpoint
+to get fresh data (this is useful if you're checking for market data, weather data, or any
+data that changes frequently).
+
+While Kenshi tries its best to prevent double deliveries, you must ensure your smart contracts
+are link { https://en.wikipedia.org/wiki/Idempotence, idempotent }. You can assign a unique "requestId"
+or "nonce" to each request on the blockchain and revert a transaction if it tries to re-deliver
+results for an already fulfilled request.
+
+heading { level = 2, Averaging }
+
+It is quite easy to manipulate certain types of data. For example, if you are working with market
+data, an attacker could place an order when the market conditions are in their favor. To prevent
+such attacks, you can employ an averaging mechanism that best fits your use case (for example, use
+a one-hour average or percentile of an asset's price, instead of its spot price).
+
+heading { level = 2, Signature }
+
+Certain types of data are easily verifiable on the blockchain, such as randomness generated
+by a VRF. Other types of data, such as market data, sports, or weather are not as verifiable. However,
+it is easy to verify the sender of such data and ensure they are not manipulated after being 
+generated and verified by your oracle endpoint.
+You can use link { https://eips.ethereum.org/EIPS/eip-712, EIP712 } to sign and later verify them on
+the blockchain.
+
+heading { level = 2, Block confirmations }
+
+Choose an appropriate number for block confirmations if sensitive business logic or transfer of funds
+is involved. A transaction can revert, get reorganized, or get canceled before finality is reached.
+Learn more about finality link { https://academy.binance.com/en/glossary/finality, here }.

@@ -1,0 +1,34 @@
+
+heading { level = 1, R-API Examples }
+
+On this page you can find examples for link { #nodejs, alt = "Node.js" }, and link { #python, alt = "Python" }.
+
+heading { level = 2, Node.js }
+
+tabs {
+  tab {
+    title = Using Express,
+    alert { type = info-square, This example requires Node.js v14.8+ and the express npm package installed. },
+    alert { type = info, This example is also available on GitHub. },
+    code {
+      language = javascript,
+      source = static/examples/deep-index/r-api/node-express.js,
+      title = node-express.js
+    }
+  }
+}
+
+heading { level = 2, Python }
+
+tabs {
+  tab {
+    title = Using Flask,
+    alert { type = info-square, This example requires the flask Python package installed. },
+    alert { type = info, This example is also available on GitHub. },
+    code {
+      language = python,
+      source = static/examples/deep-index/r-api/flask.py,
+      title = flask.py
+    }
+  }
+}

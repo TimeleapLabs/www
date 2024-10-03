@@ -10,7 +10,7 @@ To run the Unchained Go client in different modes, you'll need the following
 hardware specs:
 
 [table
-  [:header  Resource          [: Worker (simple)] [: Worker (grid)]     Broker         [: Consumer (with Postgres)]]
+  [:header  Resource          [: Worker (simple)] [: Worker (AI)]      Broker         [: Consumer (with Postgres)]]
   [:row     [: Storage]       [: 10GiB]           [: 100GiB]           [: 10GiB]       [: 1TiB SSD] ]
   [:row     [: Memory]        [: 128MiB]          [: 16Gib]            [: 256MiB]      [: 16GiB]    ]
   [:row     [: CPU]
@@ -18,6 +18,11 @@ hardware specs:
                               [: 8 CPU Cores, AArch64 or AMD64]
                               [: 1 CPU Core, AArch64 or AMD64]
                               [: 8 CPU Cores, AArch64 or AMD64]                   ]
+  [:row     [: GPU]
+                              [: N/A]
+                              [: Nvidia, Vulcan, or Apple M-series with 24GB VRAM]
+                              [: N/A]
+                              [: N/A]                                            ]
   [:row     [: Network]       [: 1Mbps symmetric]
                               [: 100Mbps symmetric] 
                               [: 100Mbps symmetric]
@@ -28,7 +33,3 @@ Please note that the above values are the [italic minimum] recommended levels.
 As the network grows, the requirements for running nodes will change as well.
 Learn more about GiB vs GB [link https://simple.wikipedia.org/wiki/Gibibyte
 here].
-
-If you're planning to run a Worker node with AI capabilities, you'll need to
-have a powerful GPU. The requirements will be updated once AI support lands into
-Unchained.

@@ -1,6 +1,6 @@
 [heading R-API Schema]
 
-Below you can find the Kenshi Reverse-API request body schema.
+Below you can find the Timeleap Reverse-API request body schema.
 
 
 [table
@@ -10,7 +10,7 @@ Below you can find the Kenshi Reverse-API request body schema.
              [: The parsed log entry received from the blockchain]]
   [:row      [: entry._id]
              [: String]
-             [: String ID of this record in the Kenshi database cluster]]
+             [: String ID of this record in the Timeleap database cluster]]
   [:row      [: entry.log]
              [: Object]
              [: Information about the event log]]
@@ -55,7 +55,7 @@ Below you can find the Kenshi Reverse-API request body schema.
              [: Hex value of an argument where $ is the argument name]]
   [:row      [: entry.createdAt]
              [: String]
-             [: ISO string of the date when this record was created in the Kenshi database cluster]]
+             [: ISO string of the date when this record was created in the Timeleap database cluster]]
   [:row      [: taskId]
              [: String]
              [: The "taskId" associated with your event listener task]]

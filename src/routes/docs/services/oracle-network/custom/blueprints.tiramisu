@@ -1,0 +1,138 @@
+heading { level = 1, Blueprints }
+
+Below you can find a few sample oracles demonstrating how to develop custom oracles on
+top of the Kenshi Oracle Network.
+
+alert { type = warning, These examples are not production ready and are provided without any warranty. }
+
+heading { level = 2, Simple Oracle }
+
+The time oracle is one of the simplest oracles you can make. It might not do much, but it
+shows exactly how you can make your custom oracle.
+
+tabs {
+  tab {
+    title = Oracle,
+    alert { type = info, This example can be deployed to AWS Lambda. },
+    code {
+      language = javascript,
+      escape { static/examples/custom-oracles/time/oracle.js }
+    }
+  },
+  tab {
+    title = Smart contract,
+    code {
+      language = solidity,
+      escape { static/examples/custom-oracles/time/Time.sol }
+    }
+  }
+}
+
+heading { level = 2, Price Oracle }
+
+The following example shows how to get price data from link { https://coingecko.com, coingecko.com }.
+
+tabs {
+  tab {
+    title = Oracle,
+    alert { type = info,
+      This example can be deployed to AWS Lambda. It requires
+      ethers and node-fetch libraries to be installed.
+    },
+    code {
+      language = javascript,
+      escape { static/examples/custom-oracles/price/oracle.js }
+    }
+  },
+  tab {
+    title = Smart contract,
+    code {
+      language = solidity,
+      escape { static/examples/custom-oracles/price/Price.sol }
+    }
+  }
+}
+
+heading { level = 2, Weather Oracle }
+
+The following example shows how to get weather data from link { https://brightsky.dev, brightsky.dev }.
+
+tabs {
+  tab {
+    title = Oracle,
+    alert { type = info,
+      This example can be deployed to AWS Lambda. It requires
+      ethers and node-fetch libraries to be installed.
+    },
+    code {
+      language = javascript,
+      escape { static/examples/custom-oracles/weather/oracle.js }
+    }
+  },
+  tab {
+    title = Smart contract,
+    alert { type = info,
+      Solidity doesn't have support for floating point numbers. We multiply all floating
+      point numbers by 100 and turn them into whole numbers for a 0.01 precision.
+    },
+    code {
+      language = solidity,
+      escape { static/examples/custom-oracles/weather/Weather.sol }
+    }
+  }
+}
+
+heading { level = 2, Proof of Balance Oracle }
+
+The following example shows how to check if the user owns a specific amount of tokens
+or NFTs on another chain.
+
+tabs {
+  tab {
+    title = Oracle,
+    alert { type = info,
+      This example can be deployed to AWS Lambda. It requires
+      ethers library to be installed.
+    },
+    code {
+      language = javascript,
+      escape { static/examples/custom-oracles/balance/oracle.js }
+    }
+  },
+  tab {
+    title = Smart contract,
+    code {
+      language = solidity,
+      escape { static/examples/custom-oracles/balance/Balance.sol }
+    }
+  }
+}
+
+heading { level = 2, VRF Oracle }
+
+The following example shows how to create your own VRF oracle. This example uses the
+Kenshi VRF libraries, which implement draft 10 of the IETF ECVRF.
+
+tabs {
+  tab {
+    title = Oracle,
+    alert { type = info,
+      This example can be deployed to AWS Lambda. It requires
+      elliptic and @kenshi.io/node-ecvrf library to be installed.
+    },
+    code {
+      language = javascript,
+      escape { static/examples/custom-oracles/vrf/oracle.js }
+    }
+  },
+  tab {
+    title = Smart contract,
+    alert { type = info,
+      This example requires the @kenshi.io/vrf-consumer library.
+    },
+    code {
+      language = solidity,
+      escape { static/examples/custom-oracles/vrf/VRF.sol }
+    }
+  }
+}

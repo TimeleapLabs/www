@@ -1,0 +1,19 @@
+heading {FAQ}
+
+heading {level =  2 About Kenshi}
+
+heading {level =  3 What does the word Kenshi mean?}
+
+Kenshi is a Japanese given name that has multiple meanings
+depending on how it is link {https://japanese-names.info/first_name/kenshi, written}.
+Swordsman is the meaning based on which we chose this name.
+
+heading {level =  3 Where is Kenshi located?}
+
+We're located in Lausanne, Switzerland.
+
+heading {level =  3 Is this a Safemoon / RFI clone?}
+
+No. We took the official Binance BEP-20 token template, updated
+it to the latest Solidity version and wrote all custom functionalities
+from scratch.

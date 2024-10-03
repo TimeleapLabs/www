@@ -1,0 +1,123 @@
+heading {level =  1 About}
+
+Unchained is a decentralized, federated network for data validation. Unchained
+nodes work to validate data together and are rewarded in KNS tokens. It is also
+possible to run Unchained as a private or local network, or independently as a
+part of a bigger application.
+
+heading {level =  2 Purpose}
+
+Unchained has the capability to index data from any blockchain, act as a message
+broker between different blockchains, and supply verified data to smart
+contracts and oracles. However, its primary purpose goes beyond just serving as
+a connector between on-chain and off-chain environments, or providing data to
+existing blockchains.
+
+Unchained is a standalone platform suitable for various applications that need
+validated and verified data. This data remains valuable even without being sent
+to the blockchain. Unchained enables direct use of verified data by analytical
+tools, data explorers, for training AI models, or any other use case requiring
+trusted data.
+
+Moreover, the Unchained network offers not just raw data, but also the necessary
+tools for data processing and analysis. It can be used as a grid computing
+platform where users lend their computation power to the consumers, or as an
+edge computing platform where users are re-routed to the nearest available node.
+
+To achieve its objectives, Unchained is not required to function as a blockchain
+in the traditional sense, where data is organized chronologically, compiled into
+blocks, and linked sequentially to the preceding ones. Unchained allows its
+nodes the flexibility to validate and verify data at their own pace. Unlike
+traditional blockchain models where there's competition to propose a block, in
+Unchained, each piece of data validated by a peer is acknowledged and recorded
+by other peers as additional verification.
+
+Nodes within Unchained are not obligated to focus on identical data sets. Each
+peer has the autonomy to choose which data to validate and store, and which to
+bypass for any given reason. This approach grants Unchained exceptional
+flexibility and scalability, as data is effectively sharded and made available
+on a demand-driven basis.
+
+heading {level =  3 Federated}
+
+The consensus mechanism in Unchained is multifaceted. The first aspect concerns
+how peers communicate and acknowledge data within the network. The networking
+model in Unchained is federated. Nodes in this federated network can assume
+different roles; workers, for example, have the task of sourcing, validating,
+and processing data, while brokers are tasked with re-routing messages and
+supervising the workers.
+
+The federated network and the separation in functionality allows
+resource-constraint devices to join the Unchained network and benefit from its
+features as well. As an example, a small IoT sensor can send validated sensor
+data to Unchained without the need of running a "full" node, or a small device
+can call a computationally heavy algorithm on the Unchained grid and harness its
+computation power.
+
+heading {level =  2 Liquid Proof of Stake}
+
+In situations where nodes present different values for a specific data metric
+(M), or the result of a process, the resolution hinges on the voting power of
+each validator. This is where
+link {https://opentezos.com/tezos-basics/liquid-proof-of-stake/#delegated-proof-of-stake-dpos,
+Liquid Proof of Stake (LPoS)} comes into play.
+  
+The voting power of each node is determined by the amount of KNS tokens they
+have staked, plus any staked Katana NFTs, and any KNS tokens or Katana NFTs
+delegated to them by the other users.
+
+Consumers or peers assessing the validity of data must consider the aggregated
+voting powers backing the different reported values for each dataset or
+computation. A threshold is set by the consumers (e.g., +51% or +90%), above
+which data is deemed valid. This mechanism ensures that the majority decision,
+weighted by stake, dictates the accepted truth within the network.
+
+The LPoS system offers several advantages. It aligns validators' incentives with
+the network's health and integrity, as their influence depends on their stake.
+This reduces the likelihood of malicious behavior, as acting against the
+network's interests would directly impact a validator's own stake.
+
+Additionally, LPoS enables more dynamic participation and decentralization, as
+stakeholders can delegate their tokens, thus contributing to the network's
+governance without being active validators themselves. This method also allows
+for more flexibility and diversity in network decision-making, as it
+incorporates the perspectives of a broader range of participants.
+
+heading {level =  2 Auth and Security}
+
+heading {level =  3 Data Validation}
+
+Unchained implements the BLS12-381 algorithm combined with proof of Knowledge of
+Secret Key (KOSK) and signature aggregation. The BLS12-381 algorithm is a
+cryptographic pairing function that enables efficient and secure elliptic curve
+operations. This algorithm is particularly known for its strength and efficiency
+in smaller-sized keys compared to other cryptographic algorithms.
+
+Proof of Knowledge of Secret Key (KOSK) is a critical component in this setup.
+It ensures that only the holder of the private key can produce a valid
+signature, preventing Rogue Public Key attacks on aggregated signatures. The
+signature itself cannot be used to derive the private key, adding an extra layer
+of protection.
+
+Signature aggregation allows multiple signatures to be combined into a single,
+compact signature. The benefits of signature aggregation are significant,
+especially in terms of scalability and efficiency. It reduces the amount of data
+that needs to be transmitted and stored, which is particularly advantageous in a
+system where numerous transactions or validations occur. This not only saves
+space but also reduces processing time, making the system efficient and fast.
+
+heading {level =  3 LPoS and Consumers}
+
+For Liquid Proof of Stake (LPoS) and Remote Procedure Call (RPC) requests,
+Unchained adopts the SECP256K1 cryptographic algorithm, the same as used by
+Ethereum. This choice is primarily to maintain compatibility with Ethereum,
+facilitating interactions and integrations between Unchained and Ethereum-based
+systems.
+
+SECP256K1 is an elliptic curve algorithm widely used in blockchain technologies,
+particularly known for its application in Ethereum's transaction signing
+process. By using this algorithm, Unchained ensures that its platform can
+seamlessly interact with Ethereum's network and services. This compatibility is
+crucial for users and applications that operate across both Unchained and
+Ethereum platforms, as it simplifies processes and enhances user experience by
+allowing the use of the same cryptographic standards and tools.

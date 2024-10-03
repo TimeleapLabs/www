@@ -1,0 +1,17 @@
+heading { level = 1, Deep Index Example }
+
+The example below shows a Sync task to sync all Kenshi token transfer events into the Kenshi
+blockchain data clusters:
+
+table {
+  row = [ Field, Value, Description ],
+  row = [ Chain, Arbitrum One, Kenshi smart contract is deployed to Arbitrum One. ],
+  row = [ Starting block, 101120835, Kenshi smart contract is deployed at block number 101120835. ],
+  row = [ Contract address,
+           0xf1264873436A0771E440E2b28072FAfcC5EEBd01,
+           This is the Kenshi token smart contract address ],
+  row = [ Contract ABI,
+           "event Transfer(address indexed from, address indexed to, uint256 value)",
+           Human-Readable ABI including only the Transfer event ABI ],
+  row = [ Duration, 1, Run this sync task for 1 month ]
+}

@@ -1,0 +1,43 @@
+heading { level = 1, Getting Started with GraphQL }
+
+To work with the GraphQL endpoint, you need to use a GraphQL library,
+or directly make an HTTP POST request to the Kenshi Deep Index endpoint
+for GraphQL. The endpoint address and examples for making GraphQL requests
+can be found in the next chapters.
+
+The schema for returned data types, as well as the schema for making requests
+to the GraphQL endpoint are also provided. The provided schema can be used in
+languages such as Go where an interface is required for unpacking the received
+GraphQL data.
+
+To create an API key for querying the GraphQL endpoint, you can head over to
+the Kenshi link { https://timeleap.swiss/dashboard, title = dashboard }, connect your wallet,
+fill out and submit the "New GraphQL + MQL API Key" form.
+
+gallery { image { /images/docs/screenshots/graphql_mql.png, alt = New GraphQL + MQL API Key } }
+
+heading { level = 2, How to fill the form? }
+
+To fill and submit the new GraphQL API key form, you can refer to the following manual:
+
+list { type = ordered,
+   "bold API Key, You can use the auto-generated API key, and auto-generate a new one by pressing
+   the small 'refresh' button on the field, or by generating and providing your own. The API
+   keys are scoped; they're only valid if combined with the address of their owner. In other
+   words, you'll need to provide your public address as well as this API key for making requests.",
+  "bold Requests, The number of requests you're expecting to have. This amount does not expire
+   by the passing of time, but every successful or unsuccessful call counts as one usage and 
+   decreases the remaining possible 'requests' by one.",
+   "bold Query limits, You can add a limit to your API keys. For example, you can define an event
+   type or a contract address. The API endpoint will then throw an error if a query is
+   made using this API key that doesn't match the query limits. This field is optional".
+}
+
+alert { info-square,
+  Hex values should not be checksummed. All values for query limits should be in lowercase.
+}
+
+heading { level = 2, Limits }
+
+The GraphQL endpoint can return a maximum of 1024 records at a time. The maximum processing time for
+each request is 5 seconds, and the maximum size of returned data is 1MB.

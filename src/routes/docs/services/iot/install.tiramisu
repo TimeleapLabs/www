@@ -1,0 +1,99 @@
+heading { level = 1, Install }
+
+Follow below instructions to install the Kenshi blockchain IoT SDK for your favorite platform.
+
+heading { level = 2, Arduino boards }
+
+To install the Kenshi IoT SDK for Arduino, go to the Kenshi IoT SDK link { https://github.com/TimeleapLabs/iot-sdk/releases, release page } on Github and download the latest release.
+
+Then open the Arduino IDE and select Sketch > Include Library > Add ZIP Library... like the image below:
+
+image { https://cadey.io/images/docs/screenshots/arduino.install.png, alt = Install Kenshi IoT SDK on Arduino IDE }
+
+Now select the downloaded file and wait for the install to finish.
+
+heading { level = 2, ESP32 boards }
+
+The Kenshi IoT SDK for Arduino has full support for ESP32 boards using the ESP32 native libraries. Follow the same instructions as Arduino boards to install the SDK for ESP32.
+
+heading { level = 2, Zephyr RTOS }
+
+To bootstrap a Zephyr project with the Kenshi IoT SDK, you can run the following commands:
+
+code {
+  language = bash,
+  escape {
+    west init -m https://github.com/TimeleapLabs/iot-sdk.git --mf west.yml
+    west update
+  }
+}
+
+Alternatively, to add the SDK to an existing project, first find the path to your west manifest by running this command:
+
+code {
+  language = bash,
+  escape { west manifest --path }
+}
+
+Now open the west manifest file in the editor of your choice and add the following in the projects section:
+
+code {
+  language = yaml,
+  escape {
+    # Kenshi repository.
+    - name: kenshi
+      path: modules/lib/kenshi
+      revision: master
+      url: https://github.com/TimeleapLabs/iot-sdk.git
+  }
+}
+
+Now run:
+
+code { language = bash, escape { west update } }
+
+You can include the Kenshi SDK into your application by adding the following to your Zephyr project's configuration file:
+
+code {
+  language = bash,
+  escape { CONFIG_KENSHI=y }
+}
+
+Note that the Kenshi IoT library for Zephyr depends on the following (or similar) configuration options, which also need to be added to your project's configuration file:
+
+code {
+  language = bash,
+  escape {
+    # Enable DNS Resolver
+    CONFIG_DNS_RESOLVER=y
+    CONFIG_DNS_SERVER_IP_ADDRESSES=y
+    CONFIG_DNS_SERVER1="8.8.8.8"
+    CONFIG_DNS_SERVER2="192.168.1.1"
+
+    # HTTP
+    CONFIG_HTTP_CLIENT=y
+
+    # TLS configuration
+    CONFIG_MBEDTLS=y
+    CONFIG_MBEDTLS_BUILTIN=y
+    CONFIG_MBEDTLS_ENABLE_HEAP=y
+    CONFIG_MBEDTLS_HEAP_SIZE=40000
+    CONFIG_MBEDTLS_SERVER_NAME_INDICATION=y
+
+    # Required for AWS root ca
+    CONFIG_MBEDTLS_SSL_MAX_CONTENT_LEN=8192
+
+    # Enable TLS
+    CONFIG_NET_SOCKETS_SOCKOPT_TLS=y
+    CONFIG_NET_SOCKETS_TLS_MAX_CONTEXTS=6
+
+    # Sockets
+    CONFIG_NET_SOCKETS=y
+    CONFIG_NET_SOCKETS_POLL_MAX=4
+    CONFIG_NET_SOCKETS_POSIX_NAMES=y
+  }
+}
+
+heading { level = 2, Linux, BSD, and Windows SBCs }
+
+You can use your favorite HTTP or GraphQL client on these boards for communicating with the Kenshi Deep Index. Read the documentation link { /docs/services/deep-index, here. }

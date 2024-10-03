@@ -1,0 +1,21 @@
+heading { level = 1, Getting Started with R-API }
+
+To integrate the Timeleap Reverse-API service into your ecosystem or workflow, you need to expose an HTTP POST endpoint that is publicly available over the internet. Once ready, you need to define an event listener task, so the Timeleap dispatcher can find relevant events for you and notify your endpoint whenever it finds them. Creating a task and registering your endpoint can be done using the Timeleap link { https://timeleap.swiss/dashboard, alt = "dashboard" }.
+
+heading { level = 2, How to fill the form? }
+
+To register a new Reverse-API endpoint you'll need to fill and submit the New Reverse-API form. You can use the following list as a guide for each of the fields in this form.
+
+list { type = ordered,
+  item = bold { Endpoint }: Your Reverse-API endpoint. This endpoint needs to be accessible over the internet. This endpoint should accept post requests and return a "200" success code on successful receiving of the events. You can incorporate {event} into your URL, and the R-API will automatically substitute it with the name of each individual event sent to your designated endpoint.,
+  item = bold { Chain }: The blockchain you are interested in. This is a part of the query that will run against the Timeleap blockchain data clusters. This field cannot be modified later.,
+  item = bold { Starting block }: From which block should we start informing you of the events? You can choose a block number in the past if you're looking for historical data. This field cannot be modified later.,
+  item = bold { Contract address }: The source of the events you want to listen to. This is usually the address of your smart contract, or the smart contract that emits the events you are looking for.,
+  item = bold { Contract ABI }: Put ABI of the smart contract (from the bold { Contract address }) field here. You can either put the entire ABI, or just include the ABI of the events you are interested in. The ABI can be Human-Readable ABI or the ABI emitted by the Solidity compiler, in JSON format.,
+  item = bold { Duration }: For how many months should this task run?,
+  item = bold { Requests }: Amount of request credits you need for this endpoint. Each time a request is made to your endpoint one request credit is charged.
+}
+
+alert { type = warning, 
+  The Timeleap event dispatcher for Reverse-API caches all events in a "memcached" instance to prevent sending duplicate events to your endpoints. The TTL of the cache is 15 minutes. However, you should make sure your endpoint knows how to handle duplicated calls.
+}

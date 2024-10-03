@@ -1,0 +1,60 @@
+heading { level = 1, Product Development }
+
+Kenshi's team of experts have years of experience in various development fields.
+Below you can find a glimpse of what Kenshi team is capable of. You can send an
+email to link { mailto:inquiries@kenshi.io, title = inquiries@kenshi.io } to schedule a call
+and discuss your project with us.
+
+heading { level = 2, Blockchain & Crypto Development }
+
+list {
+  item = [
+    [ NFT smart contracts (ERC1155, ERC721), dynamic NFTs ],
+    [ Tokens (ERC20, ERC1363, etc) ],
+    [ Custom smart contract development (Swaps, PegSwaps, Games, Marketplaces, Faucets, etc) ],
+    [ Custom blockchain development ]
+  ]
+}
+
+heading { level = 3, Blockchain Tech Stack }
+
+gallery {
+  gap = 2em
+  image { src = /images/vendor/solidity.png, height = 80, alt = Solidity },
+  image { src = /images/vendor/hardhat.png, height = 96, alt = Hardhat },
+  image { src = /images/vendor/metamask.png, height = 96, alt = Metamask },
+  image { src = /images/vendor/ethereum.png, height = 80, alt = Ethereum },
+  image { src = /images/vendor/binance.png, height = 80, alt = Binance },
+  image { src = /images/vendor/polygon.png, height = 80, alt = Polygon },
+  image { src = /images/vendor/fantom.png, height = 80, alt = Fantom },
+  image { src = /images/vendor/avalanche.png, height = 80, alt = Avalanche }
+}
+
+heading { level = 2, Other Development Services }
+
+list {
+  item = 
+    [ Hybrid & native mobile apps ],
+    [ Websites & dApps ],
+    [ Embedded & electronics ],
+    [ Serverless data flows & microservices ]
+  
+}
+
+heading { level = 3, Software Development Tech Stack }
+
+gallery {
+  gap = 2em
+  image { src = /images/vendor/node.png, height = 80, alt = Node.js },
+  image { src = /images/vendor/go.png, height = 64, alt = Go },
+  image { src = /images/vendor/python.png, height = 72, alt = Python },
+  image { src = /images/vendor/cpp.png, height = 72, alt = C++ },
+  image { src = /images/vendor/svelte.webp, height = 72, alt = Svelte },
+  image { src = /images/vendor/react.png, height = 80, alt = React },
+  image { src = /images/vendor/flutter.png, height = 64, alt = Flutter },
+  image { src = /images/vendor/postgresql.png, height = 96, alt = PostgreSQL },
+  image { src = /images/vendor/cockroachdb.png, height = 48, alt = CockroachDB },
+  image { src = /images/vendor/mongodb.png, height = 64, alt = MongoDB },
+  image { src = /images/vendor/aws.png, height = 64, alt = AWS },
+  image { src = /images/vendor/lambda.png, height = 96, alt = AWS Lambda }
+}

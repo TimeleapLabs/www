@@ -1,0 +1,21 @@
+heading { level = 1, Community }
+
+These are the official Kenshi community links:
+
+list {
+  item = link { https://t.me/KenshiTech, Telegram },
+  item = link { https://twitter.com/KenshiTech, Twitter },
+  item = link { https://www.reddit.com/r/KenshiTech, Reddit },
+  item = link { https://blog.kenshi.io, Medium },
+  item = link { https://forum.kenshi.io, Forum },
+  item = link { https://github.com/TimeleapLabs, GitHub },
+  item = link { https://discord.com/invite/timeleap, Discord },
+  item = link { https://zealy.io/c/kenshitech, Zealy }
+}
+
+alert { type = warning, Kenshi does not have any other online or offline communities except the ones listed above. Be extra cautious when joining other unofficial communities. Always remember this: we will never contact you first. }
+
+
+heading {level =  2 Contact Details}
+
+For business enquiries, send us a message at link {mailto:hi@kenshi.io, hi@kenshi.io}.

@@ -1,0 +1,23 @@
+heading {Media}
+
+Kenshi logos and artwork:
+
+gallery {
+  image {/images/logo/logo.svg, alt = Logo}
+  image {/images/logo/logo.typography.svg Full-width, alt = logo}
+}
+
+
+heading {level =  2 About}
+
+A brief description of Kenshi and its services can be found in the
+link {/docs/about.pdf, about Kenshi} document.
+
+heading {level =  2 Press Kit}
+
+You can download our press kit (Logos and documents)
+link {/docs/kit.zip, here}.
+
+heading {level =  2 Design Language}
+
+Kenshi uses the link {https://carbondesignsystem.com, Carbon Design System}.

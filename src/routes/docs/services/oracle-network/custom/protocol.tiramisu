@@ -1,0 +1,69 @@
+heading { level = 1, Custom Oracle Protocol }
+
+The goal of Kenshi Oracle Network is to enable developers to build their oracles using
+the technologies they know, while taking care of everything else from event sourcing to
+data delivery.
+
+To allow maximum flexibility, we require you to create the logic part of your oracle and
+host it on your own infrastructure. The logic part needs to implement the following:
+
+list { type = ordered,
+  item = [
+    bold { POST: }
+    HTTP endpoint accepting POST requests.
+  ],
+  item = [
+    bold { Request Body: }
+    Events are sent to this endpoint for processing. The events are in JSON format.
+  ],
+  item = [
+    bold { Response Code: }
+    You must return a HTTP success code, otherwise the Kenshi event dispatcher will attempt retries.
+  ],
+  item = [
+    bold { Response Body: }
+    You must respond with the instructions on how to process the event and what data should be sent to your smart contract on the blockchain. Response body should be JSON-formatted.
+  ]
+}
+
+You are free to use the technology of your choice to implement the above protocol.
+
+heading { level = 2, Request Schema }
+
+table {
+  header = [ Field, Type, Description ],
+  row = [ entry, Object, The parsed log entry received from the blockchain ],
+  row = [ entry.log, Object, Information about the event log ],
+  row = [ entry.log.index, String, Hex representation of the log index ],
+  row = [ entry.transaction, Object, Information about the transaction ],
+  row = [ entry.transaction.index, String, Hex representation of the transaction index ],
+  row = [ entry.transaction.hash, String, Hex representation of the transaction hash ],
+  row = [ entry.block, Object, Information about the block ],
+  row = [ entry.block.address, String, Hex representation of the contract address emitting the event ],
+  row = [ entry.block.hash, String, Hex representation of the block hash ],
+  row = [ entry.block.number, Number, The block number ],
+  row = [ entry.event, Object, Information about the emitted event ],
+  row = [ entry.event.name, String, Name of the emitted event ],
+  row = [ entry.event.signature, String, Signature of the emitted event ],
+  row = [ entry.event.args, Object, Parsed arguments for the emitted event ],
+  row = [ entry.event.args.$, String, Hex value of an argument where $ is the argument name ],
+  row = [ entry.createdAt, String, ISO string of the date when this record was created in the Kenshi database cluster ],
+  row = [ taskId, String, The "taskId" associated with your event listener task ],
+  row = [ blockchain, String, Name of the chain, possible values are: 
+    list { "ethereum-mainnet", "ethereum-goerli", "arbitrum-mainnet", "arbitrum-goerli", "avalanche-mainnet", "avalanche-fuji", "binance-mainnet", "binance-testnet", "polygon-mainnet", "polygon-mumbai", "fantom-mainnet", "fantom-testnet", "aurora-mainnet", "aurora-testnet", "bitgert-mainnet", "bitgert-testnet" }
+  ]
+}
+
+heading { level = 2, Response Schema }
+
+table {
+  header = [ Field, Type, Description ],
+  row = [ method, String, Name or the signature of the method to call on your smart contract ],
+  row = [ args, Array<Any>, Arguments to pass to the selected method. Each argument needs to match the corresponding argument on the selected method and be parsable by the ethers.js library ],
+  row = [ maxGas, Number | Decimal String | Hex String, Maximum amount of gas (in wei) you're willing to spend on this request ],
+  row = [ abort, Boolean | Null | Undefined, Send true to abort delivering and ignore this event ]
+}
+
+alert { type = info, Numbers can be returned as a JSON number type, a hex string, or a decimal string. }
+
+You can find the ethers.js documentation link { https://docs.ethers.org/v5/, here. }

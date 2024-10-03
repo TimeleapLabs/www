@@ -1,0 +1,16 @@
+heading { level = 1, Deep Index Sync }
+
+The Kenshi Deep Index Sync enables efficient blockchain data indexing, providing
+seamless retrieval, storage, and integration of vital blockchain data into
+Kenshi's robust database clusters. Access and analyze this information
+effortlessly with the Kenshi Deep Index GraphQL endpoint, MQL endpoint, or the
+Kenshi Reverse-API service, delivering versatile options for data consumption in
+the blockchain ecosystem.
+
+toc {
+  introduction,
+  start,
+  metadata,
+  example,
+  pricing
+}

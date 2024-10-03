@@ -1,0 +1,9 @@
+heading { level = 1, MQL Endpoints }
+
+The Kenshi Deep Index endpoint for MQL shares the same endpoint
+for all blockchains and all event types:
+
+table {
+  row = [ Name, Address ],
+  row = [ Deep Index MQL, https://api.kenshi.io/index/mql ]
+}

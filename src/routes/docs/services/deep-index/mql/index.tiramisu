@@ -1,0 +1,17 @@
+heading { level = 1, MQL (MongoDB Query Language) for Deep Index }
+
+The Kenshi Deep Index MQL endpoint delivers accelerated, edge-optimized access
+for querying and retrieving blockchain data using the powerful MongoDB Query
+Language (MQL). Enhance your data management and analysis capabilities with this
+streamlined solution, designed for the modern blockchain ecosystem.
+
+To learn more about MQL itself, you can visit the link { https://www.mongodb.com/docs/manual/tutorial/query-documents, title = official MongoDB website }.
+
+toc {
+   introduction,
+   start,
+   endpoints,
+   examples,
+   schema,
+   pricing
+}

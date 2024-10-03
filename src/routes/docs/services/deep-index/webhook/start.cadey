@@ -1,11 +1,11 @@
 [heading Getting Started with R-API]
 
-To integrate the Kenshi Reverse-API service into your ecosystem or workflow,
+To integrate the Timeleap Reverse-API service into your ecosystem or workflow,
 you need to expose an HTTP POST endpoint that is publicly available over the
-internet. Once ready, you need to define an event listener task, so the Kenshi
+internet. Once ready, you need to define an event listener task, so the Timeleap
 dispatcher can find relevant events for you and notify your endpoint whenever
 it finds them. Creating a task and registering your endpoint can be done using
-the Kenshi [link https://kenshi.io/dashboard dashboard].
+the Timeleap [link https://timeleap.swiss/dashboard dashboard].
 
 [heading :size 2 How to fill the form?]
 
@@ -19,7 +19,7 @@ You can use the following list as a guide for each of the fields in this form.
       substitute it with the name of each individual event sent to your designated endpoint.]
 
    [: [bold Chain]: The blockchain you are interested in. This is a part of the query that will run against
-      the Kenshi blockchain data clusters. This field cannot be modified later.]
+      the Timeleap blockchain data clusters. This field cannot be modified later.]
 
    [: [bold Starting block]: From which block should we start informing you of the events? You can choose a
       block number in the past if you're looking for historical data. This field cannot be modified later.]
@@ -37,6 +37,6 @@ You can use the following list as a guide for each of the fields in this form.
       your endpoint one request credit is charged.]]
 
 [alert warning
-  The Kenshi event dispatcher for Reverse-API caches all events in a "memcached"
+  The Timeleap event dispatcher for Reverse-API caches all events in a "memcached"
   instance to prevent sending duplicate events to your endpoints. The TTL of the cache is 15 minutes.
   However, you should make sure your endpoint knows how to handle duplicated calls.]

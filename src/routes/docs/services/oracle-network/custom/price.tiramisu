@@ -1,0 +1,23 @@
+heading { level = 1, Price }
+
+Custom Oracles hosted on Kenshi Oracle Network cost a fixed monthly fee depending on the selected
+pricing plan, plus $1 for each 5000 requests processed by the oracle.
+
+heading { level = 2, Pricing plans }
+
+table {
+  header = [ Tier, Price (Monthly), Details ],
+  row = [ Develop, $9.95, Events are received with a maximum delay of 5 seconds ],
+  row = [ Startup, $24.95, Events are received with a maximum delay of 2 seconds ],
+  row = [ Business, $49.95, Events are received with a maximum delay of 1 second ]
+}
+
+heading { level = 2, Specs and Limitations }
+
+list {
+  item = The Oracle Network guarantees a sub-second delay for sourcing events from the blockchain,
+  item = The maximum time for processing each request (getting a response from your endpoint and
+     sending it to the blockchain) is 3 minutes,
+  item = The Oracle Network's event dispatcher retries delivery on failure. Retries happen three
+     times immediately after a failure, and a total of 7 times in the next 48 hours
+}

@@ -1,0 +1,13 @@
+heading {Introduction to R-API}
+
+Instead of querying the blockchain or the Timeleap GraphQL endpoint, you can get the
+events delivered to your application instead. This allows creating a completely serverless
+flow of receiving and processing the blockchain data.
+
+The Timeleap Reverse-API service allows you to input a contract address, contract ABI, a starting block
+and an API endpoint (your HTTPS endpoint, AWS Lambda function...). Every time an event is emitted by
+your contract address the Reverse-API service sends it to your endpoint.
+
+To use this service head to the Timeleap link {https://timeleap.swiss/dashboard, dashboard}, connect
+your wallet and register an endpoint using the new Reverse-API form. Continue reading on to
+get help with the dashboard or see examples of the Reverse-API service.

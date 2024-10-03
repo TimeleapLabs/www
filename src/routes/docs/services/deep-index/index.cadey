@@ -1,16 +1,16 @@
 [heading Deep Index]
 
-Experience the power of Kenshi Deep Index, an advanced blockchain data indexing
+Experience the power of Timeleap Deep Index, an advanced blockchain data indexing
 and processing solution designed for seamless data consumption and efficient
 event management. Harness the benefits of rapid querying, in-depth analysis, and
 streamlined integration with smart contracts, all within a user-friendly
 platform tailored for the modern blockchain ecosystem.
 
-The Kenshi Deep Index service consists of multiple services for retrieving,
+The Timeleap Deep Index service consists of multiple services for retrieving,
 querying, and processing blockchain data:
 
 [list 
-  [: [bold Sync] can be used to retrieve, store, and index data on the Kenshi database clusters.]
+  [: [bold Sync] can be used to retrieve, store, and index data on the Timeleap database clusters.]
   [: [bold GraphQL and MQL] can be used to query, search and retrieve synced blockchain data in your apps.]
   [: [bold Reverse-API] can be used to get notifications about new blockchain events on your HTTP endpoints.]]
 

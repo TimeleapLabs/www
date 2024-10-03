@@ -1,0 +1,78 @@
+heading { level = 1, Connection }
+
+Connection to a broker is done over WebSockets. Connection URL format is as follows:
+
+code { inline = true, wss://<hostname>:<port>/<protocol> }
+
+Where:
+
+list {
+  item = [ bold { wss } - indicates that the connection is secure ],
+  item = [ bold { hostname } - the hostname of the broker ],
+  item = [ bold { port } - the port number of the broker ],
+  item = [ bold { protocol } - the protocol version of the broker ]
+}
+
+heading { level = 2, Connection Initiation }
+
+Once the connection is established, the client must send a sequence of messages to the broker to authenticate itself. Once the broker has verified the client's identity, the client can start sending and receiving messages.
+
+This process is demonstrated in the following diagram:
+
+mermaid {
+  id = "init-conn",
+  description = "Unchained Connection Initiation Sequence",
+  diagram {
+    sequenceDiagram {
+      actor Worker
+      
+      par Connection Initiation
+        Worker->>+Broker: Hello
+        Broker->>-Worker: KOSK Challenge
+        activate Worker
+        Worker->>Broker: KOSK Response
+        deactivate Worker
+      and
+        Consumer->>+Broker: Hello
+        Broker->>-Consumer: KOSK Challenge
+        activate Consumer
+        Consumer->>Broker: KOSK Response
+        deactivate Consumer
+        Consumer->>Broker: Subscribe
+      end
+      
+      loop Send Verified Data
+        Worker-->>Consumer: Send Data Through Broker
+      end
+    }
+  }
+}
+
+heading { level = 2, Hello Message }
+
+The Hello message structure is as follows:
+
+code {
+  language = "golang",
+  escape {
+    type Signer struct /{
+    Name           string
+    EvmWallet      string
+    PublicKey      [96]byte
+    ShortPublicKey [48]byte
+  /}
+ }
+}
+
+heading { level = 2, KOSK Challenge }
+
+code {
+  language = golang,
+  escape {
+  type Challenge struct /{
+    Passed    bool
+    Random    [128]byte
+    Signature [48]byte
+  /}
+ }
+}

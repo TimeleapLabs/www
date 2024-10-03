@@ -1,0 +1,57 @@
+heading { level = 1, Getting started }
+
+Getting started with the Kenshi Oracle Network is easy. The logic part of your oracle can
+be developed in the language of your choice; it only needs to implement the Custom Oracle Protocol.
+You can host the logic part on any serverless (or serverful) solutions such as
+
+list {
+  AWS Lambda,
+  Vercel,
+  Cloudflare Workers,
+  Microsoft Azure Functions,
+  Google Cloud Functions,
+  Netlify Functions
+}
+
+and others.
+
+Once you're ready with the logic side of your oracle, you can head to the link { /dashboard, Kenshi Dashboard }
+and click on the "Custom Oracle" tile. Follow the instructions on the "New Oracle" form to deploy your
+custom oracle.
+
+heading { level = 2, Gas fees }
+
+Once you deploy your oracle, you can see the address of the gas wallet associated with your oracle on the
+link { /dashboard/oracle-network/custom, Custom Oracle Dashboard }. You must supply enough gas to this address
+for the oracle network to fulfill your oracle's requests.
+
+alert { warning, 
+  Once you transfer gas to the associated address, the gas belongs to Kenshi and its Oracle Network
+  and is not refundable. Make sure you don't supply more gas than your oracle requires.
+}
+
+heading { level = 2, Nonce management }
+
+The Kenshi Nonce Manager is an Ethereum-compatible nonce management solution by Kenshi for sending
+transactions in parallel. It is crucial to understand how the Kenshi 
+link { https://ethereum.stackexchange.com/questions/39790/concurrency-patterns-for-account-nonce, Nonce Manager }
+works. For each request to your smart contract, the Kenshi Nonce Manager:
+
+list { type = ordered
+  Assigns a nonce, keeping track of the last used nonce in the database,
+  Estimates the gas required to fulfill the request,
+  Uses the gas estimate and the assigned nonce to sign and send a transaction to fulfill the request,
+  Increases the gas and resends the transaction if the transaction doesn't get approved within a minute,
+  Burns the nonce by re-using it in a zero-eth transfer transaction if the transaction isn't fulfilled after
+  three retries,
+  Re-schedules the request fulfillment for later if the assigned nonce is burned.
+}
+
+If there are gaps in the nonce or if there are too many canceled transactions due to errors such as network
+congestion or RPC node failures, the Nonce Manager will eventually burn the entire gas in the oracle's wallet.
+The Kenshi Nonce Manager tries to prevent such scenarios and keep the nonces in order. However, Kenshi cannot
+guarantee the procedure is error-free.
+
+To prevent catastrophic events, Kenshi allows adjusting the maximum number of unresolved requests sent to the
+blockchain from your oracle. When choosing a number for this parameter, you should consider the risks involved
+in nonce management, as well as the needs of your application.

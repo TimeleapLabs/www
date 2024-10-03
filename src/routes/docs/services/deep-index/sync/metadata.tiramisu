@@ -1,0 +1,15 @@
+heading { level = 1, Metadata API }
+
+The metadata API endpoint can be used to get the sync status of your sync tasks.
+To get this info, make a GET request to the following URL, replacing
+\{TASK_ID\} with your task ID.
+
+code {
+  https://api.kenshi.io/index/info/\{TASK_ID\}
+}
+
+heading { level = 2, Example response }
+
+code {
+  \{"lastSyncedBlock":12755853\}
+}

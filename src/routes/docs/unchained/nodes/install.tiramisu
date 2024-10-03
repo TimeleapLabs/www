@@ -1,0 +1,71 @@
+heading { level = 1, Install Unchained }
+
+heading { level = 2, Installing the Unchained Client }
+
+alert { type = info, This page is under construction }
+
+The following operating systems are italic { officially } supported:
+
+list {
+  item = bold { Linux }: Any Linux distro running the Linux kernel v5.15+, with systemd.,
+  item = bold { macOS }: macOS v12+ running on an italic { official } Apple hardware.,
+  item = bold { Windows }: Windows 10 Vibranium and above, or Windows Server 20H2 and above.
+}
+
+alert { type = warning, Always make a backup of your secret keys before an update }
+
+heading { level = 3, Install Script }
+
+The easiest way to install the Unchained client is by using the install script. To do so, run the following command in your terminal:
+
+code {
+  language = bash,
+  escape { curl -s https://timeleap.swiss/unchained/install | sh }
+}
+
+heading { level = 3, Manual Installation }
+
+Head to the Unchained link { https://github.com/TimeleapLabs/unchained/releases, alt = "releases page" } and grab the latest release for your OS and CPU architecture. Move the binary file to an appropriate place and make it executable:
+
+code {
+  language = bash,
+  escape { chmod +x PATH_TO_UNCHAINED }
+}
+
+heading { level = 2, Installing the Unchained AI Plugin }
+
+To install the Unchained AI plugin, you need to have the Unchained client installed. You'll also need to have the following dependencies installed:
+
+list {
+  item = bold { pyenv }: See installation instructions link { https://github.com/pyenv/pyenv, alt = "here" }.,
+  item = bold { Git }: See installation instructions link { https://git-scm.com/downloads, alt = "here" }.
+}
+
+Once you have the dependencies installed, run the following command in your terminal:
+
+code {
+  language = bash,
+  escape { git clone https://github.com/TimeleapLabs/py-unchained-ai.git }
+}
+
+Then run the following commands one by one:
+
+code {
+  language = bash,
+  escape {
+    cd py-unchained-ai
+    pyenv install 3.8.19
+    pyenv local 3.8.19
+    python -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+  }
+}
+
+heading { level = 2, Additional dependencies }
+
+To connect from the Unchained GUI to the Unchained Broker when testing locally, you need to install the following dependencies:
+
+list {
+  item = bold { mkcert }: See installation instructions link { https://github.com/FiloSottile/mkcert, alt = "here" }.
+}

@@ -1,0 +1,44 @@
+heading {What is Kenshi?}
+
+In the rapidly evolving world of blockchain technology, Kenshi stands at the
+forefront as a pioneering innovator. Founded in December 2021 and nestled in the
+heart of Switzerland, we are a company driven by a mission to foster the
+convergence of the traditional web (Web 2.0) and the decentralized future (Web
+3.0). Our commitment to innovation and excellence fuels our dedication to
+providing cutting-edge blockchain solutions.
+
+Our flagship offerings reflect our understanding of the digital landscape and
+our vision for its future. The Kenshi Oracle Network, a serverless,
+asynchronous, and fault-tolerant framework, redefines the possibilities for
+creating, deploying, and operating custom oracles on EVM-based blockchain
+networks. It is a testament to our technical expertise and drive to push the
+boundaries of what's possible in the blockchain space.
+
+Complementing this is our powerful blockchain data indexing and processing
+solution - Kenshi Deep Index. It provides full-stack data consumption, enabling
+efficient event management on the blockchain. With a suite of tools such as Deep
+Index Sync, Deep Index GraphQL, Deep Index MQL, and Deep Index R-API, we make it
+easier to manage, query, and analyze blockchain data.
+
+We also recognize the growing importance of IoT in the modern world. To this
+end, we've developed the Kenshi Blockchain IoT SDK, which allows embedded
+devices to receive and process blockchain events efficiently. This innovation
+paves the way for seamless integration between IoT and connected systems,
+further bridging the gap between the traditional web and the decentralized
+future.
+
+At Kenshi, we strive to stay ahead of the curve. Our solutions are a testament
+to our forward-thinking approach, technical expertise, and commitment to
+revolutionizing how the world interacts with the blockchain. We invite you to
+join us on this exciting journey into the future of the decentralized web.
+
+heading {level =  2 Kenshi Products}
+
+Kenshi provides the following services:
+
+list {
+  item = link { https://cadey.io/docs/services/deep-index, Deep Index : Allows indexing blockchain events for blazing-fast access.},
+  item = link { https://cadey.io/docs/services/iot, IoT SDK : Allows receiving blockchain events on IoT devices.},
+  item = link { https://cadey.io/docs/services/oracle-network, Oracle Network : Allows creating custom oracles}.
+}
+
