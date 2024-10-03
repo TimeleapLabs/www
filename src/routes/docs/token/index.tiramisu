@@ -5,5 +5,5 @@ The Kenshi token is a utility token that grants users access to the Kenshi ecosy
 See the link { /docs/token/tokenomics Tokenomics } page for more information.
 
 toc {
-  item = tokenomics
+  tokenomics
 }

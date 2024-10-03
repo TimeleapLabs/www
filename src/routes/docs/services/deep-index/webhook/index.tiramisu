@@ -5,10 +5,10 @@ API you can just subscribe to the blockchain events you are interested in and le
 our dispatcher notify your HTTP endpoint with the data you requested.
 
 toc {
-   introduction
-   start
-   examples
-   schema
-   integrations
-   pricing
+   introduction,
+   start,
+   examples,
+   schema,
+   integrations,
+   pricing,
    changes}

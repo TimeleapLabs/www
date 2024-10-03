@@ -22,9 +22,9 @@ list {
 alert { warning, This section of the Kenshi documentation is a work in progress. }
 
 toc {
-  about
-  nodes/index
-  resources
-  license
+  about,
+  nodes/index,
+  resources,
+  license,
   specs/index
 }
