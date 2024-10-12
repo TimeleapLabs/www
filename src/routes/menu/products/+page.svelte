@@ -1,15 +1,6 @@
 <script>
 	import Icon from '@iconify/svelte';
-
-	import Section from '$lib/layout/Section.svelte';
-	import Grid from '$lib/layout/Grid.svelte';
-
-	import Image from '$lib/ui/Image.svelte';
-	import Button from '$lib/ui/Button.svelte';
-	import Navbar from '$lib/ui/Navbar.svelte';
-	import Card from '$lib/ui/Card.svelte';
-
-	import Input from '$lib/forms/Input.svelte';
+	import { Section, Grid, Image, Button, Card, Navbar } from '@timeleap/ui';
 </script>
 
 <svelte:head>
