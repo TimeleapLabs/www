@@ -1,5 +1,7 @@
 import { Cadey, rules } from "cadey/generator.js";
 import { parse } from "cadey/parser.js";
+import { compile } from "@timeleap/tiramisu/dist/index.js";
+import { translate } from "./translate.js";
 
 const { block: blockRule } = rules;
 
@@ -34,21 +36,27 @@ function* walkSync(dir) {
   }
 }
 
-export const makeProcessOne = (processed, allHeadings, allTocs, allMeta) => {
+export const makeProcessOne = (
+  processed,
+  allHeadings,
+  allTocs,
+  allMeta,
+  project
+) => {
   const processOne = async (file) => {
-    if (file.endsWith(".cadey") && !processed[file]) {
+    if (file.endsWith(".tiramisu") && !processed[file]) {
       console.log(`Processing ${file}`);
       const content = fs.readFileSync(file).toString();
-      const cst = await cadey.parse(content);
+      const compiled = compile(content);
       const context = getContext(
-        cadey,
         processOne,
         file,
         allHeadings,
         allTocs,
-        allMeta
+        allMeta,
+        project
       );
-      const parsed = await cadey.parseCST(cst, context);
+      const parsed = await translate(compiled, context);
       processed[file] = { parsed, context };
     }
   };
@@ -61,9 +69,15 @@ export const parseAll = async (project) => {
   const allHeadings = {};
   const allTocs = {};
   const allMeta = {};
-  const processOne = makeProcessOne(processed, allHeadings, allTocs, allMeta);
-  if (project.endsWith(".cadey")) {
-    processOne(project);
+  const processOne = makeProcessOne(
+    processed,
+    allHeadings,
+    allTocs,
+    allMeta,
+    project
+  );
+  if (project.endsWith(".tiramisu")) {
+    await processOne(project);
   } else {
     for (const file of walkSync(`./src/routes/${project}`)) {
       await processOne(file);
@@ -91,7 +105,9 @@ export const parseAll = async (project) => {
       meta,
       project === "docs" ? "Doc" : "Blog"
     );
-    const dirname = file.replace(/(\/index)?\.cadey$/, "").replace(/\/$/, "");
+    const dirname = file
+      .replace(/(\/index)?\.tiramisu$/, "")
+      .replace(/\/$/, "");
     const url = "/" + dirname.slice("src/routes/".length);
     allTexts.push({
       text,

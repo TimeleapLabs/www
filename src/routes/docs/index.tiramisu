@@ -8,8 +8,8 @@ link {/docs/services/deep-index/graphql, GraphQL}, and
 link {/docs/services/deep-index/webhook, Reverse-API} (webhooks)
 on Ethereum, Arbitrum, Aurora, Avalanche, Fantom, Polygon, Bitgert and the BNB Smart Chain.
 
-alert {warning,
-  Buying the token? Make sure you read the link {/docs/token token, documentation} first.}
+alert { warning,
+  Buying the token? Make sure you read the link {/docs/token token, documentation} first. }
 
 toc {
   kenshi,
@@ -24,4 +24,4 @@ toc {
   faq,
   media,
   refer,
-  terms-and-conditions}
+  terms-and-conditions }

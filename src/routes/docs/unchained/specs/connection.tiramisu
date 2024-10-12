@@ -22,8 +22,8 @@ This process is demonstrated in the following diagram:
 mermaid {
   id = "init-conn",
   description = "Unchained Connection Initiation Sequence",
-  diagram {
-    sequenceDiagram {
+  diagram \{
+    sequenceDiagram \{
       actor Worker
       
       par Connection Initiation
@@ -44,8 +44,8 @@ mermaid {
       loop Send Verified Data
         Worker-->>Consumer: Send Data Through Broker
       end
-    }
-  }
+    \}
+  \}
 }
 
 heading { level = 2, Hello Message }
@@ -55,13 +55,13 @@ The Hello message structure is as follows:
 code {
   language = "golang",
   escape {
-    type Signer struct /{
-    Name           string
-    EvmWallet      string
-    PublicKey      [96]byte
-    ShortPublicKey [48]byte
-  /}
- }
+    type Signer struct \{
+      Name           string
+      EvmWallet      string
+      PublicKey      [96]byte
+      ShortPublicKey [48]byte
+    \}
+  }
 }
 
 heading { level = 2, KOSK Challenge }
@@ -69,10 +69,10 @@ heading { level = 2, KOSK Challenge }
 code {
   language = golang,
   escape {
-  type Challenge struct /{
-    Passed    bool
-    Random    [128]byte
-    Signature [48]byte
-  /}
+    type Challenge struct \{
+      Passed    bool
+      Random    [128]byte
+      Signature [48]byte
+    \}
  }
 }

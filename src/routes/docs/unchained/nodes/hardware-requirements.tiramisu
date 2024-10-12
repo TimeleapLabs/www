@@ -1,6 +1,6 @@
 heading { level = 1, Hardware Requirements }
 
-Hardware requirements vastly differ depending on the selected features, datasets, client roles, or the client libraries used. Technically speaking, any device capable of signing a BLS12-381 message is capable of being an Unchained node. See for example, link { https://ieeexplore.ieee.org/document/9895015, alt = "BLS12-381 Pairing Implementation with RAM Footprint Smaller than 4KB" }.
+Hardware requirements vastly differ depending on the selected features, datasets, client roles, or the client libraries used. Technically speaking, any device capable of signing a BLS12-381 message is capable of being an Unchained node. See for example, link { https://ieeexplore.ieee.org/document/9895015, BLS12-381 Pairing Implementation with RAM Footprint Smaller than 4KB }.
 
 To run the Unchained Go client in different modes, you'll need the following hardware specs:
 
@@ -13,4 +13,4 @@ table {
   row = [ Network, "1Mbps symmetric", "100Mbps symmetric", "100Mbps symmetric", "100Mbps symmetric" ]
 }
 
-Please note that the above values are the italic { minimum } recommended levels. As the network grows, the requirements for running nodes will change as well. Learn more about GiB vs GB link { https://simple.wikipedia.org/wiki/Gibibyte, alt = "here" }.
+Please note that the above values are the italic { minimum } recommended levels. As the network grows, the requirements for running nodes will change as well. Learn more about GiB vs GB link { https://simple.wikipedia.org/wiki/Gibibyte, here }.

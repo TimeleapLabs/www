@@ -5,7 +5,7 @@ for querying and retrieving blockchain data using the powerful MongoDB Query
 Language (MQL). Enhance your data management and analysis capabilities with this
 streamlined solution, designed for the modern blockchain ecosystem.
 
-To learn more about MQL itself, you can visit the link { https://www.mongodb.com/docs/manual/tutorial/query-documents, title = official MongoDB website }.
+To learn more about MQL itself, you can visit the link { https://www.mongodb.com/docs/manual/tutorial/query-documents, official MongoDB website }.
 
 toc {
    introduction,

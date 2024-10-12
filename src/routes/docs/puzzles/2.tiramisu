@@ -9,7 +9,7 @@ alert { info-square,
   If the wallet is not empty it means the contest is still ongoing. 
 }
 
-audio { :file /audio/puzzles/Enigmatic.m4a }
+audio { file = /audio/puzzles/Enigmatic.m4a }
 
 Good luck!
 

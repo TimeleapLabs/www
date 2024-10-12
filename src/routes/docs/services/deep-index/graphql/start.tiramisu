@@ -11,10 +11,10 @@ languages such as Go where an interface is required for unpacking the received
 GraphQL data.
 
 To create an API key for querying the GraphQL endpoint, you can head over to
-the Kenshi link { https://timeleap.swiss/dashboard, title = dashboard }, connect your wallet,
+the Kenshi link { https://timeleap.swiss/dashboard, dashboard }, connect your wallet,
 fill out and submit the "New GraphQL + MQL API Key" form.
 
-gallery { image { /images/docs/screenshots/graphql_mql.png, alt = New GraphQL + MQL API Key } }
+gallery { image { /images/docs/screenshots/graphql_mql.png, New GraphQL + MQL API Key } }
 
 heading { level = 2, How to fill the form? }
 

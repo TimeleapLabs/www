@@ -4,8 +4,8 @@ import { extensions } from "./languages.js";
 export const toUrl = (file) =>
   file
     .replace("src/routes", "")
-    .replace("/index.cadey", "")
-    .replace(".cadey", "");
+    .replace("/index.tiramisu", "")
+    .replace(".tiramisu", "");
 
 export const slug = (str) => slugify(str, { lower: true, strict: true });
 

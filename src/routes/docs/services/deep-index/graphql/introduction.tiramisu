@@ -8,5 +8,5 @@ via HTTP protocol using POST requests, streamlining data retrieval and
 management in the blockchain ecosystem.
 
 To use the GraphQL service, you will need an API key. To create an API key, visit
-the Kenshi link { https://timeleap.swiss/dashboard, title = dashboard }. Continue reading to get help
+the Kenshi link { https://timeleap.swiss/dashboard, dashboard }. Continue reading to get help
 with the dashboard or see examples of the Sync service.

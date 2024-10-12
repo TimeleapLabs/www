@@ -29,10 +29,10 @@ const getDescription = (body) => {
 };
 
 const defaultDescription =
-  "Kenshi is a start-up in Switzerland that provides blockchain technology services, including data indexing, oracles, IoT SDK, and product development.";
+  "Timeleap is a Swiss decentralization and distributed computation start-up.";
 
 const absolute = (url) =>
-  url.startsWith("/") ? `https://kenshi.io${url}` : url;
+  url.startsWith("/") ? `https://timeleap.swiss${url}` : url;
 
 const titlesByType = {
   blog: "Blog",
@@ -46,7 +46,7 @@ export const getSeoTags = (body, context, type) => {
 
   const image = images?.length
     ? images[0]
-    : "https://kenshi.io/images/social.png";
+    : "https://timeleap.swiss/images/social.png";
 
   const title =
     headings?.length && headings[0].title != titlesByType[type]

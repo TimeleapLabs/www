@@ -77,17 +77,17 @@ export const getPage = (
   `;
 
 export const getContext = (
-  cadey,
-  processOne,
-  currentFile,
-  allHeadings,
-  allTocs,
-  allMeta
-) => ({
-  ...cadey.getContext(),
   processOne,
   currentFile,
   allHeadings,
   allTocs,
   allMeta,
+  type
+) => ({
+  processOne,
+  currentFile,
+  allHeadings,
+  allTocs,
+  allMeta,
+  type,
 });

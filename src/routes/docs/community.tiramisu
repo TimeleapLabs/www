@@ -16,6 +16,6 @@ list {
 alert { type = warning, Kenshi does not have any other online or offline communities except the ones listed above. Be extra cautious when joining other unofficial communities. Always remember this: we will never contact you first. }
 
 
-heading {level =  2 Contact Details}
+heading { level = 2, Contact Details }
 
-For business enquiries, send us a message at link {mailto:hi@kenshi.io, hi@kenshi.io}.
+For business enquiries, send us a message at link { mailto:hi@kenshi.io, hi@kenshi.io }.

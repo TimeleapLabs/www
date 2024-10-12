@@ -25,7 +25,7 @@ code {
 
 heading { level = 3, Manual Installation }
 
-Head to the Unchained link { https://github.com/TimeleapLabs/unchained/releases, alt = "releases page" } and grab the latest release for your OS and CPU architecture. Move the binary file to an appropriate place and make it executable:
+Head to the Unchained link { https://github.com/TimeleapLabs/unchained/releases, releases page } and grab the latest release for your OS and CPU architecture. Move the binary file to an appropriate place and make it executable:
 
 code {
   language = bash,
@@ -37,8 +37,8 @@ heading { level = 2, Installing the Unchained AI Plugin }
 To install the Unchained AI plugin, you need to have the Unchained client installed. You'll also need to have the following dependencies installed:
 
 list {
-  item = bold { pyenv }: See installation instructions link { https://github.com/pyenv/pyenv, alt = "here" }.,
-  item = bold { Git }: See installation instructions link { https://git-scm.com/downloads, alt = "here" }.
+  item = bold { pyenv }: See installation instructions link { https://github.com/pyenv/pyenv, here }.,
+  item = bold { Git }: See installation instructions link { https://git-scm.com/downloads, here }.
 }
 
 Once you have the dependencies installed, run the following command in your terminal:
@@ -67,5 +67,5 @@ heading { level = 2, Additional dependencies }
 To connect from the Unchained GUI to the Unchained Broker when testing locally, you need to install the following dependencies:
 
 list {
-  item = bold { mkcert }: See installation instructions link { https://github.com/FiloSottile/mkcert, alt = "here" }.
+  item = bold { mkcert }: See installation instructions link { https://github.com/FiloSottile/mkcert, here }.
 }

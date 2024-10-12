@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@carbon/charts-svelte": "^1.13.4",
-    "@timeleap/tiramisu": "^1.3.0",
+    "@timeleap/tiramisu": "^1.4.1",
     "@zerodevx/svelte-toast": "^0.6.3",
     "chokidar-cli": "^3.0.0",
     "cli-progress": "^3.11.2",
@@ -82,5 +82,6 @@
     "three": "^0.164.1",
     "vite": "^4.4.2",
     "yaml": "^2.3.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }

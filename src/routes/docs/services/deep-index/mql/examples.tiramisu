@@ -1,6 +1,6 @@
 heading { level = 1, MQL Examples }
 
-On this page you can find examples for link { #nodejs Node.js }, link { #python Python }, and Go languages.
+On this page you can find examples for link { #nodejs, Node.js }, link { #python, Python }, and Go languages.
 
 heading { level = 2, Node.js }
 

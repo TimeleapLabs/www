@@ -4,7 +4,7 @@ Kenshi Oracle Network enables developers to make their custom oracles using the
 technologies they already know and use. Continue reading to learn more about the
 features offered by the Oracle Network and how to create and deploy your Oracle.
 
-alert { type = info-square, 
+alert { info-square, 
   You can use the Arbitrum One Kenshi tokens to pay for any of the Kenshi services
   on any of the supported chains.
 }

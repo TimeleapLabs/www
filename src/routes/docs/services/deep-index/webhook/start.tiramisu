@@ -1,6 +1,6 @@
 heading { level = 1, Getting Started with R-API }
 
-To integrate the Timeleap Reverse-API service into your ecosystem or workflow, you need to expose an HTTP POST endpoint that is publicly available over the internet. Once ready, you need to define an event listener task, so the Timeleap dispatcher can find relevant events for you and notify your endpoint whenever it finds them. Creating a task and registering your endpoint can be done using the Timeleap link { https://timeleap.swiss/dashboard, alt = "dashboard" }.
+To integrate the Timeleap Reverse-API service into your ecosystem or workflow, you need to expose an HTTP POST endpoint that is publicly available over the internet. Once ready, you need to define an event listener task, so the Timeleap dispatcher can find relevant events for you and notify your endpoint whenever it finds them. Creating a task and registering your endpoint can be done using the Timeleap link { https://timeleap.swiss/dashboard, dashboard }.
 
 heading { level = 2, How to fill the form? }
 

@@ -3,6 +3,6 @@ heading { level = 1, GraphQL Endpoints }
 The Kenshi Deep Index endpoint for GraphQL shares the same endpoint for all blockchains and all event types:
 
 table {
-  row = [ Name, Address ],
+  header = [ Name, Address ],
   row = [ Deep Index GraphQL, https://api.kenshi.io/index/graphql ]
 }

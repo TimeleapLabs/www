@@ -4,7 +4,7 @@ The example below shows a Sync task to sync all Kenshi token transfer events int
 blockchain data clusters:
 
 table {
-  row = [ Field, Value, Description ],
+  header = [ Field, Value, Description ],
   row = [ Chain, Arbitrum One, Kenshi smart contract is deployed to Arbitrum One. ],
   row = [ Starting block, 101120835, Kenshi smart contract is deployed at block number 101120835. ],
   row = [ Contract address,

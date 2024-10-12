@@ -1,15 +1,15 @@
 heading { level = 1, VRF Contracts Addresses }
 
-On this page you can find the contract addresses for the link { #bnb-chain BNB Chain },
-link { #polygon Polygon }, link { #fantom Fantom }, link { #avalanche-c-chain Avalanche (C-Chain) },
-and the link { #ethereum Ethereum } (Goerli) chains. These contract addresses
+On this page you can find the contract addresses for the link { #bnb-chain, BNB Chain },
+link { #polygon, Polygon }, link { #fantom, Fantom }, link { #avalanche-c-chain, Avalanche (C-Chain) },
+and the link { #ethereum, Ethereum } (Goerli) chains. These contract addresses
 should be passed to the "setupVRF" function depending on which chain your contract is deployed to.
 
 alert { info-square
    This service is available only on the BNB Chain (BSC),
    Fantom (FTM) and Polygon (MATIC) testnets and mainnets. If you have any issues or questions
-   you can join our link { https://t.me/KenshiTech Telegram chat } or send us an email
-   at link { mailto:support@kenshi.io support@kenshi.io }.}
+   you can join our link { https://t.me/KenshiTech, Telegram chat } or send us an email
+   at link { mailto:support@kenshi.io, support@kenshi.io }.}
 
 heading { level = 2, BNB Chain }
 
