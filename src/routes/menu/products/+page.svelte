@@ -1,52 +1,36 @@
 <script>
 	import Icon from '@iconify/svelte';
-	import { Section, Grid, Image, Button, Card, Input, Navbar } from '@timeleap/ui';
+
+	import Section from '$lib/layout/Section.svelte';
+	import Grid from '$lib/layout/Grid.svelte';
+
+	import Image from '$lib/ui/Image.svelte';
+	import Button from '$lib/ui/Button.svelte';
+	import Navbar from '$lib/ui/Navbar.svelte';
+	import Card from '$lib/ui/Card.svelte';
+
+	import Input from '$lib/forms/Input.svelte';
 </script>
 
 <svelte:head>
 	<title>Timeleap | Distributed App Engine</title>
 </svelte:head>
 
-<Section class="w-full max-w-[1200px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
-	<Navbar class="bg-zinc-900 text-white">
-		<Button class="bg-cyan-900" href="/">Home</Button>
-		<Button class="hover:bg-zinc-800 !hidden md:!inline-flex" href="/menu/products">
+<Section class="w-full max-w-[1200px] mx-auto pt-12 !gap-16 px-4 xl:px-0 flex-1">
+	<Navbar class="bg-zinc-900 text-white flex">
+		<Button class="hover:bg-zinc-800" href="/">Home</Button>
+		<Button class="bg-cyan-900 !hidden md:!inline-flex" href="/menu/products">
 			<Icon icon="carbon:carbon" /> Products
 		</Button>
 		<Button class="hover:bg-zinc-800 !hidden md:!inline-flex">
 			<Icon icon="carbon:email" /> Contact
 		</Button>
 		<div class="flex-1"></div>
-		<Button
-			class="bg-green-400 text-black !px-6 hover:bg-green-300 transition-colors md:!hidden"
-			href="/menu"
-		>
-			<Icon icon="carbon:menu" width={24} />
+		<Button class="bg-blue-500 !px-6 hover:bg-blue-400" on:click={() => window?.history?.go(-1)}>
+			<Icon icon="carbon:arrow-left" width={24} />
 		</Button>
 	</Navbar>
-	<Grid extraLargeScreenColumns={2} largeScreenColumns={2}>
-		<Card class="text-white flex flex-col bg-zinc-950 !pl-0">
-			<h1 class="flex-1 font-serif text-5xl md:text-6xl font-light !leading-tight">
-				Distributed and Decentralized Computation Solutions.
-			</h1>
-			<p class="flex-1 mt-12 text-gray-300">
-				Our mission is to provide cutting-edge blockchain solutions for businesses and enterprises.
-			</p>
-			<div class="mt-16">
-				<Button class="bg-green-400 text-black hover:bg-green-300 font-normal" animate>
-					Learn More<Icon icon="carbon:arrow-right" />
-				</Button>
-			</div>
-		</Card>
-		<Image
-			src="/images/hero.jpg"
-			alt="Distributed Computation"
-			height="min(640px, 100vw)"
-			class="contrast-[1.05]"
-		/>
-	</Grid>
 
-	<h2 class="white-text text-white font-serif text-5xl">Discover.</h2>
 	<Grid extraLargeScreenColumns={3} largeScreenColumns={2}>
 		<Card class="!p-0 flex bg-violet-100">
 			<div class="px-8 flex-1 content-center">
@@ -70,102 +54,17 @@
 			<Image src="/images/pattern3.svg" alt="Unchained" width="128px" height="128px"></Image>
 		</Card>
 	</Grid>
-
-	<Grid
-		extraLargeScreenColumns={1}
-		largeScreenColumns={1}
-		mediumScreenColumns={1}
-		smallScreenColumns={1}
-		class="mt-8 !auto-rows-auto"
-	>
-		<Image src="/images/bangkok.jpg" alt="Bangkok DevCon" height="640px" />
-		<Card class="text-white flex flex-col mt-4">
-			<h2 class="white-text text-white font-serif text-5xl">Devcon 2024: Bangkok, Thailand.</h2>
-			<p class="mt-12 text-lg font-light flex-1">
-				Join us at Devcon 2024 in Bangkok, Thailand, where we will be hosting a series of workshops
-				and talks on the future of blockchain technology.
-			</p>
-			<div class="button mt-24">
-				<Button class="bg-green-400 text-black hover:bg-green-300 font-normal" animate>
-					Book a Ticket<Icon icon="carbon:arrow-right" />
-				</Button>
-			</div>
-		</Card>
-	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1200px] mx-auto pt-20 !gap-16 pb-24 px-4 xl:px-0">
-	<Grid extraLargeScreenColumns={5} largeScreenColumns={5} class="mt-8">
-		<Image
-			src="/images/matterhorn.jpg"
-			alt="Mattherhorn"
-			height="640px"
-			class="col-span-1 md:col-span-2"
-		/>
-		<Card
-			class="text-white flex flex-col col-span-1 md:col-span-3 bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800"
-		>
-			<h2 class="white-text text-white font-serif text-4xl md:text-5xl">
-				Headquartered in the heart of Switzerland.
-			</h2>
-			<p class="mt-12 text-lg font-light">
-				Founded in December 2021, Kenshi is a pioneering blockchain technology company headquartered
-				in the heart of Switzerland, with a commitment to innovation and excellence.
-			</p>
-			<p class="flex-1 mt-6 text-lg font-light">
-				As of April 2024, Kenshi has rebranded and registered as Timeleap SA, a company dedicated to
-				providing cutting-edge blockchain solutions for businesses and enterprises.
-			</p>
-			<div class="button">
-				<Button class="bg-green-400 text-black hover:bg-green-300 font-normal" animate>
-					Learn More<Icon icon="carbon:arrow-right" />
-				</Button>
-			</div>
-		</Card>
-	</Grid>
-	<h2 class="white-text text-white font-serif text-5xl mt-16">Contact Us.</h2>
-	<Card class="bg-zinc-900 text-white flex flex-col gap-8">
-		<Grid extraLargeScreenColumns={2} largeScreenColumns={2}>
-			<Input
-				type="text"
-				label="Name"
-				id="name"
-				class="bg-zinc-800 focus:bg-zinc-700 transition-colors"
-				placeholder="John Doe"
-			>
-				<span class="text-gray-400 font-light"> Please enter your full name. </span>
-			</Input>
-			<Input
-				type="email"
-				label="Email"
-				id="email"
-				class="bg-zinc-800 focus:bg-zinc-700 transition-colors"
-				placeholder="john@doe.com"
-			>
-				<span class="text-gray-400 font-light"> Please enter a valid email address. </span>
-			</Input>
-		</Grid>
-		<Input
-			label="Message"
-			class="bg-zinc-800 focus:bg-zinc-700 transition-colors"
-			id="message"
-			placeholder="Hello there!"
-		/>
-		<Button class="bg-green-400 hover:bg-green-300 text-black font-normal self-start">
-			Submit
-		</Button>
-	</Card>
-</Section>
-
-<Section class="max-w-[1200px] mx-auto px-4 xl:px-0">
+<Section class="max-w-[1200px] mx-auto px-4 xl:px-0 pt-28">
 	<Grid
 		extraLargeScreenColumns={4}
 		largeScreenColumns={4}
 		mediumScreenColumns={3}
 		smallScreenColumns={1}
-		class="text-white pt-4 md:pb-16"
+		class="text-white pt-4"
 	>
-		<div class="md:pb-48">
+		<div class="md:pb-48 pb-16">
 			<h3 class="font-serif text-xl pb-8">Timeleap SA.</h3>
 			<p class="text-gray-300">Pl. de l'Industrie 2, 1180 Rolle, Switzerland</p>
 			<img class="mt-8" src="/images/timeleap.svg" alt="Logo" width="160px" />
