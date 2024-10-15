@@ -1,24 +1,21 @@
-.DS_Store
 node_modules
-/build
-/.svelte-kit
-/package
-/contracts/build
 
+# Output
+.output
 .vercel
-.vercel_build_output
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
 .env
-.vscode
-.assets
+.env.*
+!.env.example
+!.env.test
 
-/static/images/originals
-
-# Docs
-src/routes/docs/**/*.svelte
-src/lib/docs.nav.js
-src/lib/docs.search.js
-
-# Blog
-src/routes/blog/**/*.svelte
-src/lib/blog.nav.js
-src/lib/blog.search.js
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
