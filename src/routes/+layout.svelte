@@ -19,3 +19,9 @@
 <div class="flex min-h-full flex-col">
 	<slot />
 </div>
+
+<style lang="postcss">
+	:global(html) {
+		background-color: theme(colors.gray.950);
+	}
+</style>

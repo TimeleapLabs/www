@@ -9,7 +9,7 @@ body {
 }
 
 :root {
-	--border-radius: 1.5em;
+	--border-radius: 1em;
 }
 
 @keyframes fade-in {

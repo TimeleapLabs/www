@@ -1,76 +1,129 @@
 <script>
 	import Icon from '@iconify/svelte';
-	import { Section, Grid, Image, Button, Card, Input, Navbar } from '@timeleap/ui';
+	import { Section, Grid, Image, Button, Card, Input } from '@timeleap/ui';
+
+	import Footer from '$lib/components/Footer.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
+	import Carousel from '$lib/components/Carousel.svelte';
 </script>
 
 <svelte:head>
 	<title>Timeleap | Distributed App Engine</title>
 </svelte:head>
 
-<Section class="w-full max-w-[1200px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
-	<Navbar class="bg-zinc-900 text-white">
-		<Button class="bg-cyan-900" href="/">Home</Button>
-		<Button class="hover:bg-zinc-800 !hidden md:!inline-flex" href="/menu/products">
-			<Icon icon="carbon:carbon" /> Products
-		</Button>
-		<Button class="hover:bg-zinc-800 !hidden md:!inline-flex">
-			<Icon icon="carbon:email" /> Contact
-		</Button>
-		<div class="flex-1"></div>
-		<Button
-			class="bg-green-400 text-black !px-6 hover:bg-green-300 transition-colors md:!hidden"
-			href="/menu"
+<Navbar active="home"></Navbar>
+
+<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
+	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-24">
+		<Card class="!p-0 relative">
+			<Image
+				src="/images/apps-full.png"
+				alt="Distributed Computation"
+				height="min(640px, 100vw)"
+				class="contrast-[1.05]"
+			/>
+			<div
+				class="absolute top-0 border-box bottom-0 left-0 w-full h-full inset-0 bg-gradient-to-r from-[rgba(0,0,0,.6)] to-transparent flex flex-col justify-end h-full p-6 md:p-12"
+			>
+				<h1 class="font-serif text-5xl md:text-6xl text-white">A Decentralized OS</h1>
+				<p class="mt-12 text-white w-1/2">
+					Apps that are only one click away!
+					<span class="hidden md:inline-block"
+						>Our vision is to create a decentralized operating system that empowers users to take
+						control of their data.</span
+					>
+				</p>
+				<div class="mt-16">
+					<Button class="bg-green-400 text-black hover:bg-green-300 font-normal" animate>
+						See Our Vision<Icon icon="carbon:arrow-right" />
+					</Button>
+				</div>
+			</div>
+		</Card>
+	</Grid>
+
+	<h2 class="white-text text-white font-serif text-5xl mt-8 mb-8">Discover.</h2>
+</Section>
+
+<Section class="w-full pt-20 pb-20 md:px-12 px-4">
+	<Carousel>
+		<Card
+			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px]"
 		>
-			<Icon icon="carbon:menu" width={24} />
-		</Button>
-	</Navbar>
-	<Grid extraLargeScreenColumns={2} largeScreenColumns={2}>
-		<Card class="text-white flex flex-col bg-zinc-950 !pl-0">
-			<h1 class="flex-1 font-serif text-5xl md:text-6xl font-light !leading-tight">
-				Distributed and Decentralized Computation Solutions.
-			</h1>
-			<p class="flex-1 mt-12 text-gray-300">
-				Our mission is to provide cutting-edge blockchain solutions for businesses and enterprises.
-			</p>
-			<div class="mt-16">
-				<Button class="bg-green-400 text-black hover:bg-green-300 font-normal" animate>
-					Learn More<Icon icon="carbon:arrow-right" />
-				</Button>
+			<div class="p-8 md:p-12 flex flex-col">
+				<h3 class="font-serif text-4xl">Unchained</h3>
+				<div class="flex-1 mt-8 text-gray-300">Distributed App Engine</div>
+				<div>
+					<Button href="/unchained" class="!p-0 hover:text-green-300 !transition-colors">
+						Discover<Icon icon="carbon:arrow-right" />
+					</Button>
+				</div>
 			</div>
+			<Image
+				src="/images/unchained.jpg"
+				alt="Unchained"
+				width="100%"
+				height="100%"
+				class="max-w-full "
+			></Image>
 		</Card>
-		<Image
-			src="/images/hero.jpg"
-			alt="Distributed Computation"
-			height="min(640px, 100vw)"
-			class="contrast-[1.05]"
-		/>
-	</Grid>
 
-	<h2 class="white-text text-white font-serif text-5xl">Discover.</h2>
-	<Grid extraLargeScreenColumns={3} largeScreenColumns={2}>
-		<Card class="!p-0 flex bg-violet-100">
-			<div class="px-8 flex-1 content-center">
-				<h3 class="font-serif text-2xl">Unchained</h3>
-				<div class="text-gray-800">Distributed App Engine</div>
+		<Card
+			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px]"
+		>
+			<div class="p-12 flex flex-col">
+				<h3 class="font-serif text-4xl">Cascade</h3>
+				<div class="flex-1 mt-8 text-gray-300">Blockchain as a Service</div>
+				<div>
+					<Button href="/unchained" class="!p-0 hover:text-green-300 !transition-colors">
+						Discover<Icon icon="carbon:arrow-right" />
+					</Button>
+				</div>
 			</div>
-			<Image src="/images/pattern1.svg" alt="Unchained" width="128px" height="128px"></Image>
+			<Image src="/images/baas.jpg" alt="Unchained" width="100%" height="100%" class="max-w-full"
+			></Image>
 		</Card>
-		<Card class="!p-0 flex bg-red-100">
-			<div class="px-8 flex-1 content-center">
-				<h3 class="font-serif text-2xl">GhostFS</h3>
-				<div class="text-gray-800">Remote File Storage</div>
-			</div>
-			<Image src="/images/pattern2.png" alt="Unchained" width="128px" height="128px"></Image>
-		</Card>
-		<Card class="!p-0 flex bg-green-100">
-			<div class="px-8 flex-1 content-center">
-				<h3 class="font-serif text-2xl">Cascade</h3>
-				<div class="text-gray-800">Blockchain as a Service</div>
-			</div>
-			<Image src="/images/pattern3.svg" alt="Unchained" width="128px" height="128px"></Image>
-		</Card>
-	</Grid>
 
+		<Card
+			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px]"
+		>
+			<div class="p-12 flex flex-col">
+				<h3 class="font-serif text-4xl">GhostFS</h3>
+				<div class="flex-1 mt-8 text-gray-300">Remote File Storage</div>
+				<div>
+					<Button href="/unchained" class="!p-0 hover:text-green-300 !transition-colors">
+						Discover<Icon icon="carbon:arrow-right" />
+					</Button>
+				</div>
+			</div>
+			<Image src="/images/ghostfs.jpg" alt="Unchained" width="100%" height="100%" class="max-w-full"
+			></Image>
+		</Card>
+
+		<Card
+			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px]"
+		>
+			<div class="p-12 flex flex-col">
+				<h3 class="font-serif text-4xl">Flare</h3>
+				<div class="flex-1 mt-8 text-gray-300">Decentralized Social Network</div>
+				<div>
+					<Button href="/unchained" class="!p-0 hover:text-green-300 !transition-colors">
+						Discover<Icon icon="carbon:arrow-right" />
+					</Button>
+				</div>
+			</div>
+			<Image
+				src="/images/flare-cards.jpg"
+				alt="Unchained"
+				width="100%"
+				height="100%"
+				class="max-w-full"
+			></Image>
+		</Card>
+	</Carousel>
+</Section>
+
+<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
 	<Grid
 		extraLargeScreenColumns={1}
 		largeScreenColumns={1}
@@ -79,7 +132,7 @@
 		class="mt-8 !auto-rows-auto"
 	>
 		<Image src="/images/bangkok.jpg" alt="Bangkok DevCon" height="640px" />
-		<Card class="text-white flex flex-col mt-4">
+		<Card class="text-white flex flex-col mt-12 !p-0">
 			<h2 class="white-text text-white font-serif text-5xl">Devcon 2024: Bangkok, Thailand.</h2>
 			<p class="mt-12 text-lg font-light flex-1">
 				Join us at Devcon 2024 in Bangkok, Thailand, where we will be hosting a series of workshops
@@ -94,7 +147,7 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1200px] mx-auto pt-20 !gap-16 pb-24 px-4 xl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-20 !gap-16 pb-24 px-4 xl:px-0">
 	<Grid extraLargeScreenColumns={5} largeScreenColumns={5} class="mt-8">
 		<Image
 			src="/images/matterhorn.jpg"
@@ -157,114 +210,4 @@
 	</Card>
 </Section>
 
-<Section class="max-w-[1200px] mx-auto px-4 xl:px-0">
-	<Grid
-		extraLargeScreenColumns={4}
-		largeScreenColumns={4}
-		mediumScreenColumns={3}
-		smallScreenColumns={1}
-		class="text-white pt-4 md:pb-16"
-	>
-		<div class="md:pb-48">
-			<h3 class="font-serif text-xl pb-8">Timeleap SA.</h3>
-			<p class="text-gray-300">Pl. de l'Industrie 2, 1180 Rolle, Switzerland</p>
-			<img class="mt-8" src="/images/timeleap.svg" alt="Logo" width="160px" />
-		</div>
-		<div>
-			<h3 class="font-serif text-xl pb-8">Social Media</h3>
-			<div class="flex gap-4 flex-wrap max-w-[240px]">
-				<a
-					href="https://twitter.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					<Icon icon="carbon:logo-twitter" width="32" height="32" />
-				</a>
-				<a
-					href="https://linkedin.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					<Icon icon="carbon:logo-linkedin" width="32" height="32" />
-				</a>
-				<a
-					href="https://github.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					<Icon icon="carbon:logo-github" width="32" height="32" />
-				</a>
-				<a
-					href="https://github.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					<Icon icon="carbon:send-alt" width="32" height="32" />
-				</a>
-				<a
-					href="https://github.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					<Icon icon="carbon:logo-discord" width="32" height="32" />
-				</a>
-				<a
-					href="https://github.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					<Icon icon="carbon:chat" width="32" height="32" />
-				</a>
-			</div>
-		</div>
-		<div>
-			<h3 class="font-serif text-xl pb-8">Tokenomics</h3>
-			<div class="flex gap-4 flex-col">
-				<a
-					href="https://twitter.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					KNS on Uniswap <Icon icon="carbon:arrow-up-right" class="inline-block ml-2" />
-				</a>
-				<a
-					href="opensea.io/collection/kenshi-katana"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					Katana NFT on OpenSea <Icon icon="carbon:arrow-up-right" class="inline-block ml-2" />
-				</a>
-				<a
-					href="opensea.io/collection/kenshi-katana"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					Stake <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
-				</a>
-			</div>
-		</div>
-		<div>
-			<h3 class="font-serif text-xl pb-8">Contact</h3>
-			<div class="flex gap-4 flex-col">
-				<a href="mailto:experts@kenshi.io" class="hover:text-green-400 transition-colors">
-					Talk to an Expert <Icon icon="carbon:arrow-up-right" class="inline-block ml-2" />
-				</a>
-			</div>
-		</div></Grid
-	>
-</Section>
-
-<style lang="postcss">
-	:global(html) {
-		background-color: theme(colors.gray.950);
-	}
-</style>
+<Footer></Footer>
