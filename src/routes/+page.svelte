@@ -220,10 +220,7 @@
 				providing cutting-edge blockchain solutions for businesses and enterprises.
 			</p>
 			<div class="button">
-				<Button
-					class="bg-green-400 text-black hover:bg-green-300 font-normal font-semibold"
-					animate
-				>
+				<Button class="bg-green-400 text-black hover:bg-green-300 font-semibold" animate>
 					Learn More<Icon icon="carbon:arrow-right" />
 				</Button>
 			</div>
