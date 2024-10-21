@@ -44,7 +44,7 @@
 				<h2 class="font-serif text-5xl md:text-6xl text-white">
 					From note taking to AI, 3D rendering, and AAA games.
 				</h2>
-				<p class="mt-20 text-white md:w-1/2">No need for costly gear.</p>
+				<p class="mt-20 text-white md:w-1/2">No need for expensive hardware or yearly upgrades.</p>
 			</div>
 		</Card>
 	</Grid>

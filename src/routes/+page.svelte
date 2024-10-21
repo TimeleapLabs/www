@@ -15,7 +15,7 @@
 <Navbar active="home"></Navbar>
 
 <Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
-	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-12 md:pt-24">
+	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-10 md:pt-24">
 		<Card class="!p-0 relative h-[640px]">
 			<Image
 				src="/images/apps-full.jpg"
@@ -71,7 +71,7 @@
 				alt="Unchained"
 				width="100%"
 				height="100%"
-				class="max-w-full "
+				class="max-w-full"
 			></Image>
 		</Card>
 
