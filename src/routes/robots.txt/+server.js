@@ -1,7 +1,7 @@
 const body = `\
 User-agent: *
 Allow: /
-Sitemap: https://timeleap.swiss/sitemap.xml`;
+Sitemap: https://old.timeleap.swiss/sitemap.xml`;
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export const GET = () => {

@@ -7,7 +7,7 @@ const walletConnectProjectId = "cd75e040ea5fcb69967fff012c27bc00";
 
 const uauth = uauthModule({
   clientID: "d2c1ef00-bab8-4f6d-b851-8fe9926ae01e",
-  redirectUri: "https://timeleap.swiss",
+  redirectUri: "https://old.timeleap.swiss",
   scope: "openid wallet",
   walletConnectProjectId,
 });

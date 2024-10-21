@@ -5,7 +5,7 @@ you need to expose an HTTP POST endpoint that is publicly available over the
 internet. Once ready, you need to define an event listener task, so the Kenshi
 dispatcher can find relevant events for you and notify your endpoint whenever
 it finds them. Creating a task and registering your endpoint can be done using
-the Kenshi [link https://timeleap.swiss/dashboard dashboard].
+the Kenshi [link https://old.timeleap.swiss/dashboard dashboard].
 
 [heading :size 2 How to fill the form?]
 

@@ -47,7 +47,7 @@ or AWS Lambda. You can use Python, Go, Node.js, or any other programming languag
 The Custom Oracle Protocol is simple; you need a public HTTP[:S:] endpoint that receives
 events from the Oracle Network's Event Dispatcher, processes the event, and returns a JSON
 response with instructions on what to do with the event. You can read more about it in our
-[link https://timeleap.swiss/docs/services/oracle-network/custom/protocol documentation].
+[link https://old.timeleap.swiss/docs/services/oracle-network/custom/protocol documentation].
 
 You also need a smart contract to make this work. You need to emit an event from your contract;
 we send this event to your custom oracle for processing. The Oracle Network then needs to call
