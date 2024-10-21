@@ -188,6 +188,7 @@
 					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 					animate
 					href="https://lu.ma/sw27vr8w"
+					target="_blank"
 				>
 					Book a Ticket<Icon icon="carbon:arrow-up-right" />
 				</Button>

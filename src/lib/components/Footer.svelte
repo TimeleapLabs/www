@@ -94,7 +94,7 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					Stake <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+					Stake <Icon icon="carbon:arrow-up-right" class="inline-block ml-2" />
 				</a>
 			</div>
 		</div>
