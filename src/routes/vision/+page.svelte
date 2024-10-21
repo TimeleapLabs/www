@@ -19,7 +19,7 @@
 			<h1 class="font-serif text-5xl md:text-6xl text-white">
 				The Entire World Under Your Fingertips.
 			</h1>
-			<p class="mt-20 text-white w-1/2">All you need is a screen.</p>
+			<p class="mt-20 text-white md:w-1/2">All you need is a screen.</p>
 		</div>
 		<Card class="!p-0 relative">
 			<Image
@@ -34,8 +34,8 @@
 
 <Section class="w-full max-w-[1280px] mx-auto !gap-16 px-4 xl:px-0 pt-24">
 	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-24">
-		<Card class="!p-0 relative overflow-hidden">
-			<video src="/videos/game.webm" muted autoplay loop>
+		<Card class="!p-0 relative overflow-hidden min-h-[640px]">
+			<video src="/videos/game.webm" muted autoplay loop class="object-cover h-full w-full">
 				<track kind="captions" />
 			</video>
 			<div
@@ -44,7 +44,7 @@
 				<h2 class="font-serif text-5xl md:text-6xl text-white">
 					From note taking to AI, 3D rendering, and AAA games.
 				</h2>
-				<p class="mt-20 text-white w-1/2">All you need is a screen.</p>
+				<p class="mt-20 text-white md:w-1/2">No need for costly gear.</p>
 			</div>
 		</Card>
 	</Grid>
@@ -69,11 +69,17 @@
 		</div>
 	</Grid>
 
-	<h2 class="font-serif text-5xl md:text-6xl text-white w-1/2 mt-16">
+	<h2 class="font-serif text-5xl md:text-6xl text-white w-2/3 md:w-1/2 mt-16 px-4">
 		A Decentralized Operating System for Everyone!
 	</h2>
 
-	<Grid extraLargeScreenColumns={3} largeScreenColumns={3} class="!gap-16 pt-24">
+	<Grid
+		extraLargeScreenColumns={3}
+		largeScreenColumns={3}
+		mediumScreenColumns={2}
+		smallScreenColumns={1}
+		class="!gap-16 pt-24"
+	>
 		<Card class="!p-0 relative">
 			<Image
 				src="/images/ai.jpg"
@@ -87,11 +93,11 @@
 				<h2 class="font-serif text-5xl md:text-6xl text-white">AI.</h2>
 			</div>
 		</Card>
-		<Card class="!p-0 relative col-span-2">
+		<Card class="!p-0 relative md:col-span-2">
 			<Image
 				src="/images/games.jpg"
 				alt="Distributed Computation"
-				height="min(640px, 100vw)"
+				height="100%"
 				class="contrast-[1.05]"
 			/>
 			<div
@@ -100,11 +106,11 @@
 				<h2 class="font-serif text-5xl md:text-6xl text-white">Video Games.</h2>
 			</div>
 		</Card>
-		<Card class="!p-0 relative col-span-2">
+		<Card class="!p-0 relative md:col-span-2">
 			<Image
 				src="/images/productivity.jpg"
 				alt="Distributed Computation"
-				height="min(640px, 100vw)"
+				height="100%"
 				class="contrast-[1.05]"
 			/>
 			<div
@@ -117,7 +123,7 @@
 			<Image
 				src="/images/music.jpg"
 				alt="Distributed Computation"
-				height="min(640px, 100vw)"
+				height="100%"
 				class="contrast-[1.05]"
 			/>
 			<div
@@ -126,11 +132,11 @@
 				<h2 class="font-serif text-5xl md:text-6xl text-white">Music.</h2>
 			</div>
 		</Card>
-		<Card class="!p-0 relative col-span-3">
+		<Card class="!p-0 relative md:col-span-3">
 			<Image
 				src="/images/movies.jpg"
 				alt="Distributed Computation"
-				height="min(640px, 100vw)"
+				height="100%"
 				class="contrast-[1.05]"
 			/>
 			<div
@@ -141,10 +147,14 @@
 		</Card>
 	</Grid>
 
-	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-24 relative">
-		<div class="flex justify-end flex-col absolute left-0 top-0 h-full w-full z-20 p-16">
+	<Grid
+		extraLargeScreenColumns={1}
+		largeScreenColumns={1}
+		class="!gap-16 pt-24 relative mb-20 h-[720px] md:h-[640px]"
+	>
+		<div class="flex justify-end flex-col absolute left-0 top-0 h-full w-full z-20 p-8 md:p-16">
 			<h2 class="font-serif text-5xl md:text-6xl text-white">All within your reach.</h2>
-			<div class="text-gray-100 mt-8 text-2xl w-1/2">
+			<div class="text-gray-100 mt-8 text-2xl md:w-1/2">
 				<p>
 					No installation required. No updates. No downloads. No waiting. No limits. No compromises.
 				</p>
@@ -161,7 +171,7 @@
 		<Image
 			src="/images/apps-full.jpg"
 			alt="Distributed Computation"
-			height="640px"
+			height="100%"
 			class="contrast-[1.05]"
 		/>
 	</Grid>
