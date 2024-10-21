@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>Timeleap | Distributed App Engine</title>
+	<title>Timeleap — Distributed App Engine</title>
 </svelte:head>
 
 <Navbar active="vision"></Navbar>
