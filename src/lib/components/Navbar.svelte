@@ -2,7 +2,7 @@
 	import Icon from '@iconify/svelte';
 	import { Button, Navbar } from '@timeleap/ui';
 
-	type section = 'home' | 'products' | 'contact' | 'none';
+	type section = 'home' | 'products' | 'contact' | 'vision' | 'none';
 
 	export let backButton: boolean = false;
 	export let active: section = 'home';
@@ -13,7 +13,8 @@
 	const classes = {
 		home: active === 'home' ? activeClass : hoverClass,
 		products: active === 'products' ? activeClass : hoverClass,
-		contact: active === 'contact' ? activeClass : hoverClass
+		contact: active === 'contact' ? activeClass : hoverClass,
+		vision: active === 'vision' ? activeClass : hoverClass
 	};
 </script>
 
@@ -24,10 +25,13 @@
 		<img src="/images/tl.svg" alt="Timeleap" width="16px" />
 		Home
 	</Button>
+	<Button class="{classes.vision} !hidden md:!inline-flex !p-5 !rounded-lg" href="/vision">
+		<Icon icon="carbon:view" /> Our Vision
+	</Button>
 	<Button class="{classes.products} !hidden md:!inline-flex !p-5 !rounded-lg" href="/menu/products">
 		<Icon icon="carbon:carbon" /> Products
 	</Button>
-	<Button class="{classes.contact} !hidden md:!inline-flex !p-5 !rounded-lg">
+	<Button class="{classes.contact} !hidden md:!inline-flex !p-5 !rounded-lg" href="/contact">
 		<Icon icon="carbon:email" /> Contact
 	</Button>
 	<div class="flex-1"></div>

@@ -22,6 +22,6 @@
 
 <style lang="postcss">
 	:global(html) {
-		background-color: theme(colors.gray.950);
+		background-color: theme(colors.zinc.950);
 	}
 </style>
