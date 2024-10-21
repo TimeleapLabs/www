@@ -1,11 +1,8 @@
 <script>
-	import Icon from '@iconify/svelte';
-	import { Section, Grid, Image, Button, Card } from '@timeleap/ui';
+	import { Section } from '@timeleap/ui';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import Carousel from '$lib/components/Carousel.svelte';
-	import Subscribe from '$lib/components/Subscribe.svelte';
 	import Contact from '$lib/components/Contact.svelte';
 </script>
 

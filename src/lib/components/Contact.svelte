@@ -24,12 +24,12 @@
 			<span class="text-gray-400 font-light"> Please enter a valid email address. </span>
 		</Input>
 	</Grid>
-	<Input
-		label="Message"
-		class="bg-zinc-800 focus:bg-zinc-700 transition-colors"
+	<textarea
+		class="bg-zinc-800 focus:bg-zinc-700 transition-colors rounded-3xl outline-none p-8"
 		id="message"
-		placeholder="Hello there!"
-	/>
+		rows="5"
+		placeholder="Your message here..."
+	></textarea>
 	<div class="text-sm text-gray-400">This form is protected by reCAPTCHA.</div>
 	<Button class="bg-green-400 hover:bg-green-300 text-black self-start font-semibold">
 		Submit
