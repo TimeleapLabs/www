@@ -1,6 +1,6 @@
 import sg from '@sendgrid/client';
 import type { RequestHandler } from '@sveltejs/kit';
-import { SENDGRID_API_KEY } from '$env/static/private';
+import { SENDGRID_API_KEY, RECAPTCHA_SECRET } from '$env/static/private';
 
 sg.setApiKey(SENDGRID_API_KEY);
 
@@ -25,8 +25,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		return new Response('Missing arguments', { status: 401 });
 	}
 
-	const secret = process.env.RECAPTCHA_SECRET;
-	const captchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`;
+	const captchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${token}`;
 	const captchaReq = await fetch(captchaUrl, { method: 'POST' });
 	const captchaRes = await captchaReq.json();
 

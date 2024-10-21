@@ -1,6 +1,8 @@
+export type Topic = 'hsm' | 'newsletter' | 'baas' | 'ghostfs' | 'wallet' | 'unchained';
+
 export const subscribe = (
 	email: string,
-	topic: string,
+	topic: Topic,
 	token: string // reCAPTCHA
 ) =>
 	fetch(window.location.origin + '/api/subscribe', {

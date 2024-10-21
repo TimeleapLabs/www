@@ -3,6 +3,7 @@
 	import 'unfonts.css';
 
 	import { onNavigate } from '$app/navigation';
+	import { SvelteToast } from '@zerodevx/svelte-toast';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -19,6 +20,8 @@
 <div class="flex min-h-full flex-col">
 	<slot />
 </div>
+
+<SvelteToast />
 
 <style lang="postcss">
 	:global(html) {
