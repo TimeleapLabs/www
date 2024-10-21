@@ -47,7 +47,7 @@ export const macros = {
     const headerSlugs = header.map(slug);
 
     const headersJson = JSON.stringify(
-      header.map((value, i) => ({ key: headerSlugs[i], value }))
+      header.map((value, i) => ({ key: headerSlugs[i], value })),
     );
 
     const rowsJson = JSON.stringify(
@@ -55,8 +55,8 @@ export const macros = {
         Object.fromEntries([
           ["id", id],
           ...row.map((value, i) => [headerSlugs[i], value]),
-        ])
-      )
+        ]),
+      ),
     );
 
     return `<DataTable headers={${headersJson}} rows={${rowsJson}} />`;
@@ -88,7 +88,7 @@ export const macros = {
   link(options, ...args) {
     const [href, ...text] = args.slice(1);
     const local =
-      href.startsWith("https://timeleap.swiss") || href.startsWith("/");
+      href.startsWith("https://old.timeleap.swiss") || href.startsWith("/");
     const component = local ? "Link" : "OutboundLink";
     const content = text ? asText(text) : href;
     return `<${component} href="${href}">${content}</${component}>`;
@@ -194,7 +194,7 @@ export const macros = {
   async toc(options, ...args) {
     this.components = { ...this.components, Toc: true };
     const files = asArgList(args).map((name) =>
-      path.join(path.dirname(this.currentFile), `${name}.cadey`)
+      path.join(path.dirname(this.currentFile), `${name}.cadey`),
     );
     await Promise.all(files.map((file) => this.processOne(file)));
     const headings = {};

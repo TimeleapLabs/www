@@ -1,7 +1,7 @@
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export const GET = () => {
   const staticPages = Object.keys(
-    import.meta.glob("/src/routes/**/!(_)*.svelte")
+    import.meta.glob("/src/routes/**/!(_)*.svelte"),
   )
     .filter((page) => {
       const filters = ["]", "+layout", "+error", "/src/routes/index.svelte"];
@@ -9,7 +9,7 @@ export const GET = () => {
     })
     .map((page) => {
       return page
-        .replace("/src/routes", "https://timeleap.swiss")
+        .replace("/src/routes", "https://old.timeleap.swiss")
         .replace("/+page.svelte", "")
         .replace(".svelte", "");
     });
@@ -46,7 +46,7 @@ ${staticPages
     <lastmod>${`${process.env.VITE_BUILD_TIME}`}</lastmod>
     <changefreq>weekly</changefreq>
   </url>
-`
+`,
   )
   .join("")}
 </urlset>

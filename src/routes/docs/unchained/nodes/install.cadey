@@ -19,7 +19,7 @@ The following operating systems are [italic officially] supported:
 The easiest way to install the Unchained client is by using the install script. To
 do so, run the following command in your terminal:
 
-[code curl -s https://timeleap.swiss/unchained/install | sh]
+[code curl -s https://old.timeleap.swiss/unchained/install | sh]
 
 [heading :size 3 Manual Installation]
 

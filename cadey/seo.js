@@ -32,7 +32,7 @@ const defaultDescription =
   "Timeleap is a start-up in Switzerland that provides blockchain technology services, including data indexing, oracles, IoT SDK, and product development.";
 
 const absolute = (url) =>
-  url.startsWith("/") ? `https://timeleap.swiss${url}` : url;
+  url.startsWith("/") ? `https://old.timeleap.swiss${url}` : url;
 
 const titlesByType = {
   blog: "Blog",
@@ -46,7 +46,7 @@ export const getSeoTags = (body, context, type) => {
 
   const image = images?.length
     ? images[0]
-    : "https://timeleap.swiss/images/social.png";
+    : "https://old.timeleap.swiss/images/social.png";
 
   const title =
     headings?.length && headings[0].title != titlesByType[type]
