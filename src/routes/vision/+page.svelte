@@ -1,10 +1,10 @@
 <script>
 	import Icon from '@iconify/svelte';
-	import { Section, Grid, Image, Button, Card, Input } from '@timeleap/ui';
+	import { Section, Grid, Image, Button, Card } from '@timeleap/ui';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import Carousel from '$lib/components/Carousel.svelte';
+	import Subscribe from '$lib/components/Subscribe.svelte';
 </script>
 
 <svelte:head>
@@ -50,7 +50,7 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-24 !gap-16 px-4 xl:px-0 pb-48">
+<Section class="w-full max-w-[1280px] mx-auto pt-24 !gap-16 px-4 xl:px-0 pb-32">
 	<Grid extraLargeScreenColumns={2} largeScreenColumns={2} class="!gap-16 pt-24">
 		<Card class="!p-0 relative">
 			<Image
@@ -165,6 +165,8 @@
 			class="contrast-[1.05]"
 		/>
 	</Grid>
+
+	<Subscribe></Subscribe>
 </Section>
 
 <Footer></Footer>

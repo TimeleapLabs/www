@@ -30,7 +30,8 @@
 		id="message"
 		placeholder="Hello there!"
 	/>
-	<Button class="bg-green-400 hover:bg-green-300 text-black font-normal self-start font-semibold">
+	<div class="text-sm text-gray-400">This form is protected by reCAPTCHA.</div>
+	<Button class="bg-green-400 hover:bg-green-300 text-black self-start font-semibold">
 		Submit
 	</Button>
 </Card>

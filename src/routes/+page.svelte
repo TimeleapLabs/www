@@ -15,19 +15,19 @@
 <Navbar active="home"></Navbar>
 
 <Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
-	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-24">
-		<Card class="!p-0 relative">
+	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-12 md:pt-24">
+		<Card class="!p-0 relative h-[640px]">
 			<Image
 				src="/images/apps-full.jpg"
 				alt="Distributed Computation"
-				height="min(640px, 100vw)"
-				class="contrast-[1.05]"
+				height="100%"
+				class="contrast-[1.05] object-cover scale-105"
 			/>
 			<div
 				class="absolute top-0 border-box bottom-0 left-0 w-full flex flex-col justify-end h-full p-6 md:p-12"
 			>
 				<h1 class="font-serif text-5xl md:text-6xl text-white">A Decentralized OS</h1>
-				<p class="mt-12 text-gray-100 w-1/2 text-2xl">
+				<p class="mt-12 text-gray-100 md:w-1/2 text-2xl">
 					No installation required. No updates. No downloads. No waiting. No limits. No compromises.
 				</p>
 				<div class="mt-16">
@@ -46,7 +46,7 @@
 	<h2 class="white-text text-white font-serif text-5xl mt-8 mb-8">Discover.</h2>
 </Section>
 
-<Section class="w-full pt-20 pb-20 md:px-12 px-4">
+<Section class="w-full pt-12 md:pt-20 pb-20 md:px-12 px-4">
 	<Carousel>
 		<Card
 			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
