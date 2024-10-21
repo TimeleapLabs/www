@@ -24,4 +24,8 @@
 	:global(html) {
 		background-color: theme(colors.zinc.950);
 	}
+
+	:global(.grecaptcha-badge) {
+		visibility: hidden;
+	}
 </style>
