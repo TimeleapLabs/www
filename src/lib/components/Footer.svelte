@@ -99,10 +99,13 @@
 			</div>
 		</div>
 		<div>
-			<h3 class="font-serif text-xl pb-8">Contact</h3>
+			<h3 class="font-serif text-xl pb-8">Info</h3>
 			<div class="flex gap-4 flex-col">
 				<a href="/contact" class="hover:text-green-400 transition-colors">
 					Talk to an Expert <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+				</a>
+				<a href="/tos" class="hover:text-green-400 transition-colors">
+					Terms & Conditions <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
 				</a>
 			</div>
 		</div>
