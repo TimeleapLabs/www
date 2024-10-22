@@ -15,7 +15,12 @@
 <Navbar active="home"></Navbar>
 
 <Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
-	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-10 md:pt-24">
+	<Grid
+		extraLargeScreenColumns={1}
+		largeScreenColumns={1}
+		mediumScreenColumns={1}
+		class="!gap-16 pt-10 md:pt-24 p-4 lg:p-0"
+	>
 		<Card class="!p-0 relative h-[640px]">
 			<Image
 				src="/images/apps-full.jpg"
@@ -198,15 +203,10 @@
 </Section>
 
 <Section class="w-full max-w-[1280px] mx-auto pt-20 !gap-16 pb-24 px-4 xl:px-0">
-	<Grid extraLargeScreenColumns={5} largeScreenColumns={5} class="mt-8">
-		<Image
-			src="/images/matterhorn.jpg"
-			alt="Mattherhorn"
-			height="640px"
-			class="col-span-1 md:col-span-2"
-		/>
+	<Grid extraLargeScreenColumns={5} largeScreenColumns={5} mediumScreenColumns={1} class="mt-8">
+		<Image src="/images/matterhorn.jpg" alt="Mattherhorn" height="640px" class="lg:col-span-2" />
 		<Card
-			class="text-white flex flex-col col-span-1 md:col-span-3 bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800"
+			class="text-white flex flex-col lg:col-span-3 bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800"
 		>
 			<h2 class="white-text text-white font-serif text-4xl md:text-5xl">
 				Headquartered in the heart of Switzerland.

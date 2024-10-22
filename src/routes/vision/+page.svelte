@@ -33,7 +33,13 @@
 </Section>
 
 <Section class="w-full max-w-[1280px] mx-auto !gap-16 px-4 xl:px-0 pt-24">
-	<Grid extraLargeScreenColumns={1} largeScreenColumns={1} class="!gap-16 pt-24">
+	<Grid
+		extraLargeScreenColumns={1}
+		largeScreenColumns={1}
+		mediumScreenColumns={1}
+		smallScreenColumns={1}
+		class="!gap-16 pt-24"
+	>
 		<Card class="!p-0 relative overflow-hidden min-h-[640px]">
 			<video src="/videos/game.webm" muted autoplay loop class="object-cover h-full w-full">
 				<track kind="captions" />
@@ -76,7 +82,7 @@
 	<Grid
 		extraLargeScreenColumns={3}
 		largeScreenColumns={3}
-		mediumScreenColumns={2}
+		mediumScreenColumns={1}
 		smallScreenColumns={1}
 		class="!gap-16 pt-24"
 	>
@@ -93,7 +99,7 @@
 				<h2 class="font-serif text-5xl md:text-6xl text-white">AI.</h2>
 			</div>
 		</Card>
-		<Card class="!p-0 relative md:col-span-2">
+		<Card class="!p-0 relative lg:col-span-2">
 			<Image
 				src="/images/games.jpg"
 				alt="Distributed Computation"
@@ -106,7 +112,7 @@
 				<h2 class="font-serif text-5xl md:text-6xl text-white">Video Games.</h2>
 			</div>
 		</Card>
-		<Card class="!p-0 relative md:col-span-2">
+		<Card class="!p-0 relative lg:col-span-2">
 			<Image
 				src="/images/productivity.jpg"
 				alt="Distributed Computation"
@@ -132,7 +138,7 @@
 				<h2 class="font-serif text-5xl md:text-6xl text-white">Music.</h2>
 			</div>
 		</Card>
-		<Card class="!p-0 relative md:col-span-3">
+		<Card class="!p-0 relative lg:col-span-3">
 			<Image
 				src="/images/movies.jpg"
 				alt="Distributed Computation"
@@ -150,10 +156,11 @@
 	<Grid
 		extraLargeScreenColumns={1}
 		largeScreenColumns={1}
+		mediumScreenColumns={1}
 		class="!gap-16 pt-24 relative mb-20 h-[720px] md:h-[640px]"
 	>
 		<div class="flex justify-end flex-col absolute left-0 top-0 h-full w-full z-20 p-8 md:p-16">
-			<h2 class="font-serif text-5xl md:text-6xl text-white">All within your reach.</h2>
+			<h2 class="font-serif text-5xl md:text-4xl lg:text-6xl text-white">All within your reach.</h2>
 			<div class="text-gray-100 mt-8 text-2xl md:w-1/2">
 				<p>
 					No installation required. No updates. No downloads. No waiting. No limits. No compromises.
