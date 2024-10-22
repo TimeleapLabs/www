@@ -1,13 +1,19 @@
 <script>
-  import Footer from "src/components/Footer.svelte";
-  import { Content } from "carbon-components-svelte";
-  import HereToHelp from "src/components/home/HereToHelp.svelte";
+	import { Section } from '@timeleap/ui';
+
+	import Footer from '$lib/components/Footer.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
+	import Contact from '$lib/components/Contact.svelte';
 </script>
 
-<!-- Hero -->
+<svelte:head>
+	<title>Timeleap — Distributed App Engine</title>
+</svelte:head>
 
-<Content>
-  <HereToHelp />
-</Content>
+<Navbar active="contact"></Navbar>
 
-<Footer />
+<Section class="w-full max-w-[1280px] mx-auto pt-20 pb-24 flex-1 !gap-16 px-4 xl:px-0">
+	<Contact></Contact>
+</Section>
+
+<Footer></Footer>

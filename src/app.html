@@ -1,33 +1,64 @@
-<!DOCTYPE html>
-<html lang="en" theme="white">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-DF6T4LC071"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+		<!-- Primary Meta Tags -->
+		<meta name="title" content="Timeleap — Distributed App Engine" />
+		<meta
+			name="description"
+			content="Swiss tech company specialized in web3 infrastructure like Blockchain-as-a-Service. Building the Unchained Network, our next-gen distributed computing platform."
+		/>
 
-      gtag("config", "G-DF6T4LC071");
-    </script>
-    <script
-      async
-      src="https://www.google.com/recaptcha/api.js?render=6LcFm-UdAAAAAA2HsCcTFj7dA_okrJlKKoYR0rKf"
-    ></script>
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://timeleap.swiss/" />
+		<meta property="og:title" content="Timeleap — Distributed App Engine" />
+		<meta
+			property="og:description"
+			content="Swiss tech company specialized in web3 infrastructure like Blockchain-as-a-Service. Building the Unchained Network, our next-gen distributed computing platform."
+		/>
+		<meta property="og:image" content="https://timeleap.swiss/images/social.jpg" />
 
-    %sveltekit.head%
-    <!--link rel="stylesheet" href="%sveltekit.assets%/common.css" /-->
-  </head>
-  <body>
-    <div id="svelte">%sveltekit.body%</div>
-  </body>
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://timeleap.swiss/" />
+		<meta property="twitter:title" content="Timeleap — Distributed App Engine" />
+		<meta
+			property="twitter:description"
+			content="Swiss tech company specialized in web3 infrastructure like Blockchain-as-a-Service. Building the Unchained Network, our next-gen distributed computing platform."
+		/>
+		<meta property="twitter:image" content="https://timeleap.swiss/images/social.jpg" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-DF6T4LC071"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-DF6T4LC071');
+		</script>
+		<script
+			async
+			src="https://www.google.com/recaptcha/api.js?render=6LcFm-UdAAAAAA2HsCcTFj7dA_okrJlKKoYR0rKf"
+		></script>
+
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover" class="bg-zinc-950">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
 </html>
