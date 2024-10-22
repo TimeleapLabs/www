@@ -19,7 +19,7 @@
 		extraLargeScreenColumns={1}
 		largeScreenColumns={1}
 		mediumScreenColumns={1}
-		class="!gap-16 pt-10 md:pt-24 p-4 lg:p-0"
+		class="!gap-16 pt-10 md:pt-24 px-4 lg:px-0"
 	>
 		<Card class="!p-0 relative h-[640px]">
 			<Image
