@@ -179,7 +179,7 @@
 			src="/images/apps-full.jpg"
 			alt="Distributed Computation"
 			height="100%"
-			class="contrast-[1.05]"
+			class="contrast-[1.05] scale-105 object-cover"
 		/>
 	</Grid>
 
