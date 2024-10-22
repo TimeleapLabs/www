@@ -21,7 +21,7 @@
 		mediumScreenColumns={1}
 		class="!gap-16 pt-10 md:pt-24 px-4 lg:px-0"
 	>
-		<Card class="!p-0 relative h-[640px]">
+		<Card class="!p-0 relative h-[440px] md:h-[640px]">
 			<Image
 				src="/images/apps-full.jpg"
 				alt="Distributed Computation"
@@ -31,8 +31,8 @@
 			<div
 				class="absolute top-0 border-box bottom-0 left-0 w-full flex flex-col justify-end h-full p-6 md:p-12"
 			>
-				<h1 class="font-serif text-5xl md:text-6xl text-white">A Decentralized OS</h1>
-				<p class="mt-12 text-gray-100 md:w-1/2 text-2xl">
+				<h1 class="font-serif text-3xl md:text-6xl text-white">A Decentralized OS</h1>
+				<p class="mt-12 text-gray-100 md:w-1/2 md:text-2xl">
 					No installation required. No updates. No downloads. No waiting. No limits. No compromises.
 				</p>
 				<div class="mt-16">
@@ -219,7 +219,7 @@
 				As of April 2024, Kenshi has rebranded and registered as Timeleap SA, a company dedicated to
 				providing cutting-edge blockchain solutions for businesses and enterprises.
 			</p>
-			<div class="button">
+			<div class="mt-8">
 				<Button class="bg-green-400 text-black hover:bg-green-300 font-semibold" animate>
 					Learn More<Icon icon="carbon:arrow-right" />
 				</Button>
