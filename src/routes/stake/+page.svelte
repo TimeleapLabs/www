@@ -11,7 +11,7 @@
 	import { Button, Tile } from 'carbon-components-svelte';
 	import { Breadcrumb, BreadcrumbItem } from 'carbon-components-svelte';
 	import { IntentRequestCreate } from 'carbon-icons-svelte';
-	import { Upload, Download } from 'carbon-icons-svelte';
+	import { Upload, ArrowUpRight } from 'carbon-icons-svelte';
 	import { DataTable } from 'carbon-components-svelte';
 	import { Checkbox, Pagination } from 'carbon-components-svelte';
 	import { Select, SelectItem, TextInput } from 'carbon-components-svelte';
@@ -41,7 +41,7 @@
 	let nfts;
 
 	let programs;
-	let userStakes;
+	let userStakes = [];
 	let userNfts = [];
 
 	let amount = '100000';
@@ -86,7 +86,6 @@
 
 	let pageSize = 5;
 	let page = 1;
-	let filteredRowIds = [];
 
 	const readStakeStats = async () => {
 		if (!storage && !userAddress) {
@@ -365,7 +364,7 @@
 					<svelte:fragment slot="cell" let:row let:cell>
 						{#if cell.key === 'actions'}
 							{#if !row.claimed && row.unlock <= new Date().valueOf() / 1000}
-								<Button kind="ghost" size="small" icon={Download} on:click={unstake(row.id)}>
+								<Button kind="ghost" size="small" icon={ArrowUpRight} on:click={unstake(row.id)}>
 									Claim
 								</Button>
 							{:else if row.claimed}
@@ -391,13 +390,7 @@
 						{/if}
 					</svelte:fragment>
 				</DataTable>
-
-				<Pagination
-					bind:pageSize
-					bind:page
-					totalItems={userStakes ? userStakes.length - filteredRowIds.length : 0}
-					pageSizeInputDisabled
-				/>
+				<Pagination bind:pageSize bind:page totalItems={userStakes.length} pageSizeInputDisabled />
 			</Column>
 		</Row>
 	</Grid>
