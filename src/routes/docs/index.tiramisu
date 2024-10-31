@@ -4,6 +4,15 @@ Welcome to the Timeleap documentation. This documentation is intended to help
 you get started with Timeleap products and to provide you with a comprehensive
 overview of the Timeleap platform.
 
+alert {
+  title = Work in Progress,
+  type = warning,
+  
+  This documentation is a work in progress. We are migrating our documentation
+  to a new platform and updating the content. You can find the old documentation
+  link { to = https://docs.timeleap.io, here }.
+}
+
 toc {
   overview
 }

@@ -29,13 +29,14 @@ export type ContextType = {
 	prevPage?: string;
 	prevPageTitle?: string;
 	currentFile: string;
+	templateFile: string;
 };
 
 const textSizeMap = {
-	'1': 'text-5xl',
-	'2': 'text-5xl',
-	'3': 'text-3xl',
-	'4': 'text-lg',
+	'1': 'text-4xl md:text-5xl',
+	'2': 'text-3xl md:text-4xl',
+	'3': 'text-2xl md:text-3xl',
+	'4': 'text-xl md:text-2xl',
 	'5': 'text-base',
 	'6': 'text-sm'
 };
@@ -55,8 +56,11 @@ const functions: {
 			const currentDir = path.dirname(context.currentFile);
 			const next = getParamsByName(params, 'next')[0]?.value ?? '';
 			const filePath = path.resolve(currentDir, next.trim() + '.tiramisu');
-			const nextContext: ContextType = { currentFile: filePath };
-			compileFile(filePath, nextContext);
+			const nextContext: ContextType = {
+				currentFile: filePath,
+				templateFile: context.templateFile
+			};
+			compileFile(filePath, context.templateFile, nextContext);
 			context.nextPage = filePath
 				.replace(/.*src\/routes/, '')
 				.replace('index.tiramisu', '')
@@ -67,8 +71,11 @@ const functions: {
 			const currentDir = path.dirname(context.currentFile);
 			const prev = getParamsByName(params, 'prev')[0]?.value ?? '';
 			const filePath = path.resolve(currentDir, prev.trim() + '.tiramisu');
-			const prevContext: ContextType = { currentFile: filePath };
-			compileFile(filePath, prevContext);
+			const prevContext: ContextType = {
+				currentFile: filePath,
+				templateFile: context.templateFile
+			};
+			compileFile(filePath, context.templateFile, prevContext);
 			context.prevPage = filePath
 				.replace(/.*src\/routes/, '')
 				.replace('index.tiramisu', '')
@@ -83,12 +90,14 @@ const functions: {
 		context.headers ??= [];
 		context.headers.push(header);
 		const textSize = textSizeMap[size];
-		return `<h${size} class="font-serif ${textSize}">${header}</h${size}>`;
+		return `<h${size} class="font-serif ${textSize} mb-4 mt-8">${header}</h${size}>`;
 	},
 	link(params) {
 		const href = getParamsByName(params, 'to')[0]?.value ?? '';
 		const text = params.positional.join('');
-		return `<a href="${href}" class="hover:text-green-400 transition-colors">${text}</a>`;
+		const external = href.startsWith('http') && !href.startsWith('https://timeleap.swiss');
+		const icon = external ? '<Icon icon="carbon:launch" class="inline" />' : '';
+		return `<a href="${href}" class="hover:text-green-400 transition-colors">${text}${icon}</a>`;
 	},
 	list(params) {
 		const type = getParamsByName(params, 'type')[0]?.value ?? 'unordered';
@@ -101,8 +110,11 @@ const functions: {
 		for (const relativeFile of params.positional) {
 			const currentDir = path.dirname(context.currentFile);
 			const filePath = path.resolve(currentDir, relativeFile.trim() + '.tiramisu');
-			const nextContext: ContextType = { currentFile: filePath };
-			compileFile(filePath, nextContext);
+			const nextContext: ContextType = {
+				currentFile: filePath,
+				templateFile: context.templateFile
+			};
+			compileFile(filePath, context.templateFile, nextContext);
 			const href = filePath.replace(/.*src\/routes/, '').replace('.tiramisu', '');
 			const title = nextContext.page?.title ?? nextContext.headers?.[0] ?? '';
 			items.push(
@@ -115,6 +127,12 @@ const functions: {
         <ul class="list-decimal mt-4 pl-8">${items.join('')}</ul>
       </div>
     `;
+	},
+	alert(params) {
+		const title = getParamsByName(params, 'title')[0]?.value ?? '';
+		const type = getParamsByName(params, 'type')[0]?.value ?? '';
+		const content = params.positional.join(', ');
+		return `<Alert title="${title}" type="${type}"> ${content} </Alert>`;
 	}
 };
 

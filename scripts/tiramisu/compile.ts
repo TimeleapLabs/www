@@ -5,7 +5,7 @@ import type { ContextType } from './visitor';
 
 import path from 'path';
 
-const generateBreadcrumbs = (header: string, context: ContextType) => {
+const generateBreadcrumbs = (header: string, templateFile: string, context: ContextType) => {
 	const headers: { href: string; title: string }[] = [];
 	let currentPath = path.dirname(context.currentFile);
 
@@ -15,8 +15,8 @@ const generateBreadcrumbs = (header: string, context: ContextType) => {
 
 	while (currentPath.includes('src/routes/docs')) {
 		const file = path.join(currentPath, 'index.tiramisu');
-		const context: ContextType = { currentFile: file };
-		compileFile(file, context);
+		const context: ContextType = { currentFile: file, templateFile };
+		compileFile(file, templateFile, context);
 		headers.unshift({
 			href: file
 				.replace(/.*src\/routes/, '')
@@ -38,7 +38,11 @@ const generateBreadcrumbs = (header: string, context: ContextType) => {
 
 const contextCache: Record<string, ContextType> = {};
 
-export const compileFile = (filePath: string, context: ContextType = { currentFile: filePath }) => {
+export const compileFile = (
+	filePath: string,
+	templateFile: string,
+	context: ContextType = { currentFile: filePath, templateFile }
+) => {
 	const absolutePath = path.resolve(filePath);
 
 	if (contextCache[absolutePath]) {
@@ -52,9 +56,10 @@ export const compileFile = (filePath: string, context: ContextType = { currentFi
 	const cst = compile(content);
 	const code = translate(cst, context);
 
-	const template = readFileSync('scripts/tiramisu/template.svelte', 'utf-8');
+	const template = readFileSync(templateFile, 'utf-8');
 	const breadcrumbs = generateBreadcrumbs(
 		context.page?.title ?? context.headers?.[0] ?? '',
+		templateFile,
 		context
 	);
 
