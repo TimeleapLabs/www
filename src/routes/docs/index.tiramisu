@@ -1,0 +1,14 @@
+title { Timeleap Documentation }
+
+Welcome to the Timeleap documentation. This documentation is intended to help
+you get started with Timeleap products and to provide you with a comprehensive
+overview of the Timeleap platform.
+
+toc {
+  overview
+}
+
+meta {
+  description = Timeleap Documentation,
+  next = overview
+}
