@@ -3,7 +3,7 @@
 	import { Section, Grid } from '@timeleap/ui';
 </script>
 
-<Section class="max-w-[1280px] mx-auto px-4 xl:px-0">
+<Section class="max-w-[1280px] mx-auto px-4 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={4}
 		largeScreenColumns={4}
@@ -101,6 +101,12 @@
 		<div>
 			<h3 class="font-serif text-xl pb-8">Info</h3>
 			<div class="flex gap-4 flex-col">
+				<a href="/docs" class="hover:text-green-400 transition-colors">
+					Documentation <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+				</a>
+				<a href="/tos" class="hover:text-green-400 transition-colors">
+					Terms of Use <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+				</a>
 				<a href="/contact" class="hover:text-green-400 transition-colors">
 					Talk to an Expert <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
 				</a>

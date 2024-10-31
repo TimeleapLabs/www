@@ -14,14 +14,14 @@
 
 <Navbar active="home"></Navbar>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={1}
 		largeScreenColumns={1}
 		mediumScreenColumns={1}
-		class="!gap-16 pt-10 md:pt-24 px-4 lg:px-0"
+		class="!gap-16 pt-10 md:pt-24 px-4 md:px-0 max-w-full box-border"
 	>
-		<Card class="!p-0 relative h-[440px] md:h-[640px]">
+		<Card class="!p-0 relative h-[440px] md:h-[640px] overflow-hidden">
 			<Image
 				src="/images/apps-full.jpg"
 				alt="Distributed Computation"
@@ -51,7 +51,7 @@
 	<h2 class="white-text text-white font-serif text-5xl mt-8 mb-8">Discover.</h2>
 </Section>
 
-<Section class="w-full pt-12 md:pt-20 pb-20 md:px-12 px-4">
+<Section class="w-full pt-12 md:pt-20 pb-20 px-4 xxl:px-12">
 	<Carousel>
 		<Card
 			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
@@ -153,7 +153,7 @@
 	</Carousel>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xxl:px-0">
 	<Card class="text-white bg-zinc-900 p-12">
 		<p class="text-2xl font-serif">
 			Update in Progress
@@ -173,7 +173,7 @@
 	</Card>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={1}
 		largeScreenColumns={1}
@@ -202,7 +202,7 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-20 !gap-16 pb-24 px-4 xl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-20 !gap-16 pb-24 px-4 xxl:px-0">
 	<Grid extraLargeScreenColumns={5} largeScreenColumns={5} mediumScreenColumns={1} class="mt-8">
 		<Image src="/images/matterhorn.jpg" alt="Mattherhorn" height="640px" class="lg:col-span-2" />
 		<Card

@@ -13,7 +13,7 @@
 
 <Navbar active="vision"></Navbar>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 xxl:px-0">
 	<Grid extraLargeScreenColumns={2} largeScreenColumns={2} class="!gap-16 pt-24">
 		<div class="w-full inset-0 flex flex-col justify-end h-full p-6 md:p-12">
 			<h1 class="font-serif text-5xl md:text-6xl text-white">
@@ -32,7 +32,7 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto !gap-16 px-4 xl:px-0 pt-24">
+<Section class="w-full max-w-[1280px] mx-auto !gap-16 px-4 xxl:px-0 pt-24">
 	<Grid
 		extraLargeScreenColumns={1}
 		largeScreenColumns={1}
@@ -56,7 +56,7 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-24 !gap-16 px-4 xl:px-0 pb-32">
+<Section class="w-full max-w-[1280px] mx-auto pt-24 !gap-16 px-4 xxl:px-0 pb-32">
 	<Grid extraLargeScreenColumns={2} largeScreenColumns={2} class="!gap-16 pt-24">
 		<Card class="!p-0 relative">
 			<Image

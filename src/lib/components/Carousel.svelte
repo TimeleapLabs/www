@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { Button } from '@timeleap/ui';
-	import { onMount } from 'svelte';
 
 	let el: HTMLElement;
 	let index = 0;
