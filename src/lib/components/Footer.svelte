@@ -3,7 +3,7 @@
 	import { Section, Grid } from '@timeleap/ui';
 </script>
 
-<Section class="max-w-[1280px] mx-auto px-4 xl:px-0">
+<Section class="max-w-[1280px] mx-auto px-4 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={4}
 		largeScreenColumns={4}

@@ -20,7 +20,7 @@
 </script>
 
 <Navbar
-	class="bg-[rgba(0,0,0,.4)] text-white flex !rounded-none py-3 px-2 md:px-8 backdrop-blur-xl fixed top-0 w-full z-50"
+	class="bg-[rgba(0,0,0,.4)] text-white flex !rounded-none py-3 px-2 md:px-8 backdrop-blur-xl fixed top-0 w-full z-50 max-w-[100vw]"
 >
 	<Button class="{classes.home} !p-5 !rounded-lg" href="/">
 		<img src="/images/tl.svg" alt="Timeleap" width="16px" />
