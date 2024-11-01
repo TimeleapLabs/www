@@ -12,20 +12,34 @@
 		error: 'carbon:error-outline'
 	};
 
-	const bgColors = {
-		success: 'bg-gradient-to-tr from-green-950 to-green-900 border border-green-800',
-		info: 'bg-gradient-to-tr from-blue-950 to-blue-900 border border-blue-800',
-		warning: 'bg-gradient-to-tr from-amber-950 to-amber-900 border border-amber-800',
-		error: 'bg-gradient-to-tr from-red-950 to-red-900 border border-red-800'
+	const stripeColors = {
+		success: 'from-green-800 to-green-300',
+		info: 'from-blue-800 to-blue-300',
+		warning: 'from-yellow-800 to-yellow-300',
+		error: 'from-red-800 to-red-300'
+	};
+
+	const titleColors = {
+		success: 'text-green-200',
+		info: 'text-blue-200',
+		warning: 'text-yellow-200',
+		error: 'text-red-200'
 	};
 </script>
 
-<Card class="gap-4 p-4 rounded-lg shadow-md {bgColors['warning']} my-4">
-	<div class="flex items-center gap-2">
+<Card
+	class="gap-4 !py-4 bg-zinc-900 my-4 bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800 relative overflow-hidden"
+>
+	<div
+		class="absolute w-2 h-full bg-stripe {stripeColors[
+			type
+		]} from-[length:0_5px] to-[length:5px_10px] left-0 top-0"
+	></div>
+	<div class="flex items-center gap-2 {titleColors[type]}">
 		<Icon icon={icons[type]} class="text-xl" />
 		<h5 class="font-semibold">{title}</h5>
 	</div>
-	<div class="mt-4 text-sm text-zinc-300">
+	<div class="mt-2 text-sm text-zinc-300">
 		<slot></slot>
 	</div>
 </Card>

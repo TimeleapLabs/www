@@ -7,6 +7,9 @@ export default {
 				sans: ['"Geist"'],
 				mono: ['"Geist Mono"'],
 				serif: ['"Aleo"']
+			},
+			backgroundImage: {
+				stripe: 'repeating-linear-gradient(-45deg,var(--tw-gradient-stops))'
 			}
 		}
 	},
