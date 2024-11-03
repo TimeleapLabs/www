@@ -75,6 +75,36 @@ carousel {
   }
 }
 
+title { Cascade, size = 2 }
+
+Cascade (Blockchain-as-a-Service) is a platform that allows developers to
+quickly and easily deploy blockchain networks. The Cascade roadmap outlines
+the key features and milestones planned for the platform.
+
+carousel {
+  card {
+    title = Cascade Devnet,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    The initial release of the Cascade development network, allowing
+    developers to experience the platform before launch.
+  },
+  card {
+    title = Cascade Client Onboarding,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    Onboard clients to the Cascade platform and provide them with
+    the necessary tools and resources to create blockchain networks.
+  },
+  card {
+    title = Cascade Launch Wizard,
+    width = 400px,
+    pills = [ pill { type = pending } ],
+    A step-by-step wizard for clients to create and deploy blockchain
+    networks on Cascade.
+  }
+}
+
 title { Flare Cards, size = 2 }
 
 Flare Cards is a a link-in-bio tool that allows users to create a customizable
