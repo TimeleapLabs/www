@@ -12,7 +12,7 @@
 <Navbar active="home"></Navbar>
 
 <Section
-	class="w-full max-w-[1280px] mx-auto pt-14 md:pt-32 px-4 md:px-16 xxl:-0 text-white pb-24 !gap-4"
+	class="w-full max-w-[1280px] mx-auto pt-14 md:pt-32 px-4 md:px-16 xxl:px-0 text-white pb-24 !gap-4"
 >
 	<h1 class="font-serif text-5xl mb-0">Terms and Conditions</h1>
 	<div class="text-sm text-zinc-400">Last updated: 22.10.2024</div>
