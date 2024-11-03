@@ -165,7 +165,7 @@ const functions: {
 
 		// FIXME: Add support for kebab-case variables
 		return `
-			<Card ${href} class="bg-zinc-900 snap-start min-w-[${width}] w-[${width}] flex flex-col">
+			<Card ${href} class="bg-zinc-900 snap-start min-w-[${width}] w-[${width}] max-w-full flex flex-col">
 				<h5 class="font-serif text-2xl">${title}</h5>
 				<div class="mt-4 text-zinc-500 flex-1">
 					${content}
