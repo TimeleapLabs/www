@@ -1,4 +1,6 @@
 import {
+	ArrayItem,
+	ArrayValue,
 	FunctionCall,
 	MixedText,
 	NamedParameter,
@@ -13,8 +15,8 @@ import {
 import path from 'path';
 
 type ParamType = {
-	named: { name: string; value: string }[];
-	positional: string[];
+	named: { name: string; value: string | string[] }[];
+	positional: (string | string[])[];
 };
 
 export type ContextType = {
@@ -41,6 +43,21 @@ const textSizeMap = {
 	'6': 'text-sm'
 };
 
+const pillTexts = {
+	success: 'Success',
+	done: 'Done',
+	progress: 'In Progress',
+	pending: 'Pending'
+};
+
+const pillColors = {
+	default: 'bg-gray-500',
+	success: 'bg-green-500',
+	done: 'bg-green-500',
+	progress: 'bg-blue-500',
+	pending: 'bg-gray-500'
+};
+
 const getParamsByName = (params: ParamType, name: string) =>
 	params.named.filter((param) => param.name === name);
 
@@ -49,13 +66,13 @@ const functions: {
 } = {
 	meta(params, context) {
 		context.page = {
-			title: getParamsByName(params, 'title')[0]?.value,
-			description: getParamsByName(params, 'description')[0]?.value ?? ''
+			title: getParamsByName(params, 'title')[0]?.value as string,
+			description: (getParamsByName(params, 'description')[0]?.value as string) ?? ''
 		};
 		if (params.named.some((param) => param.name === 'next')) {
 			const currentDir = path.dirname(context.currentFile);
 			const next = getParamsByName(params, 'next')[0]?.value ?? '';
-			const filePath = path.resolve(currentDir, next.trim() + '.tiramisu');
+			const filePath = path.resolve(currentDir, (next as string).trim() + '.tiramisu');
 			const nextContext: ContextType = {
 				currentFile: filePath,
 				templateFile: context.templateFile
@@ -70,7 +87,7 @@ const functions: {
 		if (params.named.some((param) => param.name === 'prev')) {
 			const currentDir = path.dirname(context.currentFile);
 			const prev = getParamsByName(params, 'prev')[0]?.value ?? '';
-			const filePath = path.resolve(currentDir, prev.trim() + '.tiramisu');
+			const filePath = path.resolve(currentDir, (prev as string).trim() + '.tiramisu');
 			const prevContext: ContextType = {
 				currentFile: filePath,
 				templateFile: context.templateFile
@@ -85,7 +102,7 @@ const functions: {
 		return '';
 	},
 	title(params, context) {
-		const size = getParamsByName(params, 'size')[0]?.value ?? '1';
+		const size = (getParamsByName(params, 'size')[0]?.value as string)?.trim() ?? '1';
 		const header = params.positional.join('');
 		context.headers ??= [];
 		context.headers.push(header);
@@ -93,7 +110,7 @@ const functions: {
 		return `<h${size} class="font-serif ${textSize} mb-4 mt-8">${header}</h${size}>`;
 	},
 	link(params) {
-		const href = getParamsByName(params, 'to')[0]?.value ?? '';
+		const href = (getParamsByName(params, 'to')[0]?.value as string) ?? '';
 		const text = params.positional.join('');
 		const external = href.startsWith('http') && !href.startsWith('https://timeleap.swiss');
 		const icon = external ? '<Icon icon="carbon:launch" class="inline" />' : '';
@@ -109,7 +126,7 @@ const functions: {
 		const items: string[] = [];
 		for (const relativeFile of params.positional) {
 			const currentDir = path.dirname(context.currentFile);
-			const filePath = path.resolve(currentDir, relativeFile.trim() + '.tiramisu');
+			const filePath = path.resolve(currentDir, (relativeFile as string).trim() + '.tiramisu');
 			const nextContext: ContextType = {
 				currentFile: filePath,
 				templateFile: context.templateFile
@@ -133,21 +150,68 @@ const functions: {
 		const type = getParamsByName(params, 'type')[0]?.value ?? '';
 		const content = params.positional.join(', ');
 		return `<Alert title="${title}" type="${type}"> ${content} </Alert>`;
+	},
+	card(params) {
+		const title = getParamsByName(params, 'title')[0]?.value ?? '';
+		const link = getParamsByName(params, 'link')[0]?.value ?? '';
+		const width = getParamsByName(params, 'width')[0]?.value ?? '1/2';
+		const pills = getParamsByName(params, 'pills')
+			.map((pill) => pill.value)
+			.join('');
+
+		const content = params.positional.join(', ');
+		const href = link ? `href="${link}"` : '';
+		const pillsHtml = pills ? `<div class="mt-4">${pills}</div>` : '';
+
+		// FIXME: Add support for kebab-case variables
+		return `
+			<Card ${href} class="bg-zinc-900 snap-start min-w-[${width}] w-[${width}] flex flex-col">
+				<h5 class="font-serif text-2xl">${title}</h5>
+				<div class="mt-4 text-zinc-500 flex-1">
+					${content}
+				</div>
+				${pillsHtml}
+			</Card>`;
+	},
+	carousel(params) {
+		const items = params.positional.join('');
+		return `
+			<div class="py-8">
+				<Carousel class="!gap-16">${items}</Carousel>
+			</div>`;
+	},
+	pill(params) {
+		const type = (getParamsByName(params, 'type')[0]?.value as string)?.trim() ?? 'default';
+		const color = pillColors[type] ?? pillColors.default;
+		const text = params.positional.join('') || pillTexts[type];
+
+		return `
+			<div class="inline-block px-2 py-1 rounded-full text-xs font-semibold ${color} text-white">
+				${text}
+			</div>`;
 	}
+};
+
+const translateParam = (param: Node, context: ContextType) => {
+	if (param instanceof ArrayValue) {
+		return param.values.map((value) => translate(value, context));
+	}
+
+	return translate(param, context);
 };
 
 const parseFunctionParameters = (node: Parameters, context: ContextType): ParamType => {
 	const positional = node.parameters
 		.filter((param) => !(param instanceof NamedParameter))
-		.map((param) => translate(param, context));
+		.map((param) => translateParam(param as Parameter, context));
 
 	const named = node.parameters
 		.filter((param) => param instanceof NamedParameter)
 		.map((param) => ({
 			name: param.name,
 			value: Array.isArray(param.value)
-				? param.value.map((child) => translate(child, context)).join('')
-				: translate(param.value, context)
+				? param.value.map((child) => translateParam(child, context)).join('')
+				: translateParam(param.value, context)
 		}));
 
 	return { named, positional };
@@ -187,6 +251,10 @@ export const translate = (node: Node, context: ContextType): string => {
 		}
 
 		throw new Error(`Unknown function name: ${name}`);
+	}
+
+	if (node instanceof ArrayItem) {
+		return node.value.map((child) => translate(child, context)).join('');
 	}
 
 	if (node instanceof Parameter) {

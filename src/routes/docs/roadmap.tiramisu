@@ -1,0 +1,137 @@
+title { Roadmap }
+
+Timeleap's roadmap is a living document that outlines the company's vision and
+plans for the future. The roadmap is divided into multiple sections for each
+product and service offered by Timeleap. The roadmap is updated regularly to
+reflect the latest developments and milestones achieved by the company.
+
+title { Unchained, size = 2 }
+
+Unchained is Timeleap's flagship product, a sovereign network tailored for
+distributed applications. The Unchained roadmap outlines the key features and
+milestones planned for the platform.
+
+carousel {
+  card {
+    title = Unified Data Model,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    A unified data model for storing and querying data across
+    Unchained's network of nodes.
+  },
+  card {
+    title = Function-as-a-Service,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    A serverless computing platform for running code in response
+    to events without the need to manage infrastructure.
+  },
+  card {
+    title = Documentation,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    Comprehensive documentation for developers to learn how to
+    build and deploy applications on Unchained.
+  },
+  card {
+    title = Consensus Mechanism,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    A consensus mechanism for reaching agreement on the state of
+    the network and validating transactions.
+  },
+  card {
+    title = Unchained AI Beta,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    The initial release of Unchained AI, featuring a suite of
+    machine learning tools for developers.
+  },
+  card {
+    title = Unchained ID App Beta,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    The initial release of the Unchained ID app, allowing users
+    to create and manage their digital identities.
+  },
+  card {
+    title = Unchained v1.0,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    The initial release of Unchained, featuring a decentralized
+    network of nodes for running distributed applications.
+  },
+  card {
+    title = API Marketplace,
+    width = 400px,
+    pills = [ pill { type = pending } ],
+    A marketplace for developers to buy and sell APIs on Unchained.
+  },
+  card {
+    title = App Marketplace,
+    width = 400px,
+    pills = [ pill { type = pending } ],
+    A marketplace for developers to buy and publish applications on Unchained.
+  }
+}
+
+title { Flare Cards, size = 2 }
+
+Flare Cards is a a link-in-bio tool that allows users to create a customizable
+landing page for their social media profiles. The Flare Cards roadmap outlines
+the key features and milestones planned for the platform.
+
+carousel {
+  card {
+    title = Flare Cards Beta,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    The initial release of Flare Cards, featuring a simple
+    landing page builder for social media profiles.
+  },
+  card {
+    title = Physical NFC Cards,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    The ability to create physical NFC cards that link to a
+    user's Flare Cards landing page.
+  },
+  card {
+    title = NFC Card Designs,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    A collection of pre-designed NFC card templates for users
+    to choose from.
+  },
+  card {
+    title = Card Holder Production,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    The production of physical card holders for NFC cards.
+  },
+  card {
+    title = Lanyards and Accessories,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    A collection of lanyards and accessories for NFC cards.
+  },
+  card {
+    title = Devcon 24 Giveaway,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    A special promotion for Devcon 24 attendees to create
+    custom Flare Cards landing pages and NFC cards.
+  },
+  card {
+    title = Unchained Integration,
+    width = 400px,
+    pills = [ pill { type = pending } ],
+    Allow users to collect badges and achievements from projects,
+    events, and communities on Unchained.
+  }
+}
+
+meta {
+  description = Timeleap Roadmap,
+  prev = overview
+}

@@ -14,7 +14,8 @@ alert {
 }
 
 toc {
-  overview
+  overview,
+  roadmap
 }
 
 meta {
