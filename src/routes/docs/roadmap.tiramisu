@@ -41,6 +41,13 @@ carousel {
     the network and validating transactions.
   },
   card {
+    title = Unchained v1.0,
+    width = 400px,
+    pills = [ pill { type = progress } ],
+    The initial release of Unchained, featuring a decentralized
+    network of nodes for running distributed applications.
+  },
+  card {
     title = Unchained AI Beta,
     width = 400px,
     pills = [ pill { type = done } ],
@@ -53,13 +60,6 @@ carousel {
     pills = [ pill { type = done } ],
     The initial release of the Unchained ID app, allowing users
     to create and manage their digital identities.
-  },
-  card {
-    title = Unchained v1.0,
-    width = 400px,
-    pills = [ pill { type = progress } ],
-    The initial release of Unchained, featuring a decentralized
-    network of nodes for running distributed applications.
   },
   card {
     title = API Marketplace,
@@ -127,23 +127,10 @@ carousel {
     user's Flare Cards landing page.
   },
   card {
-    title = NFC Card Designs,
-    width = 400px,
-    pills = [ pill { type = done } ],
-    A collection of pre-designed NFC card templates for users
-    to choose from.
-  },
-  card {
     title = Card Holder Production,
     width = 400px,
     pills = [ pill { type = progress } ],
     The production of physical card holders for NFC cards.
-  },
-  card {
-    title = Lanyards and Accessories,
-    width = 400px,
-    pills = [ pill { type = done } ],
-    A collection of lanyards and accessories for NFC cards.
   },
   card {
     title = Devcon 24 Giveaway,
@@ -151,6 +138,19 @@ carousel {
     pills = [ pill { type = progress } ],
     A special promotion for Devcon 24 attendees to create
     custom Flare Cards landing pages and NFC cards.
+  },
+  card {
+    title = NFC Card Designs,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    A collection of pre-designed NFC card templates for users
+    to choose from.
+  },
+    card {
+    title = Lanyards and Accessories,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    A collection of lanyards and accessories for NFC cards.
   },
   card {
     title = Unchained Integration,
