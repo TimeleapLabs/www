@@ -12,7 +12,7 @@
 
 <Navbar active="contact"></Navbar>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-20 pb-24 flex-1 !gap-16 px-4 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-20 pb-24 flex-1 !gap-16 px-4 md:px-16 xxl:-0">
 	<Contact></Contact>
 </Section>
 
