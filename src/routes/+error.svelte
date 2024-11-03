@@ -29,18 +29,18 @@
 			<br />
 			Did you mean to visit the old site at
 			<a
-				href="https://old.timeleap.swiss{$page.url.pathname}"
+				href="https://old.timeleap.swiss{$page.url.pathname}{$page.url.search}"
 				class="text-green-400"
 				target="_blank"
 			>
-				https://old.timeleap.swiss{$page.url.pathname}
+				https://old.timeleap.swiss{$page.url.pathname}{$page.url.search}
 				<Icon icon="carbon:arrow-up-right" class="inline-block" />
 			</a>?
 		</p>
 
 		<div class="mt-8 flex gap-4">
 			<Button
-				href="https://old.timeleap.swiss{$page.url.pathname}"
+				href="https://old.timeleap.swiss{$page.url.pathname}{$page.url.search}"
 				class="bg-blue-400 text-black hover:bg-blue-300 font-semibold"
 				animate
 			>
