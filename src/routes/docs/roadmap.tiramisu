@@ -51,14 +51,28 @@ carousel {
     title = Unchained AI Beta,
     width = 400px,
     pills = [ pill { type = done } ],
-    The initial release of Unchained AI, featuring a suite of
+    The beta release of Unchained AI, featuring a suite of
     machine learning tools for developers.
+  },
+  card {
+    title = Unchained Plugins,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    A plugin system for extending the functionality of Unchained
+    with custom modules and services.
+  },
+  card {
+    title = Unchained Testnet,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    The testnet release of the Unchained test network, to test and
+    validate the platform before launch.
   },
   card {
     title = Unchained ID App Beta,
     width = 400px,
     pills = [ pill { type = done } ],
-    The initial release of the Unchained ID app, allowing users
+    The beta release of the Unchained ID app, allowing users
     to create and manage their digital identities.
   },
   card {
@@ -86,22 +100,29 @@ carousel {
     title = Cascade Devnet,
     width = 400px,
     pills = [ pill { type = done } ],
-    The initial release of the Cascade development network, allowing
-    developers to experience the platform before launch.
+    The release of the Cascade development network, allowing developers to
+    experience the platform before launch.
+  },
+  card {
+    title = Explorer Integration,
+    width = 400px,
+    pills = [ pill { type = done } ],
+    Integration of a blockchain explorer to view and analyze transactions
+    on the Cascade platform.
   },
   card {
     title = Cascade Client Onboarding,
     width = 400px,
     pills = [ pill { type = done } ],
-    Onboard clients to the Cascade platform and provide them with
-    the necessary tools and resources to create blockchain networks.
+    Onboard clients to the Cascade platform and provide them with the necessary
+    tools and resources to create blockchain networks.
   },
   card {
     title = Cascade Launch Wizard,
     width = 400px,
     pills = [ pill { type = pending } ],
-    A step-by-step wizard for clients to create and deploy blockchain
-    networks on Cascade.
+    A step-by-step wizard for clients to create and deploy blockchain networks
+    on Cascade.
   }
 }
 
@@ -116,7 +137,7 @@ carousel {
     title = Flare Cards Beta,
     width = 400px,
     pills = [ pill { type = progress } ],
-    The initial release of Flare Cards, featuring a simple
+    The beta release of Flare Cards, featuring a simple
     landing page builder for social media profiles.
   },
   card {
