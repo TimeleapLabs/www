@@ -14,7 +14,7 @@
 	<title>Timeleap — Distributed App Engine</title>
 </svelte:head>
 
-<Navbar active="home"></Navbar>
+<Navbar active="products"></Navbar>
 
 <Section class="w-full max-w-[1280px] mx-auto pt-24 !gap-16 px-4 xxl:px-0">
 	<div class="!gap-16 pt-10 md:pt-24 w-full max-w-full box-border h-[640px]">
