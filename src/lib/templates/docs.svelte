@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { Button, Section } from '@timeleap/ui';
+	import { Button, Section, Card } from '@timeleap/ui';
 	import Icon from '@iconify/svelte';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Alert from '$lib/components/Alert.svelte';
+	import Carousel from '$lib/components/Carousel.svelte';
 
 	const nextPageUrl = '$NEXT_PAGE_URL';
 	const nextPageTitle = '$NEXT_PAGE_TITLE';
@@ -20,7 +21,7 @@
 <Navbar active="docs"></Navbar>
 
 <Section
-	class="w-full max-w-[1280px] mx-auto pt-20 md:pt-36 !gap-8 px-4 xxl:px-0 text-white flex-1"
+	class="w-full max-w-[1280px] mx-auto pt-20 md:pt-36 !gap-8 px-4 md:px-16 xxl:px-0 text-white flex-1"
 >
 	<div class="flex gap-2 -mb-8">$BREADCRUMBS</div>
 

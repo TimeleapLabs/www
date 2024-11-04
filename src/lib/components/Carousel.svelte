@@ -34,17 +34,22 @@
 	};
 </script>
 
-<div class="outer relative overflow-auto snap-x snap-mandatory scroll-smooth scrollbar-hidden">
-	<div class="transition-transform ease-out duration-300 flex gap-24" bind:this={el}>
-		<slot></slot>
+<div>
+	<div class="outer relative overflow-auto snap-x snap-mandatory scroll-smooth scrollbar-hidden">
+		<div
+			class="transition-transform ease-out duration-300 flex {$$props.class || ''}"
+			bind:this={el}
+		>
+			<slot></slot>
+		</div>
 	</div>
-</div>
 
-<div class="flex gap-4">
-	<Button class="bg-zinc-700 text-white text-2xl !px-4 !py-7" on:click={prev}>
-		<Icon icon="carbon:arrow-left" />
-	</Button>
-	<Button class="bg-zinc-700 text-white text-2xl !px-4 !py-7" on:click={next}>
-		<Icon icon="carbon:arrow-right" />
-	</Button>
+	<div class="flex gap-4 mt-8">
+		<Button class="bg-zinc-700 text-white text-2xl !px-4 !py-7" on:click={prev}>
+			<Icon icon="carbon:arrow-left" />
+		</Button>
+		<Button class="bg-zinc-700 text-white text-2xl !px-4 !py-7" on:click={next}>
+			<Icon icon="carbon:arrow-right" />
+		</Button>
+	</div>
 </div>
