@@ -16,12 +16,11 @@
 	<Grid extraLargeScreenColumns={3} largeScreenColumns={2}>
 		<Card
 			class="!p-0 flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
-			href="https://github.com/TimeleapLabs/unchained"
-			target="_blank"
+			href="/unchained"
 		>
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">
-					Unchained <Icon icon="carbon:arrow-up-right" class="inline-block text-sm" />
+					Unchained <Icon icon="carbon:arrow-right" class="inline-block text-sm" />
 				</h3>
 				<div>Distributed App Engine</div>
 			</div>
