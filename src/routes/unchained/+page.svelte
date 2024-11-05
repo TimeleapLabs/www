@@ -19,7 +19,12 @@
 <Section class="w-full max-w-[1280px] mx-auto pt-24 !gap-16 px-4 xxl:px-0">
 	<div class="!gap-16 pt-10 md:pt-24 w-full max-w-full box-border h-[640px]">
 		<Card class="!p-0 overflow-hidden border border-zinc-900 h-full">
-			<Grid extraLargeScreenColumns={5} class="h-full !gap-0">
+			<Grid
+				extraLargeScreenColumns={5}
+				largeScreenColumns={5}
+				mediumScreenColumns={5}
+				class="h-full !gap-0"
+			>
 				<div
 					class="top-0 border-box bottom-0 left-0 flex flex-col justify-end h-full p-6 md:p-12 col-span-1 bg-gradient-to-tr from-zinc-950 to-zinc-900"
 				>
@@ -39,7 +44,9 @@
 					</div>
 				</div>
 
-				<div class="h-full bg-[url('/images/multiapp.jpg')] bg-cover bg-center relative col-span-4">
+				<div
+					class="h-full bg-[url('/images/multiapp.jpg')] bg-cover bg-center relative col-span-1 sm:col-span-4"
+				>
 					<div class="absolute inset-0 opacity-5 z-0 x">
 						<X />
 					</div>
@@ -85,7 +92,7 @@
 			class="contrast-[1.05]"
 		/>
 
-		<Card class="col-span-1 xl:col-span-2 flex flex-col">
+		<Card class="col-span-1 md:col-span-2 flex flex-col">
 			<h2 class="white-text text-white font-serif text-5xl">One-stop Tech Hub</h2>
 
 			<div class="text-zinc-300 text-lg mt-24 flex-1">
@@ -183,9 +190,5 @@
 <style lang="postcss">
 	.x {
 		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-	}
-
-	.hero {
-		height: calc(100vh - 64px - 3rem);
 	}
 </style>
