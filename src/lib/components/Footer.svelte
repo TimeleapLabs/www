@@ -3,7 +3,7 @@
 	import { Section, Grid } from '@timeleap/ui';
 </script>
 
-<Section class="max-w-[1280px] mx-auto px-4 md:px-16 xxl:px-0">
+<Section class="max-w-[1280px] mx-auto px-4 pb-8 md:px-16 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={4}
 		largeScreenColumns={4}
@@ -13,12 +13,12 @@
 	>
 		<div class="md:pb-48">
 			<h3 class="font-serif text-xl pb-8">Timeleap SA.</h3>
-			<p class="text-gray-300">Pl. de l'Industrie 2, 1180 Rolle, Switzerland</p>
+			<p class="text-zinc-400">Pl. de l'Industrie 2, 1180 Rolle, Switzerland</p>
 			<img class="mt-8" src="/images/timeleap.svg" alt="Logo" width="160px" />
 		</div>
 		<div>
 			<h3 class="font-serif text-xl pb-8">Social Media</h3>
-			<div class="flex gap-4 flex-wrap max-w-[240px]">
+			<div class="flex gap-4 flex-wrap max-w-[240px] text-zinc-400">
 				<a
 					href="https://twitter.com/TimeleapLabs"
 					target="_blank"
@@ -71,7 +71,7 @@
 		</div>
 		<div>
 			<h3 class="font-serif text-xl pb-8">Tokenomics</h3>
-			<div class="flex gap-4 flex-col">
+			<div class="flex gap-4 flex-col text-zinc-400">
 				<a
 					href="https://app.uniswap.org/swap?outputCurrency=0xf1264873436A0771E440E2b28072FAfcC5EEBd01"
 					target="_blank"
@@ -100,7 +100,7 @@
 		</div>
 		<div>
 			<h3 class="font-serif text-xl pb-8">Info</h3>
-			<div class="flex gap-4 flex-col">
+			<div class="flex gap-4 flex-col text-zinc-400">
 				<a href="/docs" class="hover:text-green-400 transition-colors">
 					Documentation <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
 				</a>

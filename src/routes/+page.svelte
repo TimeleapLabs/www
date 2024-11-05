@@ -62,12 +62,8 @@
 					Sovereign network built specifically for decentralized applications.
 				</div>
 				<div>
-					<Button
-						href="https://github.com/TimeleapLabs/unchained"
-						class="!p-0 hover:text-green-300 !transition-colors"
-						target="_blank"
-					>
-						Discover<Icon icon="carbon:arrow-up-right" />
+					<Button href="/unchained" class="!p-0 hover:text-green-300 !transition-colors">
+						Discover<Icon icon="carbon:arrow-right" />
 					</Button>
 				</div>
 			</div>
