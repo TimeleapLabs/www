@@ -29,7 +29,7 @@
 					class="top-0 border-box bottom-0 left-0 flex flex-col justify-end h-full p-6 md:p-12 col-span-1 bg-gradient-to-tr from-zinc-950 to-zinc-900"
 				>
 					<h1 class="font-serif text-3xl md:text-6xl text-white">Unchained</h1>
-					<p class="mt-12 text-gray-100 md:text-2xl font-extralight">
+					<p class="mt-12 text-gray-100 font-extralight">
 						A distributed App Engine and App store to host and run resource-intensvie applications
 						on-demand.
 					</p>

@@ -86,7 +86,7 @@
 				</div>
 				<div>
 					<Button
-						href="https://old.timeleap.swiss/blockchain"
+						href="/cascade"
 						class="!p-0 hover:text-green-300 !transition-colors"
 						target="_blank"
 					>

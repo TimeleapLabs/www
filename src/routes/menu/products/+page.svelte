@@ -41,7 +41,7 @@
 		</Card>
 		<Card
 			class="!p-0 flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
-			href="https://old.timeleap.swiss/blockchain"
+			href="/cascade"
 			target="_blank"
 		>
 			<div class="px-8 flex-1 content-center">
