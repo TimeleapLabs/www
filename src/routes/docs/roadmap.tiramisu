@@ -179,6 +179,20 @@ carousel {
     pills = [ pill { type = pending } ],
     Allow users to collect badges and achievements from projects,
     events, and communities on Unchained.
+  },
+  card {
+    title = News Section,
+    width = 400px,
+    pills = [ pill { type = pending } ],
+    A news section on Flare Cards profiles to let users share
+    updates and announcements.
+  },
+  card {
+    title = Custom Profile Banners,
+    width = 400px,
+    pills = [ pill { type = pending } ],
+    The ability to upload custom profile banners for Flare Cards
+    profiles.
   }
 }
 
