@@ -16,6 +16,19 @@
 	<Grid extraLargeScreenColumns={3} largeScreenColumns={2}>
 		<Card
 			class="!p-0 flex text-white bg-zinc-900 hover:bg-zinc-800 transition-colors"
+			href="/vision"
+		>
+			<div class="px-8 flex-1 content-center">
+				<h3 class="font-serif text-2xl">
+					Vision <Icon icon="carbon:arrow-right" class="inline-block text-sm" />
+				</h3>
+				<div>Our mission and vision</div>
+			</div>
+			<Image src="/images/vision.jpg" alt="Products" width="128px" height="128px"></Image>
+		</Card>
+
+		<Card
+			class="!p-0 flex text-white bg-zinc-900 hover:bg-zinc-800 transition-colors"
 			href="/menu/products"
 		>
 			<div class="px-8 flex-1 content-center">
@@ -26,6 +39,7 @@
 			</div>
 			<Image src="/images/products.jpg" alt="Products" width="128px" height="128px"></Image>
 		</Card>
+
 		<Card
 			class="!p-0 flex text-white bg-zinc-900 hover:bg-zinc-800 transition-colors"
 			href="/menu/products"
@@ -38,6 +52,7 @@
 			</div>
 			<Image src="/images/mail.jpg" alt="Products" width="128px" height="128px"></Image>
 		</Card>
+
 		<Card class="!p-0 flex text-white bg-zinc-900 hover:bg-zinc-800 transition-colors" href="/docs">
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">

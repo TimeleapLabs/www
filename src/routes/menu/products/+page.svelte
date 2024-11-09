@@ -42,7 +42,6 @@
 		<Card
 			class="!p-0 flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
 			href="/cascade"
-			target="_blank"
 		>
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">

@@ -85,11 +85,7 @@
 					Whitelabel solution for businesses to deploy their own blockchain.
 				</div>
 				<div>
-					<Button
-						href="/cascade"
-						class="!p-0 hover:text-green-300 !transition-colors"
-						target="_blank"
-					>
+					<Button href="/cascade" class="!p-0 hover:text-green-300 !transition-colors">
 						Discover<Icon icon="carbon:arrow-up-right" />
 					</Button>
 				</div>
