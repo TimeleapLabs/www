@@ -37,7 +37,7 @@
 						<Button
 							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 							animate
-							href="https://explorer.timeleap.swiss"
+							href="https://devnet.timeleap.swiss"
 							target="_blank"
 						>
 							Devnet<Icon icon="carbon:arrow-up-right" class="text-xl" />
