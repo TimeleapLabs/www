@@ -54,4 +54,5 @@
 			<Icon icon="carbon:menu" width={24} />
 		</Button>
 	{/if}
+	<appkit-account-button class="md:m-0 ml-auto" />
 </Navbar>
