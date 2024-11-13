@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	import 'unfonts.css';
+	import modal from '$lib/wallet-modal';
 
 	import { onNavigate } from '$app/navigation';
 	import { SvelteToast } from '@zerodevx/svelte-toast';
