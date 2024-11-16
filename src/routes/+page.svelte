@@ -165,35 +165,6 @@
 	</Card>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 md:px-16 xxl:px-0">
-	<Grid
-		extraLargeScreenColumns={1}
-		largeScreenColumns={1}
-		mediumScreenColumns={1}
-		smallScreenColumns={1}
-		class="mt-8 !auto-rows-auto"
-	>
-		<Image src="/images/bangkok.jpg" alt="Bangkok DevCon" height="640px" class="contrast-[1.05]" />
-		<Card class="text-white flex flex-col mt-12 !p-0">
-			<h2 class="white-text text-white font-serif text-5xl">Devcon 2024: Bangkok, Thailand.</h2>
-			<p class="mt-12 text-lg font-light flex-1">
-				Join us at Devcon 2024 in Bangkok, Thailand, where we will be hosting a series of workshops
-				and talks on the future of blockchain technology.
-			</p>
-			<div class="button mt-24">
-				<Button
-					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-					animate
-					href="https://lu.ma/sw27vr8w"
-					target="_blank"
-				>
-					Book a Ticket<Icon icon="carbon:arrow-up-right" />
-				</Button>
-			</div>
-		</Card>
-	</Grid>
-</Section>
-
 <Section class="w-full max-w-[1280px] mx-auto pt-20 !gap-16 pb-24 px-4 md:px-16 xxl:px-0">
 	<Grid extraLargeScreenColumns={5} largeScreenColumns={5} mediumScreenColumns={1} class="mt-8">
 		<Image src="/images/matterhorn.jpg" alt="Mattherhorn" height="640px" class="lg:col-span-2" />
