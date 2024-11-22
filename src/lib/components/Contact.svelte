@@ -115,7 +115,7 @@
 			</span>
 		</label>
 		<textarea
-			class="bg-zinc-800 focus:bg-zinc-700 transition-colors rounded-3xl outline-none p-8"
+			class="bg-zinc-800 focus:bg-zinc-700 transition-colors rounded-3xl outline-hidden p-8"
 			id="message"
 			rows="5"
 			placeholder="Your message here..."

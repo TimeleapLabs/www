@@ -16,17 +16,17 @@
 
 <Navbar active="products"></Navbar>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-24 !gap-16 px-4 xxl:px-0">
-	<div class="!gap-16 pt-10 md:pt-24 w-full max-w-full box-border h-[640px]">
-		<Card class="!p-0 overflow-hidden border border-zinc-900 h-full">
+<Section class="w-full max-w-[1280px] mx-auto pt-24 gap-16! px-4 xxl:px-0">
+	<div class="gap-16! pt-10 md:pt-24 w-full max-w-full box-border h-[640px]">
+		<Card class="p-0! overflow-hidden border border-zinc-900 h-full">
 			<Grid
 				extraLargeScreenColumns={5}
 				largeScreenColumns={5}
 				mediumScreenColumns={5}
-				class="h-full !gap-0"
+				class="h-full gap-0!"
 			>
 				<div
-					class="top-0 border-box bottom-0 left-0 flex flex-col justify-end h-full p-6 md:p-12 col-span-1 bg-gradient-to-tr from-zinc-950 to-zinc-900"
+					class="top-0 border-box bottom-0 left-0 flex flex-col justify-end h-full p-6 md:p-12 col-span-1 bg-linear-to-tr from-zinc-950 to-zinc-900"
 				>
 					<h1 class="font-serif text-3xl md:text-6xl text-white">Cascade</h1>
 					<p class="mt-12 text-gray-100 font-extralight">
@@ -57,9 +57,9 @@
 	</div>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-32 !gap-16 px-4 xxl:px-0">
-	<Grid extraLargeScreenColumns={2} largeScreenColumns={2} mediumScreenColumns={2} class="!gap-16">
-		<Card class="!p-0 w-full min-w-full bg-zinc-900 text-white">
+<Section class="w-full max-w-[1280px] mx-auto pt-32 gap-16! px-4 xxl:px-0">
+	<Grid extraLargeScreenColumns={2} largeScreenColumns={2} mediumScreenColumns={2} class="gap-16!">
+		<Card class="p-0! w-full min-w-full bg-zinc-900 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">+12,500 TPS</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -68,7 +68,7 @@
 			</div>
 		</Card>
 
-		<Card class="!p-0 w-full min-w-full bg-zinc-900 text-white">
+		<Card class="p-0! w-full min-w-full bg-zinc-900 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">~0.2s Block Time</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -77,7 +77,7 @@
 			</div>
 		</Card>
 
-		<Card class="!p-0 w-full min-w-full bg-zinc-900 text-white">
+		<Card class="p-0! w-full min-w-full bg-zinc-900 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">~0.38s Time to Finality</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -86,7 +86,7 @@
 			</div>
 		</Card>
 
-		<Card class="!p-0 w-full min-w-full bg-zinc-900 text-white">
+		<Card class="p-0! w-full min-w-full bg-zinc-900 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">WASM + EVM</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -97,7 +97,7 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-32 !gap-16 px-4 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-32 gap-16! px-4 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={3}
 		largeScreenColumns={3}
@@ -138,13 +138,13 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-20 !gap-16 pb-24 px-4 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-20 gap-16! pb-24 px-4 xxl:px-0">
 	<Subscribe class="mt-16"></Subscribe>
 </Section>
 
 <Footer></Footer>
 
-<style lang="postcss">
+<style>
 	.x {
 		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 	}

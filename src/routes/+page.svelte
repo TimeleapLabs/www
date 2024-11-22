@@ -14,14 +14,14 @@
 
 <Navbar active="home"></Navbar>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 md:px-16 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-12 gap-16! px-4 md:px-16 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={1}
 		largeScreenColumns={1}
 		mediumScreenColumns={1}
-		class="!gap-16 pt-10 md:pt-24 px-4 md:px-0 max-w-full box-border"
+		class="gap-16! pt-10 md:pt-24 px-4 md:px-0 max-w-full box-border"
 	>
-		<Card class="!p-0 relative h-[440px] md:h-[640px] overflow-hidden">
+		<Card class="p-0! relative h-[440px] md:h-[640px] overflow-hidden">
 			<Image
 				src="/images/apps-full.jpg"
 				alt="Distributed Computation"
@@ -54,7 +54,7 @@
 <Section class="w-full pt-12 md:pt-20 pb-20 px-4 md:px-16 xxl:px-12">
 	<Carousel class="gap-16">
 		<Card
-			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
+			class="p-0! grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
 		>
 			<div class="p-8 md:p-12 flex flex-col">
 				<h3 class="font-serif text-4xl">Unchained</h3>
@@ -62,7 +62,7 @@
 					Sovereign network built specifically for decentralized applications.
 				</div>
 				<div>
-					<Button href="/unchained" class="!p-0 hover:text-green-300 !transition-colors">
+					<Button href="/unchained" class="p-0! hover:text-green-300 transition-colors!">
 						Discover<Icon icon="carbon:arrow-right" />
 					</Button>
 				</div>
@@ -77,7 +77,7 @@
 		</Card>
 
 		<Card
-			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
+			class="p-0! grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
 		>
 			<div class="p-12 flex flex-col">
 				<h3 class="font-serif text-4xl">Cascade</h3>
@@ -85,7 +85,7 @@
 					Whitelabel solution for businesses to deploy their own blockchain.
 				</div>
 				<div>
-					<Button href="/cascade" class="!p-0 hover:text-green-300 !transition-colors">
+					<Button href="/cascade" class="p-0! hover:text-green-300 transition-colors!">
 						Discover<Icon icon="carbon:arrow-up-right" />
 					</Button>
 				</div>
@@ -95,7 +95,7 @@
 		</Card>
 
 		<Card
-			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
+			class="p-0! grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
 		>
 			<div class="p-12 flex flex-col">
 				<h3 class="font-serif text-4xl">GhostFS</h3>
@@ -105,7 +105,7 @@
 				<div>
 					<Button
 						href="https://github.com/TimeleapLabs/ghostfs"
-						class="!p-0 hover:text-green-300 !transition-colors"
+						class="p-0! hover:text-green-300 transition-colors!"
 						target="_blank"
 					>
 						Discover<Icon icon="carbon:arrow-up-right" />
@@ -117,7 +117,7 @@
 		</Card>
 
 		<Card
-			class="!p-0 grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
+			class="p-0! grid w-full min-w-full grid-cols-1 md:grid-cols-2 bg-zinc-900 text-white group md:min-w-[640px] md:w-[640px] snap-start"
 		>
 			<div class="p-12 flex flex-col">
 				<h3 class="font-serif text-4xl">Flare</h3>
@@ -128,7 +128,7 @@
 					<Button
 						href="https://flare.cards"
 						target="_blank"
-						class="!p-0 hover:text-green-300 !transition-colors"
+						class="p-0! hover:text-green-300 transition-colors!"
 					>
 						Discover<Icon icon="carbon:arrow-up-right" />
 					</Button>
@@ -145,7 +145,7 @@
 	</Carousel>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-12 !gap-16 px-4 md:px-16 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-12 gap-16! px-4 md:px-16 xxl:px-0">
 	<Card class="text-white bg-zinc-900 p-12">
 		<p class="text-2xl font-serif">
 			Update in Progress
@@ -165,11 +165,11 @@
 	</Card>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-20 !gap-16 pb-24 px-4 md:px-16 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-20 gap-16! pb-24 px-4 md:px-16 xxl:px-0">
 	<Grid extraLargeScreenColumns={5} largeScreenColumns={5} mediumScreenColumns={1} class="mt-8">
 		<Image src="/images/matterhorn.jpg" alt="Mattherhorn" height="640px" class="lg:col-span-2" />
 		<Card
-			class="text-white flex flex-col lg:col-span-3 bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800"
+			class="text-white flex flex-col lg:col-span-3 bg-linear-to-tr from-zinc-950 to-zinc-900 border border-zinc-800"
 		>
 			<h2 class="white-text text-white font-serif text-4xl md:text-5xl">
 				Headquartered in the heart of Switzerland.

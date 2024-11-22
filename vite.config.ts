@@ -2,6 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import unfonts from 'unplugin-fonts/vite';
 import type { CustomFontFace } from 'unplugin-fonts/types';
+import tailwindcss from '@tailwindcss/vite';
 
 const unfontTransform = (font: CustomFontFace) => {
 	return {
@@ -31,6 +32,7 @@ export default defineConfig({
 					}
 				]
 			}
-		})
+		}),
+		tailwindcss()
 	]
 });

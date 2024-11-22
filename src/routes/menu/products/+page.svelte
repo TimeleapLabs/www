@@ -12,10 +12,10 @@
 
 <Navbar active="products" backButton></Navbar>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-32 !gap-16 px-4 md:px-16 xxl:px-0 flex-1 pb-12">
+<Section class="w-full max-w-[1280px] mx-auto pt-32 gap-16! px-4 md:px-16 xxl:px-0 flex-1 pb-12">
 	<Grid extraLargeScreenColumns={3} largeScreenColumns={2}>
 		<Card
-			class="!p-0 flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
+			class="p-0! flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
 			href="/unchained"
 		>
 			<div class="px-8 flex-1 content-center">
@@ -27,7 +27,7 @@
 			<Image src="/images/unchained.jpg" alt="Unchained" width="128px" height="128px"></Image>
 		</Card>
 		<Card
-			class="!p-0 flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
+			class="p-0! flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
 			href="https://github.com/TimeleapLabs/ghostfs"
 			target="_blank"
 		>
@@ -40,7 +40,7 @@
 			<Image src="/images/ghostfs.jpg" alt="Unchained" width="128px" height="128px"></Image>
 		</Card>
 		<Card
-			class="!p-0 flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
+			class="p-0! flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
 			href="/cascade"
 		>
 			<div class="px-8 flex-1 content-center">
@@ -52,7 +52,7 @@
 			<Image src="/images/baas.jpg" alt="Unchained" width="128px" height="128px"></Image>
 		</Card>
 		<Card
-			class="!p-0 flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
+			class="p-0! flex bg-zinc-900 hover:bg-zinc-800 transition-colors text-white"
 			href="https://flare.cards"
 			target="_blank"
 		>

@@ -28,7 +28,7 @@
 </script>
 
 <Card
-	class="gap-4 !py-4 bg-zinc-900 my-4 bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800 relative overflow-hidden"
+	class="gap-4 py-4! bg-zinc-900 my-4 bg-linear-to-tr from-zinc-950 to-zinc-900 border border-zinc-800 relative overflow-hidden"
 >
 	<div
 		class="absolute w-2 h-full bg-stripe {stripeColors[
