@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="64"
+   viewBox="0 0 64 64"
+   height="64"
+   version="1.1"
+   id="svg7"
+   sodipodi:docname="image-png.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.40625"
+     inkscape:cx="27.076923"
+     inkscape:cy="22.153846"
+     inkscape:window-width="2048"
+     inkscape:window-height="1227"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg7" />
+  <defs
+     id="defs4">
+    <linearGradient
+       id="a"
+       y1="17"
+       x1="40"
+       y2="31"
+       gradientUnits="userSpaceOnUse"
+       x2="54"
+       gradientTransform="translate(180 750.36)">
+      <stop
+         stop-color="#060606"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-opacity="0"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       id="b"
+       y1="392.36"
+       y2="320.48"
+       x2="0"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1 0 0 .84587 140 469.63)">
+      <stop
+         stop-color="#ffffff"
+         stop-opacity="0"
+         id="stop3" />
+      <stop
+         offset="1"
+         stop-color="#ffffff"
+         stop-opacity=".2"
+         id="stop4" />
+    </linearGradient>
+    <path
+       color-rendering="auto"
+       color-interpolation-filters="linearRGB"
+       shape-rendering="auto"
+       image-rendering="auto"
+       text-rendering="auto"
+       id="c"
+       color-interpolation="sRGB"
+       color="#000000"
+       d="m178 803.36v-50h42l14 14v36h-14z" />
+  </defs>
+  <g
+     transform="translate(-174-742.36)"
+     id="g7">
+    <use
+       fill="#8542c2"
+       xlink:href="#c"
+       id="use4" />
+    <g
+       color-rendering="auto"
+       color-interpolation-filters="linearRGB"
+       shape-rendering="auto"
+       image-rendering="auto"
+       text-rendering="auto"
+       color-interpolation="sRGB"
+       color="#000000"
+       id="g5">
+      <rect
+         opacity=".25"
+         x="178"
+         y="802.36"
+         width="56"
+         height="1"
+         id="rect4" />
+      <rect
+         opacity=".5"
+         x="178"
+         y="753.36"
+         width="42"
+         fill="#ffffff"
+         height="1"
+         id="rect5" />
+    </g>
+    <g
+       fill-rule="evenodd"
+       id="g6">
+      <path
+         opacity=".5"
+         fill="#ffffff"
+         d="m234 767.36l-14-14v14z"
+         id="path5" />
+      <path
+         opacity=".2"
+         fill="url(#a)"
+         d="m220 767.36l14 14v-14z"
+         id="path6" />
+    </g>
+    <path
+       opacity=".75"
+       color-interpolation-filters="linearRGB"
+       color="#000000"
+       image-rendering="auto"
+       color-rendering="auto"
+       stroke-width="2"
+       d="m195.05 763.71v1.828h1v-1.828zm-2.793 1.156l-.707.707 1.293 1.293.707-.707zm6.586 0l-1.293 1.293.707.707 1.293-1.293zm-3.344 1.5c-1.381 0-2.5 1.119-2.5 2.5 0 1.381 1.119 2.5 2.5 2.5 1.381 0 2.5-1.119 2.5-2.5 0-1.381-1.119-2.5-2.5-2.5m0 1c.828 0 1.5.672 1.5 1.5 0 .828-.672 1.5-1.5 1.5-.828 0-1.5-.672-1.5-1.5 0-.828.672-1.5 1.5-1.5m-5.105 1v1h1.828v-1zm8.484 0v1h1.828v-1zm14.12 5l-2 2h-.008l-8.592 8.58v.019l-4.6-4.6-9 9h1.406l6.119-6.082 1.409-1.404 1.564 1.418 3.102 3.068 4-4 2.951-2.936 3.648-3.462 3.637 3.515 7.957 7.883h1.406zm-20.16-2.5l-1.293 1.293.707.707 1.293-1.293zm5.414 0l-.707.707 1.293 1.293.707-.707zm-3.207 1.328v1.828h1v-1.828z"
+       color-interpolation="sRGB"
+       text-rendering="auto"
+       fill="#ffffff"
+       shape-rendering="auto"
+       id="path7" />
+    <use
+       fill="url(#b)"
+       xlink:href="#c"
+       id="use7" />
+  </g>
+</svg>

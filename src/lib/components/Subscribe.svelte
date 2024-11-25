@@ -36,9 +36,20 @@
 
 {#if showSubscribe}
 	<div transition:fade>
-		<Card class="{$$props.class || ''} bg-zinc-900 text-white flex flex-col gap-8 pb-10!">
-			<Grid extraLargeScreenColumns={3} largeScreenColumns={3}>
-				<h2 class="white-text text-white font-serif text-5xl mt-6">Want to stay updated?</h2>
+		<Card
+			class="{$$props.class ||
+				''} text-white flex flex-col gap-8 pb-10! bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800"
+		>
+			<Grid
+				extraLargeScreenColumns={3}
+				largeScreenColumns={3}
+				mediumScreenColumns={1}
+				class="grid-rows-[auto]"
+			>
+				<div class="flex gap-4 flex-col">
+					<h2 class="white-text text-white font-serif text-5xl mt-6">Get the latest news.</h2>
+					<p class="text-gray-400">Subscribe to our newsletter for the latest updates.</p>
+				</div>
 				<div class="flex flex-col gap-8 col-span-2 row-span-2 md:row-span-1">
 					<Input
 						type="email"

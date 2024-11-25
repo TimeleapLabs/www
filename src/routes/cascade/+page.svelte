@@ -59,7 +59,7 @@
 
 <Section class="w-full max-w-[1280px] mx-auto pt-32 gap-16! px-4 xxl:px-0">
 	<Grid extraLargeScreenColumns={2} largeScreenColumns={2} mediumScreenColumns={2} class="gap-16!">
-		<Card class="p-0! w-full min-w-full bg-zinc-900 text-white">
+		<Card class="p-0! w-full min-w-full bg-zinc-950 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">+12,500 TPS</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -68,7 +68,7 @@
 			</div>
 		</Card>
 
-		<Card class="p-0! w-full min-w-full bg-zinc-900 text-white">
+		<Card class="p-0! w-full min-w-full bg-zinc-950 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">~0.2s Block Time</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -77,7 +77,7 @@
 			</div>
 		</Card>
 
-		<Card class="p-0! w-full min-w-full bg-zinc-900 text-white">
+		<Card class="p-0! w-full min-w-full bg-zinc-950 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">~0.38s Time to Finality</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -86,7 +86,7 @@
 			</div>
 		</Card>
 
-		<Card class="p-0! w-full min-w-full bg-zinc-900 text-white">
+		<Card class="p-0! w-full min-w-full bg-zinc-950 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">WASM + EVM</h3>
 				<div class="flex-1 mt-8 text-gray-300">

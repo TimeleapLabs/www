@@ -52,7 +52,7 @@
 		</div>
 	{/if}
 
-	<Card class="text-white bg-zinc-900 p-12 mt-8">
+	<Card class="text-white bg-zinc-950 p-12 mt-8">
 		<p class="text-2xl font-serif">
 			Update in Progress
 			<Icon icon="carbon:information-filled" class="inline-block" />

@@ -5,8 +5,8 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"prebuild": "yarn build:docs",
-		"build:docs": "tsx scripts/tiramisu/index.ts",
+		"prebuild": "yarn docs",
+		"docs": "tsx scripts/tiramisu/index.ts",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -44,9 +44,13 @@
 		"@sendgrid/client": "^8.1.4",
 		"@sendgrid/mail": "^8.1.4",
 		"@tailwindcss/vite": "^4.0.0-beta.2",
-		"@timeleap/ui": "^0.0.4",
+		"@timeleap/ui": "^0.0.7",
+		"@types/d3": "^7.4.3",
 		"@zerodevx/svelte-toast": "^0.9.6",
+		"echarts": "^5.5.1",
 		"ethers": "^6.13.4",
-		"geist": "^1.3.1"
+		"geist": "^1.3.1",
+		"layercake": "^8.4.2",
+		"svelte-echarts": "^1.0.0-rc3"
 	}
 }

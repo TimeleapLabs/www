@@ -74,7 +74,7 @@
 </script>
 
 <h2 class="white-text text-white font-serif text-5xl mt-16">Contact Us.</h2>
-<Card class="bg-zinc-900 text-white flex flex-col gap-8">
+<Card class="bg-zinc-950 text-white flex flex-col gap-8">
 	<Grid extraLargeScreenColumns={2} largeScreenColumns={2}>
 		<Input
 			type="text"
