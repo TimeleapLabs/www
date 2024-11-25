@@ -91,7 +91,7 @@
 			<h2 class="font-serif text-3xl md:text-4xl xl:text-5xl xxl:text-6xl text-white">
 				From note taking to AI,<br />3D rendering, and<br />AAA games.
 			</h2>
-			<p class="mt-20 text-white w-full md:w-5/6 xl:w-1/2">
+			<p class="mt-20 text-white w-full xl:w-1/2">
 				Imagine every app, at every level of performance—accessible anywhere without hardware
 				requirements. Our decentralized distributed computing network provides the tools to power
 				the most demanding applications. Run anything, pay as you go, and scale seamlessly
