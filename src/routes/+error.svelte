@@ -13,7 +13,7 @@
 
 <Navbar active="home"></Navbar>
 
-<Section class="w-full flex-1 max-w-[1280px] mx-auto py-36 !gap-16 px-4 md:px-16 xxl:px-0">
+<Section class="w-full flex-1 max-w-[1280px] mx-auto py-36 gap-16! px-4 md:px-16 xxl:px-0">
 	<div>
 		<h1 class="text-8xl text-white font-serif">
 			{$page.status}
@@ -52,7 +52,7 @@
 		</div>
 	{/if}
 
-	<Card class="text-white bg-zinc-900 p-12 mt-8">
+	<Card class="text-white bg-zinc-950 p-12 mt-8">
 		<p class="text-2xl font-serif">
 			Update in Progress
 			<Icon icon="carbon:information-filled" class="inline-block" />

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   viewBox="0 0 64 64"
+   id="svg4"
+   sodipodi:docname="audio-x-mpeg.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3.3640942"
+     inkscape:cx="14.565585"
+     inkscape:cy="31.806481"
+     inkscape:window-width="2048"
+     inkscape:window-height="1227"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="a"
+       x2="0"
+       y1="392.36"
+       y2="336.36"
+       gradientTransform="translate(-6,-332.36)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="0"
+         id="stop1" />
+      <stop
+         stop-color="#fff"
+         stop-opacity=".2"
+         offset="1"
+         id="stop2" />
+    </linearGradient>
+  </defs>
+  <g
+     color="#000000"
+     color-rendering="auto"
+     image-rendering="auto"
+     shape-rendering="auto"
+     id="g4">
+    <circle
+       cx="37"
+       cy="36"
+       r="24"
+       fill="#c2a1e1"
+       id="circle2" />
+    <path
+       d="M 5,11 V 61 H 55 V 41 H 50.904 C 48.187,41 46,38.813 46,36.096 v -0.191 c 0,-2.717 2.187,-4.904 4.904,-4.904 H 55 v -20 z"
+       fill="#8542c2"
+       id="path2" />
+    <rect
+       x="5"
+       y="60"
+       width="50"
+       height="1"
+       opacity="0.25"
+       id="rect2" />
+    <g
+       fill="#ffffff"
+       id="g3">
+      <rect
+         x="5"
+         y="11"
+         width="50"
+         height="1"
+         opacity="0.5"
+         id="rect3" />
+      <path
+         d="m 21,25 v 16.05 c -0.635,-0.648 -1.517,-1.053 -2.5,-1.053 -1.939,0 -3.5,1.561 -3.5,3.5 0,1.939 1.561,3.5 3.5,3.5 1.905,0 3.437,-1.509 3.49,-3.4 H 22 v -13.6 h 14 v 8.05 c -0.635,-0.648 -1.517,-1.053 -2.5,-1.053 -1.939,0 -3.5,1.561 -3.5,3.5 0,1.939 1.561,3.5 3.5,3.5 1.939,0 3.5,-1.561 3.5,-3.5 v -15.5 H 22 Z m 1,2 h 14 v 2 H 22 Z"
+         opacity="0.75"
+         stroke-width="2"
+         id="path3" />
+    </g>
+    <path
+       d="M 5,11 V 61 H 55 V 51.842 A 24,24 0 0 0 61,36.000203 24,24 0 0 0 55,20.170125 v -9.17 z"
+       fill="url(#a)"
+       id="path4"
+       style="fill:url(#a)" />
+  </g>
+</svg>

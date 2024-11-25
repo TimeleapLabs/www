@@ -1,74 +1,100 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-html {
-	scroll-behavior: smooth;
-	scroll-padding-top: 70px;
+@theme {
+	--font-sans: 'Geist';
+	--font-mono: 'Geist Mono';
+	--font-serif: 'Aleo';
+
+	--background-image-stripe: repeating-linear-gradient(-45deg, var(--tw-gradient-stops));
 }
 
-html,
-body {
-	min-height: 100vh;
-	height: 100%;
-}
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-:root {
-	--border-radius: 1em;
-}
-
-@keyframes fade-in {
-	from {
-		opacity: 0;
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
 	}
 }
 
-@keyframes fade-out {
-	to {
-		opacity: 0;
+@utility scrollbar-hidden {
+	/* Chrome, Safari and Opera */
+	&::-webkit-scrollbar {
+		display: none;
 	}
-}
-
-@keyframes slide-from-right {
-	from {
-		transform: translateX(30px);
-	}
-}
-
-@keyframes slide-to-left {
-	to {
-		transform: translateX(-30px);
-	}
-}
-
-:root::view-transition-old(root) {
-	animation:
-		90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
-}
-
-:root::view-transition-new(root) {
-	animation:
-		210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
-}
-
-@media (prefers-reduced-motion) {
-	::view-transition-group(*),
-	::view-transition-old(*),
-	::view-transition-new(*) {
-		animation: none !important;
-	}
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
 }
 
 @layer utilities {
-	/* Chrome, Safari and Opera */
-	.scrollbar-hidden::-webkit-scrollbar {
-		display: none;
+	html {
+		scroll-behavior: smooth;
+		scroll-padding-top: 70px;
 	}
 
-	.scrollbar-hidden {
-		scrollbar-width: none; /* Firefox */
-		-ms-overflow-style: none; /* IE and Edge */
+	html,
+	body {
+		min-height: 100vh;
+		height: 100%;
+		background-color: var(--color-black);
+	}
+
+	:root {
+		--border-radius: 2em;
+		--button-border-radius: 1em;
+		--input-border-radius: 1em;
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	@keyframes fade-out {
+		to {
+			opacity: 0;
+		}
+	}
+
+	@keyframes slide-from-right {
+		from {
+			transform: translateX(30px);
+		}
+	}
+
+	@keyframes slide-to-left {
+		to {
+			transform: translateX(-30px);
+		}
+	}
+
+	:root::view-transition-old(root) {
+		animation:
+			90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+	}
+
+	:root::view-transition-new(root) {
+		animation:
+			210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+	}
+
+	@media (prefers-reduced-motion) {
+		::view-transition-group(*),
+		::view-transition-old(*),
+		::view-transition-new(*) {
+			animation: none !important;
+		}
 	}
 }
