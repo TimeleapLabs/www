@@ -26,7 +26,7 @@
 <Section
 	class="w-full max-w-[1280px] mx-auto pt-20 md:pt-36 gap-8! px-4 md:px-16 xxl:px-0 text-white flex-1"
 >
-	<div class="flex gap-2 -mb-8">$BREADCRUMBS</div>
+	<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
 
 	$CONTENT
 
