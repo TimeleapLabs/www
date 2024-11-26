@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { LayerCake, ScaledSvg, Html } from 'layercake';
 	import { scaleBand } from 'd3-scale';
+	import { format } from 'd3-format';
 
 	import Bar from './Bar.svelte';
 	import AxisX from '../bar-stacked/AxisX.svelte';
@@ -11,6 +12,8 @@
 	data.forEach((d) => {
 		d.value = +d.value;
 	});
+
+	const formatLabelX = (d) => format(`~s`)(d);
 </script>
 
 <div class="chart-container">
@@ -28,8 +31,8 @@
 		{data}
 	>
 		<Html>
-			<AxisX gridlines baseline snapLabels />
-			<AxisY gridlines={false} tickMarks />
+			<AxisX baseline snapLabels format={formatLabelX} />
+			<AxisY gridlines={false} />
 		</Html>
 		<ScaledSvg>
 			<Bar />
