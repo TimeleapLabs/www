@@ -198,7 +198,7 @@
 					<Button
 						class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 						animate
-						href="https://github.com/pouya-eghbali/sia"
+						href="/docs/products/sia"
 						target="_blank"
 					>
 						Learn More<Icon icon="carbon:arrow-up-right" />

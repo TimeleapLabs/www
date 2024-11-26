@@ -1,0 +1,73 @@
+title { Sia }
+
+Sia is a super-fast binary serialization format optimized for speed and size. It
+is ideal for high-performance applications requiring quick and efficient data
+serialization and deserialization, such as network protocols, file formats, and
+data storage solutions.
+
+toc {
+  lowlevel
+}
+
+title { Performance, size = 2 }
+
+In the following benchmark, we compare the serialization and deserialization
+performance of Sia with other popular serialization libraries.
+
+svelte { $lib/components/products/sia/Benchmark.svelte }
+
+small {
+  Benchmarks are based on the serialization of a randomly generated array of 5,000 objects.
+  The benchmark was run on an AWS EC2 r7iz.2xlarge instance.
+  Source code for the benchmark can be found link {
+    here, to = "https://github.com/pouya-eghbali/sia/tree/master/src/benchmark"
+  }.
+}
+
+title { RPC Performance, size = 2 }
+
+In the following benchmark, we compare the performance of Sia in a remote procedure
+call (RPC) scenario with other popular serialization libraries.
+
+svelte { $lib/components/products/sia/RpcBenchmark.svelte }
+
+small {
+  The benchmark was run on an AWS EC2 r7iz.2xlarge instance.
+  Source code for the benchmark can be found link {
+    here, to = "https://github.com/pouya-eghbali/sia/tree/master/src/benchmark"
+  }.
+}
+
+These benchmarks measure the entire RPC process, including serialization,
+deserialization, and network overhead. The results show that Sia is one of the
+fastest serialization libraries available.
+
+The RPC benchmark uses a simple method that returns a balance object for a given
+account. The heavy RPC benchmark calls a more complex function with a larger
+payload.
+
+In the simple RPC benchmark, Sia outperforms other serialization libraries by a
+small margin, delivering an bold { additional 2300 requests/s (a total of 39818
+requests/s) } compared to JSON. In the heavy RPC benchmark, Sia significantly
+outperforms other serialization libraries, delivering bold { more than 2.1 times
+} the number of requests per second compared to JSON.
+
+title { Packet Size, size = 2 }
+
+The following table compares the size of the serialized data using Sia with other
+popular serialization libraries.
+
+table {
+  header = [Library, Serialized Size],
+  row = [JSON, 1402 KB],
+  row = [Sia, 737 KB],
+  row = [Sia v1, 932 KB],
+  row = [CBOR-X, 1138 KB],
+  row = [MsgPack, 1130 KB]
+}
+
+meta {
+  description = Sia,
+  prev = ../../roadmap,
+  next = lowlevel
+}

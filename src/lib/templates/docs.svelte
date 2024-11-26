@@ -6,11 +6,14 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Alert from '$lib/components/Alert.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
+	import Code from '$lib/components/Code.svelte';
 
 	const nextPageUrl = '$NEXT_PAGE_URL';
 	const nextPageTitle = '$NEXT_PAGE_TITLE';
 	const prevPageUrl = '$PREV_PAGE_URL';
 	const prevPageTitle = '$PREV_PAGE_TITLE';
+
+	('$IMPORTS');
 </script>
 
 <svelte:head>

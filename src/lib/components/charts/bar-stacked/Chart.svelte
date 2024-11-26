@@ -26,7 +26,7 @@
 </script>
 
 <defs>
-	{#each $data as series, i}
+	{#each $data as _, i}
 		<linearGradient id="gradient-{i}" x1="0%" y1="33%" x2="100%" y2="0%">
 			<stop offset="0%" stop-color="var(--{gradients[i].from})" />
 			<stop offset="100%" stop-color="var(--{gradients[i].to})" />

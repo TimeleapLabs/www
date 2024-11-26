@@ -63,6 +63,13 @@ export const compileFile = (
 		context
 	);
 
+	const imports = context.imports
+		?.map((imp) => {
+			const component = imp.split('/').pop()?.replace('.svelte', '');
+			return `import ${component} from '${imp}';`;
+		})
+		.join('\n');
+
 	const compiled = template
 		.replace('$TITLE', context.page?.title ?? context.headers?.[0] ?? '')
 		.replace('$DESCRIPTION', context.page?.description ?? '')
@@ -70,6 +77,7 @@ export const compileFile = (
 		.replace('$NEXT_PAGE_TITLE', context.nextPageTitle ?? '')
 		.replace('$PREV_PAGE_URL', context.prevPage ?? '')
 		.replace('$PREV_PAGE_TITLE', context.prevPageTitle ?? '')
+		.replace("('$IMPORTS');", imports ?? '')
 		.replace('$BREADCRUMBS', breadcrumbs)
 		.replace('$CONTENT', code);
 

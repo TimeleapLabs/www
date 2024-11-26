@@ -28,7 +28,7 @@
 	const formatLabelX = (d) => format(`~s`)(d);
 </script>
 
-<div class="chart-container">
+<div class="chart-container max-w-[720px]">
 	<LayerCake
 		ssr
 		percentRange
