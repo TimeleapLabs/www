@@ -7,7 +7,7 @@
 	const highlighted = codeToHtml(code, { lang, theme: 'ayu-dark' });
 </script>
 
-<div class="rounded-2xl overflow-x-auto code">
+<div class="rounded-2xl code overflow-hidden">
 	{#await highlighted then highlighted}
 		{@html highlighted}
 	{/await}
@@ -31,5 +31,6 @@
 
 	.code :global(pre) {
 		padding: 1rem;
+		overflow-x: auto;
 	}
 </style>
