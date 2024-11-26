@@ -123,7 +123,7 @@ const functions: {
 		const text = params.positional.join('');
 		const external = href.startsWith('http') && !href.startsWith('https://timeleap.swiss');
 		const icon = external ? '<Icon icon="carbon:launch" class="inline" />' : '';
-		return `<a href="${href}" class="hover:text-green-400 transition-colors inline-flex gap-1 items-center">${text}${icon}</a>`;
+		return `<a href="${href}" class="hover:text-green-400 transition-colors inline-flex gap-1 items-center border-b border-zinc-500">${text}${icon}</a>`;
 	},
 	list(params) {
 		const type = getParamsByName(params, 'type')[0]?.value ?? 'unordered';
@@ -261,6 +261,11 @@ const functions: {
 		const codeIndented = getParamsByName(params, 'content')[0]?.value.toString() ?? '';
 		const code = deIndentCode(codeIndented);
 		return `<Code lang="${language}" code={\`${code}\`}></Code>`;
+	},
+	mermaid(params) {
+		const codeIndented = params.positional.join(',');
+		const code = deIndentCode(codeIndented);
+		return `<Mermaid code={\`${code}\`}></Mermaid>`;
 	}
 };
 

@@ -7,6 +7,7 @@
 	import Alert from '$lib/components/Alert.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
 	import Code from '$lib/components/Code.svelte';
+	import Mermaid from '$lib/components/Mermaid.svelte';
 
 	const nextPageUrl = '$NEXT_PAGE_URL';
 	const nextPageTitle = '$NEXT_PAGE_TITLE';
@@ -31,7 +32,7 @@
 	$CONTENT
 
 	{#if nextPageUrl || prevPageUrl}
-		<div class="mt-8 mb-16 flex gap-4">
+		<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
 			{#if prevPageUrl}
 				<Button
 					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
