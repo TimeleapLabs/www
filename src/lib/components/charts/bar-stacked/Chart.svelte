@@ -35,7 +35,7 @@
 </defs>
 
 <g class="bar-group">
-	{#each $data?.toReversed() as series, i}
+	{#each $data?.toReversed?.() as series, i}
 		{#each series as d, j}
 			<rect
 				class="group-rect"
