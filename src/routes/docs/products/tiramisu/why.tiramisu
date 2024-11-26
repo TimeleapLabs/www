@@ -1,0 +1,228 @@
+title { Why Tiramisu? }
+
+There are already many great documentation tools out there, so why Tiramisu?
+When we started Timeleap, we wanted a tool that was easy to use, easy to
+extend, and easy to read. We also needed a tool that integrated well with our
+website.
+
+We considered using Markdown, or ReStructuredText, but none of them satisfied
+our needs. Markdown is not link { context-free, to =
+https://clehaxze.tw/gemlog/2022/03-31-markdown-is-not-context-free.gmi } and not
+easily parsable. Tiramisu is easily parsable by an LL parser. We also didn't
+like how new features were added to Markdown. We found similar issues with
+ReStructuredText. Although it is more powerful than Markdown, it is also more
+complex.
+
+title { Syntax Comparison, size = 2 }
+
+Here is a comparison of Tiramisu with other popular documentation languages:
+
+title { Links, size = 3 }
+
+Markdown:
+
+code {
+  language = markdown,
+  content = """
+    [Example](https://example.com)
+  """
+}
+
+ReStructuredText:
+
+code {
+  language = rst,
+  content = """
+    `Example <https://example.com>`_
+  """
+}
+
+Tiramisu:
+
+code {
+  language = tiramisu,
+  content = """
+    link { Example, to = https://example.com }
+  """
+}
+
+Looking at the Markdown example, it is not immediately clear that the text
+inside the square brackets is a link. The ReStructuredText example is better,
+but it is still not as clear as the Tiramisu example.
+
+title { Images, size = 3 }
+
+Markdown:
+
+code {
+  language = markdown,
+  content = """
+    ![Alt text](https://example.com/image.jpg)
+  """
+}
+
+ReStructuredText:
+
+code {
+  language = rst,
+  content = """
+    .. image:: https://example.com/image.jpg
+      :alt: Alt text
+  """
+}
+
+Tiramisu:
+
+code {
+  language = tiramisu,
+  content = """
+    image { https://example.com/image.jpg, alt = Alt text }
+  """
+}
+
+The Markdown example is not as clear as the ReStructuredText and Tiramisu
+examples. The ReStructuredText example is more verbose than the Tiramisu
+example.
+
+title { Code Blocks, size = 3 }
+
+Markdown:
+
+code {
+  language = markdown,
+  content = """
+    ```language
+    code
+    ```
+  """
+}
+
+ReStructuredText:
+
+code {
+  language = rst,
+  content = """
+    .. code-block:: language
+
+      code
+  """
+}
+
+Tiramisu:
+
+code {
+  language = tiramisu,
+  content = """
+    code {
+      language = language,
+      content = "code"
+    }
+  """
+}
+
+or 
+
+code {
+  language = tiramisu,
+  content = """
+    code {
+      language = language,
+      content = readFile { "code.lang" }
+    }
+  """
+}
+
+The Markdown example is not as clear as the ReStructuredText and Tiramisu
+examples. The ReStructuredText example is more verbose than the Tiramisu
+example.
+
+title { Tables, size = 3 }
+
+Markdown:
+
+code {
+  language = markdown,
+  content = """
+    | Header 1 | Header 2 |
+    |----------|----------|
+    | Col 1    | Col 2    |
+  """
+}
+
+ReStructuredText:
+
+code {
+  language = rst,
+  content = """
+    +----------+----------+
+    | Header 1 | Header 2 |
+    +==========+==========+
+    | Col 1    | Col 2    |
+    +----------+----------+
+  """
+}
+
+Tiramisu:
+
+code {
+  language = tiramisu,
+  content = """
+    table {
+      headers = [Header 1, Header 2],
+      row = [Col 1, Col 2]
+    }
+  """
+}
+
+Markdown and ReStructuredText tables are not easy to write; that's why there
+are many online tools to help you generate them. Tiramisu tables are easy to
+write and read.
+
+title { Alerts, size = 3 }
+
+Markdown (GitBook):
+
+code {
+  language = markdown,
+  content = """
+    {% hint style="info" %}
+    This is an info.
+    {% endhint %}
+  """
+}
+
+Markdown (MDX):
+
+code {
+  language = mdx,
+  content = """
+    <Alert type="info">
+      This is an info.
+    </Alert>
+  """
+}
+
+ReStructuredText:
+
+code {
+  language = rst,
+  content = """
+    .. note::
+      This is a note.
+  """
+}
+
+Tiramisu:
+
+code {
+  language = tiramisu,
+  content = """
+    alert { type = info, This is an info. }
+  """
+}
+
+meta {
+  description = Why Tiramisu,
+  prev = index,
+  next = syntax
+}

@@ -1,0 +1,32 @@
+title { Extensibility }
+
+To extend Tiramisu, you can create your own functions and renderers. For example,
+to create a italic { small } function:
+
+code {
+  language = tiramisu,
+  content = """
+    small { this will be small }
+  """
+}
+
+You can extend Tiramisu using the following TypeScript code:
+
+code {
+  language = typescript,
+  content = """
+    small(params: ParamType) {
+      const text = params.positional.join('');
+      return `<div class="text-sm">${text}</div>`;
+    }
+  """
+}
+
+See the code for this documentation website's renderer link { here, to =
+https://github.com/TimeleapLabs/www/tree/master/scripts/tiramisu }.
+
+meta {
+  description = Tiramisu syntax,
+  prev = why,
+  next = install
+}

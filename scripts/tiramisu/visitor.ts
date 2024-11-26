@@ -62,9 +62,16 @@ const pillColors = {
 const deIndentCode = (code: string) => {
 	const rawLines = code.split('\n');
 	const lines = rawLines[0].match(/^\s*$/) ? rawLines.slice(1, -1) : rawLines.slice(0, -1);
+
+	if (lines[lines.length - 1].match(/^\s*$/)) {
+		lines.pop();
+	}
+
 	const indent = lines[0].match(/^\s*/)?.[0] ?? '';
 	const indentRegex = new RegExp(`^${indent}`);
-	return lines.map((line) => line.replace(indentRegex, '')).join('\n');
+	const clean = lines.map((line) => line.replace(indentRegex, '')).join('\n');
+
+	return clean.replaceAll('`', '\\`').replaceAll('${', '\\${');
 };
 
 const getParamsByName = (params: ParamType, name: string) =>
@@ -213,7 +220,7 @@ const functions: {
 	},
 	italic(params) {
 		const text = params.positional.join('');
-		return `<span class="font-italic">${text}</span>`;
+		return `<span class="italic">${text}</span>`;
 	},
 	svelte(params, context) {
 		const fileName = params.positional[0].toString().trim();
@@ -344,3 +351,4 @@ export const translate = (node: Node, context: ContextType): string => {
 };
 
 import { compileFile } from './compile';
+import { line } from 'd3';

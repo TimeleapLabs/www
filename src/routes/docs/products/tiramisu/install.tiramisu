@@ -1,0 +1,20 @@
+title { Install }
+
+Tiramisu is published on NPM. You can add it to your project by running:
+
+code {
+  language = bash,
+  content = "npm install -D tiramisu"
+}
+
+or using Yarn:
+
+code {
+  language = bash,
+  content = "yarn add -D tiramisu"
+}
+
+meta {
+  description = Install Tiramisu,
+  prev = extend
+}
