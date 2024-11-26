@@ -155,6 +155,7 @@ mermaid {
         ByteArray8   UUID
         ByteArray8   Signature
         String8      FunctionName
+        Uint64       Timeout
         Dynamic      Parameters
     }
 
