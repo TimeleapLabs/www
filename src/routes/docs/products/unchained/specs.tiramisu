@@ -85,7 +85,7 @@ alert {
   type = info,
   
   All communication between Unchained nodes, users, plugins, clients, and
-  services is done using the Sia serialization format. Lear more about it
+  services is done using the Sia serialization format. Learn more about it
   link { to = /docs/products/sia, here }.
 }
 
