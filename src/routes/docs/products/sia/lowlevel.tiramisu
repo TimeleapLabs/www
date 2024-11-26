@@ -1,0 +1,101 @@
+title { Low-Level API }
+
+Sia provides a low-level API for serializing and deserializing data. This API is
+ideal for developers who require fine-grained control over the serialization
+process.
+
+title { JavaScript/TypeScript, size = 2 }
+
+Install the Sia package from npm:
+
+code {
+  language = bash,
+  content = "npm install sializer"
+}
+
+Then, use the following code to serialize and deserialize a JavaScript object:
+
+code {
+  language = typescript,
+  content = """
+    import { Sia } from 'sializer';
+
+    type Person = {
+      name?: string;
+      age?: number;
+    };
+
+    const sia = new Sia();
+    const person: Person = { name: 'Pouya', age: 33 };
+
+    const payload = sia
+      .seek(0)
+      .addAscii(person.name ?? '')
+      .addUint8(person.age ?? 0)
+      .toUint8ArrayReference();
+    
+    console.log(payload);
+
+    const desia = new Sia(payload);
+    const deserialized: Person = {
+      name: sia.readAscii(),
+      age: sia.readUint8()
+    };
+
+    console.log(deserialized);
+  """
+}
+
+title { Golang, size = 2 }
+
+Install the Sia package from GitHub:
+
+code {
+  language = bash,
+  content = "go get github.com/pouya-eghbali/go-sia"
+}
+
+Then, use the following code to serialize a Go struct:
+
+code {
+  language = go,
+  content = """
+    package main
+
+    import (
+      "fmt"
+      sia "github.com/pouya-eghbali/go-sia/v2/pkg"
+    )
+
+    type person struct {
+      Name string
+      Age  uint8
+    }
+
+    func (p *person) Sia() sia.Sia {
+      return sia.New().
+        AddString8(p.Name).
+        AddUInt8(p.Age)
+    }
+
+    func (p *person) FromSia(s sia.Sia) {
+      p.Name = s.ReadString8()
+      p.Age = s.ReadUInt8()
+    }
+
+    func main() {
+      p := person{Name: "Pouya", Age: 33}
+      payload := p.Sia().Bytes()
+      fmt.Println(payload)
+
+      var p2 person
+      p2.FromSia(sia.New(payload))
+      fmt.Println(p2)
+    }
+  """
+}
+
+meta {
+  description = Low-Level API,
+  prev = index
+}

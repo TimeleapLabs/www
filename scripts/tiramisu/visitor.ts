@@ -32,6 +32,7 @@ export type ContextType = {
 	prevPageTitle?: string;
 	currentFile: string;
 	templateFile: string;
+	imports?: string[];
 };
 
 const textSizeMap = {
@@ -56,6 +57,14 @@ const pillColors = {
 	done: 'bg-green-500',
 	progress: 'bg-blue-500',
 	pending: 'bg-gray-500'
+};
+
+const deIndentCode = (code: string) => {
+	const rawLines = code.split('\n');
+	const lines = rawLines[0].match(/^\s*$/) ? rawLines.slice(1, -1) : rawLines.slice(0, -1);
+	const indent = lines[0].match(/^\s*/)?.[0] ?? '';
+	const indentRegex = new RegExp(`^${indent}`);
+	return lines.map((line) => line.replace(indentRegex, '')).join('\n');
 };
 
 const getParamsByName = (params: ParamType, name: string) =>
@@ -114,7 +123,7 @@ const functions: {
 		const text = params.positional.join('');
 		const external = href.startsWith('http') && !href.startsWith('https://timeleap.swiss');
 		const icon = external ? '<Icon icon="carbon:launch" class="inline" />' : '';
-		return `<a href="${href}" class="hover:text-green-400 transition-colors">${text}${icon}</a>`;
+		return `<a href="${href}" class="hover:text-green-400 transition-colors inline-flex gap-1 items-center">${text}${icon}</a>`;
 	},
 	list(params) {
 		const type = getParamsByName(params, 'type')[0]?.value ?? 'unordered';
@@ -189,6 +198,65 @@ const functions: {
 			<div class="inline-block px-2 py-1 rounded-full text-xs font-semibold ${color} text-white">
 				${text}
 			</div>`;
+	},
+	small(params) {
+		const text = params.positional.join('');
+		return `<div class="text-sm text-zinc-400">${text}</div>`;
+	},
+	bold(params) {
+		const text = params.positional.join('');
+		return `<span class="font-semibold">${text}</span>`;
+	},
+	italic(params) {
+		const text = params.positional.join('');
+		return `<span class="font-italic">${text}</span>`;
+	},
+	svelte(params, context) {
+		const fileName = params.positional[0].toString().trim();
+		context.imports ??= [];
+		context.imports.push(fileName);
+		const component = fileName.split('/').pop()?.replace('.svelte', '') ?? '';
+		return `<${component}/>`;
+	},
+	table(params) {
+		const header = getParamsByName(params, 'header')
+			.map((header) => header.value)
+			.pop() as string[];
+
+		const rows = getParamsByName(params, 'row').map((row) => row.value) as string[][];
+		const headerHtml = header
+			.map(
+				(header) =>
+					`<th class="px-4 py-2 text-left border-b border-zinc-700 bg-zinc-900">${header}</th>`
+			)
+			.join('');
+
+		const trClass = (i: number) => (i < rows.length - 1 ? 'class="border-b border-zinc-700"' : '');
+
+		const rowHtml = rows
+			.map(
+				(row, i) =>
+					`<tr ${trClass(i)}>${row.map((cell) => `<td class="px-4 py-2">${cell}</td>`).join('')}</tr>`
+			)
+			.join('');
+
+		return `
+			<div class="overflow-x-auto border border-zinc-800 rounded-2xl bg-gradient-to-r from-zinc-950 to-zinc-900">
+  			<table class="min-w-full border-collapse">
+					<thead>
+						<tr class="px-4 py-2 text-left">${headerHtml}</tr>
+					</thead>
+					<tbody>
+						${rowHtml}
+					</tbody>
+				</table>
+			</div>`;
+	},
+	code(params) {
+		const language = getParamsByName(params, 'language')[0]?.value ?? 'plaintext';
+		const codeIndented = getParamsByName(params, 'content')[0]?.value.toString() ?? '';
+		const code = deIndentCode(codeIndented);
+		return `<Code lang="${language}" code={\`${code}\`}></Code>`;
 	}
 };
 

@@ -15,7 +15,8 @@ alert {
 
 toc {
   overview,
-  roadmap
+  roadmap,
+  products/index
 }
 
 meta {
