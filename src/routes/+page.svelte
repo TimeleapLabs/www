@@ -266,10 +266,9 @@
 					<Button
 						class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 						animate
-						href="https://github.com/timeleaplabs/tiramisu"
-						target="_blank"
+						href="/docs/products/tiramisu"
 					>
-						Learn More<Icon icon="carbon:arrow-up-right" />
+						Learn More<Icon icon="carbon:arrow-right" />
 					</Button>
 				</div>
 			</div>
