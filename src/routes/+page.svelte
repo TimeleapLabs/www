@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Subscribe from '$lib/components/Subscribe.svelte';
+	import TiltCard from '$lib/components/TiltCard.svelte';
 </script>
 
 <svelte:head>
