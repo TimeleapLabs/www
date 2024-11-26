@@ -141,7 +141,11 @@ const functions: {
 				templateFile: context.templateFile
 			};
 			compileFile(filePath, context.templateFile, nextContext);
-			const href = filePath.replace(/.*src\/routes/, '').replace('.tiramisu', '');
+			const href = filePath
+				.replace(/.*src\/routes/, '')
+				.replace('.tiramisu', '')
+				.replace('index', '')
+				.replace(/\/$/, '');
 			const title = nextContext.page?.title ?? nextContext.headers?.[0] ?? '';
 			items.push(
 				`<li class="pl-2"><a href="${href}" class="hover:text-green-400 transition-colors">${title}</a></li>`
