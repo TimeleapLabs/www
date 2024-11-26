@@ -82,8 +82,9 @@ export const compileFile = (
 		.replace('$CONTENT', code);
 
 	const filename = path.basename(filePath, '.tiramisu').replace('.tiramisu', '');
-	const dirname =
-		filename === 'index' ? path.dirname(filePath) : path.join(path.dirname(filePath), filename);
+	const dirname = filename.endsWith('index')
+		? path.dirname(filePath)
+		: path.join(path.dirname(filePath), filename);
 	const output = path.join(dirname, '+page.svelte');
 
 	mkdirSync(dirname, { recursive: true });

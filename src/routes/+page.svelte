@@ -199,9 +199,8 @@
 						class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 						animate
 						href="/docs/products/sia"
-						target="_blank"
 					>
-						Learn More<Icon icon="carbon:arrow-up-right" />
+						Learn More<Icon icon="carbon:arrow-right" />
 					</Button>
 				</div>
 			</div>
