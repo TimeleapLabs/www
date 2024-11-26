@@ -1,0 +1,51 @@
+title { Syntax }
+
+title { Functions, size = 2 }
+
+Tiramisu is a functional language. You can call a function in Tiramisu like
+this:
+
+code {
+  language = tiramisu,
+  content = """
+    function_name { argument1, argument2, named_argument = value }
+  """
+}
+
+You can also call another function inside a function:
+
+code {
+  language = tiramisu,
+  content = """
+    function_name {
+      another_function { argument1, argument2 }
+    }
+  """
+}
+
+It's also possible to pass an array to a function:
+
+code {
+  language = tiramisu,
+  content = """
+    function_name { [1, 2, 3], named_argument = [4, 5, 6] }
+  """
+}
+
+title { Escaping, size = 2 }
+
+You can escape a block of text in Tiramisu by wrapping it in equal number of double
+quotes:
+
+code {
+  language = tiramisu,
+  content = """"
+    """function_name { argument1, argument2 }"""
+  """"
+}
+
+meta {
+  description = Tiramisu syntax,
+  prev = why,
+  next = extend
+}

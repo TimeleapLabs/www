@@ -6,7 +6,8 @@ together seamlessly, but you can also use them independently.
 
 toc {
   unchained/index,
-  sia/index
+  sia/index,
+  tiramisu/index
 }
 
 meta {

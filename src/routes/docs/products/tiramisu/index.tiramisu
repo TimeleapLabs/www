@@ -1,0 +1,29 @@
+title { Tiramisu }
+
+Tiramisu is a delightful language for documentation. It is designed to be
+parsable, verbose (but not too verbose), and easy to read. Tiramisu is a 
+functional language that is easy to extend and customize.
+
+Tiramisu ships with a built-in parser that can verify and compile your 
+documents into a concrete syntax tree. The NPM bundle also includes a
+cli tool and a dummy renderer that can render your documents into plain
+text.
+
+You must build your own renderer to render your documents into HTML, PDF, React,
+Vue, Svelte or any other format. For example, italic { this } documentation is
+rendered to Svelte using a custom renderer. You can see the code for the
+renderer link { here, to =
+https://github.com/TimeleapLabs/www/tree/master/scripts/tiramisu }.
+
+toc {
+  why,
+  syntax,
+  extend,
+  install
+}
+
+meta {
+  description = Tiramisu is a delightful language for documentation.,
+  prev = ../sia/index,
+  next = why
+}

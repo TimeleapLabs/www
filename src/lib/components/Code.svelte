@@ -1,15 +1,24 @@
 <script lang="ts">
-	import { codeToHtml } from 'shiki';
+	import { createHighlighter, type Highlighter } from 'shiki';
+	import tiramisu from '@timeleap/tiramisu/vscode-tiramisu/syntaxes/tiramisu.tmLanguage.json';
+
+	tiramisu.name = 'tiramisu';
 
 	export let code = `const hello = 'world'`;
 	export let lang = 'typescript';
 
-	const highlighted = codeToHtml(code, { lang, theme: 'ayu-dark' });
+	const highlighter = createHighlighter({
+		langs: [lang === 'tiramisu' ? tiramisu : lang],
+		themes: ['ayu-dark']
+	});
+
+	const highlight = (highlighter: Highlighter) =>
+		highlighter.codeToHtml(code, { lang, theme: 'ayu-dark' });
 </script>
 
 <div class="rounded-2xl code overflow-hidden">
-	{#await highlighted then highlighted}
-		{@html highlighted}
+	{#await highlighter then highlighter}
+		{@html highlight(highlighter)}
 	{/await}
 </div>
 
