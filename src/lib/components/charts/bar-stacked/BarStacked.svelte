@@ -30,7 +30,6 @@
 
 <div class="chart-container max-w-[720px]">
 	<LayerCake
-		ssr
 		percentRange
 		padding={{ top: 0, right: 0, bottom: 20, left: 35 }}
 		y={(d) => d.data[yKey]}

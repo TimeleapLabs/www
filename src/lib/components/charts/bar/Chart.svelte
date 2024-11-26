@@ -18,7 +18,6 @@
 
 <div class="chart-container">
 	<LayerCake
-		ssr
 		percentRange
 		padding={{ top: 0, right: 20, bottom: 20, left: 35 }}
 		x="value"
