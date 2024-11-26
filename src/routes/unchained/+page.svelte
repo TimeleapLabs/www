@@ -37,8 +37,7 @@
 						<Button
 							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 							animate
-							href="https://old.timeleap.swiss/docs/unchained"
-							target="_blank"
+							href="/docs/products/unchained"
 						>
 							Documentation<Icon icon="carbon:arrow-up-right" class="text-xl" />
 						</Button>
