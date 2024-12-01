@@ -109,14 +109,6 @@
 				<Button
 					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 					animate
-					href="/vision"
-				>
-					Vision<Icon icon="carbon:arrow-right" />
-				</Button>
-
-				<Button
-					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-					animate
 					href="https://old.timeleap.swiss/unchained/ai"
 					target="_blank"
 				>

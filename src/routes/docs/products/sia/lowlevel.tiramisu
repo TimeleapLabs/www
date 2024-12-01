@@ -98,5 +98,5 @@ code {
 meta {
   description = Low-Level API,
   prev = index,
-  next = ../tiramisu/index
+  next = schema
 }

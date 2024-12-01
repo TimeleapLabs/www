@@ -267,7 +267,7 @@ const functions: {
 		const language = getParamsByName(params, 'language')[0]?.value ?? 'plaintext';
 		const codeIndented = getParamsByName(params, 'content')[0]?.value.toString() ?? '';
 		const code = deIndentCode(codeIndented);
-		return `<Code lang="${language}" code={\`${code}\`}></Code>`;
+		return `<Code lineNumbers lang="${language}" code={\`${code}\`}></Code>`;
 	},
 	mermaid(params) {
 		const codeIndented = params.positional.join(',');

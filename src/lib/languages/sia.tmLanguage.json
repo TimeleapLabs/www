@@ -1,0 +1,114 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Sia",
+  "patterns": [
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#constraints" },
+    { "include": "#strings" },
+    { "include": "#structures" }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.sia",
+          "match": "\\b(function|returns)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.builtin.sia",
+          "match": "\\b(int32|int64|text|\\[text\\])\\b"
+        },
+        {
+          "name": "entity.name.type.sia",
+          "match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+        }
+      ]
+    },
+    "constraints": {
+      "patterns": [
+        {
+          "name": "meta.constraint.sia",
+          "begin": "\\(",
+          "end": "\\)",
+          "patterns": [
+            {
+              "name": "variable.parameter.sia",
+              "match": "\\b(min|max|encoding|random)\\b"
+            },
+            {
+              "name": "constant.numeric.sia",
+              "match": "\\b\\d+\\b"
+            },
+            {
+              "name": "string.quoted.double.sia",
+              "begin": "\"",
+              "end": "\""
+            }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.sia",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.sia",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "structures": {
+      "patterns": [
+        {
+          "name": "entity.name.type.sia",
+          "begin": "\\b([A-Z][a-zA-Z0-9_]*)\\s*\\{",
+          "end": "\\}",
+          "beginCaptures": {
+            "1": { "name": "entity.name.type.sia" }
+          },
+          "patterns": [
+            {
+              "name": "variable.other.readwrite.sia",
+              "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)(\\?)?\\s+(\\b[A-Z][a-zA-Z0-9_]*|int32|int64|text|\\[text\\])(\\([^\\)]*\\))?(\\s*=\\s*[^\\n]*)?",
+              "captures": {
+                "1": { "name": "variable.other.readwrite.sia" },
+                "2": { "name": "punctuation.definition.optional.sia" },
+                "3": { "name": "support.type.builtin.sia" },
+                "5": { "name": "constant.language.sia" }
+              }
+            }
+          ]
+        },
+        {
+          "name": "meta.function.sia",
+          "begin": "\\b(function)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+(returns)\\s+(\\b[A-Z][a-zA-Z0-9_]*|int32|int64|text|\\[text\\])\\s*\\{",
+          "end": "\\}",
+          "beginCaptures": {
+            "1": { "name": "keyword.control.sia" },
+            "2": { "name": "entity.name.function.sia" },
+            "3": { "name": "keyword.control.sia" },
+            "4": { "name": "support.type.builtin.sia" }
+          },
+          "patterns": [
+            {
+              "name": "variable.parameter.sia",
+              "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s+(\\b[A-Z][a-zA-Z0-9_]*|int32|int64|text|\\[text\\])",
+              "captures": {
+                "1": { "name": "variable.parameter.sia" },
+                "2": { "name": "support.type.builtin.sia" }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scopeName": "source.sia"
+}
