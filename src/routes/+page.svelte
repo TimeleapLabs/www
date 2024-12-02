@@ -56,7 +56,7 @@
 		largeScreenColumns={3}
 		mediumScreenColumns={1}
 		smallScreenColumns={1}
-		class="gap-16! grid-rows-[auto]"
+		class="gap-32! grid-rows-[auto]"
 	>
 		<Card class="text-white">
 			<div class="relative z-10 flex flex-col h-full">
