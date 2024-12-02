@@ -1,0 +1,54 @@
+title { Technical Roadmap }
+
+This section will explain the technical roadmap for the mainnet release of
+Unchained. The roadmap is divided into four main sections: Core, Worker, Consumer,
+and Broker. Each section is responsible for a different aspect of the Unchained
+network.
+
+Tasks that are in progress are marked with a yellow stroke, while upcoming tasks
+are grayed out.
+
+mermaid {
+  """
+  flowchart TD
+    Core --> Networking
+    Networking --> Serialization["Serialization (Sia)"]
+    Serialization --> RPC
+    RPC --> Schema["Schema (Sia)"]
+    Schema --> SDK
+    SDK --> Marketplace["API Marketplace"]
+    
+    Worker --> Plugins
+    Plugins --> WebSocket["WebSocket Plugins"]
+    WebSocket --> PluginsManager["Plugins Manager"]
+    PluginsManager --> PluginsExplorer["Plugins Explorer"]
+    PluginsExplorer --> Consensus["Consensus Plugin"]
+    Consensus --> Bridge["KNS Bridge Plugin"]
+
+    Consumer --> MongoDB
+    MongoDB --> QueryEngine["Query Engine"]
+    QueryEngine --> WalletSDK["Wallet SDK"]
+    WalletSDK --> Wallet["Browser Wallet"]
+
+    Broker --> MultiBroker["Multi-Broker"]
+
+    class WebSocket inprogress
+    class PluginsManager upcoming
+    class PluginsExplorer upcoming
+    class QueryEngine upcoming
+    class SDK upcoming
+    class MultiBroker upcoming
+    class Consensus upcoming
+    class Bridge upcoming
+    class Schema inprogress
+    class Marketplace upcoming
+    class WalletSDK upcoming
+    class Wallet upcoming
+  """
+}
+
+meta {
+  description = The technical roadmap for Unchained.,
+  prev = specs,
+  next = ../sia/index
+}

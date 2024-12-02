@@ -54,6 +54,18 @@
 		--input-border-radius: 1em;
 	}
 
+	.node.inprogress rect {
+		stroke: var(--color-yellow-400) !important;
+	}
+
+	.node.upcoming {
+		opacity: 0.5;
+	}
+
+	.flowchart .node rect {
+		rx: 0.25em;
+	}
+
 	@keyframes fade-in {
 		from {
 			opacity: 0;
