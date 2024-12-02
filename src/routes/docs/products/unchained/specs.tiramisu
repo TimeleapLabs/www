@@ -111,6 +111,7 @@ mermaid {
     SUBSCRIBE {
         Uint8        OpCode
         String8      Topic
+        ByteArray8   Signature
     }
 
     USER ||--|| AUTH : "authenticates first"
@@ -136,6 +137,7 @@ mermaid {
     FUNCTION {
         Uint8        OpCode
         String8      FunctionName
+        ByteArray8   Signature
     }
 
     USER ||--|| AUTH : "authenticates first"
@@ -164,6 +166,7 @@ mermaid {
         ByteArray8   UUID
         Uint64       Error
         Dynamic      Output
+        ByteArray8   Signature
     }
 
     USER ||--|| AUTH : "authenticates first"

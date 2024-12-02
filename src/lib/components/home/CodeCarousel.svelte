@@ -7,6 +7,7 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import TiltCard from '../TiltCard.svelte';
+	import Icon from '@iconify/svelte';
 
 	const MAX_SECONDS = 9;
 
@@ -118,11 +119,17 @@
 				<div
 					class="rounded-full bg-zinc-800 w-8 h-8 grid items-center justify-center font-mono z-0 col-span-full row-span-full"
 				>
-					{#key seconds}
+					{#if pauseTicking}
 						<p transition:fade={{ duration: 300 }} class="col-span-full row-span-full text-sm">
-							{seconds}
+							<Icon icon="carbon:pause-filled" class="w-4 h-4" />
 						</p>
-					{/key}
+					{:else}
+						{#key seconds}
+							<p transition:fade={{ duration: 300 }} class="col-span-full row-span-full text-sm">
+								{seconds}
+							</p>
+						{/key}
+					{/if}
 				</div>
 			</div>
 		</div>
