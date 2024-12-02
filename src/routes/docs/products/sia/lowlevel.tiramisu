@@ -97,6 +97,5 @@ code {
 
 meta {
   description = Low-Level API,
-  prev = index,
-  next = schema
+  prev = index
 }
