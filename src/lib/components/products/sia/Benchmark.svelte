@@ -16,10 +16,11 @@
 	];
 
 	const data = [
-		{ name: 'JSON', serialization: 92, deserialization: 416 },
-		{ name: 'Sia', serialization: 614, deserialization: 528 },
-		{ name: 'CBOR', serialization: 286, deserialization: 285 },
-		{ name: 'MsgPack', serialization: 270, deserialization: 261 }
+		{ name: 'JSON', serialization: 92, deserialization: 417 },
+		{ name: 'Sia', serialization: 614, deserialization: 533 },
+		{ name: 'CBOR', serialization: 286, deserialization: 287 },
+		{ name: 'MsgPack', serialization: 270, deserialization: 270 },
+		{ name: 'Protobuf', serialization: 41, deserialization: 190 }
 	];
 
 	const sizes = [
@@ -41,6 +42,6 @@
 	</div>
 </div>
 
-<div class="w-full h-[100px]">
+<div class="w-full h-[140px]">
 	<BarStacked {data} xKey="name" yKey="name" />
 </div>

@@ -26,9 +26,6 @@
 		<img src="/images/tl.svg" alt="Timeleap" width="16px" />
 		Home
 	</Button>
-	<Button class="{classes.vision} hidden! md:inline-flex! p-5! rounded-lg!" href="/vision">
-		<Icon icon="carbon:view" /> Our Vision
-	</Button>
 	<Button class="{classes.products} hidden! md:inline-flex! p-5! rounded-lg!" href="/menu/products">
 		<Icon icon="carbon:carbon" /> Products
 	</Button>

@@ -16,7 +16,7 @@
 	<Grid extraLargeScreenColumns={3} largeScreenColumns={2}>
 		<Card
 			class="p-0! flex bg-zinc-950 hover:bg-zinc-800 transition-colors text-white"
-			href="/unchained"
+			href="/docs/products/unchained"
 		>
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">

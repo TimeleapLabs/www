@@ -40,14 +40,14 @@
 
 <style>
 	.container {
-		perspective: 1000px; /* Adds depth for the 3D effect */
+		perspective: 6000px; /* Adds depth for the 3D effect */
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
 	.card {
-		transition: transform 0.1s ease-in-out;
+		transition: transform 0.1s ease-in-out; /* Smoothens the tilt effect */
 		transform-style: preserve-3d; /* Ensures 3D transformations apply */
 	}
 </style>

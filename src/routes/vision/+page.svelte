@@ -166,14 +166,6 @@
 					No installation required. No updates. No downloads. No waiting. No limits. No compromises.
 				</p>
 			</div>
-			<Button
-				class="bg-green-400 text-black hover:bg-green-300 mt-16 self-start font-semibold"
-				animate
-				href="/vision"
-			>
-				Read More on Our Blog
-				<Icon icon="carbon:arrow-right" />
-			</Button>
 		</div>
 		<Image
 			src="/images/apps-full.jpg"
