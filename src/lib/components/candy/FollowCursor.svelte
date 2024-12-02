@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { loadImage } from '$lib/utils/image';
-	import { debounce } from '$lib/utils/perf';
 
 	export let src: string;
 
@@ -31,7 +30,7 @@
 		const img = await loadImage(src);
 		const isVertical = img.height > img.width;
 
-		listener = debounce((e: MouseEvent) => {
+		listener = (e: MouseEvent) => {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			const position = {
 				x: e.clientX - canvas.getBoundingClientRect().left,
@@ -55,7 +54,7 @@
 					ctx.restore();
 				}
 			}
-		}, 1000 / 60);
+		};
 
 		// We should set a global mousemove event listener
 		// because the canvas might not cover the whole page
