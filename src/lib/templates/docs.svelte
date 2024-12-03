@@ -36,7 +36,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col gap-8 md:px-16">
+		<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
 			<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
 
 			$CONTENT
