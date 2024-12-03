@@ -30,7 +30,7 @@
 		highlighter.codeToHtml(code, { lang, theme: 'ayu-dark' });
 </script>
 
-<div class="rounded-2xl code overflow-hidden h-full max-w-full" class:line-numbers={lineNumbers}>
+<div class="rounded-2xl code overflow-hidden max-w-full" class:line-numbers={lineNumbers}>
 	{#await highlighter then highlighter}
 		{@html highlight(highlighter)}
 	{/await}

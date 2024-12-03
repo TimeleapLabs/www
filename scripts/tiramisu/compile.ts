@@ -87,13 +87,18 @@ export const compileFile = (
 	mkdirSync(dirname, { recursive: true });
 	writeFileSync(output, compiled);
 
-	if (params.navFilePath && context.nav) {
-		// Add root level nav entries
-		context.nav.unshift({
+	if (params.navFilePath && context.nav && context.flatNav) {
+		// Add root entry to flatNav
+		context.flatNav.unshift({
 			href: filePathToHref(params.filePath),
-			title: context.page?.title ?? context.headers?.[0] ?? ''
+			title: (context.page?.title ?? context.headers?.[0] ?? '').trim()
 		});
-		const updatedNav = `export const nav = ${JSON.stringify(context.nav, null, 2)};`;
+
+		const updatedNav = [
+			`export const entries = ${JSON.stringify(context.flatNav, null, 2)};`,
+			`export const fullNav = ${JSON.stringify(context.nav, null, 2)};`
+		].join('\n\n');
+
 		writeFileSync(params.navFilePath, updatedNav);
 	}
 };

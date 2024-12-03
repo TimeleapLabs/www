@@ -19,6 +19,8 @@ type ParamType = {
 	positional: (string | string[])[];
 };
 
+export type NavEntry = { href: string; title: string; nav?: NavEntry[] };
+
 export type ContextType = {
 	[key: string]: unknown;
 	page?: {
@@ -29,7 +31,8 @@ export type ContextType = {
 	currentFile: string;
 	templateFile: string;
 	imports?: string[];
-	nav?: { href: string; title: string }[];
+	nav?: NavEntry;
+	flatNav?: NavEntry[];
 };
 
 const textSizeMap = {
@@ -114,28 +117,42 @@ const functions: {
 	},
 	toc(params, context) {
 		const items: string[] = [];
-		context.nav ??= [];
+
+		context.flatNav ??= [];
+
+		context.nav = {
+			href: filePathToHref(context.currentFile),
+			title: (context.page?.title ?? context.headers?.[0] ?? '').trim(),
+			nav: []
+		};
+
 		for (const relativeFile of params.positional) {
 			const currentDir = path.dirname(context.currentFile);
 			const filePath = path.resolve(currentDir, (relativeFile as string).trim() + '.tiramisu');
 			const nextContext: ContextType = {
 				currentFile: filePath,
 				templateFile: context.templateFile,
-				nav: context.nav
+				flatNav: context.flatNav
 			};
 
-			const thisNavEntry = { href: '', title: '' };
-			context.nav.push(thisNavEntry);
+			const flatNavEntry = { href: '', title: '' };
+			context.flatNav.push(flatNavEntry);
 
 			compileFile({ filePath, templateFile: context.templateFile }, nextContext);
 			const href = filePathToHref(filePath);
-			const title = nextContext.page?.title ?? nextContext.headers?.[0] ?? '';
+			const title = (nextContext.page?.title ?? nextContext.headers?.[0] ?? '').trim();
 			items.push(
 				`<li class="pl-2"><a href="${href}" class="hover:text-green-400 transition-colors">${title}</a></li>`
 			);
 
-			thisNavEntry.href = href;
-			thisNavEntry.title = title.trim();
+			if (nextContext.nav) {
+				context.nav.nav?.push(nextContext.nav);
+			} else {
+				context.nav.nav?.push({ href, title });
+			}
+
+			flatNavEntry.href = href;
+			flatNavEntry.title = title;
 		}
 		return `
       <div>

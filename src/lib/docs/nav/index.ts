@@ -1,4 +1,5 @@
-import { nav as entries } from './entries';
+import { entries } from './entries';
+export { fullNav } from './entries';
 
 type Maybe<T> = T | undefined;
 type NavEntry = { href: string; title: string };
