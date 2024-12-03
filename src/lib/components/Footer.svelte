@@ -60,7 +60,7 @@
 					<Icon icon="carbon:logo-discord" width="32" height="32" />
 				</a>
 				<a
-					href="https://forum.kenshi.io"
+					href="https://forum.timeleap.swiss"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
