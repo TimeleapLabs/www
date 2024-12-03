@@ -15,6 +15,5 @@ code {
 }
 
 meta {
-  description = Install Tiramisu,
-  prev = extend
+  description = "Learn how to install Tiramisu in your project."
 }

@@ -4,11 +4,10 @@
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 </script>
 
-<svelte:head>
-	<title>Timeleap — Distributed App Engine</title>
-</svelte:head>
+<MetaTags />
 
 <Navbar active="none" backButton></Navbar>
 

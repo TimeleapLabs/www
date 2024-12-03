@@ -176,6 +176,8 @@ mermaid {
 }
 
 meta {
-  description = Datagrams and Functions are the core concepts of Unchained. Datagrams are the basic unit of communication in Unchained.,
+  description = "Datagrams and Functions are the core concepts of Unchained. Datagrams are
+                the basic unit of communication, and Functions are the basic unit
+                of computation.",
   title = Unchained Specs
 }

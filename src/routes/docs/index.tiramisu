@@ -20,5 +20,6 @@ toc {
 }
 
 meta {
-  description = Timeleap Documentation
+  description = "Timeleap is a platform that provides a comprehensive suite of tools and services
+                 to help you build, deploy, and manage your distributed applications."
 }

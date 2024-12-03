@@ -8,11 +8,10 @@
 	import Subscribe from '$lib/components/Subscribe.svelte';
 
 	import X from '$lib/components/candy/X.svelte';
+	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 </script>
 
-<svelte:head>
-	<title>Timeleap — Distributed App Engine</title>
-</svelte:head>
+<MetaTags />
 
 <Navbar active="products"></Navbar>
 

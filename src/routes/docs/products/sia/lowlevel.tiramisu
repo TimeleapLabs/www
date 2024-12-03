@@ -96,6 +96,7 @@ code {
 }
 
 meta {
-  description = Low-Level API,
-  prev = index
+  description = Sia provides a low-level API for serializing and deserializing data.
+                This API is ideal for developers who require fine-grained control over
+                the serialization process.
 }

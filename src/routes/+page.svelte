@@ -10,11 +10,11 @@
 	import Benchmark from '$lib/components/products/sia/Benchmark.svelte';
 	import CodeCarousel from '$lib/components/home/CodeCarousel.svelte';
 	import TiltCard from '$lib/components/TiltCard.svelte';
+
+	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 </script>
 
-<svelte:head>
-	<title>Timeleap — Distributed App Engine</title>
-</svelte:head>
+<MetaTags />
 
 <Navbar active="home"></Navbar>
 

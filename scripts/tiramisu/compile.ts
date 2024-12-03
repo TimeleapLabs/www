@@ -72,8 +72,8 @@ export const compileFile = (
 		.join('\n');
 
 	const compiled = template
-		.replace('$TITLE', context.page?.title ?? context.headers?.[0] ?? '')
-		.replace('$DESCRIPTION', context.page?.description ?? '')
+		.replace('$TITLE', (context.page?.title ?? context.headers?.[0] ?? '').trim())
+		.replace('$DESCRIPTION', context.page?.description?.trim() ?? '')
 		.replace("('$IMPORTS');", imports ?? '')
 		.replace('$BREADCRUMBS', breadcrumbs)
 		.replace('$CONTENT', code);

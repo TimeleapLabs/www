@@ -3,11 +3,10 @@
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 </script>
 
-<svelte:head>
-	<title>Timeleap — Terms and Conditions</title>
-</svelte:head>
+<MetaTags />
 
 <Navbar active="home"></Navbar>
 

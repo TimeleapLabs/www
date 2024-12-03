@@ -67,5 +67,7 @@ table {
 }
 
 meta {
-  description = Sia
+  description = Sia is a super-fast binary serialization format optimized for speed and size.
+                It is ideal for high-performance applications requiring quick and efficient
+                data serialization and deserialization.
 }

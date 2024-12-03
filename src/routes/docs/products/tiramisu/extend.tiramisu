@@ -26,5 +26,5 @@ See the code for this documentation website's renderer link { here, to =
 https://github.com/TimeleapLabs/www/tree/master/scripts/tiramisu }.
 
 meta {
-  description = Tiramisu syntax
+  description = Learn how to extend Tiramisu with custom functions and renderers.
 }

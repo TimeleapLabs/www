@@ -23,5 +23,7 @@ toc {
 }
 
 meta {
-  description = Tiramisu is a delightful language for documentation.
+  description = "Tiramisu is a delightful language for documentation. It is designed to be
+                parsable, verbose (but not too verbose), and easy to read. Tiramisu is a 
+                functional language that is easy to extend and customize."
 }

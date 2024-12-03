@@ -9,6 +9,7 @@
 	import Code from '$lib/components/Code.svelte';
 	import Mermaid from '$lib/components/Mermaid.svelte';
 	import Collapsible from '$lib/components/docs/nav/Collapsible.svelte';
+	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/docs/nav';
 	import { page } from '$app/stores';
@@ -18,11 +19,7 @@
 	('$IMPORTS');
 </script>
 
-<svelte:head>
-	<title>Timeleap — $TITLE</title>
-	<meta name="description" content="$DESCRIPTION" />
-</svelte:head>
-
+<MetaTags title={'Timeleap — $TITLE'} description="$DESCRIPTION" />
 <Navbar active="docs"></Navbar>
 
 <Section

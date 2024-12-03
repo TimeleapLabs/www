@@ -48,5 +48,7 @@ mermaid {
 }
 
 meta {
-  description = The technical roadmap for Unchained.
+  description = "The technical roadmap for Unchained. The roadmap is divided into four main sections:
+                Core, Worker, Consumer, and Broker. Each section is responsible for a different aspect
+                of the Unchained network."
 }
