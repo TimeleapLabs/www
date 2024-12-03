@@ -45,7 +45,5 @@ code {
 }
 
 meta {
-  description = Tiramisu syntax,
-  prev = why,
-  next = extend
+  description = Tiramisu syntax
 }

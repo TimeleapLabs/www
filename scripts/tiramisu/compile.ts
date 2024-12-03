@@ -1,6 +1,6 @@
 import { compile } from '@timeleap/tiramisu/dist';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { translate } from './visitor';
+import { translate, filePathToHref } from './visitor';
 import type { ContextType } from './visitor';
 
 import path from 'path';
@@ -16,12 +16,9 @@ const generateBreadcrumbs = (header: string, templateFile: string, context: Cont
 	while (currentPath.includes('src/routes/docs')) {
 		const file = path.join(currentPath, 'index.tiramisu');
 		const context: ContextType = { currentFile: file, templateFile };
-		compileFile(file, templateFile, context);
+		compileFile({ filePath: file, templateFile }, context);
 		headers.unshift({
-			href: file
-				.replace(/.*src\/routes/, '')
-				.replace('/index.tiramisu', '')
-				.replace('.tiramisu', ''),
+			href: filePathToHref(file),
 			title: context.page?.title ?? context.headers?.[0] ?? ''
 		});
 		currentPath = path.dirname(currentPath);
@@ -37,13 +34,17 @@ const generateBreadcrumbs = (header: string, templateFile: string, context: Cont
 };
 
 const contextCache: Record<string, ContextType> = {};
+type CompileParams = {
+	filePath: string;
+	templateFile: string;
+	navFilePath?: string;
+};
 
 export const compileFile = (
-	filePath: string,
-	templateFile: string,
-	context: ContextType = { currentFile: filePath, templateFile }
+	params: CompileParams,
+	context: ContextType = { currentFile: params.filePath, templateFile: params.templateFile }
 ) => {
-	const absolutePath = path.resolve(filePath);
+	const absolutePath = path.resolve(params.filePath);
 
 	if (contextCache[absolutePath]) {
 		Object.assign(context, contextCache[absolutePath]);
@@ -52,14 +53,14 @@ export const compileFile = (
 
 	contextCache[absolutePath] = context;
 
-	const content = readFileSync(filePath, 'utf-8');
+	const content = readFileSync(params.filePath, 'utf-8');
 	const cst = compile(content);
 	const code = translate(cst, context);
 
-	const template = readFileSync(templateFile, 'utf-8');
+	const template = readFileSync(params.templateFile, 'utf-8');
 	const breadcrumbs = generateBreadcrumbs(
 		context.page?.title ?? context.headers?.[0] ?? '',
-		templateFile,
+		params.templateFile,
 		context
 	);
 
@@ -73,20 +74,26 @@ export const compileFile = (
 	const compiled = template
 		.replace('$TITLE', context.page?.title ?? context.headers?.[0] ?? '')
 		.replace('$DESCRIPTION', context.page?.description ?? '')
-		.replace('$NEXT_PAGE_URL', context.nextPage ?? '')
-		.replace('$NEXT_PAGE_TITLE', context.nextPageTitle ?? '')
-		.replace('$PREV_PAGE_URL', context.prevPage ?? '')
-		.replace('$PREV_PAGE_TITLE', context.prevPageTitle ?? '')
 		.replace("('$IMPORTS');", imports ?? '')
 		.replace('$BREADCRUMBS', breadcrumbs)
 		.replace('$CONTENT', code);
 
-	const filename = path.basename(filePath, '.tiramisu').replace('.tiramisu', '');
+	const filename = path.basename(params.filePath, '.tiramisu').replace('.tiramisu', '');
 	const dirname = filename.endsWith('index')
-		? path.dirname(filePath)
-		: path.join(path.dirname(filePath), filename);
+		? path.dirname(params.filePath)
+		: path.join(path.dirname(params.filePath), filename);
 	const output = path.join(dirname, '+page.svelte');
 
 	mkdirSync(dirname, { recursive: true });
 	writeFileSync(output, compiled);
+
+	if (params.navFilePath && context.nav) {
+		// Add root level nav entries
+		context.nav.unshift({
+			href: filePathToHref(params.filePath),
+			title: context.page?.title ?? context.headers?.[0] ?? ''
+		});
+		const updatedNav = `export const nav = ${JSON.stringify(context.nav, null, 2)};`;
+		writeFileSync(params.navFilePath, updatedNav);
+	}
 };

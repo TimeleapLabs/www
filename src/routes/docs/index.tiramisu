@@ -20,6 +20,5 @@ toc {
 }
 
 meta {
-  description = Timeleap Documentation,
-  next = overview
+  description = Timeleap Documentation
 }

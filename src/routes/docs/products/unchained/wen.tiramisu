@@ -48,7 +48,5 @@ mermaid {
 }
 
 meta {
-  description = The technical roadmap for Unchained.,
-  prev = specs,
-  next = ../sia/index
+  description = The technical roadmap for Unchained.
 }

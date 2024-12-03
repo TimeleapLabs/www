@@ -9,10 +9,10 @@
 	import Code from '$lib/components/Code.svelte';
 	import Mermaid from '$lib/components/Mermaid.svelte';
 
-	const nextPageUrl = '$NEXT_PAGE_URL';
-	const nextPageTitle = '$NEXT_PAGE_TITLE';
-	const prevPageUrl = '$PREV_PAGE_URL';
-	const prevPageTitle = '$PREV_PAGE_TITLE';
+	import { getNavForPage } from '$lib/docs/nav';
+	import { page } from '$app/stores';
+
+	const nav = getNavForPage($page.url.pathname);
 
 	('$IMPORTS');
 </script>
@@ -31,24 +31,24 @@
 
 	$CONTENT
 
-	{#if nextPageUrl || prevPageUrl}
+	{#if nav.next || nav.prev}
 		<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
-			{#if prevPageUrl}
+			{#if nav.prev}
 				<Button
 					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 					animate
-					href={prevPageUrl}
+					href={nav.prev.href}
 				>
-					<Icon icon="carbon:arrow-left" />{prevPageTitle}
+					<Icon icon="carbon:arrow-left" />{nav.prev.title}
 				</Button>
 			{/if}
-			{#if nextPageUrl}
+			{#if nav.next}
 				<Button
 					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 					animate
-					href={nextPageUrl}
+					href={nav.next.href}
 				>
-					{nextPageTitle}<Icon icon="carbon:arrow-right" />
+					{nav.next.title}<Icon icon="carbon:arrow-right" />
 				</Button>
 			{/if}
 		</div>

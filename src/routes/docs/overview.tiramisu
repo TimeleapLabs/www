@@ -14,7 +14,5 @@ or hardware upgrades, empowering users to perform tasks from AI to 3D rendering
 seamlessly on any screen.
 
 meta {
-  description = Timeleap Documentation Overview,
-  prev = index,
-  next = roadmap
+  description = Timeleap Documentation Overview
 }

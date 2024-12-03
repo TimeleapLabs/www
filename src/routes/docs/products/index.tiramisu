@@ -11,7 +11,5 @@ toc {
 }
 
 meta {
-  description = Timeleap Products,
-  prev = ../roadmap,
-  next = unchained/index
+  description = Timeleap Products
 }

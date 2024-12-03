@@ -26,13 +26,10 @@ export type ContextType = {
 		description: string;
 	};
 	headers?: string[];
-	nextPage?: string;
-	nextPageTitle?: string;
-	prevPage?: string;
-	prevPageTitle?: string;
 	currentFile: string;
 	templateFile: string;
 	imports?: string[];
+	nav?: { href: string; title: string }[];
 };
 
 const textSizeMap = {
@@ -58,6 +55,13 @@ const pillColors = {
 	progress: 'bg-blue-500',
 	pending: 'bg-gray-500'
 };
+
+export const filePathToHref = (filePath: string) =>
+	filePath
+		.replace(/.*src\/routes/, '')
+		.replace('.tiramisu', '')
+		.replace('index', '')
+		.replace(/\/$/, '');
 
 const deIndentCode = (code: string) => {
 	const rawLines = code.split('\n');
@@ -85,36 +89,6 @@ const functions: {
 			title: getParamsByName(params, 'title')[0]?.value as string,
 			description: (getParamsByName(params, 'description')[0]?.value as string) ?? ''
 		};
-		if (params.named.some((param) => param.name === 'next')) {
-			const currentDir = path.dirname(context.currentFile);
-			const next = getParamsByName(params, 'next')[0]?.value ?? '';
-			const filePath = path.resolve(currentDir, (next as string).trim() + '.tiramisu');
-			const nextContext: ContextType = {
-				currentFile: filePath,
-				templateFile: context.templateFile
-			};
-			compileFile(filePath, context.templateFile, nextContext);
-			context.nextPage = filePath
-				.replace(/.*src\/routes/, '')
-				.replace('index.tiramisu', '')
-				.replace('.tiramisu', '');
-			context.nextPageTitle = nextContext.page?.title ?? nextContext.headers?.[0] ?? '';
-		}
-		if (params.named.some((param) => param.name === 'prev')) {
-			const currentDir = path.dirname(context.currentFile);
-			const prev = getParamsByName(params, 'prev')[0]?.value ?? '';
-			const filePath = path.resolve(currentDir, (prev as string).trim() + '.tiramisu');
-			const prevContext: ContextType = {
-				currentFile: filePath,
-				templateFile: context.templateFile
-			};
-			compileFile(filePath, context.templateFile, prevContext);
-			context.prevPage = filePath
-				.replace(/.*src\/routes/, '')
-				.replace('index.tiramisu', '')
-				.replace('.tiramisu', '');
-			context.prevPageTitle = prevContext.page?.title ?? prevContext.headers?.[0] ?? '';
-		}
 		return '';
 	},
 	title(params, context) {
@@ -140,23 +114,28 @@ const functions: {
 	},
 	toc(params, context) {
 		const items: string[] = [];
+		context.nav ??= [];
 		for (const relativeFile of params.positional) {
 			const currentDir = path.dirname(context.currentFile);
 			const filePath = path.resolve(currentDir, (relativeFile as string).trim() + '.tiramisu');
 			const nextContext: ContextType = {
 				currentFile: filePath,
-				templateFile: context.templateFile
+				templateFile: context.templateFile,
+				nav: context.nav
 			};
-			compileFile(filePath, context.templateFile, nextContext);
-			const href = filePath
-				.replace(/.*src\/routes/, '')
-				.replace('.tiramisu', '')
-				.replace('index', '')
-				.replace(/\/$/, '');
+
+			const thisNavEntry = { href: '', title: '' };
+			context.nav.push(thisNavEntry);
+
+			compileFile({ filePath, templateFile: context.templateFile }, nextContext);
+			const href = filePathToHref(filePath);
 			const title = nextContext.page?.title ?? nextContext.headers?.[0] ?? '';
 			items.push(
 				`<li class="pl-2"><a href="${href}" class="hover:text-green-400 transition-colors">${title}</a></li>`
 			);
+
+			thisNavEntry.href = href;
+			thisNavEntry.title = title.trim();
 		}
 		return `
       <div>
@@ -351,4 +330,3 @@ export const translate = (node: Node, context: ContextType): string => {
 };
 
 import { compileFile } from './compile';
-import { line } from 'd3';

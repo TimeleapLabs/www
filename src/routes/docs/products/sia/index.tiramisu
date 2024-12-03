@@ -67,7 +67,5 @@ table {
 }
 
 meta {
-  description = Sia,
-  prev = ../unchained/index,
-  next = lowlevel
+  description = Sia
 }

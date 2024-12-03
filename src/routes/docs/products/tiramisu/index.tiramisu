@@ -23,7 +23,5 @@ toc {
 }
 
 meta {
-  description = Tiramisu is a delightful language for documentation.,
-  prev = ../sia/index,
-  next = why
+  description = Tiramisu is a delightful language for documentation.
 }

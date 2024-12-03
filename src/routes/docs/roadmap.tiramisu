@@ -197,7 +197,5 @@ carousel {
 }
 
 meta {
-  description = Timeleap Roadmap,
-  prev = overview,
-  next = products/index
+  description = Timeleap Roadmap
 }
