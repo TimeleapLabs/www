@@ -10,15 +10,16 @@ alert {
   
   This documentation is a work in progress. We are migrating our documentation
   to a new platform and updating the content. You can find the old documentation
-  link { to = https://docs.timeleap.io, here }.
+  link { to = https://docs.timeleap.swiss, here }.
 }
 
 toc {
   overview,
-  roadmap
+  roadmap,
+  products/index
 }
 
 meta {
-  description = Timeleap Documentation,
-  next = overview
+  description = "Timeleap is a platform that provides a comprehensive suite of tools and services
+                 to help you build, deploy, and manage your distributed applications."
 }

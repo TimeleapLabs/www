@@ -23,11 +23,7 @@
 
 <SvelteToast />
 
-<style lang="postcss">
-	:global(html) {
-		background-color: theme(colors.zinc.950);
-	}
-
+<style>
 	:global(.grecaptcha-badge) {
 		visibility: hidden;
 	}

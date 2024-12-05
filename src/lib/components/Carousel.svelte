@@ -45,10 +45,10 @@
 	</div>
 
 	<div class="flex gap-4 mt-8">
-		<Button class="bg-zinc-700 text-white text-2xl !px-4 !py-7" on:click={prev}>
+		<Button class="bg-zinc-700 text-white text-2xl px-4! py-7!" on:click={prev}>
 			<Icon icon="carbon:arrow-left" />
 		</Button>
-		<Button class="bg-zinc-700 text-white text-2xl !px-4 !py-7" on:click={next}>
+		<Button class="bg-zinc-700 text-white text-2xl px-4! py-7!" on:click={next}>
 			<Icon icon="carbon:arrow-right" />
 		</Button>
 	</div>

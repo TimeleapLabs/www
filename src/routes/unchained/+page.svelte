@@ -8,25 +8,24 @@
 	import Subscribe from '$lib/components/Subscribe.svelte';
 
 	import X from '$lib/components/candy/X.svelte';
+	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 </script>
 
-<svelte:head>
-	<title>Timeleap — Distributed App Engine</title>
-</svelte:head>
+<MetaTags />
 
 <Navbar active="products"></Navbar>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-24 !gap-16 px-4 xxl:px-0">
-	<div class="!gap-16 pt-10 md:pt-24 w-full max-w-full box-border h-[640px]">
-		<Card class="!p-0 overflow-hidden border border-zinc-900 h-full">
+<Section class="w-full max-w-[1280px] mx-auto pt-24 gap-16! px-4 xxl:px-0">
+	<div class="gap-16! pt-10 md:pt-24 w-full max-w-full box-border h-[640px]">
+		<Card class="p-0! overflow-hidden border border-zinc-900 h-full">
 			<Grid
 				extraLargeScreenColumns={5}
 				largeScreenColumns={5}
 				mediumScreenColumns={5}
-				class="h-full !gap-0"
+				class="h-full gap-0!"
 			>
 				<div
-					class="top-0 border-box bottom-0 left-0 flex flex-col justify-end h-full p-6 md:p-12 col-span-1 bg-gradient-to-tr from-zinc-950 to-zinc-900"
+					class="top-0 border-box bottom-0 left-0 flex flex-col justify-end h-full p-6 md:p-12 col-span-1 bg-linear-to-tr from-zinc-950 to-zinc-900"
 				>
 					<h1 class="font-serif text-3xl md:text-6xl text-white">Unchained</h1>
 					<p class="mt-12 text-gray-100 font-extralight">
@@ -37,8 +36,7 @@
 						<Button
 							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 							animate
-							href="https://old.timeleap.swiss/docs/unchained"
-							target="_blank"
+							href="/docs/products/unchained"
 						>
 							Documentation<Icon icon="carbon:arrow-up-right" class="text-xl" />
 						</Button>
@@ -57,9 +55,9 @@
 	</div>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-32 !gap-16 px-4 xxl:px-0">
-	<Grid extraLargeScreenColumns={2} largeScreenColumns={2} mediumScreenColumns={2} class="!gap-16">
-		<Card class="!p-0 w-full min-w-full bg-zinc-900 text-white">
+<Section class="w-full max-w-[1280px] mx-auto pt-32 gap-16! px-4 xxl:px-0">
+	<Grid extraLargeScreenColumns={2} largeScreenColumns={2} mediumScreenColumns={2} class="gap-16!">
+		<Card class="p-0! w-full min-w-full bg-zinc-950 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">Technology-Agnostic</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -68,7 +66,7 @@
 			</div>
 		</Card>
 
-		<Card class="!p-0 w-full min-w-full bg-zinc-900 text-white">
+		<Card class="p-0! w-full min-w-full bg-zinc-950 text-white">
 			<div class="p-8 md:p-12 flex flex-col md:col-span-2">
 				<h3 class="font-serif text-4xl">High Performance</h3>
 				<div class="flex-1 mt-8 text-gray-300">
@@ -79,7 +77,7 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-32 !gap-16 px-4 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-32 gap-16! px-4 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={3}
 		largeScreenColumns={3}
@@ -110,14 +108,6 @@
 				<Button
 					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 					animate
-					href="/vision"
-				>
-					Vision<Icon icon="carbon:arrow-right" />
-				</Button>
-
-				<Button
-					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-					animate
 					href="https://old.timeleap.swiss/unchained/ai"
 					target="_blank"
 				>
@@ -137,7 +127,7 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-32 !gap-16 px-4 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-32 gap-16! px-4 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={3}
 		largeScreenColumns={3}
@@ -182,13 +172,13 @@
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1280px] mx-auto pt-20 !gap-16 pb-24 px-4 xxl:px-0">
+<Section class="w-full max-w-[1280px] mx-auto pt-20 gap-16! pb-24 px-4 xxl:px-0">
 	<Subscribe class="mt-16"></Subscribe>
 </Section>
 
 <Footer></Footer>
 
-<style lang="postcss">
+<style>
 	.x {
 		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 	}

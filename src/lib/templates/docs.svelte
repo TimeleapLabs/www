@@ -6,49 +6,62 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Alert from '$lib/components/Alert.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
+	import Code from '$lib/components/Code.svelte';
+	import Mermaid from '$lib/components/Mermaid.svelte';
+	import Collapsible from '$lib/components/docs/nav/Collapsible.svelte';
+	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 
-	const nextPageUrl = '$NEXT_PAGE_URL';
-	const nextPageTitle = '$NEXT_PAGE_TITLE';
-	const prevPageUrl = '$PREV_PAGE_URL';
-	const prevPageTitle = '$PREV_PAGE_TITLE';
+	import { getNavForPage, fullNav } from '$lib/docs/nav';
+	import { page } from '$app/stores';
+
+	const nav = getNavForPage($page.url.pathname);
+
+	('$IMPORTS');
 </script>
 
-<svelte:head>
-	<title>Timeleap — $TITLE</title>
-	<meta name="description" content="$DESCRIPTION" />
-</svelte:head>
-
+<MetaTags title={'Timeleap — $TITLE'} description="$DESCRIPTION" />
 <Navbar active="docs"></Navbar>
 
 <Section
-	class="w-full max-w-[1280px] mx-auto pt-20 md:pt-36 !gap-8 px-4 md:px-16 xxl:px-0 text-white flex-1"
+	class="w-full max-w-[1920px] mx-auto pt-20 md:pt-36 gap-8! px-4 md:px-16 xxl:px-0 text-white flex-1"
 >
-	<div class="flex gap-2 -mb-8">$BREADCRUMBS</div>
+	<div class="md:grid grid-cols-[240px_1fr]">
+		<div class="relative hidden md:block">
+			<div class="sticky top-24">
+				<h4 class="font-serif mb-4">Table of Contents</h4>
+				<Collapsible unwind nav={fullNav} />
+			</div>
+		</div>
 
-	$CONTENT
+		<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
+			<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
 
-	{#if nextPageUrl || prevPageUrl}
-		<div class="mt-8 mb-16 flex gap-4">
-			{#if prevPageUrl}
-				<Button
-					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-					animate
-					href={prevPageUrl}
-				>
-					<Icon icon="carbon:arrow-left" />{prevPageTitle}
-				</Button>
-			{/if}
-			{#if nextPageUrl}
-				<Button
-					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-					animate
-					href={nextPageUrl}
-				>
-					{nextPageTitle}<Icon icon="carbon:arrow-right" />
-				</Button>
+			$CONTENT
+
+			{#if nav.next || nav.prev}
+				<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
+					{#if nav.prev}
+						<Button
+							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+							animate
+							href={nav.prev.href}
+						>
+							<Icon icon="carbon:arrow-left" />{nav.prev.title}
+						</Button>
+					{/if}
+					{#if nav.next}
+						<Button
+							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+							animate
+							href={nav.next.href}
+						>
+							{nav.next.title}<Icon icon="carbon:arrow-right" />
+						</Button>
+					{/if}
+				</div>
 			{/if}
 		</div>
-	{/if}
+	</div>
 </Section>
 
 <Footer></Footer>

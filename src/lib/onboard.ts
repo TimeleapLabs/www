@@ -1,9 +1,9 @@
 import walletConnectModule from '@web3-onboard/walletconnect';
 import Onboard from '@web3-onboard/core';
 import injectedModule from '@web3-onboard/injected-wallets';
-import { PUBLIC_REOWN_PROJECT_ID } from '$env/static/public';
+import { PUBLIC_WALLET_CONNECT_PROJECT_ID } from '$env/static/public';
 
-const walletConnectProjectId = PUBLIC_REOWN_PROJECT_ID;
+const walletConnectProjectId = PUBLIC_WALLET_CONNECT_PROJECT_ID;
 
 const appName = 'Timeleap';
 
@@ -11,7 +11,7 @@ const injected = injectedModule();
 const walletConnect = walletConnectModule({
 	projectId: walletConnectProjectId,
 	requiredChains: [0xa4b1],
-	dappUrl: 'http://localhost:5173/'
+	dappUrl: 'https:timeleap.swiss/'
 });
 
 const options = {

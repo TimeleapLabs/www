@@ -19,6 +19,8 @@ type ParamType = {
 	positional: (string | string[])[];
 };
 
+export type NavEntry = { href: string; title: string; nav?: NavEntry[] };
+
 export type ContextType = {
 	[key: string]: unknown;
 	page?: {
@@ -26,12 +28,11 @@ export type ContextType = {
 		description: string;
 	};
 	headers?: string[];
-	nextPage?: string;
-	nextPageTitle?: string;
-	prevPage?: string;
-	prevPageTitle?: string;
 	currentFile: string;
 	templateFile: string;
+	imports?: string[];
+	nav?: NavEntry;
+	flatNav?: NavEntry[];
 };
 
 const textSizeMap = {
@@ -58,6 +59,28 @@ const pillColors = {
 	pending: 'bg-gray-500'
 };
 
+export const filePathToHref = (filePath: string) =>
+	filePath
+		.replace(/.*src\/routes/, '')
+		.replace('.tiramisu', '')
+		.replace('index', '')
+		.replace(/\/$/, '');
+
+const deIndentCode = (code: string) => {
+	const rawLines = code.split('\n');
+	const lines = rawLines[0].match(/^\s*$/) ? rawLines.slice(1, -1) : rawLines.slice(0, -1);
+
+	if (lines[lines.length - 1].match(/^\s*$/)) {
+		lines.pop();
+	}
+
+	const indent = lines[0].match(/^\s*/)?.[0] ?? '';
+	const indentRegex = new RegExp(`^${indent}`);
+	const clean = lines.map((line) => line.replace(indentRegex, '')).join('\n');
+
+	return clean.replaceAll('`', '\\`').replaceAll('${', '\\${');
+};
+
 const getParamsByName = (params: ParamType, name: string) =>
 	params.named.filter((param) => param.name === name);
 
@@ -69,36 +92,6 @@ const functions: {
 			title: getParamsByName(params, 'title')[0]?.value as string,
 			description: (getParamsByName(params, 'description')[0]?.value as string) ?? ''
 		};
-		if (params.named.some((param) => param.name === 'next')) {
-			const currentDir = path.dirname(context.currentFile);
-			const next = getParamsByName(params, 'next')[0]?.value ?? '';
-			const filePath = path.resolve(currentDir, (next as string).trim() + '.tiramisu');
-			const nextContext: ContextType = {
-				currentFile: filePath,
-				templateFile: context.templateFile
-			};
-			compileFile(filePath, context.templateFile, nextContext);
-			context.nextPage = filePath
-				.replace(/.*src\/routes/, '')
-				.replace('index.tiramisu', '')
-				.replace('.tiramisu', '');
-			context.nextPageTitle = nextContext.page?.title ?? nextContext.headers?.[0] ?? '';
-		}
-		if (params.named.some((param) => param.name === 'prev')) {
-			const currentDir = path.dirname(context.currentFile);
-			const prev = getParamsByName(params, 'prev')[0]?.value ?? '';
-			const filePath = path.resolve(currentDir, (prev as string).trim() + '.tiramisu');
-			const prevContext: ContextType = {
-				currentFile: filePath,
-				templateFile: context.templateFile
-			};
-			compileFile(filePath, context.templateFile, prevContext);
-			context.prevPage = filePath
-				.replace(/.*src\/routes/, '')
-				.replace('index.tiramisu', '')
-				.replace('.tiramisu', '');
-			context.prevPageTitle = prevContext.page?.title ?? prevContext.headers?.[0] ?? '';
-		}
 		return '';
 	},
 	title(params, context) {
@@ -114,7 +107,7 @@ const functions: {
 		const text = params.positional.join('');
 		const external = href.startsWith('http') && !href.startsWith('https://timeleap.swiss');
 		const icon = external ? '<Icon icon="carbon:launch" class="inline" />' : '';
-		return `<a href="${href}" class="hover:text-green-400 transition-colors">${text}${icon}</a>`;
+		return `<a href="${href}" class="hover:text-green-400 transition-colors inline-flex gap-1 items-center border-b border-zinc-500">${text}${icon}</a>`;
 	},
 	list(params) {
 		const type = getParamsByName(params, 'type')[0]?.value ?? 'unordered';
@@ -124,19 +117,42 @@ const functions: {
 	},
 	toc(params, context) {
 		const items: string[] = [];
+
+		context.flatNav ??= [];
+
+		context.nav = {
+			href: filePathToHref(context.currentFile),
+			title: (context.page?.title ?? context.headers?.[0] ?? '').trim(),
+			nav: []
+		};
+
 		for (const relativeFile of params.positional) {
 			const currentDir = path.dirname(context.currentFile);
 			const filePath = path.resolve(currentDir, (relativeFile as string).trim() + '.tiramisu');
 			const nextContext: ContextType = {
 				currentFile: filePath,
-				templateFile: context.templateFile
+				templateFile: context.templateFile,
+				flatNav: context.flatNav
 			};
-			compileFile(filePath, context.templateFile, nextContext);
-			const href = filePath.replace(/.*src\/routes/, '').replace('.tiramisu', '');
-			const title = nextContext.page?.title ?? nextContext.headers?.[0] ?? '';
+
+			const flatNavEntry = { href: '', title: '' };
+			context.flatNav.push(flatNavEntry);
+
+			compileFile({ filePath, templateFile: context.templateFile }, nextContext);
+			const href = filePathToHref(filePath);
+			const title = (nextContext.page?.title ?? nextContext.headers?.[0] ?? '').trim();
 			items.push(
 				`<li class="pl-2"><a href="${href}" class="hover:text-green-400 transition-colors">${title}</a></li>`
 			);
+
+			if (nextContext.nav) {
+				context.nav.nav?.push(nextContext.nav);
+			} else {
+				context.nav.nav?.push({ href, title });
+			}
+
+			flatNavEntry.href = href;
+			flatNavEntry.title = title;
 		}
 		return `
       <div>
@@ -165,7 +181,7 @@ const functions: {
 
 		// FIXME: Add support for kebab-case variables
 		return `
-			<Card ${href} class="bg-zinc-900 snap-start min-w-full sm:min-w-[${width}] w-[${width}] max-w-full flex flex-col">
+			<Card ${href} class="bg-zinc-950 snap-start min-w-full sm:min-w-[${width}] w-[${width}] max-w-full flex flex-col">
 				<h5 class="font-serif text-2xl">${title}</h5>
 				<div class="mt-4 text-zinc-500 flex-1">
 					${content}
@@ -189,6 +205,70 @@ const functions: {
 			<div class="inline-block px-2 py-1 rounded-full text-xs font-semibold ${color} text-white">
 				${text}
 			</div>`;
+	},
+	small(params) {
+		const text = params.positional.join('');
+		return `<div class="text-sm text-zinc-400">${text}</div>`;
+	},
+	bold(params) {
+		const text = params.positional.join('');
+		return `<span class="font-semibold">${text}</span>`;
+	},
+	italic(params) {
+		const text = params.positional.join('');
+		return `<span class="italic">${text}</span>`;
+	},
+	svelte(params, context) {
+		const fileName = params.positional[0].toString().trim();
+		context.imports ??= [];
+		context.imports.push(fileName);
+		const component = fileName.split('/').pop()?.replace('.svelte', '') ?? '';
+		return `<${component}/>`;
+	},
+	table(params) {
+		const header = getParamsByName(params, 'header')
+			.map((header) => header.value)
+			.pop() as string[];
+
+		const rows = getParamsByName(params, 'row').map((row) => row.value) as string[][];
+		const headerHtml = header
+			.map(
+				(header) =>
+					`<th class="px-4 py-2 text-left border-b border-zinc-700 bg-zinc-900">${header}</th>`
+			)
+			.join('');
+
+		const trClass = (i: number) => (i < rows.length - 1 ? 'class="border-b border-zinc-700"' : '');
+
+		const rowHtml = rows
+			.map(
+				(row, i) =>
+					`<tr ${trClass(i)}>${row.map((cell) => `<td class="px-4 py-2">${cell}</td>`).join('')}</tr>`
+			)
+			.join('');
+
+		return `
+			<div class="overflow-x-auto border border-zinc-800 rounded-2xl bg-gradient-to-r from-zinc-950 to-zinc-900">
+  			<table class="min-w-full border-collapse">
+					<thead>
+						<tr class="px-4 py-2 text-left">${headerHtml}</tr>
+					</thead>
+					<tbody>
+						${rowHtml}
+					</tbody>
+				</table>
+			</div>`;
+	},
+	code(params) {
+		const language = getParamsByName(params, 'language')[0]?.value ?? 'plaintext';
+		const codeIndented = getParamsByName(params, 'content')[0]?.value.toString() ?? '';
+		const code = deIndentCode(codeIndented);
+		return `<Code lineNumbers lang="${language}" code={\`${code}\`}></Code>`;
+	},
+	mermaid(params) {
+		const codeIndented = params.positional.join(',');
+		const code = deIndentCode(codeIndented);
+		return `<Mermaid code={\`${code}\`}></Mermaid>`;
 	}
 };
 

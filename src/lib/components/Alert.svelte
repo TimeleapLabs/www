@@ -28,12 +28,12 @@
 </script>
 
 <Card
-	class="gap-4 !py-4 bg-zinc-900 my-4 bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800 relative overflow-hidden"
+	class="gap-4 py-4! bg-zinc-950 my-4 bg-linear-to-tr from-zinc-950 to-zinc-900 border border-zinc-800 relative overflow-hidden rounded-2xl!"
 >
 	<div
 		class="absolute w-2 h-full bg-stripe {stripeColors[
 			type
-		]} from-[length:0_5px] to-[length:5px_10px] left-0 top-0"
+		]} from-[length:0px] to-[length:5px] left-0 top-0"
 	></div>
 	<div class="flex items-center gap-2 {titleColors[type]}">
 		<Icon icon={icons[type]} class="text-xl" />
@@ -43,3 +43,9 @@
 		<slot></slot>
 	</div>
 </Card>
+
+<style>
+	.bg-stripe {
+		--background-image-stripe: repeating-linear-gradient(-45deg, var(--tw-gradient-stops));
+	}
+</style>
