@@ -2,7 +2,7 @@
 	import Icon from '@iconify/svelte';
 	import { Button, Navbar } from '@timeleap/ui';
 
-	type section = 'home' | 'products' | 'contact' | 'vision' | 'docs' | 'none';
+	type section = 'home' | 'products' | 'contact' | 'vision' | 'docs' | 'stake' | 'none';
 
 	export let backButton: boolean = false;
 	export let active: section = 'home';
@@ -15,7 +15,8 @@
 		products: active === 'products' ? activeClass : hoverClass,
 		contact: active === 'contact' ? activeClass : hoverClass,
 		vision: active === 'vision' ? activeClass : hoverClass,
-		docs: active === 'docs' ? activeClass : hoverClass
+		docs: active === 'docs' ? activeClass : hoverClass,
+		stake: active === 'stake' ? activeClass : hoverClass
 	};
 </script>
 
@@ -34,6 +35,9 @@
 	</Button>
 	<Button class="{classes.contact} hidden! md:inline-flex! p-5! rounded-lg!" href="/contact">
 		<Icon icon="carbon:email" /> Contact
+	</Button>
+	<Button class="{classes.stake} !hidden md:!inline-flex !p-5 !rounded-lg" href="/stake">
+		<Icon icon="carbon:money" /> Stake
 	</Button>
 	<div class="flex-1"></div>
 	{#if backButton}
