@@ -3,7 +3,7 @@
 	import { Button, Navbar } from '@timeleap/ui';
 	import ConnectButton from './ConnectButton.svelte';
 
-	type section = 'home' | 'contact' | 'blog' | 'docs' | 'none';
+	type section = 'home' | 'products' | 'contact' | 'docs' | 'blog' | 'stake' | 'none';
 
 	export let backButton: boolean = false;
 	export let active: section = 'home';
@@ -14,8 +14,9 @@
 	const classes = {
 		home: active === 'home' ? activeClass : hoverClass,
 		contact: active === 'contact' ? activeClass : hoverClass,
+		docs: active === 'docs' ? activeClass : hoverClass,
 		blog: active === 'blog' ? activeClass : hoverClass,
-		docs: active === 'docs' ? activeClass : hoverClass
+		stake: active === 'stake' ? activeClass : hoverClass
 	};
 </script>
 
@@ -34,6 +35,9 @@
 	</Button>
 	<Button class="{classes.contact} hidden! md:inline-flex! p-5! rounded-lg!" href="/contact">
 		<Icon icon="carbon:email" /> Contact
+	</Button>
+	<Button class="{classes.stake} !hidden md:!inline-flex !p-5 !rounded-lg" href="/stake">
+		<Icon icon="carbon:money" /> Stake
 	</Button>
 	<div class="flex-1"></div>
 	<ConnectButton class="hidden! md:inline-flex! p-5! rounded-lg! hover:bg-zinc-800" />
