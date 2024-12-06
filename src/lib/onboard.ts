@@ -11,7 +11,7 @@ const injected = injectedModule();
 const walletConnect = walletConnectModule({
 	projectId: walletConnectProjectId,
 	requiredChains: [0xa4b1],
-	dappUrl: 'https://timeleap.swiss//'
+	dappUrl: 'https://timeleap.swiss/'
 });
 
 const options = {
@@ -30,34 +30,16 @@ const options = {
 	},
 	chains: [
 		{
-			id: '0x61',
-			token: 'BNB',
-			label: 'BNB Smart Chain Testnet',
-			rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545'
-		},
-		{
 			id: '0x38',
 			token: 'BNB',
 			label: 'BNB Smart Chain',
 			rpcUrl: 'https://bsc-dataseed.binance.org'
 		},
 		{
-			id: '0x13881',
-			token: 'MATIC',
-			label: 'Polygon Mumbai Testnet',
-			rpcUrl: 'https://rpc-mumbai.maticvigil.com'
-		},
-		{
 			id: '0x89',
 			token: 'MATIC',
 			label: 'Polygon Mainnet',
 			rpcUrl: 'https://polygon-rpc.com'
-		},
-		{
-			id: '0xfa2',
-			token: 'FTM',
-			label: 'Fantom Testnet',
-			rpcUrl: 'https://rpc.testnet.fantom.network'
 		},
 		{
 			id: '0xfa',
