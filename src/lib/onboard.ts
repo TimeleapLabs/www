@@ -11,7 +11,7 @@ const injected = injectedModule();
 const walletConnect = walletConnectModule({
 	projectId: walletConnectProjectId,
 	requiredChains: [0xa4b1],
-	dappUrl: 'http://localhost:5173/'
+	dappUrl: 'https://timeleap.swiss/'
 });
 
 const options = {
