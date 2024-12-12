@@ -8,7 +8,7 @@
 
 	export let ogImageFontSize: number = 28;
 	export let ogImageText: string = 'Timeleap:\nDistributed\nApp Engine';
-	export let image: string | undefined;
+	export let image: string | undefined = undefined;
 
 	const ogImageUrl = image ?? ogImage(ogImageText, ogImageFontSize);
 	const url = 'https://timeleap.swiss' + $page.url.pathname;

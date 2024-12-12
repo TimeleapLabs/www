@@ -10,6 +10,7 @@
 	import Mermaid from '$lib/components/Mermaid.svelte';
 	import Collapsible from '$lib/components/docs/nav/Collapsible.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
+	import Feedback from '$lib/components/Feedback.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/docs/nav';
 	import { page } from '$app/stores';
@@ -37,6 +38,8 @@
 			<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
 
 			$CONTENT
+
+			<Feedback pageId={$page.url.pathname.slice(1).replaceAll('/', '__')} />
 
 			{#if nav.next || nav.prev}
 				<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
