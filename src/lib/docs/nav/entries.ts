@@ -37,7 +37,7 @@ export const entries = [
   },
   {
     "href": "/docs/products/sia/ts-api",
-    "title": "TypeScript API Reference"
+    "title": "JS/TS API Reference"
   },
   {
     "href": "/docs/products/sia/go-api",
@@ -121,7 +121,7 @@ export const fullNav = {
               "nav": [
                 {
                   "href": "/docs/products/sia/ts-api",
-                  "title": "TypeScript API Reference"
+                  "title": "JS/TS API Reference"
                 },
                 {
                   "href": "/docs/products/sia/go-api",

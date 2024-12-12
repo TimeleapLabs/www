@@ -16,7 +16,7 @@ Install the Sia package from npm:
 
 code {
   language = bash,
-  content = "npm install sializer"
+  content = "npm install @timeleap/sia"
 }
 
 Then, use the following code to serialize and deserialize a JavaScript object:
@@ -24,7 +24,7 @@ Then, use the following code to serialize and deserialize a JavaScript object:
 code {
   language = typescript,
   content = """
-    import { Sia } from 'sializer';
+    import { Sia } from '@timeleap/sia';
 
     type Person = {
       name?: string;
@@ -58,7 +58,7 @@ Install the Sia package from GitHub:
 
 code {
   language = bash,
-  content = "go get github.com/pouya-eghbali/go-sia"
+  content = "go get github.com/TimeleapLabs/go-sia/v2"
 }
 
 Then, use the following code to serialize a Go struct:
@@ -70,7 +70,7 @@ code {
 
     import (
       "fmt"
-      sia "github.com/pouya-eghbali/go-sia/v2/pkg"
+      sia "github.com/TimeleapLabs/go-sia/v2/pkg"
     )
 
     type person struct {
@@ -98,6 +98,38 @@ code {
       p2.FromSia(sia.New(payload))
       fmt.Println(p2)
     }
+  """
+}
+
+title { Python, size = 2 }
+
+Install the Sia package from PyPI:
+
+code {
+  language = bash,
+  content = "pip install timeleap-sia"
+}
+
+Then, use the following code to serialize and deserialize a Python object:
+
+code {
+  language = python,
+  content = """
+    from sia import Sia
+
+    class Person:
+      def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+    sia = Sia()
+    person = Person(name="Pouya", age=33)
+    payload = sia.add_string8(person.name).add_uint8(person.age).content
+    print(payload) # bytearray(b'\x05Pouya!')
+
+    desia = Sia().set_content(payload)
+    deserialized = Person(name=desia.read_string8(), age=desia.read_uint8())
+    print(deserialized.name, deserialized.age) # Pouya 33
   """
 }
 
