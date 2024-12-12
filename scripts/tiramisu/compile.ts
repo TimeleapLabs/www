@@ -1,7 +1,7 @@
 import { compile } from '@timeleap/tiramisu/dist';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { translate, filePathToHref } from './visitor';
 import type { ContextType } from './visitor';
+import { filePathToHref, translate } from './visitor';
 
 import path from 'path';
 
@@ -53,6 +53,7 @@ export const compileFile = (
 
 	contextCache[absolutePath] = context;
 
+	console.log(params.filePath);
 	const content = readFileSync(params.filePath, 'utf-8');
 	const cst = compile(content);
 	const code = translate(cst, context);

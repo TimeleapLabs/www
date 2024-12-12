@@ -4,6 +4,12 @@ Sia provides a low-level API for serializing and deserializing data. This API is
 ideal for developers who require fine-grained control over the serialization
 process.
 
+toc {
+  ts-api,
+  go-api,
+  python-api
+}
+
 title { JavaScript/TypeScript, size = 2 }
 
 Install the Sia package from npm:
