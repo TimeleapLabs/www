@@ -4,14 +4,14 @@ import { writeFileSync, existsSync } from 'fs';
 
 const fontPath = '/tmp/Geist-Bold.ttf';
 
-export const generateSocial = async (text: string, fontSize: number) => {
+export const generateSocial = async (text: string, fontSize: number = 28, dy: number = 80) => {
 	if (!existsSync(fontPath)) {
 		const request = await fetch('https://timeleap.swiss/fonts/geist-sans/Geist-Bold.ttf');
 		const geist = await request.arrayBuffer();
 		writeFileSync(fontPath, Buffer.from(geist));
 	}
 
-	const svg = createSocial(text, fontSize);
+	const svg = createSocial(text, fontSize, dy);
 	const opts: ResvgRenderOptions = {
 		font: { fontFiles: [fontPath], loadSystemFonts: false },
 		fitTo: { mode: 'width', value: 3200 }

@@ -14,7 +14,7 @@ const textToTspan = (text: string) => {
 		.join('');
 };
 
-export const createSocial = (text: string, fontSize: number = 28) => {
+export const createSocial = (text: string, fontSize: number = 28, dy = 80) => {
 	return `<svg
    width="1600"
    height="900"
@@ -39,7 +39,7 @@ export const createSocial = (text: string, fontSize: number = 28) => {
        font-family="Geist"
        style="font-size:${fontSize}px;font-family:'Geist';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers"
        x="40"
-       y="60"
+       y="${dy}"
        id="text229272-7">
       ${textToTspan(text)}
     </text>
