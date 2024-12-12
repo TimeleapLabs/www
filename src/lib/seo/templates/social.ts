@@ -33,13 +33,13 @@ export const createSocial = (text: string, fontSize: number = 28) => {
        width="423.33334"
        height="238.125"
        x="0"
-       y="-2.220446e-16" />
+       y="0" />
     <text
        xml:space="preserve"
        font-family="Geist"
        style="font-size:${fontSize}px;font-family:'Geist';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers"
-       x="41.352165"
-       y="57.733917"
+       x="40"
+       y="60"
        id="text229272-7">
       ${textToTspan(text)}
     </text>
