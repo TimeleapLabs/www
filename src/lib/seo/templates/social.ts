@@ -44,7 +44,7 @@ export const createSocial = (text: string, fontSize: number = 28, dy = 80) => {
     </text>
     <g
        id="g4919"
-       transform="matrix(0.26458334,0,0,0.26458334,-234.44722,-42.706397)"
+       transform="matrix(0.26458334,0,0,0.26458334,-236.5639,-46.939733)"
        style="opacity:0.934;fill:#ffffff;fill-opacity:1">
       <g
          id="Layer_2"
@@ -53,7 +53,7 @@ export const createSocial = (text: string, fontSize: number = 28, dy = 80) => {
          style="fill:#ffffff;fill-opacity:1">
         <polygon
            class="cls-2"
-           points="1552.3,136 407.1,136 407.1,573.1 772.3,573.1 772.3,967.6 721.9,967.6 721.9,1835.5 725,1835.5 725,1864 1592.9,1864 1592.9,1426.9 1159,1426.9 1159,1079.9 1209.3,1079.9 1209.3,573.1 1552.3,573.1 "
+           points="1159,1079.9 1209.3,1079.9 1209.3,573.1 1552.3,573.1 1552.3,136 407.1,136 407.1,573.1 772.3,573.1 772.3,967.6 721.9,967.6 721.9,1835.5 725,1835.5 725,1864 1592.9,1864 1592.9,1426.9 1159,1426.9 "
            id="polygon4909"
            style="fill:#ffffff;fill-opacity:1;stroke-width:0px" />
       </g>
