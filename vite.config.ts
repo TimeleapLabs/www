@@ -34,5 +34,10 @@ export default defineConfig({
 			}
 		}),
 		tailwindcss()
-	]
+	],
+	resolve: {
+		alias: {
+			$static: '/static'
+		}
+	}
 });
