@@ -3,7 +3,7 @@ import { createSocial } from './templates/social';
 
 const isVercel = process.env.VERCEL === '1';
 const fontRawPath = 'fonts/geist-sans/Geist-Bold.ttf';
-const fontPath = isVercel ? `./${fontRawPath}` : `./static/${fontRawPath}`;
+const fontPath = isVercel ? `/${fontRawPath}` : `./static/${fontRawPath}`;
 
 export const generateSocial = async (text: string, fontSize: number) => {
 	const svg = createSocial(text, fontSize);
