@@ -41,6 +41,7 @@
 	"type": "module",
 	"packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca",
 	"dependencies": {
+		"@resvg/resvg-js": "^2.6.2",
 		"@sendgrid/client": "^8.1.4",
 		"@sendgrid/mail": "^8.1.4",
 		"@tailwindcss/vite": "^4.0.0-beta.2",
