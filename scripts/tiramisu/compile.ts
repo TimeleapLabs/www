@@ -1,6 +1,6 @@
 import { compile } from '@timeleap/tiramisu/dist';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { filePathToHref, translate } from './visitor';
+import { translate, filePathToHref } from './visitor';
 import type { ContextType } from './visitor';
 
 import path from 'path';
