@@ -7,7 +7,7 @@ const textToTspan = (text: string) => {
 	return lines
 		.map(
 			(line, index) =>
-				`<tspan x="0" dy="${index === 0 ? '0' : '1.2'}em" style="fill:#ffffff;fill-opacity:1;stroke-width:0.499999">
+				`<tspan x="-30" dy="${index === 0 ? '0' : '1.2'}em" style="fill:#ffffff;fill-opacity:1;stroke-width:0.499999">
           ${line} ${index === lines.length - 1 ? underScore : ''}
         </tspan>`
 		)
@@ -38,14 +38,13 @@ export const createSocial = (text: string, fontSize: number = 28, dy = 80) => {
        xml:space="preserve"
        font-family="Geist"
        style="font-size:${fontSize}px;font-family:'Geist';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers"
-       x="40"
        y="${dy}"
        id="text229272-7">
       ${textToTspan(text)}
     </text>
     <g
        id="g4919"
-       transform="matrix(0.26458334,0,0,0.26458334,-231.2722,-39.002228)"
+       transform="matrix(0.26458334,0,0,0.26458334,-234.44722,-42.706397)"
        style="opacity:0.934;fill:#ffffff;fill-opacity:1">
       <g
          id="Layer_2"
@@ -54,7 +53,7 @@ export const createSocial = (text: string, fontSize: number = 28, dy = 80) => {
          style="fill:#ffffff;fill-opacity:1">
         <polygon
            class="cls-2"
-           points="772.3,573.1 772.3,967.6 721.9,967.6 721.9,1835.5 725,1835.5 725,1864 1592.9,1864 1592.9,1426.9 1159,1426.9 1159,1079.9 1209.3,1079.9 1209.3,573.1 1552.3,573.1 1552.3,136 407.1,136 407.1,573.1 "
+           points="1552.3,136 407.1,136 407.1,573.1 772.3,573.1 772.3,967.6 721.9,967.6 721.9,1835.5 725,1835.5 725,1864 1592.9,1864 1592.9,1426.9 1159,1426.9 1159,1079.9 1209.3,1079.9 1209.3,573.1 1552.3,573.1 "
            id="polygon4909"
            style="fill:#ffffff;fill-opacity:1;stroke-width:0px" />
       </g>
