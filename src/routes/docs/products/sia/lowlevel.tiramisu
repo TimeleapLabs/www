@@ -24,7 +24,7 @@ Then, use the following code to serialize and deserialize a JavaScript object:
 code {
   language = typescript,
   content = """
-    import { Sia } from '@timeleap/sia';
+    import { Sia } from "@timeleap/sia";
 
     type Person = {
       name?: string;
@@ -32,23 +32,23 @@ code {
     };
 
     const sia = new Sia();
-    const person: Person = { name: 'Pouya', age: 33 };
+    const person: Person = { name: "Pouya", age: 33 };
 
     const payload = sia
       .seek(0)
-      .addAscii(person.name ?? '')
-      .addUint8(person.age ?? 0)
+      .addAscii(person.name ?? "")
+      .addUInt8(person.age ?? 0)
       .toUint8ArrayReference();
-    
-    console.log(payload);
+
+    console.log(payload); // Uint8Array(7) [5, 80, 111, 117, 121, 97,  33]
 
     const desia = new Sia(payload);
     const deserialized: Person = {
-      name: sia.readAscii(),
-      age: sia.readUint8()
+      name: desia.readAscii(),
+      age: desia.readUInt8(),
     };
 
-    console.log(deserialized);
+    console.log(deserialized); // { name: 'Pouya', age: 33 }
   """
 }
 
@@ -70,6 +70,7 @@ code {
 
     import (
       "fmt"
+
       sia "github.com/TimeleapLabs/go-sia/v2/pkg"
     )
 
@@ -83,20 +84,17 @@ code {
         AddString8(p.Name).
         AddUInt8(p.Age)
     }
-
     func (p *person) FromSia(s sia.Sia) {
       p.Name = s.ReadString8()
       p.Age = s.ReadUInt8()
     }
-
     func main() {
       p := person{Name: "Pouya", Age: 33}
       payload := p.Sia().Bytes()
-      fmt.Println(payload)
-
+      fmt.Println(payload) // [5 80 111 117 121 97 33]
       var p2 person
-      p2.FromSia(sia.New(payload))
-      fmt.Println(p2)
+      p2.FromSia(sia.New().EmbedBytes(payload))
+      fmt.Println(p2) // {Pouya 33}
     }
   """
 }
