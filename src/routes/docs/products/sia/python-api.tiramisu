@@ -1,0 +1,550 @@
+title { Python API Reference }
+
+Below are the Python API reference for the Sia serialization library.
+
+title { Constructor, size = 2 }
+
+code {
+  language = python,
+  content = "Sia()"
+}
+
+title { Attributes, size = 2 }
+
+table {
+  header = [Name, Description],
+  row = [content, The current content of the Sia instance.],
+  row = [index, The current offset of the Sia instance pointer.]
+}
+
+title { Methods, size = 2 }
+
+table {
+  header = [Name, Description],
+  row = [link { seek, to = "#seek" }, Changes the offset of the Sia instance pointer.],
+  row = [link { set_content, to = "#set-content" }, Replaces the content of the Sia instance with the given content.],
+  row = [link { embed_sia, to = "#embed-sia" }, Adds the content of the provided Sia instance to the current content.],
+  row = [link { embed_bytes, to = "#embed-bytes" }, Adds the provided bytes to the current content.],
+  row = [link { add_uint8, to = "#add-uint8" }, Adds an unsigned 8-bit integer to the current content.],
+  row = [link { add_uint16, to = "#add-uint16" }, Adds an unsigned 16-bit integer to the current content.],
+  row = [link { add_uint32, to = "#add-uint32" }, Adds an unsigned 32-bit integer to the current content.],
+  row = [link { add_uint64, to = "#add-uint64" }, Adds an unsigned 64-bit integer to the current content.],
+  row = [link { add_int8, to = "#add-int8" }, Adds a signed 8-bit integer to the current content.],
+  row = [link { add_int16, to = "#add-int16" }, Adds a signed 16-bit integer to the current content.],
+  row = [link { add_int32, to = "#add-int32" }, Adds a signed 32-bit integer to the current content.],
+  row = [link { add_int64, to = "#add-int64" }, Adds a signed 64-bit integer to the current content.],
+  row = [link { write_string_n, to = "#write-string-n" }, Writes a null-terminated UTF-8 string to the current content.],
+  row = [link { add_string8, to = "#add-string8" }, Writes an ASCII string to the current content.],
+  row = [link { add_string16, to = "#add-string16" }, Writes a UTF-16 string to the current content.],
+  row = [link { add_string32, to = "#add-string32" }, Writes a UTF-32 string to the current content.],
+  row = [link { add_string64, to = "#add-string64" }, Writes a UTF-64 string to the current content.],
+  row = [link { add_byte_array_n, to = "#add-byte-array-n" }, Writes a byte array to the current content.],
+  row = [link { add_byte_array8, to = "#add-byte-array-8" }, Writes an 8-bit byte array to the current content.],
+  row = [link { add_byte_array16, to = "#add-byte-array-16" }, Writes a 16-bit byte array to the current content.],
+  row = [link { add_byte_array32, to = "#add-byte-array-32" }, Writes a 32-bit byte array to the current content.],
+  row = [link { add_byte_array64, to = "#add-byte-array-64" }, Writes a 64-bit byte array to the current content.],
+  row = [link { add_bool, to = "#add-bool" }, Writes a boolean to the current content.],
+  row = [link { add_big_int, to = "#add-big-int" }, Writes a big integer to the current content.],
+  row = [link { add_array8, to = "#add-array8" }, Writes an 8-bit array to the current content.],
+  row = [link { add_array16, to = "#add-array16" }, Writes a 16-bit array to the current content.],
+  row = [link { add_array32, to = "#add-array32" }, Writes a 32-bit array to the current content.],
+  row = [link { add_array64, to = "#add-array64" }, Writes a 64-bit array to the current content.],
+  row = [link { read_bool, to = "#read-bool" }, Reads a boolean from the current content.],
+  row = [link { read_uint8, to = "#read-uint8" }, Reads an unsigned 8-bit integer from the current content.],
+  row = [link { read_uint16, to = "#read-uint16" }, Reads an unsigned 16-bit integer from the current content.],
+  row = [link { read_uint32, to = "#read-uint32" }, Reads an unsigned 32-bit integer from the current content.],
+  row = [link { read_uint64, to = "#read-uint64" }, Reads an unsigned 64-bit integer from the current content.],
+  row = [link { read_int8, to = "#read-int8" }, Reads a signed 8-bit integer from the current content.],
+  row = [link { read_int16, to = "#read-int16" }, Reads a signed 16-bit integer from the current content.],
+  row = [link { read_int32, to = "#read-int32" }, Reads a signed 32-bit integer from the current content.],
+  row = [link { read_int64, to = "#read-int64" }, Reads a signed 64-bit integer from the current content.],
+  row = [link { read_string_n, to = "#read-string-n" }, Reads a null-terminated UTF-8 string from the current content.],
+  row = [link { read_string8, to = "#read-string8" }, Reads an ASCII string from the current content.],
+  row = [link { read_string16, to = "#read-string16" }, Reads a UTF-16 string from the current content.],
+  row = [link { read_string32, to = "#read-string32" }, Reads a UTF-32 string from the current content.],
+  row = [link { read_string64, to = "#read-string64" }, Reads a UTF-64 string from the current content.],
+  row = [link { read_byte_array_n, to = "#read-byte-array-n" }, Reads a byte array from the current content.],
+  row = [link { read_byte_array8, to = "#read-byte-array8" }, Reads an 8-bit byte array from the current content.],
+  row = [link { read_byte_array16, to = "#read-byte-array16" }, Reads a 16-bit byte array from the current content.],
+  row = [link { read_byte_array32, to = "#read-byte-array32" }, Reads a 32-bit byte array from the current content.],
+  row = [link { read_byte_array64, to = "#read-byte-array64" }, Reads a 64-bit byte array from the current content.],
+  row = [link { read_array8, to = "#read-array8" }, Reads an 8-bit array from the current content.],
+  row = [link { read_array16, to = "#read-array16" }, Reads a 16-bit array from the current content.],
+  row = [link { read_array32, to = "#read-array32" }, Reads a 32-bit array from the current content.],
+  row = [link { read_array64, to = "#read-array64" }, Reads a 64-bit array from the current content.]
+}
+
+title { Utility Methods, size = 2 }
+
+title { seek, size = 4, id = "seek" }
+
+Changes the offset of the Sia instance pointer.
+
+code {
+  language = python,
+  content = "seek(index: int) -> Sia"
+}
+
+title { set_content, size = 4, id = "set-content" }
+
+Replaces the content of the Sia instance with the given content.
+
+code {
+  language = python,
+  content = "set_content(content: bytes) -> Sia"
+}
+
+title { embed_sia, size = 4, id = "embed-sia" }
+
+Adds the content of the provided Sia instance to the current content.
+
+code {
+  language = python,
+  content = "embed_sia(sia: Sia) -> Sia"
+}
+
+title { embed_bytes, size = 4, id = "embed-bytes" }
+
+Adds the provided bytes to the current content.
+
+code {
+  language = python,
+  content = "embed_bytes(bytes: bytes) -> Sia"
+}
+
+title { Add Methods, size = 2 }
+
+title { add_uint8, size = 4, id = "add-uint8" }
+
+Adds an unsigned 8-bit integer to the current content.
+
+code {
+  language = python,
+  content = "add_uint8(value: int) -> Sia"
+}
+
+title { add_uint16, size = 4, id = "add-uint16" }
+
+Adds an unsigned 16-bit integer to the current content.
+
+code {
+  language = python,
+  content = "add_uint16(value: int) -> Sia"
+}
+
+title { add_uint32, size = 4, id = "add-uint32" }
+
+Adds an unsigned 32-bit integer to the current content.
+
+code {
+  language = python,
+  content = "add_uint32(value: int) -> Sia"
+}
+
+title { add_uint64, size = 4, id = "add-uint64" }
+
+Adds an unsigned 64-bit integer to the current content.
+
+code {
+  language = python,
+  content = "add_uint64(value: int) -> Sia"
+}
+
+title { add_int8, size = 4, id = "add-int8" }
+
+Adds a signed 8-bit integer to the current content.
+
+code {
+  language = python,
+  content = "add_int8(value: int) -> Sia"
+}
+
+title { add_int16, size = 4, id = "add-int16" }
+
+Adds a signed 16-bit integer to the current content.
+
+code {
+  language = python,
+  content = "add_int16(value: int) -> Sia"
+}
+
+title { add_int32, size = 4, id = "add-int32" }
+
+Adds a signed 32-bit integer to the current content.
+
+code {
+  language = python,
+  content = "add_int32(value: int) -> Sia"
+}
+
+title { add_int64, size = 4, id = "add-int64" }
+
+Adds a signed 64-bit integer to the current content.
+
+code {
+  language = python,
+  content = "add_int64(value: int) -> Sia"
+}
+
+title { write_string_n, size = 4, id = "write-string-n" }
+
+Writes a null-terminated UTF-8 string to the current content.
+
+code {
+  language = python,
+  content = "write_string_n(value: str) -> Sia"
+}
+
+title { add_string8, size = 4, id = "add-string8" }
+
+Writes an ASCII string to the current content.
+
+code {
+  language = python,
+  content = "add_string8(value: str) -> Sia"
+}
+
+title { add_string16, size = 4, id = "add-string16" }
+
+Writes a UTF-16 string to the current content.
+
+code {
+  language = python,
+  content = "add_string16(value: str) -> Sia"
+}
+
+title { add_string32, size = 4, id = "add-string32" }
+
+Writes a UTF-32 string to the current content.
+
+code {
+  language = python,
+  content = "add_string32(value: str) -> Sia"
+}
+
+title { add_string64, size = 4, id = "add-string64" }
+
+Writes a UTF-64 string to the current content.
+
+code {
+  language = python,
+  content = "add_string64(value: str) -> Sia"
+}
+
+title { add_byte_array_n, size = 4, id = "add-byte-array-n" }
+
+Writes a byte array to the current content.
+
+code {
+  language = python,
+  content = "add_byte_array_n(value: bytes) -> Sia"
+}
+
+title { add_byte_array8, size = 4, id = "add-byte-array-8" }
+
+Writes an 8-bit byte array to the current content.
+
+code {
+  language = python,
+  content = "add_byte_array8(value: bytes) -> Sia"
+}
+
+title { add_byte_array16, size = 4, id = "add-byte-array-16" }
+
+Writes a 16-bit byte array to the current content.
+
+code {
+  language = python,
+  content = "add_byte_array16(value: bytes) -> Sia"
+}
+
+title { add_byte_array32, size = 4, id = "add-byte-array-32" }
+
+Writes a 32-bit byte array to the current content.
+
+code {
+  language = python,
+  content = "add_byte_array32(value: bytes) -> Sia"
+}
+
+title { add_byte_array64, size = 4, id = "add-byte-array-64" }
+
+Writes a 64-bit byte array to the current content.
+
+code {
+  language = python,
+  content = "add_byte_array64(value: bytes) -> Sia"
+}
+
+title { add_bool, size = 4, id = "add-bool" }
+
+Writes a boolean to the current content.
+
+code {
+  language = python,
+  content = "add_bool(value: bool) -> Sia"
+}
+
+title { add_big_int, size = 4, id = "add-big-int" }
+
+Writes a big integer to the current content.
+
+code {
+  language = python,
+  content = "add_big_int(value: int) -> Sia"
+}
+
+title { add_array8, size = 4, id = "add-array8" }
+
+Writes an 8-bit array to the current content.
+
+code {
+  language = python,
+  content = "add_array8(value: list[int]) -> Sia"
+}
+
+title { add_array16, size = 4, id = "add-array16" }
+
+Writes a 16-bit array to the current content.
+
+code {
+  language = python,
+  content = "add_array16(value: list[int]) -> Sia"
+}
+
+title { add_array32, size = 4, id = "add-array32" }
+
+Writes a 32-bit array to the current content.
+
+code {
+  language = python,
+  content = "add_array32(value: list[int]) -> Sia"
+}
+
+title { add_array64, size = 4, id = "add-array64" }
+
+Writes a 64-bit array to the current content.
+
+code {
+  language = python,
+  content = "add_array64(value: list[int]) -> Sia"
+}
+
+title { Read Methods, size = 2 }
+
+title { read_uint8, size = 4, id = "read-uint8" }
+
+Reads an unsigned 8-bit integer from the current content.
+
+code {
+  language = python,
+  content = "read_uint8() -> int"
+}
+
+title { read_uint16, size = 4, id = "read-uint16" }
+
+Reads an unsigned 16-bit integer from the current content.
+
+code {
+  language = python,
+  content = "read_uint16() -> int"
+}
+
+title { read_uint32, size = 4, id = "read-uint32" }
+
+Reads an unsigned 32-bit integer from the current content.
+
+code {
+  language = python,
+  content = "read_uint32() -> int"
+}
+
+title { read_uint64, size = 4, id = "read-uint64" }
+
+Reads an unsigned 64-bit integer from the current content.
+
+code {
+  language = python,
+  content = "read_uint64() -> int"
+}
+
+title { read_int8, size = 4, id = "read-int8" }
+
+Reads a signed 8-bit integer from the current content.
+
+code {
+  language = python,
+  content = "read_int8() -> int"
+}
+
+title { read_int16, size = 4, id = "read-int16" }
+
+Reads a signed 16-bit integer from the current content.
+
+code {
+  language = python,
+  content = "read_int16() -> int"
+}
+
+title { read_int32, size = 4, id = "read-int32" }
+
+Reads a signed 32-bit integer from the current content.
+
+code {
+  language = python,
+  content = "read_int32() -> int"
+}
+
+title { read_int64, size = 4, id = "read-int64" }
+
+Reads a signed 64-bit integer from the current content.
+
+code {
+  language = python,
+  content = "read_int64() -> int"
+}
+
+title { read_string_n, size = 4, id = "read-string-n" }
+
+Reads a null-terminated UTF-8 string from the current content.
+
+code {
+  language = python,
+  content = "read_string_n() -> str"
+}
+
+title { read_string8, size = 4, id = "read-string8" }
+
+Reads an ASCII string from the current content.
+
+code {
+  language = python,
+  content = "read_string8() -> str"
+}
+
+title { read_string16, size = 4, id = "read-string16" }
+
+Reads a UTF-16 string from the current content.
+
+code {
+  language = python,
+  content = "read_string16() -> str"
+}
+
+title { read_string32, size = 4, id = "read-string32" }
+
+Reads a UTF-32 string from the current content.
+
+code {
+  language = python,
+  content = "read_string32() -> str"
+}
+
+title { read_string64, size = 4, id = "read-string64" }
+
+Reads a UTF-64 string from the current content.
+
+code {
+  language = python,
+  content = "read_string64() -> str"
+}
+
+title { read_byte_array_n, size = 4, id = "read-byte-array-n" }
+
+Reads a byte array from the current content.
+
+code {
+  language = python,
+  content = "read_byte_array_n() -> bytes"
+}
+
+title { read_byte_array8, size = 4, id = "read-byte-array8" }
+
+Reads an 8-bit byte array from the current content.
+
+code {
+  language = python,
+  content = "read_byte_array8() -> bytes"
+}
+
+title { read_byte_array16, size = 4, id = "read-byte-array16" }
+
+Reads a 16-bit byte array from the current content.
+
+code {
+  language = python,
+  content = "read_byte_array16() -> bytes"
+}
+
+title { read_byte_array32, size = 4, id = "read-byte-array32" }
+
+Reads a 32-bit byte array from the current content.
+
+code {
+  language = python,
+  content = "read_byte_array32() -> bytes"
+}
+
+title { read_byte_array64, size = 4, id = "read-byte-array64" }
+
+Reads a 64-bit byte array from the current content.
+
+code {
+  language = python,
+  content = "read_byte_array64() -> bytes"
+}
+
+title { read_bool, size = 4, id = "read-bool" }
+
+Reads a boolean from the current content.
+
+code {
+  language = python,
+  content = "read_bool() -> bool"
+}
+
+title { read_big_int, size = 4, id = "read-big-int" }
+
+Reads a big integer from the current content.
+
+code {
+  language = python,
+  content = "read_big_int() -> int"
+}
+
+title { read_array8, size = 4, id = "read-array8" }
+
+Reads an 8-bit array from the current content.
+
+code {
+  language = python,
+  content = "read_array8() -> list[int]"
+}
+
+title { read_array16, size = 4, id = "read-array16" }
+
+Reads a 16-bit array from the current content.
+
+code {
+  language = python,
+  content = "read_array16() -> list[int]"
+}
+
+title { read_array32, size = 4, id = "read-array32" }
+
+Reads a 32-bit array from the current content.
+
+code {
+  language = python,
+  content = "read_array32() -> list[int]"
+}
+
+title { read_array64, size = 4, id = "read-array64" }
+
+Reads a 64-bit array from the current content.
+
+code {
+  language = python,
+  content = "read_array64() -> list[int]"
+}
+
