@@ -9,9 +9,12 @@
 			const x = e.clientX - rect.left; // Mouse X position within card
 			const y = e.clientY - rect.top; // Mouse Y position within card
 
+			// Tilt strength should be smaller for wider cards
+			const tiltStrength = Math.max(7, 20 * (320 / rect.width));
+
 			// Calculate rotation for 3D tilt
-			const rotateX = (y / rect.height - 0.5) * -10;
-			const rotateY = (x / rect.width - 0.5) * -10;
+			const rotateX = (y / rect.height - 0.5) * -tiltStrength;
+			const rotateY = (x / rect.width - 0.5) * -tiltStrength;
 
 			// Set card rotation
 			card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;

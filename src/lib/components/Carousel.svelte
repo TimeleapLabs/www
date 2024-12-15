@@ -35,7 +35,9 @@
 </script>
 
 <div>
-	<div class="outer relative overflow-auto snap-x snap-mandatory scroll-smooth scrollbar-hidden">
+	<div
+		class="outer relative overflow-auto snap-x snap-mandatory scroll-smooth scrollbar-hidden py-4"
+	>
 		<div
 			class="transition-transform ease-out duration-300 flex {$$props.class || ''}"
 			bind:this={el}
