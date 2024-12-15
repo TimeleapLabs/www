@@ -26,6 +26,8 @@ export type ContextType = {
 	page?: {
 		title: string;
 		description: string;
+		ogImageText: string[];
+		ogImageFontSize: string;
 	};
 	headers?: string[];
 	currentFile: string;
@@ -90,7 +92,9 @@ const functions: {
 	meta(params, context) {
 		context.page = {
 			title: getParamsByName(params, 'title')[0]?.value as string,
-			description: (getParamsByName(params, 'description')[0]?.value as string) ?? ''
+			description: (getParamsByName(params, 'description')[0]?.value as string) ?? '',
+			ogImageText: (getParamsByName(params, 'ogImageText')[0]?.value as string[]) ?? [],
+			ogImageFontSize: (getParamsByName(params, 'ogImageFontSize')[0]?.value as string) ?? '96'
 		};
 		return '';
 	},

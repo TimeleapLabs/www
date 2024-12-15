@@ -11,18 +11,19 @@
 	import Collapsible from '$lib/components/docs/nav/Collapsible.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 	import Feedback from '$lib/components/Feedback.svelte';
-	import TiltCard from '$lib/components/TiltCard.svelte';
 
-	import { getNavForPage, fullNav } from '$lib/docs/nav';
+	import { getNavForPage, fullNav } from '$lib/blog/nav';
 	import { page } from '$app/stores';
 
 	const nav = getNavForPage($page.url.pathname);
 
-	('$IMPORTS');
+	
 </script>
 
-<MetaTags title={'Timeleap — $TITLE'} description="$DESCRIPTION" $OG />
-<Navbar active="docs"></Navbar>
+<MetaTags title={'Timeleap — Let There Be Light'} description="Stay up to date with the latest news and updates from Timeleap." ogImageText={`Let there
+be light`} ogImageFontSize={36
+} />
+<Navbar active="blog"></Navbar>
 
 <Section
 	class="w-full max-w-[1920px] mx-auto pt-20 md:pt-36 gap-8! px-4 md:px-16 xxl:px-0 text-white flex-1"
@@ -31,14 +32,17 @@
 		<div class="relative hidden md:block">
 			<div class="sticky top-24">
 				<h4 class="font-serif mb-4">Table of Contents</h4>
-				<Collapsible unwind nav={fullNav} />
+				<Collapsible nav={fullNav} />
 			</div>
 		</div>
 
 		<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
-			<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
+			<div class="flex gap-2 -mb-8 flex-wrap"><a href="" class="hover:text-green-400 transition-colors">Let There Be Light </a></div>
 
-			$CONTENT
+			<h1 class="font-serif text-4xl md:text-5xl mb-4 mt-8">Let There Be Light </h1>
+
+
+
 
 			<Feedback pageId={$page.url.pathname.slice(1).replaceAll('/', '__')} />
 
@@ -65,7 +69,7 @@
 				</div>
 			{/if}
 		</div>
-	</div>
-</Section>
+	</div></Section
+>
 
 <Footer></Footer>

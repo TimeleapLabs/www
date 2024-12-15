@@ -71,12 +71,20 @@ export const compileFile = (
 		})
 		.join('\n');
 
+	const ogImageText = context.page?.ogImageText?.map((line) => line.trim()).join('\n');
+
+	const OG = ogImageText
+		? `ogImageText={\`${ogImageText}\`}` +
+			(context.page?.ogImageFontSize ? ` ogImageFontSize={${context.page.ogImageFontSize}}` : '')
+		: '';
+
 	const compiled = template
 		.replace('$TITLE', (context.page?.title ?? context.headers?.[0] ?? '').trim())
 		.replace('$DESCRIPTION', context.page?.description?.trim() ?? '')
 		.replace("('$IMPORTS');", imports ?? '')
 		.replace('$BREADCRUMBS', breadcrumbs)
-		.replace('$CONTENT', code);
+		.replace('$CONTENT', code)
+		.replace('$OG', OG);
 
 	const filename = path.basename(params.filePath, '.tiramisu').replace('.tiramisu', '');
 	const dirname = filename.endsWith('index')

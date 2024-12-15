@@ -11,9 +11,8 @@
 	import Collapsible from '$lib/components/docs/nav/Collapsible.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 	import Feedback from '$lib/components/Feedback.svelte';
-	import TiltCard from '$lib/components/TiltCard.svelte';
 
-	import { getNavForPage, fullNav } from '$lib/docs/nav';
+	import { getNavForPage, fullNav } from '$lib/blog/nav';
 	import { page } from '$app/stores';
 
 	const nav = getNavForPage($page.url.pathname);
@@ -22,7 +21,7 @@
 </script>
 
 <MetaTags title={'Timeleap — $TITLE'} description="$DESCRIPTION" $OG />
-<Navbar active="docs"></Navbar>
+<Navbar active="blog"></Navbar>
 
 <Section
 	class="w-full max-w-[1920px] mx-auto pt-20 md:pt-36 gap-8! px-4 md:px-16 xxl:px-0 text-white flex-1"
@@ -31,7 +30,7 @@
 		<div class="relative hidden md:block">
 			<div class="sticky top-24">
 				<h4 class="font-serif mb-4">Table of Contents</h4>
-				<Collapsible unwind nav={fullNav} />
+				<Collapsible nav={fullNav} />
 			</div>
 		</div>
 
@@ -65,7 +64,7 @@
 				</div>
 			{/if}
 		</div>
-	</div>
-</Section>
+	</div></Section
+>
 
 <Footer></Footer>

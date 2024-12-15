@@ -1,0 +1,13 @@
+title { Blog }
+
+Welcome to the Timeleap blog! Here you'll find the latest news and updates from Timeleap.
+
+toc {
+  let-there-be-light
+}
+
+meta {
+  description = Stay up to date with the latest news and updates from Timeleap.,
+  ogImageText = [Timeleap Blog],
+  ogImageFontSize = 48
+}
