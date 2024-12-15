@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Card } from '@timeleap/ui';
 
+	export let containerClass = '';
+
 	const tiltAndGlow = (card: HTMLElement) => {
 		const mousemove = (e: MouseEvent) => {
 			const rect = card.getBoundingClientRect();
@@ -35,8 +37,8 @@
 	};
 </script>
 
-<div class="container">
-	<div class="card w-full overflow-hidden" use:tiltAndGlow>
+<div class="container {containerClass}">
+	<div class="card w-full h-full overflow-hidden" use:tiltAndGlow>
 		<div class="glow absolute top-0 left-0 w-full h-full pointer-events-none z-10"></div>
 		<Card {...$$restProps} class={$$props.class || ''}>
 			<slot></slot>
