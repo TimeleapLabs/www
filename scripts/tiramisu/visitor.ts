@@ -181,13 +181,13 @@ const functions: {
 
 		// FIXME: Add support for kebab-case variables
 		return `
-			<Card ${href} class="bg-zinc-950 snap-start min-w-full sm:min-w-[${width}] w-[${width}] max-w-full flex flex-col">
+			<TiltCard ${href} class="bg-zinc-950 border border-zinc-800 snap-start min-w-full sm:min-w-[${width}] w-[${width}] max-w-full flex flex-col">
 				<h5 class="font-serif text-2xl">${title}</h5>
 				<div class="mt-4 text-zinc-500 flex-1">
 					${content}
 				</div>
 				${pillsHtml}
-			</Card>`;
+			</TiltCard>`;
 	},
 	carousel(params) {
 		const items = params.positional.join('');

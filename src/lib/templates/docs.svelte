@@ -11,6 +11,7 @@
 	import Collapsible from '$lib/components/docs/nav/Collapsible.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 	import Feedback from '$lib/components/Feedback.svelte';
+	import TiltCard from '$lib/components/TiltCard.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/docs/nav';
 	import { page } from '$app/stores';
