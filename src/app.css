@@ -49,7 +49,7 @@
 	}
 
 	:root {
-		--border-radius: 2em;
+		--border-radius: 1em;
 		--button-border-radius: 1em;
 		--input-border-radius: 1em;
 	}
