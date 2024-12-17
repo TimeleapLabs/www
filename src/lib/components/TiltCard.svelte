@@ -21,7 +21,7 @@
 
 			// Create glow effect by setting a radial gradient
 			const glow = card.querySelector('.glow') as HTMLElement;
-			glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.1), transparent 80%)`;
+			glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.1), transparent 60%)`;
 		};
 
 		const mouseleave = () => {

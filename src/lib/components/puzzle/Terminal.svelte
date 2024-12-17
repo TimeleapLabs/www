@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '@xterm/xterm/css/xterm.css';
 
-	import TiltCard from '../TiltCard.svelte';
+	import { Card } from '@timeleap/ui';
 	import type { IDisposable, Terminal } from '@xterm/xterm';
 	import type { FitAddon } from '@xterm/addon-fit';
 	import type { ImageAddon } from '@xterm/addon-image';
@@ -10,7 +10,7 @@
 		const { Terminal } = await import('@xterm/xterm');
 		const { FitAddon } = await import('@xterm/addon-fit');
 		const { ImageAddon } = await import('@xterm/addon-image');
-		const { WebglAddon } = await import('@xterm/addon-webgl');
+		const { CanvasAddon } = await import('@xterm/addon-canvas');
 
 		const term = new Terminal({
 			fontFamily: "'Geist Mono', monospace",
@@ -27,35 +27,38 @@
 		});
 
 		const fitAddon = new FitAddon();
-		const webglAddon = new WebglAddon();
+		const canvasAddon = new CanvasAddon();
 		const imageAddon = new ImageAddon();
 
-		//term.loadAddon(webglAddon);
+		term.loadAddon(canvasAddon);
 		term.loadAddon(fitAddon);
 		term.loadAddon(imageAddon);
 
-		term.write(
-			'\u001b]1337;File=;inline=1:iVBORw0KGgoAAAANSUhEUgAAABAAAAAPBAMAAAAfXVIcAAAAD1BMVEV63/39//w5TVIZFhXDjXbHNiz1AAAARUlEQVR4nJTJUQ3AIAwG4aMzsBYD9FdQEfjXtJBiYPf0JYeHJKUTC8CShYNjaMwas4xoJNHrgKdo7H0x3ovTP3wBAAD//9u1Bcrd6KY0AAAAAElFTkSuQmCC\u0007\n'
-		);
-
-		return { term, fitAddon, imageAddon };
+		return { term, fitAddon };
 	};
 
 	const terminal = (
 		node: HTMLElement,
-		{ term, fitAddon, imageAddon }: { term: Terminal; fitAddon: FitAddon; imageAddon: ImageAddon }
+		{ term, fitAddon }: { term: Terminal; fitAddon: FitAddon }
 	) => {
 		term.open(node);
 		fitAddon.fit();
 
-		console.log(imageAddon);
-
 		const socket = new WebSocket('ws://localhost:2326');
 
+		const originalCreateImageBitmap = window.createImageBitmap;
+		const retinaCreateImage = (blob: ImageBitmapSource, options?: ImageBitmapOptions) => {
+			const dpi = window.devicePixelRatio || 1;
+			const resizeHeight = options?.resizeHeight && options.resizeHeight / dpi;
+			const resizeWidth = options?.resizeWidth && options.resizeWidth / dpi;
+			return originalCreateImageBitmap(blob, { ...options, resizeWidth, resizeHeight });
+		};
+
+		if (window.createImageBitmap) {
+			window.createImageBitmap = retinaCreateImage;
+		}
+
 		socket.onmessage = (event) => {
-			if (event.data.startsWith('\u001b]1337')) {
-				console.log(event.data);
-			}
 			term.write(event.data);
 		};
 
@@ -177,19 +180,86 @@
 
 		socket.onclose = () => {
 			term.write('\r\n\x1b[31mConnection Closed\x1b[m\r\n');
-			term.dispose();
+			term.onData(() => {}); // stop listening for input
 		};
 
 		return {
 			destroy() {
 				term.dispose();
+				socket.close();
+				window.createImageBitmap = originalCreateImageBitmap;
+			}
+		};
+	};
+
+	// Allow dragging the terminal
+	const terminalHeader = (node: HTMLElement) => {
+		let posX = 0; // Track final X position
+		let posY = 0; // Track final Y position
+
+		const onMouseDown = (e: MouseEvent) => {
+			e.preventDefault();
+
+			// Capture the mouse position at drag start
+			const startX = e.clientX;
+			const startY = e.clientY;
+
+			const mousemove = (e: MouseEvent) => {
+				// Calculate the delta movement
+				const dx = e.clientX - startX;
+				const dy = e.clientY - startY;
+
+				// Apply the cumulative position
+				const currentX = posX + dx;
+				const currentY = posY + dy;
+
+				if (node.parentElement) {
+					node.parentElement.style.transform = `translate(${currentX}px, ${currentY}px)`;
+				}
+			};
+
+			const mouseup = (e: MouseEvent) => {
+				// Finalize position by updating posX and posY
+				posX += e.clientX - startX;
+				posY += e.clientY - startY;
+
+				// Cleanup event listeners
+				document.removeEventListener('mousemove', mousemove);
+				document.removeEventListener('mouseup', mouseup);
+			};
+
+			// Attach event listeners for drag movement and release
+			document.addEventListener('mousemove', mousemove);
+			document.addEventListener('mouseup', mouseup);
+		};
+
+		// Attach mousedown to the node
+		node.addEventListener('mousedown', onMouseDown);
+
+		return {
+			destroy() {
+				node.removeEventListener('mousedown', onMouseDown);
 			}
 		};
 	};
 </script>
 
 {#await makeTerminal() then res}
-	<TiltCard class="bg-zinc-950">
-		<div class="terminal h-full w-full" use:terminal={res}></div>
-	</TiltCard>
+	<Card
+		class="w-full bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800 pt-24 relative z-20"
+	>
+		<div
+			class="absolute top-0 right-0 left-0 z-0 flex justify-between border-b border-zinc-800 py-3 px-4"
+			use:terminalHeader
+		>
+			<h2 class="text-zinc-600 text-sm">Game.</h2>
+			<!-- Terminal buttons -->
+			<div class="flex gap-2 items-center">
+				<div class="rounded-full bg-green-500 w-3 h-3"></div>
+				<div class="rounded-full bg-yellow-500 w-3 h-3"></div>
+				<div class="rounded-full bg-red-500 w-3 h-3"></div>
+			</div>
+		</div>
+		<div class="terminal h-full w-ful mt-8" use:terminal={res}></div>
+	</Card>
 {/await}
