@@ -2,6 +2,7 @@
 	import { createHighlighter, type Highlighter, type LanguageRegistration } from 'shiki';
 	import tiramisu from '@timeleap/tiramisu/vscode-tiramisu/syntaxes/tiramisu.tmLanguage.json';
 	import sia from '$lib/languages/sia.tmLanguage.json';
+	import { onMount } from 'svelte';
 
 	tiramisu.name = 'tiramisu';
 	sia.name = 'sia';
@@ -28,6 +29,12 @@
 
 	const highlight = (highlighter: Highlighter) =>
 		highlighter.codeToHtml(code, { lang, theme: 'ayu-dark' });
+
+	onMount(() => {
+		return () => {
+			highlighter.then((highlighter) => highlighter.dispose());
+		};
+	});
 </script>
 
 <div class="rounded-2xl code overflow-hidden max-w-full" class:line-numbers={lineNumbers}>
