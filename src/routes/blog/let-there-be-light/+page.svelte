@@ -51,7 +51,7 @@ be light`} ogImageFontSize={36} />
 						? '!max-w-[860px]'
 						: ''} transition-all duration-300 ease-in-out"
 				>
-					<h1 class="font-serif text-4xl md:text-5xl mb-4 mt-8">Let There Be Light </h1>
+					<h1 class="font-serif text-4xl md:text-5xl mt-4">Let There Be Light </h1>
 
 <p class="text-zinc-300">DevCon was eye-opening. It was the first time the Timeleap team traveled
 together, and we got the opportunity to discuss our internal policies, our
@@ -73,7 +73,7 @@ or tech-related. I want Timeleap to be the latter.
 be a company that is known for its technology, and we are taking the first steps
 to make that happen. Read below to find out all the changes we're making.
 
-</p><h2 class="font-serif text-3xl md:text-4xl mb-4 mt-8">New Website</h2>
+</p><h2 class="font-serif text-3xl md:text-4xl mt-4">New Website</h2>
 
 <p class="text-zinc-300">This one isn't that much of a news to our users, but we've launched a new
 website tailored to developers. We are rewriting our documentation, our front
@@ -95,7 +95,7 @@ Lear more about Tiramisu link { here, to = /docs/products/tiramisu }`}></Code>
 <p class="text-zinc-300">Check the source code of this page <a href="https://github.com/TimeleapLabs/www/blob/master/src/routes/blog/let-there-be-light.tiramisu
 " class="hover:text-green-400 transition-colors inline-flex gap-1 items-center border-b border-zinc-500">here<Icon icon="carbon:launch" class="inline" /></a>.
 
-</p><h2 class="font-serif text-3xl md:text-4xl mb-4 mt-8">New Content Team</h2>
+</p><h2 class="font-serif text-3xl md:text-4xl mt-4">New Content Team</h2>
 
 <p class="text-zinc-300">It was one of the most difficult decisions I've had to make, but we've decided
 to let go of our marketing team. We are now a company that is run by developers,
@@ -103,7 +103,7 @@ and content creation is now integrated into our development process. We have
 weekly strategic meetings to discuss what content we should create, and soon
 you should see a lot more content from us.
 
-</p><h2 class="font-serif text-3xl md:text-4xl mb-4 mt-8">OG Image Generator</h2>
+</p><h2 class="font-serif text-3xl md:text-4xl mt-4">OG Image Generator</h2>
 
 <p class="text-zinc-300">We've built an OG image generator that generates images for our blog, docs, and
 other pages of our website. It's a simple tool that allows us to generate images
@@ -120,7 +120,7 @@ using our dynamic OG image generator.
 			</div>
 		
 
-<h2 class="font-serif text-3xl md:text-4xl mb-4 mt-8">Goodbye, Forum!</h2>
+<h2 class="font-serif text-3xl md:text-4xl mt-4">Goodbye, Forum!</h2>
 
 <p class="text-zinc-300">We've decided to shut down our forum. GitHub is the biggest social media
 platform for developers, and we've decided to move our discussions there. We'll
@@ -136,7 +136,7 @@ link proposals with code changes or sample implementations. Furthermore, it
 allows us to seamlessly integrate and reference the proposals in our
 documentation.
 
-</p><h1 class="font-serif text-4xl md:text-5xl mb-4 mt-8">Conclusion </h1>
+</p><h1 class="font-serif text-4xl md:text-5xl mt-4">Conclusion </h1>
 
 <p class="text-zinc-300">We are making a lot of changes to Timeleap, and we are excited about the future.
 We're close to the end of the year, and we have a lot of exciting things planned

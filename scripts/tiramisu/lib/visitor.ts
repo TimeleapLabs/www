@@ -118,7 +118,7 @@ const functions: {
 		context.headers ??= [];
 		context.headers.push(header);
 		const textSize = textSizeMap[size];
-		return `<h${size} class="font-serif ${textSize} mb-4 mt-8">${header}</h${size}>`;
+		return `<h${size} class="font-serif ${textSize} mt-4">${header}</h${size}>`;
 	},
 	link(params) {
 		const href = (getParamsByName(params, 'to')[0]?.value as string) ?? '';

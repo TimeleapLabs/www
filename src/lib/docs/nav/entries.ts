@@ -62,6 +62,10 @@ export const entries = [
   {
     "href": "/docs/tep/0",
     "title": "Timeleap Enhancement Proposals"
+  },
+  {
+    "href": "/docs/tep/1",
+    "title": "Unchained Plugins"
   }
 ];
 
@@ -136,6 +140,10 @@ export const fullNav = {
         {
           "href": "/docs/tep/0",
           "title": "Timeleap Enhancement Proposals"
+        },
+        {
+          "href": "/docs/tep/1",
+          "title": "Unchained Plugins"
         }
       ]
     }

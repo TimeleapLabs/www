@@ -6,7 +6,8 @@
 		accepted: 'success' as const,
 		rejected: 'error' as const,
 		implemented: 'success' as const,
-		deprecated: 'warning' as const
+		deprecated: 'warning' as const,
+		review: 'info' as const
 	};
 
 	const tepToAlertTitle = {
@@ -14,7 +15,8 @@
 		accepted: 'Accepted' as const,
 		rejected: 'Rejected' as const,
 		implemented: 'Implemented' as const,
-		deprecated: 'Deprecated' as const
+		deprecated: 'Deprecated' as const,
+		review: 'Review' as const
 	};
 
 	const tepToAlertText = {
@@ -22,7 +24,8 @@
 		accepted: 'This TEP has been accepted and is ready to be implemented.' as const,
 		rejected: 'This TEP has been rejected and will not be implemented.' as const,
 		implemented: 'This TEP has been implemented and is now available.' as const,
-		deprecated: 'This TEP has been deprecated and should not be used.' as const
+		deprecated: 'This TEP has been deprecated and should not be used.' as const,
+		review: 'This TEP is currently under review.' as const
 	};
 
 	export let author: string;

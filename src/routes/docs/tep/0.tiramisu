@@ -101,6 +101,8 @@ list {
     A summary of the proposal.,
   items = bold { Motivation }:
     The rationale behind the proposal and the problem it aims to solve.,
+  items = bold { Terminology }:
+    Definitions of terms used in the proposal.,
   items = bold { Specification }:
     Detailed description of the proposed change.,
   items = bold { Rationale }:
@@ -128,6 +130,7 @@ title { Reference Implementation, size = 2 }
 N/A
 
 title { References, size = 2 }
+
 N/A
 
 meta {

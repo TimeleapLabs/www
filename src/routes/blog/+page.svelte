@@ -50,7 +50,7 @@
 						? '!max-w-[860px]'
 						: ''} transition-all duration-300 ease-in-out"
 				>
-					<h1 class="font-serif text-4xl md:text-5xl mb-4 mt-8">Blog </h1>
+					<h1 class="font-serif text-4xl md:text-5xl mt-4">Blog </h1>
 
 <p class="text-zinc-300">Welcome to the Timeleap blog! Here you'll find the latest news and updates from Timeleap.
 
