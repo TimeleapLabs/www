@@ -11,17 +11,20 @@
 	import Collapsible from '$lib/components/docs/nav/Collapsible.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 	import Feedback from '$lib/components/Feedback.svelte';
+	import Readable from '$lib/components/Readable.svelte';
+	import Author from '$lib/components/blog/Author.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/blog/nav';
 	import { page } from '$app/stores';
+	import { persisted } from 'svelte-persisted-store';
 
+	const readable = persisted('readable', false);
 	const nav = getNavForPage($page.url.pathname);
 
 	
 </script>
 
-<MetaTags title={'Timeleap — Blog'} description="Stay up to date with the latest news and updates from Timeleap." ogImageText={`Timeleap Blog`} ogImageFontSize={48
-} />
+<MetaTags title={'Timeleap — Blog'} description="Stay up to date with the latest news and updates from Timeleap." ogImageText={`Timeleap Blog`} ogImageFontSize={48} />
 <Navbar active="blog"></Navbar>
 
 <Section
@@ -36,11 +39,20 @@
 		</div>
 
 		<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
-			<div class="flex gap-2 -mb-8 flex-wrap"><a href="" class="hover:text-green-400 transition-colors">Blog </a></div>
+			<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
+				<div class="flex gap-4 flex-wrap justify-between">
+					<div class="flex gap-2 -mb-8 flex-wrap"><a href="" class="hover:text-green-400 transition-colors">Blog </a></div>
+					<Readable />
+				</div>
 
-			<h1 class="font-serif text-4xl md:text-5xl mb-4 mt-8">Blog </h1>
+				<div
+					class="flex flex-col gap-8 max-w-full {$readable
+						? '!max-w-[860px]'
+						: ''} transition-all duration-300 ease-in-out"
+				>
+					<h1 class="font-serif text-4xl md:text-5xl mb-4 mt-8">Blog </h1>
 
-<p>Welcome to the Timeleap blog! Here you'll find the latest news and updates from Timeleap.
+<p class="text-zinc-300">Welcome to the Timeleap blog! Here you'll find the latest news and updates from Timeleap.
 
 </p>
       <div>
@@ -50,31 +62,34 @@
     
 
 
-
-			<Feedback pageId={$page.url.pathname.slice(1).replaceAll('/', '__')} />
-
-			{#if nav.next || nav.prev}
-				<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
-					{#if nav.prev}
-						<Button
-							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-							animate
-							href={nav.prev.href}
-						>
-							<Icon icon="carbon:arrow-left" />{nav.prev.title}
-						</Button>
-					{/if}
-					{#if nav.next}
-						<Button
-							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-							animate
-							href={nav.next.href}
-						>
-							{nav.next.title}<Icon icon="carbon:arrow-right" />
-						</Button>
-					{/if}
 				</div>
-			{/if}
+
+				<Author author={''} createdAt={''} />
+				<Feedback pageId={$page.url.pathname.slice(1).replaceAll('/', '__')} />
+
+				{#if nav.next || nav.prev}
+					<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
+						{#if nav.prev}
+							<Button
+								class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+								animate
+								href={nav.prev.href}
+							>
+								<Icon icon="carbon:arrow-left" />{nav.prev.title}
+							</Button>
+						{/if}
+						{#if nav.next}
+							<Button
+								class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+								animate
+								href={nav.next.href}
+							>
+								{nav.next.title}<Icon icon="carbon:arrow-right" />
+							</Button>
+						{/if}
+					</div>
+				{/if}
+			</div>
 		</div>
 	</div></Section
 >

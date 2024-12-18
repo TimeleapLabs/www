@@ -54,6 +54,14 @@ export const entries = [
   {
     "href": "/docs/products/tiramisu/install",
     "title": "Install"
+  },
+  {
+    "href": "/docs/tep",
+    "title": "Timeleap Enhancement Proposals"
+  },
+  {
+    "href": "/docs/tep/0",
+    "title": "Timeleap Enhancement Proposals"
   }
 ];
 
@@ -118,6 +126,16 @@ export const fullNav = {
               "title": "Install"
             }
           ]
+        }
+      ]
+    },
+    {
+      "href": "/docs/tep",
+      "title": "Timeleap Enhancement Proposals",
+      "nav": [
+        {
+          "href": "/docs/tep/0",
+          "title": "Timeleap Enhancement Proposals"
         }
       ]
     }

@@ -1,0 +1,139 @@
+title { Timeleap Enhancement Proposals }
+
+tep {
+  author = Pouya Eghbali <pouya@timeleap.swiss>,
+  status = accepted,
+  type = process,
+  createdAt = 2024-06-11,
+  updatedAt = 2024-12-18
+}
+
+title { Abstract, size = 2 }
+
+This document describes the process for creating, discussing, and implementing
+Timeleap Enhancement Proposals (TEPs). TEPs are a mechanism for proposing major
+new features, processes, or other significant changes to the Timeleap ecosystem.
+
+title { Motivation, size = 2 }
+
+To ensure a structured and transparent method for introducing changes to
+Timeleap, we adopt a process inspired by Python Enhancement Proposals (PEPs).
+This process facilitates community involvement, thorough discussion, and clear
+documentation of significant changes.
+
+title { Specification, size = 2 }
+title { TEP Workflow, size = 3 }
+title { 1. Idea Stage, size = 4 }
+
+list {
+  items = bold { Discussion }:
+    Proposals begin with discussions in the Timeleap TEPs GitHub repository.
+    The proposal should be tagged with the appropriate category and discussed
+    with the community.,
+  items = bold { Community Consensus }:
+    Engage with the community to refine the idea. Aim for a rough consensus
+    before moving forward.
+}
+
+title { 2. Drafting a TEP, size = 4 }
+
+list {
+  items = bold { TEP Format }:
+    "Follow the standard format outlined below. When in doubt, refer to existing
+    TEPs for guidance.",
+  items = bold { Submission }:
+    Submit the draft TEP to the Timeleap website GitHub repository under the
+    `src/routes/docs/teps` directory.
+}
+
+title { 3. Review and Acceptance, size = 4 }
+
+list {
+  items = bold { Initial Review }:
+    A TEP Editor will review the proposal to ensure adherence to guidelines and
+    completeness.,
+  items = bold { Public Review }:
+    The proposal is open for public review and feedback.,
+  items = bold { Final Comment Period (FCP) }:
+    "After sufficient feedback, the TEP enters the FCP, where the final call for
+    comments is made."
+}
+
+title { 4. Company Approval, size = 4 }
+
+list {
+  items = bold { Decision by Timeleap }:
+    "After the FCP, the proposal will be submitted to the company's decision-makers
+    for final approval.",
+  items = bold { Outcome }:
+    "Based on the review, Timeleap will mark the proposal as Approved, Rejected, or
+    Deferred."
+}
+
+title { 5. Implementation, size = 4 }
+
+list {
+  items = bold { Execution }:
+    "Approved TEPs can proceed to implementation, and progress should be documented.
+    Reference implementations are encouraged."
+}
+
+title { TEP Format, size = 3 }
+
+Each TEP should include the following sections:
+
+list {
+  items = bold { TEP Number }:
+    Assigned by the TEP Editor.,
+  items = bold { Title }:
+    "A short, descriptive title of the proposal.",
+  items = bold { Author(s) }:
+    Name and contact information of the author(s).,
+  items = bold { Status }:
+    "The current status of the TEP (e.g., Draft, Accepted, Rejected, Deferred).",
+  items = bold { Type }:
+    "The type of proposal (e.g., Product, Process).",
+  items = bold { Created }:
+    Date the proposal was created.,
+  items = bold { Updated }:
+    Dates when the proposal was updated.,
+  items = bold { Abstract }:
+    A summary of the proposal.,
+  items = bold { Motivation }:
+    The rationale behind the proposal and the problem it aims to solve.,
+  items = bold { Specification }:
+    Detailed description of the proposed change.,
+  items = bold { Rationale }:
+    Explanation of why the proposed solution is the best option.,
+  items = bold { Backwards Compatibility }:
+    Analysis of how the proposal affects backward compatibility.,
+  items = bold { Reference Implementation }:
+    "If applicable, a reference implementation.",
+  items = bold { References }:
+    Any references or additional documentation.
+}
+
+title { Rationale, size = 2 }
+
+A structured proposal process allows for better community involvement and more
+organized documentation of significant changes. This ensures that every
+significant change is systematically discussed, reviewed, and approved.
+
+title { Backwards Compatibility, size = 2 }
+
+This TEP introduces a new process and does not affect existing functionality.
+
+title { Reference Implementation, size = 2 }
+
+N/A
+
+title { References, size = 2 }
+N/A
+
+meta {
+  description = "This document describes the process for creating, discussing, and implementing
+                 Timeleap Enhancement Proposals (TEPs). TEPs are a mechanism for proposing major
+                 new features, processes, or other significant changes to the Timeleap ecosystem.",
+  ogImageText = [TEP 0, Timeleap Enhancement Proposals],
+  ogImageFontSize = 20
+}

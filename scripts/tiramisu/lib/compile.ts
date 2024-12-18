@@ -13,7 +13,7 @@ const generateBreadcrumbs = (header: string, templateFile: string, context: Cont
 		currentPath = path.dirname(currentPath);
 	}
 
-	while (currentPath.includes('src/routes/docs')) {
+	while (currentPath.includes('src/routes/docs') || currentPath.includes('src/routes/blog')) {
 		const file = path.join(currentPath, 'index.tiramisu');
 		const context: ContextType = { currentFile: file, templateFile };
 		compileFile({ filePath: file, templateFile }, context);
@@ -84,7 +84,9 @@ export const compileFile = (
 		.replace("('$IMPORTS');", imports ?? '')
 		.replace('$BREADCRUMBS', breadcrumbs)
 		.replace('$CONTENT', code)
-		.replace('$OG', OG);
+		.replace('$OG', OG)
+		.replace('$AUTHOR', context.page?.author ?? '')
+		.replace('$CREATED_AT', context.page?.createdAt ?? '');
 
 	const filename = path.basename(params.filePath, '.tiramisu').replace('.tiramisu', '');
 	const dirname = filename.endsWith('index')

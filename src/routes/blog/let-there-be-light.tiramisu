@@ -1,8 +1,104 @@
 title { Let There Be Light }
 
+DevCon was eye-opening. It was the first time the Timeleap team traveled
+together, and we got the opportunity to discuss our internal policies, our
+vision for the future, and how we can improve our services. We also got to meet
+some of our users in person, which was a great experience.
+
+In Bangkok, we realized that we've lost touch with our roots. We've been so
+focused on building the best product that we've forgotten about the people who
+use it. Comparing our social media accounts with other tech companies, we
+realized that haven't had a lot of content about the technologies that we make.
+
+There are two tech companies in Europe that I've worked with that have taught me
+important lessons. One, which shall not be named, is an e-commerce company with
+four developers and more than two hundred non-tech employees. The other is a
+software company where more than eighty percent of the employees are developers
+or tech-related. I want Timeleap to be the latter.
+
+I want Timeleap to be a company where developers are the majority. I want us to
+be a company that is known for its technology, and we are taking the first steps
+to make that happen. Read below to find out all the changes we're making.
+
+title { New Website, size = 2 }
+
+This one isn't that much of a news to our users, but we've launched a new
+website tailored to developers. We are rewriting our documentation, our front
+page, and our blog to be more developer-friendly.
+
+We made our own documentation generator, which we're calling Tiramisu. It
+enables us to integrate our blog and docs seamlessly with the rest of our
+website. It's flexible and extensible, which allows us to add custom plugins and
+features. Things like code playgrounds, interactive examples, plots and more are
+now possible.
+
+code {
+  language = tiramisu,
+  content = """
+    title { Tiramisu }
+
+    This is a Tiramisu sample. We're using Tiramisu to write our docs and blog.
+    We use a custom compiler to convert Tiramisu to Svelte components.
+
+    Lear more about Tiramisu link { here, to = /docs/products/tiramisu }
+  """
+}
+
+Check the source code of this page link {
+  here,
+  to = https://github.com/TimeleapLabs/www/blob/master/src/routes/blog/let-there-be-light.tiramisu
+}.
+
+title { New Content Team, size = 2 }
+
+It was one of the most difficult decisions I've had to make, but we've decided
+to let go of our marketing team. We are now a company that is run by developers,
+and content creation is now integrated into our development process. We have 
+weekly strategic meetings to discuss what content we should create, and soon
+you should see a lot more content from us.
+
+title { OG Image Generator, size = 2 }
+
+We've built an OG image generator that generates images for our blog, docs, and
+other pages of our website. It's a simple tool that allows us to generate images
+with custom text and font sizes. We want to keep it simple and focus mainly on
+the content, but we also want to make sure that our content is shareable on
+social media. The preview image for this page, and the below image are generated
+using our dynamic OG image generator.
+
+image {
+  src = "/social?text=Dynamically%20Generated%0ASocial%20Media%20Preview%20Images&fontSize=20",
+  alt = Dynamically Generated Social Media Preview Images,
+  caption = This image was generated using our OG image generator.
+}
+
+title { "Goodbye, Forum!", size = 2 }
+
+We've decided to shut down our forum. GitHub is the biggest social media
+platform for developers, and we've decided to move our discussions there. We'll
+soon move our TEPs (Timeleap Enhancement Proposals) to GitHub, and we'll also
+start using GitHub Discussions for our tech discussions.
+
+Collaborators, contributors, and users should now use Tiramisu and GitHub for
+making feature requests, performance improvements, security enhancements, API
+changes, ecosystem changes, and other enhancements proposals.
+
+Using GitHub allows us to be more attractive to developers, and it also helps
+link proposals with code changes or sample implementations. Furthermore, it
+allows us to seamlessly integrate and reference the proposals in our
+documentation.
+
+title { Conclusion }
+
+We are making a lot of changes to Timeleap, and we are excited about the future.
+We're close to the end of the year, and we have a lot of exciting things planned
+for 2025. Stay tuned for more updates, and don't forget to follow us on social
+media to stay up to date with the latest news and updates from Timeleap.
 
 meta {
   description = Stay up to date with the latest news and updates from Timeleap.,
   ogImageText = [Let there, be light],
-  ogImageFontSize = 36
+  ogImageFontSize = 36,
+  author = pouya,
+  createdAt = 2024-12-18
 }

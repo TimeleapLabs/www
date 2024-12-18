@@ -2,10 +2,8 @@
 	import Icon from '@iconify/svelte';
 	import { Card } from '@timeleap/ui';
 
-	export let type: 'success' | 'info' | 'warning' | 'error' = 'info';
-	export let title: string;
-
 	const icons = {
+		draft: 'carbon:edit',
 		success: 'carbon:checkmark-outline',
 		info: 'carbon:information-outline',
 		warning: 'carbon:warning-alt',
@@ -13,6 +11,7 @@
 	};
 
 	const stripeColors = {
+		draft: 'from-zinc-900 to-zinc-800',
 		success: 'from-green-800 to-green-300',
 		info: 'from-blue-800 to-blue-300',
 		warning: 'from-yellow-800 to-yellow-300',
@@ -20,11 +19,15 @@
 	};
 
 	const titleColors = {
+		draft: 'text-zinc-200',
 		success: 'text-green-200',
 		info: 'text-blue-200',
 		warning: 'text-yellow-200',
 		error: 'text-red-200'
 	};
+
+	export let type: keyof typeof icons;
+	export let title: string;
 </script>
 
 <Card

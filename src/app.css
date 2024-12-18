@@ -66,6 +66,16 @@
 		rx: 0.25em;
 	}
 
+	h2 + h3,
+	h3 + h4 {
+		margin-top: 0 !important;
+	}
+
+	.gap-8 h2 + h3,
+	.gap-8 h3 + h4 {
+		margin-top: -1.5rem !important;
+	}
+
 	@keyframes fade-in {
 		from {
 			opacity: 0;

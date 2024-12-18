@@ -16,10 +16,13 @@ alert {
 toc {
   overview,
   roadmap,
-  products/index
+  products/index,
+  tep/index
 }
 
 meta {
   description = "Timeleap is a platform that provides a comprehensive suite of tools and services
-                 to help you build, deploy, and manage your distributed applications."
+                 to help you build, deploy, and manage your distributed applications.",
+  ogImageText = [Timeleap, Documentation],
+  ogImageFontSize = 48
 }

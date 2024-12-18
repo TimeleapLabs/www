@@ -28,6 +28,8 @@ export type ContextType = {
 		description: string;
 		ogImageText: string[];
 		ogImageFontSize: string;
+		author?: string;
+		createdAt?: string;
 	};
 	headers?: string[];
 	currentFile: string;
@@ -91,12 +93,24 @@ const functions: {
 } = {
 	meta(params, context) {
 		context.page = {
-			title: getParamsByName(params, 'title')[0]?.value as string,
-			description: (getParamsByName(params, 'description')[0]?.value as string) ?? '',
+			title: (getParamsByName(params, 'title')[0]?.value as string)?.trim(),
+			description: (getParamsByName(params, 'description')[0]?.value as string)?.trim() ?? '',
 			ogImageText: (getParamsByName(params, 'ogImageText')[0]?.value as string[]) ?? [],
-			ogImageFontSize: (getParamsByName(params, 'ogImageFontSize')[0]?.value as string) ?? '96'
+			ogImageFontSize:
+				(getParamsByName(params, 'ogImageFontSize')[0]?.value as string)?.trim() ?? '96',
+			author: (getParamsByName(params, 'author')[0]?.value as string)?.trim() ?? '',
+			createdAt: (getParamsByName(params, 'createdAt')[0]?.value as string)?.trim() ?? ''
 		};
 		return '';
+	},
+	tep(params) {
+		const author = (getParamsByName(params, 'author')[0]?.value as string)?.trim() ?? '';
+		const status = (getParamsByName(params, 'status')[0]?.value as string)?.trim() ?? '';
+		const type = (getParamsByName(params, 'type')[0]?.value as string)?.trim() ?? '';
+		const createdAt = (getParamsByName(params, 'createdAt')[0]?.value as string)?.trim() ?? '';
+		const updatedAt = (getParamsByName(params, 'updatedAt')[0]?.value as string)?.trim() ?? '';
+
+		return `<Tep author="${author}" status="${status}" type="${type}" createdAt="${createdAt}" updatedAt="${updatedAt}" />`;
 	},
 	title(params, context) {
 		const size = (getParamsByName(params, 'size')[0]?.value as string)?.trim() ?? '1';
@@ -117,7 +131,9 @@ const functions: {
 		const type = getParamsByName(params, 'type')[0]?.value ?? 'unordered';
 		const items = getParamsByName(params, 'items').map((item) => item.value);
 		const listItems = items.map((item) => `<li>${item}</li>`).join('');
-		return type === 'ordered' ? `<ol>${listItems}</ol>` : `<ul>${listItems}</ul>`;
+		return type === 'ordered'
+			? `<ol class="list-decimal">${listItems}</ol>`
+			: `<ul class="list-disc">${listItems}</ul>`;
 	},
 	toc(params, context) {
 		const items: string[] = [];
@@ -273,6 +289,17 @@ const functions: {
 		const codeIndented = params.positional.join(',');
 		const code = deIndentCode(codeIndented);
 		return `<Mermaid code={\`${code}\`}></Mermaid>`;
+	},
+	image(params) {
+		const src = getParamsByName(params, 'src')[0]?.value ?? '';
+		const alt = getParamsByName(params, 'alt')[0]?.value ?? '';
+		const caption = getParamsByName(params, 'caption')[0]?.value ?? alt;
+		return `
+			<div class="flex flex-col items-center">
+				<img src="${src}" alt="${alt}" class="rounded-lg mb-4" />
+				<p class="text-zinc-400 text-xs">${caption}</p>
+			</div>
+		`;
 	}
 };
 
@@ -310,7 +337,9 @@ export const translate = (node: Node, context: ContextType): string => {
 		return node.children
 			.map((child) => translate(child, context))
 			.filter((child) => child.match(/\S/))
-			.map((child) => (child.trimStart().startsWith('<') ? child : `<p>${child}</p>`))
+			.map((child) =>
+				child.trimStart().startsWith('<') ? child : `<p class="text-zinc-300">${child}</p>`
+			)
 			.join('');
 	}
 

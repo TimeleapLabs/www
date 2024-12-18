@@ -12,10 +12,14 @@
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
 	import Feedback from '$lib/components/Feedback.svelte';
 	import TiltCard from '$lib/components/TiltCard.svelte';
+	import Tep from '$lib/components/docs/TEP.svelte';
+	import Readable from '$lib/components/Readable.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/docs/nav';
 	import { page } from '$app/stores';
+	import { persisted } from 'svelte-persisted-store';
 
+	const readable = persisted('readable', false);
 	const nav = getNavForPage($page.url.pathname);
 
 	('$IMPORTS');
@@ -36,9 +40,18 @@
 		</div>
 
 		<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
-			<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
+			<div class="flex gap-4 flex-wrap justify-between">
+				<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
+				<Readable />
+			</div>
 
-			$CONTENT
+			<div
+				class="flex flex-col gap-8 max-w-full {$readable
+					? '!max-w-[860px]'
+					: ''} transition-all duration-300 ease-in-out"
+			>
+				$CONTENT
+			</div>
 
 			<Feedback pageId={$page.url.pathname.slice(1).replaceAll('/', '__')} />
 

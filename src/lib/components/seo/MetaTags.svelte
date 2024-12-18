@@ -12,8 +12,6 @@
 
 	const ogImageUrl = image ?? ogImage(ogImageText, ogImageFontSize);
 	const url = 'https://timeleap.swiss' + $page.url.pathname;
-
-	console.log({ ogImageUrl });
 </script>
 
 <svelte:head>
