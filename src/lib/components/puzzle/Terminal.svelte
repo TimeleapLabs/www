@@ -2,9 +2,10 @@
 	import '@xterm/xterm/css/xterm.css';
 
 	import { Card } from '@timeleap/ui';
+	import { SoundBlaster } from '$lib/utils/sound';
+
 	import type { IDisposable, Terminal } from '@xterm/xterm';
 	import type { FitAddon } from '@xterm/addon-fit';
-	import type { ImageAddon } from '@xterm/addon-image';
 
 	const makeTerminal = async () => {
 		const { Terminal } = await import('@xterm/xterm');
@@ -34,31 +35,83 @@
 		term.loadAddon(fitAddon);
 		term.loadAddon(imageAddon);
 
-		return { term, fitAddon };
+		const sound = await getSound();
+
+		return { term, fitAddon, sound };
+	};
+
+	const getSound = async () => {
+		const sound = new SoundBlaster();
+		// Ambient sounds
+		await sound.load('doom', '/audio/doom.mp3', true, true, 0.6); // [!]
+		await sound.load('suspense', '/audio/suspense.mp3', true, true, 0.6); // [!]
+		await sound.load('sad', '/audio/sad.mp3', true, true, 0.6); // [!]
+		await sound.load('joy', '/audio/joy.mp3', true, true, 0.6); // [!]
+		await sound.load('danger', '/audio/danger.mp3', true, true, 0.6); // [!]
+		await sound.load('ghost', '/audio/ghost.wav', true, true, 0.6); // [!]
+		await sound.load('dracula', '/audio/dracula.mp3', true, true, 0.6); // [!]
+		await sound.load('victory', '/audio/victory.mp3', true, true, 0.6); // [!]
+		await sound.load('handel', '/audio/handel.mp3', true, true, 0.6); // [!]
+		await sound.load('battle', '/audio/battle.mp3', true, true, 0.6); // [!]
+		await sound.load('evil', '/audio/evil.mp3', true, true, 0.6); // [!]
+		await sound.load('epic', '/audio/epic.mp3', true, true, 0.6); // [!]
+		await sound.load('vampire', '/audio/vampire.mp3', true, true, 0.6); // [!]
+		await sound.load('calm', '/audio/calm.mp3', true, true, 0.6); // [!]
+		await sound.load('samurai', '/audio/samurai.mp3', true, true, 0.6); // [!]
+		// Sound effects
+		await sound.load('death', '/audio/death.wav', false, false, 1); // [!]
+		await sound.load('item', '/audio/item.wav', false, false, 1); // [!]
+		await sound.load('sword', '/audio/sword.wav', false, false, 1); // [!]
+		await sound.load('uncork', '/audio/uncork.wav', false, false, 1); // [!]
+		await sound.load('spell', '/audio/spell.mp3', false, false, 1); // [!]
+		await sound.load('teleport', '/audio/teleport.wav', false, false, 1); // [!]
+		await sound.load('whoosh', '/audio/whoosh.wav', false, false, 1); // [!]
+		await sound.load('drink', '/audio/drink.wav', false, false, 1); // [!]
+		await sound.load('eat', '/audio/eat.wav', false, false, 1); // [!]
+		await sound.load('choking', '/audio/choking.mp3', false, false, 1); // [!]
+		await sound.load('acid', '/audio/acid.mp3', false, false, 1); // [!]
+		await sound.load('bell', '/audio/bell.mp3', false, false, 1); // [!]
+		await sound.load('hiss', '/audio/hiss.mp3', false, false, 1); // [!]
+		await sound.load('meow', '/audio/meow.mp3', false, false, 1); // [!]
+		await sound.load('trap', '/audio/trap.wav', false, false, 1); // [!]
+		await sound.load('scream', '/audio/scream.wav', false, false, 1); // [!]
+		await sound.load('thump', '/audio/thump.mp3', false, false, 1); // [!]
+		await sound.load('cold', '/audio/cold.mp3', false, false, 1); // [!]
+		await sound.load('burn', '/audio/burn.mp3', false, false, 1); // [!]
+		await sound.load('steps', '/audio/steps.mp3', false, false, 1); // [!]
+		await sound.load('gate', '/audio/gate.mp3', false, false, 1); // [!]
+		await sound.load('door', '/audio/door.wav', false, false, 1); // [!]
+		await sound.load('blackhole', '/audio/blackhole.wav', false, false, 1); // [!]
+		await sound.load('insert', '/audio/insert.wav', false, false, 1); // [!]
+		await sound.load('banshee', '/audio/banshee.wav', false, false, 1); // [!]
+		return sound;
+	};
+
+	type SoundMeta = {
+		id: string;
+		overlay: boolean;
 	};
 
 	const terminal = (
 		node: HTMLElement,
-		{ term, fitAddon }: { term: Terminal; fitAddon: FitAddon }
+		{ term, fitAddon, sound }: { term: Terminal; fitAddon: FitAddon; sound: SoundBlaster }
 	) => {
 		term.open(node);
 		fitAddon.fit();
 
-		const socket = new WebSocket('ws://localhost:2326');
-
-		const originalCreateImageBitmap = window.createImageBitmap;
-		const retinaCreateImage = (blob: ImageBitmapSource, options?: ImageBitmapOptions) => {
-			const dpi = window.devicePixelRatio || 1;
-			const resizeHeight = options?.resizeHeight && options.resizeHeight / dpi;
-			const resizeWidth = options?.resizeWidth && options.resizeWidth / dpi;
-			return originalCreateImageBitmap(blob, { ...options, resizeWidth, resizeHeight });
-		};
-
-		if (window.createImageBitmap) {
-			window.createImageBitmap = retinaCreateImage;
-		}
+		const socket = new WebSocket('wss://3.tlp.sh');
 
 		socket.onmessage = (event) => {
+			if (event.data.startsWith('\x1b]777;Audio=')) {
+				const base64 = event.data.split(';Audio=')[1].slice(0, -1);
+				const meta: SoundMeta = JSON.parse(atob(base64));
+				if (meta.overlay) {
+					sound.play(meta.id);
+				} else {
+					sound.stopAllAndPlayIfNotPlaying(meta.id);
+				}
+				return;
+			}
 			term.write(event.data);
 		};
 
@@ -183,11 +236,34 @@
 			term.onData(() => {}); // stop listening for input
 		};
 
+		const originalCreateImage = window.createImageBitmap;
+		const retinaCreateImage = (image: ImageBitmapSource, options?: ImageBitmapOptions) => {
+			if (options?.resizeHeight && options?.resizeWidth && options?.resizeWidth > 800) {
+				const ratio = options.resizeWidth / 800;
+				const width = Math.floor(options.resizeWidth / ratio);
+				const height = Math.floor(options.resizeHeight / ratio);
+				return originalCreateImage(image, { ...options, resizeWidth: width, resizeHeight: height });
+			}
+			return originalCreateImage(image, options);
+		};
+
+		if (window.createImageBitmap) {
+			window.createImageBitmap = retinaCreateImage;
+		}
+
+		const startSounds = () => {
+			sound.play('doom');
+			node.removeEventListener('click', startSounds);
+		};
+
+		node.addEventListener('click', startSounds);
+
 		return {
 			destroy() {
 				term.dispose();
 				socket.close();
-				window.createImageBitmap = originalCreateImageBitmap;
+				window.createImageBitmap = originalCreateImage;
+				node.removeEventListener('click', startSounds);
 			}
 		};
 	};
@@ -204,6 +280,8 @@
 			const startX = e.clientX;
 			const startY = e.clientY;
 
+			let translate = '';
+
 			const mousemove = (e: MouseEvent) => {
 				// Calculate the delta movement
 				const dx = e.clientX - startX;
@@ -214,7 +292,8 @@
 				const currentY = posY + dy;
 
 				if (node.parentElement) {
-					node.parentElement.style.transform = `translate(${currentX}px, ${currentY}px)`;
+					translate = `translate(${currentX}px, ${currentY}px)`;
+					node.parentElement.style.transform = `${translate} scale(0.95)`;
 				}
 			};
 
@@ -226,6 +305,10 @@
 				// Cleanup event listeners
 				document.removeEventListener('mousemove', mousemove);
 				document.removeEventListener('mouseup', mouseup);
+
+				if (node.parentElement) {
+					node.parentElement.style.transform = translate;
+				}
 			};
 
 			// Attach event listeners for drag movement and release
@@ -242,24 +325,92 @@
 			}
 		};
 	};
+
+	const glow = (node: HTMLElement) => {
+		const mousemove = (e: MouseEvent) => {
+			const rect = node.getBoundingClientRect();
+			const x = e.clientX - rect.left; // Mouse X position within card
+			const y = e.clientY - rect.top; // Mouse Y position within card
+
+			// Create glow effect by setting a radial gradient
+			const glow = node.querySelector('.glow') as HTMLElement;
+			glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(200, 200, 200, 0.1), transparent 100%)`;
+		};
+
+		node.addEventListener('mousemove', mousemove);
+
+		return {
+			destroy() {
+				node.removeEventListener('mousemove', mousemove);
+			}
+		};
+	};
 </script>
 
 {#await makeTerminal() then res}
-	<Card
-		class="w-full bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800 pt-24 relative z-20"
-	>
-		<div
-			class="absolute top-0 right-0 left-0 z-0 flex justify-between border-b border-zinc-800 py-3 px-4"
-			use:terminalHeader
+	<div class="game-container" use:glow>
+		<Card
+			class="game w-full bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800 pt-24 relative z-20 overflow-hidden"
 		>
-			<h2 class="text-zinc-600 text-sm">Game.</h2>
-			<!-- Terminal buttons -->
-			<div class="flex gap-2 items-center">
-				<div class="rounded-full bg-green-500 w-3 h-3"></div>
-				<div class="rounded-full bg-yellow-500 w-3 h-3"></div>
-				<div class="rounded-full bg-red-500 w-3 h-3"></div>
+			<div class="glow absolute top-0 left-0 w-full h-full pointer-events-none z-10"></div>
+			<div
+				class="absolute top-0 right-0 left-0 z-0 flex justify-between border-b border-zinc-800 py-3 px-4"
+				use:terminalHeader
+			>
+				<div class="text-zinc-600 text-sm title">
+					Game. <spam class="text-xs">v1.0.0</spam>
+				</div>
+				<!-- Terminal buttons -->
+				<div class="flex gap-2 items-center">
+					<div class="rounded-full bg-green-500 w-3 h-3"></div>
+					<div class="rounded-full bg-yellow-500 w-3 h-3"></div>
+					<div class="rounded-full bg-red-500 w-3 h-3"></div>
+				</div>
 			</div>
-		</div>
-		<div class="terminal h-full w-ful mt-8" use:terminal={res}></div>
-	</Card>
+			<div class="terminal h-full w-ful mt-8" use:terminal={res}></div>
+		</Card>
+	</div>
 {/await}
+
+<style>
+	.game-container :global(.game) {
+		box-shadow:
+			3.2px 1.1px 7.7px -9px rgba(0, 0, 0, 0.036),
+			6px 2px 14.9px -9px rgba(0, 0, 0, 0.052),
+			8.5px 2.8px 21.6px -9px rgba(0, 0, 0, 0.063),
+			11.2px 3.7px 28.5px -9px rgba(0, 0, 0, 0.074),
+			15.5px 5.2px 38.9px -9px rgba(0, 0, 0, 0.087),
+			30px 10px 80px -9px rgba(0, 0, 0, 0.12);
+		transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s;
+	}
+
+	.game-container :global(.fullscreen) {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 100;
+		transform: none !important;
+	}
+
+	.glow {
+		transition: opacity 0.4s ease-in-out; /* Smoothens the glow effect */
+		opacity: 0;
+		background-blend-mode: multiply;
+		will-change: background;
+		transform: translateZ(0);
+	}
+
+	.game-container:hover .glow {
+		opacity: 1;
+	}
+
+	.title {
+		transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s;
+	}
+
+	.game-container:hover .title {
+		color: var(--color-zinc-400);
+	}
+</style>
