@@ -84,6 +84,7 @@
 		await sound.load('blackhole', '/audio/blackhole.wav', false, false, 1); // [!]
 		await sound.load('insert', '/audio/insert.wav', false, false, 1); // [!]
 		await sound.load('banshee', '/audio/banshee.wav', false, false, 1); // [!]
+		await sound.load('delicious', '/audio/delicious.mp3', false, false, 1); // [!]
 		return sound;
 	};
 
