@@ -1,6 +1,6 @@
 <script>
 	import Icon from '@iconify/svelte';
-	import { Section, Grid, Image, Button, Card } from '@timeleap/ui';
+	import { Section, Grid, Button, Card } from '@timeleap/ui';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';

@@ -13,7 +13,7 @@ const generateBreadcrumbs = (header: string, templateFile: string, context: Cont
 		currentPath = path.dirname(currentPath);
 	}
 
-	while (currentPath.includes('src/routes/docs')) {
+	while (currentPath.includes('src/routes/docs') || currentPath.includes('src/routes/blog')) {
 		const file = path.join(currentPath, 'index.tiramisu');
 		const context: ContextType = { currentFile: file, templateFile };
 		compileFile({ filePath: file, templateFile }, context);
@@ -71,12 +71,22 @@ export const compileFile = (
 		})
 		.join('\n');
 
+	const ogImageText = context.page?.ogImageText?.map((line) => line.trim()).join('\n');
+
+	const OG = ogImageText
+		? `ogImageText={\`${ogImageText}\`}` +
+			(context.page?.ogImageFontSize ? ` ogImageFontSize={${context.page.ogImageFontSize}}` : '')
+		: '';
+
 	const compiled = template
 		.replace('$TITLE', (context.page?.title ?? context.headers?.[0] ?? '').trim())
 		.replace('$DESCRIPTION', context.page?.description?.trim() ?? '')
 		.replace("('$IMPORTS');", imports ?? '')
 		.replace('$BREADCRUMBS', breadcrumbs)
-		.replace('$CONTENT', code);
+		.replace('$CONTENT', code)
+		.replace('$OG', OG)
+		.replace('$AUTHOR', context.page?.author ?? '')
+		.replace('$CREATED_AT', context.page?.createdAt ?? '');
 
 	const filename = path.basename(params.filePath, '.tiramisu').replace('.tiramisu', '');
 	const dirname = filename.endsWith('index')

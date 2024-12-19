@@ -1,0 +1,18 @@
+title { Timeleap Enhancement Proposals }
+
+Welcome to the Timeleap Enhancement Proposals (TEP) documentation. You can find
+a list of all proposals and their states here in this section. If you'd like to
+make a proposal, please follow the guidelines in TEP-0 and submit a pull request
+to the TEP repository.
+
+toc {
+  0,
+  1
+}
+
+meta {
+  description = "Timeleap Enhancement Proposals (TEPs) are a mechanism for proposing major new
+                 features, processes, or other significant changes to the Timeleap ecosystem.",
+  ogImageText = [Timeleap, Enhancement Proposals],
+  ogImageFontSize = 32
+}

@@ -102,6 +102,9 @@
 			<h3 class="font-serif text-xl pb-8">Info</h3>
 			<div class="flex gap-4 flex-col text-zinc-400">
 				<a href="/docs" class="hover:text-green-400 transition-colors">
+					Blog <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+				</a>
+				<a href="/docs" class="hover:text-green-400 transition-colors">
 					Documentation <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
 				</a>
 				<a href="/contact" class="hover:text-green-400 transition-colors">

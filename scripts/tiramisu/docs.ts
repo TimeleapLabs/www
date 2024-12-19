@@ -1,4 +1,4 @@
-import { compileFile } from './compile';
+import { compileFile } from './lib/compile';
 
 compileFile({
 	filePath: './src/routes/docs/index.tiramisu',

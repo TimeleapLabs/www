@@ -54,6 +54,18 @@ export const entries = [
   {
     "href": "/docs/products/tiramisu/install",
     "title": "Install"
+  },
+  {
+    "href": "/docs/tep",
+    "title": "Timeleap Enhancement Proposals"
+  },
+  {
+    "href": "/docs/tep/0",
+    "title": "Timeleap Enhancement Proposals"
+  },
+  {
+    "href": "/docs/tep/1",
+    "title": "Unchained Plugins"
   }
 ];
 
@@ -118,6 +130,20 @@ export const fullNav = {
               "title": "Install"
             }
           ]
+        }
+      ]
+    },
+    {
+      "href": "/docs/tep",
+      "title": "Timeleap Enhancement Proposals",
+      "nav": [
+        {
+          "href": "/docs/tep/0",
+          "title": "Timeleap Enhancement Proposals"
+        },
+        {
+          "href": "/docs/tep/1",
+          "title": "Unchained Plugins"
         }
       ]
     }
