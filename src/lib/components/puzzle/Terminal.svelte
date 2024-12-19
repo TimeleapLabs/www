@@ -58,6 +58,7 @@
 		await sound.load('vampire', '/audio/vampire.mp3', true, true, 0.6); // [!]
 		await sound.load('calm', '/audio/calm.mp3', true, true, 0.6); // [!]
 		await sound.load('samurai', '/audio/samurai.mp3', true, true, 0.6); // [!]
+		await sound.load('mystery', '/audio/mystery.mp3', true, true, 0.6); // [!]
 		// Sound effects
 		await sound.load('death', '/audio/death.wav', false, false, 1); // [!]
 		await sound.load('item', '/audio/item.wav', false, false, 1); // [!]
@@ -85,6 +86,10 @@
 		await sound.load('insert', '/audio/insert.wav', false, false, 1); // [!]
 		await sound.load('banshee', '/audio/banshee.wav', false, false, 1); // [!]
 		await sound.load('delicious', '/audio/delicious.mp3', false, false, 1); // [!]
+		await sound.load('honk', '/audio/honk.mp3', false, false, 1); // [!]
+		await sound.load('laugh', '/audio/laugh.mp3', false, false, 1); // [!]
+		await sound.load('angrycat', '/audio/angrycat.wav', false, false, 1); // [!]
+		await sound.load('redcat', '/audio/redcat.wav', false, false, 1); // [!]
 		return sound;
 	};
 
