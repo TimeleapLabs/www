@@ -6,6 +6,12 @@
 
 	import type { IDisposable, Terminal } from '@xterm/xterm';
 	import type { FitAddon } from '@xterm/addon-fit';
+	import Icon from '@iconify/svelte';
+
+	let restartCount = 0;
+	const restartGame = () => {
+		restartCount++;
+	};
 
 	const makeTerminal = async () => {
 		const { Terminal } = await import('@xterm/xterm');
@@ -59,6 +65,11 @@
 		await sound.load('calm', '/audio/calm.mp3', true, true, 0.6); // [!]
 		await sound.load('samurai', '/audio/samurai.mp3', true, true, 0.6); // [!]
 		await sound.load('mystery', '/audio/mystery.mp3', true, true, 0.6); // [!]
+		await sound.load('cursed', '/audio/cursed.mp3', true, true, 0.6); // [!]
+		await sound.load('madness', '/audio/madness.mp3', true, true, 0.6); // [!]
+		await sound.load('heartbeat', '/audio/heartbeat.mp3', true, true, 0.6); // [!]
+		await sound.load('chase', '/audio/chase.mp3', true, true, 0.6); // [!]
+		await sound.load('jinxed', '/audio/jinxed.mp3', true, true, 0.6); // [!]
 		// Sound effects
 		await sound.load('death', '/audio/death.wav', false, false, 1); // [!]
 		await sound.load('item', '/audio/item.wav', false, false, 1); // [!]
@@ -90,6 +101,9 @@
 		await sound.load('laugh', '/audio/laugh.mp3', false, false, 1); // [!]
 		await sound.load('angrycat', '/audio/angrycat.wav', false, false, 1); // [!]
 		await sound.load('redcat', '/audio/redcat.wav', false, false, 1); // [!]
+		await sound.load('shovel', '/audio/shovel.wav', false, false, 1); // [!]
+		await sound.load('distorted', '/audio/distorted.wav', false, false, 1); // [!]
+		await sound.load('dice', '/audio/dice.mp3', false, false, 1); // [!]
 		return sound;
 	};
 
@@ -274,6 +288,31 @@
 		};
 	};
 
+	let isMaximized = false;
+	let translate = '';
+
+	const toggleMaximize = () => {
+		isMaximized = !isMaximized;
+		const game = document.querySelector('.game') as HTMLElement;
+		game.classList.toggle('fullscreen');
+
+		if (isMaximized) {
+			game.style.transform = 'none';
+		} else {
+			game.style.transform = translate;
+		}
+	};
+
+	const minimize = () => {
+		const game = document.querySelector('.game') as HTMLElement;
+		game.style.transform = 'translate(0, 100vh) scale(0)';
+	};
+
+	const closeGame = () => {
+		const game = document.querySelector('.game') as HTMLElement;
+		game.style.transform = 'scale(0)';
+	};
+
 	// Allow dragging the terminal
 	const terminalHeader = (node: HTMLElement) => {
 		let posX = 0; // Track final X position
@@ -282,11 +321,13 @@
 		const onMouseDown = (e: MouseEvent) => {
 			e.preventDefault();
 
+			if (isMaximized) {
+				return;
+			}
+
 			// Capture the mouse position at drag start
 			const startX = e.clientX;
 			const startY = e.clientY;
-
-			let translate = '';
 
 			const mousemove = (e: MouseEvent) => {
 				// Calculate the delta movement
@@ -297,10 +338,10 @@
 				const currentX = posX + dx;
 				const currentY = posY + dy;
 
-				if (node.parentElement) {
-					translate = `translate(${currentX}px, ${currentY}px)`;
-					node.parentElement.style.transform = `${translate} scale(0.95)`;
-				}
+				const game = document.querySelector('.game') as HTMLElement;
+
+				translate = `translate(${currentX}px, ${currentY}px)`;
+				game.style.transform = `${translate} scale(0.95)`;
 			};
 
 			const mouseup = (e: MouseEvent) => {
@@ -312,9 +353,8 @@
 				document.removeEventListener('mousemove', mousemove);
 				document.removeEventListener('mouseup', mouseup);
 
-				if (node.parentElement) {
-					node.parentElement.style.transform = translate;
-				}
+				const game = document.querySelector('.game') as HTMLElement;
+				game.style.transform = translate;
 			};
 
 			// Attach event listeners for drag movement and release
@@ -353,30 +393,49 @@
 	};
 </script>
 
-{#await makeTerminal() then res}
-	<div class="game-container" use:glow>
-		<Card
-			class="game w-full bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800 pt-24 relative z-20 overflow-hidden"
-		>
-			<div class="glow absolute top-0 left-0 w-full h-full pointer-events-none z-10"></div>
-			<div
-				class="absolute top-0 right-0 left-0 z-0 flex justify-between border-b border-zinc-800 py-3 px-4"
-				use:terminalHeader
+{#key restartCount}
+	{#await makeTerminal()}
+		<div class="text-white flex items-center">
+			<span class="animate-ping inline-flex h-2 w-2 rounded-full bg-sky-400 opacity-75 mr-4"></span>
+			Loading...
+		</div>
+	{:then res}
+		<div class="game-container" use:glow>
+			<Card
+				class="game w-full bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800 pt-24 relative z-20 overflow-hidden"
 			>
-				<div class="text-zinc-600 text-sm title">
-					Game. <spam class="text-xs">v1.0.0</spam>
+				<div class="glow absolute top-0 left-0 w-full h-full pointer-events-none z-10"></div>
+				<div
+					class="absolute top-0 right-0 left-0 z-0 flex justify-between border-b border-zinc-800 py-3 px-4"
+					use:terminalHeader
+				>
+					<div class="text-zinc-600 text-sm title">
+						The Shadowblade Chronicles <spam class="text-xs">v1.0.0</spam>
+					</div>
+					<!-- Terminal buttons -->
+					<div class="flex gap-2 items-center">
+						<button
+							class="p-1 mr-4 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs
+         focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
+							on:click={restartGame}
+						>
+							Restart <Icon icon="carbon:restart" class="w-4 h-4 ml-2" />
+						</button>
+						<button
+							class="rounded-full bg-green-500 w-3 h-3 cursor-pointer"
+							on:click={toggleMaximize}
+						></button>
+						<button class="rounded-full bg-yellow-500 w-3 h-3 cursor-pointer" on:click={minimize}
+						></button>
+						<button class="rounded-full bg-red-500 w-3 h-3 cursor-pointer" on:click={closeGame}
+						></button>
+					</div>
 				</div>
-				<!-- Terminal buttons -->
-				<div class="flex gap-2 items-center">
-					<div class="rounded-full bg-green-500 w-3 h-3"></div>
-					<div class="rounded-full bg-yellow-500 w-3 h-3"></div>
-					<div class="rounded-full bg-red-500 w-3 h-3"></div>
-				</div>
-			</div>
-			<div class="terminal h-full w-ful mt-8" use:terminal={res}></div>
-		</Card>
-	</div>
-{/await}
+				<div class="terminal h-full w-ful mt-8" use:terminal={res}></div>
+			</Card>
+		</div>
+	{/await}
+{/key}
 
 <style>
 	.game-container :global(.game) {
@@ -418,5 +477,14 @@
 
 	.game-container:hover .title {
 		color: var(--color-zinc-400);
+	}
+
+	.game-container :global(.fullscreen) {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 100;
 	}
 </style>
