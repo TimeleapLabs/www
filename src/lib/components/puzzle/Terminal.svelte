@@ -136,9 +136,10 @@
 		};
 
 		let lineBuffer: string[] = [];
-		let history = [];
+		let history: string[] = [];
 		let shellListener: IDisposable | null = null;
 		let offset = 0;
+		let historyIndex = 0;
 
 		async function simpleShell(data: string) {
 			// string splitting is needed to also handle multichar input (eg. from copy)
@@ -153,7 +154,10 @@
 						// for simplicity - just join characters and exec...
 						const command = lineBuffer.join('');
 						lineBuffer.length = 0;
-						history.push(command);
+						historyIndex = 0;
+						if (history.length === 0 || history[history.length - 1] !== command) {
+							history.push(command);
+						}
 						try {
 							// tricky part: for interactive sub commands you have to detach the shell listener
 							// temporarily, and re-attach after the command was finished
@@ -199,8 +203,30 @@
 					// <arrow> keys pressed
 					if (data.slice(i, i + 3) === '\x1b[A') {
 						// UP pressed, select backwards from history + erase terminal line + write history entry
+						if (historyIndex === history.length) {
+							return;
+						}
+						term.write(
+							'\b'.repeat(lineBuffer.length) +
+								' '.repeat(lineBuffer.length) +
+								'\b'.repeat(lineBuffer.length)
+						);
+						lineBuffer = history[history.length - 1 - historyIndex].split('');
+						term.write(lineBuffer.join(''));
+						historyIndex++;
 					} else if (data.slice(i, i + 3) === '\x1b[B') {
 						// DOWN pressed, select forward from history + erase terminal line + write history entry
+						if (historyIndex === 1) {
+							return;
+						}
+						term.write(
+							'\b'.repeat(lineBuffer.length) +
+								' '.repeat(lineBuffer.length) +
+								'\b'.repeat(lineBuffer.length)
+						);
+						historyIndex--;
+						lineBuffer = history[history.length - historyIndex].split('');
+						term.write(lineBuffer.join(''));
 					} else if (data.slice(i, i + 3) === '\x1b[C') {
 						if (offset < 0) {
 							term.write('\x1b[1C');
