@@ -8,6 +8,6 @@ toc {
 
 meta {
   description = Stay up to date with the latest news and updates from Timeleap.,
-  ogImageText = [Timeleap Blog],
-  ogImageFontSize = 48
+  ogImageText = [Timeleap, Blog],
+  ogImageFontSize = 32
 }
