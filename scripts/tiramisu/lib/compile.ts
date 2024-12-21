@@ -80,7 +80,7 @@ export const compileFile = (
 
 	const compiled = template
 		.replace('$TITLE', (context.page?.title ?? context.headers?.[0] ?? '').trim())
-		.replace('$DESCRIPTION', context.page?.description?.trim() ?? '')
+		.replace('$DESCRIPTION', context.page?.description?.trim().replaceAll(/ +/, ' ') ?? '')
 		.replace("('$IMPORTS');", imports ?? '')
 		.replace('$BREADCRUMBS', breadcrumbs)
 		.replace('$CONTENT', code)
