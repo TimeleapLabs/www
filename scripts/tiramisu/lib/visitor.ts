@@ -70,7 +70,7 @@ export const filePathToHref = (filePath: string) =>
 		.replace('index', '')
 		.replace(/\/$/, '');
 
-const deIndentCode = (code: string) => {
+export const deIndent = (code: string) => {
 	const rawLines = code.split('\n');
 	const lines = rawLines[0].match(/^\s*$/) ? rawLines.slice(1, -1) : rawLines.slice(0, -1);
 
@@ -282,12 +282,12 @@ const functions: {
 	code(params) {
 		const language = getParamsByName(params, 'language')[0]?.value ?? 'plaintext';
 		const codeIndented = getParamsByName(params, 'content')[0]?.value.toString() ?? '';
-		const code = deIndentCode(codeIndented);
+		const code = deIndent(codeIndented);
 		return `<Code lineNumbers lang="${language}" code={\`${code}\`}></Code>`;
 	},
 	mermaid(params) {
 		const codeIndented = params.positional.join(',');
-		const code = deIndentCode(codeIndented);
+		const code = deIndent(codeIndented);
 		return `<Mermaid code={\`${code}\`}></Mermaid>`;
 	},
 	image(params) {
