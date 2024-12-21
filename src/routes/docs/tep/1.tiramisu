@@ -195,13 +195,11 @@ title { References, size = 2 }
 N/A
 
 meta {
-  description = "
-    This document describes the basic idea, information and specs of the Unchained
-    plugin system. Plugins are third-party modules that extend the functionality of
-    Unchained. They can either run in standalone mode to directly interact with
-    Brokers, or they can communicate with the official Unchained Worker client to
-    perform actions on behalf of the Worker.",
-
+  description = "This document describes the basic idea, information and specs of the Unchained
+                plugin system. Plugins are third-party modules that extend the functionality of
+                Unchained. They can either run in standalone mode to directly interact with
+                Brokers, or they can communicate with the official Unchained Worker client to
+                perform actions on behalf of the Worker.",
   ogImageText = [TEP 1, Unchained Plugins],
   ogImageFontSize = 24
 }

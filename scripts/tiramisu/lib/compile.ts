@@ -1,6 +1,6 @@
 import { compile } from '@timeleap/tiramisu/dist';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { translate, filePathToHref, deIndent } from './visitor';
+import { translate, filePathToHref } from './visitor';
 import type { ContextType } from './visitor';
 
 import path from 'path';
@@ -39,6 +39,9 @@ type CompileParams = {
 	templateFile: string;
 	navFilePath?: string;
 };
+
+const description = (text: string) =>
+	text.replace(/\n/g, ' ').replace(/"/g, "'").replace(/ +/g, ' ').trim();
 
 export const compileFile = (
 	params: CompileParams,
@@ -80,7 +83,7 @@ export const compileFile = (
 
 	const compiled = template
 		.replace('$TITLE', (context.page?.title ?? context.headers?.[0] ?? '').trim())
-		.replace('$DESCRIPTION', deIndent(context.page?.description ?? ''))
+		.replace('$DESCRIPTION', description(context.page?.description ?? ''))
 		.replace("('$IMPORTS');", imports ?? '')
 		.replace('$BREADCRUMBS', breadcrumbs)
 		.replace('$CONTENT', code)

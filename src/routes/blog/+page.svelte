@@ -24,7 +24,8 @@
 	
 </script>
 
-<MetaTags title={'Timeleap — Blog'} description="Stay up to date with the latest news and updates from Timeleap." ogImageText={`Timeleap Blog`} ogImageFontSize={48} />
+<MetaTags title={'Timeleap — Blog'} description="Stay up to date with the latest news and updates from Timeleap." ogImageText={`Timeleap
+Blog`} ogImageFontSize={32} />
 <Navbar active="blog"></Navbar>
 
 <Section
