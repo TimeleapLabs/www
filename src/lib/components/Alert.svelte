@@ -31,7 +31,7 @@
 </script>
 
 <Card
-	class="gap-4 py-4! bg-zinc-950 my-4 bg-linear-to-tr from-zinc-950 to-zinc-900 border border-zinc-800 relative overflow-hidden rounded-2xl!"
+	class="gap-4 py-4! bg-zinc-950 bg-linear-to-tr from-zinc-950 to-zinc-900 border border-zinc-800 relative overflow-hidden rounded-2xl!"
 >
 	<div
 		class="absolute w-2 h-full bg-stripe {stripeColors[

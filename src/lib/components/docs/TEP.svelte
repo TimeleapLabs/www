@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
 	import Alert from '../Alert.svelte';
 
 	const tepToAlertType = {
@@ -33,11 +34,25 @@
 	export let type: string;
 	export let createdAt: string;
 	export let updatedAt: string;
+	export let discussion: string;
 </script>
 
 <div>
 	This TEP was authored by {author} on {createdAt} and last updated on {updatedAt}.
 </div>
+
+{#if discussion}
+	<div class="flex">
+		<a
+			class="p-1 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-sm text-white
+         focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800"
+			href={discussion}
+			target="_blank"
+		>
+			Discuss this TEP on GitHub <Icon icon="carbon:chat-launch" class="ml-2" />
+		</a>
+	</div>
+{/if}
 
 <Alert type={tepToAlertType[status]} title={tepToAlertTitle[status]}>
 	{tepToAlertText[status]}

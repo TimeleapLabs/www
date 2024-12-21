@@ -5,7 +5,8 @@ tep {
   status = review,
   type = process,
   createdAt = 2024-12-18,
-  updatedAt = 2024-12-18
+  updatedAt = 2024-12-18,
+  discussion = https://github.com/TimeleapLabs/www/discussions/83
 }
 
 title { Abstract, size = 2 }

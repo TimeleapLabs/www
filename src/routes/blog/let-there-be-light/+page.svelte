@@ -114,7 +114,7 @@ using our dynamic OG image generator.
 
 </p>
 			<div class="flex flex-col items-center">
-				<img src="/social?text=Dynamically%20Generated%0ASocial%20Media%20Preview%20Images&fontSize=20" alt="Dynamically Generated Social Media Preview Images" class="rounded-lg mb-4" />
+				<img src="/og.png?text=Dynamically%20Generated%0ASocial%20Media%20Preview%20Images&fontSize=20" alt="Dynamically Generated Social Media Preview Images" class="rounded-lg mb-4" />
 				<p class="text-zinc-400 text-xs">This image was generated using our OG image generator.
 </p>
 			</div>

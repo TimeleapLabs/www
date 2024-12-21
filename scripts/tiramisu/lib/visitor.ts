@@ -109,8 +109,17 @@ const functions: {
 		const type = (getParamsByName(params, 'type')[0]?.value as string)?.trim() ?? '';
 		const createdAt = (getParamsByName(params, 'createdAt')[0]?.value as string)?.trim() ?? '';
 		const updatedAt = (getParamsByName(params, 'updatedAt')[0]?.value as string)?.trim() ?? '';
+		const discussion = (getParamsByName(params, 'discussion')[0]?.value as string)?.trim() ?? '';
 
-		return `<Tep author="${author}" status="${status}" type="${type}" createdAt="${createdAt}" updatedAt="${updatedAt}" />`;
+		return `
+			<Tep
+				author="${author}"
+				status="${status}"
+				type="${type}"
+				createdAt="${createdAt}"
+				updatedAt="${updatedAt}"
+				discussion="${discussion}"
+			/>`;
 	},
 	title(params, context) {
 		const size = (getParamsByName(params, 'size')[0]?.value as string)?.trim() ?? '1';
