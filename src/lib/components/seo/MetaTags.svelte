@@ -28,9 +28,9 @@
 	{@html `<meta property="og:image" content="${ogImageUrl}" />`}
 
 	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content={url} />
-	<meta property="twitter:title" content={title} />
-	<meta property="twitter:description" content={description} />
-	{@html `<meta property="twitter:image" content="${ogImageUrl}" />`}
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content={url} />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	{@html `<meta name="twitter:image" content="${ogImageUrl}" />`}
 </svelte:head>
