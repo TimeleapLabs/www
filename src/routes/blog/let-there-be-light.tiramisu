@@ -67,7 +67,7 @@ social media. The preview image for this page, and the below image are generated
 using our dynamic OG image generator.
 
 image {
-  src = "/social?text=Dynamically%20Generated%0ASocial%20Media%20Preview%20Images&fontSize=20",
+  src = "/og.png?text=Dynamically%20Generated%0ASocial%20Media%20Preview%20Images&fontSize=20",
   alt = Dynamically Generated Social Media Preview Images,
   caption = This image was generated using our OG image generator.
 }
