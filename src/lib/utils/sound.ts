@@ -23,43 +23,46 @@ export class SoundBlaster {
 					reject();
 				}
 			});
-			this.sounds[id].on('play', () => {
-				this.setPlaying(id);
-			});
-			this.sounds[id].on('end', () => {
-				this.removePlaying(id);
-			});
 		});
 	}
 
 	public play(id: string): void {
 		this.sounds[id].play();
+		this.setPlaying(id);
 	}
 
 	public playIfNotPlaying(id: string): void {
 		if (!this.sounds[id].playing()) {
 			this.sounds[id].play();
+			this.setPlaying(id);
 		}
 	}
 
 	public stop(id: string): void {
 		this.sounds[id].stop();
+		this.removePlaying(id);
 	}
 
 	public fadeOut(id: string, duration: number): void {
 		this.sounds[id].fade(1, 0, duration);
+		this.sounds[id].once('fade', () => {
+			this.sounds[id].stop();
+			this.removePlaying(id);
+		});
 	}
 
 	public fadeIn(id: string, duration: number): void {
 		this.sounds[id].volume(0);
 		this.sounds[id].play();
 		this.sounds[id].fade(0, 1, duration);
+		this.setPlaying(id);
 	}
 
 	public stopAll(): void {
 		this.playing.forEach((sound) => {
 			this.sounds[sound].stop();
 		});
+		this.playing = [];
 	}
 
 	public stopAllAndPlay(id: string): void {

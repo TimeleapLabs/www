@@ -102,6 +102,7 @@
 		await sound.load('distorted', '/audio/distorted.wav', false, false, 1); // [!]
 		await sound.load('dice', '/audio/dice.mp3', false, false, 1); // [!]
 		await sound.load('orb', '/audio/orb.wav', false, false, 1); // [!]
+		await sound.load('rain', '/audio/rain.mp3', false, false, 1); // [!]
 		return sound;
 	};
 
@@ -118,7 +119,12 @@
 
 	const restartGame = () => {
 		restartCount++;
-		muted = true;
+		if (!muted) {
+			stopSounds();
+			setTimeout(() => {
+				startSounds();
+			}, 1000);
+		}
 	};
 
 	const toggleSound = () => {
@@ -184,7 +190,13 @@
 							// temporarily, and re-attach after the command was finished
 							shellListener?.dispose();
 							socket.send(command + '\n');
-							rain = rain ? Math.random() < 0.9 : Math.random() < 0.1;
+							rain = rain ? Math.random() < 0.98 : Math.random() < 0.01;
+
+							if (rain && !muted) {
+								sound.playIfNotPlaying('rain');
+							} else if (!rain) {
+								sound.stop('rain');
+							}
 						} catch (e) {
 							// we have no real process separation with STDERR
 							// simply catch any error and output in red
