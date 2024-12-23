@@ -10,11 +10,6 @@
 	import type { IDisposable, Terminal } from '@xterm/xterm';
 	import type { FitAddon } from '@xterm/addon-fit';
 
-	let restartCount = 0;
-	const restartGame = () => {
-		restartCount++;
-	};
-
 	const makeTerminal = async () => {
 		const { Terminal } = await import('@xterm/xterm');
 		const { FitAddon } = await import('@xterm/addon-fit');
@@ -119,6 +114,12 @@
 	let stopSounds: () => void;
 	let muted: boolean = true;
 	let rain: boolean = false;
+	let restartCount = 0;
+
+	const restartGame = () => {
+		restartCount++;
+		muted = true;
+	};
 
 	const toggleSound = () => {
 		if (muted) {
@@ -183,7 +184,7 @@
 							// temporarily, and re-attach after the command was finished
 							shellListener?.dispose();
 							socket.send(command + '\n');
-							rain = Math.random() < 0.1;
+							rain = rain ? Math.random() < 0.9 : Math.random() < 0.1;
 						} catch (e) {
 							// we have no real process separation with STDERR
 							// simply catch any error and output in red
