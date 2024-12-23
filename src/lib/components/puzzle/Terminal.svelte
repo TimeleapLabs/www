@@ -1,12 +1,13 @@
 <script lang="ts">
 	import '@xterm/xterm/css/xterm.css';
 
+	import Icon from '@iconify/svelte';
+	import Rain from './Rain.svelte';
 	import { Card } from '@timeleap/ui';
 	import { SoundBlaster } from '$lib/utils/sound';
 
 	import type { IDisposable, Terminal } from '@xterm/xterm';
 	import type { FitAddon } from '@xterm/addon-fit';
-	import Icon from '@iconify/svelte';
 
 	let restartCount = 0;
 	const restartGame = () => {
@@ -104,6 +105,7 @@
 		await sound.load('shovel', '/audio/shovel.wav', false, false, 1); // [!]
 		await sound.load('distorted', '/audio/distorted.wav', false, false, 1); // [!]
 		await sound.load('dice', '/audio/dice.mp3', false, false, 1); // [!]
+		await sound.load('orb', '/audio/orb.wav', false, false, 1); // [!]
 		return sound;
 	};
 
