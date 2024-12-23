@@ -1288,6 +1288,11 @@
   resolved "https://registry.yarnpkg.com/@xterm/addon-image/-/addon-image-0.8.0.tgz#459e13e91b42430043202782fa62319931b29eba"
   integrity sha512-b/dqpFn3jUad2pUP5UpF4scPIh0WdxRQL/1qyiahGfUI85XZTCXo0py9G6AcOR2QYUw8eJ8EowGspT7BQcgw6A==
 
+"@xterm/addon-webgl@0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@xterm/addon-webgl/-/addon-webgl-0.18.0.tgz#9e927cee10af971595fb2a72fd4c3bc2819f0096"
+  integrity sha512-xCnfMBTI+/HKPdRnSOHaJDRqEpq2Ugy8LEj9GiY4J3zJObo3joylIFaMvzBwbYRg8zLtkO0KQaStCeSfoaI2/w==
+
 "@xterm/xterm@5.5.0":
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@xterm/xterm/-/xterm-5.5.0.tgz#275fb8f6e14afa6e8a0c05d4ebc94523ff775396"

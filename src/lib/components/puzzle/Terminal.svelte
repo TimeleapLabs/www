@@ -5,6 +5,7 @@
 	import Rain from './Rain.svelte';
 	import { Card } from '@timeleap/ui';
 	import { SoundBlaster } from '$lib/utils/sound';
+	import { fade } from 'svelte/transition';
 
 	import type { IDisposable, Terminal } from '@xterm/xterm';
 	import type { FitAddon } from '@xterm/addon-fit';
@@ -114,6 +115,19 @@
 		overlay: boolean;
 	};
 
+	let startSounds: () => void;
+	let stopSounds: () => void;
+	let muted: boolean = true;
+	let rain: boolean = false;
+
+	const toggleSound = () => {
+		if (muted) {
+			startSounds();
+		} else {
+			stopSounds();
+		}
+	};
+
 	const terminal = (
 		node: HTMLElement,
 		{ term, fitAddon, sound }: { term: Terminal; fitAddon: FitAddon; sound: SoundBlaster }
@@ -125,6 +139,10 @@
 
 		socket.onmessage = (event) => {
 			if (event.data.startsWith('\x1b]777;Audio=')) {
+				if (muted) {
+					return;
+				}
+
 				const base64 = event.data.split(';Audio=')[1].slice(0, -1);
 				const meta: SoundMeta = JSON.parse(atob(base64));
 				if (meta.overlay) {
@@ -165,6 +183,7 @@
 							// temporarily, and re-attach after the command was finished
 							shellListener?.dispose();
 							socket.send(command + '\n');
+							rain = Math.random() < 0.1;
 						} catch (e) {
 							// we have no real process separation with STDERR
 							// simply catch any error and output in red
@@ -299,12 +318,15 @@
 			window.createImageBitmap = retinaCreateImage;
 		}
 
-		const startSounds = () => {
+		startSounds = () => {
 			sound.play('doom');
-			node.removeEventListener('click', startSounds);
+			muted = false;
 		};
 
-		node.addEventListener('click', startSounds);
+		stopSounds = () => {
+			sound.stopAll();
+			muted = true;
+		};
 
 		return {
 			destroy() {
@@ -319,9 +341,17 @@
 	let isMaximized = false;
 	let translate = '';
 
-	const toggleMaximize = () => {
+	let initialHeight: number;
+	let initialWidth: number;
+
+	const toggleMaximize = (fitAddon: FitAddon) => () => {
 		isMaximized = !isMaximized;
 		const game = document.querySelector('.game') as HTMLElement;
+		const terminal = document.querySelector('.terminal.xterm') as HTMLElement;
+
+		initialHeight ??= terminal.getBoundingClientRect().height;
+		initialWidth ??= terminal.getBoundingClientRect().width;
+
 		game.classList.toggle('fullscreen');
 
 		if (isMaximized) {
@@ -329,6 +359,13 @@
 		} else {
 			game.style.transform = translate;
 		}
+
+		if (!isMaximized) {
+			terminal.style.height = `${initialHeight}px`;
+			terminal.style.width = `${initialWidth}px`;
+		}
+
+		fitAddon.fit();
 	};
 
 	const minimize = () => {
@@ -432,9 +469,17 @@
 			<Card
 				class="game w-full bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800 pt-24 relative z-20 overflow-hidden"
 			>
-				<div class="glow absolute top-0 left-0 w-full h-full pointer-events-none z-10"></div>
+				{#if rain}
+					<div
+						class="rain absolute top-0 left-0 w-full h-full pointer-events-none opacity-50 z-10"
+						transition:fade
+					>
+						<Rain />
+					</div>
+				{/if}
+				<div class="glow absolute top-0 left-0 w-full h-full pointer-events-none z-0"></div>
 				<div
-					class="absolute top-0 right-0 left-0 z-0 flex justify-between border-b border-zinc-800 py-3 px-4"
+					class="absolute top-0 right-0 left-0 z-20 flex justify-between border-b border-zinc-800 py-3 px-4"
 					use:terminalHeader
 				>
 					<div class="text-zinc-600 text-sm title">
@@ -443,7 +488,17 @@
 					<!-- Terminal buttons -->
 					<div class="flex gap-2 items-center">
 						<button
-							class="p-1 mr-4 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs
+							class="p-1 mr-1 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs
+         focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
+							on:click={toggleSound}
+						>
+							Sound <Icon
+								icon={muted ? 'carbon:volume-up' : 'carbon:volume-mute'}
+								class="w-4 h-4 ml-2"
+							/>
+						</button>
+						<button
+							class="p-1 mr-2 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs
          focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
 							on:click={restartGame}
 						>
@@ -451,7 +506,7 @@
 						</button>
 						<button
 							class="rounded-full bg-green-500 w-3 h-3 cursor-pointer"
-							on:click={toggleMaximize}
+							on:click={toggleMaximize(res.fitAddon)}
 						></button>
 						<button class="rounded-full bg-yellow-500 w-3 h-3 cursor-pointer" on:click={minimize}
 						></button>

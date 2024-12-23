@@ -3,20 +3,33 @@
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;
 
-		const { width, height } = canvas.getBoundingClientRect();
+		const drops: { x: number; y: number; speed: number; length: number }[] = [];
+		let width = 0;
+		let height = 0;
 
-		// retina display
-		canvas.width = width * 2;
-		canvas.height = height * 2;
-		canvas.style.width = `${width}px`;
-		canvas.style.height = `${height}px`;
+		const resizeCanvas = () => {
+			const parent = canvas.parentElement!;
+			const { width: parentWidth, height: parentHeight } = parent.getBoundingClientRect();
 
-		const drops = Array.from({ length: 100 }, () => ({
-			x: Math.random() * width * 2,
-			y: Math.random() * height * 2,
-			speed: Math.random() * 2 + 1,
-			length: Math.random() * 20 + 10
-		}));
+			width = parentWidth;
+			height = parentHeight;
+
+			canvas.width = width * 2; // Retina display
+			canvas.height = height * 2;
+			canvas.style.width = `${width}px`;
+			canvas.style.height = `${height}px`;
+
+			// Recreate drops
+			drops.length = 0; // Clear existing drops
+			for (let i = 0; i < 200; i++) {
+				drops.push({
+					x: Math.random() * width * 2,
+					y: Math.random() * height * 2,
+					speed: Math.random() * 5 + 5,
+					length: Math.random() * 20 + 10
+				});
+			}
+		};
 
 		const draw = () => {
 			ctx.clearRect(0, 0, width * 2, height * 2);
@@ -37,8 +50,27 @@
 			requestAnimationFrame(draw);
 		};
 
+		resizeCanvas();
+
+		const resizeObserver = new ResizeObserver(resizeCanvas);
+		const parent = canvas.parentElement!;
+		resizeObserver.observe(parent);
+
 		draw();
+
+		return {
+			destroy() {
+				resizeObserver.disconnect();
+			}
+		};
 	};
 </script>
 
 <canvas class="w-full h-full pointer-events-none" use:rain></canvas>
+
+<style>
+	canvas {
+		width: 100%;
+		height: 100%;
+	}
+</style>
