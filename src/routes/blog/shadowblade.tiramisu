@@ -1,0 +1,51 @@
+title { The Shadowblade Chronicles: Timeleap Puzzle #3 }
+
+We are excited to announce the third Timeleap Puzzle, The Shadowblade
+Chronicles. As promised, the new puzzle is in the form of a game, and has been
+designed to be a fun and engaging experience for all players.
+
+image {
+  src = /images/game/banner.png,
+  alt = The Shadowblade Chronicles,
+  caption = The Shadowblade Chronicles: The Third Timeleap Puzzle,
+  tilt = true
+}
+
+To stay in line and consistent with the previous puzzles, we refrain from
+providing any hints or clues. We believe that the fun and challenge of solving
+the puzzle is in the journey itself. We encourage all players to work together
+and share their findings with the community.
+
+title { Why a game? Why a puzzle? Why now?, size = 2 }
+
+When we started our puzzle series, we wanted to create a unique way for our
+community to engage with the Timeleap project and reward those who are the first
+to solve them. We thought puzzles are a great way to increase community
+engagement; they are fun, challenging, and rewarding.
+
+With Shadowblade Chronicles, we wanted to take this idea a step further. Players
+will be able to play the game right in their browsers, on our website. This
+benefits Timeleap in several ways!
+
+For example, players visit and interact with the Timeleap website to play the
+game. This increases the time spent on the website, which is a key metric for
+search engine optimization. This means that the game will help us reach more
+people and grow our community.
+
+Furthermore, the game is made to be fun, engaging, and meme-worthy. We hope that
+players will enjoy the game and encourage them to share it with their friends,
+which will help us reach even more people.
+
+We believe that the game will be a great way to increase community engagement
+and grow the Timeleap community.
+
+Start your Shadowblade Chronicles adventure link { here, to = /shadowblade }.
+Have fun!
+
+meta {
+  description = The Shadowblade Chronicles is the third Timeleap Puzzle. Play the game and solve the puzzle to win rewards!,
+  ogImageText = [Puzzle #3:, The Shadowblade, Chronicles],
+  ogImageFontSize = 28,
+  author = pouya,
+  createdAt = 2024-12-24
+}

@@ -13,6 +13,7 @@
 	import Feedback from '$lib/components/Feedback.svelte';
 	import Readable from '$lib/components/Readable.svelte';
 	import Author from '$lib/components/blog/Author.svelte';
+	import TiltImage from '$lib/components/TiltImage.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/blog/nav';
 	import { page } from '$app/stores';
@@ -58,7 +59,7 @@ Blog`} ogImageFontSize={32} />
 </p>
       <div>
         <h5 class="font-serif text-2xl mt-4">Table of Contents</h5>
-        <ul class="list-decimal mt-4 pl-8"><li class="pl-2"><a href="/blog/let-there-be-light" class="hover:text-green-400 transition-colors">Let There Be Light</a></li></ul>
+        <ul class="list-decimal mt-4 pl-8"><li class="pl-2"><a href="/blog/let-there-be-light" class="hover:text-green-400 transition-colors">Let There Be Light</a></li><li class="pl-2"><a href="/blog/shadowblade" class="hover:text-green-400 transition-colors">The Shadowblade Chronicles: Timeleap Puzzle #3</a></li></ul>
       </div>
     
 

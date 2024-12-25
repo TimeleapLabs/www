@@ -13,6 +13,7 @@
 	import Feedback from '$lib/components/Feedback.svelte';
 	import Readable from '$lib/components/Readable.svelte';
 	import Author from '$lib/components/blog/Author.svelte';
+	import TiltImage from '$lib/components/TiltImage.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/blog/nav';
 	import { page } from '$app/stores';

@@ -14,6 +14,7 @@
 	import TiltCard from '$lib/components/TiltCard.svelte';
 	import Tep from '$lib/components/docs/TEP.svelte';
 	import Readable from '$lib/components/Readable.svelte';
+	import TiltImage from '$lib/components/TiltImage.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/docs/nav';
 	import { page } from '$app/stores';

@@ -3,6 +3,8 @@
 
 	import Icon from '@iconify/svelte';
 	import Rain from './Rain.svelte';
+	import Snow from './Snow.svelte';
+
 	import { Card } from '@timeleap/ui';
 	import { SoundBlaster } from '$lib/utils/sound';
 	import { fade } from 'svelte/transition';
@@ -16,18 +18,21 @@
 		const { ImageAddon } = await import('@xterm/addon-image');
 		const { CanvasAddon } = await import('@xterm/addon-canvas');
 
+		const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+
 		const term = new Terminal({
 			fontFamily: "'Geist Mono', monospace",
 			allowProposedApi: true,
 			cursorBlink: true,
 			cursorStyle: 'underline',
-			fontSize: 16,
+			fontSize: isSmallScreen ? 12 : 16,
 			fontWeight: 'normal',
 			convertEol: true,
 			allowTransparency: true,
 			theme: {
 				background: 'rgba(0,0,0,0)'
-			}
+			},
+			...(isSmallScreen && { cols: 140 })
 		});
 
 		const fitAddon = new FitAddon();
@@ -67,6 +72,7 @@
 		await sound.load('heartbeat', '/audio/heartbeat.mp3', true, true, 0.6); // [!]
 		await sound.load('chase', '/audio/chase.mp3', true, true, 0.6); // [!]
 		await sound.load('jinxed', '/audio/jinxed.mp3', true, true, 0.6); // [!]
+
 		// Sound effects
 		await sound.load('death', '/audio/death.wav', false, false, 1); // [!]
 		await sound.load('item', '/audio/item.wav', false, false, 1); // [!]
@@ -102,7 +108,7 @@
 		await sound.load('distorted', '/audio/distorted.wav', false, false, 1); // [!]
 		await sound.load('dice', '/audio/dice.mp3', false, false, 1); // [!]
 		await sound.load('orb', '/audio/orb.wav', false, false, 1); // [!]
-		await sound.load('rain', '/audio/rain.mp3', false, false, 1); // [!]
+
 		return sound;
 	};
 
@@ -115,6 +121,7 @@
 	let stopSounds: () => void;
 	let muted: boolean = true;
 	let rain: boolean = false;
+	let snow: boolean = false;
 	let restartCount = 0;
 
 	const restartGame = () => {
@@ -140,7 +147,12 @@
 		{ term, fitAddon, sound }: { term: Terminal; fitAddon: FitAddon; sound: SoundBlaster }
 	) => {
 		term.open(node);
-		fitAddon.fit();
+
+		const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+
+		if (!isSmallScreen) {
+			fitAddon.fit();
+		}
 
 		const socket = new WebSocket('wss://3.tlp.sh');
 
@@ -190,12 +202,25 @@
 							// temporarily, and re-attach after the command was finished
 							shellListener?.dispose();
 							socket.send(command + '\n');
-							rain = rain ? Math.random() < 0.98 : Math.random() < 0.01;
 
-							if (rain && !muted) {
-								sound.playIfNotPlaying('rain');
-							} else if (!rain) {
-								sound.stop('rain');
+							const ambience = Math.floor(Math.random() * 400);
+
+							if (ambience === 42 && !rain) {
+								if (snow) {
+									snow = false;
+								}
+								rain = true;
+							} else if (ambience === 69 && !snow) {
+								if (rain) {
+									rain = false;
+								}
+								snow = true;
+							} else if (ambience < 5) {
+								if (snow) {
+									snow = false;
+								} else if (rain) {
+									rain = false;
+								}
 							}
 						} catch (e) {
 							// we have no real process separation with STDERR
@@ -332,7 +357,7 @@
 		}
 
 		startSounds = () => {
-			sound.play('doom');
+			sound.playIfNotPlaying('doom');
 			muted = false;
 		};
 
@@ -466,6 +491,7 @@
 		return {
 			destroy() {
 				node.removeEventListener('mousemove', mousemove);
+				stopSounds();
 			}
 		};
 	};
@@ -480,29 +506,34 @@
 	{:then res}
 		<div class="game-container" use:glow>
 			<Card
-				class="game w-full bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800 pt-24 relative z-20 overflow-hidden"
+				class="game w-full bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800 pt-24 relative z-20"
 			>
 				{#if rain}
 					<div
-						class="rain absolute top-0 left-0 w-full h-full pointer-events-none opacity-50 z-10"
+						class="snow absolute top-0 left-0 w-full h-full pointer-events-none opacity-50 z-10"
 						transition:fade
 					>
 						<Rain />
 					</div>
+				{:else if snow}
+					<div
+						class="snow absolute top-0 left-0 w-full h-full pointer-events-none opacity-50 z-10"
+						transition:fade
+					>
+						<Snow />
+					</div>
 				{/if}
 				<div class="glow absolute top-0 left-0 w-full h-full pointer-events-none z-0"></div>
 				<div
-					class="absolute top-0 right-0 left-0 z-20 flex justify-between border-b border-zinc-800 py-3 px-4"
+					class="absolute top-0 right-0 left-0 z-20 flex justify-end sm:justify-between border-b border-zinc-800 py-3 px-4"
 					use:terminalHeader
 				>
-					<div class="text-zinc-600 text-sm title">
-						The Shadowblade Chronicles <spam class="text-xs">v1.0.0</spam>
+					<div class="text-zinc-600 text-sm title hidden sm:block">
+						The Shadowblade Chronicles <span class="text-xs">v1.0.0</span>
 					</div>
-					<!-- Terminal buttons -->
 					<div class="flex gap-2 items-center">
 						<button
-							class="p-1 mr-1 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs
-         focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
+							class="p-1 mr-1 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
 							on:click={toggleSound}
 						>
 							Sound <Icon
@@ -511,8 +542,7 @@
 							/>
 						</button>
 						<button
-							class="p-1 mr-2 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs
-         focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
+							class="p-1 mr-2 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
 							on:click={restartGame}
 						>
 							Restart <Icon icon="carbon:restart" class="w-4 h-4 ml-2" />
@@ -527,7 +557,9 @@
 						></button>
 					</div>
 				</div>
-				<div class="terminal h-full w-ful mt-8" use:terminal={res}></div>
+				<div class="relative overflow-y-hidden overflow-x-auto grid grid-cols-1">
+					<div class="terminal h-full w-full mt-8" use:terminal={res}></div>
+				</div>
 			</Card>
 		</div>
 	{/await}
