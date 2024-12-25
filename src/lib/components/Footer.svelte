@@ -113,6 +113,9 @@
 				<a href="/tos" class="hover:text-green-400 transition-colors">
 					Terms & Conditions <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
 				</a>
+				<a href="/shadowblade" class="hover:text-green-400 transition-colors">
+					Shadowblade Chronicles <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+				</a>
 			</div>
 		</div>
 	</Grid>

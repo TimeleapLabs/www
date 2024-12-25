@@ -3,7 +3,8 @@ title { Blog }
 Welcome to the Timeleap blog! Here you'll find the latest news and updates from Timeleap.
 
 toc {
-  let-there-be-light
+  let-there-be-light,
+  shadowblade
 }
 
 meta {

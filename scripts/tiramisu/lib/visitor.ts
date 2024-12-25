@@ -303,7 +303,10 @@ const functions: {
 		const src = getParamsByName(params, 'src')[0]?.value ?? '';
 		const alt = getParamsByName(params, 'alt')[0]?.value ?? '';
 		const caption = getParamsByName(params, 'caption')[0]?.value ?? alt;
-		return `
+		const tilt = (getParamsByName(params, 'tilt')[0]?.value as string)?.trim() === 'true';
+		return tilt
+			? `<TiltImage src="${src}" alt="${alt}" caption="${caption}" />`
+			: `
 			<div class="flex flex-col items-center">
 				<img src="${src}" alt="${alt}" class="rounded-lg mb-4" />
 				<p class="text-zinc-400 text-xs">${caption}</p>

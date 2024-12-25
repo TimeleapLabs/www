@@ -23,3 +23,5 @@ vite.config.ts.timestamp-*
 # Tiramisu
 src/routes/docs/**/*.svelte
 src/lib/docs/nav.ts
+src/routes/blog/**/*.svelte
+src/lib/blog/nav.ts
