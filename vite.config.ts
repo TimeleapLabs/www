@@ -39,5 +39,10 @@ export default defineConfig({
 		alias: {
 			$static: '/static'
 		}
+	},
+	define: {
+		define: {
+			'import.meta.env.VITE_BUILD_DATE': JSON.stringify(new Date().toISOString())
+		}
 	}
 });

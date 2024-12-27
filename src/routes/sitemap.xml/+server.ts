@@ -42,7 +42,7 @@ ${staticPages
 		(staticPage) => `
   <url>
     <loc>${staticPage}</loc>
-    <lastmod>${`${process.env.VITE_BUILD_TIME}`}</lastmod>
+    <lastmod>${import.meta.env.VITE_BUILD_DATE}</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 `
