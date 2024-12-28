@@ -528,9 +528,7 @@
 					class="absolute top-0 right-0 left-0 z-20 flex justify-end sm:justify-between border-b border-zinc-800 py-3 px-4"
 					use:terminalHeader
 				>
-					<div class="text-zinc-600 text-sm title hidden sm:block">
-						The Shadowblade Chronicles <span class="text-xs">v1.0.0</span>
-					</div>
+					<div class="text-zinc-600 text-sm title hidden sm:block">The Shadowblade Chronicles</div>
 					<div class="flex gap-2 items-center">
 						<button
 							class="p-1 mr-1 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
