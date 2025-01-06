@@ -148,8 +148,8 @@ community will build with them. If you want to read the technical details of
 Unchained Plugins, you can read link { TEP 1, to = /docs/tep/1 } on our website.
 
 meta {
-  description = TEP 1 is now accepted, let's explore its details more fully and understand what it means for the Unchained ecosystem.,
-  ogImageText = [TEP 1: Unchained Plugins, What does it mean?],
+  description = "TEP 1 is now accepted, let's explore its details more fully and understand what it means for the Unchained ecosystem.",
+  ogImageText = [TEP 1:, Unchained Plugins, What does it mean?],
   ogImageFontSize = 24,
   author = pouya,
   createdAt = 2024-12-31
