@@ -1,0 +1,482 @@
+title { Go API Reference }
+
+Below are the Go API reference for the Sia serialization library.
+
+title { Constructor, size = 2 }
+
+code {
+  language = go,
+  content = "sia.New()"
+}
+
+Creates a new Sia instance.
+
+title { Attributes, size = 2 }
+
+table {
+  header = [Name, Description],
+  row = [Content, The current content of the Sia instance.],
+  row = [Index, The current offset of the Sia instance pointer.]
+}
+
+title { Methods, size = 2 }
+
+table {
+  header = [Name, Description],
+  row = [link { Seek, to = "#seek" }, Changes the offset of the Sia instance pointer.],
+  row = [link { Bytes, to = "#bytes" }, Returns the current content of the Sia instance.],
+  row = [link { Offset, to = "#offset" }, Returns the current offset of the Sia instance pointer.],
+  row = [link { EmbedSia, to = "#embed-sia" }, Adds the content of the provided Sia instance to the current content.],
+  row = [link { EmbedBytes, to = "#embed-bytes" }, Adds the provided bytes to the current content.],
+  row = [link { AddBigInt, to = "#add-bigint" }, Adds the provided big integer to the current content.],
+  row = [link { AddBool, to = "#add-bool" }, Adds the provided boolean to the current content.],
+  row = [link { AddUInt8, to = "#add-uint8" }, Adds the provided unsigned 8-bit integer to the current content.],
+  row = [link { AddUInt16, to = "#add-uint16" }, Adds the provided unsigned 16-bit integer to the current content.],
+  row = [link { AddUInt32, to = "#add-uint32" }, Adds the provided unsigned 32-bit integer to the current content.],
+  row = [link { AddUInt64, to = "#add-uint64" }, Adds the provided unsigned 64-bit integer to the current content.],
+  row = [link { AddInt8, to = "#add-int8" }, Adds the provided signed 8-bit integer to the current content.],
+  row = [link { AddInt16, to = "#add-int16" }, Adds the provided signed 16-bit integer to the current content.],
+  row = [link { AddInt32, to = "#add-int32" }, Adds the provided signed 32-bit integer to the current content.],
+  row = [link { AddInt64, to = "#add-int64" }, Adds the provided signed 64-bit integer to the current content.],
+  row = [link { AddStringN, to = "#add-stringn" }, Adds the provided null-terminated UTF-8 string to the current content.],
+  row = [link { AddString8, to = "#add-string8" }, Adds the provided ASCII string to the current content.],
+  row = [link { AddString16, to = "#add-string16" }, Adds the provided UTF-16 string to the current content.],
+  row = [link { AddString32, to = "#add-string32" }, Adds the provided UTF-32 string to the current content.],
+  row = [link { AddString64, to = "#add-string64" }, Adds the provided UTF-64 string to the current content.],
+  row = [link { AddByteArrayN, to = "#add-bytearrayn" }, Adds the provided byte array to the current content.],
+  row = [link { AddByteArray8, to = "#add-bytearray8" }, Adds the provided byte array to the current content.],
+  row = [link { AddByteArray16, to = "#add-bytearray16" }, Adds the provided byte array to the current content.],
+  row = [link { AddByteArray32, to = "#add-bytearray32" }, Adds the provided byte array to the current content.],
+  row = [link { AddByteArray64, to = "#add-bytearray64" }, Adds the provided byte array to the current content.],
+  row = [link { ReadBigInt, to = "#read-bigint" }, Reads a big integer from the current content.],
+  row = [link { ReadBool, to = "#read-bool" }, Reads a boolean from the current content.],
+  row = [link { ReadUInt8, to = "#read-uint8" }, Reads an unsigned 8-bit integer from the current content.],
+  row = [link { ReadUInt16, to = "#read-uint16" }, Reads an unsigned 16-bit integer from the current content.],
+  row = [link { ReadUInt32, to = "#read-uint32" }, Reads an unsigned 32-bit integer from the current content.],
+  row = [link { ReadUInt64, to = "#read-uint64" }, Reads an unsigned 64-bit integer from the current content.],
+  row = [link { ReadInt8, to = "#read-int8" }, Reads a signed 8-bit integer from the current content.],
+  row = [link { ReadInt16, to = "#read-int16" }, Reads a signed 16-bit integer from the current content.],
+  row = [link { ReadInt32, to = "#read-int32" }, Reads a signed 32-bit integer from the current content.],
+  row = [link { ReadInt64, to = "#read-int64" }, Reads a signed 64-bit integer from the current content.],
+  row = [link { ReadStringN, to = "#read-stringn" }, Reads a null-terminated UTF-8 string from the current content.],
+  row = [link { ReadString8, to = "#read-string8" }, Reads an ASCII string from the current content.],
+  row = [link { ReadString16, to = "#read-string16" }, Reads a UTF-16 string from the current content.],
+  row = [link { ReadString32, to = "#read-string32" }, Reads a UTF-32 string from the current content.],
+  row = [link { ReadString64, to = "#read-string64" }, Reads a UTF-64 string from the current content.],
+  row = [link { ReadByteArrayN, to = "#read-bytearrayn" }, Reads a byte array from the current content.],
+  row = [link { ReadByteArray8, to = "#read-bytearray8" }, Reads an 8-bit byte array from the current content.],
+  row = [link { ReadByteArray16, to = "#read-bytearray16" }, Reads a 16-bit byte array from the current content.],
+  row = [link { ReadByteArray32, to = "#read-bytearray32" }, Reads a 32-bit byte array from the current content.],
+  row = [link { ReadByteArray64, to = "#read-bytearray64" }, Reads a 64-bit byte array from the current content.]
+}
+
+title { Utility Methods, size = 2 }
+
+title { Seek, size = 4, id = "seek" }
+
+Changes the offset of the Sia instance pointer.
+
+code {
+  language = go,
+  content = "Seek(index uint64) Sia"
+}
+
+title { Bytes, size = 4, id = "bytes" }
+
+Returns the current content of the Sia instance.
+
+code {
+  language = go,
+  content = "Bytes() []byte"
+}
+
+title { Offset, size = 4, id = "offset" }
+
+Returns the current offset of the Sia instance pointer.
+
+code {
+  language = go,
+  content = "Offset() uint64"
+}
+
+title { EmbedSia, size = 4, id = "embed-sia" }
+
+Adds the content of the provided Sia instance to the current content.
+
+code {
+  language = go,
+  content = "EmbedSia(s *sia) Sia"
+}
+
+title { EmbedBytes, size = 4, id = "embed-bytes" }
+
+Adds the provided bytes to the current content.
+
+code {
+  language = go,
+  content = "EmbedBytes(b []byte) Sia"
+}
+
+title { Add Methods, size = 2 }
+
+title { AddBigInt, size = 4, id = "add-bigint" }
+
+Adds the provided big integer to the current content.
+
+code {
+  language = go,
+  content = "AddBigInt(n *big.Int) Sia"
+}
+
+title { AddBool, size = 4, id = "add-bool" }
+
+Adds the provided boolean to the current content.
+
+code {
+  language = go,
+  content = "AddBool(b bool) Sia"
+}
+
+title { AddUInt8, size = 4, id = "add-uint8" }
+
+Adds the provided unsigned 8-bit integer to the current content.
+
+code {
+  language = go,
+  content = "AddUInt8(n uint8) Sia"
+}
+
+title { AddUInt16, size = 4, id = "add-uint16" }
+
+Adds the provided unsigned 16-bit integer to the current content.
+
+code {
+  language = go,
+  content = "AddUInt16(n uint16) Sia"
+}
+
+title { AddUInt32, size = 4, id = "add-uint32" }
+
+Adds the provided unsigned 32-bit integer to the current content.
+
+code {
+  language = go,
+  content = "AddUInt32(n uint32) Sia"
+}
+
+title { AddUInt64, size = 4, id = "add-uint64" }
+
+Adds the provided unsigned 64-bit integer to the current content.
+
+code {
+  language = go,
+  content = "AddUInt64(n uint64) Sia"
+}
+
+title { AddInt8, size = 4, id = "add-int8" }
+
+Adds the provided signed 8-bit integer to the current content.
+
+code {
+  language = go,
+  content = "AddInt8(n int8) Sia"
+}
+
+title { AddInt16, size = 4, id = "add-int16" }
+
+Adds the provided signed 16-bit integer to the current content.
+
+code {
+  language = go,
+  content = "AddInt16(n int16) Sia"
+}
+
+title { AddInt32, size = 4, id = "add-int32" }
+
+Adds the provided signed 32-bit integer to the current content.
+
+code {
+  language = go,
+  content = "AddInt32(n int32) Sia"
+}
+
+title { AddInt64, size = 4, id = "add-int64" }
+
+Adds the provided signed 64-bit integer to the current content.
+
+code {
+  language = go,
+  content = "AddInt64(n int64) Sia"
+}
+
+title { AddStringN, size = 4, id = "add-stringn" }
+
+Adds the provided null-terminated UTF-8 string to the current content.
+
+code {
+  language = go,
+  content = "AddStringN(str string) Sia"
+}
+
+title { AddString8, size = 4, id = "add-string8" }
+
+Adds the provided ASCII string to the current content.
+
+code {
+  language = go,
+  content = "AddString8(str string) Sia"
+}
+
+title { AddString16, size = 4, id = "add-string16" }
+
+Adds the provided UTF-16 string to the current content.
+
+code {
+  language = go,
+  content = "AddString16(str string) Sia"
+}
+
+title { AddString32, size = 4, id = "add-string32" }
+
+Adds the provided UTF-32 string to the current content.
+
+code {
+  language = go,
+  content = "AddString32(str string) Sia"
+}
+
+title { AddString64, size = 4, id = "add-string64" }
+
+Adds the provided UTF-64 string to the current content.
+
+code {
+  language = go,
+  content = "AddString64(str string) Sia"
+}
+
+title { AddByteArrayN, size = 4, id = "add-bytearrayn" }
+
+Adds the provided byte array to the current content.
+
+code {
+  language = go,
+  content = "AddByteArrayN(bytes []byte) Sia"
+}
+
+title { AddByteArray8, size = 4, id = "add-bytearray8" }
+
+Adds the provided byte array to the current content.
+
+code {
+  language = go,
+  content = "AddByteArray8(bytes []byte) Sia"
+}
+
+title { AddByteArray16, size = 4, id = "add-bytearray16" }
+
+Adds the provided byte array to the current content.
+
+code {
+  language = go,
+  content = "AddByteArray16(bytes []byte) Sia"
+}
+
+title { AddByteArray32, size = 4, id = "add-bytearray32" }
+
+Adds the provided byte array to the current content.
+
+code {
+  language = go,
+  content = "AddByteArray32(bytes []byte) Sia"
+}
+
+title { AddByteArray64, size = 4, id = "add-bytearray64" }
+
+Adds the provided byte array to the current content.
+
+code {
+  language = go,
+  content = "AddByteArray64(bytes []byte) Sia"
+}
+
+title { Read Methods, size = 2 }
+
+title { ReadBigInt, size = 4, id = "read-bigint" }
+
+Reads a big integer from the current content.
+
+code {
+  language = go,
+  content = "ReadBigInt() *big.Int"
+}
+
+title { ReadBool, size = 4, id = "read-bool" }
+
+Reads a boolean from the current content.
+
+code {
+  language = go,
+  content = "ReadBool() bool"
+}
+
+title { ReadUInt8, size = 4, id = "read-uint8" }
+
+Reads an unsigned 8-bit integer from the current content.
+
+code {
+  language = go,
+  content = "ReadUInt8() uint8"
+}
+
+title { ReadUInt16, size = 4, id = "read-uint16" }
+
+Reads an unsigned 16-bit integer from the current content.
+
+code {
+  language = go,
+  content = "ReadUInt16() uint16"
+}
+
+title { ReadUInt32, size = 4, id = "read-uint32" }
+
+Reads an unsigned 32-bit integer from the current content.
+
+code {
+  language = go,
+  content = "ReadUInt32() uint32"
+}
+
+title { ReadUInt64, size = 4, id = "read-uint64" }
+
+Reads an unsigned 64-bit integer from the current content.
+
+code {
+  language = go,
+  content = "ReadUInt64() uint64"
+}
+
+title { ReadInt8, size = 4, id = "read-int8" }
+
+Reads a signed 8-bit integer from the current content.
+
+code {
+  language = go,
+  content = "ReadInt8() int8"
+}
+
+title { ReadInt16, size = 4, id = "read-int16" }
+
+Reads a signed 16-bit integer from the current content.
+
+code {
+  language = go,
+  content = "ReadInt16() int16"
+}
+
+title { ReadInt32, size = 4, id = "read-int32" }
+
+Reads a signed 32-bit integer from the current content.
+
+code {
+  language = go,
+  content = "ReadInt32() int32"
+}
+
+title { ReadInt64, size = 4, id = "read-int64" }
+
+Reads a signed 64-bit integer from the current content.
+
+code {
+  language = go,
+  content = "ReadInt64() int64"
+}
+
+title { ReadStringN, size = 4, id = "read-stringn" }
+
+Reads a null-terminated UTF-8 string from the current content.
+
+code {
+  language = go,
+  content = "ReadStringN(length uint64) string"
+}
+
+title { ReadString8, size = 4, id = "read-string8" }
+
+Reads an ASCII string from the current content.
+
+code {
+  language = go,
+  content = "ReadString8() string"
+}
+
+title { ReadString16, size = 4, id = "read-string16" }
+
+Reads a UTF-16 string from the current content.
+
+code {
+  language = go,
+  content = "ReadString16() string"
+}
+
+title { ReadString32, size = 4, id = "read-string32" }
+
+Reads a UTF-32 string from the current content.
+
+code {
+  language = go,
+  content = "ReadString32() string"
+}
+
+title { ReadString64, size = 4, id = "read-string64" }
+
+Reads a UTF-64 string from the current content.
+
+code {
+  language = go,
+  content = "ReadString64() string"
+}
+
+title { ReadByteArrayN, size = 4, id = "read-bytearrayn" }
+
+Reads a byte array from the current content.
+
+code {
+  language = go,
+  content = "ReadByteArrayN(length uint64) []byte"
+}
+
+title { ReadByteArray8, size = 4, id = "read-bytearray8" }
+
+Reads a byte array from the current content.
+
+code {
+  language = go,
+  content = "ReadByteArray8() []byte"
+}
+
+title { ReadByteArray16, size = 4, id = "read-bytearray16" }
+
+Reads a byte array from the current content.
+
+code {
+  language = go,
+  content = "ReadByteArray16() []byte"
+}
+
+title { ReadByteArray32, size = 4, id = "read-bytearray32" }
+
+Reads a byte array from the current content.
+
+code {
+  language = go,
+  content = "ReadByteArray32() []byte"
+}
+
+title { ReadByteArray64, size = 4, id = "read-bytearray64" }
+
+Reads a byte array from the current content.
+
+code {
+  language = go,
+  content = "ReadByteArray64() []byte"
+}

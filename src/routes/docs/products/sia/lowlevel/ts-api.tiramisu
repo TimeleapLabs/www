@@ -1,0 +1,588 @@
+title { JS/TS API Reference }
+
+Below are the TypeScript API reference for the Sia serialization library.
+
+title { Constructor, size = 2 }
+
+code {
+  language = typescript,
+  content = "Sia(content?: Uint8Array)"
+}
+
+Creates a new Sia instance. If content is provided, the Sia instance will be
+initialized with the provided content.
+
+title { Attributes, size = 2 }
+
+table {
+  header = [Name, Description],
+  row = [content, The current content of the Sia instance.],
+  row = [offset, The current offset of the Sia instance pointer.],
+  row = [size, The length of the content.],
+  row = [dataView, The DataView of the Sia instance.]
+}
+
+title { Methods, size = 2 }
+
+table {
+  header = [Name, Description],
+  row = [link { seek, to = "#seek" }, Changes the offset of the Sia instance pointer.],
+  row = [link { skip, to = "#skip" }, Changes the offset of the Sia instance pointer by the given amount.],
+  row = [link { setContent, to = "#set-content" }, Replaces the content of the Sia instance with the given content.],
+  row = [link { embedSia, to = "#embed-sia" }, Adds the content of the provided Sia instance to the current content.],
+  row = [link { embedBytes, to = "#embed-bytes" }, Adds the provided bytes to the current content.],
+  row = [link { addUInt8, to = "#add-uint8" }, Adds an unsigned 8-bit integer to the current content.],
+  row = [link { addUInt16, to = "#add-uint16" }, Adds an unsigned 16-bit integer to the current content.],
+  row = [link { addUInt32, to = "#add-uint32" }, Adds an unsigned 32-bit integer to the current content.],
+  row = [link { addUInt64, to = "#add-uint64" }, Adds an unsigned 64-bit integer to the current content.],
+  row = [link { addInt8, to = "#add-int8" }, Adds a signed 8-bit integer to the current content.],
+  row = [link { addInt16, to = "#add-int16" }, Adds a signed 16-bit integer to the current content.],
+  row = [link { addInt32, to = "#add-int32" }, Adds a signed 32-bit integer to the current content.],
+  row = [link { addInt64, to = "#add-int64" }, Adds a signed 64-bit integer to the current content.],
+  row = [link { addUtfz, to = "#add-utfz" }, Adds a null-terminated UTF-8 string to the current content.],
+  row = [link { addAscii, to = "#add-ascii" }, Adds an ASCII string to the current content.],
+  row = [link { addString8, to = "#add-string-8" }, Adds a string of 8-bit length to the current content.],
+  row = [link { addString16, to = "#add-string-16" }, Adds a string of 16-bit length to the current content.],
+  row = [link { addString32, to = "#add-string-32" }, Adds a string of 32-bit length to the current content.],
+  row = [link { addString64, to = "#add-string-64" }, Adds a string of 64-bit length to the current content.],
+  row = [link { addByteArrayN, to = "#add-byte-array-n" }, Adds a byte array of specified length to the current content.],
+  row = [link { addByteArray8, to = "#add-byte-array-8" }, Adds a byte array of 8-bit length to the current content.],
+  row = [link { addByteArray16, to = "#add-byte-array-16" }, Adds a byte array of 16-bit length to the current content.],
+  row = [link { addByteArray32, to = "#add-byte-array-32" }, Adds a byte array of 32-bit length to the current content.],
+  row = [link { addByteArray64, to = "#add-byte-array-64" }, Adds a byte array of 64-bit length to the current content.],
+  row = [link { addBool, to = "#add-bool" }, Adds a boolean value to the current content.],
+  row = [link { addBigInt, to = "#add-bigint" }, Adds a BigInt value to the current content.],
+  row = [link { addArray8, to = "#add-array8" }, Adds an array of items to the current content prefixed with an 8-bit length. The provided function is called for each item to serialize it.],
+  row = [link { addArray16, to = "#add-array16" }, Adds an array of items to the current content prefixed with a 16-bit length. The provided function is called for each item to serialize it.],
+  row = [link { addArray32, to = "#add-array32" }, Adds an array of items to the current content prefixed with a 32-bit length. The provided function is called for each item to serialize it.],
+  row = [link { addArray64, to = "#add-array64" }, Adds an array of items to the current content prefixed with a 64-bit length. The provided function is called for each item to serialize it.],
+  row = [link { readUInt8, to = "#read-uint8" }, Reads an unsigned 8-bit integer from the current position.],
+  row = [link { readUInt16, to = "#read-uint16" }, Reads an unsigned 16-bit integer from the current position.],
+  row = [link { readUInt32, to = "#read-uint32" }, Reads an unsigned 32-bit integer from the current position.],
+  row = [link { readUInt64, to = "#read-uint64" }, Reads an unsigned 64-bit integer from the current position.],
+  row = [link { readInt8, to = "#read-int8" }, Reads a signed 8-bit integer from the current position.],
+  row = [link { readUtfz, to = "#read-utfz" }, Reads a null-terminated UTF-8 string from the current position.],
+  row = [link { readAscii, to = "#read-ascii" }, Reads an ASCII string from the current position.],
+  row = [link { readString8, to = "#read-string-8" }, Reads a string of 8-bit length from the current position.],
+  row = [link { readString16, to = "#read-string-16" }, Reads a string of 16-bit length from the current position.],
+  row = [link { readString32, to = "#read-string-32" }, Reads a string of 32-bit length from the current position.],
+  row = [link { readString64, to = "#read-string-64" }, Reads a string of 64-bit length from the current position.],
+  row = [link { readByteArrayN, to = "#read-byte-array-n" }, Reads a byte array of specified length from the current position.],
+  row = [link { readByteArray8, to = "#read-byte-array-8" }, Reads a byte array of 8-bit length from the current position.],
+  row = [link { readByteArray16, to = "#read-byte-array-16" }, Reads a byte array of 16-bit length from the current position.],
+  row = [link { readByteArray32, to = "#read-byte-array-32" }, Reads a byte array of 32-bit length from the current position.],
+  row = [link { readByteArray64, to = "#read-byte-array-64" }, Reads a byte array of 64-bit length from the current position.],
+  row = [link { readBool, to = "#read-bool" }, Reads a boolean value from the current position.],
+  row = [link { readBigInt, to = "#read-bigint" }, Reads a BigInt value from the current position.],
+  row = [link { readArray8, to = "#read-array8" }, Reads an array of items from the current position using the 8-bit length prefix. The provided function is called for each item to deserialize it.],
+  row = [link { readArray16, to = "#read-array16" }, Reads an array of items from the current position using the 16-bit length prefix. The provided function is called for each item to deserialize it.],
+  row = [link { readArray32, to = "#read-array32" }, Reads an array of items from the current position using the 32-bit length prefix. The provided function is called for each item to deserialize it.],
+  row = [link { readArray64, to = "#read-array64" }, Reads an array of items from the current position using the 64-bit length prefix. The provided function is called for each item to deserialize it.]
+}
+
+title { Utility Methods, size = 2 }
+
+title { seek, size = 4, id = "seek" }
+
+Changes the offset of the Sia instance pointer.
+
+code {
+  language = typescript,
+  content = "seek(index: number): Sia"
+}
+
+title { skip, size = 4, id = "skip" }
+
+Changes the offset of the Sia instance pointer by the given amount.
+
+code {
+  language = typescript,
+  content = "skip(bytes: number): Sia"
+}
+
+title { setContent, size = 4, id = "set-content" }
+
+Replaces the content of the Sia instance with the given content.
+
+code {
+  language = typescript,
+  content = "setContent(content: Uint8Array): Sia"
+}
+
+title { embedSia, size = 4, id = "embed-sia" }
+
+Adds the contents of the provided Sia instance to the current Sia instance.
+
+code {
+  language = typescript,
+  content = "embedSia(sia: Sia): Sia"
+}
+
+title { embedBytes, size = 4, id = "embed-bytes" }
+
+Adds the provided bytes to the current content.
+
+code {
+  language = typescript,
+  content = "embedBytes(bytes: Uint8Array): Sia"
+}
+
+title { Add Methods, size = 2 }
+
+title { addUInt8, size = 4, id = "add-uint8" }
+
+Adds an unsigned 8-bit integer to the current content.
+
+code {
+  language = typescript,
+  content = "addUInt8(n: number): Sia"
+}
+
+title { addUInt16, size = 4, id = "add-uint16" }
+
+Adds an unsigned 16-bit integer to the current content.
+
+code {
+  language = typescript,
+  content = "addUInt16(n: number): Sia"
+}
+
+title { addUInt32, size = 4, id = "add-uint32" }
+
+Adds an unsigned 32-bit integer to the current content.
+
+code {
+  language = typescript,
+  content = "addUInt32(n: number): Sia"
+}
+
+title { addUInt64, size = 4, id = "add-uint64" }
+
+Adds an unsigned 64-bit integer to the current content.
+
+code {
+  language = typescript,
+  content = "addUInt64(n: bigint): Sia"
+}
+
+title { addInt8, size = 4, id = "add-int8" }
+
+Adds a signed 8-bit integer to the current content.
+
+code {
+  language = typescript,
+  content = "addInt8(n: number): Sia"
+}
+
+title { addInt16, size = 4, id = "add-int16" }
+
+Adds a signed 16-bit integer to the current content.
+
+code {
+  language = typescript,
+  content = "addInt16(n: number): Sia"
+}
+
+title { addInt32, size = 4, id = "add-int32" }
+
+Adds a signed 32-bit integer to the current content.
+
+code {
+  language = typescript,
+  content = "addInt32(n: number): Sia"
+}
+
+title { addInt64, size = 4, id = "add-int64" }
+
+Adds a signed 64-bit integer to the current content.
+
+code {
+  language = typescript,
+  content = "addInt64(n: bigint): Sia"
+}
+
+title { addUtfz, size = 4, id = "add-utfz" }
+
+Adds a null-terminated UTF-8 string to the current content.
+
+code {
+  language = typescript,
+  content = "addUtfz(str: string): Sia"
+}
+
+title { addAscii, size = 4, id = "add-ascii" }
+
+Adds an ASCII string to the current content.
+
+code {
+  language = typescript,
+  content = "addAscii(str: string): Sia"
+}
+
+title { addString8, size = 4, id = "add-string-8" }
+
+Adds a string of 8 bytes to the current content.
+
+code {
+  language = typescript,
+  content = "addString8(str: string): Sia"
+}
+
+title { addString16, size = 4, id = "add-string-16" }
+
+Adds a string of 16 bytes to the current content.
+
+code {
+  language = typescript,
+  content = "addString16(str: string): Sia"
+}
+
+title { addString32, size = 4, id = "add-string-32" }
+
+Adds a string of 32 bytes to the current content.
+
+code {
+  language = typescript,
+  content = "addString32(str: string): Sia"
+}
+
+title { addString64, size = 4, id = "add-string-64" }
+
+Adds a string of 64 bytes to the current content.
+
+code {
+  language = typescript,
+  content = "addString64(str: string): Sia"
+}
+
+title { addByteArrayN, size = 4, id = "add-byte-array-n" }
+
+Adds a byte array of specified length to the current content.
+
+code {
+  language = typescript,
+  content = "addByteArrayN(bytes: Uint8Array): Sia"
+}
+
+title { addByteArray8, size = 4, id = "add-byte-array-8" }
+
+Adds a byte array of specified length to the current content.
+
+code {
+  language = typescript,
+  content = "addByteArray8(bytes: Uint8Array): Sia"
+}
+
+title { addByteArray16, size = 4, id = "add-byte-array-16" }
+
+Adds a byte array of specified length to the current content.
+
+code {
+  language = typescript,
+  content = "addByteArray16(bytes: Uint8Array): Sia"
+}
+
+title { addByteArray32, size = 4, id = "add-byte-array-32" }
+
+Adds a byte array of specified length to the current content.
+
+code {
+  language = typescript,
+  content = "addByteArray32(bytes: Uint8Array): Sia"
+}
+
+title { addByteArray64, size = 4, id = "add-byte-array-64" }
+
+Adds a byte array of specified length to the current content.
+
+code {
+  language = typescript,
+  content = "addByteArray64(bytes: Uint8Array): Sia"
+}
+
+title { addBool, size = 4, id = "add-bool" }
+
+Adds a boolean value to the current content.
+
+code {
+  language = typescript,
+  content = "addBool(b: boolean): Sia"
+}
+
+title { addBigInt, size = 4, id = "add-bigint" }
+
+Adds a BigInt value to the current content.
+
+code {
+  language = typescript,
+  content = "addBigInt(n: bigint): Sia"
+}
+
+title { addArray8, size = 4, id = "add-array8" }
+
+Adds an array of items to the current content, prefixed with an 8-bit length.
+The provided function is called for each item to serialize it.
+
+code {
+  language = typescript,
+  content = "addArray8<T>(arr: T[], fn: (s: Sia, item: T) => void): Sia"
+}
+
+title { addArray16, size = 4, id = "add-array16" }
+
+Adds an array of items to the current content, prefixed with a 16-bit length.
+The provided function is called for each item to serialize it.
+
+code {
+  language = typescript,
+  content = "addArray16<T>(arr: T[], fn: (s: Sia, item: T) => void): Sia"
+}
+
+title { addArray32, size = 4, id = "add-array32" }
+
+Adds an array of items to the current content, prefixed with a 32-bit length.
+The provided function is called for each item to serialize it.
+
+code {
+  language = typescript,
+  content = "addArray32<T>(arr: T[], fn: (s: Sia, item: T) => void): Sia"
+}
+
+title { addArray64, size = 4, id = "add-array64" }
+
+Adds an array of items to the current content, prefixed with a 64-bit length.
+The provided function is called for each item to serialize it.
+
+code {
+  language = typescript,
+  content = "addArray64<T>(arr: T[], fn: (s: Sia, item: T) => void): Sia"
+}
+
+title { Read Methods, size = 2 }
+
+title { readUInt8, size = 4, id = "read-uint8" }
+
+Reads an unsigned 8-bit integer from the current position.
+
+code {
+  language = typescript,
+  content = "readUInt8(): number"
+}
+
+title { readUInt16, size = 4, id = "read-uint16" }
+
+Reads an unsigned 16-bit integer from the current position.
+
+code {
+  language = typescript,
+  content = "readUInt16(): number"
+}
+
+title { readUInt32, size = 4, id = "read-uint32" }
+
+Reads an unsigned 32-bit integer from the current position.
+
+code {
+  language = typescript,
+  content = "readUInt32(): number"
+}
+
+title { readUInt64, size = 4, id = "read-uint64" }
+
+Reads an unsigned 64-bit integer from the current position.
+
+code {
+  language = typescript,
+  content = "readUInt64(): bigint"
+}
+
+title { readInt8, size = 4, id = "read-int8" }
+
+Reads a signed 8-bit integer from the current position.
+
+code {
+  language = typescript,
+  content = "readInt8(): number"
+}
+
+title { readInt16, size = 4, id = "read-int16" }
+
+Reads a signed 16-bit integer from the current position.
+
+code {
+  language = typescript,
+  content = "readInt16(): number"
+}
+
+title { readInt32, size = 4, id = "read-int32" }
+
+Reads a signed 32-bit integer from the current position.
+
+code {
+  language = typescript,
+  content = "readInt32(): number"
+}
+
+
+title { readInt64, size = 4, id = "read-int64" }
+
+Reads a signed 64-bit integer from the current position.
+
+code {
+  language = typescript,
+  content = "readInt64(): bigint"
+}
+
+
+title { readUtfz, size = 4, id = "read-utfz" }
+
+Reads a null-terminated UTF-8 string from the current position.
+
+code {
+  language = typescript,
+  content = "readUtfz(): string"
+}
+
+
+title { readAscii, size = 4, id = "read-ascii" }
+
+Reads an ASCII string from the current position.
+
+code {
+  language = typescript,
+  content = "readAscii(): string"
+}
+
+title { readString8, size = 4, id = "read-string-8" }
+
+Reads a string of 8 bytes from the current position.
+
+code {
+  language = typescript,
+  content = "readString8(): string"
+}
+
+title { readString16, size = 4, id = "read-string-16" }
+
+Reads a string of 16 bytes from the current position.
+
+code {
+  language = typescript,
+  content = "readString16(): string"
+}
+
+title { readString32, size = 4, id = "read-string-32" }
+
+Reads a string of 32 bytes from the current position.
+
+code {
+  language = typescript,
+  content = "readString32(): string"
+}
+
+title { readString64, size = 4, id = "read-string-64" }
+
+Reads a string of 64 bytes from the current position.
+
+code {
+  language = typescript,
+  content = "readByteArrayN(length: number, asReference = false): Uint8Array"
+}
+
+title { readByteArray8, size = 4, id = "read-byte-array-8" }
+
+Reads a byte array of specified length from the current position. If asReference is true, 
+returns a view into the underlying buffer instead of copying the data.
+
+code {
+  language = typescript,
+  content = "readByteArray8(length: number, asReference = false): Uint8Array"
+}
+
+title { readByteArray16, size = 4, id = "read-byte-array-16" }
+
+Reads a byte array of specified length from the current position. If asReference is true, 
+returns a view into the underlying buffer instead of copying the data.
+
+code {
+  language = typescript,
+  content = "readByteArray16(length: number, asReference = false): Uint8Array"
+}
+
+title { readByteArray32, size = 4, id = "read-byte-array-32" }
+
+Reads a byte array of specified length from the current position. If asReference is true, 
+returns a view into the underlying buffer instead of copying the data.
+
+code {
+  language = typescript,
+  content = "readByteArray32(length: number, asReference = false): Uint8Array"
+}
+
+title { readByteArray64, size = 4, id = "read-byte-array-64" }
+
+Reads a byte array of specified length from the current position. If asReference is true, 
+returns a view into the underlying buffer instead of copying the data.
+
+code {
+  language = typescript,
+  content = "readByteArray64(length: number, asReference = false): Uint8Array"
+}
+
+title { readBool, size = 4, id = "read-bool" }
+
+Reads a boolean value from the current position.
+
+code {
+  language = typescript,
+  content = "readBool(): boolean"
+}
+
+title { readBigInt, size = 4, id = "read-bigint" }
+
+Reads a BigInt value from the current position.
+
+code {
+  language = typescript,
+  content = "readBigInt(): bigint"
+}
+
+title { readArray8, size = 4, id = "read-array8" }
+
+Reads an array of items from the current position, using the 8-bit length prefix.
+The provided function is called for each item to deserialize it.
+
+code {
+  language = typescript,
+  content = "readArray8<T>(fn: (s: Sia) => T): T[]"
+}
+
+title { readArray16, size = 4, id = "read-array16" }
+
+Reads an array of items from the current position, using the 16-bit length prefix.
+The provided function is called for each item to deserialize it.
+
+code {
+  language = typescript,
+  content = "readArray16<T>(fn: (s: Sia) => T): T[]"
+}
+
+title { readArray32, size = 4, id = "read-array32" }
+
+Reads an array of items from the current position, using the 32-bit length prefix.
+The provided function is called for each item to deserialize it.
+
+code {
+  language = typescript,
+  content = "readArray32<T>(fn: (s: Sia) => T): T[]"
+}
+
+title { readArray64, size = 4, id = "read-array64" }
+
+Reads an array of items from the current position, using the 64-bit length prefix.
+The provided function is called for each item to deserialize it.
+
+code {
+  language = typescript,
+  content = "readArray64<T>(fn: (s: Sia) => T): T[]"
+}

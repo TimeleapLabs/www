@@ -13,6 +13,7 @@ import {
 } from '@timeleap/tiramisu/dist/types/nodes';
 
 import path from 'path';
+import slugify from 'slugify';
 
 type ParamType = {
 	named: { name: string; value: string | string[] }[];
@@ -124,10 +125,11 @@ const functions: {
 	title(params, context) {
 		const size = (getParamsByName(params, 'size')[0]?.value as string)?.trim() ?? '1';
 		const header = params.positional.join('');
+		const id = (getParamsByName(params, 'id')[0]?.value as string)?.trim() ?? slugify(header);
 		context.headers ??= [];
 		context.headers.push(header);
 		const textSize = textSizeMap[size];
-		return `<h${size} class="font-serif ${textSize} mt-4">${header}</h${size}>`;
+		return `<h${size} class="font-serif ${textSize} mb-4" id="${id}">${header}</h${size}>`;
 	},
 	link(params) {
 		const href = (getParamsByName(params, 'to')[0]?.value as string) ?? '';
