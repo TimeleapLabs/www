@@ -36,15 +36,15 @@ export const entries = [
     "title": "Low-Level API"
   },
   {
-    "href": "/docs/products/sia/ts-api",
+    "href": "/docs/products/sia/lowlevel/ts-api",
     "title": "JS/TS API Reference"
   },
   {
-    "href": "/docs/products/sia/go-api",
+    "href": "/docs/products/sia/lowlevel/go-api",
     "title": "Go API Reference"
   },
   {
-    "href": "/docs/products/sia/python-api",
+    "href": "/docs/products/sia/lowlevel/python-api",
     "title": "Python API Reference"
   },
   {
@@ -120,15 +120,15 @@ export const fullNav = {
               "title": "Low-Level API",
               "nav": [
                 {
-                  "href": "/docs/products/sia/ts-api",
+                  "href": "/docs/products/sia/lowlevel/ts-api",
                   "title": "JS/TS API Reference"
                 },
                 {
-                  "href": "/docs/products/sia/go-api",
+                  "href": "/docs/products/sia/lowlevel/go-api",
                   "title": "Go API Reference"
                 },
                 {
-                  "href": "/docs/products/sia/python-api",
+                  "href": "/docs/products/sia/lowlevel/python-api",
                   "title": "Python API Reference"
                 }
               ]

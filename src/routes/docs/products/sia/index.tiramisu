@@ -6,7 +6,7 @@ serialization and deserialization, such as network protocols, file formats, and
 data storage solutions.
 
 toc {
-  lowlevel
+  lowlevel/index
 }
 
 title { Performance, size = 2 }
