@@ -1,8 +1,8 @@
-title { Unchained Plugins }
+title { TEP-1: Unchained Plugins }
 
 tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
-  status = review,
+  status = accepted,
   type = process,
   createdAt = 2024-12-18,
   updatedAt = 2024-12-18,

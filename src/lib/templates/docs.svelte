@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
-			<div class="flex gap-4 flex-wrap justify-between">
+			<div class="flex gap-8 flex-wrap justify-between">
 				<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
 				<Readable />
 			</div>

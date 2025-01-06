@@ -134,7 +134,8 @@ const functions: {
 		const text = params.positional.join('');
 		const external = href.startsWith('http') && !href.startsWith('https://timeleap.swiss');
 		const icon = external ? '<Icon icon="carbon:launch" class="inline" />' : '';
-		return `<a href="${href}" class="hover:text-green-400 transition-colors inline-flex gap-1 items-center border-b border-zinc-500">${text}${icon}</a>`;
+		const target = external ? 'target="_blank" rel="noopener noreferrer"' : '';
+		return `<a href="${href}" ${target} class="hover:text-green-400 transition-colors inline-flex gap-1 items-center border-b border-zinc-500">${text}${icon}</a>`;
 	},
 	list(params) {
 		const type = getParamsByName(params, 'type')[0]?.value ?? 'unordered';
@@ -145,6 +146,7 @@ const functions: {
 			: `<ul class="list-disc">${listItems}</ul>`;
 	},
 	toc(params, context) {
+		const unordered = getParamsByName(params, 'unordered')[0]?.value === 'Yes';
 		const items: string[] = [];
 
 		context.flatNav ??= [];
@@ -183,10 +185,13 @@ const functions: {
 			flatNavEntry.href = href;
 			flatNavEntry.title = title;
 		}
+
+		const listType = unordered ? 'list-disc' : 'list-decimal';
+
 		return `
       <div>
         <h5 class="font-serif text-2xl mt-4">Table of Contents</h5>
-        <ul class="list-decimal mt-4 pl-8">${items.join('')}</ul>
+        <ul class="${listType} mt-4 pl-8">${items.join('')}</ul>
       </div>
     `;
 	},
