@@ -132,7 +132,9 @@ code {
 }
 
 meta {
-  description = Sia provides a low-level API for serializing and deserializing data.
-                This API is ideal for developers who require fine-grained control over
-                the serialization process.
+  description = Sia is a super-fast binary serialization format optimized for speed and size.
+                It is ideal for high-performance applications requiring quick and efficient
+                data serialization and deserialization.,
+  ogImageText = [Sia, Ultra fast, binary serialization],
+  ogImageFontSize = 24
 }
