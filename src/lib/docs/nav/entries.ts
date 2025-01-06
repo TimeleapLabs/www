@@ -60,12 +60,12 @@ export const entries = [
     "title": "Timeleap Enhancement Proposals"
   },
   {
-    "href": "/docs/tep/0",
-    "title": "Timeleap Enhancement Proposals"
+    "href": "/docs/tep/1",
+    "title": "TEP-1: Unchained Plugins"
   },
   {
-    "href": "/docs/tep/1",
-    "title": "Unchained Plugins"
+    "href": "/docs/tep/0",
+    "title": "TEP-0: Timeleap Enhancement Proposals"
   }
 ];
 
@@ -138,12 +138,12 @@ export const fullNav = {
       "title": "Timeleap Enhancement Proposals",
       "nav": [
         {
-          "href": "/docs/tep/0",
-          "title": "Timeleap Enhancement Proposals"
+          "href": "/docs/tep/1",
+          "title": "TEP-1: Unchained Plugins"
         },
         {
-          "href": "/docs/tep/1",
-          "title": "Unchained Plugins"
+          "href": "/docs/tep/0",
+          "title": "TEP-0: Timeleap Enhancement Proposals"
         }
       ]
     }

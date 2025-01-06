@@ -4,12 +4,16 @@ export const entries = [
     "title": "Blog"
   },
   {
-    "href": "/blog/let-there-be-light",
-    "title": "Let There Be Light"
+    "href": "/blog/tep-1-unchained-plugins",
+    "title": "TEP 1: Unchained Plugins. What does it mean?"
   },
   {
     "href": "/blog/shadowblade",
     "title": "The Shadowblade Chronicles: Timeleap Puzzle #3"
+  },
+  {
+    "href": "/blog/let-there-be-light",
+    "title": "Let There Be Light"
   }
 ];
 
@@ -18,12 +22,16 @@ export const fullNav = {
   "title": "Blog",
   "nav": [
     {
-      "href": "/blog/let-there-be-light",
-      "title": "Let There Be Light"
+      "href": "/blog/tep-1-unchained-plugins",
+      "title": "TEP 1: Unchained Plugins. What does it mean?"
     },
     {
       "href": "/blog/shadowblade",
       "title": "The Shadowblade Chronicles: Timeleap Puzzle #3"
+    },
+    {
+      "href": "/blog/let-there-be-light",
+      "title": "Let There Be Light"
     }
   ]
 };

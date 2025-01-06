@@ -1,8 +1,12 @@
 {
-  "grammarly.selectors": [
-    {
-      "language": "cadey",
-      "scheme": "file"
-    }
-  ]
+	"grammarly.selectors": [
+		{
+			"language": "cadey",
+			"scheme": "file"
+		},
+		{
+			"language": "tiramisu",
+			"scheme": "file"
+		}
+	]
 }

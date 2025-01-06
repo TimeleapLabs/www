@@ -3,8 +3,9 @@ title { Blog }
 Welcome to the Timeleap blog! Here you'll find the latest news and updates from Timeleap.
 
 toc {
-  let-there-be-light,
-  shadowblade
+  tep-1-unchained-plugins,
+  shadowblade,
+  let-there-be-light
 }
 
 meta {

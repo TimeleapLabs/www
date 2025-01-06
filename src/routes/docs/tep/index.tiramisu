@@ -6,8 +6,9 @@ make a proposal, please follow the guidelines in TEP-0 and submit a pull request
 to the TEP repository.
 
 toc {
-  0,
-  1
+  unordered = Yes,
+  1,
+  0
 }
 
 meta {
