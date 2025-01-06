@@ -88,13 +88,8 @@
 				>
 					Katana NFT on OpenSea <Icon icon="carbon:arrow-up-right" class="inline-block ml-2" />
 				</a>
-				<a
-					href="https://old.timeleap.swiss/stake"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					Stake <Icon icon="carbon:arrow-up-right" class="inline-block ml-2" />
+				<a href="/stake" class="hover:text-green-400 transition-colors">
+					Stake <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
 				</a>
 			</div>
 		</div>

@@ -33,7 +33,7 @@ const options = {
 			id: '0xa4b1',
 			token: 'ETH',
 			label: 'Arbitrum One',
-			rpcUrl: 'https://arbitrum.blockpi.network/v1/rpc/public'
+			rpcUrl: 'https://arbitrum.llamarpc.com'
 		},
 		{
 			id: '0x157b',
