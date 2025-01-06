@@ -28,7 +28,8 @@ export const stakeHelper = async (
 	try {
 		const tx = await token.approve(stakingAddr, tokenAmount);
 		await tx.wait();
-	} catch (error: any) {
+	} catch (err: unknown) {
+		const error = err as { info: { error: { message: string } }; message: string };
 		const errorMessage =
 			error?.info?.error?.message || error?.message || 'Failed to approve tokens for staking!';
 		toast.push(errorMessage);
@@ -39,7 +40,8 @@ export const stakeHelper = async (
 		try {
 			const tx = await nft.approve(stakingAddr, nftId);
 			await tx.wait();
-		} catch (error: any) {
+		} catch (err: unknown) {
+			const error = err as { info: { error: { message: string } }; message: string };
 			const errorMessage =
 				error?.info?.error?.message || error?.message || 'Failed to approve NFT for staking!';
 			toast.push(errorMessage);
@@ -55,7 +57,8 @@ export const stakeHelper = async (
 			await staking.stakeTokens(programId, tokenAmount);
 		}
 		toast.push('Successfully joined the staking program!');
-	} catch (error: any) {
+	} catch (err: unknown) {
+		const error = err as { info: { error: { message: string } }; message: string };
 		const errorMessage = error?.info?.error?.message || error?.message || 'Failed to stake!';
 		toast.push(errorMessage);
 		return;
@@ -65,7 +68,8 @@ export const stakeHelper = async (
 export const unstake = (id: bigint, staking: ethers.Contract) => async (): Promise<void> => {
 	try {
 		await onboard.setChain({ chainId: '0xa4b1' });
-	} catch (error) {
+	} catch (err: unknown) {
+		console.error(err);
 		toast.push("Couldn't change to the Arbitrum network.");
 		return;
 	}
@@ -75,7 +79,8 @@ export const unstake = (id: bigint, staking: ethers.Contract) => async (): Promi
 	try {
 		const tx = await staking.unstake(id);
 		await tx.wait();
-	} catch (error: any) {
+	} catch (err: unknown) {
+		const error = err as { info: { error: { message: string } }; message: string };
 		const errorMessage = error?.info?.error?.message || error?.message || 'Failed to unstake!';
 		toast.push(errorMessage);
 		return;

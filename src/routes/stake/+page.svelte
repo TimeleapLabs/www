@@ -176,9 +176,11 @@
 					Stake KNS to Get Rewards
 				{/if}
 			</h3>
-			<h5>
-				Your current balance : {balance}
-			</h5>
+			{#if balance}
+				<div>
+					Your current balance: {balance}
+				</div>
+			{/if}
 			{#if $wallet?.provider}
 				<div class="flex flex-col gap-6">
 					<!-- Program Selection -->
@@ -254,38 +256,42 @@
 		</Card>
 
 		<!-- User Stakes Card -->
-		<Card class="bg-zinc-900 text-white p-8 rounded-lg shadow-lg flex flex-col gap-6">
-			<h3 class="text-xl font-semibold">Your Current Stakes</h3>
-			<ul class="divide-y divide-zinc-800">
-				{#each userStakes as stake, index}
-					<li class="py-4">
-						<div
-							role="button"
-							tabindex="0"
-							class="flex justify-between items-center cursor-pointer"
-							on:click={() => toggleStakeDetails(index)}
-							on:keydown={(e) => e.key === 'Enter' && toggleStakeDetails(index)}
-						>
-							<span class="font-medium">{stake.amount} KNS</span>
-							<Icon icon={expandedIndex === index ? 'carbon:chevron-up' : 'carbon:chevron-down'} />
-						</div>
-						{#if expandedIndex === index}
-							<div class="mt-4 text-sm">
-								<p><strong>Rewards:</strong> {stake.rewards} KNS</p>
-								<p><strong>NFT:</strong> {stake.nft}</p>
-								<p><strong>Unlock Date:</strong> {stake.unlockDate}</p>
-								<Button
-									class="mt-4 bg-red-500 hover:bg-red-400 text-white font-semibold"
-									on:click={() => unstakeHandler(stake.id)}
-								>
-									Unstake
-								</Button>
+		{#if userStakes.length > 0}
+			<Card class="bg-zinc-900 text-white p-8 rounded-lg shadow-lg flex flex-col gap-6">
+				<h3 class="text-xl font-semibold">Your Current Stakes</h3>
+				<ul class="divide-y divide-zinc-800">
+					{#each userStakes as stake, index}
+						<li class="py-4">
+							<div
+								role="button"
+								tabindex="0"
+								class="flex justify-between items-center cursor-pointer"
+								on:click={() => toggleStakeDetails(index)}
+								on:keydown={(e) => e.key === 'Enter' && toggleStakeDetails(index)}
+							>
+								<span class="font-medium">{stake.amount} KNS</span>
+								<Icon
+									icon={expandedIndex === index ? 'carbon:chevron-up' : 'carbon:chevron-down'}
+								/>
 							</div>
-						{/if}
-					</li>
-				{/each}
-			</ul>
-		</Card>
+							{#if expandedIndex === index}
+								<div class="mt-4 text-sm">
+									<p><strong>Rewards:</strong> {stake.rewards} KNS</p>
+									<p><strong>NFT:</strong> {stake.nft}</p>
+									<p><strong>Unlock Date:</strong> {stake.unlockDate}</p>
+									<Button
+										class="mt-4 bg-red-500 hover:bg-red-400 text-white font-semibold"
+										on:click={() => unstakeHandler(stake.id)}
+									>
+										Unstake
+									</Button>
+								</div>
+							{/if}
+						</li>
+					{/each}
+				</ul>
+			</Card>
+		{/if}
 	</Grid>
 </Section>
 <Footer></Footer>
