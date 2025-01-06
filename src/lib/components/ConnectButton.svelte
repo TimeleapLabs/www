@@ -6,8 +6,6 @@
 	import { Button } from '@timeleap/ui';
 	import { onMount } from 'svelte';
 
-	let clazz = '';
-	export { clazz as class };
 	const connect = async (): Promise<void> => {
 		if ($wallet?.provider) {
 			await onboard.disconnectWallet({ label: $wallet.label ?? '' });
@@ -34,11 +32,16 @@
 			}
 		};
 	});
+
+	const formatWalletAddress = (wallet: Wallet): string => {
+		const address = wallet.accounts?.[0].address ?? '';
+		return address.slice(0, 6);
+	};
 </script>
 
-<Button class={clazz} on:click={connect}>
+<Button class={$$props.class || ''} on:click={connect}>
 	{#if $wallet?.provider}
-		Disconnect
+		<span class="text-zinc-400">{formatWalletAddress($wallet)}</span> — <span>Disconnect</span>
 	{:else}
 		Connect <Icon icon="material-symbols:account-balance-wallet" />
 	{/if}

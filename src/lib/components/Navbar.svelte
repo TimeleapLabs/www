@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { Button, Navbar } from '@timeleap/ui';
+	import ConnectButton from './ConnectButton.svelte';
 
 	type section = 'home' | 'contact' | 'blog' | 'docs' | 'none';
 
@@ -35,6 +36,7 @@
 		<Icon icon="carbon:email" /> Contact
 	</Button>
 	<div class="flex-1"></div>
+	<ConnectButton class="hidden! md:inline-flex! p-5! rounded-lg! hover:bg-zinc-800" />
 	{#if backButton}
 		<Button
 			class="px-6! hover:bg-blue-500 p-5! rounded-lg!"
