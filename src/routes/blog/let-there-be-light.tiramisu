@@ -72,21 +72,30 @@ image {
   caption = This image was generated using our OG image generator.
 }
 
-title { "Goodbye, Forum!", size = 2 }
+title { Community Changes, size = 2 }
 
-We've decided to shut down our forum. GitHub is the biggest social media
-platform for developers, and we've decided to move our discussions there. We'll
-soon move our TEPs (Timeleap Enhancement Proposals) to GitHub, and we'll also
-start using GitHub Discussions for our tech discussions.
+GitHub is the largest social platform for developers, and we've decided to
+centralize our discussions there. Soon, we'll transition our Timeleap
+Enhancement Proposals (TEPs) to GitHub and begin using GitHub Discussions for
+technical conversations.
 
-Collaborators, contributors, and users should now use Tiramisu and GitHub for
-making feature requests, performance improvements, security enhancements, API
-changes, ecosystem changes, and other enhancements proposals.
+Collaborators, contributors, and users should now rely on Tiramisu and GitHub
+for submitting feature requests, performance improvements, security updates, API
+changes, ecosystem enhancements, and other proposals.
 
-Using GitHub allows us to be more attractive to developers, and it also helps
-link proposals with code changes or sample implementations. Furthermore, it
-allows us to seamlessly integrate and reference the proposals in our
+This shift to GitHub enhances our appeal to developers and provides a direct
+link between proposals, code changes, and sample implementations. It also allows
+us to seamlessly integrate and reference these proposals within our
 documentation.
+
+As part of this transition, we will be deactivating our Discord server. Telegram
+will remain available for casual conversations, but we strongly encourage users
+to use GitHub or our forum for technical discussions. Bug reports, TEPs, and
+feature requests should be submitted on GitHub, while how-to guides, tutorials,
+showcases, and other community-driven content should be shared on our forum.
+
+Finally, all official announcements will now be made exclusively on our Twitter
+account.
 
 title { Conclusion }
 
