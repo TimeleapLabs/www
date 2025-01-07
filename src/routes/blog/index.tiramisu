@@ -3,6 +3,7 @@ title { Blog }
 Welcome to the Timeleap blog! Here you'll find the latest news and updates from Timeleap.
 
 toc {
+  tep-1-beta-how-to,
   tep-1-unchained-plugins,
   shadowblade,
   let-there-be-light

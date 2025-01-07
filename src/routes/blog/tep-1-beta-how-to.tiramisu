@@ -1,0 +1,459 @@
+title { TEP-1: Unchained Plugins Alpha How-To }
+
+We're excited to announce the alpha release of TEP-1: Unchained Plugins! This
+release is a major milestone for Timeleap, as it marks the first step towards a
+more flexible and extensible Unchained platform. You can now make your own
+plugins and add custom functionality to Unchained. This article will guide you
+through the process of creating your first Unchained plugin.
+
+title { How does a plugin work?, size = 2 }
+
+A plugin is a piece of code that connects to an Unchained broker and registers
+a set of functions that can be called by other users. Brokers are responsible
+for accepting and routing messages between users and plugins. When a user sends
+a message to a plugin, the broker forwards the message to the plugin, which
+processes it and sends a response back to the user.
+
+Since the official Unchained Plugin SDK is still in development, we'll be using
+the low-level Unchained API to create our plugin. We'll also develop a simple
+client that can interact with our plugin through the broker.
+
+title { Setting up your development environment, size = 2 }
+
+We're going to use TypeScript to write our plugin and client. We'll also use Yarn
+to manage our dependencies. If you don't have Yarn installed, you can follow the
+instructions on their link { official website, to = https://yarnpkg.com/getting-started/install }
+to install it. Once you have Yarn installed, you can create a new project by running:
+
+code {
+  language = sh,
+  content = "
+    mkdir unchained-plugin && cd unchained-plugin
+    yarn init -y
+    yarn set version latest
+  "
+}
+
+Let's initialize a new TypeScript project by running:
+
+code {
+  language = sh,
+  content = "yarn add -D typescript @types/node"
+}
+
+You should also initate Yarn dlx. Assuming you use VSCode, you can run the
+following command:
+
+code {
+  language = sh,
+  content = "yarn dlx @yarnpkg/sdks vscode"
+}
+
+You need to make two more changes to your project. First, create a tsconfig.json
+file in the root of your project with the following content:
+
+code {
+  language = json,
+  content = """
+    {
+      "compilerOptions": {
+        "target": "ESNext",
+        "module": "Node16",
+        "moduleResolution": "Node16",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "dist",
+        "declaration": true
+      },
+      "$schema": "https://json.schemastore.org/tsconfig",
+      "display": "Recommended"
+    }
+  """
+}
+
+Next, modify your package.json file to include the following:
+
+code {
+  language = json,
+  content = """
+    {
+      "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js"
+      },
+      "type": "module"
+    }
+  """
+}
+
+You can follow the exact same steps for the unchained-client project. Once you're
+done, you can start writing your plugin and client.
+
+title { Writing your plugin, size = 2 }
+
+Let's start by adding the required dependencies to our project:
+
+code {
+  language = sh,
+  content = """
+    yarn add @timeleap/sia uuid25 ws
+    yarn add -D @types/ws
+  """
+}
+
+Next, create a new file called src/index.ts. I'll walk you through the process of
+creating a very simple plugin with one function that returns a greeting message and
+whether the user is a wizard or not!
+
+We start by the imports:
+
+code {
+  language = ts,
+  content = """
+    import { WebSocketServer } from "ws";
+    import { Sia } from "@timeleap/sia";
+    import { Uuid25 } from "uuid25";
+  """
+}
+
+Next, we create a new WebSocket server on port 3000:
+
+code {
+  language = ts,
+  content = """
+    const wss = new WebSocketServer({ port: 3000 });
+  """
+}
+
+Now we need to listen to incoming connections and messages. When a user sends a
+message to the broker, it gets forwarded to the plugin. We can then process the
+message and send a response back to the user:
+
+code {
+  language = ts,
+  content = """
+    wss.on("connection", (ws) => {
+      console.log("Client connected");
+
+      ws.on("message", (buf: Buffer) => {
+        // Our logic goes here
+      });
+    });
+  """
+}
+
+Now, let's add the logic to our plugin. We'll create a new Sia instance to read
+and write messages to the broker. This code goes inside the message event handler:
+
+code {
+  language = ts,
+  content = """
+    const sia = new Sia(buf);
+    const uuid = sia.readByteArray8(); // The unique ID of the message
+    sia.readByteArray8(); // skip the signature (not used in this example)
+    sia.readAscii(); // skip the tx hash (not used in this example)
+    const plugin = sia.readAscii(); // The name of the plugin
+    const method = sia.readAscii(); // The name of the method to call
+
+    // Let's add some basic logging
+    const uuidStr = Uuid25.fromBytes(uuid).toHyphenated();
+    console.log(`Received RPC request ${uuidStr} ${plugin}.${method}`);
+
+    // Now, let's sanity check the plugin and method
+    if (plugin != "swiss.timeleap.isWizard.v1" && method !== "isWizard") {
+      // We should return an error code to the broker
+      return ws.send(
+        sia
+          .seek(0)                  // Reset the buffer
+          .addByteArray8(uuid)      // Add the unique ID so the broker can route the response
+          .addUInt16(404)           // Add a 404 not found error code
+          .toUint8ArrayReference()  // Convert the buffer to a Uint8Array
+      );
+    }
+
+    // Now that we've validated the plugin and method, let's read the arguments
+    const name = sia.readAscii(); // Read a single ASCII string
+    const age = sia.readUInt8();  // Read a single uint8 number
+
+    // A person is a wizard if they're 30 years old or older
+    const isWizard = age >= 30;
+    const message = isWizard
+      ? `You are a wizard, ${name}!`
+      : `You are NOT a wizard, ${name}!`;
+
+    // Now, let's send the response back to the user
+    const response = new Sia()
+      .addByteArray8(uuid)          // Add the unique ID so the broker can route the response
+      .addUInt16(0)                 // There was no error, so we use a 0 status code
+      .addBool(isWizard)            // Add a boolean value to the response
+      .addAscii(message)            // Add the message to the response
+      .toUint8ArrayReference();     // Convert the buffer to a Uint8Array
+
+    ws.send(response);              // Send the response back to the user
+  """
+}
+
+Finally, let's add a simple log message to indicate that the WebSocket server has
+started:
+
+code {
+  language = ts,
+  content = "console.log('WebSocket server started on port 3000');"
+}
+
+That's it! You've just created your first Unchained plugin. You can see the full
+source code of the plugin in the link { TEP Examples GitHub repository,
+to = https://github.com/TimeleapLabs/tep-examples/tree/master/tep-1-plugins/simple/plugin }.
+To build and run the plugin, you can run the following commands:
+
+code {
+  language = sh,
+  content = """
+    yarn build
+    yarn start
+  """
+}
+
+title { Writing your client, size = 2 }
+
+Now that we have our plugin up and running, let's create a simple client that can
+interact with it. We'll use the WebSocket client from the ws package to connect to
+the broker and send messages to the plugin. Create a new project named unchained-client
+by following the steps in the Setting up your development environment section.
+
+Next, add the required dependencies to your project:
+
+code {
+  language = sh,
+  content = """
+    yarn add @timeleap/sia uuidv7 ws
+    yarn add -D @types/ws
+  """
+}
+
+Next, create a new file called src/index.ts. We'll walk you through the process of
+creating a simple client that sends a message to the plugin and prints the response.
+
+We start by the imports:
+
+code {
+  language = ts,
+  content = """
+    import WebSocket from "ws";
+    import { Sia } from "@timeleap/sia";
+    import { uuidv7obj } from "uuidv7";
+  """
+}
+
+Let's add some initializations:
+
+code {
+  language = ts,
+  content = """
+    const VERSION = process.env.UNCHAINED_PROTOCOL_VERSION;       // The version of the Unchained protocol
+    const ws = new WebSocket(`ws://localhost:9123/${VERSION}`);   // Connect to the broker
+
+    const age = Math.floor(Math.random() * 42) + 18;              // Generate a random age between 18 and 60
+    const opcode = new Uint8Array([9]);                           // The opcode for an RPC request
+    const uuid = uuidv7obj();                                     // Generate a new UUID 
+  """
+}
+
+Let's create a payload now to send to the plugin:
+
+code {
+  language = ts,
+  content = """
+    const payload = new Sia()
+      .addByteArrayN(opcode)                      // All messages start with an opcode
+      .addByteArray8(uuid.bytes)                  // This is the unique ID of the message
+      .addByteArray8(uuid.bytes)                  // We don't care about the signature for now
+      .addAscii("0x")                             // We don't care about the transaction hash for now
+      .addAscii("swiss.timeleap.isWizard.v1")     // The name of the plugin to call
+      .addAscii("isWizard")                       // The name of the method to call
+      .addAscii("John Doe")                       // First argument to isWizard: name
+      .addUInt8(age);                             // Second argument to isWizard: age
+  """
+}
+
+Add some logs so we know what's happening:
+
+code {
+  language = ts,
+  content = """
+    console.log(`Checking if John Doe (${age}yo) is a wizard...`);
+    console.log(`Request UUID: ${uuid.toString()}`);
+  """
+}
+
+Now, let's send the payload to the plugin:
+
+code {
+  language = ts,
+  content = """
+    ws.on("open", () => {
+      ws.send(payload.toUint8Array());
+    });
+  """
+}
+
+Finally, let's listen for the response from the plugin:
+
+code {
+  language = ts,
+  content = """
+    ws.on("message", (data: Buffer) => {
+      const sia = new Sia(new Uint8Array(data));
+
+      const opcode = sia.readByteArrayN(1);                 // Read the opcode
+      if (opcode[0] === 5) {                                // This is the opcode for a broker error
+        console.error(data.subarray(1).toString());         // Print the error message
+        return ws.close();                                  // Close the connection
+      }
+
+      const responseUuid = sia.readByteArray8();            // Read the response UUID
+
+      // Verify that the response UUID matches the request UUID
+      if (Buffer.compare(uuid.bytes, responseUuid) !== 0) {
+        console.error("UUID mismatch");
+        return ws.close();
+      }
+
+      const error = sia.readUInt16();                       // Read the method call status
+      if (error !== 0) {                                    // Check if there was an error
+        console.error(`Error: ${error}`);                   // Print the error code
+        return ws.close();                                  // Close the connection
+      }
+
+      const isWizard = sia.readBool();                      // Read the boolean value
+      const message = sia.readAscii();                      // Read the message 
+
+      console.log(message);                                 // Print the message
+      console.log(`Is Wizard: ${isWizard}`);                // Print whether the user is a wizard
+      ws.close();                                           // Close the connection
+    });
+  """
+}
+
+That's it! You've just created your first Unchained client. You can see the full
+source code of the client in the link { TEP Examples GitHub repository,
+to = https://github.com/TimeleapLabs/tep-examples/tree/master/tep-1-plugins/simple/client }.
+To build the client you can run the following command:
+
+code {
+  language = sh,
+  content = """
+    yarn build
+  """
+}
+
+But don't run the client just yet! First, we need to register the plugin with the
+broker. We'll cover that in the next section.
+
+title { Configuring Unchained, size = 2 }
+
+Let's configure and run a local Unchained broker and worker to test our plugin and
+client. Make sure you have the latest version of the Unchained CLI installed. You can
+find the latest version on the link { Unchained GitHub releases page,
+to = https://github.com/TimeleapLabs/unchained/releases }.
+
+First, create a new directory for your Unchained project:
+
+code {
+  language = sh,
+  content = "mkdir unchained && cd unchained"
+}
+
+Now we need to create a new Unchained configuration file. We'll create one file for
+both the broker and the worker. Create a new file called conf.yaml with the following
+content:
+
+code {
+  language = yaml,
+  content = """
+    system:
+      log: info
+      name: Timeleap
+
+    network:
+      bind: 0.0.0.0:9123
+      brokerUri: ws://localhost:9123
+
+    rpc:
+      - name: arbitrumSepolia
+        nodes:
+          - https://sepolia-rollup.arbitrum.io/rpc
+
+    plugins:
+      - name: swiss.timeleap.isWizard.v1
+        endpoint: ws://localhost:3000
+        type: websocket
+        functions:
+          - isWizard
+
+    dataframes:
+
+    mongo:
+
+  """
+}
+
+That's it! You're now ready to start the entire project.
+
+title { Running the project, size = 2 }
+
+To run the project, you need to start the broker and worker. You can do this by
+running the following commands:
+
+code {
+  language = sh,
+  content = """
+    unchained broker --config conf.yaml
+    unchained worker --config conf.yaml --allow-generate-secrets
+  """
+}
+
+You should see the broker and worker start up successfully. You should also
+see a message indicating that the plugin has been registered with the broker.
+
+Now you can run the client to interact with the plugin. You should see a message
+indicating whether the user is a wizard or not. You can run the client by this
+command in the unchained-client directory:
+
+code {
+  language = sh,
+  content = "yarn start"
+}
+
+You should see the client connect to the broker, send a message to the plugin,
+and receive a response back. If everything is working correctly, you should see
+a message indicating whether the user is a wizard or not:
+
+code {
+  language = text,
+  content = """
+    Checking if John Doe (42yo) is a wizard...
+    Request UUID: 0b4e3f2a-0b4e-4b4e-8b4e-0b4e3f2a0b4e
+    You are a wizard, John Doe!
+    Is Wizard: true
+  """
+}
+
+Congratulations! You've successfully created your first Unchained plugin and client.
+You can now start experimenting with different plugins and clients to build your
+own Unchained applications. As of now, Sia is available in TypeScript, Python, and
+Go.
+
+If you have any questions or need help, feel free to post an issue on the link {
+  Unchained GitHub repository, to = https://github.com/TimeleapLabs/unchained } or
+the link { Timeleap Forum, to = https://forum.timeleap.swiss }.
+
+meta {
+  description = Learn how to create your first Unchained plugin with TEP-1: Unchained Plugins Alpha.,
+  ogImageText = [TEP-1: Unchained Plugins, How to make a plugin?],
+  ogImageFontSize = 24,
+  author = pouya,
+  createdAt = 2025-01-07
+}
