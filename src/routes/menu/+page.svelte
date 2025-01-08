@@ -45,17 +45,6 @@
 			</div>
 			<Image src="/images/mail.jpg" alt="Products" width="128px" height="128px"></Image>
 		</Card>
-
-		<Card class="p-0! flex text-white bg-zinc-950 hover:bg-zinc-800 transition-colors" href="/docs">
-			<div class="px-8 flex-1 content-center">
-				<h3 class="font-serif text-2xl">
-					Docs <Icon icon="carbon:arrow-right" class="inline-block text-sm" />
-				</h3>
-				<div>Knowledge base</div>
-			</div>
-			<Image src="/images/docs.jpg" alt="Products" width="128px" height="128px"></Image>
-		</Card>
-
 		<Card
 			class="p-0! flex text-white bg-zinc-950 hover:bg-zinc-800 transition-colors"
 			href="/stake"
@@ -66,7 +55,7 @@
 				</h3>
 				<div>Stake KNS</div>
 			</div>
-			<Image src="/images/kns.svg" alt="stake" width="128px" height="128px"></Image>
+			<Image src="/images/stake.png" alt="stake" width="128px" height="128px"></Image>
 		</Card>
 	</Grid>
 </Section>
