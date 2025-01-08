@@ -49,17 +49,21 @@
 		<!-- Dropdown Menu -->
 		{#if isOpen}
 			<div class="absolute mt-1 w-full bg-zinc-700 text-zinc-200 rounded-2xl shadow-lg z-10">
-				{#each options as option}
-					<button
-						class={`w-full text-left px-4 py-2 rounded-2xl hover:bg-opacity-80 ${option.color ? option.color : 'hover:bg-zinc-600'}`}
-						on:click={() => {
-							value = option.value;
-							closeDropdown();
-						}}
-					>
-						{option.label}
-					</button>
-				{/each}
+				{#if options.length > 0}
+					{#each options as option}
+						<button
+							class={`w-full text-left px-4 py-2 rounded-2xl hover:bg-opacity-80 ${option.color ? option.color : 'hover:bg-zinc-600'}`}
+							on:click={() => {
+								value = option.value;
+								closeDropdown();
+							}}
+						>
+							{option.label}
+						</button>
+					{/each}
+				{:else}
+					<div class="w-full px-4 py-2 text-center text-zinc-400">No Option's available</div>
+				{/if}
 			</div>
 		{/if}
 	</div>

@@ -14,16 +14,11 @@
 		}
 	};
 
-	// Typing the subscription
-	const wallets = onboard.state.select('wallets') as {
-		subscribe: (callback: (update: Wallet[]) => void) => { unsubscribe: () => void };
-	};
+	const wallets = onboard.state.select('wallets');
 
-	// Unsubscribe function
-	let unsubscribe: () => void;
+	const { unsubscribe } = wallets.subscribe((update) => ([$wallet] = update));
 
 	onMount(() => {
-		unsubscribe = wallets.subscribe((update: Wallet[]) => ([$wallet] = update)).unsubscribe;
 		return () => {
 			try {
 				unsubscribe();
