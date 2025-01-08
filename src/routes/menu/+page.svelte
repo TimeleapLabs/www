@@ -56,7 +56,10 @@
 			<Image src="/images/docs.jpg" alt="Products" width="128px" height="128px"></Image>
 		</Card>
 
-		<Card class="!p-0 flex text-white bg-zinc-900 hover:bg-zinc-800 transition-colors" href="/docs">
+		<Card
+			class="p-0! flex text-white bg-zinc-950 hover:bg-zinc-800 transition-colors"
+			href="/stake"
+		>
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">
 					Stake <Icon icon="carbon:arrow-right" class="inline-block text-sm" />

@@ -23,6 +23,14 @@ export const stakeHelper = async (
 		return;
 	}
 
+	try {
+		await onboard.setChain({ chainId: '0xa4b1' });
+	} catch (err: unknown) {
+		console.error(err);
+		toast.push("Couldn't change to the Arbitrum network.");
+		return;
+	}
+
 	const tokenAmount = ethers.parseUnits(amount);
 
 	try {
@@ -65,7 +73,7 @@ export const stakeHelper = async (
 	}
 };
 
-export const unstake = (id: bigint, staking: ethers.Contract) => async (): Promise<void> => {
+export const unstake = async (id: bigint, staking: ethers.Contract): Promise<void> => {
 	try {
 		await onboard.setChain({ chainId: '0xa4b1' });
 	} catch (err: unknown) {
@@ -77,7 +85,7 @@ export const unstake = (id: bigint, staking: ethers.Contract) => async (): Promi
 	if (!staking) return;
 
 	try {
-		const tx = await staking.unstake(id);
+		const tx = await staking.unstake(id, { gasLimit: 100000 });
 		await tx.wait();
 	} catch (err: unknown) {
 		const error = err as { info: { error: { message: string } }; message: string };
@@ -88,3 +96,4 @@ export const unstake = (id: bigint, staking: ethers.Contract) => async (): Promi
 
 	toast.push('Successfully claimed!');
 };
+

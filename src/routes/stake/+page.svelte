@@ -11,7 +11,7 @@
 	import ConnectButton from '$lib/components/ConnectButton.svelte';
 	import Checkbox from '$lib/components/Checkbox.svelte';
 	import { initializeContracts } from '$lib/utils/contract';
-	import { durationOf, yieldOf } from '$lib/utils/helper';
+	import { durationOf, formatDate, yieldOf } from '$lib/utils/helper';
 	import { stakeHelper, unstake } from '$lib/utils/staking';
 	import { toast } from '@zerodevx/svelte-toast';
 	import { onboard } from '$lib/onboard.js';
@@ -29,7 +29,7 @@
 
 	let programs: { id: number; active: boolean; duration: number; rewards: bigint }[] = [];
 	let programOptions: { value: string; label: string }[] = [];
-	let userStakes: { id: bigint; [key: string]: unknown }[] = [];
+	let userStakes: { id: bigint; [key: string]: bigint }[] = [];
 	let userNfts: any[] = [];
 
 	let amount: string;
@@ -70,12 +70,18 @@
 			return;
 		}
 
-		const stakeIds: bigint[] = await storage.findStakesByUser(userAddress);
-		const rawUserStakes: any[] = await storage.getStakesById(stakeIds);
+		const stakeIds = await storage.findStakesByUser(userAddress);
+		const stakeIdsAsBigInts = stakeIds.map((id: string | number | bigint | boolean) => BigInt(id));
+		const rawUserStakes: any[] = await storage.getStakesById(stakeIdsAsBigInts);
 		userStakes = rawUserStakes
 			.map((stake, index) => ({
 				...stake,
-				id: stakeIds[index]
+				id: stakeIds[index],
+				unlock: stake.unlock instanceof BigInt ? stake.unlock.toString() : stake.unlock,
+				amount: stake.amount instanceof BigInt ? stake.amount.toString() : stake.amount,
+				rewards: stake.rewards instanceof BigInt ? stake.rewards.toString() : stake.rewards,
+				program: stake.program instanceof BigInt ? stake.program.toString() : stake.program,
+				nftId: stake.nftId instanceof BigInt ? stake.nftId.toString() : stake.nftId
 			}))
 			.reverse();
 
@@ -142,7 +148,9 @@
 	const unstakeHandler = async (id: bigint): Promise<void> => {
 		if (!staking) {
 			toast.push('Failed to get staking contract');
-		} else unstake(id, staking);
+		} else {
+			await unstake(id, staking);
+		}
 		readStakeStats();
 	};
 
@@ -176,9 +184,9 @@
 					Stake KNS to Get Rewards
 				{/if}
 			</h3>
-			{#if balance}
+			{#if balance && $wallet?.provider}
 				<div>
-					Your current balance: {balance}
+					Your current balance: {ethers.formatUnits(balance)} KNS
 				</div>
 			{/if}
 			{#if $wallet?.provider}
@@ -243,7 +251,11 @@
 				</div>
 
 				<div class="flex gap-4">
-					<Button class="bg-green-400 hover:bg-green-300 text-black font-semibold" on:click={stake}>
+					<Button
+						class="bg-green-400 hover:bg-green-300 text-black font-semibold"
+						disabled={isStaking}
+						on:click={stake}
+					>
 						Stake <Icon icon="carbon:money" />
 					</Button>
 				</div>
@@ -256,7 +268,7 @@
 		</Card>
 
 		<!-- User Stakes Card -->
-		{#if userStakes.length > 0}
+		{#if userStakes.length > 0 && $wallet?.provider}
 			<Card class="bg-zinc-900 text-white p-8 rounded-lg shadow-lg flex flex-col gap-6">
 				<h3 class="text-xl font-semibold">Your Current Stakes</h3>
 				<ul class="divide-y divide-zinc-800">
@@ -269,16 +281,21 @@
 								on:click={() => toggleStakeDetails(index)}
 								on:keydown={(e) => e.key === 'Enter' && toggleStakeDetails(index)}
 							>
-								<span class="font-medium">{stake.amount} KNS</span>
+								<span class="font-medium">{ethers.formatUnits(stake.amount)} KNS</span>
 								<Icon
 									icon={expandedIndex === index ? 'carbon:chevron-up' : 'carbon:chevron-down'}
 								/>
 							</div>
 							{#if expandedIndex === index}
 								<div class="mt-4 text-sm">
-									<p><strong>Rewards:</strong> {stake.rewards} KNS</p>
-									<p><strong>NFT:</strong> {stake.nft}</p>
-									<p><strong>Unlock Date:</strong> {stake.unlockDate}</p>
+									{#if typeof stake.rewards === 'bigint'}
+										<p><strong>Rewards:</strong> {ethers.formatUnits(stake.rewards)} KNS</p>
+									{/if}
+									<p><strong>NFT:</strong> {stake.nft !== undefined ? stake.nft : '-'}</p>
+									<p>
+										<strong>Unlock Date:</strong>
+										{formatDate(new Date(Number(stake.unlock) * 1000))}
+									</p>
 									<Button
 										class="mt-4 bg-red-500 hover:bg-red-400 text-white font-semibold"
 										on:click={() => unstakeHandler(stake.id)}
