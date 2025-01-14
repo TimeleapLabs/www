@@ -2,9 +2,11 @@ title { TEP-2: Replace BLS with Ed25519, size = 1 }
 
 tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
-  status = draft,
+  status = review,
   type = process,
-  createdAt = 2025-01-13
+  createdAt = 2025-01-13,
+  updatedAt = 2025-01-14,
+  discussion = https://github.com/TimeleapLabs/www/discussions/87
 }
 
 title { Abstract, size = 2 }
