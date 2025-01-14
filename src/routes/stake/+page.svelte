@@ -40,18 +40,12 @@
 	let selectedNft = '';
 
 	const setAddress = async (): Promise<void> => {
-		const {
-			staking: newStaking,
-			storage: newStorage,
-			token: newToken,
-			nft: newNft,
-			signer
-		} = await initializeContracts($wallet?.provider);
+		const { signer, ...contracts } = await initializeContracts($wallet?.provider);
 
-		staking = newStaking;
-		storage = newStorage;
-		token = newToken;
-		nft = newNft;
+		staking = contracts.staking;
+		storage = contracts.storage;
+		token = contracts.token;
+		nft = contracts.nft;
 
 		try {
 			await onboard.setChain({ chainId: '0xa4b1' });
@@ -73,6 +67,7 @@
 		const stakeIds = await storage.findStakesByUser(userAddress);
 		const stakeIdsAsBigInts = stakeIds.map((id: string | number | bigint | boolean) => BigInt(id));
 		const rawUserStakes: any[] = await storage.getStakesById(stakeIdsAsBigInts);
+
 		userStakes = rawUserStakes
 			.map((stake, index) => ({
 				...stake,
@@ -136,6 +131,7 @@
 	$: if (nft && userAddress) {
 		readUserNfts();
 	}
+
 	$: withNft = selectedNft !== '';
 
 	let isStaking = false;
@@ -150,14 +146,14 @@
 			toast.push('Failed to get staking contract');
 		} else {
 			await unstake(id, staking);
+			readStakeStats();
 		}
-		readStakeStats();
 	};
 
 	let expandedIndex: number | null = null;
-	function toggleStakeDetails(index: number) {
+	const toggleStakeDetails = (index: number) => {
 		expandedIndex = expandedIndex === index ? null : index;
-	}
+	};
 
 	onMount(() => {
 		const interval = setInterval(readStakeStats, 60 * 1000);

@@ -74,6 +74,8 @@ export const stakeHelper = async (
 };
 
 export const unstake = async (id: bigint, staking: ethers.Contract): Promise<void> => {
+	if (!staking) return;
+
 	try {
 		await onboard.setChain({ chainId: '0xa4b1' });
 	} catch (err: unknown) {
@@ -82,10 +84,8 @@ export const unstake = async (id: bigint, staking: ethers.Contract): Promise<voi
 		return;
 	}
 
-	if (!staking) return;
-
 	try {
-		const tx = await staking.unstake(id, { gasLimit: 100000 });
+		const tx = await staking.unstake(id);
 		await tx.wait();
 	} catch (err: unknown) {
 		const error = err as { info: { error: { message: string } }; message: string };
@@ -96,4 +96,3 @@ export const unstake = async (id: bigint, staking: ethers.Contract): Promise<voi
 
 	toast.push('Successfully claimed!');
 };
-
