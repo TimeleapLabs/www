@@ -38,7 +38,7 @@
 </script>
 
 <div>
-	This TEP was authored by {author} on {createdAt} and last updated on {updatedAt}.
+	This TEP was authored by {author} on {createdAt}{#if !updatedAt}.{:else}, and last updated on {updatedAt}.{/if}
 </div>
 
 {#if discussion}
