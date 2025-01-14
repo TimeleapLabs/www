@@ -1,0 +1,279 @@
+title { TEP-2: Replace BLS with Ed25519, size = 1 }
+
+tep {
+  author = Pouya Eghbali <pouya@timeleap.swiss>,
+  status = draft,
+  type = process,
+  createdAt = 2025-01-13
+}
+
+title { Abstract, size = 2 }
+
+This document describes the basic idea, information and specs of replacing BLS
+with Ed25519 in the Unchained protocol. The BLS signature scheme is currently
+used in the Unchained protocol to sign messages and transactions. This TEP
+proposes to replace BLS with Ed25519, a more efficient and widely-used signature
+scheme.
+
+title { Motivation, size = 2 }
+
+BLS signatures are computationally expensive and require a large amount of
+memory to verify. This makes them unsuitable for use in resource-constrained
+environments, such as embedded systems or mobile devices. Ed25519, on the other
+hand, is fast, secure, and has a small memory footprint. By replacing BLS with
+Ed25519, we can improve the performance and efficiency of the Unchained protocol.
+
+BLS signatures were chosen for their aggregation properties, which allow multiple
+signatures to be combined into a single signature. They're also ZK-SNARK friendly,
+which is an important feature for interoperability. However, these features come
+at a cost in terms of performance and resource usage.
+
+As a network built for distributed computation, latency and resource usage are
+critical factors in the design of the Unchained protocol. By replacing BLS with
+Ed25519, we can reduce the computational overhead of signature verification and
+improve the overall efficiency of the protocol.
+
+Furthermore, Ed25519 is widely used and supported in the cryptography community.
+There are well-tested implementations available in multiple programming languages,
+including for embedded systems and mobile devices. This makes it a more practical
+choice for the Unchained protocol, as it can be easily integrated into existing
+codebases and libraries.
+
+title { Specification, size = 2 }
+
+To replace BLS with Ed25519 in the Unchained protocol, the following changes
+need to be made:
+
+title { Signature Scheme, size = 3 }
+
+The BLS signature scheme will be replaced with the Ed25519 signature scheme
+throughout the Unchained protocol. This includes signing messages, transactions,
+and other data using Ed25519 instead of BLS.
+
+This also means that the KOSK (Knowledge of Secret Key) scheme currently used
+in the Unchained protocol will no longer be needed, as Ed25519 does not require
+this additional step for signature verification.
+
+title { Signature Storage, size = 3 }
+
+Since Ed25519 signatures don't support aggregation like BLS signatures, each
+signature will need to be stored individually. This may increase the size of
+transactions and messages, as multiple signatures will need to be included
+instead of a single aggregated signature.
+
+It's worth noting that with BLS, even though signatures and public keys can
+be aggregated, we still need to store individual public keys for verification.
+Considering this fact, the storage overhead of Ed25519 signatures may not be
+significantly higher than that of BLS signatures.
+
+title { Signature Verification, size = 3 }
+
+Ed25519 signatures cannot be aggregated like BLS signatures, so each signature
+will need to be verified individually. This may increase the computational
+overhead of signature verification, as multiple signatures will need to be
+verified instead of a single aggregated signature.
+
+This is less of a problem considering most distributed computation tasks in
+Unchained involve a small number of participants. In these cases, the overhead
+of verifying multiple Ed25519 signatures should be negligible compared to the
+benefits of using a more efficient signature scheme.
+
+Even with BLS signatures, each individual signature still needs to be verified
+separately before aggregation. That means we won't see much of a difference in
+terms of verification overhead at least in the internal consensus layer.
+
+title { Rationale, size = 2 }
+
+The decision to replace BLS with Ed25519 is based on the need to improve the
+performance and efficiency of the Unchained protocol. It is extremely important
+for Unchained to be able to run on resource-constrained devices, such as embedded
+systems and IoT devices. By using Ed25519, we can reduce the computational
+overhead of signature generation and verification, making it easier to run the
+protocol on these devices.
+
+title { Benchmark, size = 3 }
+
+The following snippet implements a naive benchmark to compare the performance
+of BLS and Ed25519 signatures in terms of signature generation and verification:
+
+code {
+  language = go,
+  content = """
+    package main
+
+    import (
+      "crypto/rand"
+      "fmt"
+      "time"
+
+      "github.com/herumi/bls-go-binary/bls"
+      "golang.org/x/crypto/ed25519"
+    )
+
+    const NUM_RUNS = 50000
+
+    func benchmarkEd25519() {
+      // Generate keys
+      publicKeys := make([]ed25519.PublicKey, NUM_RUNS)
+      privateKeys := make([]ed25519.PrivateKey, NUM_RUNS)
+      message := []byte("message")
+      signatures := make([][]byte, NUM_RUNS)
+
+      for i := 0; i < NUM_RUNS; i++ {
+        pub, priv, _ := ed25519.GenerateKey(rand.Reader)
+        publicKeys[i] = pub
+        privateKeys[i] = priv
+      }
+
+      start := time.Now()
+      for i := 0; i < NUM_RUNS; i++ {
+        signatures[i] = ed25519.Sign(privateKeys[i], message)
+      }
+      elapsed := time.Since(start)
+      fmt.Printf("Ed25519 signing of %d messages took %s\\n", NUM_RUNS, elapsed)
+
+      // Benchmark verification
+      start = time.Now()
+      for i := 0; i < NUM_RUNS; i++ {
+        if !ed25519.Verify(publicKeys[i], message, signatures[i]) {
+          panic("Invalid signature")
+        }
+      }
+      elapsed = time.Since(start)
+      fmt.Printf("Ed25519 verification of %d signatures took %s\\n", NUM_RUNS, elapsed)
+    }
+
+    func benchmarkBLS() {
+      // Initialize BLS library
+      bls.Init(bls.BLS12_381)
+
+      // Generate keys and signatures
+      privateKeys := make([]bls.SecretKey, NUM_RUNS)
+      publicKeys := make([]bls.PublicKey, NUM_RUNS)
+      signatures := make([]bls.Sign, NUM_RUNS)
+      message := []byte("message")
+
+      for i := 0; i < NUM_RUNS; i++ {
+        var sk bls.SecretKey
+        sk.SetByCSPRNG()
+        privateKeys[i] = sk
+        publicKeys[i] = *sk.GetPublicKey()
+      }
+
+      // Benchmark signing
+      start := time.Now()
+      for i := 0; i < NUM_RUNS; i++ {
+        signatures[i] = *privateKeys[i].SignByte(message)
+      }
+      elapsed := time.Since(start)
+      fmt.Printf("BLS signing of %d messages took %s\\n", NUM_RUNS, elapsed)
+
+      start = time.Now()
+      for i := 0; i < NUM_RUNS; i++ {
+        if !signatures[i].VerifyByte(&publicKeys[i], message) {
+          panic("Invalid signature")
+        }
+      }
+      elapsed = time.Since(start)
+      fmt.Printf("BLS verification of %d signatures took %s\\n", NUM_RUNS, elapsed)
+
+      // Aggregate signatures
+      start = time.Now()
+      var aggSig bls.Sign
+      aggSig.Aggregate(signatures)
+
+      // Benchmark aggregated verification
+      if !aggSig.FastAggregateVerify(publicKeys, message) {
+        panic("Invalid aggregated signature")
+      }
+      elapsed = time.Since(start)
+      fmt.Printf("BLS aggregated verification of %d signatures took %s\\n", NUM_RUNS, elapsed)
+    }
+
+    func main() {
+      fmt.Printf("Benchmarking Ed25519 and BLS signatures...\\n\\n")
+      benchmarkEd25519()
+      fmt.Println()
+      benchmarkBLS()
+    }
+    """
+}
+
+The benchmarking code generates 50,000 signatures and verifies them using both
+Ed25519 and BLS. Upon running the benchmark, you should see the performance
+difference between the two signature schemes:
+
+code {
+  language = sh,
+  content = """
+    $ go run benchmark.go
+    Benchmarking Ed25519 and BLS signatures...
+
+    Ed25519 signing of 50000 messages took 1.038312417s
+    Ed25519 verification of 50000 signatures took 2.393016917s
+
+    BLS signing of 50000 messages took 7.456610875s
+    BLS verification of 50000 signatures took 34.976926875s
+    BLS aggregated verification of 50000 signatures took 89.733541ms
+  """
+}
+
+As you can see from the benchmark results, Ed25519 signatures are significantly
+faster than BLS signatures in terms of both signing and individual verification.
+However, BLS aggregated verification is faster than verifying individual Ed25519
+signatures.
+
+The aggregated verification time of BLS signatures is, to a large extent,
+irrelevant in the context of the Unchained protocol as we still need to verify
+individual signatures before aggregation. This means that the performance
+benefits of Ed25519 outweigh the benefits of BLS aggregation in most cases.
+
+Also, since signatures are sent by participants in an asynchronous manner, the
+aggregated verification time is not a bottleneck in the consensus layer. Even if
+we wait for all signatures to arrive before verifying them, the wait time should
+be counted as part of the consensus round.
+
+title { Backwards Compatibility, size = 2 }
+
+This is a breaking change, as it involves replacing the signature scheme used
+throughout the Unchained protocol. Existing implementations of the protocol
+will need to be updated to support Ed25519 signatures instead of BLS signatures.
+
+title { Reference Implementation, size = 2 }
+
+N/A
+
+title { References, size = 2 }
+
+list {
+  items = link {
+    Guidance for Choosing an Elliptic Curve Signature Algorithm in 2022,
+    to = https://soatok.blog/2022/05/19/guidance-for-choosing-an-elliptic-curve-signature-algorithm-in-2022
+  },
+  items = link {
+    Performance of EdDSA and BLS Signatures in Committee-Based Consensus,
+    to = https://dl.acm.org/doi/pdf/10.1145/3584684.3597265
+  },
+  items = link {
+    Ed25519 vs bls performance,
+    to = https://forum.autonomi.community/t/ed25519-vs-bls-performance
+  },
+  items = link {
+    Why EdDSA held up better than ECDSA against Minerva,
+    to = https://blog.cr.yp.to/20191024-eddsa.html
+  },
+  items = link {
+    Things that use Ed25519,
+    to = https://ianix.com/pub/ed25519-deployment.html
+  }
+}
+
+meta {
+  description = "This document describes the basic idea, information and specs of replacing BLS
+                 with Ed25519 in the Unchained protocol. The BLS signature scheme is currently
+                 used in the Unchained protocol to sign messages and transactions. This TEP
+                 proposes to replace BLS with Ed25519, a more efficient and widely-used signature
+                 scheme.",
+  ogImageText = [TEP 2, Replace BLS, with Ed25519],
+  ogImageFontSize = 24
+}

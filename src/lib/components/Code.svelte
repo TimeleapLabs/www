@@ -37,7 +37,10 @@
 	});
 </script>
 
-<div class="rounded-2xl code overflow-hidden max-w-full" class:line-numbers={lineNumbers}>
+<div
+	class="rounded-2xl code overflow-hidden max-w-full max-h-[400px]"
+	class:line-numbers={lineNumbers}
+>
 	{#await highlighter then highlighter}
 		{@html highlight(highlighter)}
 	{/await}

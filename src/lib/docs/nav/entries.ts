@@ -72,6 +72,10 @@ export const entries = [
     "title": "Timeleap Enhancement Proposals"
   },
   {
+    "href": "/docs/tep/2",
+    "title": "TEP-2: Replace BLS with Ed25519"
+  },
+  {
     "href": "/docs/tep/1",
     "title": "TEP-1: Unchained Plugins"
   },
@@ -163,6 +167,10 @@ export const fullNav = {
       "href": "/docs/tep",
       "title": "Timeleap Enhancement Proposals",
       "nav": [
+        {
+          "href": "/docs/tep/2",
+          "title": "TEP-2: Replace BLS with Ed25519"
+        },
         {
           "href": "/docs/tep/1",
           "title": "TEP-1: Unchained Plugins"
