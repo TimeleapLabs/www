@@ -16,6 +16,7 @@
 	import { toast } from '@zerodevx/svelte-toast';
 	import { onboard } from '$lib/onboard.js';
 	import { getRarity } from '$lib/utils/nft.js';
+	import { slide } from 'svelte/transition';
 
 	let userAddress: string | undefined;
 	let staking: ethers.Contract | undefined;
@@ -27,9 +28,20 @@
 	export let data;
 	nfts = data.nfts;
 
+	type UserStake = {
+		id: bigint;
+		unlock: bigint;
+		amount: bigint;
+		rewards: bigint;
+		program: bigint;
+		nftId: bigint;
+		claimed: boolean;
+		hasNft: boolean;
+	};
+
 	let programs: { id: number; active: boolean; duration: number; rewards: bigint }[] = [];
 	let programOptions: { value: string; label: string }[] = [];
-	let userStakes: { id: bigint; [key: string]: bigint }[] = [];
+	let userStakes: UserStake[] = [];
 	let userNfts: any[] = [];
 
 	let amount: string;
@@ -57,6 +69,10 @@
 		userAddress = await signer.getAddress();
 	};
 
+	const niceKns = (amount: ethers.BigNumberish) => {
+		return ethers.formatUnits(amount, 18).replace(/(\.\d{2})\d+/, '$1');
+	};
+
 	$: if ($wallet?.provider) setAddress();
 
 	const readStakeStats = async (): Promise<void> => {
@@ -66,19 +82,9 @@
 
 		const stakeIds = await storage.findStakesByUser(userAddress);
 		const stakeIdsAsBigInts = stakeIds.map((id: string | number | bigint | boolean) => BigInt(id));
-		const rawUserStakes: any[] = await storage.getStakesById(stakeIdsAsBigInts);
+		const rawUserStakes: UserStake[] = await storage.getStakesById(stakeIdsAsBigInts);
 
-		userStakes = rawUserStakes
-			.map((stake, index) => ({
-				...stake,
-				id: stakeIds[index],
-				unlock: stake.unlock instanceof BigInt ? stake.unlock.toString() : stake.unlock,
-				amount: stake.amount instanceof BigInt ? stake.amount.toString() : stake.amount,
-				rewards: stake.rewards instanceof BigInt ? stake.rewards.toString() : stake.rewards,
-				program: stake.program instanceof BigInt ? stake.program.toString() : stake.program,
-				nftId: stake.nftId instanceof BigInt ? stake.nftId.toString() : stake.nftId
-			}))
-			.reverse();
+		userStakes = [...rawUserStakes];
 
 		const allPrograms: any[] = await storage.getStakeProgramsById([0, 1, 2]);
 		programs = allPrograms
@@ -277,27 +283,42 @@
 								on:click={() => toggleStakeDetails(index)}
 								on:keydown={(e) => e.key === 'Enter' && toggleStakeDetails(index)}
 							>
-								<span class="font-medium">{ethers.formatUnits(stake.amount)} KNS</span>
+								<span class="font-medium inline-flex items-center">
+									{#if stake.claimed}
+										<Icon icon="carbon:recently-viewed" width="16" height="16" class="mr-4" />
+									{:else if Number(stake.unlock) * 1000 < Date.now()}
+										<Icon icon="carbon:unlocked" width="16" height="16" class="mr-4" />
+									{:else}
+										<Icon icon="carbon:locked" width="16" height="16" class="mr-4" />
+									{/if}
+									{niceKns(stake.amount)} KNS
+								</span>
 								<Icon
 									icon={expandedIndex === index ? 'carbon:chevron-up' : 'carbon:chevron-down'}
 								/>
 							</div>
 							{#if expandedIndex === index}
-								<div class="mt-4 text-sm">
+								<div class="mt-4 text-sm" transition:slide={{ axis: 'y', duration: 300 }}>
 									{#if typeof stake.rewards === 'bigint'}
-										<p><strong>Rewards:</strong> {ethers.formatUnits(stake.rewards)} KNS</p>
+										<p><strong>Rewards:</strong> {niceKns(stake.rewards)} KNS</p>
 									{/if}
-									<p><strong>NFT:</strong> {stake.nft !== undefined ? stake.nft : '-'}</p>
+									{#if stake.hasNft}
+										<p><strong>NFT:</strong> {stake.nftId}</p>
+									{/if}
 									<p>
 										<strong>Unlock Date:</strong>
 										{formatDate(new Date(Number(stake.unlock) * 1000))}
 									</p>
-									<Button
-										class="mt-4 bg-red-500 hover:bg-red-400 text-white font-semibold"
-										on:click={() => unstakeHandler(stake.id)}
-									>
-										Unstake
-									</Button>
+									{#if !stake.claimed}
+										<Button
+											class="mt-4 bg-red-500 hover:bg-red-400 text-white font-semibold"
+											on:click={() => unstakeHandler(stake.id)}
+										>
+											Unstake
+										</Button>
+									{:else}
+										<p class="text-sm text-zinc-400">Already claimed rewards.</p>
+									{/if}
 								</div>
 							{/if}
 						</li>
