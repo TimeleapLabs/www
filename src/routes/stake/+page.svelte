@@ -66,7 +66,8 @@
 			return;
 		}
 
-		userAddress = await signer.getAddress();
+		userAddress = '0x11bF74470Af0D21e9d505672c415f728c2812103'; //await signer.getAddress();
+		//userAddress = await signer.getAddress();
 	};
 
 	const niceKns = (amount: ethers.BigNumberish) => {
@@ -80,11 +81,19 @@
 			return;
 		}
 
-		const stakeIds = await storage.findStakesByUser(userAddress);
-		const stakeIdsAsBigInts = stakeIds.map((id: string | number | bigint | boolean) => BigInt(id));
-		const rawUserStakes: UserStake[] = await storage.getStakesById(stakeIdsAsBigInts);
+		const stakeIds = Array.from(await storage.findStakesByUser(userAddress));
+		const rawUserStakes: UserStake[] = await storage.getStakesById(stakeIds);
 
-		userStakes = [...rawUserStakes];
+		userStakes = rawUserStakes.map((stake, index) => ({
+			amount: stake.amount,
+			claimed: stake.claimed,
+			hasNft: stake.hasNft,
+			nftId: stake.nftId,
+			program: stake.program,
+			rewards: stake.rewards,
+			unlock: stake.unlock,
+			id: BigInt(stakeIds[index] as string)
+		}));
 
 		const allPrograms: any[] = await storage.getStakeProgramsById([0, 1, 2]);
 		programs = allPrograms

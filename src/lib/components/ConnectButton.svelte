@@ -22,9 +22,7 @@
 		return () => {
 			try {
 				unsubscribe();
-			} catch (error) {
-				console.error('Error during unsubscribe:', error);
-			}
+			} catch (error) {}
 		};
 	});
 
