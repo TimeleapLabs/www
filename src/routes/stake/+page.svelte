@@ -66,8 +66,7 @@
 			return;
 		}
 
-		userAddress = '0x11bF74470Af0D21e9d505672c415f728c2812103'; //await signer.getAddress();
-		//userAddress = await signer.getAddress();
+		userAddress = await signer.getAddress();
 	};
 
 	const niceKns = (amount: ethers.BigNumberish) => {
