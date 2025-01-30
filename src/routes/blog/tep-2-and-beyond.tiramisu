@@ -55,7 +55,7 @@ Client in the coming weeks. Stay tuned!
 
 title { Sia Schema }
 
-Sia is a the serialization format used by Unchained. It's similar to JSON, but
+Sia is the serialization format used by Unchained. It's similar to JSON, but
 a lot faster. While the low-level Sia library is unopinionated, and is made for
 when performance is the most important factor, we have created a higher-level
 library called Sia Schema that is more developer-friendly.
