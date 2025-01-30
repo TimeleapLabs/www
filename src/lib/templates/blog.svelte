@@ -18,11 +18,54 @@
 	import { getNavForPage, fullNav } from '$lib/blog/nav';
 	import { page } from '$app/stores';
 	import { persisted } from 'svelte-persisted-store';
+	import { onMount } from 'svelte';
 	import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-svelte';
 
 	const readable = persisted('readable', false);
 	const nav = getNavForPage($page.url.pathname);
+	$: contentClass = $readable ? '!max-w-[912px]' : '';
 
+	let headings: { id: string; text: string }[] = [];
+	let activeHeading = '';
+
+	onMount(() => {
+		const contentSection = document.querySelector('.section');
+		if (contentSection) {
+			headings = Array.from(contentSection.querySelectorAll('h2, h3')).map((el) => ({
+				id: el.id || el.textContent?.replace(/\s+/g, '-').toLowerCase() || '',
+				text: el.textContent || ''
+			}));
+		}
+
+		const onScroll = () => {
+			let newActiveHeading = activeHeading;
+			headings.forEach((heading) => {
+				const element = document.getElementById(heading.id);
+				if (element) {
+					const rect = element.getBoundingClientRect();
+					if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+						newActiveHeading = heading.id;
+					}
+				}
+			});
+
+			if (newActiveHeading !== activeHeading) {
+				activeHeading = newActiveHeading;
+			}
+		};
+
+		window.addEventListener('scroll', onScroll);
+
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+		};
+	});
+	const scrollToHeading = (id: string) => {
+		const element = document.getElementById(id);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	};
 	('$IMPORTS');
 </script>
 
@@ -41,22 +84,47 @@
 		</div>
 
 		<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
-			<div class="flex flex-col gap-8 md:px-16 max-w-full min-w-0">
-				<div class="flex gap-8 flex-wrap justify-between">
-					<div class="flex gap-2 -mb-8 flex-wrap">$BREADCRUMBS</div>
-					<Readable />
+			<div class="flex justify-between items-center gap-2 flex-wrap relative z-10">
+				<div class="flex gap-2 flex-wrap">$BREADCRUMBS</div>
+				<Readable />
+			</div>
+
+			<div class="md:grid grid-cols-[1fr_auto] gap-8">
+				<div class="flex flex-col gap-8 max-w-full min-w-0">
+					<div
+						class="flex flex-col gap-8 max-w-full transition-all duration-300 ease-in-out {contentClass}"
+					>
+						$CONTENT
+					</div>
+
+					<Author author={'$AUTHOR'} createdAt={'$CREATED_AT'} />
+					<Feedback pageId={$page.url.pathname.slice(1).replaceAll('/', '__')} />
 				</div>
 
-				<div
-					class="flex flex-col gap-8 max-w-full {$readable
-						? '!max-w-[860px]'
-						: ''} transition-all duration-300 ease-in-out"
-				>
-					$CONTENT
-				</div>
-
-				<Author author={'$AUTHOR'} createdAt={'$CREATED_AT'} />
-				<Feedback pageId={$page.url.pathname.slice(1).replaceAll('/', '__')} />
+				{#if $readable && headings.length && window.innerWidth > 1440}
+					<div
+						class="hidden sticky top-24 flex-none max-h-[calc(100vh-6rem)] max-w-60 overflow-y-auto p-4 space-y-2 opacity-0 translate-y-4 transition-all duration-300 ease-in-out {$readable
+							? 'lg:block opacity-100 translate-y-0'
+							: ''}"
+					>
+						<h4 class="text-lg font-bold mb-2">On this page</h4>
+						<ul class="space-y-2">
+							{#each headings as heading}
+								<li>
+									<button
+										on:click={() => scrollToHeading(heading.id)}
+										class="text-sm transition-colors break-all whitespace-normal w-full text-left
+										   {activeHeading === heading.id ? 'text-green-400' : 'text-white'}
+										   hover:text-white hover:opacity-90 cursor-pointer"
+									>
+										{heading.text}
+									</button>
+								</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
+			</div>
 
 				{#if nav.next || nav.prev}
 					<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
@@ -66,8 +134,8 @@
 								animate
 								href={nav.prev.href}
 							>
-								<ArrowLeft size={'1em'} />{nav.prev.title}
-							</Button>
+							<ArrowLeft size={'1em'} />{nav.prev.title}
+						</Button>
 						{/if}
 						{#if nav.next}
 							<Button
@@ -75,14 +143,14 @@
 								animate
 								href={nav.next.href}
 							>
-								{nav.next.title}<ArrowRight size={'1em'} />
-							</Button>
+							{nav.next.title}<ArrowRight size={'1em'} />
+						</Button>
 						{/if}
 					</div>
 				{/if}
 			</div>
 		</div>
-	</div></Section
+	</Section
 >
 
 <Footer></Footer>
