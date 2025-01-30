@@ -22,7 +22,7 @@ While developing TEP-1 and TEP-2, we took the opportunity to create client
 libraries and toolkits for developers. These toolkits are already available
 publicly. Let's go through them one by one:
 
-title { Unchained Client }
+title { Unchained Client, size = 2 }
 
 Those of you familiar with development on Ethereum already know libraries like
 web3.js and ethers.js. These libraries allow you to interact with the Ethereum
@@ -53,7 +53,7 @@ code {
 We'll publish more tutorials, docs, and guides on how to use the Unchained
 Client in the coming weeks. Stay tuned!
 
-title { Sia Schema }
+title { Sia Schema, size = 2 }
 
 Sia is the serialization format used by Unchained. It's similar to JSON, but
 a lot faster. While the low-level Sia library is unopinionated, and is made for
@@ -97,7 +97,7 @@ schema to the Unchained marketplace, and developers will be able to install them
 with a single command. Since the schema is language-agnostic, developers can
 install your plugin in any language they want.
 
-title { What's Next? }
+title { What's Next?, size = 2 }
 
 Now with Unchained plugins, the Unchained client, and Sia Schema in place, we
 are ready to start building the Unchained ecosystem. Soon we are going to invite
