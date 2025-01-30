@@ -1,0 +1,131 @@
+title { TEP-2 and Beyond }
+
+We introduced TEP-2 earlier this month. TEP-2 proposed replacing BLS signatures
+in Unchained with Ed25519 signatures. We are happy to announce that TEP-2 has
+been accepted, and already implemented in the Unchained core.
+
+Ed25519 signatures are faster than BLS signatures. They require less memory and
+CPU, which means they are more efficient. They are also easier to implement and
+verify. There are many libraries available for Ed25519 signatures in different
+languages. There are also ICs and hardware accelerators available for Ed25519,
+which wasn't the case for BLS.
+
+Considering the goals of Unchained, to be an efficient and scalable distributed
+computing platform, Ed25519 signatures are a better fit for us for the above
+reasons. We are happy to have made this change.
+
+Previously we had announced that TEP-1 depended on TEP-2. Unchained Plugins,
+which were introduced in TEP-1, will use Ed25519 signatures instead of BLS
+signatures. This is also already implemented in the Unchained core.
+
+While developing TEP-1 and TEP-2, we took the opportunity to create client
+libraries and toolkits for developers. These toolkits are already available
+publicly. Let's go through them one by one:
+
+title { Unchained Client }
+
+Those of you familiar with development on Ethereum already know libraries like
+web3.js and ethers.js. These libraries allow you to interact with the Ethereum
+blockchain from your application. We have created a similar library for
+Unchained, called the Unchained Client.
+
+This library comes with a set of APIs that allow you to interact with the
+Unchained network. You can sign and send transactions, call functions, and
+verify messages.
+
+The components available in the Unchained Client take care of the low-level
+details of interacting with the Unchained network. You can focus on building
+your application without worrying about the underlying network.
+
+The following sample code shows how to create a new wallet and connect to an
+Unchained node:
+
+code {
+  language = typescript,
+  content = """
+    import { Client, Wallet } from "@timeleap/unchained-client";
+
+    const wallet = await Wallet.random();
+    const client = await Client.connect(wallet, "http://localhost:9123");
+  """
+}
+
+We'll publish more tutorials, docs, and guides on how to use the Unchained
+Client in the coming weeks. Stay tuned!
+
+title { Sia Schema }
+
+Sia is the serialization format used by Unchained. It's similar to JSON, but
+a lot faster. While the low-level Sia library is unopinionated, and is made for
+when performance is the most important factor, we have created a higher-level
+library called Sia Schema that is more developer-friendly.
+
+Sia Schema allows you to define your data structures and plugin interfaces in a
+declarative way. It's similar to how you would define a schema in a database.
+Sia Schema then generates the low-level Sia serialization code for you.
+
+Here's a sneak peek of how you can define a simple data structure using Sia
+Schema:
+
+code {
+  language = typescript,
+  content = """
+    schema IsWizardArgs {
+      name        string8(encoding = "ascii")
+      age         uint8
+    }
+
+    plugin swiss.timeleap.isWizard.v1 as Sorcery {
+      method isWizard(timeout = 5000) IsWizardArgs returns {
+        isWizard      bool
+        message       string8(encoding = "ascii")
+      }
+    }
+  """
+}
+
+
+Calling the Sia compile command on the above schema will generate the low-level
+Sia serialization code for you. Check the link { TEP examples repository, to =
+https://github.com/TimeleapLabs/tep-examples } to see this in action. At the
+moment, Sia Schema supports TypeScript, but we plan to add support for more
+languages in the future.
+
+Not only Sia schema makes plugin development easier, but it also makes plugins
+italic { publishable }. In the future, you'll be able to publish your plugin
+schema to the Unchained marketplace, and developers will be able to install them
+with a single command. Since the schema is language-agnostic, developers can
+install your plugin in any language they want.
+
+title { What's Next? }
+
+Now with Unchained plugins, the Unchained client, and Sia Schema in place, we
+are ready to start building the Unchained ecosystem. Soon we are going to invite
+developers to start experimenting with Unchained plugins and develop utilities
+and applications on top of Unchained. We'll soon announce our plans, including
+hackathons, bounties, and grants to incentivize developers to build on Unchained.
+
+As mentioned before, the next steps in the Unchained roadmap include adding a
+consensus mechanism. There is a pre-requisite for this, which is the Unchained
+Messaging Protocol. While this feature is already implemented in the Unchained
+core, it is not yet formalized. TEP-3 will propose the Unchained Messaging
+Protocol, and we'll soon announce it.
+
+Unchained consensus will be based on the Unchained Messaging Protocol. Messages
+can be broadcasted to the network, which means workers can receive important
+information about the network state. For example, when a user calls a function,
+the information about this call, including the fees associated with it, the
+worker assigned to it, time to respond, etc., will be broadcasted to the
+network.
+
+Workers receive these messages and update their state accordingly. This way, the
+network can reach consensus on the state of the network. We will publish the
+exact details in TEP-4, once TEP-3 is accepted and implemented.
+
+meta {
+  description = "TEP 2 has been accepted, and already implemented in the Unchained core. Let's explore what it means for the Unchained ecosystem.",
+  ogImageText = [TEP-2 and Beyond, A look at the, future of Unchained],
+  ogImageFontSize = 24,
+  author = pouya,
+  createdAt = 2025-01-30
+}

@@ -9,7 +9,7 @@
 		pouya: {
 			name: 'Pouya Eghbali',
 			avatar: '/images/authors/pouya.jpg',
-			bio: 'Founder of Timeleap, full-stack developer, passionate about distributed computation.'
+			bio: 'Founder & CEO at Timeleap'
 		}
 	};
 
