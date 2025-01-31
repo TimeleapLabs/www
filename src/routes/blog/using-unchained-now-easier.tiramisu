@@ -59,6 +59,18 @@ code {
   """
 }
 
+Then in TypeScript:
+
+code {
+  language = typescript,
+  content = """
+    import { encodeWizardResponse } from "./wizardResponse.ts"
+    const response = encodeWizardResponse({ uuid, isWizard: true, message: "You are a wizard!" });
+  """
+}
+
+And you're done!
+
 title { Unchained Client, size = 2 }
 
 Previously, users needed to create the binary payload for each RPC call manually.
