@@ -98,10 +98,10 @@ code {
 
 title { RPC Calls with Sia Schema, size = 2 }
 
-We also added support for defining RPC calls in the Sia schema. This way, you
-can just define an interface to your plugin in the schema file, and users will
-be able to generate bindings for it for their favorite language. For example,
-the demo plugin in the link { TEP examples repository, to =
+We also added support for defining RPC calls in Sia schema. This way, you can
+just define an interface to your plugin in the schema file, and users will be
+able to generate bindings for it for their favorite language. For example, the
+demo plugin in the link { TEP examples repository, to =
 https://github.com/TimeleapLabs/tep-examples/tree/master/tep-1-plugins } has the
 following schema:
 
