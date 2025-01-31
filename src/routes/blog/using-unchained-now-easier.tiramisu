@@ -1,0 +1,139 @@
+title { Using Unchained Just Became Easier! }
+
+Eearlier this month we released the first version of the TEP-1: Unchained Plugins.
+We published an early article to show you how to create your first Unchained plugin
+with TEP-1. Since then we've made major updates to Unchained, and we've released
+numerous dev tools to make it easier to work with Unchained.
+
+Let's see how the new changes affect the process of creating a Unchained plugin,
+and also interacting with them.
+
+title { Sia Low-Level API, size = 2 }
+
+Sia is the serialization format at the heart of Unchained. We tried many alternatives,
+but none of them satisfied the needs of our project. JSON, while widely used, is slow,
+and not suitable for binary data. We tried MessagePack but we hit compatibility issues
+between different languages early on. Cap'n Proto isn't well supported, and Protobuf
+is too complex for our needs.
+
+Sia is made specifically for remote procedure calls (RPCs) and is designed to be
+fast, efficient, and easy to use. It's a binary format that's easy to parse and
+serialize. It's so lightweight you can port it to your favorite language in a few
+hours. We've already ported it to TypeScript, Python, and Go.
+
+Serializing an object in Sia, looks like this:
+
+code {
+  language = typescript,
+  content = """
+    const response = Sia.alloc(1024)  // Allocate a buffer of 1024 bytes
+      .addByteArray8(uuid)            // Add the unique ID so the broker can route the response
+      .addUInt16(0)                   // There was no error, so we use a 0 status code
+      .addBool(isWizard)              // Add a boolean value to the response
+      .addAscii(message)              // Add the message to the response
+      .toUint8ArrayReference();       // Convert the buffer to a Uint8Array
+  """
+}
+
+While this gives us a lot of control, and gives us the best possible performance,
+it can easily become cumbersome. To make it easier to work with Sia, we've created
+a high-level API that abstracts away the low-level details. This makes it easier
+to work with Sia in your projects.
+
+What we did was making a schema language for Sia, together with a compiler to generate
+the necessary code for you. This way, you can define your data structures in a
+schema file, and generate the necessary code for your project. We've made the compiler
+with support for multiple code targets and languages in mind.
+
+For example, the above low-level code can be written in the high-level API like this:
+
+code {
+  language = typescript,
+  content = """
+    schema WizardResponse {
+      uuid        byte8
+      error?      uint16
+      isWizard?   bool
+      message?    string8(encoding = "ascii")
+    }
+  """
+}
+
+title { RPC Calls with Sia Schema, size = 2 }
+
+We also added support for defining RPC calls in the Sia schema. This way, you
+can just define an interface to your plugin in the schema file, and users will
+be able to generate bindings for it for their favorite language. For example,
+the demo plugin in the link { TEP examples repository, to =
+https://github.com/TimeleapLabs/tep-examples/tree/master/tep-1-plugins } has the
+following schema:
+
+code {
+  language = typescript,
+  content = """
+    plugin swiss.timeleap.isWizard.v1 as Sorcery {
+      method isWizard(timeout = 5000) IsWizardArgs returns {
+        isWizard      bool
+        message       string8(encoding = "ascii")
+      }
+    }
+  """
+}
+
+Then in TypeScript, for example:
+
+code {
+  language = typescript,
+  content = """
+    const sorcery = await Sorcery.connect(client);
+    const isWizard = await sorcery.isWizard(sia.alloc(512), { name: "John Doe", age: 42 });
+  """
+}
+
+Without Sia schema the above could look like this:
+
+code {
+  language = typescript,
+  content = """
+    const payload = new Sia()
+      .addByteArrayN(opcode)                      // All messages start with an opcode
+      .addByteArray8(uuid.bytes)                  // This is the unique ID of the message
+      .addAscii("swiss.timeleap.isWizard.v1")     // The name of the plugin to call
+      .addAscii("isWizard")                       // The name of the method to call
+      .addUint64(5000)                            // The timeout for the method call
+      .addAscii("John Doe")                       // First argument to isWizard: name
+      .addUInt8(age);                             // Second argument to isWizard: age
+
+    const response = await client.send(payload);
+  """
+}
+
+title { Publishable Plugins, size = 2 }
+
+Sia schema also allows you to define metadata for your plugin. This way, you can
+publish your plugin to the Unchained plugin marketplace, and users will be able
+to see the metadata of your plugin.
+
+With a schema, users will be able to add your plugin to their project by running
+a simple command. For example, if you have a plugin for generative AI or a plugin
+for image processing, users will be able to add your plugin to their website,
+or their mobile app, with a single command.
+
+title { Conclusion, size = 2 }
+
+We've made it easier to work with Unchained by adding a high-level API for Sia,
+and by adding support for defining RPC calls in the Sia schema. This way, you can
+define your data structures and RPC calls in a schema file, and generate the necessary
+code for your project.
+
+This prompotes code reuse, and makes it easier to publish your plugins to the
+builder community. We're excited to see what you'll build with Unchained, and we
+can't wait to see your plugins in the Unchained plugin marketplace.
+
+meta {
+  description = "Unchained just got easier! Explore new dev tools, a high-level API for Sia, and seamless plugin publishing. Build and integrate faster than ever!",
+  ogImageText = [Using Unchained, Just Became Easier!],
+  ogImageFontSize = 24,
+  author = pouya,
+  createdAt = 2025-01-31
+}

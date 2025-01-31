@@ -1,5 +1,9 @@
 title { TEP-1: Unchained Plugins Alpha How-To }
 
+alert { type = warning, This article is based on the alpha release of
+  TEP-1: Unchained Plugins. For a more recent version, please refer to the
+  official Timeleap documentation. }
+
 We're excited to announce the alpha release of TEP-1: Unchained Plugins! This
 release is a major milestone for Timeleap, as it marks the first step towards a
 more flexible and extensible Unchained platform. You can now make your own
