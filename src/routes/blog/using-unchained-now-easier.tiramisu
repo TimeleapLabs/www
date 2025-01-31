@@ -89,8 +89,7 @@ interact with Unchained, but it also means there will be less user errors.
 code {
   language = typescript,
   content = """
-    import { Wallet } from "@timeleap/unchained-client"
-    import { Client } from "@timeleap/unchained-client"
+    import { Wallet, Client } from "@timeleap/unchained-client"
 
     const wallet = await Wallet.random()
     const client = await Client.connect(wallet, unchainedBrokerURI)
