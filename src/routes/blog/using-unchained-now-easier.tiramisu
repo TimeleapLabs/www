@@ -163,7 +163,7 @@ and by adding support for defining RPC calls in the Sia schema. This way, you ca
 define your data structures and RPC calls in a schema file, and generate the necessary
 code for your project.
 
-This prompotes code reuse, and makes it easier to publish your plugins to the
+This prompts code reuse, and makes it easier to publish your plugins to the
 builder community. We're excited to see what you'll build with Unchained, and we
 can't wait to see your plugins in the Unchained plugin marketplace.
 
