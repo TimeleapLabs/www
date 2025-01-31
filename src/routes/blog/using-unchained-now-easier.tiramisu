@@ -59,6 +59,32 @@ code {
   """
 }
 
+title { Unchained Client, size = 2 }
+
+Previously, users needed to create the binary payload for each RPC call manually.
+Then they had to sign the payload, and append the signature to it. They also had
+to establish a connection to the broker, send the payload, wait for a response,
+remap the response ID to the request ID, and finally parse the response.
+
+That's too much work. We've made it easier by creating a high-level client and
+wallet API for Unchained. This way, you can connect to the broker, send RPC calls,
+and receive responses with just a few lines of code.
+
+The client takes care of mapping the response ID to the request ID, and the wallet
+takes care of signing the payload. Not only this makes it easier to connect and 
+interact with Unchained, but it also means there will be less user errors.
+
+code {
+  language = typescript,
+  content = """
+    import { Wallet } from "@timeleap/unchained-client"
+    import { Client } from "@timeleap/unchained-client"
+
+    const wallet = await Wallet.random()
+    const client = await Client.connect(wallet, unchainedBrokerURI)
+  """
+}
+
 title { RPC Calls with Sia Schema, size = 2 }
 
 We also added support for defining RPC calls in the Sia schema. This way, you
