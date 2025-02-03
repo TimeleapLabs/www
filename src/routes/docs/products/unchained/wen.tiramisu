@@ -17,6 +17,10 @@ mermaid {
     RPC --> Schema["Schema (Sia)"]
     Schema --> SDK
     SDK --> Marketplace["API Marketplace"]
+
+    SDK --> WalletSDK["Wallet SDK"]
+    WalletSDK --> Wallet["Browser Wallet"]
+
     
     Worker --> Plugins
     Plugins --> WebSocket["WebSocket Plugins"]
@@ -27,22 +31,20 @@ mermaid {
 
     Consumer --> MongoDB
     MongoDB --> QueryEngine["Query Engine"]
-    QueryEngine --> WalletSDK["Wallet SDK"]
-    WalletSDK --> Wallet["Browser Wallet"]
+    
 
     Broker --> MultiBroker["Multi-Broker"]
 
-    class WebSocket inprogress
     class PluginsManager upcoming
     class PluginsExplorer upcoming
     class QueryEngine upcoming
-    class SDK upcoming
+    class SDK inprogress
     class MultiBroker upcoming
     class Consensus upcoming
     class Bridge upcoming
     class Schema inprogress
     class Marketplace upcoming
-    class WalletSDK upcoming
+    class WalletSDK inprogress
     class Wallet upcoming
   """
 }
