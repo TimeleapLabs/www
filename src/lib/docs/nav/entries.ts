@@ -72,6 +72,10 @@ export const entries = [
     "title": "Timeleap Enhancement Proposals"
   },
   {
+    "href": "/docs/tep/3",
+    "title": "TEP-3: Unchained Messaging Protocol"
+  },
+  {
     "href": "/docs/tep/2",
     "title": "TEP-2: Replace BLS with Ed25519"
   },
@@ -167,6 +171,10 @@ export const fullNav = {
       "href": "/docs/tep",
       "title": "Timeleap Enhancement Proposals",
       "nav": [
+        {
+          "href": "/docs/tep/3",
+          "title": "TEP-3: Unchained Messaging Protocol"
+        },
         {
           "href": "/docs/tep/2",
           "title": "TEP-2: Replace BLS with Ed25519"

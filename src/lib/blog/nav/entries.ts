@@ -4,6 +4,10 @@ export const entries = [
     "title": "Blog"
   },
   {
+    "href": "/blog/using-unchained-now-easier",
+    "title": "Using Unchained Just Became Easier!"
+  },
+  {
     "href": "/blog/tep-2-and-beyond",
     "title": "TEP-2 and Beyond"
   },
@@ -29,6 +33,10 @@ export const fullNav = {
   "href": "/blog",
   "title": "Blog",
   "nav": [
+    {
+      "href": "/blog/using-unchained-now-easier",
+      "title": "Using Unchained Just Became Easier!"
+    },
     {
       "href": "/blog/tep-2-and-beyond",
       "title": "TEP-2 and Beyond"

@@ -54,6 +54,10 @@
 		--input-border-radius: 1em;
 	}
 
+	.docs-heading {
+		@apply after:content-['\_'] after:text-green-400 after:font-bold after:ml-1;
+	}
+
 	.node.inprogress rect {
 		stroke: var(--color-yellow-400) !important;
 	}
