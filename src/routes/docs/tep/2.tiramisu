@@ -276,6 +276,6 @@ meta {
                  used in the Unchained protocol to sign messages and transactions. This TEP
                  proposes to replace BLS with Ed25519, a more efficient and widely-used signature
                  scheme.",
-  ogImageText = [TEP 2, Replace BLS, with Ed25519],
+  ogImageText = [TEP 2:, Replace BLS, with Ed25519],
   ogImageFontSize = 24
 }

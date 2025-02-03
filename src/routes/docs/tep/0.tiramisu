@@ -137,6 +137,6 @@ meta {
   description = "This document describes the process for creating, discussing, and implementing
                  Timeleap Enhancement Proposals (TEPs). TEPs are a mechanism for proposing major
                  new features, processes, or other significant changes to the Timeleap ecosystem.",
-  ogImageText = [TEP 0, Timeleap Enhancement Proposals],
+  ogImageText = [TEP 0:, Timeleap Enhancement Proposals],
   ogImageFontSize = 20
 }

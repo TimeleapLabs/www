@@ -7,6 +7,7 @@ to the TEP repository.
 
 toc {
   unordered = Yes,
+  3,
   2,
   1,
   0
