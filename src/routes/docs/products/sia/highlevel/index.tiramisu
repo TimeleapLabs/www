@@ -56,10 +56,10 @@ code {
     const sia = new Sia();
     const person: Person = { name: "Pouya", age: 33 };
 
-    const payload = encodePerson(person);
+    const payload = encodePerson(Sia.alloc(64), person);
     console.log(payload);
 
-    const deserialized: Person = decodePerson(Sia.alloc(64), payload);
+    const deserialized: Person = decodePerson(payload);
     console.log(deserialized); // { name: 'Pouya', age: 33 }
   """
 }
@@ -99,7 +99,7 @@ code {
     const client = await Client.connect(wallet, process.env.BROKER_URL);
     const sorcery = Sorcery.connect(client);
 
-    const response = await sorcery.isWizard("Pouya", 33);
+    const response = await sorcery.isWizard(Sia.alloc(64), "Pouya", 33);
     console.log(response); // { isWizard: true, message: 'You are a wizard, Pouya!' }
   """
 }
