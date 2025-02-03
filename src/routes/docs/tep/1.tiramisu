@@ -201,6 +201,6 @@ meta {
                 Unchained. They can either run in standalone mode to directly interact with
                 Brokers, or they can communicate with the official Unchained Worker client to
                 perform actions on behalf of the Worker.",
-  ogImageText = [TEP 1, Unchained Plugins],
+  ogImageText = [TEP 1:, Unchained Plugins],
   ogImageFontSize = 24
 }
