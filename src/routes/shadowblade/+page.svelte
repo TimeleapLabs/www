@@ -10,7 +10,11 @@
 	import Terminal from '$lib/components/puzzle/Terminal.svelte';
 </script>
 
-<MetaTags />
+<MetaTags
+	description="Play the game, solve the puzzles, and uncover the mysteries of the Shadowblade Chronicles. 200,000 KNS tokens for the first person to solve the puzzle hidden within the game."
+	title="Timeleap — Shadowblade Chronicles"
+	ogImageText="The\nShadowblade\nChronicles"
+/>
 
 <Navbar active="home"></Navbar>
 
