@@ -7,6 +7,7 @@
 	import Alert from '$lib/components/Alert.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
 	import Code from '$lib/components/Code.svelte';
+	import InlineCode from '$lib/components/InlineCode.svelte';
 	import Mermaid from '$lib/components/Mermaid.svelte';
 	import Collapsible from '$lib/components/docs/nav/Collapsible.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';

@@ -15,7 +15,6 @@ alert {
 
 toc {
   overview,
-  roadmap,
   products/index,
   tep/index
 }

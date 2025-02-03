@@ -129,7 +129,7 @@ const functions: {
 		context.headers ??= [];
 		context.headers.push(header);
 		const textSize = textSizeMap[size];
-		return `<h${size} class="docs-heading font-serif ${textSize} mb-4" id="${id}">${header}</h${size}>`;
+		return `<h${size} class="docs-heading font-serif ${textSize} -mb-4 mt-8" id="${id}">${header}</h${size}>`;
 	},
 	link(params) {
 		const href = (getParamsByName(params, 'to')[0]?.value as string) ?? '';
@@ -300,6 +300,10 @@ const functions: {
 		const codeIndented = getParamsByName(params, 'content')[0]?.value.toString() ?? '';
 		const code = deIndentCode(codeIndented);
 		return `<Code lineNumbers lang="${language}" code={\`${code}\`}></Code>`;
+	},
+	inlineCode(params) {
+		const code = params.positional.join(', ').trim();
+		return `<InlineCode>${code}</InlineCode>`;
 	},
 	mermaid(params) {
 		const codeIndented = params.positional.join(',');

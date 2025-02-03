@@ -4,11 +4,23 @@ Sia provides a low-level API for serializing and deserializing data. This API is
 ideal for developers who require fine-grained control over the serialization
 process.
 
-toc {
-  ts-api,
-  go-api,
-  python-api
-}
+title { Basics, size = 3 }
+
+Sia is a flat binary serialization format that stores data in a compact and
+efficient way. Sia strips away all unnecessary metadata and focuses on the
+essentials. The Sia format is designed to be fast, small, and easy to use.
+
+The low-level API defines a set of methods for adding and reading data. Libraries
+for each language follow the naming conventions of the language. For example, in
+JavaScript, the method to add a inlineCode { UInt8 } is inlineCode { addUInt8 },
+while in Go, the method is inlineCode { AddUInt8 }, and in Python, the method is
+inlineCode { add_uint8 }.
+
+At the end of each function name, the number represents the number of bytes used
+to store the data, or the number of bytes required to store the length of an 
+inlineCode { Array } or inlineCode { String }. For example, inlineCode { addUInt8 }
+stores an inlineCode { UInt8 } value in one byte, while inlineCode { addArray8 }
+stores an inlineCode { Array } with a length that fits in eight bytes (up to).
 
 title { JavaScript/TypeScript, size = 2 }
 
@@ -52,6 +64,65 @@ code {
   """
 }
 
+alert { type = warning, title = "Shared Buffers", For performance reasons, the
+JS Sia class uses a shared buffer for all instances. If you need a dedicated
+buffer for each instance, you can create a new buffer and pass it to the Sia
+constructor. You can also use the inlineCode { Sia.alloc } function to allocate
+a new buffer. To use a slice of the shared buffer, you can use the inlineCode {
+Sia.allocUnsafe } function. The inlineCode { Sia.allocUnsafe } function is
+faster than the inlineCode { Sia.alloc } function, and keeps track of the slice
+length. It guarantees no overlap with other slices, until the combined length of
+all slices exceeds the shared buffer length. }
+
+alert { type = info, title = "Special ASCII Type", The inlineCode { addAscii }
+method is a spcial method only available in the JavaScript/TypeScript Sia
+implementation. It is added for performance reasons, and is not available in
+other Sia implementations. In other languages, an ASCII string value can be read
+and written using the inlineCode { addString8 } and inlineCode { readString8 }
+methods. }
+
+title { Arrays, size = 3 }
+
+You can serialize and deserialize arrays of objects using the Sia low-level API
+like this:
+
+code {
+  language = typescript,
+  content = """
+    import { Sia } from "@timeleap/sia";
+
+    type Person = {
+      name?: string;
+      age?: number;
+    };
+
+    const sia = new Sia();
+    const people: Person[] = [
+      { name: "Alice", age: 25 },
+      { name: "Bob", age: 30 },
+    ];
+
+    const payload = sia
+      .seek(0)
+      .addArray8(people, (sia, person) => {
+        sia.addAscii(person.name ?? "").addUInt8(person.age ?? 0);
+      })
+      .toUint8ArrayReference();
+
+    console.log(payload);
+
+    const desia = new Sia(payload);
+    const deserialized: Person[] = desia.readArray8((sia) => {
+      return {
+        name: sia.readAscii(),
+        age: sia.readUInt8(),
+      };
+    });
+
+    console.log(deserialized);
+  """
+}
+
 title { Golang, size = 2 }
 
 Install the Sia package from GitHub:
@@ -84,10 +155,12 @@ code {
         AddString8(p.Name).
         AddUInt8(p.Age)
     }
+
     func (p *person) FromSia(s sia.Sia) {
       p.Name = s.ReadString8()
       p.Age = s.ReadUInt8()
     }
+
     func main() {
       p := person{Name: "Pouya", Age: 33}
       payload := p.Sia().Bytes()
@@ -95,6 +168,68 @@ code {
       var p2 person
       p2.FromSia(sia.New().EmbedBytes(payload))
       fmt.Println(p2) // {Pouya 33}
+    }
+  """
+}
+
+title { Arrays, size = 3 }
+
+You can serialize and deserialize arrays of objects using the Sia low-level API
+like this:
+
+code {
+  language = go,
+  content = """
+    package main
+
+    import (
+      "fmt"
+
+      sia "github.com/TimeleapLabs/go-sia/v2/pkg"
+    )
+
+    type person struct {
+      Name string
+      Age  uint8
+    }
+
+    func (p *person) Sia() sia.Sia {
+      return sia.New().
+        AddString8(p.Name).
+        AddUInt8(p.Age)
+    }
+
+    func (p *person) FromSia(s sia.Sia) {
+      p.Name = s.ReadString8()
+      p.Age = s.ReadUInt8()
+    }
+
+    func main() {
+      people := []person{
+        {Name: "Alice", Age: 25},
+        {Name: "Bob", Age: 30},
+      }
+
+      s := sia.New()
+      sarr := sia.NewArray[Person](&s)
+
+      sarr.
+        AddArray8(people, func(s sia.Sia, p person) {
+          s.AddString8(p.Name).AddUInt8(p.Age)
+        })
+
+      payload := s.Bytes()
+      fmt.Println(payload)
+      
+      s2 := sia.FromBytes(payload)
+      sarr2 := sia.NewArray[Person](&s2)
+
+      people2 := sarr2.ReadArray8(func(s sia.Sia) person {
+        return person{
+          Name: s.ReadString8(),
+          Age:  s.ReadUInt8(),
+        }
+      })
     }
   """
 }
@@ -128,6 +263,41 @@ code {
     desia = Sia().set_content(payload)
     deserialized = Person(name=desia.read_string8(), age=desia.read_uint8())
     print(deserialized.name, deserialized.age) # Pouya 33
+  """
+}
+
+title { Arrays, size = 3 }
+
+You can serialize and deserialize arrays of objects using the Sia low-level API
+like this:
+
+code {
+  language = python,
+  content = """
+    from sia import Sia
+
+    class Person:
+      def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+    sia = Sia()
+    people = [
+      Person(name="Alice", age=25),
+      Person(name="Bob", age=30),
+    ]
+
+    payload = sia.add_array8(
+      people,
+      lambda s, p: s.add_string8(p.name).add_uint8(p.age)
+    ).content
+    print(payload)
+
+    desia = Sia().set_content(payload)
+    deserialized = desia.read_array8(
+      lambda s: Person(name=s.read_string8(), age=s.read_uint8())
+    )
+    print([(p.name, p.age) for p in deserialized])
   """
 }
 
