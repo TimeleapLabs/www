@@ -69,8 +69,8 @@ code {
   type Dataframe struct {
     Hash        []byte
     Timestamp   uint64
-	  Topic       string
-	  Meta        []byte
+    Topic       string
+    Meta        []byte
   }
   """
 }
