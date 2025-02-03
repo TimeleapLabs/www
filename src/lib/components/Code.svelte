@@ -1,8 +1,13 @@
 <script lang="ts">
 	import { createHighlighter, type Highlighter, type LanguageRegistration } from 'shiki';
+	import { Button } from '@timeleap/ui';
+	import { onMount } from 'svelte';
+	import { copyToClipboard } from '$lib/clipboard';
+	import { toast } from '@zerodevx/svelte-toast';
+
+	import Icon from '@iconify/svelte';
 	import tiramisu from '@timeleap/tiramisu/vscode-tiramisu/syntaxes/tiramisu.tmLanguage.json';
 	import sia from '$lib/languages/sia.tmLanguage.json';
-	import { onMount } from 'svelte';
 
 	tiramisu.name = 'tiramisu';
 	sia.name = 'sia';
@@ -10,6 +15,11 @@
 	export let code = `const hello = 'world'`;
 	export let lang = 'typescript';
 	export let lineNumbers = false;
+
+	const copyCode = async () => {
+		await copyToClipboard(code);
+		toast.push('Copied to clipboard!');
+	};
 
 	const getLang = (lang: string): string | LanguageRegistration => {
 		switch (lang) {
@@ -38,12 +48,20 @@
 </script>
 
 <div
-	class="rounded-2xl code overflow-hidden max-w-full max-h-[400px]"
+	class="rounded-2xl code overflow-hidden max-w-full max-h-[400px] relative group"
 	class:line-numbers={lineNumbers}
 >
 	{#await highlighter then highlighter}
 		{@html highlight(highlighter)}
 	{/await}
+	<Button
+		class="absolute bottom-3 right-1 p-4! text-zinc-400 group-hover:text-zinc-300 hover:text-zinc-100"
+		variant="secondary"
+		size="sm"
+		on:click={copyCode}
+	>
+		<Icon icon="carbon:copy" class="size-4 " />
+	</Button>
 </div>
 
 <style>
