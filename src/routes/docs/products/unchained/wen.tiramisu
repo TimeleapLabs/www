@@ -18,20 +18,19 @@ mermaid {
     Schema --> SDK
     SDK --> Marketplace["API Marketplace"]
 
+    Serialization --> Messaging["Messaging Protocol"]
+    Messaging --> Consensus["Consensus"]
+
     SDK --> WalletSDK["Wallet SDK"]
     WalletSDK --> Wallet["Browser Wallet"]
 
-    
     Worker --> Plugins
     Plugins --> WebSocket["WebSocket Plugins"]
     WebSocket --> PluginsManager["Plugins Manager"]
     PluginsManager --> PluginsExplorer["Plugins Explorer"]
-    PluginsExplorer --> Consensus["Consensus Plugin"]
-    Consensus --> Bridge["KNS Bridge Plugin"]
 
     Consumer --> MongoDB
     MongoDB --> QueryEngine["Query Engine"]
-    
 
     Broker --> MultiBroker["Multi-Broker"]
 
@@ -46,6 +45,16 @@ mermaid {
     class Marketplace upcoming
     class WalletSDK inprogress
     class Wallet upcoming
+    class Messaging inprogress
+
+    class Networking implemented
+    class Serialization implemented
+    class RPC implemented
+
+    class Core toplevel
+    class Worker toplevel
+    class Consumer toplevel
+    class Broker toplevel
   """
 }
 

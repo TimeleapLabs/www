@@ -59,12 +59,21 @@
 		@apply after:content-['\_'] after:text-green-400 after:font-bold after:ml-1;
 	}
 
+	.node.toplevel rect {
+		stroke: var(--color-sky-400) !important;
+	}
+
+	.node.implemented rect {
+		stroke: var(--color-green-400) !important;
+	}
+
 	.node.inprogress rect {
-		stroke: var(--color-yellow-400) !important;
+		stroke: var(--color-lime-200) !important;
 	}
 
 	.node.upcoming {
 		opacity: 0.5;
+		stroke: var(--color-slate-400) !important;
 	}
 
 	.flowchart .node rect {

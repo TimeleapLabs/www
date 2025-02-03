@@ -3,6 +3,11 @@ title { Specs }
 At the core of Unchained there are two main concepts: Datagrams and Functions.
 This section will explain what they are and how they work.
 
+alert { type = warning, title = "This document is a work in progress.", The
+information in this document is subject to change. Please refer to the link {
+Timeleap Enhancement Proposals, to = /docs/tep } (TEPs) for the most up-to-date
+information. }
+
 title { Datagrams, size = 2 }
 
 A Datagram is a piece of data that is sent from one computer to another. It is
@@ -70,15 +75,9 @@ mermaid {
 }
 
 All packets must be signed by the user who sends them. The signature is the Sia
-binary representation of the packet's contents, signed by the user's BLS12-381
+binary representation of the packet's contents, signed by the user's Ed25519
 private key. The signature is then verified by the recipient using the user's
-public key. The following DST should be used for the signature:
-
-code {
-  language = typescript,
-  content = """
-    const DST = "Unchained";"""
-}
+public key.
 
 alert {
   title = Serialization,
