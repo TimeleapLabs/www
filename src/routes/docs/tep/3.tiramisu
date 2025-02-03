@@ -116,6 +116,6 @@ N/A
 
 meta {
   description = "This document describes the Unchained Messaging Protocol (UMP), a protocol for sharing data and state between nodes on the Unchained network.",
-  ogImageText = [TEP 3:, Unchained Messaging Protocol],
+  ogImageText = [TEP 3:, Unchained Messaging, Protocol],
   ogImageFontSize = 24
 }
