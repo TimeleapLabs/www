@@ -2,10 +2,10 @@ title { TEP-3: Unchained Messaging Protocol, size = 1 }
 
 tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
-  status = pending,
+  status = review,
   type = process,
   createdAt = 2025-02-03,
-  discussion = https://github.com/TimeleapLabs/www/discussions/87
+  discussion = https://github.com/TimeleapLabs/www/discussions/93
 }
 
 title { Abstract, size = 2 }
