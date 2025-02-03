@@ -2,7 +2,7 @@
 	import { Card, Grid, Input, Button } from '@timeleap/ui';
 
 	import { contact } from '$lib/api/contact';
-	import { toast } from '@zerodevx/svelte-toast';
+	import toast from 'svelte-french-toast';
 
 	export let topic = 'general';
 	export let subject: string = '';

@@ -1,5 +1,5 @@
 import { onboard } from '$lib/onboard';
-import { toast } from '@zerodevx/svelte-toast';
+import toast from 'svelte-french-toast';
 import { ethers } from 'ethers';
 
 const stakingAddr = '0xE894BD5Ec531EC8AAe856AFC3E0Fc948Ab22Efb4';
@@ -14,12 +14,12 @@ export const stakeHelper = async (
 	programId: string | undefined
 ): Promise<void> => {
 	if (!amount || !(ethers.parseUnits(amount) > 0)) {
-		toast.push('You need to stake more than 0 tokens!');
+		toast.error('You need to stake more than 0 tokens!');
 		return;
 	}
 
 	if (withNft && (!Number.isInteger(nftId) || nftId >= 444)) {
-		toast.push('Katana NFT ID is invalid!');
+		toast.error('Katana NFT ID is invalid!');
 		return;
 	}
 
@@ -27,7 +27,7 @@ export const stakeHelper = async (
 		await onboard.setChain({ chainId: '0xa4b1' });
 	} catch (err: unknown) {
 		console.error(err);
-		toast.push("Couldn't change to the Arbitrum network.");
+		toast.error("Couldn't change to the Arbitrum network.");
 		return;
 	}
 
@@ -40,7 +40,7 @@ export const stakeHelper = async (
 		const error = err as { info: { error: { message: string } }; message: string };
 		const errorMessage =
 			error?.info?.error?.message || error?.message || 'Failed to approve tokens for staking!';
-		toast.push(errorMessage);
+		toast.error(errorMessage);
 		return;
 	}
 
@@ -52,7 +52,7 @@ export const stakeHelper = async (
 			const error = err as { info: { error: { message: string } }; message: string };
 			const errorMessage =
 				error?.info?.error?.message || error?.message || 'Failed to approve NFT for staking!';
-			toast.push(errorMessage);
+			toast.error(errorMessage);
 			return;
 		}
 	}
@@ -64,11 +64,11 @@ export const stakeHelper = async (
 		} else {
 			await staking.stakeTokens(programId, tokenAmount);
 		}
-		toast.push('Successfully joined the staking program!');
+		toast.success('Successfully joined the staking program!');
 	} catch (err: unknown) {
 		const error = err as { info: { error: { message: string } }; message: string };
 		const errorMessage = error?.info?.error?.message || error?.message || 'Failed to stake!';
-		toast.push(errorMessage);
+		toast.error(errorMessage);
 		return;
 	}
 };
@@ -80,7 +80,7 @@ export const unstake = async (id: bigint, staking: ethers.Contract): Promise<voi
 		await onboard.setChain({ chainId: '0xa4b1' });
 	} catch (err: unknown) {
 		console.error(err);
-		toast.push("Couldn't change to the Arbitrum network.");
+		toast.error("Couldn't change to the Arbitrum network.");
 		return;
 	}
 
@@ -91,9 +91,9 @@ export const unstake = async (id: bigint, staking: ethers.Contract): Promise<voi
 		const error = err as { info: { error: { message: string } }; message: string };
 		const errorMessage = error?.info?.error?.message || error?.message || 'Failed to unstake!';
 		console.error(errorMessage);
-		toast.push(errorMessage);
+		toast.error(errorMessage);
 		return;
 	}
 
-	toast.push('Successfully claimed!');
+	toast.success('Successfully claimed!');
 };

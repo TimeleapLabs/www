@@ -3,7 +3,7 @@
 	import 'unfonts.css';
 
 	import { onNavigate } from '$app/navigation';
-	import { SvelteToast } from '@zerodevx/svelte-toast';
+	import { Toaster } from 'svelte-french-toast';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -21,7 +21,7 @@
 	<slot />
 </div>
 
-<SvelteToast />
+<Toaster />
 
 <style>
 	:global(.grecaptcha-badge) {

@@ -3,7 +3,7 @@
 	import { Button } from '@timeleap/ui';
 	import { onMount } from 'svelte';
 	import { copyToClipboard } from '$lib/clipboard';
-	import { toast } from '@zerodevx/svelte-toast';
+	import toast from 'svelte-french-toast';
 
 	import Icon from '@iconify/svelte';
 	import tiramisu from '@timeleap/tiramisu/vscode-tiramisu/syntaxes/tiramisu.tmLanguage.json';
@@ -18,7 +18,7 @@
 
 	const copyCode = async () => {
 		await copyToClipboard(code);
-		toast.push('Copied to clipboard!');
+		toast.success('Copied to clipboard!');
 	};
 
 	const getLang = (lang: string): string | LanguageRegistration => {
@@ -55,7 +55,7 @@
 		{@html highlight(highlighter)}
 	{/await}
 	<Button
-		class="absolute bottom-3 right-1 p-4! text-zinc-400 group-hover:text-zinc-300 hover:text-zinc-100"
+		class="absolute bottom-3 right-1 p-4! text-zinc-400 group-hover:text-zinc-300 hover:text-zinc-100 cursor-copy!"
 		variant="secondary"
 		size="sm"
 		on:click={copyCode}

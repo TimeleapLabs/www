@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { Card, Grid, Input, Button } from '@timeleap/ui';
-	import { toast } from '@zerodevx/svelte-toast';
+	import toast from 'svelte-french-toast';
 	import { subscribe, type Topic } from '$lib/api/subscribe';
 	import { fade } from 'svelte/transition';
 
@@ -13,7 +13,7 @@
 
 	const handleSubscribe = () => {
 		if (!email) {
-			toast.push('Please enter your email address');
+			toast.error('Please enter your email address');
 			return;
 		}
 
@@ -25,9 +25,9 @@
 			const resp = await subscribe(email, topic, token);
 			if (resp.status === 200) {
 				showSubscribe = false;
-				toast.push('You have successfully subscribed!');
+				toast.success('You have successfully subscribed!');
 			} else {
-				toast.push('An error occurred while subscribing. Please try again later.');
+				toast.error('An error occurred while subscribing. Please try again later.');
 				disabled = undefined;
 			}
 		});

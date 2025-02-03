@@ -21,7 +21,11 @@ export const entries = [
   },
   {
     "href": "/docs/products/unchained/wen",
-    "title": "Technical Roadmap"
+    "title": "Unchained Technical Roadmap"
+  },
+  {
+    "href": "/docs/products/unchained/devnet",
+    "title": "Unchained Local Devnet"
   },
   {
     "href": "/docs/products/sia",
@@ -99,7 +103,11 @@ export const fullNav = {
             },
             {
               "href": "/docs/products/unchained/wen",
-              "title": "Technical Roadmap"
+              "title": "Unchained Technical Roadmap"
+            },
+            {
+              "href": "/docs/products/unchained/devnet",
+              "title": "Unchained Local Devnet"
             }
           ]
         },

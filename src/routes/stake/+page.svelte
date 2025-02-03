@@ -13,7 +13,7 @@
 	import { initializeContracts } from '$lib/utils/contract';
 	import { durationOf, formatDate, yieldOf } from '$lib/utils/helper';
 	import { stakeHelper, unstake } from '$lib/utils/staking';
-	import { toast } from '@zerodevx/svelte-toast';
+	import toast from 'svelte-french-toast';
 	import { onboard } from '$lib/onboard.js';
 	import { getRarity } from '$lib/utils/nft.js';
 	import { slide } from 'svelte/transition';
@@ -62,7 +62,7 @@
 		try {
 			await onboard.setChain({ chainId: '0xa4b1' });
 		} catch (error) {
-			toast.push("Couldn't change to the Arbitrum network.");
+			toast.error("Couldn't change to the Arbitrum network.");
 			return;
 		}
 
@@ -157,7 +157,7 @@
 
 	const unstakeHandler = async (id: bigint): Promise<void> => {
 		if (!staking) {
-			toast.push('Failed to get staking contract');
+			toast.error('Failed to get staking contract');
 		} else {
 			await unstake(id, staking);
 			readStakeStats();
