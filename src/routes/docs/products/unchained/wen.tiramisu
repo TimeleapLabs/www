@@ -50,6 +50,9 @@ mermaid {
     class Networking implemented
     class Serialization implemented
     class RPC implemented
+    class Plugins implemented
+    class WebSocket implemented
+    class MongoDB implemented
 
     class Core toplevel
     class Worker toplevel
