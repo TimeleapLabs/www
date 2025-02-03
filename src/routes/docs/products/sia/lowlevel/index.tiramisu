@@ -4,6 +4,11 @@ Sia provides a low-level API for serializing and deserializing data. This API is
 ideal for developers who require fine-grained control over the serialization
 process.
 
+alert { type = info, title = "Sia Schema", The low-level API is intended for
+developers who require fine-grained control over the serialization process. If you
+prefer a more high-level approach, consider using the Sia schema and the high-level
+API documented link { here, to = /docs/products/sia/highlevel }.}
+
 title { Basics, size = 3 }
 
 Sia is a flat binary serialization format that stores data in a compact and

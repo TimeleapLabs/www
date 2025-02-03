@@ -1,0 +1,154 @@
+title { High-Level API }
+
+Sia provides a high-level API that simplifies the serialization and
+deserialization process. Sia also provides a high-level API for Unchained
+Plugins, which allows making RPC calls over the network. While the RPC
+functionality is Unchained-specific, the rest of the high-level API can be used
+independently.
+
+title { Basics, size = 3 }
+
+The high-level API makes use of a schema to define the structure of the data to
+be serialized. The schema is defined using a custom language, which is compiled
+to an intermediate representation that is used to generate the serialization and
+deserialization code.
+
+To install the Sia compiler, run the following command:
+
+code {
+  language = bash,
+  content = "npm install -g @timeleap/sia-schema"
+}
+
+This code installs the inlineCode { sia } command globally, allowing you
+to compile Sia schemas. The compiler supports generating TypeScript code, with
+support for other languages planned for the future.
+
+title { TypeScript, size = 2 }
+
+Consider the following Sia schema inlineCode { person.sia } definition:
+
+code {
+  language = typescript,
+  content = """
+    schema Person {
+      name:   string(encoding = "ascii")
+      age:    uint8
+    }
+  """
+}
+
+To compile the schema, run the following command:
+
+code {
+  language = bash,
+  content = "sia compile person.sia -o person.ts"
+}
+
+Then, use the following code to serialize and deserialize a JavaScript object:
+
+code {
+  language = typescript,
+  content = """
+    import { Person, encodePerson, decodePerson } from "./person.js";
+    import { Sia } from "@timeleap/sia";
+
+    const sia = new Sia();
+    const person: Person = { name: "Pouya", age: 33 };
+
+    const payload = encodePerson(person);
+    console.log(payload);
+
+    const deserialized: Person = decodePerson(Sia.alloc(64), payload);
+    console.log(deserialized); // { name: 'Pouya', age: 33 }
+  """
+}
+
+title { RPC, size = 3 }
+
+The high-level API also provides a way to define RPC methods using the Sia
+schema language. The following example defines an RPC method that takes a
+person's name and age and returns a greeting message:
+
+code {
+  language = typescript,
+  content = """
+    plugin swiss.timeleap.isWizard.v1 as Sorcery {
+      method isWizard(timeout = 5000) {
+        name        string8(encoding = "ascii")
+        age         uint8
+      } returns {
+        isWizard      bool
+        message       string8(encoding = "ascii")
+      }
+    }
+  """
+}
+
+Compiling the above code generates bindings for calling the RPC method. The
+following code demonstrates how to call the RPC method:
+
+code {
+  language = typescript,
+  content = """
+    import { Sorcery } from "./sorcery.js";
+    import { Sia } from "@timeleap/sia";
+    import { Client, Wallet } from "@timeleap/unchained-client";
+
+    const wallet = await Wallet.fromBase58(process.env.PRIVATE_KEY);
+    const client = await Client.connect(wallet, process.env.BROKER_URL);
+    const sorcery = Sorcery.connect(client);
+
+    const response = await sorcery.isWizard("Pouya", 33);
+    console.log(response); // { isWizard: true, message: 'You are a wizard, Pouya!' }
+  """
+}
+
+Instead of inlining the parameters and return types, you can define them in
+separate schemas and reference them in the method definition:
+
+code {
+  language = typescript,
+  content = """
+    schema IsWizardArgs {
+      name        string8(encoding = "ascii")
+      age         uint8
+    }
+
+    schema WizardResponse {
+      isWizard?   bool
+      message?    string8(encoding = "ascii")
+    }
+
+    plugin swiss.timeleap.isWizard.v1 as Sorcery {
+      method isWizard(timeout = 5000) IsWizardArgs returns WizardResponse
+    }
+  """
+}
+
+You can then generate the bindings using the Sia compiler and use them in your
+application:
+
+code {
+  language = typescript,
+  content = """
+    import { Sorcery, IsWizardArgs, WizardResponse } from "./sorcery.js";
+    import { Sia } from "@timeleap/sia";
+    import { Client, Wallet } from "@timeleap/unchained-client";
+
+    const wallet = await Wallet.fromBase58(process.env.PRIVATE_KEY);
+    const client = await Client.connect(wallet, process.env.BROKER_URL);
+    const sorcery = Sorcery.connect(client);
+
+    const response = await sorcery.isWizard({ name: "Pouya", age: 33 });
+    console.log(response); // { isWizard: true, message: 'You are a wizard, Pouya!' }
+  """
+}
+
+meta {
+  description = Sia is a super-fast binary serialization format optimized for speed and size.
+                It is ideal for high-performance applications requiring quick and efficient
+                data serialization and deserialization.,
+  ogImageText = [Sia, Ultra fast, binary serialization],
+  ogImageFontSize = 24
+}

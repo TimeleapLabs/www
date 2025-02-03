@@ -32,6 +32,10 @@ export const entries = [
     "title": "Low-Level API"
   },
   {
+    "href": "/docs/products/sia/highlevel",
+    "title": "High-Level API"
+  },
+  {
     "href": "/docs/products/tiramisu",
     "title": "Tiramisu"
   },
@@ -106,6 +110,10 @@ export const fullNav = {
             {
               "href": "/docs/products/sia/lowlevel",
               "title": "Low-Level API"
+            },
+            {
+              "href": "/docs/products/sia/highlevel",
+              "title": "High-Level API"
             }
           ]
         },
