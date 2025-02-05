@@ -19,7 +19,7 @@ binary to inlineCode { unchained }.
 
 alert { type = info, title = "Minimum Required Version", This guide requires
 the Unchained CLI version v0.14.0-alpha.1 or later. You'll also need to have
-Node.js v22+ and Yarn v4+ installed on your system. } 
+Node.js v22+ and Yarn v4+ installed on your system to run the sample plugins. }
 
 title { Configuration, size = 2 }
 
