@@ -52,14 +52,6 @@
 					<Icon icon="carbon:send-alt" width="32" height="32" />
 				</a>
 				<a
-					href="https://discord.com/invite/timeleap"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-green-400 transition-colors"
-				>
-					<Icon icon="carbon:logo-discord" width="32" height="32" />
-				</a>
-				<a
 					href="https://forum.timeleap.swiss"
 					target="_blank"
 					rel="noopener noreferrer"
