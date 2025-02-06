@@ -10,8 +10,8 @@ tep {
 
 title { Abstract, size = 2 }
 
-This document describes the Timeleap Messaging Protocol (UMP), a protocol for
-sharing data and state between nodes on the Timeleap network. UMP enables nodes
+This document describes the Timeleap Messaging Protocol (TMP), a protocol for
+sharing data and state between nodes on the Timeleap network. TMP enables nodes
 to subscribe to topics and receive messages from other nodes, allowing them to
 share data and state with each other.
 
@@ -24,18 +24,18 @@ messages for all other nodes, the broker takes on this responsibility.
 
 While this feature enhances network scalability, it introduces a new challenge:
 nodes on the network lack access to all data, making state sharing cumbersome.
-To address this, we propose the Timeleap Messaging Protocol (UMP) to enable
+To address this, we propose the Timeleap Messaging Protocol (TMP) to enable
 nodes to efficiently share data and state with each other.
 
 title { Specification, size = 2 }
 
 This section provides a detailed specification of the Timeleap Messaging
-Protocol (UMP), outlining its high-level design and user story.
+Protocol (TMP), outlining its high-level design and user story.
 
 title { Broker-based, size = 3 }
 
 Since the broker is responsible for routing messages between nodes, and is the
-connection point for all nodes, it is the ideal place to implement the UMP. The
+connection point for all nodes, it is the ideal place to implement the TMP. The
 broker can act as a message hub, allowing nodes to share data and state with
 each other.
 
@@ -45,7 +45,7 @@ by adding more brokers.
 
 title { Topics, size = 3 }
 
-Topics are the primary way to categorize messages in UMP. Each message is
+Topics are the primary way to categorize messages in TMP. Each message is
 published to a specific topic, and nodes can subscribe to topics to receive
 messages. Topics can be used to share data, state, or events between nodes.
 
@@ -60,7 +60,7 @@ share messages, users, and rooms.
 
 title { Dataframes, size = 3 }
 
-Dataframes are the primary data structure used in UMP to share data and state
+Dataframes are the primary data structure used in TMP to share data and state
 between nodes. A dataframe has the following structure:
 
 code {
@@ -86,8 +86,8 @@ contains a chat message, and the 'Meta' field contains the message content.
 
 title { Rationale, size = 2 }
 
-UMP is designed to enable nodes to share data and state with each other in a
-scalable and efficient manner. By using brokers as message hubs, UMP allows
+TMP is designed to enable nodes to share data and state with each other in a
+scalable and efficient manner. By using brokers as message hubs, TMP allows
 nodes to subscribe to topics and receive messages from other nodes. This
 enables nodes to share data and state with each other, making it easier to
 build distributed applications on the Timeleap network.
@@ -101,9 +101,9 @@ balances accordingly.
 
 title { Backwards Compatibility, size = 2 }
 
-The Timeleap Messaging Protocol (UMP) has been implemented in the Timeleap
+The Timeleap Messaging Protocol (TMP) has been implemented in the Timeleap
 network. This document serves as the formal specification to ensure
-compatibility across all nodes. The already implemented UMP will be updated to
+compatibility across all nodes. The already implemented TMP will be updated to
 comply with this specification.
 
 title { Reference Implementation, size = 2 }
@@ -115,7 +115,7 @@ title { References, size = 2 }
 N/A
 
 meta {
-  description = "This document describes the Timeleap Messaging Protocol (UMP), a protocol for sharing data and state between nodes on the Timeleap network.",
+  description = "This document describes the Timeleap Messaging Protocol (TMP), a protocol for sharing data and state between nodes on the Timeleap network.",
   ogImageText = [TEP 3:, Timeleap Messaging, Protocol],
   ogImageFontSize = 24
 }
