@@ -1,25 +1,25 @@
-title { TEP-1: Unchained Plugins Alpha How-To }
+title { TEP-1: Timeleap Plugins Alpha How-To }
 
 alert { type = warning, This article is based on the alpha release of
-  TEP-1: Unchained Plugins. For a more recent version, please refer to the
+  TEP-1: Timeleap Plugins. For a more recent version, please refer to the
   official Timeleap documentation. }
 
-We're excited to announce the alpha release of TEP-1: Unchained Plugins! This
+We're excited to announce the alpha release of TEP-1: Timeleap Plugins! This
 release is a major milestone for Timeleap, as it marks the first step towards a
-more flexible and extensible Unchained platform. You can now make your own
-plugins and add custom functionality to Unchained. This article will guide you
-through the process of creating your first Unchained plugin.
+more flexible and extensible Timeleap platform. You can now make your own
+plugins and add custom functionality to Timeleap. This article will guide you
+through the process of creating your first Timeleap plugin.
 
 title { How does a plugin work?, size = 2 }
 
-A plugin is a piece of code that connects to an Unchained broker and registers
+A plugin is a piece of code that connects to an Timeleap broker and registers
 a set of functions that can be called by other users. Brokers are responsible
 for accepting and routing messages between users and plugins. When a user sends
 a message to a plugin, the broker forwards the message to the plugin, which
 processes it and sends a response back to the user.
 
-Since the official Unchained Plugin SDK is still in development, we'll be using
-the low-level Unchained API to create our plugin. We'll also develop a simple
+Since the official Timeleap Plugin SDK is still in development, we'll be using
+the low-level Timeleap API to create our plugin. We'll also develop a simple
 client that can interact with our plugin through the broker.
 
 title { Setting up your development environment, size = 2 }
@@ -32,7 +32,7 @@ to install it. Once you have Yarn installed, you can create a new project by run
 code {
   language = sh,
   content = "
-    mkdir unchained-plugin && cd unchained-plugin
+    mkdir timeleap-plugin && cd timeleap-plugin
     yarn init -y
     yarn set version latest
   "
@@ -92,7 +92,7 @@ code {
   """
 }
 
-You can follow the exact same steps for the unchained-client project. Once you're
+You can follow the exact same steps for the timeleap-client project. Once you're
 done, you can start writing your plugin and client.
 
 title { Writing your plugin, size = 2 }
@@ -207,7 +207,7 @@ code {
   content = "console.log('WebSocket server started on port 3000');"
 }
 
-That's it! You've just created your first Unchained plugin. You can see the full
+That's it! You've just created your first Timeleap plugin. You can see the full
 source code of the plugin in the link { TEP Examples GitHub repository,
 to = https://github.com/TimeleapLabs/tep-examples/tree/master/tep-1-plugins/simple/plugin }.
 To build and run the plugin, you can run the following commands:
@@ -224,7 +224,7 @@ title { Writing your client, size = 2 }
 
 Now that we have our plugin up and running, let's create a simple client that can
 interact with it. We'll use the WebSocket client from the ws package to connect to
-the broker and send messages to the plugin. Create a new project named unchained-client
+the broker and send messages to the plugin. Create a new project named timeleap-client
 by following the steps in the Setting up your development environment section.
 
 Next, add the required dependencies to your project:
@@ -256,7 +256,7 @@ Let's add some initializations:
 code {
   language = ts,
   content = """
-    const VERSION = process.env.UNCHAINED_PROTOCOL_VERSION;       // The version of the Unchained protocol
+    const VERSION = process.env.TIMELEAP_PROTOCOL_VERSION;        // The version of the Timeleap protocol
     const ws = new WebSocket(`ws://localhost:9123/${VERSION}`);   // Connect to the broker
 
     const age = Math.floor(Math.random() * 42) + 18;              // Generate a random age between 18 and 60
@@ -341,7 +341,7 @@ code {
   """
 }
 
-That's it! You've just created your first Unchained client. You can see the full
+That's it! You've just created your first Timeleap client. You can see the full
 source code of the client in the link { TEP Examples GitHub repository,
 to = https://github.com/TimeleapLabs/tep-examples/tree/master/tep-1-plugins/simple/client }.
 To build the client you can run the following command:
@@ -356,21 +356,21 @@ code {
 But don't run the client just yet! First, we need to register the plugin with the
 broker. We'll cover that in the next section.
 
-title { Configuring Unchained, size = 2 }
+title { Configuring Timeleap, size = 2 }
 
-Let's configure and run a local Unchained broker and worker to test our plugin and
-client. Make sure you have the latest version of the Unchained CLI installed. You can
-find the latest version on the link { Unchained GitHub releases page,
-to = https://github.com/TimeleapLabs/unchained/releases }.
+Let's configure and run a local Timeleap broker and worker to test our plugin and
+client. Make sure you have the latest version of the Timeleap CLI installed. You can
+find the latest version on the link { Timeleap GitHub releases page,
+to = https://github.com/TimeleapLabs/timeleap/releases }.
 
-First, create a new directory for your Unchained project:
+First, create a new directory for your Timeleap project:
 
 code {
   language = sh,
-  content = "mkdir unchained && cd unchained"
+  content = "mkdir timeleap && cd timeleap"
 }
 
-Now we need to create a new Unchained configuration file. We'll create one file for
+Now we need to create a new Timeleap configuration file. We'll create one file for
 both the broker and the worker. Create a new file called conf.yaml with the following
 content:
 
@@ -414,8 +414,8 @@ running the following commands:
 code {
   language = sh,
   content = """
-    unchained broker --config conf.yaml
-    unchained worker --config conf.yaml --allow-generate-secrets
+    timeleap broker --config conf.yaml
+    timeleap worker --config conf.yaml --allow-generate-secrets
   """
 }
 
@@ -424,7 +424,7 @@ see a message indicating that the plugin has been registered with the broker.
 
 Now you can run the client to interact with the plugin. You should see a message
 indicating whether the user is a wizard or not. You can run the client by this
-command in the unchained-client directory:
+command in the timeleap-client directory:
 
 code {
   language = sh,
@@ -445,18 +445,18 @@ code {
   """
 }
 
-Congratulations! You've successfully created your first Unchained plugin and client.
+Congratulations! You've successfully created your first Timeleap plugin and client.
 You can now start experimenting with different plugins and clients to build your
-own Unchained applications. As of now, Sia is available in TypeScript, Python, and
+own Timeleap applications. As of now, Sia is available in TypeScript, Python, and
 Go.
 
 If you have any questions or need help, feel free to post an issue on the link {
-  Unchained GitHub repository, to = https://github.com/TimeleapLabs/unchained } or
+  Timeleap GitHub repository, to = https://github.com/TimeleapLabs/timeleap } or
 the link { Timeleap Forum, to = https://forum.timeleap.swiss }.
 
 meta {
-  description = Learn how to create your first Unchained plugin with TEP-1: Unchained Plugins Alpha.,
-  ogImageText = [TEP-1: Unchained Plugins, How to make a plugin?],
+  description = Learn how to create your first Timeleap plugin with TEP-1: Timeleap Plugins Alpha.,
+  ogImageText = [TEP-1: Timeleap Plugins, How to make a plugin?],
   ogImageFontSize = 24,
   author = pouya,
   createdAt = 2025-01-07

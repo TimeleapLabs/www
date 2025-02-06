@@ -1,4 +1,4 @@
-title { TEP-1: Unchained Plugins }
+title { TEP-1: Timeleap Plugins }
 
 tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
@@ -11,30 +11,30 @@ tep {
 
 title { Abstract, size = 2 }
 
-This document describes the basic idea, information and specs of the Unchained
+This document describes the basic idea, information and specs of the Timeleap
 plugin system. Plugins are third-party modules that extend the functionality of
-Unchained. They can either run in standalone mode to directly interact with
-Brokers, or they can communicate with the official Unchained Worker client to
+Timeleap. They can either run in standalone mode to directly interact with
+Brokers, or they can communicate with the official Timeleap Worker client to
 perform actions on behalf of the Worker.
 
 title { Motivation, size = 2 }
 
-The Unchained plugin system is designed to allow developers to extend the
-functionality of Unchained without modifying the core codebase. This enables
+The Timeleap plugin system is designed to allow developers to extend the
+functionality of Timeleap without modifying the core codebase. This enables
 developers to create custom features, integrations, and workflows that are
 specific to their use case.
 
 title { Specification, size = 2 }
 title { Common, size = 3 }
 
-This section covers the common aspects of the Unchained plugin system, whether
+This section covers the common aspects of the Timeleap plugin system, whether
 the plugin runs in standalone mode or communicates with a Worker.
 
 title { Communication, size = 4 }
 
-All communication between the plugin and Unchained is done via websockets. The
-plugin must establish a websocket connection to the Unchained Broker or Worker
-and send messages according to the Unchained protocol.
+All communication between the plugin and Timeleap is done via websockets. The
+plugin must establish a websocket connection to the Timeleap Broker or Worker
+and send messages according to the Timeleap protocol.
 
 Websockets provide a bi-directional, full-duplex communication channel; they are
 the only option available in browser-based applications. There are already-existing
@@ -42,7 +42,7 @@ utilities to translate websockets to other protocols, such as TCP, if needed.
 
 title { Serialization, size = 4 }
 
-All messages exchanged between the plugin and Unchained must be serialized using
+All messages exchanged between the plugin and Timeleap must be serialized using
 Sia. Sia is a binary serialization format that is used to encode and decode
 messages in a compact and efficient manner.
 
@@ -52,7 +52,7 @@ of applications, from embedded systems to high-performance servers.
 title { Programming Language, size = 4 }
 
 Any programming language that supports websockets and Sia can be used to create
-Unchained plugins. The official Unchained SDKs provide helper functions for
+Timeleap plugins. The official Timeleap SDKs provide helper functions for
 establishing websocket connections and serializing messages; however, developers
 are free to implement these functionalities in any language.
 
@@ -65,15 +65,15 @@ should also provide a way to enable, disable, and configure plugins:
 code {
   language = bash,
   content = """
-    unchained plugin install <plugin>
-    unchained plugin uninstall <plugin>
-    unchained plugin enable <plugin>
-    unchained plugin disable <plugin>
-    unchained plugin update <plugin>
-    unchained plugin list
+    timeleap plugin install <plugin>
+    timeleap plugin uninstall <plugin>
+    timeleap plugin enable <plugin>
+    timeleap plugin disable <plugin>
+    timeleap plugin update <plugin>
+    timeleap plugin list
 
-    unchained plugin install unchained/plugin.git # Install from Git
-    unchained plugin install @unchained/plugin # Install from Marketplace
+    timeleap plugin install timeleap/plugin.git # Install from Git
+    timeleap plugin install @timeleap/plugin    # Install from Marketplace
   """
 }
 
@@ -83,7 +83,7 @@ about the plugin, such as the name, version, description, and dependencies.
 
 Preferreably, the plugin manager should not rely on Docker or any other
 containerization technology to run plugins. This allows plugins to run in the
-same environment as Unchained without any additional overhead. Security of 
+same environment as Timeleap without any additional overhead. Security of 
 such plugins should be ensured by code reviews and audits. Plugin developers
 should gain the trust of the community by providing open-source code and
 documentation.
@@ -103,87 +103,87 @@ developers to set pricing, manage subscriptions, and receive payments.
 
 title { RPC Interface, size = 4 }
 
-Plugins should expose an RPC interface that allows Unchained consumers to
+Plugins should expose an RPC interface that allows Timeleap consumers to
 interact with the plugin. The RPC interface must be defined using the Sia
 schema language and should be documented in the plugin's repository.
 
 Sia Schema Intermediate Representation (SIR) is a language-agnostic way to
-define the structure of messages exchanged between the plugin and Unchained.
+define the structure of messages exchanged between the plugin and Timeleap.
 It is used to generate code for serializing and deserializing messages in
 various programming languages.
 
-Unchained should provide a tool that generates RPC client and server code
+Timeleap should provide a tool that generates RPC client and server code
 from the Sia schema (through git repositories) or from SIR files (through
 the API Marketplace):
 
 code {
   language = bash,
   content = """
-    unchained rpc install <plugin>
-    unchained rpc uinstall <plugin>
-    unchained rpc update <plugin>
-    unchained rpc list
+    timeleap rpc install <plugin>
+    timeleap rpc uinstall <plugin>
+    timeleap rpc update <plugin>
+    timeleap rpc list
 
-    unchained rpc install unchained/plugin.git # Install from Git
-    unchained rpc install @unchained/plugin # Install from Marketplace
+    timeleap rpc install timeleap/plugin.git # Install from Git
+    timeleap rpc install @timeleap/plugin    # Install from Marketplace
   """
 }
 
 title { Standalone, size = 3 }
 
-In standalone mode, plugins directly interact with the Unchained Broker. In
+In standalone mode, plugins directly interact with the Timeleap Broker. In
 other words, they are the worker themselves. This mode is suitable for plugins
 that require the lowest latency and highest throughput. Develoeprs can use the
-official Unchained SDKs to create standalone plugins. They can also refer to the
-Unchained protocol documentation and worker implementation for more information.
+official Timeleap SDKs to create standalone plugins. They can also refer to the
+Timeleap protocol documentation and worker implementation for more information.
 
 Developers targeting standalone mode are encouraged to use the official
-Unchained SDKs. In case the SDKs do not support the desired functionality or the
+Timeleap SDKs. In case the SDKs do not support the desired functionality or the
 target programming language, developers should use a well-supported third-party
 SDK.
 
 If an SDK is not available for the desired programming language, developers
 should implement a generic purpose SDK for public use instead of creating a
-monolithic plugin that embeds their implementation of Unchained SDK.
+monolithic plugin that embeds their implementation of Timeleap SDK.
 
-title { Through Unchained Worker, size = 3 }
+title { Through Timeleap Worker, size = 3 }
 
-The Unchained Worker provides a set of basic functionalities for connecting to
-and interacting with the Unchained Broker. This includes establishing a
+The Timeleap Worker provides a set of basic functionalities for connecting to
+and interacting with the Timeleap Broker. This includes establishing a
 websocket connection, handling authentication, cryptographic signatures, and
 message routing.
 
 Plugins that do not want to implement these functionalities themselves can
-communicate with the Unchained Worker to perform actions on behalf of the
-Worker. The official Unchained Worker client provides a plugin interface that
+communicate with the Timeleap Worker to perform actions on behalf of the
+Worker. The official Timeleap Worker client provides a plugin interface that
 allows plugins to send and receive messages to and from the Worker.
 
-Currently, the Unchained AI Plugin works in this mode and is a good example of
-how to create a plugin that communicates with the Unchained Worker.
+Currently, the Timeleap AI Plugin works in this mode and is a good example of
+how to create a plugin that communicates with the Timeleap Worker.
 
 title { Rationale, size = 2 }
 
-Initially, Unchained was designed to be a standalone application with a fixed
+Initially, Timeleap was designed to be a standalone application with a fixed
 set of features. However, as the ecosystem grows, it becomes clear that
-developers need a way to extend the functionality of Unchained without modifying
-the core codebase. The Unchained plugin system provides a way for developers to
+developers need a way to extend the functionality of Timeleap without modifying
+the core codebase. The Timeleap plugin system provides a way for developers to
 create custom features, integrations, and workflows that are specific to their
 use case.
 
 For example, the UniSwap plugin (Price Feeds) is now removed from the core
-Unchained codebase and will be available as a plugin. This gives users the
+Timeleap codebase and will be available as a plugin. This gives users the
 flexibility to choose which plugins they want to use and allows them to easily
 install, update, and manage plugins.
 
 Plugins can also act as consumers; for example, a MongoDB plugin can store
 messages in a MongoDB database, or am EVM plugin can execute smart contracts on
-the Ethereum Virtual Machine (Oracles) and return the results to Unchained.
+the Ethereum Virtual Machine (Oracles) and return the results to Timeleap.
 
 title { Backwards Compatibility, size = 2 }
 
-The current implementation of Unchained worker relies on UNIX sockets for
+The current implementation of Timeleap worker relies on UNIX sockets for
 communication with plugins. This is a legacy feature that will be deprecated in
-favor of websockets. The Unchained Worker will be updated to support websockets
+favor of websockets. The Timeleap Worker will be updated to support websockets
 and the new plugin system. UNIX sockets are generally faster than websockets,
 but they are also more complex to use and less portable. 
 
@@ -196,11 +196,11 @@ title { References, size = 2 }
 N/A
 
 meta {
-  description = "This document describes the basic idea, information and specs of the Unchained
+  description = "This document describes the basic idea, information and specs of the Timeleap
                 plugin system. Plugins are third-party modules that extend the functionality of
-                Unchained. They can either run in standalone mode to directly interact with
-                Brokers, or they can communicate with the official Unchained Worker client to
+                Timeleap. They can either run in standalone mode to directly interact with
+                Brokers, or they can communicate with the official Timeleap Worker client to
                 perform actions on behalf of the Worker.",
-  ogImageText = [TEP 1:, Unchained Plugins],
+  ogImageText = [TEP 1:, Timeleap Plugins],
   ogImageFontSize = 24
 }

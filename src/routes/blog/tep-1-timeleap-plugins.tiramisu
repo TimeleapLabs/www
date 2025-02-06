@@ -1,12 +1,12 @@
-title { TEP-1: Unchained Plugins. What does it mean? }
+title { TEP-1: Timeleap Plugins. What does it mean? }
 
 With TEP 1 now accepted, let's explore its details more fully and understand
-what it means for the Unchained ecosystem.
+what it means for the Timeleap ecosystem.
 
 title { Smart contracts? Nope., size = 2 }
 
 Ethereum, Binance Smart Chain, Solana, and other blockchains have smart
-contracts. You are probably familiar with them. But Unchained is different. The
+contracts. You are probably familiar with them. But Timeleap is different. The
 blockchains we named run smart contracts inside a virtual machine. These virtual
 machines support a specific set of instructions and operations. That means you
 can't run arbitrary code on them.
@@ -17,7 +17,7 @@ that support Rust. They have a compiler that compiles Rust to their virtual
 machine bytecode. Even then, you can't run arbitrary Rust code, only the code
 that the compiler supports.
 
-As a network made for distributed computing, Unchained can't have such
+As a network made for distributed computing, Timeleap can't have such
 limitations. We brainstormed and came up with a solution. We are against using a
 language virtual machine, a custom compiler, a custom language, or a custom
 runtime. Every single one of these solutions has its own set of problems. The
@@ -46,7 +46,7 @@ too heavyweight and not suitable for a network that aims to be fast and
 efficient. Our users experienced and reported performance issues during the
 testing phase.
 
-The Unchained AI plugin performed much better when it was running outside of
+The Timeleap AI plugin performed much better when it was running outside of
 Docker. Other containerization solutions exist, some specifically made for
 similar use cases. For example, Firecracker is a virtual machine developed by
 Amazon Web Services for running serverless workloads. However, Firecracker also
@@ -55,13 +55,13 @@ hurts performance and does not support GPU passthrough.
 title { Permissionless? Definitely., size = 2 }
 
 Those following us for a while know two of our now deprecated plugins that were
-built into the official Unchained client. The first one was a price feed plugin
+built into the official Timeleap client. The first one was a price feed plugin
 that fetched the price of a token from a decentralized exchange. The second one
 was a plugin that allowed you to index the blockchain data and query it using
 GraphQL.
 
 The problem with these plugins was that they were built-in. You had to use the
-official Unchained client, and all plugins were shipped with every client build.
+official Timeleap client, and all plugins were shipped with every client build.
 While these plugins worked great, that is not the best way to extend the
 network's functionality.
 
@@ -70,31 +70,31 @@ waste of resources. Second, we can't have every plugin built into the official
 client. That's not scalable, and neither is it permissionless. We want anyone to
 write a plugin and run it on the network.
 
-Unchained Plugins make that possible. With plugins, developers can write their
+Timeleap Plugins make that possible. With plugins, developers can write their
 custom functionality. Then, the network and the community decide what features
 and plugins they want to make available on the network in a fully decentralized
 and permissionless manner, in consensus, and out of the control of any
 authority.
 
-title { Our solution: Unchained Plugins, size = 2 }
+title { Our solution: Timeleap Plugins, size = 2 }
 
-Unchained Plugins solve the above problems. When we started working on the
-Unchained AI plugin, we had the idea of TEP 1 in mind. Those of you who follow
+Timeleap Plugins solve the above problems. When we started working on the
+Timeleap AI plugin, we had the idea of TEP 1 in mind. Those of you who follow
 our repository on GitHub know that we added four different plugin runners while
-adding the Unchained AI plugin.
+adding the Timeleap AI plugin.
 
 We realized we could use the same plugin runners to run any plugin. For example,
-we decided to remove the Price Feed plugin from the Unchained core and make it a
+we decided to remove the Price Feed plugin from the Timeleap core and make it a
 plugin. A separate, independent plugin that anyone can run on their node.
 
 Thanks to the plugins approach, developers can write their custom functionality
-in any language they want. The official Unchained SDK will support Go, TypeScript,
+in any language they want. The official Timeleap SDK will support Go, TypeScript,
 and Python from the start, with more languages to be added later. You can check
 an example TypeScript plugin in the
 link { TEP Examples, to = https://github.com/TimeleapLabs/tep-examples/tree/master/tep-1-plugins }
 repository.
 
-Unchained Plugins are permissionless. However, there is a catch. We had to make
+Timeleap Plugins are permissionless. However, there is a catch. We had to make
 sacrifices. While they are permissionless, scalable, fast, and efficient, they
 are not trustless. You have to trust the plugin author. However, that is not
 much different from how you trust the author of a smart contract. Like security
@@ -121,35 +121,35 @@ everything, it can do a lot. It is not a good fit for plugins but an excellent
 fit for code snippets.
 
 WebAssembly is lightweight, so we thought we could allow users to pass It to the
-Unchained network and run it. This way, we'll have the best of both worlds:
-Unchained Plugins for more complex tasks and WebAssembly for simpler ones.
+Timeleap network and run it. This way, we'll have the best of both worlds:
+Timeleap Plugins for more complex tasks and WebAssembly for simpler ones.
 
-For example, if you're getting results from Unchained and want to map to a
+For example, if you're getting results from Timeleap and want to map to a
 specific function, you can write that function in WebAssembly and pass it to the
 network. The network will run it and return the results. This way, you don't
 have to write a full plugin for a simple task.
 
-title { When can we expect Unchained Plugins?, size = 3 }
+title { When can we expect Timeleap Plugins?, size = 3 }
 
-TEP 1 is now accepted, which means the development of Unchained Plugins can
+TEP 1 is now accepted, which means the development of Timeleap Plugins can
 start. Certain tasks need to be completed before we can release them. We won't
 support WebAssembly from the start, but it is on our roadmap.
 
-Most of what's needed for Unchained Plugins is already implemented. We've
+Most of what's needed for Timeleap Plugins is already implemented. We've
 decided on a few architectural changes that need to be made. We will also need
 to write documentation and provide tools for plugin authors.
 
-The work on Unchained SDK is already in progress. Since all communication on
-Unchained is done using Sia and Sia RPC, we are building tools around Sia that
+The work on Timeleap SDK is already in progress. Since all communication on
+Timeleap is done using Sia and Sia RPC, we are building tools around Sia that
 will make it easier for plugin authors to interact with the network.
 
-To sum it up, Unchained Plugins are coming soon. We are excited to see what the
+To sum it up, Timeleap Plugins are coming soon. We are excited to see what the
 community will build with them. If you want to read the technical details of
-Unchained Plugins, you can read link { TEP 1, to = /docs/tep/1 } on our website.
+Timeleap Plugins, you can read link { TEP 1, to = /docs/tep/1 } on our website.
 
 meta {
-  description = "TEP 1 is now accepted, let's explore its details more fully and understand what it means for the Unchained ecosystem.",
-  ogImageText = [TEP 1:, Unchained Plugins, What does it mean?],
+  description = "TEP 1 is now accepted, let's explore its details more fully and understand what it means for the Timeleap ecosystem.",
+  ogImageText = [TEP 1:, Timeleap Plugins, What does it mean?],
   ogImageFontSize = 24,
   author = pouya,
   createdAt = 2024-12-31

@@ -4,7 +4,7 @@
 
 	export let title: string = 'Timeleap — Distributed App Engine';
 	export let description: string =
-		'Swiss tech company specialized in web3 infrastructure like Blockchain-as-a-Service. Building the Unchained Network, our next-gen distributed computing platform.';
+		'Swiss tech company specialized in web3 infrastructure like Blockchain-as-a-Service. Building the Timeleap Network, our next-gen distributed computing platform.';
 
 	export let ogImageFontSize: number = 28;
 	export let ogImageText: string = 'Timeleap:\nDistributed\nApp Engine';
