@@ -1,6 +1,6 @@
 title { Specs }
 
-At the core of Unchained there are two main concepts: Datagrams and Functions.
+At the core of Timeleap there are two main concepts: Datagrams and Functions.
 This section will explain what they are and how they work.
 
 alert { type = warning, title = "This document is a work in progress.", The
@@ -11,7 +11,7 @@ information. }
 title { Datagrams, size = 2 }
 
 A Datagram is a piece of data that is sent from one computer to another. It is
-the basic unit of communication in Unchained. Datagrams can be of any size and
+the basic unit of communication in Timeleap. Datagrams can be of any size and
 can contain any type of data. However, there is still a structure to how they're
 made.
 
@@ -83,7 +83,7 @@ alert {
   title = Serialization,
   type = info,
   
-  All communication between Unchained nodes, users, plugins, clients, and
+  All communication between Timeleap nodes, users, plugins, clients, and
   services is done using the Sia serialization format. Learn more about it
   link { to = /docs/products/sia, here }.
 }
@@ -122,7 +122,7 @@ mermaid {
 title { Functions, size = 2 }
 
 A Function is a piece of code that is executed on a computer. It is the basic
-unit of computation in Unchained. Functions can be of any size and can contain
+unit of computation in Timeleap. Functions can be of any size and can contain
 any type of code. Functions are added to the network by users, through worker
 plugins.
 
@@ -175,10 +175,10 @@ mermaid {
 }
 
 meta {
-  description = "Datagrams and Functions are the core concepts of Unchained. Datagrams are
+  description = "Datagrams and Functions are the core concepts of Timeleap. Datagrams are
                 the basic unit of communication, and Functions are the basic unit
                 of computation.",
-  title = Unchained Specs,
-  ogImageText = ["Unchained", "Specs"],
+  title = Timeleap Specs,
+  ogImageText = ["Timeleap", "Specs"],
   ogImageFontSize = 32
 }

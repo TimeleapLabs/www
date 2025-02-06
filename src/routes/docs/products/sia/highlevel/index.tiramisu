@@ -1,9 +1,9 @@
 title { High-Level API }
 
 Sia provides a high-level API that simplifies the serialization and
-deserialization process. Sia also provides a high-level API for Unchained
+deserialization process. Sia also provides a high-level API for Timeleap
 Plugins, which allows making RPC calls over the network. While the RPC
-functionality is Unchained-specific, the rest of the high-level API can be used
+functionality is Timeleap-specific, the rest of the high-level API can be used
 independently.
 
 title { Basics, size = 3 }
@@ -93,7 +93,7 @@ code {
   content = """
     import { Sorcery } from "./sorcery.js";
     import { Sia } from "@timeleap/sia";
-    import { Client, Wallet } from "@timeleap/unchained-client";
+    import { Client, Wallet } from "@timeleap/client";
 
     const wallet = await Wallet.fromBase58(process.env.PRIVATE_KEY);
     const client = await Client.connect(wallet, process.env.BROKER_URL);
@@ -134,7 +134,7 @@ code {
   content = """
     import { Sorcery, IsWizardArgs, WizardResponse } from "./sorcery.js";
     import { Sia } from "@timeleap/sia";
-    import { Client, Wallet } from "@timeleap/unchained-client";
+    import { Client, Wallet } from "@timeleap/client";
 
     const wallet = await Wallet.fromBase58(process.env.PRIVATE_KEY);
     const client = await Client.connect(wallet, process.env.BROKER_URL);

@@ -1,0 +1,36 @@
+title { Timeleap Rebrand }
+
+Less than a year ago, we transitioned into a fully-fledged company in
+Switzerland. Today, we're thrilled to share a major milestone with you: we've
+officially received certification for our trademark registration in Switzerland,
+the EU, UK, US, Canada, Australia, and several other countries across Asia—with
+more to come! This marks a significant step forward for us, and we're excited to
+bring you along on this journey.
+
+As part of our continued growth, we've made a strategic decision to remove
+distractions and focus entirely on our own sovereign network. With this in mind,
+we're excited to announce the rebranding of our flagship product to Timeleap.
+Moving forward, our core technology will be known as bold { Timeleap }—a name
+that embodies our commitment to innovation, speed, and the future of
+decentralized solutions.
+
+While our name is evolving, everything you love about our technology remains the
+same. Our team, mission, and vision are stronger than ever. Over the coming
+weeks, we will update our website, documentation, and all other materials to
+reflect this transition. This change will simplify our messaging and ensure
+clarity for our growing community.
+
+Additionally, based on valuable feedback from our community, we are also
+rebranding our token. This change will take effect after our mainnet launch.
+Once the network is live, users will be able to migrate their KNS tokens from
+Arbitrum to our sovereign network, where the token will be rebranded as the
+Timeleap Token (TLP). We will share more details on this process as we get
+closer to launch.
+
+meta {
+  description = "We're excited to announce that we finally received certification for our Trademark registration and we are taking steps to rebrand our flagship product to Timeleap.",
+  ogImageText = [Timeleap, Rebrand],
+  ogImageFontSize = 36,
+  author = pouya,
+  createdAt = 2025-02-06
+}

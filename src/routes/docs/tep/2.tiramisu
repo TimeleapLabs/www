@@ -12,8 +12,8 @@ tep {
 title { Abstract, size = 2 }
 
 This document describes the basic idea, information and specs of replacing BLS
-with Ed25519 in the Unchained protocol. The BLS signature scheme is currently
-used in the Unchained protocol to sign messages and transactions. This TEP
+with Ed25519 in the Timeleap protocol. The BLS signature scheme is currently
+used in the Timeleap protocol to sign messages and transactions. This TEP
 proposes to replace BLS with Ed25519, a more efficient and widely-used signature
 scheme.
 
@@ -23,7 +23,7 @@ BLS signatures are computationally expensive and require a large amount of
 memory to verify. This makes them unsuitable for use in resource-constrained
 environments, such as embedded systems or mobile devices. Ed25519, on the other
 hand, is fast, secure, and has a small memory footprint. By replacing BLS with
-Ed25519, we can improve the performance and efficiency of the Unchained protocol.
+Ed25519, we can improve the performance and efficiency of the Timeleap protocol.
 
 BLS signatures were chosen for their aggregation properties, which allow multiple
 signatures to be combined into a single signature. They're also ZK-SNARK friendly,
@@ -31,29 +31,29 @@ which is an important feature for interoperability. However, these features come
 at a cost in terms of performance and resource usage.
 
 As a network built for distributed computation, latency and resource usage are
-critical factors in the design of the Unchained protocol. By replacing BLS with
+critical factors in the design of the Timeleap protocol. By replacing BLS with
 Ed25519, we can reduce the computational overhead of signature verification and
 improve the overall efficiency of the protocol.
 
 Furthermore, Ed25519 is widely used and supported in the cryptography community.
 There are well-tested implementations available in multiple programming languages,
 including for embedded systems and mobile devices. This makes it a more practical
-choice for the Unchained protocol, as it can be easily integrated into existing
+choice for the Timeleap protocol, as it can be easily integrated into existing
 codebases and libraries.
 
 title { Specification, size = 2 }
 
-To replace BLS with Ed25519 in the Unchained protocol, the following changes
+To replace BLS with Ed25519 in the Timeleap protocol, the following changes
 need to be made:
 
 title { Signature Scheme, size = 3 }
 
 The BLS signature scheme will be replaced with the Ed25519 signature scheme
-throughout the Unchained protocol. This includes signing messages, transactions,
+throughout the Timeleap protocol. This includes signing messages, transactions,
 and other data using Ed25519 instead of BLS.
 
 This also means that the KOSK (Knowledge of Secret Key) scheme currently used
-in the Unchained protocol will no longer be needed, as Ed25519 does not require
+in the Timeleap protocol will no longer be needed, as Ed25519 does not require
 this additional step for signature verification.
 
 title { Signature Storage, size = 3 }
@@ -76,7 +76,7 @@ overhead of signature verification, as multiple signatures will need to be
 verified instead of a single aggregated signature.
 
 This is less of a problem considering most distributed computation tasks in
-Unchained involve a small number of participants. In these cases, the overhead
+Timeleap involve a small number of participants. In these cases, the overhead
 of verifying multiple Ed25519 signatures should be negligible compared to the
 benefits of using a more efficient signature scheme.
 
@@ -87,8 +87,8 @@ terms of verification overhead at least in the internal consensus layer.
 title { Rationale, size = 2 }
 
 The decision to replace BLS with Ed25519 is based on the need to improve the
-performance and efficiency of the Unchained protocol. It is extremely important
-for Unchained to be able to run on resource-constrained devices, such as embedded
+performance and efficiency of the Timeleap protocol. It is extremely important
+for Timeleap to be able to run on resource-constrained devices, such as embedded
 systems and IoT devices. By using Ed25519, we can reduce the computational
 overhead of signature generation and verification, making it easier to run the
 protocol on these devices.
@@ -226,7 +226,7 @@ However, BLS aggregated verification is faster than verifying individual Ed25519
 signatures.
 
 The aggregated verification time of BLS signatures is, to a large extent,
-irrelevant in the context of the Unchained protocol as we still need to verify
+irrelevant in the context of the Timeleap protocol as we still need to verify
 individual signatures before aggregation. This means that the performance
 benefits of Ed25519 outweigh the benefits of BLS aggregation in most cases.
 
@@ -238,7 +238,7 @@ be counted as part of the consensus round.
 title { Backwards Compatibility, size = 2 }
 
 This is a breaking change, as it involves replacing the signature scheme used
-throughout the Unchained protocol. Existing implementations of the protocol
+throughout the Timeleap protocol. Existing implementations of the protocol
 will need to be updated to support Ed25519 signatures instead of BLS signatures.
 
 title { Reference Implementation, size = 2 }
@@ -272,8 +272,8 @@ list {
 
 meta {
   description = "This document describes the basic idea, information and specs of replacing BLS
-                 with Ed25519 in the Unchained protocol. The BLS signature scheme is currently
-                 used in the Unchained protocol to sign messages and transactions. This TEP
+                 with Ed25519 in the Timeleap protocol. The BLS signature scheme is currently
+                 used in the Timeleap protocol to sign messages and transactions. This TEP
                  proposes to replace BLS with Ed25519, a more efficient and widely-used signature
                  scheme.",
   ogImageText = [TEP 2:, Replace BLS, with Ed25519],

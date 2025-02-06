@@ -60,11 +60,9 @@
 	>
 		<Card class="text-white">
 			<div class="relative z-10 flex flex-col h-full">
-				<h2 class="font-serif text-3xl md:text-5xl leading-snug">
-					Distributed Computation:<br /> Unchained.
-				</h2>
+				<h2 class="font-serif text-3xl md:text-5xl leading-snug">Distributed Computation</h2>
 				<p class="mt-8 flex-1 text-zinc-300 hover:text-zinc-100 transition-colors">
-					<b class="font-bold">Unchained</b> is a distributed computing platform that allows you to run
+					<b class="font-bold">Timeleap</b> is a distributed computing platform that allows you to run
 					your applications on thousands of devices worldwide. Harness the power of distributed computing
 					to run your applications faster and more efficiently.
 				</p>
@@ -72,7 +70,7 @@
 					<Button
 						class="bg-green-400 text-black hover:bg-green-300 font-semibold"
 						animate
-						href="/docs/products/unchained"
+						href="/docs/products/network"
 					>
 						Learn More<Icon icon="carbon:arrow-right" />
 					</Button>

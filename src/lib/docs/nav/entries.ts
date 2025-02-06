@@ -12,20 +12,20 @@ export const entries = [
     "title": "Products"
   },
   {
-    "href": "/docs/products/unchained",
-    "title": "Unchained"
+    "href": "/docs/products/network",
+    "title": "Timeleap"
   },
   {
-    "href": "/docs/products/unchained/specs",
-    "title": "Unchained Specs"
+    "href": "/docs/products/network/specs",
+    "title": "Timeleap Specs"
   },
   {
-    "href": "/docs/products/unchained/wen",
-    "title": "Unchained Technical Roadmap"
+    "href": "/docs/products/network/wen",
+    "title": "Timeleap Technical Roadmap"
   },
   {
-    "href": "/docs/products/unchained/devnet",
-    "title": "Unchained Local Devnet"
+    "href": "/docs/products/network/devnet",
+    "title": "Timeleap Local Devnet"
   },
   {
     "href": "/docs/products/sia",
@@ -65,7 +65,7 @@ export const entries = [
   },
   {
     "href": "/docs/tep/3",
-    "title": "TEP-3: Unchained Messaging Protocol"
+    "title": "TEP-3: Timeleap Messaging Protocol"
   },
   {
     "href": "/docs/tep/2",
@@ -73,7 +73,7 @@ export const entries = [
   },
   {
     "href": "/docs/tep/1",
-    "title": "TEP-1: Unchained Plugins"
+    "title": "TEP-1: Timeleap Plugins"
   },
   {
     "href": "/docs/tep/0",
@@ -94,20 +94,20 @@ export const fullNav = {
       "title": "Products",
       "nav": [
         {
-          "href": "/docs/products/unchained",
-          "title": "Unchained",
+          "href": "/docs/products/network",
+          "title": "Timeleap",
           "nav": [
             {
-              "href": "/docs/products/unchained/specs",
-              "title": "Unchained Specs"
+              "href": "/docs/products/network/specs",
+              "title": "Timeleap Specs"
             },
             {
-              "href": "/docs/products/unchained/wen",
-              "title": "Unchained Technical Roadmap"
+              "href": "/docs/products/network/wen",
+              "title": "Timeleap Technical Roadmap"
             },
             {
-              "href": "/docs/products/unchained/devnet",
-              "title": "Unchained Local Devnet"
+              "href": "/docs/products/network/devnet",
+              "title": "Timeleap Local Devnet"
             }
           ]
         },
@@ -155,7 +155,7 @@ export const fullNav = {
       "nav": [
         {
           "href": "/docs/tep/3",
-          "title": "TEP-3: Unchained Messaging Protocol"
+          "title": "TEP-3: Timeleap Messaging Protocol"
         },
         {
           "href": "/docs/tep/2",
@@ -163,7 +163,7 @@ export const fullNav = {
         },
         {
           "href": "/docs/tep/1",
-          "title": "TEP-1: Unchained Plugins"
+          "title": "TEP-1: Timeleap Plugins"
         },
         {
           "href": "/docs/tep/0",

@@ -1,4 +1,4 @@
-export type Topic = 'hsm' | 'newsletter' | 'baas' | 'ghostfs' | 'wallet' | 'unchained';
+export type Topic = 'hsm' | 'newsletter' | 'baas' | 'ghostfs' | 'wallet' | 'network';
 
 export const subscribe = (
 	email: string,

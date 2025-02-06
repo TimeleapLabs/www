@@ -1,16 +1,16 @@
-title { Using Unchained Just Became Easier! }
+title { Using Timeleap Just Became Easier! }
 
-Earlier this month we released the first version of the TEP-1: Unchained Plugins.
-We published an early article to show you how to create your first Unchained plugin
-with TEP-1. Since then we've made major updates to Unchained, and we've released
-numerous dev tools to make it easier to work with Unchained.
+Earlier this month we released the first version of the TEP-1: Timeleap Plugins.
+We published an early article to show you how to create your first Timeleap plugin
+with TEP-1. Since then we've made major updates to Timeleap, and we've released
+numerous dev tools to make it easier to work with Timeleap.
 
-Let's see how the new changes affect the process of creating a Unchained plugin,
+Let's see how the new changes affect the process of creating a Timeleap plugin,
 and also interacting with them.
 
 title { Sia Low-Level API, size = 2 }
 
-Sia is the serialization format at the heart of Unchained. We tried many alternatives,
+Sia is the serialization format at the heart of Timeleap. We tried many alternatives,
 but none of them satisfied the needs of our project. JSON, while widely used, is slow,
 and not suitable for binary data. We tried MessagePack but we hit compatibility issues
 between different languages early on. Cap'n Proto isn't well supported, and Protobuf
@@ -71,7 +71,7 @@ code {
 
 And you're done!
 
-title { Unchained Client, size = 2 }
+title { Timeleap Client, size = 2 }
 
 Previously, users needed to create the binary payload for each RPC call manually.
 Then they had to sign the payload, and append the signature to it. They also had
@@ -79,20 +79,20 @@ to establish a connection to the broker, send the payload, wait for a response,
 remap the response ID to the request ID, and finally parse the response.
 
 That's too much work. We've made it easier by creating a high-level client and
-wallet API for Unchained. This way, you can connect to the broker, send RPC calls,
+wallet API for Timeleap. This way, you can connect to the broker, send RPC calls,
 and receive responses with just a few lines of code.
 
 The client takes care of mapping the response ID to the request ID, and the wallet
 takes care of signing the payload. Not only this makes it easier to connect and 
-interact with Unchained, but it also means there will be less user errors.
+interact with Timeleap, but it also means there will be less user errors.
 
 code {
   language = typescript,
   content = """
-    import { Wallet, Client } from "@timeleap/unchained-client"
+    import { Wallet, Client } from "@timeleap/client"
 
     const wallet = await Wallet.random()
-    const client = await Client.connect(wallet, unchainedBrokerURI)
+    const client = await Client.connect(wallet, brokerURI)
   """
 }
 
@@ -148,7 +148,7 @@ code {
 title { Publishable Plugins, size = 2 }
 
 Sia schema also allows you to define metadata for your plugin. This way, you can
-publish your plugin to the Unchained plugin marketplace, and users will be able
+publish your plugin to the Timeleap plugin marketplace, and users will be able
 to see the metadata of your plugin.
 
 With a schema, users will be able to add your plugin to their project by running
@@ -158,18 +158,18 @@ or their mobile app, with a single command.
 
 title { Conclusion, size = 2 }
 
-We've made it easier to work with Unchained by adding a high-level API for Sia,
+We've made it easier to work with Timeleap by adding a high-level API for Sia,
 and by adding support for defining RPC calls in the Sia schema. This way, you can
 define your data structures and RPC calls in a schema file, and generate the necessary
 code for your project.
 
 This prompts code reuse, and makes it easier to publish your plugins to the
-builder community. We're excited to see what you'll build with Unchained, and we
-can't wait to see your plugins in the Unchained plugin marketplace.
+builder community. We're excited to see what you'll build with Timeleap, and we
+can't wait to see your plugins in the Timeleap plugin marketplace.
 
 meta {
-  description = "Unchained just got easier! Explore new dev tools, a high-level API for Sia, and seamless plugin publishing. Build and integrate faster than ever!",
-  ogImageText = [Using Unchained, Just Became Easier!],
+  description = "Timeleap just got easier! Explore new dev tools, a high-level API for Sia, and seamless plugin publishing. Build and integrate faster than ever!",
+  ogImageText = [Using Timeleap, Just Became Easier!],
   ogImageFontSize = 24,
   author = pouya,
   createdAt = 2025-01-31

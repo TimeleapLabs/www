@@ -1,8 +1,8 @@
 title { Technical Roadmap }
 
 This section will explain the technical roadmap for the mainnet release of
-Unchained. The roadmap is divided into four main sections: Core, Worker, Consumer,
-and Broker. Each section is responsible for a different aspect of the Unchained
+Timeleap. The roadmap is divided into four main sections: Core, Worker, Consumer,
+and Broker. Each section is responsible for a different aspect of the Timeleap
 network.
 
 Tasks that are in progress are marked with a yellow stroke, while upcoming tasks
@@ -62,8 +62,8 @@ mermaid {
 }
 
 meta {
-  description = "The technical roadmap for Unchained. The roadmap is divided into four main sections:
+  description = "The technical roadmap for Timeleap. The roadmap is divided into four main sections:
                 Core, Worker, Consumer, and Broker. Each section is responsible for a different aspect
-                of the Unchained network.",
-  title = Unchained Technical Roadmap
+                of the Timeleap network.",
+  title = Timeleap Technical Roadmap
 }

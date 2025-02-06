@@ -1,5 +1,5 @@
 export const parallelSampleCode = `\
-import { myFunction } from "./functions.unchained";
+import { myFunction } from "./functions.timeleap";
 import { records } from "./mongodb";
 
 const data = await records();

@@ -1,6 +1,6 @@
-title { Unchained }
+title { Timeleap }
 
-Unchained is a distributed computing platform that allows you to run your
+Timeleap is a distributed computing platform that allows you to run your
 applications on a global network of computers. It is designed to be fast,
 secure, and scalable.
 
@@ -11,10 +11,10 @@ toc {
 }
 
 meta {
-  description = "Unchained is a distributed computing platform that allows you to run your
+  description = "Timeleap is a distributed computing platform that allows you to run your
                 applications on a global network of computers. It is designed to be fast,
                 secure, and scalable.",
-  title = "Unchained",
-  ogImageText = ["Unchained", "Docs"],
+  title = "Timeleap",
+  ogImageText = ["Timeleap", "Docs"],
   ogImageFontSize = 32
 }
