@@ -317,13 +317,17 @@
 										<strong>Unlock Date:</strong>
 										{formatDate(new Date(Number(stake.unlock) * 1000))}
 									</p>
-									{#if !stake.claimed}
+									{#if !stake.claimed && Number(stake.unlock) * 1000 < Date.now()}
 										<Button
 											class="mt-4 bg-red-500 hover:bg-red-400 text-white font-semibold"
 											on:click={() => unstakeHandler(stake.id)}
 										>
 											Unstake
 										</Button>
+									{:else if !stake.claimed}
+										<p class="text-sm text-zinc-400">
+											You can claim your rewards after the unlock date.
+										</p>
 									{:else}
 										<p class="text-sm text-zinc-400">Already claimed rewards.</p>
 									{/if}

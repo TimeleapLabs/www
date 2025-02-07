@@ -90,7 +90,6 @@ export const unstake = async (id: bigint, staking: ethers.Contract): Promise<voi
 	} catch (err: unknown) {
 		const error = err as { info: { error: { message: string } }; message: string };
 		const errorMessage = error?.info?.error?.message || error?.message || 'Failed to unstake!';
-		console.error(errorMessage);
 		toast.error(errorMessage);
 		return;
 	}
