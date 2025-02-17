@@ -2,7 +2,7 @@ title { TEP-3: Timeleap Messaging Protocol, size = 1 }
 
 tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
-  status = review,
+  status = implemented,
   type = process,
   createdAt = 2025-02-03,
   discussion = https://github.com/TimeleapLabs/www/discussions/93
