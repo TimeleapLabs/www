@@ -1,5 +1,5 @@
 import walletConnectModule from '@web3-onboard/walletconnect';
-import Onboard from '@web3-onboard/core';
+import Onboard, { type Theme } from '@web3-onboard/core';
 import injectedModule from '@web3-onboard/injected-wallets';
 import { PUBLIC_WALLET_CONNECT_PROJECT_ID } from '$env/static/public';
 
@@ -15,10 +15,11 @@ const walletConnect = walletConnectModule({
 });
 
 const options = {
+	theme: 'dark' as Theme,
 	appMetadata: {
 		name: appName,
 		description: 'Timeleap dApp',
-		icon: 'images/tl-white.svg'
+		icon: 'images/tl.svg'
 	},
 	accountCenter: {
 		desktop: {
