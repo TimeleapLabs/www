@@ -1,0 +1,114 @@
+title { What problems does Timeleap solve for developers? }
+
+The new Timeleap release today puts us one step closer to the release of our
+mainnet. We're not far away from a stable v1.0.0 release. In face, the current
+release will be marked as a v1.0.0 release candidate once we take it through
+internal testing and resolve any issues that may arise. Otherwise, the product
+is feature complete and ready for use.
+
+While we're preparing for the mainnet release, we'd like to let everyone know
+that Timeleap can be used independent of the mainnet, and it solves many
+development problems as a standalone product. In this post, we'll go over some
+of the problems that Timeleap solves for developers, and review what are the
+the technical use cases for Timeleap.
+
+title { IoT and Embedded Systems, size = 2 }
+
+Small devices like IoT sensors and embedded systems are often limited in
+computing power and memory. For example, if you're building a smart home system,
+you may have a Raspberry Pi or an Arduino device that needs to process sound,
+video, or other data. Depending on the type of data and the process you're
+running, you may need to offload some of the processing to a more powerful
+device.
+
+You can use Timeleap to run code on a more powerful device, and then send the
+results back to the small device. This allows you to run more complex algorithms
+on the small device without overloading it. For example, you can send image data
+from a camera to a more powerful device to detect objects in the image, and then
+send the results back to the small device to take action.
+
+Furthermore, Timeleap can be used to send and receive events between devices, or
+to trigger actions based on events. For example, you can use Timeleap to send an
+event when a sensor detects motion, and then trigger an action on another device
+based on that event. You can also notify your devices of an available update,
+and then trigger the update process on the devices.
+
+image { src = "/images/blog/iot.jpg", alt = Connect IoT devices and unlock
+unlimited processing power on small devices with Timeleap }
+
+title { Microservices Architecture, size = 2 }
+
+Microservices architecture is a popular way to build scalable and maintainable
+applications. In a microservices architecture, you break down your application
+into small, independent services that communicate with each other over a network.
+Each service is responsible for a specific task, and can be developed, deployed,
+and scaled independently, using the programming language and framework that best
+suits the task.
+
+Timeleap can act as a message broker between microservices, allowing them to
+communicate with each other in a decoupled way. Using Sia schema, you can define
+the structure of the data that is sent between services, and then use Timeleap to
+send and receive messages or to call specific functions on other services. 
+
+title { API Gateway, size = 2 }
+
+Whether you are making an API Gateway for your own application or selling APIs
+to other developers, Timeleap can help you build a scalable and secure API
+Gateway. Using Sia schema you can define a common interface for your APIs, and
+then you can compile them to client libraries in different programming languages
+to make it easier for developers to use your APIs.
+
+Furthermore, Timeleap requires Ed25519 signatures for all transactions, which
+means that you can use Timeleap to verify the authenticity of the requests that
+are sent to your API Gateway. This helps you prevent unauthorized access to your
+APIs, and ensures that the requests are coming from the right sources.
+
+title { Blockchain Technology, size = 2 }
+
+Just like embedded devices, smart contracts on blockchain networks are limited
+in computing power and memory. Timeleap can be used to run code on a more
+powerful device, and then send the results back to the smart contract. This
+allows you to run more complex algorithms on the smart contract without making
+it too expensive to run.
+
+Timeleap can help you source events from a blockchain network, and then trigger
+actions based on those events. For example, you can use Timeleap to listen for
+Transfer events on a smart contract, and then trigger an action when a specific
+address sends tokens to another address. You could also transfer messages
+cross-chain, for example, from Ethereum to Binance Smart Chain, and use that to
+make a cross-chain swap or a bridge.
+
+image { src = "/images/blog/blockchain.jpg", alt = Take your smart contracts to
+the next level with Timeleap }
+
+title { Event-Driven Architecture, size = 2 }
+
+Event-driven architecture yet-another popular way to build scalable and
+maintainable applications. An event-driven architecture consists of event
+producers and event consumers. Event producers generate events, and event
+consumers listen for events and take action based on them. Events can be used to
+trigger actions, to notify other services of changes, or to send data between
+services.
+
+Timeleap messaging protocol can be used to send and receive events between
+services, or to trigger actions based on events. The ability to broadcast events
+to multiple consumers, and to filter events based on specific criteria is a
+built-in feature of the Timeleap client libraries. This allows you to build
+scalable and maintainable applications that can react to changes in real-time.
+
+title { Conclusion }
+
+While we wait for our mainnet release, we encourage developers to try out
+Timeleap and see how it can help them solve their development problems. Whether
+you're building IoT devices, microservices, API Gateways, or blockchain
+applications, Timeleap can help you build scalable and maintainable
+applications. We're excited to see what you build with Timeleap, and we're here
+to help you along the way.
+
+meta {
+  description = "Timeleap is a distributed computing platform that can solve problems for developers building IoT devices, microservices, API Gateways, and blockchain applications. Learn how Timeleap can help you build scalable and maintainable applications.",
+  ogImageText = [Timeleap, Technical, Use Cases],
+  ogImageFontSize = 36,
+  author = pouya,
+  createdAt = 2025-02-19
+}

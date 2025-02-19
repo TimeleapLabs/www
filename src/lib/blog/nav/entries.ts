@@ -4,6 +4,10 @@ export const entries = [
     "title": "Blog"
   },
   {
+    "href": "/blog/timeleap-product-overview",
+    "title": "What problems does Timeleap solve for developers?"
+  },
+  {
     "href": "/blog/rebrand",
     "title": "Timeleap Rebrand"
   },
@@ -37,6 +41,10 @@ export const fullNav = {
   "href": "/blog",
   "title": "Blog",
   "nav": [
+    {
+      "href": "/blog/timeleap-product-overview",
+      "title": "What problems does Timeleap solve for developers?"
+    },
     {
       "href": "/blog/rebrand",
       "title": "Timeleap Rebrand"

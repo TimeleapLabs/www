@@ -35,7 +35,7 @@
 
 		<Card
 			class="p-0! flex text-white bg-zinc-950 hover:bg-zinc-800 transition-colors"
-			href="/menu/products"
+			href="/contact"
 		>
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">
@@ -43,7 +43,7 @@
 				</h3>
 				<div>Talk to an expert</div>
 			</div>
-			<Image src="/images/mail.jpg" alt="Products" width="128px" height="128px"></Image>
+			<Image src="/images/mail.jpg" alt="Contact" width="128px" height="128px"></Image>
 		</Card>
 		<Card
 			class="p-0! flex text-white bg-zinc-950 hover:bg-zinc-800 transition-colors"
