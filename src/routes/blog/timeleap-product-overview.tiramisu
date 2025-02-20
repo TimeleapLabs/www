@@ -1,7 +1,7 @@
 title { What problems does Timeleap solve for developers? }
 
 The new Timeleap release today puts us one step closer to the release of our
-mainnet. We're not far away from a stable v1.0.0 release. In face, the current
+mainnet. We're not far away from a stable v1.0.0 release. In fact, the current
 release will be marked as a v1.0.0 release candidate once we take it through
 internal testing and resolve any issues that may arise. Otherwise, the product
 is feature complete and ready for use.
@@ -83,7 +83,7 @@ the next level with Timeleap }
 
 title { Event-Driven Architecture, size = 2 }
 
-Event-driven architecture yet-another popular way to build scalable and
+Event-driven architecture is yet-another popular way to build scalable and
 maintainable applications. An event-driven architecture consists of event
 producers and event consumers. Event producers generate events, and event
 consumers listen for events and take action based on them. Events can be used to
