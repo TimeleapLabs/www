@@ -1,0 +1,220 @@
+title { TEP-4: Timeleap Network (Subnets) }
+
+tep {
+  author = Pouya Eghbali <pouya@timeleap.swiss>,
+  status = draft,
+  type = process,
+  createdAt = 2025-02-24
+}
+
+title { Abstract, size = 2 }
+
+Timeleap is a federated network where each node serves a distinct role—a
+fundamental aspect of its technical design. TEP-4 proposes extending this
+federation model beyond infrastructure to cover governance, management, and
+consensus of the system.
+
+Rather than relying on a global consensus, we aim to introduce subnetworks
+(subnets), each operating independently while remaining interconnected through a
+federated governance protocol. This governance framework will unify all subnets
+under the TLP/KNS token.
+
+title { Motivation, size = 2 }
+
+Timeleap is a distributed network designed specifically for distributed
+computation. Timeleap is designed to be fast; to make distributed computation
+feasible, it must be able to process a large number of transactions per second.
+Adding a global consensus model while keeping the network scalable is a
+challenge for the following reasons:
+
+list {
+  ordered = Yes,
+  items = [
+    bold { Scalability }: A robust global consensus adds delays to the
+    processing of transactions. While a few milliseconds of delay won't matter
+    for most networks, it can be a significant bottleneck for distributed
+    computation. This delay becomes more pronounced as the network grows.
+  ],
+  items = [
+    bold { Double Spending or Double Processing }: A loose, asynchronous
+    consensus model can lead to double spending or double processing of
+    transactions. While the trade-off is acceptable for the primary use case of
+    Timeleap, this solution leads to inefficiencies as with this model
+    transactions can be processed before making sure a user has enough funds to
+    cover them.
+  ]
+}
+
+The challenges mentioned above occur when using an internal, global consensus
+model. To overcome them, we propose a subnet model where consensus is
+externalized and can be customized to the specific needs of each subnet. This
+approach not only resolves these issues but also brings the following benefits:
+
+list {
+  ordered = Yes,
+  items = [
+    bold { Customization }: Each subnet can have its own consensus model,
+    governance, and management. This allows for a more flexible and scalable
+    network. Furthermore, the governance token, gas-fee model, and other
+    factors can be customized to meet the specific needs of each subnet.
+  ],
+  items = [
+    bold { Scalability }: By externalizing consensus, we can scale the network
+    horizontally by adding more subnets. This approach allows for a more
+    efficient network that can process a large number of transactions per
+    second.
+  ],
+  items = [
+    bold { Data Privacy & Security }: Subnets can be used to isolate data and
+    computation, providing a more secure and private environment for users
+    while still being interconnected with other subnets.
+  ],
+  items = [
+    bold { Laws & Regulations }: Subnets allow compliance with local laws and
+    regulations, which is essential for a global network like Timeleap, where
+    legal requirements vary by region. In areas or use cases where these
+    regulations are not a concern, public networks can be utilized to offer a
+    more open and transparent environment.
+  ],
+  items = [
+    bold { Alliance }: Smaller cloud providers, data centers, and other
+    organizations can create their own subnets and join the Timeleap Network.
+    This allows them to benefit from the network's security, scalability, and
+    other features while maintaining their own governance and management.
+
+    Offering a unified network with a federated governance model allows for
+    collaboration between different organizations, creating a robust and
+    decentralized network that can compete with bigger, centralized cloud
+    providers.
+  ],
+  items = [
+    bold { Flexibility }: Subnets can be created and removed at any time. This
+    allows for a more dynamic network where subnets can be added or removed
+    based on demand. This also allows for a more competitive environment where
+    subnets can compete with each other to offer the best services to users.
+  ],
+  items = [
+    bold { No Lock-Ins }: If a users isn't satisfied with a subnet, they can
+    easily switch to another subnet without losing their data or having to go
+    through a complex migration process. Users can also use multiple subnets at
+    the same time to take advantage of different features offered by each
+    subnet. Furthermore, users can opt to run their own subnet if they prefer to
+    have full control over their data and computation, while still being
+    interconnected with other subnets.
+  ]
+}
+
+title { Specification, size = 2 }
+
+There Timeleap Network (Subnets) is a network of interconnected subnets, each
+operating independently with its own governance, management, and consensus
+model. Subnets are interconnected through a federated governance protocol that
+unifies all subnets under the TLP/KNS token. The following components are
+required to implement the Timeleap Network (Subnets):
+
+title { Network Fees (Gas), size = 3 }
+
+With subnets, each subnet directly receives its own gas fee for processing
+transactions. Subnets are responsible themselves for setting the gas fee and
+distributing rewards to their validators. The Timeleap Network license requires
+that all subnets use the TLP/KNS token as the gas fee.
+
+Exceptions can be made under the BUSL license to allow subnets to use their own
+token, or non-crypto currencies as gas fees. In such cases, a portion of the gas
+fee must be converted to TLP/KNS and distributed to Timeleap to support the
+development of the network. The details of this conversion and distribution are
+out of the scope of this TEP and will be covered in a separate document.
+
+title { Governance, size = 3 }
+
+All subnets are required to stake TLP/KNS tokens to participate in the Timeleap
+Network. The amount of TLP/KNS required to stake will be covered in a separate
+document. Staking should be done through a Timeleap certified smart contract
+that keeps track of each subnet. Slashing mechanism will be present on the
+governance contract to penalize subnets that misbehave.
+
+Consensus is optimistic in this case. Subnets are responsible for their own
+internal consensus model. However, the externalized optimistic governance model
+specified in this document applies to all subnets, italic { except those except
+by a custom BUSL license }, for example, private networks where a different
+licensing model is used.
+
+Users can vote against subnets that misbehave, and the governance contract will
+slash the subnet's stake if the vote passes. Each negative vote affects the
+reputation of the subnetwork. Network reputation is gained based on tokens
+staked, and the time the subnet has been active.
+
+A vote against a subnetwork passes on either of the following conditions:
+
+list {
+  ordered = Yes,
+  items = [
+    bold { 51% of the total staked TLP/KNS votes in favor of slashing the subnet
+    stake. In this case, the subnet is partially slashed and their reputation is
+    reduced. },
+  ],
+  items = [
+    bold { The reputation of the subnet drops below a certain threshold. In
+    which case, the subnet is fully slashed and removed from the network. },
+  ],
+  items = [
+    bold { The user provides undeniable proof of misbehavior. In this case, the
+    subnet is partially slashed and their reputation is reduced. },
+  ]
+}
+
+title { Subnetwork Discovery, size = 3 }
+
+Subnets can be discovered through the Timeleap Subnet Discovery Network (TSDN).
+TSDN is a decentralized network that keeps track of all subnets and their
+metadata. TSDN itself is a Timeleap Subnet. Subnets can announce themselves to
+TSDN and provide metadata such as the subnet's name, description, functionality,
+etc... using a TEP-3 broadcast message.
+
+A searchable directory of subnets will be available on the Timeleap website.
+Subnets can be discovered by searching for keywords, categories, or by browsing
+the directory. The directory will also show the reputation of each subnet based
+on the number of tokens staked and the time the subnet has been active.
+
+title { Rationale, size = 2 }
+
+The Timeleap Network is designed to support distributed computation at scale.
+However, achieving scalability while maintaining a global consensus introduces
+significant challenges. A tightly coupled global consensus mechanism increases
+network latency, making high-throughput transaction processing inefficient.
+Subnetworks (subnets) address this issue by externalizing consensus, allowing
+each subnet to operate independently while remaining interconnected through a
+federated governance protocol.
+
+By adopting this model, Timeleap enables a more flexible and scalable
+architecture. Each subnet can define its own consensus mechanism, governance
+structure, and fee model while adhering to the broader network principles
+enforced through TLP/KNS staking. This approach ensures that computation remains
+efficient without compromising security or decentralization.
+
+Subnets also offer additional benefits, including regulatory flexibility,
+improved data privacy, and a more competitive environment where subnets can
+differentiate based on performance, cost, or feature set. Furthermore, by
+enabling independent subnet creation, Timeleap promotes a decentralized
+ecosystem where smaller cloud providers, data centers, and organizations can
+join the network while maintaining control over their infrastructure.
+
+title { Backwards Compatibility, size = 2 }
+
+This TEP is backwards compatible with the existing Timeleap Network as it only
+affects how the network is managed and governed. All existing features and
+functionalities of the Timeleap Network will remain the same.
+
+title { Reference Implementation, size = 2 }
+
+N/A
+
+title { References, size = 2 }
+
+N/A
+
+meta {
+  description = "TEP-4 introduces subnetworks (subnets) to the Timeleap Network, externalizing consensus and governance to improve scalability, flexibility, and regulatory compliance while maintaining network integrity under the TLP/KNS token.",
+  ogImageText = [TEP 3:, Timeleap Network, (Subnets)],
+  ogImageFontSize = 24
+}

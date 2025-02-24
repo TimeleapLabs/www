@@ -142,7 +142,7 @@ const functions: {
 	list(params) {
 		const type = getParamsByName(params, 'type')[0]?.value ?? 'unordered';
 		const items = getParamsByName(params, 'items').map((item) => item.value);
-		const listItems = items.map((item) => `<li>${item}</li>`).join('');
+		const listItems = items.map((item) => `<li class="mb-3">${item}</li>`).join('');
 		return type === 'ordered'
 			? `<ol class="list-decimal">${listItems}</ol>`
 			: `<ul class="list-disc">${listItems}</ul>`;
