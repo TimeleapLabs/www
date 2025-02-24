@@ -4,7 +4,8 @@ tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
   status = draft,
   type = process,
-  createdAt = 2025-02-24
+  createdAt = 2025-02-24,
+  discussion = https://github.com/TimeleapLabs/www/discussions/96
 }
 
 title { Abstract, size = 2 }
