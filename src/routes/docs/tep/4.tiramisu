@@ -216,6 +216,6 @@ N/A
 
 meta {
   description = "TEP-4 introduces subnetworks (subnets) to the Timeleap Network, externalizing consensus and governance to improve scalability, flexibility, and regulatory compliance while maintaining network integrity under the TLP/KNS token.",
-  ogImageText = [TEP 3:, Timeleap Network, (Subnets)],
+  ogImageText = [TEP 4:, Timeleap Network, (Subnets)],
   ogImageFontSize = 24
 }
