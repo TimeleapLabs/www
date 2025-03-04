@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '@xterm/xterm/css/xterm.css';
 
-	import Icon from '@iconify/svelte';
 	import Rain from './Rain.svelte';
 	import Snow from './Snow.svelte';
 
@@ -11,6 +10,7 @@
 
 	import type { IDisposable, Terminal } from '@xterm/xterm';
 	import type { FitAddon } from '@xterm/addon-fit';
+	import { RotateCcw, Volume2, VolumeX } from 'lucide-svelte';
 
 	const makeTerminal = async () => {
 		const { Terminal } = await import('@xterm/xterm');
@@ -534,16 +534,18 @@
 							class="p-1 mr-1 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
 							on:click={toggleSound}
 						>
-							Sound <Icon
-								icon={muted ? 'carbon:volume-up' : 'carbon:volume-mute'}
-								class="w-4 h-4 ml-2"
-							/>
+							Sound
+							{#if muted}
+								<VolumeX size={'1em'} class="ml-2" />
+							{:else}
+								<Volume2 size={'1em'} class="ml-2" />
+							{/if}
 						</button>
 						<button
 							class="p-1 mr-2 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
 							on:click={restartGame}
 						>
-							Restart <Icon icon="carbon:restart" class="w-4 h-4 ml-2" />
+							Restart <RotateCcw size={'1em'} class="ml-2" />
 						</button>
 						<button
 							class="rounded-full bg-green-500 w-3 h-3 cursor-pointer"

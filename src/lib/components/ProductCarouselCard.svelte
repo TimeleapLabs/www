@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Card, Button } from '@timeleap/ui';
-	import Icon from '@iconify/svelte';
+	import { ArrowRight } from 'lucide-svelte';
 
 	export let title;
 	export let href;
@@ -34,8 +34,8 @@
 			<slot />
 		</p>
 		<div class="mt-16">
-			<Button class="bg-green-400 text-black hover:bg-green-300 font-semibold" animate {href}>
-				Learn More<Icon icon="carbon:arrow-right" />
+			<Button class="bg-green-400 text-black hover:bg-green-300 font-medium" animate {href}>
+				Learn More <ArrowRight size={'1em'} />
 			</Button>
 		</div>
 	</div>

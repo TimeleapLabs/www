@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
+	import { CheckCheck, Library } from 'lucide-svelte';
 	import { persisted } from 'svelte-persisted-store';
 
 	const readable = persisted('readable', false);
@@ -16,8 +16,8 @@
 >
 	<span class="text-xs mr-4"> Readability Mode </span>
 	{#if $readable}
-		<Icon icon="carbon:checkmark" />
+		<CheckCheck size={'1em'} />
 	{:else}
-		<Icon icon="carbon:text-align-left" />
+		<Library size={'1em'} />
 	{/if}
 </button>

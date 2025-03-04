@@ -2,8 +2,8 @@
 	import { onboard } from '$lib/onboard';
 
 	import { wallet, type Wallet } from '$lib/stores/wallet';
-	import Icon from '@iconify/svelte';
 	import { Button } from '@timeleap/ui';
+	import { Wallet as WalletIcon } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 
 	const connect = async (): Promise<void> => {
@@ -36,6 +36,6 @@
 	{#if $wallet?.provider}
 		<span class="text-zinc-400">{formatWalletAddress($wallet)}</span> — <span>Disconnect</span>
 	{:else}
-		Connect <Icon icon="material-symbols:account-balance-wallet" />
+		Connect <WalletIcon size="1em" />
 	{/if}
 </Button>

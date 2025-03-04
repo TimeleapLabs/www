@@ -135,7 +135,7 @@ const functions: {
 		const href = (getParamsByName(params, 'to')[0]?.value as string) ?? '';
 		const text = params.positional.join('');
 		const external = href.startsWith('http') && !href.startsWith('https://timeleap.swiss');
-		const icon = external ? '<Icon icon="carbon:launch" class="inline" />' : '';
+		const icon = external ? "<ExternalLink size={'1em'} />" : '';
 		const target = external ? 'target="_blank" rel="noopener noreferrer"' : '';
 		return `<a href="${href}" ${target} class="hover:text-green-400 transition-colors inline-flex gap-1 items-center border-b border-zinc-500">${text}${icon}</a>`;
 	},

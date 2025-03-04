@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Button, Section, Card } from '@timeleap/ui';
-	import Icon from '@iconify/svelte';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
@@ -20,6 +19,7 @@
 	import { getNavForPage, fullNav } from '$lib/docs/nav';
 	import { page } from '$app/stores';
 	import { persisted } from 'svelte-persisted-store';
+	import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-svelte';
 
 	const readable = persisted('readable', false);
 	const nav = getNavForPage($page.url.pathname);
@@ -61,20 +61,20 @@
 				<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
 					{#if nav.prev}
 						<Button
-							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+							class="bg-green-400 text-black hover:bg-green-300 font-medium"
 							animate
 							href={nav.prev.href}
 						>
-							<Icon icon="carbon:arrow-left" />{nav.prev.title}
+							<ArrowLeft size={'1em'} />{nav.prev.title}
 						</Button>
 					{/if}
 					{#if nav.next}
 						<Button
-							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+							class="bg-green-400 text-black hover:bg-green-300 font-medium"
 							animate
 							href={nav.next.href}
 						>
-							{nav.next.title}<Icon icon="carbon:arrow-right" />
+							{nav.next.title}<ArrowRight size={'1em'} />
 						</Button>
 					{/if}
 				</div>

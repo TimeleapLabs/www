@@ -7,7 +7,7 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import TiltCard from '../TiltCard.svelte';
-	import Icon from '@iconify/svelte';
+	import { Pause } from 'lucide-svelte';
 
 	const MAX_SECONDS = 9;
 
@@ -92,14 +92,14 @@
 		<div class="mt-8 flex items-center gap-4 flex-wrap">
 			<Button
 				on:click={setPage('ai')}
-				class="text-white hover:text-green-300 font-semibold border-2! border-zinc-800! {page ===
+				class="text-white hover:text-green-300 font-medium border-2! border-zinc-800! {page ===
 					'ai' && 'bg-zinc-800'}"
 			>
 				AI
 			</Button>
 			<Button
 				on:click={setPage('parallelize')}
-				class="text-white hover:text-green-300 font-semibold border-2! border-zinc-800! {page ===
+				class="text-white hover:text-green-300 font-medium border-2! border-zinc-800! {page ===
 					'parallelize' && 'bg-zinc-800'}"
 			>
 				Parallelize
@@ -121,7 +121,7 @@
 				>
 					{#if pauseTicking}
 						<p transition:fade={{ duration: 300 }} class="col-span-full row-span-full text-sm">
-							<Icon icon="carbon:pause-filled" class="w-4 h-4" />
+							<Pause size={'1em'} />
 						</p>
 					{:else}
 						{#key seconds}

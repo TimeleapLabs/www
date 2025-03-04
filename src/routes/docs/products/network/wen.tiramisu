@@ -19,7 +19,7 @@ mermaid {
     SDK --> Marketplace["API Marketplace"]
 
     Serialization --> Messaging["Messaging Protocol"]
-    Messaging --> Consensus["Consensus"]
+    Messaging --> Governance["Governance"]
 
     SDK --> WalletSDK["Wallet SDK"]
     WalletSDK --> Wallet["Browser Wallet"]
@@ -37,16 +37,17 @@ mermaid {
     class PluginsManager upcoming
     class PluginsExplorer upcoming
     class QueryEngine upcoming
-    class SDK inprogress
     class MultiBroker upcoming
-    class Consensus upcoming
     class Bridge upcoming
-    class Schema inprogress
     class Marketplace upcoming
-    class WalletSDK inprogress
     class Wallet upcoming
-    class Messaging inprogress
 
+    class SDK inprogress
+    class Governance inprogress
+    class Schema inprogress
+    class WalletSDK inprogress
+
+    class Messaging implemented
     class Networking implemented
     class Serialization implemented
     class RPC implemented

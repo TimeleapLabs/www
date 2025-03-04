@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
 	import { Card, Grid, Input, Button } from '@timeleap/ui';
 	import toast from 'svelte-french-toast';
 	import { subscribe, type Topic } from '$lib/api/subscribe';
 	import { fade } from 'svelte/transition';
+	import { Mail } from 'lucide-svelte';
 
 	let email = '';
 	let showSubscribe = true;
@@ -38,7 +38,7 @@
 	<div transition:fade>
 		<Card
 			class="{$$props.class ||
-				''} text-white flex flex-col gap-8 pb-10! bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800"
+				''} text-white flex flex-col gap-8 pb-10! border border-zinc-800 mx-8"
 		>
 			<Grid
 				extraLargeScreenColumns={3}
@@ -47,7 +47,7 @@
 				class="grid-rows-[auto]"
 			>
 				<div class="flex gap-4 flex-col">
-					<h2 class="white-text text-white font-serif text-5xl mt-6">Get the latest news.</h2>
+					<h2 class="white-text text-white font-serif text-4xl mt-6">Get the latest news.</h2>
 					<p class="text-gray-400">Subscribe to our newsletter for the latest updates.</p>
 				</div>
 				<div class="flex flex-col gap-8 col-span-2 row-span-2 md:row-span-1">
@@ -61,11 +61,11 @@
 					></Input>
 					<div class="text-sm text-gray-400">This form is protected by reCAPTCHA.</div>
 					<Button
-						class="bg-green-400 hover:bg-green-300 text-black self-start font-semibold"
+						class="bg-green-400 hover:bg-green-300 text-black self-start font-medium"
 						{disabled}
 						on:click={handleSubscribe}
 					>
-						Subscribe <Icon icon="carbon:email" />
+						Subscribe <Mail size={'1em'} strokeWidth={2.5} />
 					</Button>
 				</div>
 			</Grid>

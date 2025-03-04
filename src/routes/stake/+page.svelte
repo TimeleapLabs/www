@@ -4,7 +4,6 @@
 
 	import { wallet } from '$lib/stores/wallet';
 	import { Button, Card, Grid, Input, Section } from '@timeleap/ui';
-	import Icon from '@iconify/svelte';
 	import Select from '$lib/components/Select.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
@@ -17,6 +16,7 @@
 	import { onboard } from '$lib/onboard.js';
 	import { getRarity } from '$lib/utils/nft.js';
 	import { slide } from 'svelte/transition';
+	import { BadgeCheck, ChevronDown, ChevronUp, LockKeyhole, LockKeyholeOpen } from 'lucide-svelte';
 
 	let userAddress: string | undefined;
 	let staking: ethers.Contract | undefined;
@@ -262,11 +262,11 @@
 
 				<div class="flex gap-4">
 					<Button
-						class="bg-green-400 hover:bg-green-300 text-black font-semibold"
+						class="bg-green-400 hover:bg-green-300 text-black font-medium"
 						disabled={isStaking}
 						on:click={stake}
 					>
-						Stake <Icon icon="carbon:money" />
+						Stake <LockKeyholeOpen size={'1em'} class="ml-2" />
 					</Button>
 				</div>
 			{:else}
@@ -293,17 +293,19 @@
 							>
 								<span class="font-medium inline-flex items-center">
 									{#if stake.claimed}
-										<Icon icon="carbon:recently-viewed" width="16" height="16" class="mr-4" />
+										<BadgeCheck size={'1em'} class="mr-4" />
 									{:else if Number(stake.unlock) * 1000 < Date.now()}
-										<Icon icon="carbon:unlocked" width="16" height="16" class="mr-4" />
+										<LockKeyholeOpen size={'1em'} class="mr-4" />
 									{:else}
-										<Icon icon="carbon:locked" width="16" height="16" class="mr-4" />
+										<LockKeyhole size={'1em'} class="mr-4" />
 									{/if}
 									{niceKns(stake.amount)} KNS
 								</span>
-								<Icon
-									icon={expandedIndex === index ? 'carbon:chevron-up' : 'carbon:chevron-down'}
-								/>
+								{#if expandedIndex === index}
+									<ChevronUp size={'1em'} />
+								{:else}
+									<ChevronDown size={'1em'} />
+								{/if}
 							</div>
 							{#if expandedIndex === index}
 								<div class="mt-4 text-sm" transition:slide={{ axis: 'y', duration: 300 }}>
@@ -319,7 +321,7 @@
 									</p>
 									{#if !stake.claimed && Number(stake.unlock) * 1000 < Date.now()}
 										<Button
-											class="mt-4 bg-red-500 hover:bg-red-400 text-white font-semibold"
+											class="mt-4 bg-red-500 hover:bg-red-400 text-white font-medium"
 											on:click={() => unstakeHandler(stake.id)}
 										>
 											Unstake

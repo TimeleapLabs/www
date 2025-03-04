@@ -64,6 +64,10 @@ export const entries = [
     "title": "Timeleap Enhancement Proposals"
   },
   {
+    "href": "/docs/tep/4",
+    "title": "TEP-4: Timeleap Network (Subnets)"
+  },
+  {
     "href": "/docs/tep/3",
     "title": "TEP-3: Timeleap Messaging Protocol"
   },
@@ -153,6 +157,10 @@ export const fullNav = {
       "href": "/docs/tep",
       "title": "Timeleap Enhancement Proposals",
       "nav": [
+        {
+          "href": "/docs/tep/4",
+          "title": "TEP-4: Timeleap Network (Subnets)"
+        },
         {
           "href": "/docs/tep/3",
           "title": "TEP-3: Timeleap Messaging Protocol"

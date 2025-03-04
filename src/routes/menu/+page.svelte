@@ -1,10 +1,10 @@
-<script>
-	import Icon from '@iconify/svelte';
+<script lang="ts">
 	import { Section, Grid, Image, Card } from '@timeleap/ui';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
+	import { ArrowRight } from 'lucide-svelte';
 </script>
 
 <MetaTags />
@@ -16,7 +16,7 @@
 		<Card class="p-0! flex text-white bg-zinc-950 hover:bg-zinc-800 transition-colors" href="/blog">
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">
-					Blog <Icon icon="carbon:arrow-right" class="inline-block text-sm" />
+					Blog <ArrowRight size={'1em'} class="inline-block" />
 				</h3>
 				<div>Stay up to date</div>
 			</div>
@@ -26,7 +26,7 @@
 		<Card class="p-0! flex text-white bg-zinc-950 hover:bg-zinc-800 transition-colors" href="/docs">
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">
-					Docs <Icon icon="carbon:arrow-right" class="inline-block text-sm" />
+					Docs <ArrowRight size={'1em'} class="inline-block" />
 				</h3>
 				<div>Knowledge base</div>
 			</div>
@@ -39,7 +39,7 @@
 		>
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">
-					Contact <Icon icon="carbon:arrow-right" class="inline-block text-sm" />
+					Contact <ArrowRight size={'1em'} class="inline-block" />
 				</h3>
 				<div>Talk to an expert</div>
 			</div>
@@ -51,7 +51,7 @@
 		>
 			<div class="px-8 flex-1 content-center">
 				<h3 class="font-serif text-2xl">
-					Stake <Icon icon="carbon:arrow-right" class="inline-block text-sm" />
+					Stake <ArrowRight size={'1em'} class="inline-block" />
 				</h3>
 				<div>Stake KNS</div>
 			</div>

@@ -1,5 +1,4 @@
-<script>
-	import Icon from '@iconify/svelte';
+<script lang="ts">
 	import { Section, Grid, Image, Button, Card } from '@timeleap/ui';
 
 	import Footer from '$lib/components/Footer.svelte';
@@ -9,6 +8,7 @@
 
 	import X from '$lib/components/candy/X.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
+	import { ArrowRight, ArrowUpRight } from 'lucide-svelte';
 </script>
 
 <MetaTags />
@@ -34,12 +34,12 @@
 					</p>
 					<div class="mt-16">
 						<Button
-							class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+							class="bg-green-400 text-black hover:bg-green-300 font-medium"
 							animate
 							href="https://devnet.timeleap.swiss"
 							target="_blank"
 						>
-							Devnet<Icon icon="carbon:arrow-up-right" class="text-xl" />
+							Devnet <ArrowUpRight size={'1em'} />
 						</Button>
 					</div>
 				</div>
@@ -126,11 +126,11 @@
 
 			<div class="mt-8 flex gap-8 flex-wrap">
 				<Button
-					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+					class="bg-green-400 text-black hover:bg-green-300 font-medium"
 					animate
 					href="/contact"
 				>
-					Contact Us<Icon icon="carbon:arrow-right" />
+					Contact Us <ArrowRight size={'1em'} />
 				</Button>
 			</div>
 		</Card>

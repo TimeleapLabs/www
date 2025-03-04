@@ -18,37 +18,37 @@
 		console.log(name, email, body, subject, topic);
 
 		if (!name) {
-			toast.push('We need to know your name!');
+			toast.error('We need to know your name!');
 			disabled = undefined;
 			return;
 		}
 
 		if (!email) {
-			toast.push('We need your email to be able to contact you back!');
+			toast.error('We need your email to be able to contact you back!');
 			disabled = undefined;
 			return;
 		}
 
 		if (!email.match(/\S+@\S+\.\S+/)) {
-			toast.push('Please enter a valid email address');
+			toast.error('Please enter a valid email address');
 			disabled = undefined;
 			return;
 		}
 
 		if (!subject) {
-			toast.push('Please enter a subject for your message');
+			toast.error('Please enter a subject for your message');
 			disabled = undefined;
 			return;
 		}
 
 		if (!topic) {
-			toast.push('Please choose one of the possible topics');
+			toast.error('Please choose one of the possible topics');
 			disabled = undefined;
 			return;
 		}
 
 		if (!body) {
-			toast.push('Please write your message first');
+			toast.error('Please write your message first');
 			disabled = undefined;
 			return;
 		}
@@ -59,14 +59,14 @@
 			});
 			const resp = await contact(subject, body, name, topic, email, token);
 			if (resp.status === 200) {
-				toast.push('Your message has been sent successfully!');
+				toast.success('Your message has been sent successfully!');
 				email = '';
 				name = '';
 				body = '';
 				subject = '';
 				disabled = undefined;
 			} else {
-				toast.push('There was an issue sending your message, please try again later');
+				toast.error('There was an issue sending your message, please try again later');
 				disabled = undefined;
 			}
 		});
@@ -125,7 +125,7 @@
 
 	<div class="text-sm text-gray-400">This form is protected by reCAPTCHA.</div>
 	<Button
-		class="bg-green-400 hover:bg-green-300 text-black self-start font-semibold"
+		class="bg-green-400 hover:bg-green-300 text-black self-start font-medium"
 		{disabled}
 		on:click={submitMessage}
 	>

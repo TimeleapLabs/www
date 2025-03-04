@@ -1,15 +1,23 @@
-<script>
-	import Icon from '@iconify/svelte';
+<script lang="ts">
+	import {
+		Twitter,
+		Linkedin,
+		Github,
+		Send,
+		MessagesSquare,
+		ArrowUpRight,
+		ArrowRight
+	} from 'lucide-svelte';
 	import { Section, Grid } from '@timeleap/ui';
 </script>
 
-<Section class="max-w-[1920px] mx-auto px-4 pb-8 md:px-16">
+<Section class="max-w-[1920px] mx-auto px-12 pb-8 md:px-24">
 	<Grid
 		extraLargeScreenColumns={4}
 		largeScreenColumns={4}
 		mediumScreenColumns={3}
 		smallScreenColumns={1}
-		class="text-white pt-4 md:pb-16"
+		class="text-white pt-4 md:pb-16 gap-16! auto-rows-auto!"
 	>
 		<div class="md:pb-48">
 			<h3 class="font-serif text-xl pb-8">Timeleap SA.</h3>
@@ -25,7 +33,7 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					<Icon icon="carbon:logo-twitter" width="32" height="32" />
+					<Twitter size={24} strokeWidth={1.5} />
 				</a>
 				<a
 					href="https://www.linkedin.com/company/timeleaplabs"
@@ -33,7 +41,7 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					<Icon icon="carbon:logo-linkedin" width="32" height="32" />
+					<Linkedin size={24} strokeWidth={1.5} />
 				</a>
 				<a
 					href="https://github.com/TimeleapLabs"
@@ -41,7 +49,7 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					<Icon icon="carbon:logo-github" width="32" height="32" />
+					<Github size={24} strokeWidth={1.5} />
 				</a>
 				<a
 					href="https://t.me/kenshi"
@@ -49,7 +57,7 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					<Icon icon="carbon:send-alt" width="32" height="32" />
+					<Send size={24} strokeWidth={1.5} />
 				</a>
 				<a
 					href="https://forum.timeleap.swiss"
@@ -57,7 +65,7 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					<Icon icon="carbon:chat" width="32" height="32" />
+					<MessagesSquare size={24} strokeWidth={1.5} />
 				</a>
 			</div>
 		</div>
@@ -70,7 +78,7 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					KNS on Uniswap <Icon icon="carbon:arrow-up-right" class="inline-block ml-2" />
+					KNS on Uniswap <ArrowUpRight size={'1em'} class="inline-block ml-2" />
 				</a>
 				<a
 					href="https://opensea.io/collection/kenshi-katana"
@@ -78,10 +86,10 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					Katana NFT on OpenSea <Icon icon="carbon:arrow-up-right" class="inline-block ml-2" />
+					Katana NFT on OpenSea <ArrowUpRight size={'1em'} class="inline-block ml-2" />
 				</a>
 				<a href="/stake" class="hover:text-green-400 transition-colors">
-					Stake <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+					Stake <ArrowRight size={'1em'} class="inline-block ml-2" />
 				</a>
 			</div>
 		</div>
@@ -89,19 +97,19 @@
 			<h3 class="font-serif text-xl pb-8">Info</h3>
 			<div class="flex gap-4 flex-col text-zinc-400">
 				<a href="/docs" class="hover:text-green-400 transition-colors">
-					Blog <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+					Blog <ArrowRight size={'1em'} class="inline-block ml-2" />
 				</a>
 				<a href="/docs" class="hover:text-green-400 transition-colors">
-					Documentation <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+					Documentation <ArrowRight size={'1em'} class="inline-block ml-2" />
 				</a>
 				<a href="/contact" class="hover:text-green-400 transition-colors">
-					Talk to an Expert <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+					Talk to an Expert <ArrowRight size={'1em'} class="inline-block ml-2" />
 				</a>
 				<a href="/tos" class="hover:text-green-400 transition-colors">
-					Terms & Conditions <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+					Terms & Conditions <ArrowRight size={'1em'} class="inline-block ml-2" />
 				</a>
 				<a href="/shadowblade" class="hover:text-green-400 transition-colors">
-					Shadowblade Chronicles <Icon icon="carbon:arrow-right" class="inline-block ml-2" />
+					Shadowblade Chronicles <ArrowRight size={'1em'} class="inline-block ml-2" />
 				</a>
 			</div>
 		</div>

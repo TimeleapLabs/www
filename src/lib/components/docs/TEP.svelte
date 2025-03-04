@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
 	import Alert from '../Alert.svelte';
+	import { MessageSquareShare } from 'lucide-svelte';
 
 	const tepToAlertType = {
 		draft: 'draft' as const,
@@ -49,7 +49,7 @@
 			href={discussion}
 			target="_blank"
 		>
-			Discuss this TEP on GitHub <Icon icon="carbon:chat-launch" class="ml-2" />
+			Discuss this TEP on GitHub <MessageSquareShare size={'1em'} class="ml-2" />
 		</a>
 	</div>
 {/if}

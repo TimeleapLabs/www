@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
 	import { Button } from '@timeleap/ui';
 	import { slide } from 'svelte/transition';
 	import { page } from '$app/stores';
+	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 
 	type NavEntry = { href: string; title: string; nav?: NavEntry[] };
 
@@ -34,7 +34,11 @@
 		</a>
 		{#if nav.nav}
 			<Button class="px-2! py-0!" on:click={toggle}>
-				<Icon icon="carbon:chevron-{open ? 'up' : 'down'}" class="w-4 h-4" />
+				{#if open}
+					<ChevronUp size={'1em'} class="w-4 h-4" />
+				{:else}
+					<ChevronDown size={'1em'} class="w-4 h-4" />
+				{/if}
 			</Button>
 		{/if}
 	</div>

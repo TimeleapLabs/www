@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
-	import { Section, Card, Button } from '@timeleap/ui';
+	import { Section, Button } from '@timeleap/ui';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import Icon from '@iconify/svelte';
+	import { ArrowRight } from 'lucide-svelte';
 </script>
 
 <svelte:head>
@@ -29,8 +29,8 @@
 		</p>
 
 		<div class="mt-8 flex gap-4">
-			<Button href="/" class="bg-green-400 text-black hover:bg-green-300 font-semibold" animate>
-				Go Home <Icon icon="carbon:arrow-right" />
+			<Button href="/" class="bg-green-400 text-black hover:bg-green-300 font-medium" animate>
+				Go Home <ArrowRight size={'1em'} />
 			</Button>
 		</div>
 	{/if}

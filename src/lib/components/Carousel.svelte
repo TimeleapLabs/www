@@ -1,10 +1,11 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
+	import { ArrowLeft, ArrowRight } from 'lucide-svelte';
 	import { Button } from '@timeleap/ui';
 
 	let el: HTMLElement;
 	let index = 0;
 	let position = 0;
+	export let containerClass = '';
 
 	const lastChildInView = () => {
 		const lastChild = el.children[el.children.length - 1];
@@ -34,7 +35,7 @@
 	};
 </script>
 
-<div>
+<div class={containerClass}>
 	<div
 		class="outer relative overflow-auto snap-x snap-mandatory scroll-smooth scrollbar-hidden py-4"
 	>
@@ -47,11 +48,17 @@
 	</div>
 
 	<div class="flex gap-4 mt-8">
-		<Button class="bg-zinc-700 text-white text-2xl px-4! py-7!" on:click={prev}>
-			<Icon icon="carbon:arrow-left" />
+		<Button
+			class="hover:bg-zinc-700 text-white text-2xl px-4! py-7! transition-colors ease-in"
+			on:click={prev}
+		>
+			<ArrowLeft size={'1em'} />
 		</Button>
-		<Button class="bg-zinc-700 text-white text-2xl px-4! py-7!" on:click={next}>
-			<Icon icon="carbon:arrow-right" />
+		<Button
+			class="hover:bg-zinc-700 text-white text-2xl px-4! py-7! transition-colors ease-in"
+			on:click={next}
+		>
+			<ArrowRight size={'1em'} />
 		</Button>
 	</div>
 </div>

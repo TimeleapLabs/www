@@ -723,21 +723,7 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.4.1.tgz#9a96ce501bc62df46c4031fbd970e3cc6b10f07b"
   integrity sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==
 
-"@iconify/icons-carbon@^1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@iconify/icons-carbon/-/icons-carbon-1.2.20.tgz#05a612ab29c6bdc3585517d54ce63f99526a5d5a"
-  integrity sha512-GaBRDebrshFfiRu11ktyBvm/Ez72UXvZUsHG3WPqddokTp3auOT4cLch+2JSEzeVXSGbopzU2Fhpv8vE2I0XCw==
-  dependencies:
-    "@iconify/types" "*"
-
-"@iconify/svelte@^4.0.2":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@iconify/svelte/-/svelte-4.2.0.tgz#94f718f06ccee465d02360a68191a55ad89d7b0e"
-  integrity sha512-fEl0T7SAPonK7xk6xUlRPDmFDZVDe2Z7ZstlqeDS/sS8ve2uyU+Qa8rTWbIqzZJlRvONkK5kVXiUf9nIc+6OOQ==
-  dependencies:
-    "@iconify/types" "^2.0.0"
-
-"@iconify/types@*", "@iconify/types@^2.0.0":
+"@iconify/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
   integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
@@ -1495,10 +1481,10 @@
     chevrotain "^11.0.3"
     commander "^12.0.0"
 
-"@timeleap/ui@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@timeleap/ui/-/ui-0.0.7.tgz#3d6fe76b41519ba1aff82e4ad8189f4ae262c2ce"
-  integrity sha512-fHtXbKkX1Fix1VOMCyzQU5/KoJ2yBMJHJ47MMf99ciKzHjpCfIsFyE6MFXJ0vCTxdNdFMDDwlRu9+uDPinfhHA==
+"@timeleap/ui@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@timeleap/ui/-/ui-0.1.3.tgz#b1cc130fb1fb51d45bd1d23df45e7cd6b0753872"
+  integrity sha512-mDW71kBzEDFujk2clLfWfCLz1+GNB3/Qvq9smNG54K/3+EXKE0tVWDubvUkNQbZZTi5OYj+qIH5MyxlXH5RA7A==
   dependencies:
     geist "^1.3.1"
 
@@ -2219,11 +2205,6 @@
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@xterm/xterm/-/xterm-5.5.0.tgz#275fb8f6e14afa6e8a0c05d4ebc94523ff775396"
   integrity sha512-hqJHYaQb5OptNunnyAnkHyM8aCjZ1MEIDTQu1iIbbTD/xops91NB5yq1ZK/dC2JDbVWtF23zUtl9JE2NqwT87A==
-
-"@zerodevx/svelte-toast@^0.9.6":
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.9.6.tgz#7445524743c2521dc865b123c180f5f37d942ff4"
-  integrity sha512-nHlTrCjverlPK9yukK6fqbG3e/R+f10ldrc4nJHOe2qNDScuPTuYVSFEk2dDDtzWAwTN5pmdEXgA3M2RbT8jiw==
 
 abitype@1.0.0:
   version "1.0.0"
@@ -4063,6 +4044,11 @@ lru-queue@^0.1.0:
   integrity sha512-BpdYkt9EvGl8OfWHDQPISVpcl5xZthb+XPsbELj5AQXxIC8IriDZIQYjBJPEm5rS420sjZ0TLEzRcq5KdBhYrQ==
   dependencies:
     es5-ext "~0.10.2"
+
+lucide-svelte@^0.476.0:
+  version "0.476.0"
+  resolved "https://registry.yarnpkg.com/lucide-svelte/-/lucide-svelte-0.476.0.tgz#2d39ce396906675410c3d2da483ab5e7c15dd2e8"
+  integrity sha512-Ph6zoMWjQVJibDrR+DJoT7LR2uEKLPzzGo886OLRk+nCJZESJUvoCWXk0uE6Y9aaamaSFAdI1Cpwslgzk3YYdQ==
 
 magic-string@^0.30.10, magic-string@^0.30.4, magic-string@^0.30.5:
   version "0.30.17"

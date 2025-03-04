@@ -1,6 +1,5 @@
 <script>
-	import Icon from '@iconify/svelte';
-	import { Section, Grid, Image, Button, Card } from '@timeleap/ui';
+	import { Section, Grid, Image, Card } from '@timeleap/ui';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
@@ -36,15 +35,6 @@
 					<br />
 					200,000 KNS tokens for the first person to solve the puzzle hidden within the game.
 				</p>
-				<!--div class="mt-16">
-					<Button
-						class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-						animate
-						href="/docs"
-					>
-						See Puzzle Wallet<Icon icon="carbon:arrow-right" />
-					</Button>
-				</div-->
 			</div>
 			<div class="bg absolute top-0 right-0 left-0 bottom-0 h-full z-0 masked">
 				<Image

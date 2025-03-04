@@ -5,9 +5,9 @@
 	import { copyToClipboard } from '$lib/clipboard';
 	import toast from 'svelte-french-toast';
 
-	import Icon from '@iconify/svelte';
 	import tiramisu from '@timeleap/tiramisu/vscode-tiramisu/syntaxes/tiramisu.tmLanguage.json';
 	import sia from '$lib/languages/sia.tmLanguage.json';
+	import { Copy } from 'lucide-svelte';
 
 	tiramisu.name = 'tiramisu';
 	sia.name = 'sia';
@@ -60,7 +60,7 @@
 		size="sm"
 		on:click={copyCode}
 	>
-		<Icon icon="carbon:copy" class="size-4 " />
+		<Copy size={'1em'} />
 	</Button>
 </div>
 

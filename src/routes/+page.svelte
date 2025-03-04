@@ -1,18 +1,28 @@
-<script>
-	import Icon from '@iconify/svelte';
+<script lang="ts">
 	import { Section, Grid, Button, Card } from '@timeleap/ui';
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Subscribe from '$lib/components/Subscribe.svelte';
-	import X from '$lib/components/candy/X.svelte';
-
-	import Benchmark from '$lib/components/products/sia/Benchmark.svelte';
-	import CodeCarousel from '$lib/components/home/CodeCarousel.svelte';
-	import TiltCard from '$lib/components/TiltCard.svelte';
-
+	import UseCase from '$lib/components/home/UseCase.svelte';
 	import MetaTags from '$lib/components/seo/MetaTags.svelte';
+	import Carousel from '$lib/components/Carousel.svelte';
+
+	import { ArrowRight, Asterisk, Bitcoin, CpuIcon, Factory } from 'lucide-svelte';
+	import { useCases } from '$lib/content/use-cases';
+
+	let filter = 'all';
+	let scrollY = 0;
+
+	const getFilteredUseCases = (filter: string) =>
+		filter === 'all' ? useCases : useCases.filter((useCase) => useCase.tags.includes(filter));
+
+	const setFilter = (newFilter: string) => () => {
+		filter = newFilter;
+	};
 </script>
+
+<svelte:window on:scroll={() => (scrollY = window.scrollY)} />
 
 <MetaTags />
 
@@ -23,13 +33,14 @@
 		extraLargeScreenColumns={1}
 		largeScreenColumns={1}
 		mediumScreenColumns={1}
-		class="gap-16! pt-10 md:pt-24 max-w-full box-border"
+		class="gap-16! pt-10 md:pt-24 max-w-full box-border px-8"
 	>
-		<Card class="relative h-[440px] md:h-[640px] overflow-hidden">
+		<Card class="relative h-[440px] md:h-[640px] overflow-hidden px-0!">
 			<div class="w-full flex flex-col justify-end h-full z-10 relative">
 				<h1 class="font-serif text-3xl md:text-6xl text-white">
-					Your Distributed<br />
-					App Engine.
+					<span class="docs-heading leading-loose"> Timeleap </span><br />
+					The Distributed<br />
+					Cloud.
 				</h1>
 				<p class="mt-12 text-zinc-100 font-light w-full md:w-3/4 xl:w-2/3 xxl:w-1/2">
 					Timeleap provides you with all the tools you need to build high-performance, distributed
@@ -37,150 +48,136 @@
 				</p>
 				<div class="mt-16">
 					<Button
-						class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+						class="bg-green-400 text-black hover:bg-green-300 font-medium"
 						animate
 						href="/docs"
 					>
-						Read the Docs<Icon icon="carbon:arrow-right" />
+						Read the Docs <ArrowRight size={'1em'} strokeWidth={2.5} class="inline" />
 					</Button>
 				</div>
-			</div>
-			<div class="bg x-masked absolute top-0 right-0 left-0 bottom-0 h-full z-0 opacity-50">
-				<X></X>
 			</div>
 		</Card>
 	</Grid>
 
-	<Grid
-		extraLargeScreenColumns={3}
-		largeScreenColumns={3}
-		mediumScreenColumns={1}
-		smallScreenColumns={1}
-		class="gap-32! grid-rows-[auto]"
+	<div
+		class="absolute left-0 top-0 w-full h-full z-0 group-hover:scale-125 transition-transform ease-in-out duration-300 masked-top-down"
 	>
-		<Card class="text-white">
-			<div class="relative z-10 flex flex-col h-full">
-				<h2 class="font-serif text-3xl md:text-5xl leading-snug">Distributed Computation</h2>
-				<p class="mt-8 flex-1 text-zinc-300 hover:text-zinc-100 transition-colors">
-					<b class="font-bold">Timeleap</b> is a distributed computing platform that allows you to run
-					your applications on thousands of devices worldwide. Harness the power of distributed computing
-					to run your applications faster and more efficiently.
-				</p>
-				<div class="mt-16">
+		<img
+			src="/images/hero.jpg"
+			alt="Timeleap hero"
+			class="w-full h-full object-cover"
+			style="transform: translateY({-Math.min(250, scrollY * 0.5)}px);"
+		/>
+	</div>
+</Section>
+
+<div class="overflow-hidden">
+	<Section class="w-full max-w-[1920px] mx-auto pt-32 gap-32! pl-8 md:px-16 xxl:px-0">
+		<Section class="gap-4! px-0 md:px-8 xxl:px-0">
+			<div
+				class="flex md:justify-between items-center flex-wrap justify-center relative z-10 gap-8 pr-8 md:pr-0"
+			>
+				<h2
+					class="font-serif text-2xl md:text-xl leading-snug z-10 docs-heading text-center md:text-left"
+				>
+					Discover the Possibilities
+				</h2>
+				<div class="flex flex-wrap items-center justify-center md:justify-end gap-4">
 					<Button
-						class="bg-green-400 text-black hover:bg-green-300 font-semibold"
+						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
 						animate
-						href="/docs/products/network"
+						on:click={setFilter('compute')}
 					>
-						Learn More<Icon icon="carbon:arrow-right" />
+						<CpuIcon size={'1em'} strokeWidth={2.5} class="inline" />
+						Compute
+					</Button>
+					<Button
+						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
+						animate
+						on:click={setFilter('blockchain')}
+					>
+						<Bitcoin size={'1em'} strokeWidth={2.5} class="inline" />
+						Blockchain
+					</Button>
+					<Button
+						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
+						animate
+						on:click={setFilter('industry-4.0')}
+					>
+						<Factory size={'1em'} strokeWidth={2.5} class="inline" />
+						Industry 4.0
+					</Button>
+					<Button
+						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
+						animate
+						on:click={setFilter('all')}
+					>
+						<Asterisk size={'1em'} strokeWidth={2.5} class="inline" />
+						All
 					</Button>
 				</div>
 			</div>
-		</Card>
+			<div class="relative">
+				<div class="absolute -left-[550px] -top-[240px] text-zinc-800 origin-center z-0">
+					<Asterisk size={'1100'} strokeWidth={2} style="transform:rotate({scrollY / 10}deg)" />
+				</div>
+				<div style="transform: translateX({Math.max(0, 720 - scrollY)}px);">
+					<Carousel class="gap-8">
+						{#each getFilteredUseCases(filter) as { src, title, body, shade }}
+							<UseCase {src} {title} {shade}>{body}</UseCase>
+						{/each}
+					</Carousel>
+				</div>
+			</div>
+		</Section>
+	</Section>
+</div>
 
-		<div class="md:col-span-2 max-w-full">
-			<CodeCarousel></CodeCarousel>
-		</div>
-	</Grid>
-
+<Section class="w-full max-w-[1920px] mx-auto pt-12 gap-32! px-0 md:px-16 xxl:px-0">
 	<Grid
 		extraLargeScreenColumns={2}
 		largeScreenColumns={2}
-		mediumScreenColumns={1}
+		mediumScreenColumns={2}
 		smallScreenColumns={1}
-		class="gap-32! grid-rows-[auto]"
+		class="gap-4! md:gap-16! grid-rows-[auto] px-4"
 	>
-		<Card class="text-white flex flex-col">
-			<h2 class="font-serif text-3xl md:text-5xl leading-snug">
-				Supercharge your dApp <br />with Sia.
-			</h2>
-
-			<p class="mt-8 text-zinc-300 hover:text-zinc-100 transition-colors xl:w-5/6 xxl:w-2/3 flex-1">
-				<b class="font-bold">Sia</b> is a high-performance serialization library that allows you to serialize
-				and deserialize your data at lightning speed. With Sia, you can build faster and more efficient
-				applications.
+		<Card class="text-white flex flex-col gap-4">
+			<div>
+				<h2 class="font-serif text-2xl leading-snug docs-heading">Build With Timeleap</h2>
+			</div>
+			<p class="text-zinc-300 flex-1">
+				Build your app with our SDK. Distribute your app to a global network of devices. Monitor
+				your app's performance in real-time.
 			</p>
-
-			<div class="max-w-[640px] mt-16">
-				<TiltCard class="p-0!">
-					<Benchmark></Benchmark>
-				</TiltCard>
-			</div>
-
-			<div class="mt-16">
-				<Button
-					class="bg-green-400 text-black hover:bg-green-300 font-semibold"
-					animate
-					href="/docs/products/sia"
-				>
-					Learn More<Icon icon="carbon:arrow-right" />
-				</Button>
-			</div>
+			<a href="/docs" class="text-green-400 hover:underline">
+				Discover our solutions <ArrowRight size={'1em'} strokeWidth={2.5} class="inline" />
+			</a>
 		</Card>
-
-		<div class="flex flex-col justify-between">
-			<Card class="text-white">
-				<h2 class="font-serif text-xl md:text-3xl leading-snug">
-					Write beautiful documentation <br />with Tiramisu.
-				</h2>
-				<p class="mt-8 xl:w-5/6 xxl:w-2/3 text-zinc-300 hover:text-zinc-100 transition-colors">
-					<b class="font-bold">Tiramisu</b> is a flexible and integrable documentation generator that
-					seamlessly fits into your existing website design. With Tiramisu, you can effortlessly create
-					stunning documentation that matches your project's aesthetic, allowing you to focus on delivering
-					great content.
-				</p>
-				<div class="mt-8">
-					<a
-						class="text-green-400 hover:text-green-300 font-semibold flex gap-2 items-center"
-						href="/docs/products/tiramisu"
-					>
-						Learn More<Icon icon="carbon:arrow-right" />
-					</a>
-				</div>
-			</Card>
-
-			<Card class="text-white">
-				<div class="relative z-10 flex flex-col h-full">
-					<h2 class="font-serif text-xl md:text-3xl leading-snug">
-						Your own layer-1 <br />EVM blockchain.
-					</h2>
-					<p class="mt-8 xl:w-5/6 xxl:w-2/3 text-zinc-300 hover:text-zinc-100 transition-colors">
-						<b class="font-bold">Cascade</b> is a blockchain as a service platform that allows you to
-						create your own EVM-compatible blockchain. Looking to launch your own token or build a decentralized
-						application? Cascade has you covered.
-					</p>
-					<div class="mt-8">
-						<a
-							class="text-green-400 hover:text-green-300 font-semibold flex gap-2 items-center"
-							href="/cascade"
-						>
-							Learn More<Icon icon="carbon:arrow-right" />
-						</a>
-					</div>
-				</div>
-			</Card>
-		</div>
+		<Card class="text-white flex flex-col gap-4">
+			<div>
+				<h2 class="font-serif text-2xl leading-snug docs-heading">Join the Network</h2>
+			</div>
+			<p class="text-zinc-300 flex-1">
+				Whether you're an individual with spare computing power or a company looking to scale
+				distributed workloads, you can run a Timeleap subnet and contribute to a decentralized
+				ecosystem—on your terms.
+			</p>
+			<span class="text-zinc-400">Coming soon</span>
+			<!--a href="/docs" class="text-green-400 hover:underline">
+				Learn the benefits <ArrowRight size={'1em'} strokeWidth={2.5} class="inline" />
+			</a-->
+		</Card>
 	</Grid>
 </Section>
 
-<Section class="w-full max-w-[1920px] mx-auto pt-20 gap-16! pb-24 px-4 md:px-16 xxl:px-0">
+<Section class="w-full max-w-[1920px] mx-auto pt-12 gap-16! pb-24 px-0 md:px-16 xxl:px-0">
 	<Subscribe class="mt-16"></Subscribe>
 </Section>
 
 <Footer></Footer>
 
 <style>
-	.masked {
-		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-	}
-	.x-masked {
-		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1));
-	}
-	.masked-full {
-		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 1));
-	}
-
 	.masked-top-down {
-		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 1));
+		mask-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 	}
 </style>
