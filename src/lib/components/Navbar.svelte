@@ -2,6 +2,9 @@
 	import Icon from '@iconify/svelte';
 	import { Button, Navbar } from '@timeleap/ui';
 	import ConnectButton from './ConnectButton.svelte';
+	import { onMount } from 'svelte';
+
+	import 'meilisearch-docsearch/css';
 
 	type section = 'home' | 'products' | 'contact' | 'docs' | 'blog' | 'stake' | 'none';
 
@@ -18,6 +21,16 @@
 		blog: active === 'blog' ? activeClass : hoverClass,
 		stake: active === 'stake' ? activeClass : hoverClass
 	};
+
+	onMount(async () => {
+		const { docsearch } = await import('meilisearch-docsearch');
+		docsearch({
+			container: '#docsearch',
+			host: 'http://localhost:7700',
+			apiKey: 'aSampleMasterKey',
+			indexUid: 'docs'
+		});
+	});
 </script>
 
 <Navbar
@@ -39,6 +52,7 @@
 	<Button class="{classes.stake} !hidden md:!inline-flex !p-5 !rounded-lg" href="/stake">
 		<Icon icon="carbon:money" /> Stake
 	</Button>
+	<div id="docsearch"></div>
 	<div class="flex-1"></div>
 	<ConnectButton class="hidden! md:inline-flex! p-5! rounded-lg! hover:bg-zinc-800" />
 	{#if backButton}
