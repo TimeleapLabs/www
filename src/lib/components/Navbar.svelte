@@ -3,6 +3,10 @@
 	import { ArrowLeft, BookText, LockKeyholeOpen, Mail, Menu, Pencil } from 'lucide-svelte';
 
 	import ConnectButton from './ConnectButton.svelte';
+	import { onMount } from 'svelte';
+
+	import 'meilisearch-docsearch/css';
+	import { MEILI_API_KEY, MEILI_HOST } from '$env/static/private';
 
 	type section = 'home' | 'products' | 'contact' | 'docs' | 'blog' | 'stake' | 'none';
 
@@ -23,6 +27,16 @@
 	let scrollY = 0;
 
 	$: extraClasses = scrollY > 0 ? 'bg-[rgba(0,0,0,.4)] backdrop-blur-xl' : '';
+
+	onMount(async () => {
+		const { docsearch } = await import('meilisearch-docsearch');
+		docsearch({
+			container: '#docsearch',
+			host: MEILI_HOST,
+			apiKey: MEILI_API_KEY,
+			indexUid: active === 'blog' ? 'blog' : 'docs'
+		});
+	});
 </script>
 
 <svelte:window bind:scrollY />
@@ -46,6 +60,7 @@
 	<Button class="{classes.stake} !hidden md:!inline-flex !p-5 !rounded-lg" href="/stake">
 		<LockKeyholeOpen size={'1em'} /> Stake
 	</Button>
+	<div id="docsearch"></div>
 	<div class="flex-1"></div>
 	<ConnectButton class="hidden! md:inline-flex! p-5! rounded-lg! hover:bg-zinc-800" />
 	{#if backButton}
