@@ -15,10 +15,22 @@ import {
 import path from 'path';
 import slugify from 'slugify';
 
+import { MeiliSearch } from 'meilisearch';
+import { compileFile } from './compile';
+import { v4 as uuidv4 } from 'uuid';
+
 type ParamType = {
 	named: { name: string; value: string | string[] }[];
 	positional: (string | string[])[];
 };
+
+interface IndexedDocument {
+	id: string;
+	title: string;
+	content: string;
+	meta: Record<string, any>;
+}
+
 
 export type NavEntry = { href: string; title: string; nav?: NavEntry[] };
 
@@ -38,6 +50,10 @@ export type ContextType = {
 	imports?: string[];
 	nav?: NavEntry;
 	flatNav?: NavEntry[];
+	indexInMeilisearch?: {
+		enabled: boolean;
+		source: 'docs' | 'blogs';
+	};
 };
 
 const textSizeMap = {
@@ -165,13 +181,16 @@ const functions: {
 			const nextContext: ContextType = {
 				currentFile: filePath,
 				templateFile: context.templateFile,
-				flatNav: context.flatNav
+				flatNav: context.flatNav,
+				indexInMeilisearch: context.indexInMeilisearch
 			};
 
 			const flatNavEntry = { href: '', title: '' };
 			context.flatNav.push(flatNavEntry);
 
-			compileFile({ filePath, templateFile: context.templateFile }, nextContext);
+			compileFile({
+				filePath, templateFile: context.templateFile,
+			}, nextContext);
 			const href = filePathToHref(filePath);
 			const title = (nextContext.page?.title ?? nextContext.headers?.[0] ?? '').trim();
 			items.push(
@@ -328,10 +347,10 @@ const functions: {
 
 const translateParam = (param: Node, context: ContextType) => {
 	if (param instanceof ArrayValue) {
-		return param.values.map((value) => translate(value, context));
+		return param.values.map((value) => translateHtml(value, context));
 	}
 
-	return translate(param, context);
+	return translateHtml(param, context);
 };
 
 const parseFunctionParameters = (node: Parameters, context: ContextType): ParamType => {
@@ -351,14 +370,15 @@ const parseFunctionParameters = (node: Parameters, context: ContextType): ParamT
 	return { named, positional };
 };
 
-export const translate = (node: Node, context: ContextType): string => {
+
+export function translateHtml(node: Node, context: ContextType): string {
 	if (typeof node === 'string') {
 		return node;
 	}
 
 	if (node instanceof Tiramisu) {
 		return node.children
-			.map((child) => translate(child, context))
+			.map((child) => translateHtml(child, context))
 			.filter((child) => child.match(/\S/))
 			.map((child) =>
 				child.trimStart().startsWith('<') ? child : `<p class="text-zinc-300">${child}</p>`
@@ -367,11 +387,11 @@ export const translate = (node: Node, context: ContextType): string => {
 	}
 
 	if (node instanceof Paragraph) {
-		return node.children.map((child) => translate(child, context)).join('');
+		return node.children.map((child) => translateHtml(child, context)).join('');
 	}
 
 	if (node instanceof MixedText) {
-		return node.shards.map((shard) => translate(shard, context)).join('');
+		return node.shards.map((shard) => translateHtml(shard, context)).join('');
 	}
 
 	if (node instanceof PureText) {
@@ -390,16 +410,152 @@ export const translate = (node: Node, context: ContextType): string => {
 	}
 
 	if (node instanceof ArrayItem) {
-		return node.value.map((child) => translate(child, context)).join('');
+		return node.value.map((child) => translateHtml(child, context)).join('');
 	}
 
 	if (node instanceof Parameter) {
 		return Array.isArray(node.value)
-			? node.value.map((child) => translate(child, context)).join('')
-			: translate(node.value, context);
+			? node.value.map((child) => translateHtml(child, context)).join('')
+			: translateHtml(node.value, context);
 	}
 
 	throw new Error(`Unknown node type: ${node.constructor.name}`);
 };
 
-import { compileFile } from './compile';
+
+const cleanNode = (node: Node, context: ContextType): any[] => {
+	const documents: Record<string, any>[] = [];
+
+	let currentDoc: Record<string, any> = {
+		id: uuidv4(),
+		title: "",
+		content: "",
+		meta: {}
+	};
+
+	const extractText = (n: Node): string => {
+		if (typeof n === "string") return n.trim();
+		if ((n as MixedText).shards) return (n as MixedText).shards.map(extractText).join(" ");
+		if ((n as Paragraph).children) return (n as Paragraph).children.map(extractText).join(" ");
+		if ((n as Tiramisu).children) return (n as Tiramisu).children.map(extractText).join(" ");
+		return "";
+	};
+
+	const processNode = (n: Node) => {
+		if ((n as FunctionCall).functionName === "title") {
+			const newTitle = (n as FunctionCall).parameters.parameters
+				.filter(param => !(param instanceof NamedParameter))
+				.map(param => translateHtml(param, context))
+				.join(" ")
+				.trim();
+
+			if (currentDoc.title) {
+				currentDoc.content = currentDoc.content.trim();
+				documents.push(currentDoc);
+				currentDoc = {
+					id: uuidv4(),
+					title: newTitle,
+					content: "",
+					meta: {}
+				};
+			} else {
+				currentDoc = {
+					id: uuidv4(),
+					title: newTitle,
+					content: "",
+					meta: {}
+				};
+
+			}
+
+		}
+
+		if ((n as FunctionCall).functionName === "meta") {
+
+			currentDoc.meta = {};
+			for (const param of (n as FunctionCall).parameters.parameters) {
+				const { name: key, value } = param as NamedParameter;
+				if (key === "ogImageText" || key === "ogImageFontSize") continue;
+				if (Array.isArray(value)) {
+					currentDoc.meta[key] = value
+						.map(v => (typeof v === "string" ? v.trim() : extractText(v)))
+						.join(" ");
+				} else if (typeof value === "object") {
+					currentDoc.meta[key] = extractText(value);
+				} else {
+					currentDoc.meta[key] = String(value).trim();
+				}
+			}
+		}
+
+		if ((n as Paragraph).children) {
+			const text = extractText(n).trim();
+			if (text) {
+				currentDoc.content += text + "\n\n";
+			}
+
+		}
+		const processChildren = (children: Node[]) => {
+			const seen = new Set();
+			children.forEach(child => {
+				const key = JSON.stringify(child);
+				if (!seen.has(key)) {
+					seen.add(key);
+					processNode(child);
+				}
+			});
+		};
+
+		if ((n as Tiramisu).children) processChildren((n as Tiramisu).children);
+		if ((n as MixedText).shards) processChildren((n as MixedText).shards);
+	};
+
+	processNode(node);
+
+	if (currentDoc.title || currentDoc.content) {
+		currentDoc.content = currentDoc.content.trim();
+		documents.push(currentDoc);
+	}
+
+	return documents;
+};
+
+/**
+ * translate function.
+ * @param node - The tiramisu node to process.
+ * @param context - The processing context.
+ * @param shouldIndex - If true, the function will both index the cleaned JSON document in MeiliSearch and return HTML code.
+ * @param indexTitle - Optional override for the MeiliSearch index title.
+ * @returns The generated HTML code.
+ */
+export const translate = async (
+	node: Node,
+	context: ContextType,
+	shouldIndex: boolean = false,
+	indexTitle?: string
+): Promise<string> => {
+	const htmlOutput = translateHtml(node, context);
+
+	if (shouldIndex) {
+		const documents = cleanNode(node, context);
+		const titleForIndex = indexTitle || (context.page?.title ? context.page.title : 'default-index');
+		await indexInMeilisearch(documents, titleForIndex);
+	}
+
+	return htmlOutput;
+};
+
+//TODO: make me env
+const client = new MeiliSearch({
+	host: 'http://localhost:7700',
+	apiKey: 'aSampleMasterKey'
+})
+
+
+export const indexInMeilisearch = async (documents: IndexedDocument[], indexTitle: string) => {
+	const index = client.index(indexTitle);
+	await index.addDocuments(documents)
+		.then((res) => console.log(res))
+		.catch((err) => console.error(err));
+};
+
