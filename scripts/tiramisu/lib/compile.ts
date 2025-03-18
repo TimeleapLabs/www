@@ -43,7 +43,7 @@ type CompileParams = {
 const description = (text: string) =>
 	text.replace(/\n/g, ' ').replace(/"/g, "'").replace(/ +/g, ' ').trim();
 
-export const compileFile = (
+export const compileFile = async (
 	params: CompileParams,
 	context: ContextType = { currentFile: params.filePath, templateFile: params.templateFile }
 ) => {
@@ -58,7 +58,7 @@ export const compileFile = (
 
 	const content = readFileSync(params.filePath, 'utf-8');
 	const cst = compile(content);
-	const code = translate(cst, context);
+	const code = await translate(cst, context, context.indexInMeilisearch?.enabled, context.indexInMeilisearch?.source);
 
 	const template = readFileSync(params.templateFile, 'utf-8');
 	const breadcrumbs = generateBreadcrumbs(
@@ -78,7 +78,7 @@ export const compileFile = (
 
 	const OG = ogImageText
 		? `ogImageText={\`${ogImageText}\`}` +
-			(context.page?.ogImageFontSize ? ` ogImageFontSize={${context.page.ogImageFontSize}}` : '')
+		(context.page?.ogImageFontSize ? ` ogImageFontSize={${context.page.ogImageFontSize}}` : '')
 		: '';
 
 	const compiled = template
