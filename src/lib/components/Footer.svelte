@@ -91,6 +91,9 @@
 				<a href="/stake" class="hover:text-green-400 transition-colors">
 					Stake <ArrowRight size={'1em'} class="inline-block ml-2" />
 				</a>
+				<a href="/tools" class="hover:text-green-400 transition-colors">
+					KNS tools <ArrowRight size={'1em'} class="inline-block ml-2" />
+				</a>
 			</div>
 		</div>
 		<div>

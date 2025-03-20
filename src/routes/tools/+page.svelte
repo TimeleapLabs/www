@@ -10,7 +10,7 @@
 	import { fetchTokenPriceFromPair } from '$lib/api/token';
 	import { wallet } from '$lib/stores/wallet';
 	import { onMount } from 'svelte';
-	
+
 	let userAddress = $page?.url?.searchParams?.get?.('address') ?? undefined;
 
 	let balance: bigint;
@@ -91,7 +91,7 @@
 	});
 </script>
 
-<Navbar active="tools"></Navbar>
+<Navbar active="none"></Navbar>
 
 <Section class="w-full max-w-[1280px] mx-auto pt-20 pb-24 flex-1 !gap-16 px-4 md:px-16 xxl:px-0">
 	<h2 class="text-white font-serif text-5xl mt-4">Timeleap Tools</h2>
