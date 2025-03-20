@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Input } from '@timeleap/ui';
-	import { FilePenLineIcon } from 'lucide-svelte';
+	import { PencilLineIcon } from 'lucide-svelte';
 	import CopyButton from '$lib/components/CopyButton.svelte';
 	import DataTable from '$lib/components/DataTable.svelte';
 
@@ -24,7 +24,7 @@
 			bind:value={userAddress}
 			class="bg-zinc-700"
 		>
-			<FilePenLineIcon />
+			<PencilLineIcon />
 		</Input>
 
 		{#if userAddress && typeof window !== 'undefined'}

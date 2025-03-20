@@ -13,7 +13,7 @@
 				address: '0xf1264873436A0771E440E2b28072FAfcC5EEBd01', // Kenshi token address
 				symbol: 'KNS',
 				decimals: 18,
-				image: `${window.location.origin}/images/logo/512x512.png`
+				image: `${window.location.origin}/images/token/kenshi.png`
 			}
 		};
 
