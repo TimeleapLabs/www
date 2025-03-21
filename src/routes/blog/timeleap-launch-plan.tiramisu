@@ -1,0 +1,113 @@
+title { Timeleap Launch Plan }
+
+We announced in our previous blog post that we are ready with our v1.0.0 release
+candidate and are now preparing for the mainnet release. In this post, we'll go
+over the launch plan for Timeleap and what you can expect in the coming year.
+
+title { Timeleap: Generic Purpose Compute Engine, size = 2 }
+
+Timeleap is a generic-purpose compute engine that can be used to run code on any
+device, anywhere. While you can use Timeleap practically for any compute
+purpose, going to market with such a broad offering is challenging. We have
+decided to focus on a few key use cases to start with and expand from there.
+
+As you can see from our new website design, we are focusing primarily on Industry
+4.0 and IoT. Timeleap is the perfect solution for offloading compute tasks from
+IoT devices to the cloud and for running machine learning models on the edge.
+The built-in support for message queues and WebSockets makes it easy to connect
+Timeleap to existing infrastructure, helping devices communicate with each other
+and the cloud.
+
+Even with Industry 4.0 and IoT as our main focus, we are not forgetting our
+existing users. As we announced on our social media channels, we've been doing
+extensive R&D to link Industry 4.0 and IoT with our existing user base. We are
+thrilled to announce that we have a few surprises in store for our existing
+users, and we can't wait to share them with you.
+
+Let us begin with a small proof of concept we have been working on before diving
+into the launch plan.
+
+title { Timeleap AI Camera, size = 2 }
+
+We've created a small proof of concept that bridges industrial use cases and our
+existing user base. This project showcases what you can achieve with Timeleap: a
+smart camera capable of detecting objects in photos or running any AI model on
+them. Measuring 5.9 by 3.75 centimeters, it demonstrates how Timeleap can
+offload heavy computation even on a tiny device.
+
+image { src = "/images/blog/cameras-mini.jpg", alt = Timeleap AI Camera }
+
+We intentionally made the camera small to show that you can run Timeleap on any
+device, no matter how small. The camera is also a great example we can physically
+show at events, and a great promotional item for our partners, users, and
+investors. We are planning to give away a few of these cameras to our partners
+and users, so stay tuned for more information on that.
+
+Our target audience for the Timeleap AI Camera includes developers and hobbyists
+who are interested in AI and IoT and want to experiment with Timeleap. We plan
+to release the camera as an open-source project, allowing you to build your own
+camera and run your own AI models on it. You can already find the source
+code for the link { camera firmware, to =
+https://github.com/TimeleapLabs/ai_camera_firmware } on our GitHub repository.
+
+image { src = "/images/blog/tl-cam-demo.jpg", alt = Timeleap AI Camera in action }
+
+You can see the camera in action in the picture above, running an image caption
+AI model on the photos taken by the camera. The camera is connected to the
+Timeleap network.
+
+title { "GameFi, AI, and Distributed Compute", size = 2 }
+
+Initially, we were planning to focus only on Industry 4.0 and IoT, postponing
+our plans for the Timeleap OS and the Timeleap App Store. However, after
+hours of internal discussions, we've decided to move forward with our original
+plan and expand our offering to GameFi, AI, and distributed applications.
+
+We are releasing a handheld console that runs Timeleap OS, tailored for
+distributed compute and crypto-gaming. The console will include an integrated
+hardware wallet to keep your assets safe. All the underlying infrastructure for
+the console will run on the Timeleap network, whether it's for notifications,
+multiplayer gaming, computation offloading, or running AI models.
+
+We'll focus on GameFi first, as we believe the gaming industry is ready for a
+change. We plan to release a few exclusive games that showcase the power of
+Timeleap, and we are working with several partners to bring their games to the
+Timeleap network. The device will include everything you need to play these
+games and will be available for pre-purchase on our website.
+
+We've been conducting research over the past few weeks to find the best hardware
+for the console, which we'll cover in a future blog post. Even though the device
+will be Timeleap-first and optimized for Timeleap, we are not planning to lock
+it down to the Timeleap network. The device won't be vendor-locked, and you can
+run your own software on it or even install your own OS. Compatibility with
+existing software and hardware is important to us, and we are working hard to
+make the device as compatible as possible.
+
+image { src = "/images/blog/console-2nd-proto.jpg", alt = "Our 2nd prototype of
+the Timeleap handheld console, running the Fishing Planet" }
+
+There will be a docking mode with support for external GPUs. More details about
+the console will be shared in the coming weeks, so stay tuned.
+
+title { Timeleap Launch Plan, size = 2 }
+
+With the above devices and projects in mind, we plan to launch Timeleap on the
+mainnet alongside the official release of the Timeleap handheld console. This
+way, there will already be proper use cases for the Timeleap network, allowing
+us to showcase the power of Timeleap to the world.
+
+The GameFi industry is growing rapidly, and we believe that the Timeleap network
+is the perfect solution for the industry. This project gives us plenty of
+opportunities for collaboration with other companies and allows us to onboard
+new users to the Timeleap network. It also helps us italic { show } continuous
+updates to our existing users and engage the community. We await your feedback
+every step of the way, and we are excited to see what you will build with
+Timeleap.
+
+meta {
+  description = "In this post, we'll go over the launch plan for Timeleap, and what you can expect in the coming year.",
+  ogImageText = [Timeleap, Launch Plan],
+  ogImageFontSize = 28,
+  author = pouya,
+  createdAt = 2025-03-21
+}
