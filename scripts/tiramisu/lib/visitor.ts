@@ -12,7 +12,7 @@ import {
 	type Node
 } from '@timeleap/tiramisu/dist/types/nodes';
 
-import meilisearchClient from '$lib/meilisearchClient';
+import { meilisearchClient } from '../../../src/lib/meilisearchClient';
 
 import path from 'path';
 import slugify from 'slugify';

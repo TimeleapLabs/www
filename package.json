@@ -44,6 +44,7 @@
 	"type": "module",
 	"packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca",
 	"dependencies": {
+		"@iconify/svelte": "^4.2.0",
 		"@resvg/resvg-js": "^2.6.2",
 		"@sendgrid/client": "^8.1.4",
 		"@sendgrid/mail": "^8.1.4",
@@ -63,8 +64,8 @@
 		"howler": "^2.2.4",
 		"layercake": "^8.4.2",
 		"lucide-svelte": "^0.476.0",
-		"meilisearch": "^0.48.2",
-		"meilisearch-docsearch": "^0.7.0",
+		"meilisearch": "^0.49.0",
+		"meilisearch-docsearch": "^0.7.1",
 		"mermaid": "^11.4.0",
 		"mongodb": "^6.12.0",
 		"shiki": "^1.23.1",
