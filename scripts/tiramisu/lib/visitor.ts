@@ -12,7 +12,7 @@ import {
 	type Node
 } from '@timeleap/tiramisu/dist/types/nodes';
 
-import { meilisearchClient } from '../../../src/lib/meilisearchClient';
+import meilisearchClient from '../../../src/lib/meilisearchClient';
 
 import path from 'path';
 import slugify from 'slugify';
@@ -566,12 +566,9 @@ export const translate = async (
 	return htmlOutput;
 };
 
-
-
 export const indexInMeilisearch = async (documents: IndexedDocument[], indexTitle: string) => {
 	const index = meilisearchClient.index(indexTitle);
 	await index.addDocuments(documents)
 		.then((res) => console.log(res))
 		.catch((err) => console.error(err));
 };
-

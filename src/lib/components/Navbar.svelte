@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 
 	import 'meilisearch-docsearch/css';
-	import { MEILI_API_KEY, MEILI_HOST } from '$env/static/private';
+	import { PUBLIC_MEILI_HOST, PUBLIC_MEILI_READ_DOCUMENTS_API_KEY } from '$env/static/public';
 
 	type section = 'home' | 'products' | 'contact' | 'docs' | 'blog' | 'stake' | 'none';
 
@@ -32,8 +32,8 @@
 		const { docsearch } = await import('meilisearch-docsearch');
 		docsearch({
 			container: '#docsearch',
-			host: MEILI_HOST,
-			apiKey: MEILI_API_KEY,
+			host: PUBLIC_MEILI_HOST,
+			apiKey: PUBLIC_MEILI_READ_DOCUMENTS_API_KEY,
 			indexUid: active === 'blog' ? 'blog' : 'docs'
 		});
 	});

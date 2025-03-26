@@ -1,8 +1,10 @@
-
-import { MEILI_HOST, MEILI_API_KEY } from '$env/static/private';
+import { PRIVATE_MEILI_ADD_DOCUMENTS_API_KEY } from '$env/static/private';
+import { PUBLIC_MEILI_HOST } from '$env/static/public';
 import { MeiliSearch } from 'meilisearch';
 
-export const meilisearchClient = new MeiliSearch({
-    host: MEILI_HOST,
-    apiKey: MEILI_API_KEY
+const meilisearchClient = new MeiliSearch({
+    host: PUBLIC_MEILI_HOST,
+    apiKey: PRIVATE_MEILI_ADD_DOCUMENTS_API_KEY
 });
+
+export default meilisearchClient;
