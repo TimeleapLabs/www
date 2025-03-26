@@ -1,10 +1,15 @@
-import { PRIVATE_MEILI_ADD_DOCUMENTS_API_KEY } from '$env/static/private';
-import { PUBLIC_MEILI_HOST } from '$env/static/public';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const PUBLIC_MEILI_HOST = process.env.PUBLIC_MEILI_HOST || 'http://localhost:7700';
+const PRIVATE_MEILI_API_KEY = process.env.PRIVATE_MEILI_API_KEY;
+
 import { MeiliSearch } from 'meilisearch';
 
 const meilisearchClient = new MeiliSearch({
     host: PUBLIC_MEILI_HOST,
-    apiKey: PRIVATE_MEILI_ADD_DOCUMENTS_API_KEY
+    apiKey: PRIVATE_MEILI_API_KEY
 });
 
 export default meilisearchClient;
