@@ -12,10 +12,11 @@ import {
 	type Node
 } from '@timeleap/tiramisu/dist/types/nodes';
 
+import meilisearchClient from '$lib/meilisearchClient';
+
 import path from 'path';
 import slugify from 'slugify';
 
-import { MeiliSearch } from 'meilisearch';
 import { compileFile } from './compile';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -422,13 +423,18 @@ export function translateHtml(node: Node, context: ContextType): string {
 	throw new Error(`Unknown node type: ${node.constructor.name}`);
 };
 
-
 const cleanNode = (node: Node, context: ContextType): any[] => {
 	const documents: Record<string, any>[] = [];
+	const fileHref = filePathToHref(context.currentFile)
+	let mainTitle: string | undefined = undefined;
 
 	let currentDoc: Record<string, any> = {
 		id: uuidv4(),
+		lvl0: "",
+		lvl1: "",
 		title: "",
+		anchor: "",
+		url: fileHref,
 		content: "",
 		meta: {}
 	};
@@ -449,29 +455,43 @@ const cleanNode = (node: Node, context: ContextType): any[] => {
 				.join(" ")
 				.trim();
 
-			if (currentDoc.title) {
-				currentDoc.content = currentDoc.content.trim();
-				documents.push(currentDoc);
+			const titleParameters = parseFunctionParameters((n as FunctionCall).parameters, context);
+
+			const header = titleParameters.positional.join('');
+
+			const anchor = (getParamsByName(titleParameters, 'id')[0]?.value as string)?.trim() ?? slugify(header);
+
+			if (!mainTitle) {
+				mainTitle = newTitle;
 				currentDoc = {
 					id: uuidv4(),
-					title: newTitle,
+					lvl0: mainTitle,
+					lvl1: "",
+					title: "",
+					anchor: "",
+					url: fileHref,
 					content: "",
 					meta: {}
 				};
 			} else {
+				if (currentDoc.content.trim() || currentDoc.lvl1) {
+					currentDoc.content = currentDoc.content.trim();
+					documents.push(currentDoc);
+				}
 				currentDoc = {
 					id: uuidv4(),
+					lvl0: mainTitle,
+					lvl1: newTitle,
 					title: newTitle,
+					anchor: anchor,
+					url: fileHref,
 					content: "",
 					meta: {}
 				};
-
 			}
-
 		}
 
 		if ((n as FunctionCall).functionName === "meta") {
-
 			currentDoc.meta = {};
 			for (const param of (n as FunctionCall).parameters.parameters) {
 				const { name: key, value } = param as NamedParameter;
@@ -493,8 +513,8 @@ const cleanNode = (node: Node, context: ContextType): any[] => {
 			if (text) {
 				currentDoc.content += text + "\n\n";
 			}
-
 		}
+
 		const processChildren = (children: Node[]) => {
 			const seen = new Set();
 			children.forEach(child => {
@@ -512,13 +532,14 @@ const cleanNode = (node: Node, context: ContextType): any[] => {
 
 	processNode(node);
 
-	if (currentDoc.title || currentDoc.content) {
+	if (currentDoc.content.trim() || currentDoc.lvl1 || currentDoc.lvl0) {
 		currentDoc.content = currentDoc.content.trim();
 		documents.push(currentDoc);
 	}
 
 	return documents;
 };
+
 
 /**
  * translate function.
@@ -545,15 +566,10 @@ export const translate = async (
 	return htmlOutput;
 };
 
-//TODO: make me env
-const client = new MeiliSearch({
-	host: 'http://localhost:7700',
-	apiKey: 'aSampleMasterKey'
-})
 
 
 export const indexInMeilisearch = async (documents: IndexedDocument[], indexTitle: string) => {
-	const index = client.index(indexTitle);
+	const index = meilisearchClient.index(indexTitle);
 	await index.addDocuments(documents)
 		.then((res) => console.log(res))
 		.catch((err) => console.error(err));
