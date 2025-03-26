@@ -17,6 +17,7 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
 	*,
 	::after,
 	::before,
@@ -27,12 +28,16 @@
 }
 
 @utility scrollbar-hidden {
+
 	/* Chrome, Safari and Opera */
 	&::-webkit-scrollbar {
 		display: none;
 	}
-	scrollbar-width: none; /* Firefox */
-	-ms-overflow-style: none; /* IE and Edge */
+
+	scrollbar-width: none;
+	/* Firefox */
+	-ms-overflow-style: none;
+	/* IE and Edge */
 }
 
 @layer utilities {
@@ -117,10 +122,38 @@
 	}
 
 	@media (prefers-reduced-motion) {
+
 		::view-transition-group(*),
 		::view-transition-old(*),
 		::view-transition-new(*) {
 			animation: none !important;
 		}
 	}
+}
+
+/* DocSearchBar overrides */
+:root {
+	--docsearch-primary-color: rgb(37, 99, 235) !important;
+
+	--docsearch-text-color: rgb(245, 246, 247) !important;
+	--docsearch-modal-container-background: rgba(9, 10, 17, 0.8) !important;
+	--docsearch-modal-background: rgb(21, 23, 42) !important;
+	--docsearch-modal-shadow:
+		inset 1px 1px 0 0 rgb(44, 46, 64), 0 3px 8px 0 rgb(0, 3, 9) !important;
+	--docsearch-searchbox-background: rgb(9, 10, 17) !important;
+	--docsearch-searchbox-focus-background: #000 !important;
+	--docsearch-hit-color: rgb(190, 195, 201) !important;
+	--docsearch-hit-shadow: none !important;
+	--docsearch-hit-background: rgb(9, 10, 17) !important;
+	--docsearch-key-gradient: linear-gradient(-26.5deg,
+			rgb(86, 88, 114) 0%,
+			rgb(49, 53, 91) 100%) !important;
+	--docsearch-key-shadow:
+		inset 0 -2px 0 0 rgb(40, 45, 85), inset 0 0 1px 1px rgb(81, 87, 125),
+		0 2px 2px 0 rgba(3, 4, 9, 0.3) !important;
+	--docsearch-footer-background: rgb(30, 33, 54) !important;
+	--docsearch-footer-shadow:
+		inset 0 1px 0 0 rgba(73, 76, 106, 0.5), 0 -4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+	--docsearch-muted-color: rgb(255, 255, 255) !important;
+	--docsearch-icon-color: rgb(255, 255, 255) !important;
 }
