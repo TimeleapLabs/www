@@ -2,7 +2,7 @@
 	export let title: string;
 	export let description: string;
 	export let headers: { key: string; value: string }[] = [];
-	export let rows: { [key: string]: any; id: string }[] = [];
+	export let rows: { [key: string]: unknown; id: string }[] = [];
 </script>
 
 <div class="rounded-xl bg-zinc-900 shadow-sm">
