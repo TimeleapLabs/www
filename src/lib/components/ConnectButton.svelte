@@ -22,7 +22,10 @@
 		return () => {
 			try {
 				unsubscribe();
-			} catch (error) {}
+			} catch (error: unknown) {
+				if (error instanceof Error) throw new Error(error.message);
+				throw new Error(String(error));
+			}
 		};
 	});
 
