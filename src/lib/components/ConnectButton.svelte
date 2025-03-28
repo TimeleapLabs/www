@@ -16,17 +16,8 @@
 
 	const wallets = onboard.state.select('wallets');
 
-	const { unsubscribe } = wallets.subscribe((update) => ([$wallet] = update));
-
 	onMount(() => {
-		return () => {
-			try {
-				unsubscribe();
-			} catch (error: unknown) {
-				if (error instanceof Error) throw new Error(error.message);
-				throw new Error(String(error));
-			}
-		};
+		wallets.subscribe((update) => ([$wallet] = update));
 	});
 
 	const formatWalletAddress = (wallet: Wallet): string => {
