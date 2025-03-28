@@ -46,8 +46,8 @@
 	<div class="relative">
 		<Input
 			id="wallet"
-			placeholder="Wallet address"
-			label="Selected Wallet Address"
+			placeholder="0x..."
+			label="Wallet Address"
 			bind:value={userAddress}
 			class="bg-zinc-700 pr-12!"
 			disabled={$wallet?.accounts}
