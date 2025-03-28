@@ -6,6 +6,7 @@
 	import DataTable from '$lib/components/DataTable.svelte';
 	import { browser } from '$app/environment';
 	import { ethers } from 'ethers';
+	import { onMount } from 'svelte';
 
 	export let checksumAddress: string | undefined;
 	export let balanceDisplay: string | bigint;
@@ -20,6 +21,7 @@
 		const url = new URL(window.location.href);
 
 		if ($wallet?.accounts) userAddress = $wallet.accounts[0].address;
+
 		if (userAddress) {
 			try {
 				const address = ethers.getAddress(userAddress?.toLowerCase());
@@ -37,9 +39,13 @@
 			checksumAddress = undefined;
 			isAddressValid = true;
 		}
-
-		history.replaceState(null, '', url.toString());
 	}
+	onMount(() => {
+		const url = new URL(window.location.href);
+		const address = url.searchParams.get('address');
+
+		if (address) userAddress = address;
+	});
 </script>
 
 <div class="min-w-full grow-4 flex flex-col gap-12">
