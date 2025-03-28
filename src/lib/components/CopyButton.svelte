@@ -1,33 +1,38 @@
 <script lang="ts">
-	import { tick } from 'svelte';
-	import { Check, Copy } from 'lucide-svelte';
+	import { fade } from 'svelte/transition';
+	import { Copy, CopyCheck, CopyX } from 'lucide-svelte';
+	import { Button } from '@timeleap/ui';
 
-	export let text: string;
-	let copied = false;
+	export let toCopy;
 
-	async function copyToClipboard() {
+	let state: null | boolean;
+
+	const copyToClipboard = async (text: string) => {
 		try {
 			await navigator.clipboard.writeText(text);
-			copied = true;
-			await tick();
-			setTimeout(() => {
-				copied = false;
-			}, 2000);
-		} catch (err) {
-			console.error('Failed to copy!', err);
+			state = true;
+		} catch (error: unknown) {
+			state = false;
+			if (error instanceof Error) throw new Error(error.message);
+			throw new Error(String(error));
+		} finally {
+			setTimeout(() => (state = null), 500);
 		}
-	}
+	};
 </script>
 
-<button
-	on:click={copyToClipboard}
-	class="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium transition"
->
-	{#if copied}
-		Copied!
-		<Check class="w-4 h-4 text-green-500" />
-	{:else}
-		Copy
-		<Copy class="w-4 h-4" />
-	{/if}
-</button>
+<Button on:click={() => copyToClipboard(toCopy)}>
+	<div class="hover:opacity-50 transition-opacity ease-in-out duration-200">
+		{#key state}
+			<span in:fade out:fade class="absolute inset-0 flex items-center justify-center">
+				{#if state === true}
+					<CopyCheck class="text-green-300" />
+				{:else if state === false}
+					<CopyX class="text-red-400" />
+				{:else}
+					<Copy />
+				{/if}
+			</span>
+		{/key}
+	</div>
+</Button>
