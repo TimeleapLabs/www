@@ -69,13 +69,6 @@
 </script>
 
 <div class="grow-2 flex flex-col gap-4">
-	<p>
-		{#if $wallet?.provider}
-			You are connected as
-		{:else}
-			You'll need to connect your wallet to use certain areas of Timeleap tools.
-		{/if}
-	</p>
 	<ConnectButton class="bg-zinc-800 hover:bg-zinc-700" />
 	<div class="buttons flex flex-wrap gap-4">
 		{#each links as link}
