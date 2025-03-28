@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onboard } from '$lib/onboard';
+	import { onboard, type WalletState } from '$lib/onboard';
 
-	import { wallet, type Wallet } from '$lib/stores/wallet';
+	import { wallet } from '$lib/stores/wallet';
 	import { Button } from '@timeleap/ui';
 	import { Wallet as WalletIcon } from 'lucide-svelte';
 	import { onMount } from 'svelte';
@@ -20,7 +20,7 @@
 		wallets.subscribe((update) => ([$wallet] = update));
 	});
 
-	const formatWalletAddress = (wallet: Wallet): string => {
+	const formatWalletAddress = (wallet: WalletState): string => {
 		const address = wallet.accounts?.[0].address ?? '';
 		return address.slice(0, 6);
 	};
