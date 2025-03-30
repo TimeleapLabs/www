@@ -49,7 +49,8 @@
 	const contract = new ethers.Contract(kenshiAddr, kenshiAbi, provider);
 
 	const onWallet = async () => {
-		const walletProvider = new ethers.BrowserProvider($wallet?.provider);
+		if (!$wallet) return;
+		const walletProvider = new ethers.BrowserProvider($wallet.provider);
 		checksumAddress = await (await walletProvider.getSigner()).getAddress();
 		updateValues();
 	};
