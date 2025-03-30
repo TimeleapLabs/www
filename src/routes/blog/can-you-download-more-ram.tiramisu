@@ -1,0 +1,236 @@
+title { Can You Really Download More RAM? }
+
+It's a link { to = https://knowyourmeme.com/memes/download-more-ram, joke } as
+old as the internet itself: "Can you download more RAM?".
+
+image {
+  src = /images/blog/download-ram.png,
+  alt = Download More RAM,
+  caption = Apple Insider user SpcMs asking where to download more RAM
+}
+
+Originating from a 2004 Apple Insider thread, it gained traction through tech
+forums and memes, eventually leading to parody sites like link { to =
+https://downloadmoreram.com, DownloadMoreRam.com }. The history of downloadable
+RAM, or unconventional ways to increase RAM, goes way earlier, to the likes of
+link { to = https://en.wikipedia.org/wiki/SoftRAM, SoftRAM }.
+
+SoftRAM and its successor SoftRAM95 were software utilities sold in the 1990s
+that claimed to increase the available memory of a computer without any hardware
+upgrades; though in reality, they offered no real performance improvements and
+were ultimately exposed as scams.
+
+SoftRAM95 sold more than 600,000 copies, at an equivalent of $62.81 ($30 in
+1995) each, generating over $37 million in revenue. In late 1995, the U.S.
+Federal Trade Commission (FTC) charged the company behind SoftRAM95, Syncronys
+Softcorp, with false advertising. The FTC alleged that the software did not
+actually increase usable RAM, contrary to the company's claims.
+
+So the question remains: can you download more RAM? Well, it depends. While it's
+technically possible to virtualize or forward devices like RAM, CPU, or GPU over
+Ethernet; similar to how link { to = https://www.usb-over-ethernet.com/,
+USB-over-IP } works; the idea quickly breaks down when you consider latency and
+bandwidth requirements. Accessing a local RAM module or CPU register happens on
+the nanosecond scale (1-10 ns), and even the slowest internal buses on modern
+machines operate in the tens to hundreds of nanoseconds. In contrast, even a
+high-speed gigabit Ethernet connection has a baseline latency of 0.1 to 1
+milliseconds (100,000-1,000,000 nanoseconds), which is orders of magnitude
+slower. Simply put, hardware designed to be accessed in nanoseconds becomes
+unusable when saddled with network-scale latencies and jitter.
+
+Take the CPU as an example. A modern processor can execute billions of
+instructions per second (e.g., a 3 GHz CPU performs 3 billion cycles per
+second). Now imagine introducing just 0.1 milliseconds (100,000 nanoseconds) of
+network latency between each instruction or memory access. That would be like
+asking your CPU to wait 10,000 times longer than usual before completing each
+operation.
+
+The performance drop wouldn't just be noticeable; it would be catastrophic.
+It's like replacing your internal wiring with a postal service. This is why CPU,
+RAM, and GPU virtualization over Ethernet is not just impractical; it's
+fundamentally incompatible with how these components are meant to operate.
+Unless Quantum internet becomes a reality and brings us instantaneous
+communication, the idea of downloading more RAM is a myth that will remain
+just that: a myth.
+
+title { Distributed Computing with Distributed Virtual Machines, size = 2 }
+
+Virtual machines like the JVM use higher-level instruction sets compared to
+physical CPUs. Each JVM bytecode instruction can represent a complex operation;
+such as object creation, method invocation, or array manipulation; that would
+translate into dozens or hundreds of actual CPU instructions.
+
+This abstraction makes VMs more portable and easier to optimize at runtime, but
+it doesn't make them suitable for distributed execution either. Even with fewer
+instructions, each one still depends heavily on tight, sequential access to
+memory and control flow.
+
+Trying to execute even these higher-level instructions over a network introduces
+unacceptable latency and synchronization overhead. The cost of sending an
+instruction, waiting for a result, and continuing the execution flow remotely
+would destroy performance; the time it takes to send a single instruction over
+the network could be longer than executing millions of CPU cycles locally.
+
+In fact, my journey into distributed computing; and what eventually evolved
+into Timeleap; began back in 2009, when I built a distributed virtual machine
+designed to run LISP programs. I wrote both the VM and its LISP compiler,
+experimenting with ways to execute code across multiple machines in parallel.
+
+I soon learned that this approach simply wasn't feasible; even with machines
+connected over Ethernet on the same local network, less than a meter apart. The
+overhead of network communication, no matter how small, introduced enough
+latency to make fine-grained instruction-level distribution completely
+impractical.
+
+title { Component-based Distributed Computing, size = 2 }
+
+The solution to this problem lies in a different approach: component-based
+distributed computing. Instead of trying to distribute individual instructions
+or operations, we focus on distributing entire components or services that can
+operate independently.
+
+The idea of component-based design really took off in the world of web
+development. Frameworks like React popularized the concept of breaking down user
+interfaces into self-contained, reusable components; each responsible for
+managing its own state and behavior.
+
+This modular approach made complex applications easier to build, reason about,
+and scale. As frontend ecosystems evolved, this mindset spread beyond just UI;
+it influenced everything from backend services to infrastructure. Watching this
+shift unfold, I was inspired by how cleanly decoupled components could be
+developed, deployed, and even rendered in isolation; yet still work together
+seamlessly.
+
+That same philosophy applies beautifully to distributed computing. Just like a
+UI is made up of independent components that communicate through well-defined
+interfaces, a distributed compute system can be composed of independent
+processing units; each handling its own workload, communicating only when
+needed, and scaling horizontally.
+
+By thinking of computation as a graph of components instead of a monolithic
+program or instruction stream, we can build systems that are both distributed
+and performant; not by splitting cycles, but by splitting responsibilities.
+
+Put simply, this approach means building applications out of small,
+self-contained pieces that can run on their own; like Lego blocks that each do
+a specific job. Instead of writing one big program that runs on one machine, you
+create a bunch of smaller programs (or components), each responsible for a
+particular task, and let them run wherever there's available compute power.
+
+Imagine a multiplayer game: instead of one giant server handling everything, you
+could have separate components; one for physics, one for chat, one for
+matchmaking, one for player stats; each running on different machines, scaling
+independently as needed. The game becomes a collection of smart, connected
+modules that can grow, heal, and evolve without central bottlenecks.
+
+One of the biggest advantages of this model is reusability. Once a component is
+built to perform a specific function; whether it's handling user
+authentication, running a physics simulation, or processing in-game purchases;
+it can be reused across multiple applications without rewriting it from scratch.
+Just like UI components can be dropped into different pages or projects, compute
+components can be plugged into entirely different systems.
+
+For example, a leaderboard service built for one game could be reused in
+another, or a trading engine designed for a strategy game could power the
+economy in a simulation app. This not only speeds up development, but also
+encourages better, more reliable design; because each component improves over
+time as it gets reused in different contexts.
+
+Another powerful aspect of component-based computing is that it's technology
+agnostic. Each component can be written in a different language or built using a
+different framework; whatever best suits the job. One component might be a Go
+service handling real-time updates, another a Python-based ML model, and another
+a Rust module for performance-critical logic. Because components communicate
+through well-defined interfaces, the underlying technology doesn't matter. This
+gives developers the freedom to use the right tool for each task, without being
+locked into a single stack or platform.
+
+At Timeleap, we've built a suite of products that make it easier to develop,
+deploy, and run applications as distributed compute components. This is our
+approach to distributed computing; not just theory or architecture, but a real,
+working system. Developers build applications like they're assembling a puzzle:
+each component is a piece of logic, a service, or a runtime environment. If a
+piece is missing, you can build it yourself and connect it to the rest. This
+modular, composable approach unlocks a new way of building apps, where
+flexibility, performance, and scale come from the structure of your system, not
+the size of your server.
+
+To support this, Timeleap is building a full ecosystem of components through the
+Timeleap Component & App Marketplace. This is where developers can publish,
+version, discover, and reuse components across different apps and teams; just
+like packages in a modern software registry. Whether you're creating a
+leaderboard system, a payment handler, or a rendering pipeline, each component
+can be shared and plugged into other applications. This will make distributed
+development not only possible, but practical and scalable, bringing the same
+modularity we see in frontend development to the world of compute
+infrastructure.
+
+title { Remote Software Access vs. Distributed Computation, size = 2 }
+
+Remote software access; like game streaming, remote desktops, or tools like
+Parsec and Shadow; means running a full application on one machine and sending
+the visual output over the network. Your keyboard, mouse, and controller inputs
+are sent to the remote system, and in return, you see a video stream of what's
+happening. The app itself still runs in one place, as a monolithic process. It's
+convenient, but you're still dependent on a central server doing all the heavy
+lifting.
+
+Distributed computation, on the other hand, breaks the application into smaller
+pieces that can run independently on different machines. It's not about
+streaming visuals from a powerful computer; it's about spreading the actual
+workload itself. Instead of one game server handling everything, a distributed
+game might offload physics to one node, AI to another, and in-game voice chat to
+a third. Each part runs natively on a different machine, and they talk to each
+other over the network to keep the experience seamless.
+
+In other words, remote access is centralized execution with a remote screen,
+while distributed computation is decentralized execution with shared
+responsibility.
+
+That said, fully distributed applications are still the future; but we won't be
+there overnight. There are countless traditional apps, tools, and games built
+with centralized assumptions, and they won't magically transform into
+distributed components.
+
+That's why Timeleap will also provide robust tooling to run traditional apps
+remotely, so developers and users can still benefit from the network without
+rewriting everything from scratch. Whether it's a legacy desktop app or a
+high-performance game, our platform will support remote execution as a
+first-class feature, bridging the gap while we collectively move toward a truly
+distributed software model.
+
+title { Conclusion, size = 2 }
+
+So, can you download more RAM? Not really; at least not in the way the meme
+suggests. But what you can do is rethink how we use compute altogether. Rather
+than trying to virtualize hardware over a network, the real breakthrough lies in
+distributing computation intelligently. That's exactly what we're doing with
+Timeleap Network: building a future where software runs not on a single device,
+but across a global, modular compute fabric — one component at a time.
+
+Today, we've completed the underlying infrastructure and SDKs that power the
+Timeleap Network. The technology is here, and we're now shifting our focus to
+building the ecosystem around it. Our first area of focus is gaming; not only
+because games demand high performance and modularity, but also because they're
+the perfect proving ground for decentralized systems: real-time physics, chat,
+matchmaking, user data, and more can all run as separate components across the
+network. It's a playground where the strengths of our approach truly shine.
+
+Our upcoming console will showcase this in action, starting with hybrid local
+and distributed compute. We know this transformation won't happen overnight —
+that's why we're building support for both traditional use cases, hybrid, and
+fully distributed apps. Every part of the experience, from the OS messaging
+system, notifications, and app marketplace to AI assistants and background
+services, will be powered by the Timeleap Network.
+
+We're just getting started. If you're curious to see how it works or want to get
+involved early, learn more about Timeleap Network link { to =
+/docs/products/network, here } and help us build the future of computation.
+
+meta {
+  description = ""Explore the origins of the "Download More RAM" meme, why virtualizing RAM/CPU over the network doesn't work, and how Timeleap is building toward a future of component-based distributed computing — with support for both traditional and modern app architectures."",
+  ogImageText = [Can You Really, Download More RAM?],
+  ogImageFontSize = 24,
+  author = pouya,
+  createdAt = 2025-03-29
+}

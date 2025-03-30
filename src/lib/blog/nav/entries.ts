@@ -4,6 +4,10 @@ export const entries = [
     "title": "Blog"
   },
   {
+    "href": "/blog/can-you-download-more-ram",
+    "title": "Can You Really Download More RAM?"
+  },
+  {
     "href": "/blog/timeleap-launch-plan",
     "title": "Timeleap Launch Plan"
   },
@@ -45,6 +49,10 @@ export const fullNav = {
   "href": "/blog",
   "title": "Blog",
   "nav": [
+    {
+      "href": "/blog/can-you-download-more-ram",
+      "title": "Can You Really Download More RAM?"
+    },
     {
       "href": "/blog/timeleap-launch-plan",
       "title": "Timeleap Launch Plan"
