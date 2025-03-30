@@ -16,11 +16,18 @@
 
 	let userAddress: string | undefined;
 	let isAddressValid: boolean = true;
+	let manuallySet: boolean = true;
 
 	$: if (browser) {
 		const url = new URL(window.location.href);
 
-		if ($wallet?.accounts) userAddress = $wallet.accounts[0].address;
+		if ($wallet?.accounts) {
+			userAddress = $wallet.accounts[0].address;
+			manuallySet = false;
+		} else if (!$wallet && !manuallySet) {
+			userAddress = undefined;
+			manuallySet = true;
+		}
 
 		if (userAddress) {
 			try {
@@ -33,6 +40,8 @@
 				url.searchParams.delete('address');
 				checksumAddress = undefined;
 				isAddressValid = false;
+			} finally {
+				window.history.replaceState({}, '', url);
 			}
 		} else {
 			url.searchParams.delete('address');
@@ -43,7 +52,6 @@
 	onMount(() => {
 		const url = new URL(window.location.href);
 		const address = url.searchParams.get('address');
-
 		if (address) userAddress = address;
 	});
 </script>
