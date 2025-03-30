@@ -1,5 +1,5 @@
 import walletConnectModule from '@web3-onboard/walletconnect';
-import Onboard, { type Theme } from '@web3-onboard/core';
+import Onboard, { type Theme, type WalletState as OnboardWalletState } from '@web3-onboard/core';
 import injectedModule from '@web3-onboard/injected-wallets';
 import { PUBLIC_WALLET_CONNECT_PROJECT_ID } from '$env/static/public';
 
@@ -47,3 +47,4 @@ const options = {
 };
 
 export const onboard = Onboard(options);
+export type WalletState = OnboardWalletState;
