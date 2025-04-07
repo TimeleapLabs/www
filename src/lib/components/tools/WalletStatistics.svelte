@@ -56,8 +56,8 @@
 	});
 </script>
 
-<div class="min-w-full grow-4 flex flex-col gap-12">
-	<div class="relative">
+<div class="grow-5 flex flex-col gap-12">
+	<div class="relative min-w-full">
 		<Input
 			id="wallet"
 			placeholder="0x..."
