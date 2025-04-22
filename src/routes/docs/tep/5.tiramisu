@@ -1,0 +1,192 @@
+title { TEP-5: Subnet Governance and Operation, size = 1 }
+
+tep {
+  author = Pouya Eghbali <pouya@timeleap.swiss>,
+  status = draft,
+  type = process,
+  createdAt = 2025-04-22
+}
+
+title { Abstract, size = 2 }
+
+This proposal outlines the operational, economic, and governance requirements
+for subnets within the Timeleap Network. While TEP-4 introduced the
+architectural model for subnets, TEP-5 defines the standardized framework for
+subnet onboarding, staking tiers, restaking behavior, revenue sharing,
+operational lifecycles, and slashing conditions. It ensures all subnets comply
+with Timeleap's federated governance, maintain uptime and reputation, and
+contribute fairly to the sustainability and growth of the network. The framework
+introduced in this TEP will serve as the foundation for future automation of
+subnet discovery, reputation, and compliance tooling.
+
+title { Motivation, size = 2 }
+
+As the Timeleap Network scales, it is critical to define a predictable, fair,
+and enforceable governance model that governs the lifecycle and behavior of all
+subnets. Without clear economic alignment and operational standards, the network
+risks fragmentation, regulatory ambiguity, or degraded performance. TEP-5
+addresses this by:
+
+list {
+  items = [
+    Creating an explicit tiered staking and fee structure tied to
+    subnet maturity and revenue.
+  ],
+  items = [
+    Defining minimum operational periods, lock reset behavior, and
+    restaking rules to ensure stability and long-term commitment.
+  ],
+  items = [
+    Introducing compliance enforcement and slashing to protect the
+    network from malicious or negligent actors.
+  ],
+  items = [
+    Preparing the groundwork for a reputation-based subnet scoring
+    system, enabling discoverability and trust in a decentralized ecosystem.
+  ]
+}
+
+This ensures that every subnet not only benefits from the Timeleap Network but
+also meaningfully contributes to its integrity, sustainability, and collective
+growth.
+
+title { Specification, size = 2 }
+
+This section defines the operational rules and economic framework for all
+subnets participating in the Timeleap Network. It outlines staking requirements,
+revenue-sharing obligations, lifecycle behavior, and enforcement mechanisms.
+These parameters ensure that every subnet contributes to the integrity,
+sustainability, and unified governance of the network, while retaining the
+flexibility to operate independently under the federated model introduced in
+TEP-4.
+
+title { Staking and Network Fees, size = 3 }
+
+The staking requirements and plans for subnets are as follows:
+
+list {
+  items = [ 
+    bold { Startup }: Subnets in this category need to stake a minimum
+    of bold { "$25,000" } USD worth of KNS tokens to be eligible for the subnet launch.
+    Startup subnets must return 15% of their net revenue to the Timeleap Network
+    treasury.
+  ],
+  items = [ 
+    bold { Growth }: Subnets in this category need to stake a minimum of
+    bold { "$100,000" } USD worth of KNS tokens to be eligible for the subnet launch.
+    Growth subnets must return 12% of their net revenue to the Timeleap Network
+    treasury.
+  ],
+  items = [ 
+    bold { Maturity }: Subnets in this category need to stake a minimum
+    of bold { "$250,000" } USD worth of KNS tokens to be eligible for the subnet launch.
+    Maturity subnets must return 9% of their net revenue to the Timeleap Network
+    treasury.
+  ],
+  items = [ 
+    bold { Expansion }: Subnets in this category need to stake a minimum
+    of bold { "$1,000,000" } USD worth of KNS tokens to be eligible for the subnet launch.
+    Expansion subnets must return 7% of their net revenue to the Timeleap Network
+    treasury.
+  ],
+  items = [ 
+    bold { Enterprise }: Subnets in this category need to stake a
+    minimum of bold { "$10,000,000" } USD worth of KNS tokens to be eligible for the
+    subnet launch. Enterprise subnets must return 5% of their net revenue to the
+    Timeleap Network treasury.
+  ]
+}
+
+Any subnet falling below the minimum stake amount will be automatically
+decommissioned. Decommissioned subnets lose their license to operate.
+
+title { Staking Period, size = 3 }
+
+The staking period for subnets is as follows:
+
+list {
+  items = [
+    bold { Minimum Stake Period }: Subnets must commit to a minimum
+    staking duration of 6 months' worth of KNS tokens to be eligible for launch.
+  ],
+  items = [
+    bold { Operational Period }: A subnet can operate for up to N - 1
+    months, where N is the total number of months it has committed to staking KNS
+    tokens.
+  ],
+  items = [
+    bold { Restaking and Lock Reset }: Subnets can increase their stake
+    at any time. However, when they restake, the entire stake lock period resets.
+
+    For example, if a subnet has 2 months remaining on a 6-month lock and adds new
+    tokens with a new 6-month term, the entire stake — old and new — will now unlock
+    in 6 months from the restake. 
+  ]
+}
+
+title { Slashing and Governance, size = 3 }
+
+All subnets operate under the governance rules set by the Timeleap Network.
+These rules are informed by community feedback and enforced by the core
+protocol.
+
+list {
+  items = [
+    bold { Governance Compliance }: Subnets must adhere to the Timeleap
+    Network terms of service and governance policies at all times. Failure to
+    comply may result in penalties or decommissioning.
+  ],
+  items = [
+    bold { Critical Misconduct }: In cases of grave faults or serious
+    violations such as fraudulent behavior, malicious activity, or breaches of
+    the terms of service, the subnet is immediately decommissioned, and the
+    entire staked amount is forfeited to the Timeleap Network treasury.
+  ],
+  items = [
+    bold { Minor Misconduct }: For less severe misbehavior, subnets may
+    incur a fine and lose reputation. A future Timeleap Enhancement Proposal (TEP)
+    will define the precise penalties, including the amount of reputation deducted
+    and the fine imposed per violation. All fines are paid directly to the
+    Timeleap Network treasury.
+  ]
+}
+
+title { Rationale, size = 2 }
+
+TEP-4 introduced the subnet model to enhance scalability and customization by
+externalizing consensus and governance. However, this freedom requires a
+unifying protocol for responsibility, risk, and reward. TEP-5 fills that gap by
+enforcing economic commitment through staking, defining network fee obligations
+based on subnet growth, and enabling a governance-based penalty system for
+non-compliance.
+
+The tiered staking model ensures fair access while creating financial alignment
+between subnet operators and the network. Restaking resets, lock durations, and
+operational windows help prevent abuse and encourage subnet operators to plan
+long-term. Additionally, the introduction of slashing and decommissioning
+creates a clear deterrent to bad behavior, while reputation and fines enable a
+more nuanced response to minor faults.
+
+Altogether, TEP-5 strengthens the federation by ensuring that even independently
+governed subnets remain economically and ethically aligned with the broader
+network mission.
+
+title { Backwards Compatibility, size = 2 }
+
+This TEP is backwards compatible with the existing Timeleap Network as it only
+affects how the network is managed and governed. All existing features and
+functionalities of the Timeleap Network will remain the same.
+
+title { Reference Implementation, size = 2 }
+
+N/A
+
+title { References, size = 2 }
+
+N/A
+
+meta {
+  description = "TEP 5 Defines the operational, economic, and governance framework for Timeleap subnets, including staking tiers, revenue-sharing, restaking behavior, and slashing conditions to ensure compliance, sustainability, and alignment within the federated network.",
+  ogImageText = [TEP 5:, Subnet Governance, And Operation],
+  ogImageFontSize = 24
+}

@@ -2,7 +2,7 @@ title { TEP-4: Timeleap Network (Subnets) }
 
 tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
-  status = draft,
+  status = implemented,
   type = process,
   createdAt = 2025-02-24,
   discussion = https://github.com/TimeleapLabs/www/discussions/96
