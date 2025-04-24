@@ -67,38 +67,107 @@ The staking requirements and plans for subnets are as follows:
 list {
   items = [ 
     bold { Startup }: Subnets in this category need to stake a minimum
-    of bold { "$25,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Startup subnets must return 15% of their net revenue to the Timeleap Network
+    of bold { "$50,000" } USD worth of KNS tokens to be eligible for the subnet launch.
+    Startup subnets must return 30% of their net revenue to the Timeleap Network
     treasury.
   ],
   items = [ 
-    bold { Growth }: Subnets in this category need to stake a minimum of
+    bold { Scale }: Subnets in this category need to stake a minimum of
     bold { "$100,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Growth subnets must return 12% of their net revenue to the Timeleap Network
+    Scale subnets must return 28% of their net revenue to the Timeleap Network
     treasury.
   ],
   items = [ 
     bold { Maturity }: Subnets in this category need to stake a minimum
     of bold { "$250,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Maturity subnets must return 9% of their net revenue to the Timeleap Network
+    Maturity subnets must return 26% of their net revenue to the Timeleap Network
+    treasury.
+  ],
+  items = [ 
+    bold { Growth }: Subnets in this category need to stake a minimum
+    of bold { "$1,000,000" } USD worth of KNS tokens to be eligible for the subnet launch.
+    Growth subnets must return 24% of their net revenue to the Timeleap Network
     treasury.
   ],
   items = [ 
     bold { Expansion }: Subnets in this category need to stake a minimum
-    of bold { "$1,000,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Expansion subnets must return 7% of their net revenue to the Timeleap Network
+    of bold { "$5,000,000" } USD worth of KNS tokens to be eligible for the subnet launch.
+    Expansion subnets must return 22% of their net revenue to the Timeleap Network
     treasury.
   ],
   items = [ 
     bold { Enterprise }: Subnets in this category need to stake a
     minimum of bold { "$10,000,000" } USD worth of KNS tokens to be eligible for the
-    subnet launch. Enterprise subnets must return 5% of their net revenue to the
+    subnet launch. Enterprise subnets must return 20% of their net revenue to the
     Timeleap Network treasury.
   ]
 }
 
+table {
+  header = [Tier, Required Stake, Revenue Share],
+  row = [Startup, "$50,000", 30%],
+  row = [Scale, "$100,000", 28%],
+  row = [Maturity, "$250,000", 26%],
+  row = [Growth, "$1,000,000", 24%],
+  row = [Expansion, "$5,000,000", 22%],
+  row = [Enterprise, "$10,000,000", 20%]
+}
+
 Any subnet falling below the minimum stake amount will be automatically
 decommissioned. Decommissioned subnets lose their license to operate.
+
+title { Katana NFT, size = 4 }
+
+Staking a Katana NFT reduces the revenue share obligation by 2%. Only one Katana
+NFT can be staked per subnet. The Katana NFT must be staked at the time of
+subnet launch. The Katana NFT must be staked for the entire duration of the
+subnet's operational period. If the Katana NFT is unstaked, the subnet will
+immediately lose the 2% discount on their revenue share obligation. The Katana
+NFT can be unstaked at any time, but the subnet will lose the 2% discount on
+their revenue share obligation for the entire duration of the operational
+period.
+
+title { First Million Discount, size = 4 }
+
+Subnets receive a 50% discount on their revenue share obligations for the first
+$1,000,000 USD in revenue. This means that for the first $1,000,000 USD in
+revenue, subnets will only need to return 50% of the required revenue share
+obligation. For example, a Startup subnet with $1,000,000 USD in revenue will
+only need to return 15% of their revenue to the Timeleap Network treasury. A
+Startup subnet with $2,000,000 USD in revenue will need to return 15% of their
+revenue for the first $1,000,000 USD and 30% of their revenue for the second
+$1,000,000 USD.
+
+This discount is designed to encourage subnet growth and adoption, allowing
+subnets to reinvest in their operations and user acquisition during their early
+stages. This discount is applied after the Katana NFT discount.
+
+title { Subnet Discovery, size = 3 }
+
+Subnets are required to register with the Timeleap Network registry. This
+registry is a public record of all subnets, their owners, and their
+associated metadata. The registry is designed to facilitate subnet discovery and
+interoperability within the Timeleap Network. It allows users to easily find and
+interact with subnets that meet their needs, while also providing a transparent
+view of the subnet landscape.
+
+title { Access to Official Timeleap Plugins, size = 3 }
+
+Subnets above the Maturity tier are eligible to access official Timeleap plugins
+and services under the Timeleap Network umbrella and under certain conditions.
+Timeleap reserves the right to charge a fee for access to these plugins and
+services.
+
+Subnets must apply for access to these plugins and services, and Timeleap
+reserves the right to deny access to any subnet that does not meet the
+requirements. The requirements for access to these plugins and services are
+subject to change at any time, and Timeleap reserves the right to revoke access
+to any subnet that does not meet the requirements.
+
+Subnets that are granted access to these plugins and services must comply with
+the terms and conditions set forth by Timeleap. Failure to comply with these
+terms and conditions may result in the revocation of access to these plugins
+and services.
 
 title { Staking Period, size = 3 }
 
