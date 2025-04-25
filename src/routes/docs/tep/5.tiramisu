@@ -60,114 +60,41 @@ sustainability, and unified governance of the network, while retaining the
 flexibility to operate independently under the federated model introduced in
 TEP-4.
 
-title { Staking and Network Fees, size = 3 }
+title { Staking Requirements, size = 3 }
 
-The staking requirements and plans for subnets are as follows:
+The minimum required stake for subnets is bold { "$25,000 USD" } worth of KNS
+tokens. Subnets are required to stake KNS tokens for a minimum of 6 months. The
+minimum stake is required to be locked for the entire duration of the
+operational period.
+
+title { Revenue Cap, size = 3 }
+
+Subnets are subject to a monthly revenue cap tied to their staked amount.
+Specifically, a subnet cannot earn more than the equivalent value of its staked
+KNS tokens per month. For example, if a subnet has staked $25,000 USD worth of
+KNS, it can earn a maximum of $25,000 USD in revenue per month.
+
+This mechanism is critical to prevent potential abuse. Without such a limit, a
+subnet could, for instance, stake $25,000, rapidly generate $100,000 in revenue,
+and then abandon its stake and obligations—leaving users and the network exposed
+to risks and unresolved issues.
+
+Additional considerations:
 
 list {
-  items = [ 
-    bold { Startup }: Subnets in this category need to stake a minimum
-    of bold { "$50,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Startup subnets must return 30% of their net revenue to the Timeleap Network
+  items = [
+    Subnets can increase their stake at any time to raise their monthly earning
+    cap.
+  ],
+  items = [
+    Any revenue earned above the cap will be redirected to the Timeleap Network
     treasury.
   ],
-  items = [ 
-    bold { Scale }: Subnets in this category need to stake a minimum of
-    bold { "$100,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Scale subnets must return 28% of their net revenue to the Timeleap Network
-    treasury.
-  ],
-  items = [ 
-    bold { Maturity }: Subnets in this category need to stake a minimum
-    of bold { "$250,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Maturity subnets must return 26% of their net revenue to the Timeleap Network
-    treasury.
-  ],
-  items = [ 
-    bold { Growth }: Subnets in this category need to stake a minimum
-    of bold { "$1,000,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Growth subnets must return 24% of their net revenue to the Timeleap Network
-    treasury.
-  ],
-  items = [ 
-    bold { Expansion }: Subnets in this category need to stake a minimum
-    of bold { "$5,000,000" } USD worth of KNS tokens to be eligible for the subnet launch.
-    Expansion subnets must return 22% of their net revenue to the Timeleap Network
-    treasury.
-  ],
-  items = [ 
-    bold { Enterprise }: Subnets in this category need to stake a
-    minimum of bold { "$10,000,000" } USD worth of KNS tokens to be eligible for the
-    subnet launch. Enterprise subnets must return 20% of their net revenue to the
-    Timeleap Network treasury.
+  items = [
+    Exceptions to this rule may be granted based on negotiated contractual
+    terms, allowing for flexibility in special cases.
   ]
 }
-
-table {
-  header = [Tier, Required Stake, Revenue Share],
-  row = [Startup, "$50,000", 30%],
-  row = [Scale, "$100,000", 28%],
-  row = [Maturity, "$250,000", 26%],
-  row = [Growth, "$1,000,000", 24%],
-  row = [Expansion, "$5,000,000", 22%],
-  row = [Enterprise, "$10,000,000", 20%]
-}
-
-Any subnet falling below the minimum stake amount will be automatically
-decommissioned. Decommissioned subnets lose their license to operate.
-
-title { Katana NFT, size = 4 }
-
-Staking a Katana NFT reduces the revenue share obligation by 2%. Only one Katana
-NFT can be staked per subnet. The Katana NFT must be staked at the time of
-subnet launch. The Katana NFT must be staked for the entire duration of the
-subnet's operational period. If the Katana NFT is unstaked, the subnet will
-immediately lose the 2% discount on their revenue share obligation. The Katana
-NFT can be unstaked at any time, but the subnet will lose the 2% discount on
-their revenue share obligation for the entire duration of the operational
-period.
-
-title { First Million Discount, size = 4 }
-
-Subnets receive a 50% discount on their revenue share obligations for the first
-$1,000,000 USD in revenue. This means that for the first $1,000,000 USD in
-revenue, subnets will only need to return 50% of the required revenue share
-obligation. For example, a Startup subnet with $1,000,000 USD in revenue will
-only need to return 15% of their revenue to the Timeleap Network treasury. A
-Startup subnet with $2,000,000 USD in revenue will need to return 15% of their
-revenue for the first $1,000,000 USD and 30% of their revenue for the second
-$1,000,000 USD.
-
-This discount is designed to encourage subnet growth and adoption, allowing
-subnets to reinvest in their operations and user acquisition during their early
-stages. This discount is applied after the Katana NFT discount.
-
-title { Subnet Discovery, size = 3 }
-
-Subnets are required to register with the Timeleap Network registry. This
-registry is a public record of all subnets, their owners, and their
-associated metadata. The registry is designed to facilitate subnet discovery and
-interoperability within the Timeleap Network. It allows users to easily find and
-interact with subnets that meet their needs, while also providing a transparent
-view of the subnet landscape.
-
-title { Access to Official Timeleap Plugins, size = 3 }
-
-Subnets above the Maturity tier are eligible to access official Timeleap plugins
-and services under the Timeleap Network umbrella and under certain conditions.
-Timeleap reserves the right to charge a fee for access to these plugins and
-services.
-
-Subnets must apply for access to these plugins and services, and Timeleap
-reserves the right to deny access to any subnet that does not meet the
-requirements. The requirements for access to these plugins and services are
-subject to change at any time, and Timeleap reserves the right to revoke access
-to any subnet that does not meet the requirements.
-
-Subnets that are granted access to these plugins and services must comply with
-the terms and conditions set forth by Timeleap. Failure to comply with these
-terms and conditions may result in the revocation of access to these plugins
-and services.
 
 title { Staking Period, size = 3 }
 
@@ -179,9 +106,15 @@ list {
     staking duration of 6 months' worth of KNS tokens to be eligible for launch.
   ],
   items = [
-    bold { Operational Period }: A subnet can operate for up to N - 1
-    months, where N is the total number of months it has committed to staking KNS
-    tokens.
+    bold { Operational and Waiting Period }: A subnet can operate for up to N -
+    3 months, where N is the total number of months it has committed to staking
+    KNS tokens.
+
+    The final 3 months constitute a mandatory waiting period designed to allow
+    time for any potential user complaints, disputes, or operational issues to be
+    reported and resolved. This ensures that users have sufficient opportunity to
+    raise concerns regarding the subnet activities during its last days of
+    operation before the subnet stake is released.
   ],
   items = [
     bold { Restaking and Lock Reset }: Subnets can increase their stake
@@ -219,6 +152,51 @@ list {
     Timeleap Network treasury.
   ]
 }
+
+title { Service Fees, size = 3 }
+
+Subnets are required to pay a service fee equivalent to 3% of the net revenue
+generated through their subnet operations to the Timeleap Network treasury.
+
+title { Katana NFT, size = 3 }
+
+Staking a Katana NFT reduces the revenue share obligation by 0.25%. Only one
+Katana NFT can be staked per subnet. The Katana NFT must be staked at the time
+of subnet launch. The Katana NFT must be staked for the entire duration of the
+subnet's operational period.
+
+title { Subnet Discovery, size = 3 }
+
+Subnets are required to register with the Timeleap Network registry. This
+registry is a public record of all subnets, their owners, and their
+associated metadata. The registry is designed to facilitate subnet discovery and
+interoperability within the Timeleap Network. It allows users to easily find and
+interact with subnets that meet their needs, while also providing a transparent
+view of the subnet landscape.
+
+title { Access to Timeleap Plugins, size = 3 }
+
+Subnets are eligible to access official Timeleap plugins and services under the
+Timeleap Network umbrella and under certain conditions. Timeleap reserves the
+right to charge a fee for access to these plugins and services.
+
+Subnets must apply for access to these plugins and services, and Timeleap
+reserves the right to deny access to any subnet that does not meet the
+requirements. The requirements for access to these plugins and services are
+subject to change at any time, and Timeleap reserves the right to revoke access
+to any subnet that does not meet the requirements.
+
+Subnets that are granted access to these plugins and services must comply with
+the terms and conditions set forth by Timeleap. Failure to comply with these
+terms and conditions may result in the revocation of access to these plugins and
+services.
+
+title { Access to Timeleap Marketplaces, size = 3 }
+
+Apps, APIs, and other services that are built on top of the Timeleap Network
+are eligible to access official Timeleap marketplaces under the Timeleap Network
+umbrella and under certain conditions. Timeleap reserves the right to charge a
+fee for access to these marketplaces.
 
 title { Rationale, size = 2 }
 
