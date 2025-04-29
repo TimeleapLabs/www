@@ -3,7 +3,7 @@
 		children = undefined,
 		label,
 		id,
-		value = $bindable(''),
+		value = $bindable(undefined),
 		options = [],
 		placeholder = 'Select an option',
 		helperText = ''
