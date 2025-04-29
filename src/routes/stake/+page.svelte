@@ -18,8 +18,8 @@
 	let staking: ethers.Contract | undefined;
 	let storage: ethers.Contract | undefined;
 	let token: ethers.Contract | undefined;
-
 	let nft: ethers.Contract | undefined;
+
 	let nfts: NFT[] = [];
 	let data = $props();
 	nfts = data.nfts;
@@ -42,10 +42,16 @@
 
 	let amount: string = $state('');
 	let balance: bigint = $state(0n);
-	let programId: string | undefined = $state();
+	let programId: string | null = $state(null);
 	let nftId: number = $state(0);
 	let withNft: any = $state();
 	let selectedNft = $state('');
+	let isStaking = $state(false);
+	let expandedIndex: number | null = $state(null);
+
+	async function setMax() {
+		amount = ethers.formatUnits(balance);
+	}
 
 	const setAddress = async (): Promise<void> => {
 		const { signer, ...contracts } = await initializeContracts($wallet?.provider);
@@ -64,20 +70,17 @@
 		userAddress = await signer.getAddress();
 	};
 
-	const niceKns = (amount: ethers.BigNumberish) => {
-		return ethers.formatUnits(amount, 18).replace(/(\.\d{2})\d+/, '$1');
-	};
+	const niceKns = (amount: ethers.BigNumberish) =>
+		ethers.formatUnits(amount, 18).replace(/(\.\d{2})\d+/, '$1');
 
 	$effect(() => {
-		if ($wallet?.provider) {
+		if ($wallet?.provider && !userAddress) {
 			setAddress();
 		}
 	});
 
 	const readStakeStats = async (): Promise<void> => {
-		if (!storage || !userAddress) {
-			return;
-		}
+		if (!storage || !userAddress) return;
 
 		const stakeIds = Array.from(await storage.findStakesByUser(userAddress));
 		const rawUserStakes: UserStake[] = await storage.getStakesById(stakeIds);
@@ -94,44 +97,45 @@
 		}));
 	};
 
+	let stakeStatsInitialized = false;
 	$effect(() => {
-		if (userAddress && storage) {
+		if (userAddress && storage && !stakeStatsInitialized) {
+			stakeStatsInitialized = true;
 			readStakeStats();
 		}
 	});
+
 	const readUserNfts = async () => {
-		if (!nft) {
-			return;
-		}
+		if (!nft || !userAddress) return;
 		const bigNfts = await nft.tokensOfOwner(userAddress);
 		userNfts = bigNfts.map((n: string) => parseInt(n));
-		nftId = userNfts[0];
+		nftId = userNfts[0] ?? 0;
 	};
 
-	async function fetchBalance() {
-		if (userAddress && token) {
-			try {
-				balance = await token.balanceOf(userAddress);
-			} catch (error) {
-				console.error('Error fetching balance:', error);
-				balance = 0n;
-			}
-		}
-	}
-
+	let nftsInitialized = false;
 	$effect(() => {
-		if (token && userAddress) {
-			fetchBalance();
+		if (nft && userAddress && !nftsInitialized) {
+			nftsInitialized = true;
+			readUserNfts();
 		}
 	});
 
-	async function setMax() {
-		amount = ethers.formatUnits(balance);
+	async function fetchBalance() {
+		if (!userAddress || !token) return;
+
+		try {
+			balance = await token.balanceOf(userAddress);
+		} catch (error) {
+			console.error('Error fetching balance:', error);
+			balance = 0n;
+		}
 	}
 
+	let balanceFetched = false;
 	$effect(() => {
-		if (nft && userAddress) {
-			readUserNfts();
+		if (token && userAddress && !balanceFetched) {
+			balanceFetched = true;
+			fetchBalance();
 		}
 	});
 
@@ -139,7 +143,6 @@
 		withNft = selectedNft !== '';
 	});
 
-	let isStaking = $state(false);
 	const stake = async (): Promise<void> => {
 		isStaking = true;
 		await stakeHelper(amount, nftId, withNft, staking!, nft!, token!, programId);
@@ -155,7 +158,6 @@
 		}
 	};
 
-	let expandedIndex: number | null = $state(null);
 	const toggleStakeDetails = (index: number) => {
 		expandedIndex = expandedIndex === index ? null : index;
 	};
