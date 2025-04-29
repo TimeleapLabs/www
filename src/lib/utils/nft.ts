@@ -1,3 +1,5 @@
+import type { NFT } from './types';
+
 export const fetchNFTs = async (): Promise<NFT[]> => {
 	try {
 		const response = await fetch('https://nft.kenshi.io/katana/data.json');

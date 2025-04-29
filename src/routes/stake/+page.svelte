@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { ethers } from 'ethers';
+	import { ethers, type BigNumberish } from 'ethers';
 
 	import { wallet } from '$lib/stores/wallet';
 	import { Button, Card, Grid, Input, Section } from '@timeleap/ui';
@@ -17,6 +17,7 @@
 	import { getRarity } from '$lib/utils/nft.js';
 	import { slide } from 'svelte/transition';
 	import { BadgeCheck, ChevronDown, ChevronUp, LockKeyhole, LockKeyholeOpen } from 'lucide-svelte';
+	import type { NFT } from '$lib/utils/types.js';
 
 	let userAddress: string | undefined;
 	let staking: ethers.Contract | undefined;
@@ -38,17 +39,17 @@
 		claimed: boolean;
 		hasNft: boolean;
 	};
-
+	type RawProgram = [boolean, BigNumberish, BigNumberish];
 	let programs: { id: number; active: boolean; duration: number; rewards: bigint }[] = [];
 	let programOptions: { value: string; label: string }[] = [];
 	let userStakes: UserStake[] = [];
-	let userNfts: any[] = [];
+	let userNfts: number[] = [];
 
 	let amount: string;
 	let balance: bigint;
 	let programId: string | undefined;
 	let nftId: number = 0;
-	let withNft: any;
+	let withNft: boolean;
 	let selectedNft = '';
 
 	const setAddress = async (): Promise<void> => {
@@ -63,6 +64,7 @@
 			await onboard.setChain({ chainId: '0xa4b1' });
 		} catch (error) {
 			toast.error("Couldn't change to the Arbitrum network.");
+			console.log(error);
 			return;
 		}
 
@@ -94,7 +96,7 @@
 			id: BigInt(stakeIds[index] as string)
 		}));
 
-		const allPrograms: any[] = await storage.getStakeProgramsById([0, 1, 2]);
+		const allPrograms: RawProgram[] = await storage.getStakeProgramsById([0, 1, 2]);
 		programs = allPrograms
 			.map(([active, rewards, duration], id) => ({
 				active,
@@ -225,11 +227,11 @@
 							label="Choose Your Katana NFT"
 							bind:value={selectedNft}
 							options={userNfts.map((id) => {
-								const index = parseInt(id, 10);
+								const index = parseInt(id.toString(), 10);
 								const nft = nfts[index];
 								const { theme } = getRarity(nft?.rarity || 0);
 								return {
-									value: id,
+									value: id.toString(),
 									label: nft?.metadata?.name ?? `NFT #${id}`,
 									color: theme
 								};

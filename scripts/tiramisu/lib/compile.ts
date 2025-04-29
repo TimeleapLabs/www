@@ -26,10 +26,12 @@ const generateBreadcrumbs = (header: string, templateFile: string, context: Cont
 
 	headers.push({ href: '', title: header });
 	return headers
-		.map(
-			({ href, title }) =>
-				`<a href="${href}" class="hover:text-green-400 transition-colors">${title}</a>`
-		)
+		.map(({ href, title }) => {
+			if (href === '') {
+				return `<span class="text-white">${title}</span>`;
+			}
+			return `<a href="${href}" class="hover:text-green-400 transition-colors">${title}</a>`;
+		})
 		.join('<span class="text-zinc-600"> / </span>');
 };
 

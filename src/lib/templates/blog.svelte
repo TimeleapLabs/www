@@ -126,31 +126,30 @@
 				{/if}
 			</div>
 
-				{#if nav.next || nav.prev}
-					<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
-						{#if nav.prev}
-							<Button
-								class="bg-green-400 text-black hover:bg-green-300 font-medium"
-								animate
-								href={nav.prev.href}
-							>
+			{#if nav.next || nav.prev}
+				<div class="mt-8 mb-16 flex gap-4 justify-between w-full">
+					{#if nav.prev}
+						<Button
+							class="bg-green-400 text-black hover:bg-green-300 font-medium"
+							animate
+							href={nav.prev.href}
+						>
 							<ArrowLeft size={'1em'} />{nav.prev.title}
 						</Button>
-						{/if}
-						{#if nav.next}
-							<Button
-								class="bg-green-400 text-black hover:bg-green-300 font-medium"
-								animate
-								href={nav.next.href}
-							>
+					{/if}
+					{#if nav.next}
+						<Button
+							class="bg-green-400 text-black hover:bg-green-300 font-medium"
+							animate
+							href={nav.next.href}
+						>
 							{nav.next.title}<ArrowRight size={'1em'} />
 						</Button>
-						{/if}
-					</div>
-				{/if}
-			</div>
+					{/if}
+				</div>
+			{/if}
 		</div>
-	</Section
->
+	</div>
+</Section>
 
 <Footer></Footer>
