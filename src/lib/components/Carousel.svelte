@@ -5,7 +5,7 @@
 	let el: HTMLElement;
 	let index = 0;
 	let position = 0;
-	export let containerClass = '';
+	let { containerClass = '' } = $props();
 
 	const lastChildInView = () => {
 		const lastChild = el.children[el.children.length - 1];

@@ -1,10 +1,12 @@
 <script lang="ts">
-	export let label: string;
-	export let id: string;
-	export let value: string = '';
-	export let options: Array<{ value: string; label: string; color?: string }> = [];
-	export let placeholder: string = 'Select an option';
-	export let helperText: string = '';
+	let {
+		label,
+		id,
+		value = '',
+		options = [],
+		placeholder = 'Select an option',
+		helperText = ''
+	} = $props();
 
 	let isOpen = false;
 

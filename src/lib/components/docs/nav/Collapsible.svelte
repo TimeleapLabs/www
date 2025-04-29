@@ -6,8 +6,7 @@
 
 	type NavEntry = { href: string; title: string; nav?: NavEntry[] };
 
-	export let unwind = false;
-	export let nav: NavEntry;
+	let { unwind = false, nav }: { unwind: boolean; nav: NavEntry } = $props();
 
 	let open = false;
 	let partialMatch = false;
@@ -17,12 +16,16 @@
 		open = !open;
 	};
 
-	$: if ($page.url.pathname.startsWith(nav.href)) {
-		open = true;
-		partialMatch = true;
-	}
+	$effect(() => {
+		if ($page.url.pathname.startsWith(nav.href)) {
+			open = true;
+			partialMatch = true;
+		}
+	});
 
-	$: match = $page.url.pathname === nav.href;
+	$effect(() => {
+		match = $page.url.pathname === nav.href;
+	});
 </script>
 
 {#if !unwind}

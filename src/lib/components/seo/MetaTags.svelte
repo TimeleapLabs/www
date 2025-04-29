@@ -2,13 +2,13 @@
 	import { page } from '$app/stores';
 	import { ogImage } from '$lib/seo/client';
 
-	export let title: string = 'Timeleap — Distributed App Engine';
-	export let description: string =
-		'Swiss tech company specialized in web3 infrastructure like Blockchain-as-a-Service. Building the Timeleap Network, our next-gen distributed computing platform.';
-
-	export let ogImageFontSize: number = 28;
-	export let ogImageText: string = 'Timeleap:\nDistributed\nApp Engine';
-	export let image: string | undefined = undefined;
+	let {
+		title = 'Timeleap — Distributed App Engine',
+		description = 'Swiss tech company specialized in web3 infrastructure like Blockchain-as-a-Service. Building the Timeleap Network, our next-gen distributed computing platform.',
+		ogImageFontSize = 28,
+		ogImageText = 'Timeleap:\nDistributed\nApp Engine',
+		image = undefined
+	} = $props();
 
 	const ogImageUrl = image ?? ogImage(ogImageText, ogImageFontSize);
 	const url = 'https://timeleap.swiss' + $page.url.pathname;

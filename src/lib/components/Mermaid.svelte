@@ -1,7 +1,7 @@
 <script lang="ts">
 	import mermaidJs from 'mermaid';
 
-	export let code: string;
+	let code: string = $props();
 	const randomId = Math.random().toString(36).substring(7);
 
 	const mermaid = (node: HTMLElement) => {

@@ -12,9 +12,7 @@
 	tiramisu.name = 'tiramisu';
 	sia.name = 'sia';
 
-	export let code = `const hello = 'world'`;
-	export let lang = 'typescript';
-	export let lineNumbers = false;
+	let { code = `const hello = 'world'`, lang = 'typescript', lineNumbers = false } = $props();
 
 	const copyCode = async () => {
 		await copyToClipboard(code);

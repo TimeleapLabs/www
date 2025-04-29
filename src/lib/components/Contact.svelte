@@ -4,14 +4,13 @@
 	import { contact } from '$lib/api/contact';
 	import toast from 'svelte-french-toast';
 
-	export let topic = 'general';
-	export let subject: string = '';
+	let { topic = 'general', subject = '' } = $props();
 
-	let name: string = '';
-	let email: string = '';
-	let body: string = '';
+	let name: string = $state('');
+	let email: string = $state('');
+	let body: string = $state('');
 
-	let disabled: boolean | undefined = undefined;
+	let disabled: boolean | undefined = $state(undefined);
 
 	const submitMessage = () => {
 		disabled = true;

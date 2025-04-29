@@ -17,6 +17,12 @@
 	let userAddress: string | undefined;
 	let staking: ethers.Contract | undefined;
 	let storage: ethers.Contract | undefined;
+	let token: ethers.Contract | undefined;
+
+	let nft: ethers.Contract | undefined;
+	let nfts: NFT[] = [];
+	let data = $props();
+	nfts = data.nfts;
 
 	type UserStake = {
 		id: bigint;
@@ -52,7 +58,11 @@
 		return ethers.formatUnits(amount, 18).replace(/(\.\d{2})\d+/, '$1');
 	};
 
-	$: if ($wallet?.provider) setAddress();
+	$effect(() => {
+		if ($wallet?.provider) {
+			setAddress();
+		}
+	});
 
 	const readStakeStats = async (): Promise<void> => {
 		if (!storage || !userAddress) {

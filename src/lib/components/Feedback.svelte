@@ -2,7 +2,7 @@
 	import { feedback, fetchFeedback } from '$lib/api/feedback';
 	import { onMount } from 'svelte';
 
-	export let pageId: string;
+	let pageId: string = $props();
 
 	const allEmojis = ['🔥', '👍', '🤘', '🎉', '❤️', '🤩'];
 	const emojiNames = ['fire', 'thumbsUp', 'rockOn', 'party', 'heart', 'starStruck'];
@@ -12,7 +12,7 @@
 		name: emojiNames[index]
 	}));
 
-	let feedbacks: Record<string, number> = {};
+	let feedbacks: Record<string, number> = $state({});
 
 	const sendFeedback = (feedbackStr: string) => () => {
 		grecaptcha.ready(async () => {

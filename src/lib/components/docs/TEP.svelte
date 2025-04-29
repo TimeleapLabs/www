@@ -29,12 +29,21 @@
 		review: 'This TEP is currently under review.' as const
 	};
 
-	export let author: string;
-	export let status: 'draft' | 'accepted' | 'rejected' | 'implemented' | 'deprecated';
-	export let type: string;
-	export let createdAt: string;
-	export let updatedAt: string;
-	export let discussion: string;
+	let {
+		author,
+		status = 'draft',
+		type,
+		createdAt,
+		updatedAt,
+		discussion
+	}: {
+		author: string;
+		status: 'draft' | 'accepted' | 'rejected' | 'implemented' | 'deprecated';
+		type: string;
+		createdAt: string;
+		updatedAt: string;
+		discussion: string;
+	} = $props();
 
 	const formatDate = (date: string) => {
 		const options: Intl.DateTimeFormatOptions = {
