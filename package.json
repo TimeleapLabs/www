@@ -17,26 +17,26 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/kit": "^2.0.0",
-		"@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
+		"@sveltejs/kit": "^2.5.27",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@timeleap/tiramisu": "^1.5.4",
 		"@types/eslint": "^9.6.0",
 		"@types/grecaptcha": "^3.0.9",
 		"@types/howler": "^2.2.12",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.36.0",
+		"eslint-plugin-svelte": "^2.45.1",
 		"globals": "^15.0.0",
 		"prettier": "^3.1.1",
-		"prettier-plugin-svelte": "^3.1.2",
+		"prettier-plugin-svelte": "^3.2.6",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"tailwindcss": "^4.0.0-beta.4",
 		"tsx": "^4.19.2",
-		"typescript": "^5.0.0",
+		"typescript": "^5.5.0",
 		"typescript-eslint": "^8.0.0",
 		"unplugin-fonts": "^1.1.1",
-		"vite": "^5.0.3"
+		"vite": "^5.4.4"
 	},
 	"resolutions": {
 		"svelte-i18n": "3.7.5-alpha.1"
