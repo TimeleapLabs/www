@@ -26,7 +26,7 @@
 
 <MetaTags />
 
-<Navbar backButton active="home"></Navbar>
+<Navbar active="home"></Navbar>
 
 <Section class="w-full max-w-[1920px] mx-auto pt-12 gap-32! px-4 md:px-16 xxl:px-0">
 	<Grid

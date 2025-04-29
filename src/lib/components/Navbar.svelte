@@ -6,7 +6,7 @@
 
 	type section = 'home' | 'products' | 'contact' | 'docs' | 'blog' | 'stake' | 'none';
 
-	let { backButton = false, active = 'home' }: { backButton: boolean; active: section } = $props();
+	let { backButton = false, active = 'home' }: { backButton?: boolean; active: section } = $props();
 
 	const activeClass = 'hover:bg-zinc-700';
 	const hoverClass = 'hover:bg-zinc-800';

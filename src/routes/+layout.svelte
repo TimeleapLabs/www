@@ -4,9 +4,8 @@
 
 	import { onNavigate } from '$app/navigation';
 	import { Toaster } from 'svelte-french-toast';
-	import type { Snippet } from 'svelte';
 
-	let children: Snippet = $props();
+	let { children } = $props();
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;

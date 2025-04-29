@@ -40,16 +40,16 @@
 	};
 
 	let programs: { id: number; active: boolean; duration: number; rewards: bigint }[] = [];
-	let programOptions: { value: string; label: string }[] = [];
-	let userStakes: UserStake[] = [];
-	let userNfts: any[] = [];
+	let programOptions: { value: string; label: string }[] = $state([]);
+	let userStakes: UserStake[] = $state([]);
+	let userNfts: any[] = $state([]);
 
-	let amount: string;
-	let balance: bigint;
-	let programId: string | undefined;
-	let nftId: number = 0;
-	let withNft: any;
-	let selectedNft = '';
+	let amount: string = $state('');
+	let balance: bigint = $state(0n);
+	let programId: string | undefined = $state();
+	let nftId: number = $state(0);
+	let withNft: any = $state();
+	let selectedNft = $state('');
 
 	const setAddress = async (): Promise<void> => {
 		const { signer, ...contracts } = await initializeContracts($wallet?.provider);
@@ -112,10 +112,11 @@
 		}));
 	};
 
-	$: if (userAddress && storage) {
-		readStakeStats();
-	}
-
+	$effect(() => {
+		if (userAddress && storage) {
+			readStakeStats();
+		}
+	});
 	const readUserNfts = async () => {
 		if (!nft) {
 			return;
@@ -136,21 +137,27 @@
 		}
 	}
 
-	$: if (token && userAddress) {
-		fetchBalance();
-	}
+	$effect(() => {
+		if (token && userAddress) {
+			fetchBalance();
+		}
+	});
 
 	async function setMax() {
 		amount = ethers.formatUnits(balance);
 	}
 
-	$: if (nft && userAddress) {
-		readUserNfts();
-	}
+	$effect(() => {
+		if (nft && userAddress) {
+			readUserNfts();
+		}
+	});
 
-	$: withNft = selectedNft !== '';
+	$effect(() => {
+		withNft = selectedNft !== '';
+	});
 
-	let isStaking = false;
+	let isStaking = $state(false);
 	const stake = async (): Promise<void> => {
 		isStaking = true;
 		await stakeHelper(amount, nftId, withNft, staking!, nft!, token!, programId);
@@ -166,7 +173,7 @@
 		}
 	};
 
-	let expandedIndex: number | null = null;
+	let expandedIndex: number | null = $state(null);
 	const toggleStakeDetails = (index: number) => {
 		expandedIndex = expandedIndex === index ? null : index;
 	};
@@ -254,7 +261,7 @@
 					<div class="flex justify-end -mt-4">
 						<button
 							class="text-xs text-white cursor-pointer hover:text-green-600"
-							on:click={setMax}
+							onclick={setMax}
 							type="button"
 						>
 							<span>Set Max</span>
@@ -290,8 +297,8 @@
 								role="button"
 								tabindex="0"
 								class="flex justify-between items-center cursor-pointer"
-								on:click={() => toggleStakeDetails(index)}
-								on:keydown={(e) => e.key === 'Enter' && toggleStakeDetails(index)}
+								onclick={() => toggleStakeDetails(index)}
+								onkeydown={(e) => e.key === 'Enter' && toggleStakeDetails(index)}
 							>
 								<span class="font-medium inline-flex items-center">
 									{#if stake.claimed}

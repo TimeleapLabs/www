@@ -27,7 +27,7 @@
 </script>
 
 <MetaTags title={'Timeleap — $TITLE'} description="$DESCRIPTION" $OG />
-<Navbar backButton active="blog"></Navbar>
+<Navbar active="blog"></Navbar>
 
 <Section
 	class="w-full max-w-[1920px] mx-auto pt-20 md:pt-36 gap-8! px-4 md:px-16 xxl:px-0 text-white flex-1"

@@ -9,7 +9,7 @@
 	let showSubscribe = $state(true);
 	let disabled = $state<boolean | undefined>(undefined);
 
-	let { topic = 'newsletter', class: className = '' }: { topic: Topic; class?: string } = $props();
+	let { topic = 'newsletter', class: className = '' }: { topic?: Topic; class?: string } = $props();
 
 	const handleSubscribe = () => {
 		if (!email) {
