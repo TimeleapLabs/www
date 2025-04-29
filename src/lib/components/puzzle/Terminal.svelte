@@ -240,9 +240,9 @@
 							lineBuffer.pop();
 							term.write('\b \b');
 						} else if (offset < 0 && Math.abs(offset) !== lineBuffer.length) {
-							var insert = '';
+							let insert = '';
 
-							for (var ci = lineBuffer.length + offset; ci < lineBuffer.length; ci++) {
+							for (let ci = lineBuffer.length + offset; ci < lineBuffer.length; ci++) {
 								insert += lineBuffer[ci];
 							}
 
@@ -250,11 +250,11 @@
 
 							var lefts = '';
 
-							for (var ci = 0; ci < insert.length; ci++) {
+							for (let ci = 0; ci < insert.length; ci++) {
 								lefts += '\x1b[1D';
 							}
 
-							var termInsert = '\b \b' + insert + ' ' + '\b \b' + lefts;
+							let termInsert = '\b \b' + insert + ' ' + '\b \b' + lefts;
 							term.write(termInsert);
 						}
 					}
@@ -302,17 +302,17 @@
 				} else {
 					// push everything else into the line buffer and echo back to user
 
-					var insert = '';
+					let insert = '';
 					insert += c;
 
-					for (var ci = lineBuffer.length + offset; ci < lineBuffer.length; ci++) {
+					for (let ci = lineBuffer.length + offset; ci < lineBuffer.length; ci++) {
 						insert += lineBuffer[ci];
 					}
 
 					var shift = '';
 
 					if (offset < 0) {
-						for (var ci = lineBuffer.length + offset; ci < lineBuffer.length; ci++) {
+						for (let ci = lineBuffer.length + offset; ci < lineBuffer.length; ci++) {
 							shift += '\x1b[1D';
 						}
 					}
@@ -323,7 +323,7 @@
 						lineBuffer.splice(lineBuffer.length + offset, 0, c);
 					}
 
-					var termInsert = insert;
+					let termInsert = insert;
 
 					if (offset < 0) {
 						termInsert += shift;

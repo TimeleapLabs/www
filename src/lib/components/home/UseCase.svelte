@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowRight, Clock } from 'lucide-svelte';
+	import { Clock } from 'lucide-svelte';
 	import { Button } from '@timeleap/ui';
 
 	import ImageCard from '../ImageCard.svelte';
