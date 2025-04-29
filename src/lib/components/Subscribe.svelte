@@ -9,7 +9,7 @@
 	let showSubscribe = true;
 	let disabled: boolean | undefined = undefined;
 
-	export let topic: Topic = 'newsletter';
+	let { topic = 'newsletter' }: { topic: Topic } = $props();
 
 	const handleSubscribe = () => {
 		if (!email) {

@@ -1,8 +1,5 @@
 <script lang="ts">
-	export let id = '';
-	export let label = '';
-	export let checked = false;
-	export let onChange: (event: Event) => void = () => {};
+	let { id = '', label = '', checked = false, onChange = (event: Event) => {} } = $props();
 
 	function handleChange(event: Event) {
 		onChange(event);
@@ -15,7 +12,7 @@
 		type="checkbox"
 		class="cursor-pointer rounded-md text-green-500 border-zinc-700 focus:ring-green-500"
 		bind:checked
-		on:change={handleChange}
+		onchange={handleChange}
 	/>
 	<label for={id} class="text-sm text-white">{label}</label>
 </div>

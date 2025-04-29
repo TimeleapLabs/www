@@ -28,8 +28,7 @@
 		danger: 'text-red-200'
 	};
 
-	export let type: keyof typeof icons;
-	export let title: string;
+	let { type, title }: { type: keyof typeof icons; title: string } = $props();
 </script>
 
 <Card

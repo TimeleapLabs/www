@@ -2,12 +2,7 @@
 	import { Card, Button } from '@timeleap/ui';
 	import { ArrowRight } from 'lucide-svelte';
 
-	export let title;
-	export let href;
-	export let color: string = 'sky';
-
-	export let video = '';
-	export let image = '';
+	let { title, href, color = 'sky', video = '', image = '' } = $props();
 
 	const colorToGradientMap = {
 		red: 'from-red-600 to-red-900',

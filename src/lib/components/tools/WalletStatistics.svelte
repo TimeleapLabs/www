@@ -8,11 +8,13 @@
 	import { ethers } from 'ethers';
 	import { onMount } from 'svelte';
 
-	export let checksumAddress: string | undefined;
-	export let balanceDisplay: string | bigint;
-	export let usdBalanceDisplay: string | bigint;
-	export let stakedDisplay: string | bigint;
-	export let usdStakedDisplay: string | bigint;
+	let {
+		checksumAddress = undefined,
+		balanceDisplay,
+		usdBalanceDisplay,
+		stakedDisplay,
+		usdStakedDisplay
+	} = $props();
 
 	let userAddress: string | undefined;
 	let isAddressValid: boolean = true;

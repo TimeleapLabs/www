@@ -25,7 +25,7 @@
 
 	let nft: ethers.Contract | undefined;
 	let nfts: NFT[] = [];
-	export let data;
+	let data = $props();
 	nfts = data.nfts;
 
 	type UserStake = {

@@ -6,8 +6,7 @@
 
 	type section = 'home' | 'products' | 'contact' | 'docs' | 'blog' | 'stake' | 'none';
 
-	export let backButton: boolean = false;
-	export let active: section = 'home';
+	let { backButton = false, active = 'home' }: { backButton: boolean; active: section } = $props();
 
 	const activeClass = 'hover:bg-zinc-700';
 	const hoverClass = 'hover:bg-zinc-800';
@@ -20,9 +19,9 @@
 		stake: active === 'stake' ? activeClass : hoverClass
 	};
 
-	let scrollY = 0;
+	let scrollY = $state(0);
 
-	$: extraClasses = scrollY > 0 ? 'bg-[rgba(0,0,0,.4)] backdrop-blur-xl' : '';
+	const extraClasses = $derived(() => (scrollY > 0 ? 'bg-[rgba(0,0,0,.4)] backdrop-blur-xl' : ''));
 </script>
 
 <svelte:window bind:scrollY />

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { loadImage } from '$lib/utils/image';
 
-	export let src: string;
+	let src: string = $props();
 
 	let canvas: HTMLCanvasElement;
 	let listener: (e: MouseEvent) => void;
