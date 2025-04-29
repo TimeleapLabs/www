@@ -87,7 +87,7 @@
 	});
 </script>
 
-<Navbar backButton active="none"></Navbar>
+<Navbar active="none"></Navbar>
 
 <Section class="md:p-10 p-2">
 	<h2 class="relative py-5 md:top-10 top-13 text-white font-serif text-5xl">Timeleap Tools</h2>

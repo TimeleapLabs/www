@@ -1,5 +1,10 @@
 <script lang="ts">
-	let { id = '', label = '', checked = false, onChange = (event: Event) => {} } = $props();
+	let {
+		id = '',
+		label = '',
+		checked = $bindable(false),
+		onChange = (event: Event) => {}
+	} = $props();
 
 	function handleChange(event: Event) {
 		onChange(event);

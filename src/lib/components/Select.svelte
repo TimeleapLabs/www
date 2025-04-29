@@ -1,14 +1,15 @@
 <script lang="ts">
-	let { children,
+	let {
+		children = undefined,
 		label,
 		id,
-		value = '',
+		value = $bindable(''),
 		options = [],
 		placeholder = 'Select an option',
 		helperText = ''
 	} = $props();
 
-	let isOpen = false;
+	let isOpen = $state(false);
 
 	const toggleDropdown = () => {
 		isOpen = !isOpen;

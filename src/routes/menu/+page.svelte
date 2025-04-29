@@ -9,7 +9,7 @@
 
 <MetaTags />
 
-<Navbar active="none" backButton></Navbar>
+<Navbar active="none"></Navbar>
 
 <Section class="w-full max-w-[1280px] mx-auto pt-24 gap-16! px-4 md:px-16 xxl:px-0 flex-1 pb-12">
 	<Grid extraLargeScreenColumns={3} largeScreenColumns={2}>

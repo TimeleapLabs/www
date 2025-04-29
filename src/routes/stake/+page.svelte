@@ -35,7 +35,17 @@
 		hasNft: boolean;
 	};
 
-	let userStakes: UserStake[] = [];
+	let programs: { id: number; active: boolean; duration: number; rewards: bigint }[] = [];
+	let programOptions: { value: string; label: string }[] = $state([]);
+	let userStakes: UserStake[] = $state([]);
+	let userNfts: any[] = $state([]);
+
+	let amount: string = $state('');
+	let balance: bigint = $state(0n);
+	let programId: string | undefined = $state();
+	let nftId: number = $state(0);
+	let withNft: any = $state();
+	let selectedNft = $state('');
 
 	const setAddress = async (): Promise<void> => {
 		const { signer, ...contracts } = await initializeContracts($wallet?.provider);
@@ -84,9 +94,57 @@
 		}));
 	};
 
-	$: if (userAddress && storage) {
-		readStakeStats();
+	$effect(() => {
+		if (userAddress && storage) {
+			readStakeStats();
+		}
+	});
+	const readUserNfts = async () => {
+		if (!nft) {
+			return;
+		}
+		const bigNfts = await nft.tokensOfOwner(userAddress);
+		userNfts = bigNfts.map((n: string) => parseInt(n));
+		nftId = userNfts[0];
+	};
+
+	async function fetchBalance() {
+		if (userAddress && token) {
+			try {
+				balance = await token.balanceOf(userAddress);
+			} catch (error) {
+				console.error('Error fetching balance:', error);
+				balance = 0n;
+			}
+		}
 	}
+
+	$effect(() => {
+		if (token && userAddress) {
+			fetchBalance();
+		}
+	});
+
+	async function setMax() {
+		amount = ethers.formatUnits(balance);
+	}
+
+	$effect(() => {
+		if (nft && userAddress) {
+			readUserNfts();
+		}
+	});
+
+	$effect(() => {
+		withNft = selectedNft !== '';
+	});
+
+	let isStaking = $state(false);
+	const stake = async (): Promise<void> => {
+		isStaking = true;
+		await stakeHelper(amount, nftId, withNft, staking!, nft!, token!, programId);
+		isStaking = false;
+	};
 
 	const unstakeHandler = async (id: bigint): Promise<void> => {
 		if (!staking) {
@@ -97,7 +155,7 @@
 		}
 	};
 
-	let expandedIndex: number | null = null;
+	let expandedIndex: number | null = $state(null);
 	const toggleStakeDetails = (index: number) => {
 		expandedIndex = expandedIndex === index ? null : index;
 	};
@@ -137,8 +195,8 @@
 								role="button"
 								tabindex="0"
 								class="flex justify-between items-center cursor-pointer"
-								on:click={() => toggleStakeDetails(index)}
-								on:keydown={(e) => e.key === 'Enter' && toggleStakeDetails(index)}
+								onclick={() => toggleStakeDetails(index)}
+								onkeydown={(e) => e.key === 'Enter' && toggleStakeDetails(index)}
 							>
 								<span class="font-medium inline-flex items-center">
 									{#if stake.claimed}

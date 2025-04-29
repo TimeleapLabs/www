@@ -4,13 +4,14 @@
 	import { slide } from 'svelte/transition';
 	import { page } from '$app/state';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
+
 	type NavEntry = { href: string; title: string; nav?: NavEntry[] };
 
-	let { unwind = false, nav }: { unwind: boolean; nav: NavEntry } = $props();
+	let { unwind = false, nav }: { unwind?: boolean; nav: NavEntry } = $props();
 
-	let open = false;
-	let partialMatch = false;
-	let match = false;
+	let open = $state(false);
+	let partialMatch = $state(false);
+	let match = $state(false);
 
 	const toggle = () => {
 		open = !open;
