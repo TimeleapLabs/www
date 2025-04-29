@@ -31,10 +31,14 @@
 	onMount(() => {
 		const contentSection = document.querySelector('.section');
 		if (contentSection) {
-			headings = Array.from(contentSection.querySelectorAll('h2, h3')).map((el) => ({
-				id: el.id || el.textContent?.replace(/\s+/g, '-').toLowerCase() || '',
-				text: el.textContent || ''
-			}));
+			headings = Array.from(
+				contentSection.querySelectorAll('h2, h3:not(.no-index h2):not(.no-index h3)')
+			)
+				.filter((el) => !el.closest('.no-index'))
+				.map((el) => ({
+					id: el.id || el.textContent?.replace(/\s+/g, '-').toLowerCase() || '',
+					text: el.textContent || ''
+				}));
 		}
 
 		const onScroll = () => {

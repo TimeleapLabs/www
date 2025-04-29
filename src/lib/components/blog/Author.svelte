@@ -18,7 +18,7 @@
 </script>
 
 {#if authors[author]}
-	<div class="flex items-center gap-4 mt-8">
+	<div class="flex items-center gap-4 mt-8 no-index">
 		<img src={authors[author].avatar} alt={authors[author].name} class="w-12 h-12 rounded-full" />
 		<div>
 			<h3 class="font-bold">{authors[author].name}</h3>
