@@ -5,7 +5,7 @@
 	let el: HTMLElement;
 	let index = 0;
 	let position = 0;
-	let { containerClass = '' } = $props();
+	let { children, containerClass = '', class: className = '', ...restProps } = $props();
 
 	const lastChildInView = () => {
 		const lastChild = el.children[el.children.length - 1];
@@ -40,10 +40,11 @@
 		class="outer relative overflow-auto snap-x snap-mandatory scroll-smooth scrollbar-hidden py-4"
 	>
 		<div
-			class="transition-transform ease-out duration-300 flex {$$props.class || ''}"
+			class={`transition-transform ease-out duration-300 flex ${className}`}
 			bind:this={el}
+			{...restProps}
 		>
-			<slot></slot>
+			{@render children?.()}
 		</div>
 	</div>
 

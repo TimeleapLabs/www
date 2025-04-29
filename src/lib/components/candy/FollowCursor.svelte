@@ -64,7 +64,11 @@
 		listener({ clientX: 0, clientY: 0 } as MouseEvent);
 	};
 
-	$: if (canvas) draw();
+	$effect(() => {
+		if (canvas) {
+			draw();
+		}
+	});
 
 	onMount(() => {
 		return () => {

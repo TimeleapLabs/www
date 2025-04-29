@@ -73,7 +73,9 @@
 		return ethers.formatUnits(amount, 18).replace(/(\.\d{2})\d+/, '$1');
 	};
 
-	$: if ($wallet?.provider) setAddress();
+	$effect(() => {
+		if ($wallet?.provider) setAddress();
+	});
 
 	const readStakeStats = async (): Promise<void> => {
 		if (!storage || !userAddress) {

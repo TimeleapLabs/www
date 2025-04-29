@@ -1,5 +1,5 @@
 <script lang="ts">
-	let {
+	let { children,
 		label,
 		id,
 		value = '',
@@ -20,7 +20,7 @@
 </script>
 
 <div class="flex flex-col gap-4">
-	<label for={id} class="text-white text-lg font-semibold">{label} <slot></slot></label>
+	<label for={id} class="text-white text-lg font-semibold">{label} {@render children?.()}</label>
 	<p class="text-sm text-zinc-400">{helperText}</p>
 
 	<div class="relative w-full bg-zinc-800 border border-zinc-500 rounded-2xl shadow-md">
@@ -30,7 +30,7 @@
 			type="button"
 			aria-haspopup="true"
 			aria-expanded={isOpen}
-			on:click={toggleDropdown}
+			onclick={toggleDropdown}
 		>
 			{#if value}
 				<span>{options.find((option) => option.value === value)?.label || placeholder}</span>
@@ -55,7 +55,7 @@
 					{#each options as option}
 						<button
 							class={`w-full text-left px-4 py-2 rounded-2xl hover:bg-opacity-80 ${option.color ? option.color : 'hover:bg-zinc-600'}`}
-							on:click={() => {
+							onclick={() => {
 								value = option.value;
 								closeDropdown();
 							}}

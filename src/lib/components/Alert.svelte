@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Card } from '@timeleap/ui';
+	import type { Snippet } from 'svelte';
 
 	const icons = {
 		draft: '✍️',
@@ -28,7 +29,8 @@
 		danger: 'text-red-200'
 	};
 
-	let { type, title }: { type: keyof typeof icons; title: string } = $props();
+	let { children, type, title }: { children: Snippet; type: keyof typeof icons; title: string } =
+		$props();
 </script>
 
 <Card
@@ -44,7 +46,7 @@
 		<h5 class="font-semibold">{title}</h5>
 	</div>
 	<div class="mt-2 text-sm text-zinc-300">
-		<slot></slot>
+		{@render children?.()}
 	</div>
 </Card>
 

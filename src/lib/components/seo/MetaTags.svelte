@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { ogImage } from '$lib/seo/client';
 
 	let {
@@ -11,7 +11,7 @@
 	} = $props();
 
 	const ogImageUrl = image ?? ogImage(ogImageText, ogImageFontSize);
-	const url = 'https://timeleap.swiss' + $page.url.pathname;
+	const url = 'https://timeleap.swiss' + page.url.pathname;
 </script>
 
 <svelte:head>

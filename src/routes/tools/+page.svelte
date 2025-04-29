@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import WalletTools from '$lib/components/tools/WalletTools.svelte';
@@ -10,10 +12,10 @@
 	import { wallet } from '$lib/stores/wallet';
 	import { onMount } from 'svelte';
 
-	let balance: bigint;
-	let unitPrice: number;
-	let staked: bigint;
-	let checksumAddress: string;
+	let balance: bigint = $state(0n);
+	let unitPrice: number = $state(0);
+	let staked: bigint = $state(0n);
+	let checksumAddress: string = $state('');
 
 	const formatCurrency = (n: string | bigint | number, unit = '') => {
 		return unit + formatThousands(trimDecimals(n), ',');
@@ -36,11 +38,11 @@
 		return num.replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 	};
 
-	$: balanceDisplay = toKenshi(balance || 0n);
-	$: stakedDisplay = toKenshi(staked || 0n);
+	let balanceDisplay = $derived(toKenshi(balance || 0n));
+	let stakedDisplay = $derived(toKenshi(staked || 0n));
 
-	$: usdBalanceDisplay = balance && unitPrice ? toUsd(balance) : 0n;
-	$: usdStakedDisplay = staked && unitPrice ? toUsd(staked) : 0n;
+	let usdBalanceDisplay = $derived(balance && unitPrice ? toUsd(balance) : 0n);
+	let usdStakedDisplay = $derived(staked && unitPrice ? toUsd(staked) : 0n);
 
 	const kenshiAddr = '0xf1264873436A0771E440E2b28072FAfcC5EEBd01';
 	const stakeAddr = '0xE894BD5Ec531EC8AAe856AFC3E0Fc948Ab22Efb4';
@@ -67,11 +69,13 @@
 		staked = await contract.balanceOf(stakeAddr);
 	};
 
-	$: if ($wallet?.provider) onWallet();
-	$: {
+	$effect(() => {
+		if ($wallet?.provider) onWallet();
+	});
+	$effect(() => {
 		if (ethers.isAddress(checksumAddress)) updateValues();
 		else balance = 0n;
-	}
+	});
 	onMount(() => {
 		updatePrice();
 		const priceInterval = setInterval(updatePrice, 5 * 60 * 1000);
@@ -83,7 +87,7 @@
 	});
 </script>
 
-<Navbar active="none"></Navbar>
+<Navbar backButton active="none"></Navbar>
 
 <Section class="md:p-10 p-2">
 	<h2 class="relative py-5 md:top-10 top-13 text-white font-serif text-5xl">Timeleap Tools</h2>

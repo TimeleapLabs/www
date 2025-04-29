@@ -2,7 +2,7 @@
 	import { Card, Button } from '@timeleap/ui';
 	import { ArrowRight } from 'lucide-svelte';
 
-	let { title, href, color = 'sky', video = '', image = '' } = $props();
+	let { children, title, href, color = 'sky', video = '', image = '' } = $props();
 
 	const colorToGradientMap = {
 		red: 'from-red-600 to-red-900',
@@ -26,7 +26,7 @@
 	<div class="relative z-10">
 		<h3 class="font-serif text-5xl leading-snug mt-4">{title}</h3>
 		<p class="mt-8 flex-1 text-zinc-100 md:w-2/3">
-			<slot />
+			{@render children?.()}
 		</p>
 		<div class="mt-16">
 			<Button class="bg-green-400 text-black hover:bg-green-300 font-medium" animate {href}>
