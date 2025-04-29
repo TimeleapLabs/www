@@ -5,11 +5,11 @@
 	import { fade } from 'svelte/transition';
 	import { Mail } from 'lucide-svelte';
 
-	let email = '';
-	let showSubscribe = true;
-	let disabled: boolean | undefined = undefined;
+	let email = $state('');
+	let showSubscribe = $state(true);
+	let disabled = $state<boolean | undefined>(undefined);
 
-	let { topic = 'newsletter' }: { topic: Topic } = $props();
+	let { topic = 'newsletter', class: className = '' }: { topic: Topic; class?: string } = $props();
 
 	const handleSubscribe = () => {
 		if (!email) {
@@ -36,10 +36,7 @@
 
 {#if showSubscribe}
 	<div transition:fade>
-		<Card
-			class="{$$props.class ||
-				''} text-white flex flex-col gap-8 pb-10! border border-zinc-800 mx-8"
-		>
+		<Card class={`${className} text-white flex flex-col gap-8 pb-10! border border-zinc-800 mx-8`}>
 			<Grid
 				extraLargeScreenColumns={3}
 				largeScreenColumns={3}

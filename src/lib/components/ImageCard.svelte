@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Card } from '@timeleap/ui';
 
-	let { src = '', alt = '', imageClass = '', class: additionalClass = '' } = $props();
+	let { children, src = '', alt = '', imageClass = '', class: additionalClass = '' } = $props();
 </script>
 
 <Card
@@ -15,7 +15,7 @@
 		/>
 	</div>
 	<div class="w-full h-full z-10 relative p-4">
-		<slot></slot>
+		{@render children?.()}
 	</div>
 </Card>
 

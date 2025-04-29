@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { copyToClipboard } from '$lib/clipboard';
 	import toast from 'svelte-french-toast';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	let el: HTMLElement;
 
@@ -13,7 +18,7 @@
 <button
 	class="rounded font-mono px-1 text-gray-200 text-sm bg-zinc-800 border border-zinc-400 hover:cursor-copy inline"
 	bind:this={el}
-	on:click={copyCode}
+	onclick={copyCode}
 >
-	<slot></slot>
+	{@render children?.()}
 </button>

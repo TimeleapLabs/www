@@ -8,13 +8,23 @@
 	import AxisX from './AxisX.svelte';
 	import AxisY from './AxisY.svelte';
 
-	export let data: any[] = [];
 
-	export let xKey;
-	export let yKey;
 
-	export let seriesNames = Object.keys(data[0]).filter((d) => d !== xKey);
-	export let yDomain = [...new Set(data.map((d) => d[yKey]))];
+	interface Props {
+		data?: any[];
+		xKey: any;
+		yKey: any;
+		seriesNames?: any;
+		yDomain?: any;
+	}
+
+	let {
+		data = [],
+		xKey,
+		yKey,
+		seriesNames = Object.keys(data[0]).filter((d) => d !== xKey),
+		yDomain = [...new Set(data.map((d) => d[yKey]))]
+	}: Props = $props();
 
 	data.forEach((d) => {
 		seriesNames.forEach((name) => {

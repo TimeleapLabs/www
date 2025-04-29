@@ -17,18 +17,18 @@
 	import TiltImage from '$lib/components/TiltImage.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/docs/nav';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { persisted } from 'svelte-persisted-store';
 	import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-svelte';
 
 	const readable = persisted('readable', false);
-	const nav = getNavForPage($page.url.pathname);
+	const nav = getNavForPage(page.url.pathname);
 
 	('$IMPORTS');
 </script>
 
 <MetaTags title={'Timeleap — $TITLE'} description="$DESCRIPTION" $OG />
-<Navbar active="docs"></Navbar>
+<Navbar backButton active="docs"></Navbar>
 
 <Section
 	class="w-full max-w-[1920px] mx-auto pt-20 md:pt-36 gap-8! px-4 md:px-16 xxl:px-0 text-white flex-1"
@@ -55,7 +55,7 @@
 				$CONTENT
 			</div>
 
-			<Feedback pageId={$page.url.pathname.slice(1).replaceAll('/', '__')} />
+			<Feedback pageId={page.url.pathname.slice(1).replaceAll('/', '__')} />
 
 			{#if nav.next || nav.prev}
 				<div class="mt-8 mb-16 flex gap-4 justify-between w-full">

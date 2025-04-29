@@ -9,52 +9,54 @@
 	import { onMount } from 'svelte';
 
 	let {
-		checksumAddress = undefined,
+		checksumAddress = $bindable(),
 		balanceDisplay,
 		usdBalanceDisplay,
 		stakedDisplay,
 		usdStakedDisplay
 	} = $props();
 
-	let userAddress: string | undefined;
-	let isAddressValid: boolean = true;
-	let manuallySet: boolean = true;
+	let userAddress: string | undefined = $state();
+	let isAddressValid: boolean = $state(true);
+	let manuallySet: boolean = $state(true);
 
-	$: if (browser) {
-		const url = new URL(window.location.href);
+	$effect(() => {
+		if (browser) {
+			const url = new URL(window.location.href);
 
-		if ($wallet?.accounts) {
-			userAddress = $wallet.accounts[0].address;
-			manuallySet = false;
-		} else if (!$wallet && !manuallySet) {
-			userAddress = undefined;
-			manuallySet = true;
-		}
+			if ($wallet?.accounts) {
+				userAddress = $wallet.accounts[0].address;
+				manuallySet = false;
+			} else if (!$wallet && !manuallySet) {
+				userAddress = undefined;
+				manuallySet = true;
+			}
 
-		if (userAddress) {
-			try {
-				const address = ethers.getAddress(userAddress?.toLowerCase());
-				ethers.isAddress(address);
-				checksumAddress = address;
-				url.searchParams.set('address', checksumAddress);
-				isAddressValid = true;
-			} catch {
+			if (userAddress) {
+				try {
+					const address = ethers.getAddress(userAddress?.toLowerCase());
+					ethers.isAddress(address);
+					checksumAddress = address;
+					url.searchParams.set('address', checksumAddress);
+					isAddressValid = true;
+				} catch {
+					url.searchParams.delete('address');
+					checksumAddress = undefined;
+					isAddressValid = false;
+				} finally {
+					window.history.replaceState({}, '', url);
+				}
+			} else {
 				url.searchParams.delete('address');
 				checksumAddress = undefined;
-				isAddressValid = false;
-			} finally {
-				window.history.replaceState({}, '', url);
+				isAddressValid = true;
 			}
-		} else {
-			url.searchParams.delete('address');
-			checksumAddress = undefined;
-			isAddressValid = true;
 		}
-	}
-	onMount(() => {
-		const url = new URL(window.location.href);
-		const address = url.searchParams.get('address');
-		if (address) userAddress = address;
+		onMount(() => {
+			const url = new URL(window.location.href);
+			const address = url.searchParams.get('address');
+			if (address) userAddress = address;
+		});
 	});
 </script>
 

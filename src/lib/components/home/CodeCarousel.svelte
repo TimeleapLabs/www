@@ -12,10 +12,10 @@
 	const MAX_SECONDS = 9;
 
 	type Page = 'ai' | 'parallelize';
-	let page: Page = 'ai';
-	let seconds: number = MAX_SECONDS;
+	let page: Page = $state('ai');
+	let seconds: number = $state(MAX_SECONDS);
 	let stopTicking = false;
-	let pauseTicking = false;
+	let pauseTicking = $state(false);
 
 	const nextPage = () => {
 		page = page === 'ai' ? 'parallelize' : 'ai';
@@ -51,8 +51,8 @@
 </script>
 
 <div
-	on:mouseenter={setPauseTicking(true)}
-	on:mouseleave={setPauseTicking(false)}
+	onmouseenter={setPauseTicking(true)}
+	onmouseleave={setPauseTicking(false)}
 	role="doc-example"
 	class="text-white h-full"
 >

@@ -2,14 +2,14 @@
 	import { Card } from '@timeleap/ui';
 	import { tiltAndGlow } from '$lib/utils/tilt';
 
-	let { class: containerClass = '', strength = 1, ...restProps } = $props();
+	let { children, class: containerClass = '', strength = 1, ...restProps } = $props();
 </script>
 
 <div class="container {containerClass}">
 	<div class="card w-full h-full overflow-hidden" use:tiltAndGlow={{ strength }}>
 		<div class="glow absolute top-0 left-0 w-full h-full pointer-events-none z-10"></div>
 		<Card {...restProps} class={containerClass || ''}>
-			<slot></slot>
+			{@render children?.()}
 		</Card>
 	</div>
 </div>

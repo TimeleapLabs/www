@@ -5,6 +5,11 @@
 	import { Button } from '@timeleap/ui';
 	import { Wallet as WalletIcon } from 'lucide-svelte';
 	import { onMount } from 'svelte';
+	interface Props {
+		[key: string]: any
+	}
+
+	let { ...props }: Props = $props();
 
 	const connect = async (): Promise<void> => {
 		if ($wallet?.provider) {
@@ -26,7 +31,7 @@
 	};
 </script>
 
-<Button class={$$props.class || ''} on:click={connect}>
+<Button class={props.class || ''} on:click={connect}>
 	{#if $wallet?.provider}
 		<span class="text-zinc-400">{formatWalletAddress($wallet)}</span> — <span>Disconnect</span>
 	{:else}

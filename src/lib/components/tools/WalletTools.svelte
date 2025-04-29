@@ -75,7 +75,7 @@
 			<Button
 				href={link?.url}
 				target="_blank"
-				on:click={link?.action}
+				onclick={link?.action}
 				class="bg-zinc-800 hover:bg-zinc-700 grow"
 			>
 				<svelte:component this={link.icon} size={'1em'} />

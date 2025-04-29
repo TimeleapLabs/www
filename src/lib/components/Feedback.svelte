@@ -40,7 +40,7 @@
 		{#each emojis as { emoji, name }}
 			<button
 				class="p-1 flex items-center px-4 rounded-full bg-zinc-800 hover:bg-zinc-700 focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer"
-				on:click={sendFeedback(name)}
+				onclick={sendFeedback(name)}
 			>
 				{emoji}
 				{#if feedbacks[name]}
