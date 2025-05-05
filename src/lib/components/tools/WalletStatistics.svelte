@@ -52,11 +52,11 @@
 				isAddressValid = true;
 			}
 		}
-		onMount(() => {
-			const url = new URL(window.location.href);
-			const address = url.searchParams.get('address');
-			if (address) userAddress = address;
-		});
+	});
+	onMount(() => {
+		const url = new URL(window.location.href);
+		const address = url.searchParams.get('address');
+		if (address) userAddress = address;
 	});
 </script>
 

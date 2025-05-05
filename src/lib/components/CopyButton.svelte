@@ -5,7 +5,7 @@
 
 	let { toCopy } = $props();
 
-	let state: null | boolean;
+	let state: null | boolean = $state(false);
 
 	const copyToClipboard = async (text: string) => {
 		try {
