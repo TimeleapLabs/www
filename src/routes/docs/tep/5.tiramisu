@@ -2,7 +2,7 @@ title { TEP-5: Subnet Governance and Operation, size = 1 }
 
 tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
-  status = draft,
+  status = accepted,
   type = process,
   createdAt = 2025-04-22
 }
