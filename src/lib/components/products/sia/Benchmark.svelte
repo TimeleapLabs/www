@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BarStacked from '$lib/components/charts/bar-stacked/BarStacked.svelte';
-	import { Card } from '@timeleap/ui';
+	import type { BenchmarkResult } from '$lib/utils/types';
 
 	const serialization = [
 		{ value: 92, name: 'JSON' },
@@ -15,7 +15,7 @@
 		{ value: 261, name: 'MsgPack' }
 	];
 
-	const data = [
+	const data: BenchmarkResult[] = [
 		{ name: 'JSON', serialization: 92, deserialization: 417 },
 		{ name: 'Sia', serialization: 614, deserialization: 533 },
 		{ name: 'CBOR', serialization: 286, deserialization: 287 },

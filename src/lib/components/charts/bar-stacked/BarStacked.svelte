@@ -7,8 +7,9 @@
 	import Chart from './Chart.svelte';
 	import AxisX from './AxisX.svelte';
 	import AxisY from './AxisY.svelte';
+	import type { BenchmarkResult } from '$lib/utils/types';
 
-	export let data: any[] = [];
+	export let data: BenchmarkResult[] = [];
 
 	export let xKey;
 	export let yKey;
@@ -22,8 +23,13 @@
 		});
 	});
 
+	const transformedData = data.map((d) => ({
+		serialization: d.serialization,
+		deserialization: d.deserialization
+	}));
+
 	const stackData = stack().keys(seriesNames);
-	const series = stackData(data);
+	const series = stackData(transformedData);
 
 	const formatLabelX = (d) => format(`~s`)(d);
 </script>

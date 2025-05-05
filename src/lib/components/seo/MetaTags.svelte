@@ -26,12 +26,12 @@
 	<meta property="og:url" content={url} />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
-	{@html `<meta property="og:image" content="${ogImageUrl}" />`}
+	<meta property="og:image" content={ogImageUrl} />
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:url" content={url} />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
-	{@html `<meta name="twitter:image" content="${ogImageUrl}" />`}
+	<meta name="twitter:image" content={ogImageUrl} />
 </svelte:head>
