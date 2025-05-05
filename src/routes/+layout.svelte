@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import 'unfonts.css';
 
 	import { onNavigate } from '$app/navigation';
 	import { Toaster } from 'svelte-french-toast';
+
+	let { children } = $props();
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -18,7 +20,7 @@
 </script>
 
 <div class="flex min-h-full flex-col">
-	<slot />
+	{@render children?.()}
 </div>
 
 <Toaster />

@@ -119,10 +119,10 @@
 
 	let startSounds: () => void;
 	let stopSounds: () => void;
-	let muted: boolean = true;
-	let rain: boolean = false;
-	let snow: boolean = false;
-	let restartCount = 0;
+	let muted: boolean = $state(true);
+	let rain: boolean = $state(false);
+	let snow: boolean = $state(false);
+	let restartCount = $state(0);
 
 	const restartGame = () => {
 		restartCount++;
@@ -532,7 +532,7 @@
 					<div class="flex gap-2 items-center">
 						<button
 							class="p-1 mr-1 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
-							on:click={toggleSound}
+							onclick={toggleSound}
 						>
 							Sound
 							{#if muted}
@@ -543,17 +543,17 @@
 						</button>
 						<button
 							class="p-1 mr-2 flex items-center px-4 rounded-full transition-colors duration-300 ease-in-out text-xs focus:outline-none focus:ring focus:ring-gray-300 cursor-pointer hover:bg-zinc-700 bg-zinc-800 text-white"
-							on:click={restartGame}
+							onclick={restartGame}
 						>
 							Restart <RotateCcw size={'1em'} class="ml-2" />
 						</button>
 						<button
 							class="rounded-full bg-green-500 w-3 h-3 cursor-pointer"
-							on:click={toggleMaximize(res.fitAddon)}
+							onclick={toggleMaximize(res.fitAddon)}
 						></button>
-						<button class="rounded-full bg-yellow-500 w-3 h-3 cursor-pointer" on:click={minimize}
+						<button class="rounded-full bg-yellow-500 w-3 h-3 cursor-pointer" onclick={minimize}
 						></button>
-						<button class="rounded-full bg-red-500 w-3 h-3 cursor-pointer" on:click={closeGame}
+						<button class="rounded-full bg-red-500 w-3 h-3 cursor-pointer" onclick={closeGame}
 						></button>
 					</div>
 				</div>

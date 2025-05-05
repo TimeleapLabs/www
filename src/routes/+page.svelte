@@ -11,8 +11,8 @@
 	import { ArrowRight, Asterisk, Bitcoin, CpuIcon, Factory } from 'lucide-svelte';
 	import { useCases } from '$lib/content/use-cases';
 
-	let filter = 'all';
-	let scrollY = 0;
+	let filter = $state('all');
+	let scrollY = $state(0);
 
 	const getFilteredUseCases = (filter: string) =>
 		filter === 'all' ? useCases : useCases.filter((useCase) => useCase.tags.includes(filter));
@@ -22,7 +22,7 @@
 	};
 </script>
 
-<svelte:window on:scroll={() => (scrollY = window.scrollY)} />
+<svelte:window onscroll={() => (scrollY = window.scrollY)} />
 
 <MetaTags />
 

@@ -11,7 +11,7 @@ export const stakeHelper = async (
 	staking: ethers.Contract,
 	nft: ethers.Contract,
 	token: ethers.Contract,
-	programId: string | undefined
+	programId: string | null
 ): Promise<void> => {
 	if (!amount || !(ethers.parseUnits(amount) > 0)) {
 		toast.error('You need to stake more than 0 tokens!');
