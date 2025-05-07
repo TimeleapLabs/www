@@ -1,0 +1,222 @@
+title { TEP-6: Fee Mechanism, size = 1 }
+
+tep {
+  author = Pouya Eghbali <pouya@timeleap.swiss>,
+  status = draft,
+  type = process,
+  createdAt = 2025-05-07
+}
+
+title { Abstract, size = 2 }
+
+This proposal defines the gas, fee, and accounting mechanisms for the Timeleap
+Network. It introduces a standardized method for measuring computational work
+(gas), defines how the KNS utility token is used across the protocol, and
+establishes fee structures for subnetworks that use alternative tokens.
+
+TEP-6 also specifies the responsibilities and functionality of the Accounting
+Subnet, a protocol-level component used to track user balances, top-ups, and
+execution-linked billing. Together, these mechanisms ensure transparent,
+extensible, and regulation-compliant economic operations across all subnets,
+while preserving flexibility and incentivizing native token alignment.
+
+
+title { Motivation, size = 2 }
+
+As the Timeleap Network grows to support varied computation models and
+independent subnetworks, it requires a unified and enforceable economic system
+that ensures fair contribution, transparent billing, and regulatory compliance.
+
+Without standardized gas metrics, billing could become unpredictable and prone
+to abuse. Without consistent fee logic, subnet incentives may drift from network
+interests. And without a shared accounting layer, usage tracking and dispute
+resolution would be fragmented and unverifiable.
+
+TEP-6 addresses these concerns by:
+
+list {
+  items = [
+    Introducing a consistent gas model for measuring resource consumption
+    across different types of compute workloads.
+  ],
+  items = [
+    Formalizing the role of the KNS token as a protocol-level utility asset,
+    while allowing flexible monetization strategies at the subnet level.
+  ],
+  items = [
+    Defining licensing fees and surcharges based on subnet alignment with
+    native economic primitives, as introduced in TEP-5.
+  ],
+  items = [
+    Establishing the Accounting Subnet to ensure transparent, verifiable,
+    and dispute-resilient usage metering.
+  ]
+}
+
+This design protects users, incentivizes KNS adoption, supports developer
+flexibility, and aligns with FINMA guidelines for utility tokens.
+
+
+title { Specification, size = 2 }
+
+This section defines the technical and economic specifications for the fee
+mechanism introduced in this proposal. It includes the definition of gas as a
+unit of computation, the role of the KNS utility token in protocol-level access
+and fee alignment, the licensing and surcharge structure for subnet monetization,
+and the design of the Accounting Subnet used to track balances, usage, and
+billing integrity across the network.
+
+title { Gas Definition, size = 3 }
+
+Gas is the unit of measurement for computational work performed on the Timeleap
+Network. It quantifies the amount of resources such as CPU time, memory usage,
+network bandwidth, or storage access consumed by a given function or transaction
+executed within a subnet.
+
+Each operation on the network incurs a gas cost based on its complexity. This
+cost is used to calculate the total fee paid by the user. Fees are charged
+upfront from user-held balances managed by a dedicated accounting subnet that
+tracks top-ups and consumption. All gas usage is cryptographically linked to
+signed user requests and verifiable execution outputs.
+
+While the method for calculating gas may vary between subnets depending on the
+services or plugins they host (for example, LLM inference, file transformation,
+or custom code execution), the underlying accounting model is standardized
+across the network. This enables unified billing, auditing, and enforcement of
+economic rules defined in TEP-5 and TEP-6.
+
+title { Gas Token, size = 3 }
+
+KNS is the native utility token of the Timeleap Network and the foundational
+access mechanism to protocol-level functionality. It is required for subnet
+onboarding, governance participation, staking, and interaction with the core
+Timeleap infrastructure such as routing, telemetry, and billing. In compliance
+with FINMA definition of a utility token, KNS provides access rights and
+governance functionality but does not offer passive income, returns, or
+investment gains.
+
+All subnets are required to stake KNS to gain entry to the network and are
+subject to slashing in cases of misconduct or rule violations. The staking model
+is designed to enforce accountability, align incentives, and support the
+integrity of the ecosystem.
+
+While KNS is required for access to Timeleap infrastructure, subnets are not
+strictly required to accept KNS as the user-facing gas token for computational
+services. Each subnet may define its own monetization model and accept payment
+in alternative tokens or currencies. However, to ensure fair contribution to the
+ecosystem, subnets must still remit the bold { baseline 3% licensing fee }
+defined in TEP-5, and may incur bold { additional surcharges } depending on the
+level of alignment with the KNS token:
+
+list {
+  items = [
+    Subnets accepting bold { KNS only }: bold { 0% additional fee }
+  ],
+  items = [
+    Subnets accepting bold { low-risk assets } (ETH, BTC, USDT, USDC, fiat):
+    bold { +3% additional fee }
+  ],
+  items = [
+    Subnets accepting bold { high-risk or unverified assets }:
+    bold { +7% additional fee }, unless negotiated
+  ]
+}
+
+This model balances flexibility and compliance: it allows subnet operators to
+design their own economic models while encouraging use of the KNS token to
+maintain systemic cohesion. All fees are paid to the Timeleap Network treasury
+and are used to fund continued protocol development, operational security, and
+infrastructure maintenance.
+
+This structure supports Timeleap's long-term sustainability and ecosystem health
+while ensuring KNS remains a core utility token under Swiss regulatory guidance.
+
+title { Accounting Subnet, size = 3 }
+
+The Accounting Subnet is a protocol-level service that tracks user balances,
+top-ups, and usage across all computational subnets. It provides standardized
+functions for crediting and debiting user accounts, ensuring consistent and
+verifiable billing behavior.
+
+All subnets are responsible for accepting and managing top-ups from users in
+accordance with the legal and regulatory frameworks applicable in their
+jurisdiction. The Accounting Subnet does not handle fiat payments or enforce
+regional compliance; rather, it acts as a transparent and auditable ledger of
+usage and balance.
+
+Two primary functions are provided:
+
+list {
+  items = [
+    bold { credit }: accepts user address, token or currency type,
+    amount, and other parameters (TBD). Used by subnets to register
+    incoming top-ups.
+  ],
+  items = [
+    bold { debit }: accepts user address, task type, fee amount, currency,
+    and a signed payload. Fails if the signature is invalid, the fee charged
+    exceeds the user's maximum allowed fee, or the user does not have enough
+    balance.
+  ]
+}
+
+Additional functions such as withdraw, refund, or transfer may be introduced in
+future TEPs.
+
+Subnets may choose not to use the Accounting Subnet or to operate a hybrid model
+that combines their own ledger with the Accounting Subnet. In either case, they
+are required to submit a monthly accounting report to Timeleap in the format
+defined by the protocol (to be published separately). Failure to submit timely
+or accurate records may result in penalties, including fines, suspension from
+plugin access, or temporary delisting.
+
+All accounting records must be timestamped and signed to ensure auditability.
+User dispute resolution mechanisms must be available to investigate billing
+discrepancies. In case of verified abuse or misreporting, subnet stakes may be
+slashed under the governance policies defined in TEP-5.
+
+The Accounting Subnet is modular and upgradeable, with future enhancements
+governed via new TEPs to ensure ecosystem-wide alignment.
+
+
+title { Rationale, size = 2 }
+
+The Timeleap Network's architecture encourages subnet autonomy, plugin
+diversity, and decentralized service provisioning. However, this freedom must be
+balanced with protocol-wide consistency and accountability.
+
+By separating fee enforcement from token enforcement, this TEP allows subnets to
+serve users in any currency while still contributing fairly to the Timeleap
+ecosystem. The surcharge model ensures that native token usage is incentivized
+but not enforced, preserving both regulatory clarity and developer freedom.
+
+The Accounting Subnet serves as a critical protocol primitive: it enables
+subnets to enforce task-level billing, while enabling Timeleap to track
+aggregate usage, audit compliance, and resolve disputes. It also creates a
+foundation for future ecosystem services such as user dashboards, usage-based
+subscriptions, or token-based access tiers.
+
+This design embraces diversity in execution models, while maintaining economic
+alignment and legal defensibility across the network.
+
+
+title { Backwards Compatibility, size = 2 }
+
+This TEP is backwards compatible with the existing Timeleap Network as it only
+affects how the network is managed and governed. All existing features and
+functionalities of the Timeleap Network will remain the same.
+
+title { Reference Implementation, size = 2 }
+
+N/A
+
+title { References, size = 2 }
+
+N/A
+
+meta {
+  description = "TEP-6 defines the Timeleap Network's fee mechanism, including its gas model, use of the KNS utility token, licensing and surcharge rules for subnet monetization, and the design of the Accounting Subnet for protocol-level billing and verification.",
+  ogImageText = [TEP 6:, Fee Mechanism],
+  ogImageFontSize = 24
+}
+
