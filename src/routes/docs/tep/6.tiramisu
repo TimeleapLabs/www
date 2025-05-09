@@ -153,9 +153,15 @@ list {
     incoming top-ups.
   ],
   items = [
-    bold { debit }: accepts user address, task type, fee amount, currency,
+    bold { debit }: accepts user address, task, fee amount, currency,
     and a signed payload. Fails if the signature is invalid, the fee charged
     exceeds the user's maximum allowed fee, or the user does not have enough
+    balance.
+  ],
+  items = [
+    bold { rollback }: accepts user address, task, fee amount, currency,
+    and a signed payload. Used to reverse a debit operation in case of
+    miscalculation or error. Requires a valid signature and sufficient
     balance.
   ]
 }
