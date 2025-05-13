@@ -13,8 +13,7 @@
 		}
 	};
 
-	export let author: keyof typeof authors;
-	export let createdAt: string;
+	let { author, createdAt }: { author: keyof typeof authors; createdAt: string } = $props();
 </script>
 
 {#if authors[author]}

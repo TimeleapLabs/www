@@ -1,8 +1,15 @@
 <script lang="ts">
-	export let title: string;
-	export let description: string;
-	export let headers: { key: string; value: string }[] = [];
-	export let rows: { [key: string]: unknown; id: string }[] = [];
+	let {
+		title,
+		description,
+		headers = [],
+		rows = []
+	}: {
+		title: string;
+		description: string;
+		headers: { key: string; value: string }[];
+		rows: { [key: string]: unknown; id: string }[];
+	} = $props();
 </script>
 
 <div class="rounded-xl bg-zinc-900 shadow-sm">

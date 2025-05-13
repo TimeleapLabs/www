@@ -7,10 +7,10 @@
 
 	const { data, xGet, yGet, yScale } = getContext('LayerCake');
 
-	$: columnWidth = (d) => {
+	let columnWidth = $derived((d) => {
 		const xVals = $xGet(d);
 		return xVals[1] - xVals[0];
-	};
+	});
 
 	const gradients = [
 		{ from: 'color-green-500', to: 'color-green-600' },
