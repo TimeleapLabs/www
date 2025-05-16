@@ -1,0 +1,128 @@
+title { TEP-7: Streaming Support in Timeleap RPC, size = 1 }
+
+tep {
+  author = Pouya Eghbali <pouya@timeleap.swiss>,
+  status = draft,
+  type = process,
+  createdAt = 2025-05-16
+}
+
+title { Abstract, size = 2 }
+
+This document proposes an extension to the Timeleap RPC protocol to support
+streamed responses. The current request-response model marks a request as
+complete upon the first response. This TEP introduces a new opcode inlineCode { Stream },
+which allows returning data in multiple chunks while keeping the request
+alive until a final result or status is sent through the normal return
+mechanism.
+
+title { Motivation, size = 2 }
+
+The current RPC protocol in the Timeleap network only supports single-response
+semantics. This limitation makes it difficult to serve large payloads or
+long-running computations, especially when intermediate results can be useful
+to the client. 
+
+Supporting streamed responses allows the network to:
+
+list {
+  items = [
+    bold { Deliver partial responses }: Useful when dealing with large datasets
+    or real-time data.
+  ],
+  items = [
+    bold { Terminate early on failure }: Servers can end the stream with a
+    failure response through the normal RPC return.
+  ],
+  items = [
+    bold { Reduce memory pressure }: Clients can process results incrementally
+    instead of waiting for a full response.
+  ],
+  items = [
+    bold { Preserve status semantics }: Final outcome (success or failure) is
+    still returned as a standard RPC response after the stream ends.
+  ]
+}
+
+This streaming mechanism is particularly valuable for AI and ML applications.
+In the current Timeleap AI plugin, inference jobs such as text-to-image,
+image-to-image, or language model (LLM) generation benefit significantly from
+the ability to stream tokens or intermediate outputs as they are produced.
+
+
+title { Specification, size = 2 }
+
+This section defines the proposed changes to the RPC protocol to support
+streaming.
+
+title { Stream Opcode, size = 3 }
+
+A new opcode inlineCode { Stream } is introduced to send chunks of data during an active
+RPC call, without terminating the request.
+
+code {
+  language = "go",
+  content = """
+  type StreamMessage struct {
+    UUID  [16]byte // Identifies the original request and routes the chunk
+    Chunk []byte   // Payload to deliver
+  }
+  """
+}
+
+Each inlineCode { Stream } opcode carries a inlineCode { UUID } field, which maps the chunk to the
+corresponding user socket or session in the broker. This ensures the broker
+can route the stream data to the correct destination.
+
+Multiple inlineCode { Stream } messages can be sent during the lifetime of an RPC call.
+The stream ends when the handler returns a final result via the normal
+inlineCode { Return } opcode, or a failure is raised. The request is only considered
+"complete" when this final message is sent.
+
+title { Use Cases, size = 3 }
+
+list {
+  items = [
+    bold { Paginated queries }: Fetching large result sets across multiple pages.
+  ],
+  items = [
+    bold { Real-time metrics }: Streaming logs or status updates as they happen.
+  ],
+  items = [
+    bold { Blob or file delivery }: Transferring large files or datasets chunk by chunk.
+  ],
+  items = [
+    bold { Long computations }: Returning intermediate results before finalization.
+  ]
+}
+
+title { Rationale, size = 2 }
+
+The decision to keep inlineCode { StreamMessage } simple — with only a inlineCode { UUID } and a
+inlineCode { Chunk } — ensures minimal overhead and easy routing. Since the lifecycle
+of a stream is already tied to the RPC call, there is no need for extra flags
+to indicate termination or success. 
+
+This design keeps the protocol clean and consistent: the inlineCode { Stream } opcode is
+purely for intermediate transmission, while the normal inlineCode { Return } or error
+opcode finalizes the request, just like in current implementations.
+
+title { Backwards Compatibility, size = 2 }
+
+The streaming extension is not backward compatible. Timeleap RPC is a
+versioned protocol, and support for the inlineCode { Stream } opcode is only
+available starting from the version in which this TEP is implemented.
+
+title { Reference Implementation, size = 2 }
+
+Pending
+
+title { References, size = 2 }
+
+N/A
+
+meta {
+  description = "This document proposes a new streaming capability for the Timeleap RPC protocol via a Stream opcode, allowing partial results and final statuses to be returned incrementally.",
+  ogImageText = [TEP 7:, Streaming RPC, Timeleap],
+  ogImageFontSize = 24
+}

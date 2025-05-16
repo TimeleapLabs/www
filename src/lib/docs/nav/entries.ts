@@ -64,6 +64,10 @@ export const entries = [
     "title": "Timeleap Enhancement Proposals"
   },
   {
+    "href": "/docs/tep/7",
+    "title": "TEP-7: Streaming Support in Timeleap RPC"
+  },
+  {
     "href": "/docs/tep/6",
     "title": "TEP-6: Fee Mechanism"
   },
@@ -165,6 +169,10 @@ export const fullNav = {
       "href": "/docs/tep",
       "title": "Timeleap Enhancement Proposals",
       "nav": [
+        {
+          "href": "/docs/tep/7",
+          "title": "TEP-7: Streaming Support in Timeleap RPC"
+        },
         {
           "href": "/docs/tep/6",
           "title": "TEP-6: Fee Mechanism"

@@ -35,10 +35,20 @@
 	export let createdAt: string;
 	export let updatedAt: string;
 	export let discussion: string;
+
+	const formatDate = (date: string) => {
+		const options: Intl.DateTimeFormatOptions = {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		};
+		return new Date(date).toLocaleDateString('en-US', options);
+	};
 </script>
 
 <div>
-	This TEP was authored by {author} on {createdAt}{#if !updatedAt}.{:else}, and last updated on {updatedAt}.{/if}
+	This TEP was authored by {author} on {formatDate(createdAt)}{#if !updatedAt}.{:else}, and last
+		updated on {formatDate(updatedAt)}.{/if}
 </div>
 
 {#if discussion}
