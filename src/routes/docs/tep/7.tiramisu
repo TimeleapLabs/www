@@ -123,6 +123,6 @@ N/A
 
 meta {
   description = "This document proposes a new streaming capability for the Timeleap RPC protocol via a Stream opcode, allowing partial results and final statuses to be returned incrementally.",
-  ogImageText = [TEP 7:, Streaming RPC, Timeleap],
+  ogImageText = [TEP 7:, Streaming],
   ogImageFontSize = 24
 }
