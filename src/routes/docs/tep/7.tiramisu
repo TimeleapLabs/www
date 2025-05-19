@@ -3,7 +3,7 @@ title { TEP-7: Streaming Support in Timeleap RPC, size = 1 }
 tep {
   author = Pouya Eghbali <pouya@timeleap.swiss>,
   status = draft,
-  type = process,
+  type = accepted,
   createdAt = 2025-05-16
 }
 
@@ -64,13 +64,17 @@ code {
   language = "go",
   content = """
   type StreamMessage struct {
-    UUID  [16]byte // Identifies the original request and routes the chunk
-    Chunk []byte   // Payload to deliver
+    ID        [16]byte  // Identifies the original request and routes the chunk
+    StreamID  [16]byte  // Identifies the stream
+    Type      string    // Context-specific type of the stream
+    Index     int       // Index of the chunk in the stream
+    Finished  bool      // Indicates if this is the last chunk of the stream
+    Data      []byte    // The actual data chunk
   }
   """
 }
 
-Each inlineCode { Stream } opcode carries a inlineCode { UUID } field, which maps the chunk to the
+Each inlineCode { Stream } opcode carries a inlineCode { ID } field, which maps the chunk to the
 corresponding user socket or session in the broker. This ensures the broker
 can route the stream data to the correct destination.
 
@@ -98,10 +102,10 @@ list {
 
 title { Rationale, size = 2 }
 
-The decision to keep inlineCode { StreamMessage } simple — with only a inlineCode { UUID } and a
-inlineCode { Chunk } — ensures minimal overhead and easy routing. Since the lifecycle
-of a stream is already tied to the RPC call, there is no need for extra flags
-to indicate termination or success. 
+The decision to keep inlineCode { StreamMessage } simple, ensures minimal
+overhead and easy routing. Since the lifecycle of a stream is already tied to
+the RPC call, there is no need for extra flags to indicate termination or
+success. 
 
 This design keeps the protocol clean and consistent: the inlineCode { Stream } opcode is
 purely for intermediate transmission, while the normal inlineCode { Return } or error
