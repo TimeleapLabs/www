@@ -3,30 +3,20 @@
 	import { ethers } from 'ethers';
 
 	import { wallet } from '$lib/stores/wallet';
-	import { Button, Card, Grid, Input, Section } from '@timeleap/ui';
-	import Select from '$lib/components/Select.svelte';
+	import { Button, Card, Grid, Section } from '@timeleap/ui';
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import ConnectButton from '$lib/components/ConnectButton.svelte';
-	import Checkbox from '$lib/components/Checkbox.svelte';
 	import { initializeContracts } from '$lib/utils/contract';
-	import { durationOf, formatDate, yieldOf } from '$lib/utils/helper';
-	import { stakeHelper, unstake } from '$lib/utils/staking';
+	import { formatDate } from '$lib/utils/helper';
+	import { unstake } from '$lib/utils/staking';
 	import toast from 'svelte-french-toast';
 	import { onboard } from '$lib/onboard.js';
-	import { getRarity } from '$lib/utils/nft.js';
 	import { slide } from 'svelte/transition';
 	import { BadgeCheck, ChevronDown, ChevronUp, LockKeyhole, LockKeyholeOpen } from 'lucide-svelte';
 
 	let userAddress: string | undefined;
 	let staking: ethers.Contract | undefined;
 	let storage: ethers.Contract | undefined;
-	let token: ethers.Contract | undefined;
-
-	let nft: ethers.Contract | undefined;
-	let nfts: NFT[] = [];
-	export let data;
-	nfts = data.nfts;
 
 	type UserStake = {
 		id: bigint;
@@ -39,30 +29,19 @@
 		hasNft: boolean;
 	};
 
-	let programs: { id: number; active: boolean; duration: number; rewards: bigint }[] = [];
-	let programOptions: { value: string; label: string }[] = [];
 	let userStakes: UserStake[] = [];
-	let userNfts: any[] = [];
-
-	let amount: string;
-	let balance: bigint;
-	let programId: string | undefined;
-	let nftId: number = 0;
-	let withNft: any;
-	let selectedNft = '';
 
 	const setAddress = async (): Promise<void> => {
 		const { signer, ...contracts } = await initializeContracts($wallet?.provider);
 
 		staking = contracts.staking;
 		storage = contracts.storage;
-		token = contracts.token;
-		nft = contracts.nft;
 
 		try {
 			await onboard.setChain({ chainId: '0xa4b1' });
 		} catch (error) {
 			toast.error("Couldn't change to the Arbitrum network.");
+			console.error("Couldn't change to the Arbitrum network.", error);
 			return;
 		}
 
@@ -93,67 +72,11 @@
 			unlock: stake.unlock,
 			id: BigInt(stakeIds[index] as string)
 		}));
-
-		const allPrograms: any[] = await storage.getStakeProgramsById([0, 1, 2]);
-		programs = allPrograms
-			.map(([active, rewards, duration], id) => ({
-				active,
-				rewards: BigInt(rewards),
-				duration: Number(duration),
-				id
-			}))
-			.filter((program) => program.active);
-
-		programOptions = programs.map((program) => ({
-			value: program.id.toString(),
-			label: `Until ${durationOf(program)} for ${yieldOf(program, withNft)}`
-		}));
 	};
 
 	$: if (userAddress && storage) {
 		readStakeStats();
 	}
-
-	const readUserNfts = async () => {
-		if (!nft) {
-			return;
-		}
-		const bigNfts = await nft.tokensOfOwner(userAddress);
-		userNfts = bigNfts.map((n: string) => parseInt(n));
-		nftId = userNfts[0];
-	};
-
-	async function fetchBalance() {
-		if (userAddress && token) {
-			try {
-				balance = await token.balanceOf(userAddress);
-			} catch (error) {
-				console.error('Error fetching balance:', error);
-				balance = 0n;
-			}
-		}
-	}
-
-	$: if (token && userAddress) {
-		fetchBalance();
-	}
-
-	async function setMax() {
-		amount = ethers.formatUnits(balance);
-	}
-
-	$: if (nft && userAddress) {
-		readUserNfts();
-	}
-
-	$: withNft = selectedNft !== '';
-
-	let isStaking = false;
-	const stake = async (): Promise<void> => {
-		isStaking = true;
-		await stakeHelper(amount, nftId, withNft, staking!, nft!, token!, programId);
-		isStaking = false;
-	};
 
 	const unstakeHandler = async (id: bigint): Promise<void> => {
 		if (!staking) {
