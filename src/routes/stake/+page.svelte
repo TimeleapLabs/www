@@ -187,94 +187,10 @@
 	<Grid extraLargeScreenColumns={2} largeScreenColumns={2}>
 		<!-- Staking Program Card -->
 		<Card class="bg-zinc-900 text-white p-8 rounded-lg shadow-lg flex flex-col gap-6">
-			<h3 class="text-xl font-semibold">
-				{#if $wallet?.provider}
-					Choose Your Staking Program
-				{:else}
-					Stake KNS to Get Rewards
-				{/if}
-			</h3>
-			{#if balance && $wallet?.provider}
-				<div>
-					Your current balance: {ethers.formatUnits(balance)} KNS
-				</div>
-			{/if}
-			{#if $wallet?.provider}
-				<div class="flex flex-col gap-6">
-					<!-- Program Selection -->
-					<Select
-						id="program"
-						label=""
-						bind:value={programId}
-						options={programOptions}
-						helperText="Select the staking program you want to join."
-						placeholder="Select a Program"
-					/>
-
-					<!-- NFT Double Reward Checkbox -->
-					<Checkbox
-						id="nft-check"
-						label="Double staking rewards with a Katana NFT!"
-						bind:checked={withNft}
-					/>
-
-					<!-- Conditional NFT Selection -->
-					{#if withNft}
-						<Select
-							id="nft-select"
-							label="Choose Your Katana NFT"
-							bind:value={selectedNft}
-							options={userNfts.map((id) => {
-								const index = parseInt(id, 10);
-								const nft = nfts[index];
-								const { theme } = getRarity(nft?.rarity || 0);
-								return {
-									value: id,
-									label: nft?.metadata?.name ?? `NFT #${id}`,
-									color: theme
-								};
-							})}
-							helperText="Optional: Select an NFT to boost your rewards."
-							placeholder="Select an NFT"
-						/>
-					{/if}
-
-					<!-- Staking Amount Input and Set Max Button -->
-					<Input
-						bind:value={amount}
-						placeholder="KNS to stake"
-						helperText="Enter the amount of KNS to stake."
-						type="number"
-						label=""
-						id="stake-amount"
-						class="bg-zinc-800 focus:bg-zinc-700 transition-colors w-full"
-					/>
-					<div class="flex justify-end -mt-4">
-						<button
-							class="text-xs text-white cursor-pointer hover:text-green-600"
-							on:click={setMax}
-							type="button"
-						>
-							<span>Set Max</span>
-						</button>
-					</div>
-				</div>
-
-				<div class="flex gap-4">
-					<Button
-						class="bg-green-400 hover:bg-green-300 text-black font-medium"
-						disabled={isStaking}
-						on:click={stake}
-					>
-						Stake <LockKeyholeOpen size={'1em'} class="ml-2" />
-					</Button>
-				</div>
-			{:else}
-				<p class="text-sm text-gray-400">
-					Connect your wallet to participate in staking programs and earn rewards.
-				</p>
-				<ConnectButton class="bg-zinc-800 hover:bg-zinc-700" />
-			{/if}
+			<h3 class="text-xl font-semibold">No active staking programs available.</h3>
+			<div class="text-sm text-zinc-400">
+				Please check back later or join our community for updates.
+			</div>
 		</Card>
 
 		<!-- User Stakes Card -->
