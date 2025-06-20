@@ -11,7 +11,7 @@
 	import { ArrowRight, Asterisk, Bitcoin, CpuIcon, Factory } from 'lucide-svelte';
 	import { useCases } from '$lib/content/use-cases';
 
-	let filter = 'all';
+	let filter = 'ai';
 	let scrollY = 0;
 
 	const getFilteredUseCases = (filter: string) =>
@@ -42,7 +42,9 @@
 					The Distributed<br />
 					Cloud.
 				</h1>
-				<p class="mt-12 text-zinc-100 font-light w-full md:w-3/4 xl:w-2/3 xxl:w-1/2">
+				<p
+					class="mt-12 text-zinc-300 font-light w-full md:w-3/4 xl:w-1/2 xxl:w-1/2 text-xl font-sans"
+				>
 					Timeleap provides you with all the tools you need to build high-performance, distributed
 					applications.
 				</p>
@@ -86,6 +88,14 @@
 					<Button
 						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
 						animate
+						on:click={setFilter('ai')}
+					>
+						<CpuIcon size={'1em'} strokeWidth={2.5} class="inline" />
+						AI
+					</Button>
+					<Button
+						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
+						animate
 						on:click={setFilter('compute')}
 					>
 						<CpuIcon size={'1em'} strokeWidth={2.5} class="inline" />
@@ -119,7 +129,7 @@
 			</div>
 			<div class="relative">
 				<div class="absolute -left-[550px] -top-[240px] text-zinc-800 origin-center z-0">
-					<Asterisk size={'1100'} strokeWidth={2} style="transform:rotate({scrollY / 10}deg)" />
+					<Asterisk size={'1100'} strokeWidth={1.75} style="transform:rotate({scrollY / 10}deg)" />
 				</div>
 				<div style="transform: translateX({Math.max(0, 720 - scrollY)}px);">
 					<Carousel class="gap-8">

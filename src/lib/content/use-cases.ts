@@ -53,5 +53,47 @@ export const useCases = [
 		title: '3D Rendering',
 		body: 'Render high-quality images and videos in the cloud. Offload heavy computations to the cloud and save time and money.',
 		tags: ['compute']
+	},
+	{
+		src: '/images/chat.jpg',
+		title: 'Chat',
+		body: 'Chat with AI models and personas. Build conversational agents and chatbots that can understand and respond to user queries.',
+		tags: ['compute', 'ai']
+	},
+	{
+		src: '/images/image-processing.jpg',
+		title: 'Image Processing',
+		body: 'Enhance and manipulate images with AI. Apply filters, transformations, and effects to your images.',
+		tags: ['compute', 'ai']
+	},
+	{
+		src: '/images/image-generation.jpg',
+		title: 'Image Generation',
+		body: 'Generate images from text prompts with AI. Create unique and high-quality images for your projects.',
+		tags: ['compute', 'ai']
+	},
+	{
+		src: '/images/business-intelligence.jpg',
+		title: 'Business Intelligence',
+		body: 'Analyze your business data with AI. Turn raw data into actionable insights and visualizations.',
+		tags: ['compute', 'ai']
+	},
+	{
+		src: '/images/logic-api.jpg',
+		title: 'Logic API',
+		body: 'Build complex workflows with AI. Analyze and process data with advanced logic and reasoning capabilities.',
+		tags: ['compute', 'ai']
+	},
+	{
+		src: '/images/vision-api.jpg',
+		title: 'Vision API',
+		body: 'Analyze images with AI. Detect objects, faces, and text in images. Extract meaningful information from visual data.',
+		tags: ['compute', 'ai']
+	},
+	{
+		src: '/images/moderation-api.jpg',
+		title: 'Moderation',
+		body: 'Moderate user-generated content with AI. Automatically detect and filter inappropriate content in your applications.',
+		tags: ['compute', 'ai']
 	}
 ];
