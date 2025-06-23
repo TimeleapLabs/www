@@ -1,0 +1,73 @@
+title { Timeleap Launch and Future Plans }
+
+We are happy to announce that we are ready with our v1.0.0 release. We have
+launched the Timeleap Admin Subnet and the required smart contracts for
+governance. We are updating our documentation to reflect the latest changes and
+have released the Timeleap CLI and SDKs for developers to start building on
+Timeleap.
+
+alert {
+  type = info,
+  title = Update on Documentation and Support,
+  As we update our documentation, developers can directly reach out to us on our
+  Telegram channel for any questions or support during the development process.
+  We are here to help you get started with Timeleap and answer any queries you
+  may have.
+}
+
+title { "Happy Birthday, Alan Turing!", size = 2 }
+
+It is not a coincidence that we are launching Timeleap on Alan Turing's birthday.
+Alan Turing is widely considered the father of computer science and artificial
+intelligence. His contributions laid the foundation for modern computing and
+have had a profound impact on the field of AI. By launching Timeleap on his
+birthday, we pay tribute to his legacy and the vision he had for the future of
+computing.
+
+Furthermore, we wanted to highlight the AI direction of Timeleap. While working
+on the pipelines and infrastructure we needed for the Timeleap AI Camera, we
+realized that we had built a powerful platform that could be used for much more
+than just the AI Camera. We've developed many tools and features for the AI
+Camera that can be leveraged for other AI applications as well.
+
+title { "What Is There, Right Now?", size = 2 }
+
+Timeleap stack, including broker, worker, and their underlying components are
+ready for developers to start building on. The Timeleap Admin Subnet is
+operational, and the smart contracts for governance are deployed. The Timeleap
+CLI and SDKs are available for developers to start building applications on
+Timeleap and to interact with the Timeleap Admin Subnet.
+
+We're also excited to introduce Timeleap Apps! Timeleap Apps are microservices
+that implement the full functionality of the Timeleap stack. As such, they don't
+follow the broker-worker-plugin architecture, but rather provide a
+self-contained solution.
+
+Timeleap Admin Subnet is the first Timeleap App, and it is responsible for
+managing the Timeleap network, including governance and administration tasks.
+The source code for the Timeleap Admin Subnet is available on GitHub, and we
+encourage developers to explore it as we believe Timeleap Apps are the future of
+building applications on Timeleap.
+
+title { What Is Coming?, size = 2 }
+
+We've planned a series of releases to bring utility to the Timeleap network.
+Many of these releases are what we had originally planned for the Timeleap AI
+Camera, but we realized that they can be used for much more than just the AI
+Camera.
+
+The Timeleap AI plugins and apps will be under a proprietary license, but
+developers can still build their own plugins and apps using the Timeleap SDKs
+and CLI. We have no plans to release an open-source plugin or app, however,
+we are working with our partners to allow our community to host a copy of the
+proprietary AI plugins and become a part of the Timeleap ecosystem.
+
+We'll publish more details about the upcoming releases in the coming weeks.
+
+meta {
+  description = "Timeleap is launching its v1.0.0 release, introducing the Timeleap Admin Subnet and smart contracts for governance. The Timeleap CLI and SDKs are now available for developers to build applications on Timeleap.",
+  ogImageText = [Timeleap Launch, and Future Plans],
+  ogImageFontSize = 28,
+  author = pouya,
+  createdAt = 2025-06-23
+}
