@@ -7,7 +7,7 @@
 	import AxisX from '../bar-stacked/AxisX.svelte';
 	import AxisY from '../bar-stacked/AxisY.svelte';
 
-	export let data: Array<{ value: number; color: string; name: string }> = [];
+	let { data = [] }: { data: Array<{ value: number; color: string; name: string }> } = $props();
 
 	data.forEach((d) => {
 		d.value = +d.value;

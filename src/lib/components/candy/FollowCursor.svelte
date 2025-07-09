@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { loadImage } from '$lib/utils/image';
 
-	export let src: string;
+	let src: string = $props();
 
 	let canvas: HTMLCanvasElement;
 	let listener: (e: MouseEvent) => void;
@@ -64,7 +64,11 @@
 		listener({ clientX: 0, clientY: 0 } as MouseEvent);
 	};
 
-	$: if (canvas) draw();
+	$effect(() => {
+		if (canvas) {
+			draw();
+		}
+	});
 
 	onMount(() => {
 		return () => {

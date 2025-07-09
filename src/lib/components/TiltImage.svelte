@@ -1,7 +1,5 @@
 <script lang="ts">
-	export let src: string;
-	export let alt: string;
-	export let caption: string;
+	let { src, alt, caption }: { src: string; alt: string; caption: string } = $props();
 
 	import { tiltAndGlow } from '$lib/utils/tilt';
 </script>
