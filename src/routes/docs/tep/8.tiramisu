@@ -1,0 +1,110 @@
+title { TEP-8: Expire Function, size = 1 }
+
+tep {
+  author = Pouya Eghbali <pouya@timeleap.swiss>,
+  status = draft,
+  type = process,
+  createdAt = 2025-07-22
+}
+
+title { Abstract, size = 2 }
+
+This proposal introduces a single new function, inlineCode { expire }, to the
+Accounting Subnet defined in TEP-6. The inlineCode { expire } function allows
+subnets and applications to invalidate or burn a user's credits in a controlled
+and auditable manner.
+
+This mechanism is designed to support external subscription and credit systems
+where applications manage their own lifecycle logic but require a standardized
+way to mark remaining balances as expired.
+
+title { Motivation, size = 2 }
+
+While TEP-6 provides the primitives for crediting and debiting user balances,
+it does not offer a protocol-level method for expiring unused credits. Many
+applications and subnets employ custom subscription models, prepaid credits, or
+time-limited offers that require explicit balance invalidation.
+
+The addition of an inlineCode { expire } function ensures:
+
+list {
+  items = [
+    A standardized, auditable way to mark credits as expired or removed.
+  ],
+  items = [
+    Reduced reliance on ad-hoc adjustments, minimizing errors and disputes.
+  ],
+  items = [
+    Better compatibility with applications that manage subscriptions or prepaid
+    balances externally.
+  ]
+}
+
+title { Specification, size = 2 }
+
+The Accounting Subnet is extended with a single new function:
+
+title { expire, size = 3 }
+
+The inlineCode { expire } function invalidates a user's total balance. It is
+intended to be called by subnets or applications that determine a user's credits
+have reached the end of their lifecycle (e.g., due to a subscription expiration,
+trial end, or service deactivation).
+
+title { Parameters, size = 3 }
+
+list {
+  items = [
+    bold { user }: the user address or identifier whose balance will be
+    reduced.
+  ],
+  items = [
+    bold { currency }: the currency or token type (e.g., KNS, USDC).
+  ],
+  items = [
+    bold { signature }: a signed payload verifying that the expiration request
+    is authorized by the subnet or protocol authority.
+  ]
+}
+
+title { Behavior, size = 3 }
+
+
+list {
+  items = [
+    The inlineCode { expire } function sets the user's balance to zero in the
+    Accounting Subnet.
+  ],
+  items = [
+    The function fails if the signature is invalid.
+  ]
+}
+
+title { Rationale, size = 2 }
+
+Adding only inlineCode { expire } keeps the protocol simple and aligned with TEP-6 design.
+It allows subnets and apps to control their own subscription or credit models,
+while using a unified protocol function to enforce expirations. This minimizes
+complexity, avoids imposing rigid lifecycle rules, and ensures accurate and
+auditable balance management.
+
+title { Backwards Compatibility, size = 2 }
+
+This proposal is fully backwards compatible. Subnets and apps that do not
+require expiration can continue to rely solely on inlineCode { credit } and inlineCode { debit }.
+
+title { Reference Implementation, size = 2 }
+
+A reference implementation of inlineCode { expire } will be added to the Accounting Subnet,
+with the same signature validation and event logging mechanisms used for
+inlineCode { debit }.
+
+title { References, size = 2 }
+
+TEP-6: Fee Mechanism
+
+meta {
+  description = "TEP-8 introduces the expire function to the Accounting Subnet, enabling standardized expiration of user credits without defining a full subscription model.",
+  ogImageText = [TEP 8:, Expire Function],
+  ogImageFontSize = 24
+}

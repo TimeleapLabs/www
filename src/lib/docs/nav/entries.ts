@@ -64,6 +64,10 @@ export const entries = [
     "title": "Timeleap Enhancement Proposals"
   },
   {
+    "href": "/docs/tep/8",
+    "title": "TEP-8: Expire Function"
+  },
+  {
     "href": "/docs/tep/7",
     "title": "TEP-7: Streaming Support in Timeleap RPC"
   },
@@ -169,6 +173,10 @@ export const fullNav = {
       "href": "/docs/tep",
       "title": "Timeleap Enhancement Proposals",
       "nav": [
+        {
+          "href": "/docs/tep/8",
+          "title": "TEP-8: Expire Function"
+        },
         {
           "href": "/docs/tep/7",
           "title": "TEP-7: Streaming Support in Timeleap RPC"
