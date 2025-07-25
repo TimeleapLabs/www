@@ -1,0 +1,143 @@
+title { From Confusion to Clarity: How I Learned to Write Timeleap Plugins }
+
+title { 1. Why This Repo Exists, size = 2 }
+
+alert {
+  type = quote,
+  This repo was created to simplify the process of building plugins for the Timeleap Network.
+}
+
+This monorepo exists to make plugin development for Timeleap as straightforward as possible — without needing to understand the internals of the network.
+
+It’s a inlineCode {Dockerized} setup that abstracts the networking layer, so developers can focus entirely on their plugin logic. Whether you're writing your first plugin or adding advanced features, the heavy lifting is already done.
+
+Included is a working inlineCode {Hello World} plugin, showcasing:
+
+list {
+  items = "How to register a plugin",
+  items = "How to expose a function hi",
+  items = "How to connect and interact with the network from a client"
+}
+
+image { src = "/images/blog/Timeleap-plugins.png", alt = "How the Timeleap plugin 'hello-world' works" }
+
+
+title { 2. What Problem It Solves, size = 2 }
+
+alert {
+  type = quote,
+  Connecting a plugin or calling one on the Timeleap network shouldn’t be this hard.
+}
+
+I as a Developer faced a hard learning curve due to:
+
+list {
+  items = "Lack of examples",
+  items = "Breaking changes in the Timeleap Network that made old documentation useless"
+}
+
+This repo is built to solve those problems:
+
+list {
+  items = "real, working, minimal plugin",
+  items = "in sync with the latest Timeleap updates",
+  items = "It saves hours of trial-and-error for new plugin authors"
+}
+
+title { 3. What’s Inside the Repo, size = 2 }
+
+alert {
+  type = quote,
+  A fully working, minimal plugin that connects, registers, and responds.
+}
+
+The monorepo includes:
+
+list {
+  items = "A plugins folder where each plugin lives (starting with hello-world)",
+  items = "CLI and client that calls the plugin’s hi function and prints the result",
+  items = "Docker setup that spins everything up and connects to the Timeleap Network",
+  items = "(Coming soon) A growing library of community-contributed plugins"
+}
+
+Everything is designed to be extendable — clone the structure and build your own.
+
+title { 4. How to Use It, size = 2 }
+
+alert {
+  type = quote,
+  Clone it. Run it. Learn by tweaking.
+}
+
+list {
+  items = "Clone the repo",
+  items = "Go inside the hello-world directory cd hello-world and bun install",
+  items = "Follow the README to add configuration and secrets to config",
+  items = "Run docker-compose up",
+  items = "Use the CLI to call the plugin and see how it works",
+  items = "Modify the plugin logic to fit your needs",
+  items = "Add your own plugin in the plugins/ folder"
+}
+
+You don’t need to modify anything in the Timeleap Network itself — the infrastructure is handled for you.
+
+title { 5. What You’ll Learn, size = 2 }
+
+alert {
+  type = quote,
+  From plugin registration to message handling — all the essentials.
+}
+
+list {
+  items = "How to structure and register a plugin",
+  items = "How to expose functions that can be called over the network",
+  items = "How to create a client that interacts with a plugin",
+  items = "How to Dockerize and test the whole setup locally"
+}
+
+title { 6. Who This Is For, size = 2 }
+
+alert {
+  type = quote,
+  If you’re building on Timeleap and confused by plugin architecture — this is for you.
+}
+
+This repo is ideal for:
+
+list {
+  items = "Developers building custom plugins or services for Timeleap",
+  items = "Anyone who wants a working example to learn from"
+}
+
+title { 7. Next Steps, size = 2 }
+
+alert {
+  type = quote,
+  Use this as a base for your plugin or contribute to the ecosystem.
+}
+
+list {
+  items = "Fork the repo and build your own plugin inside plugins",
+  items = "Open a PR to share your plugin with others",
+  items = "Watch the repo for updates as the Timeleap network evolves",
+  items = "Help improve the example and docs by contributing"
+}
+
+title { 8. Final Thoughts, size = 2 }
+
+alert {
+  type = quote,
+  I wish I had this when I started.
+}
+
+This project came out of personal frustration — a lack of guidance, outdated examples, and time lost to debugging my plugins.
+
+Now it’s a living resource, meant to evolve with Timeleap and support the developer community with working examples that actually work.
+
+meta {
+  description = "How I simplified my Timeleap plugin development journey with a working repo, Docker setup, and real examples.",
+  ogImageText = [Timeleap, Plugins Repo Guide],
+  ogImageFontSize = 28,
+  author = Hamed,
+  createdAt = 2025-07-25
+}

@@ -7,7 +7,8 @@
 		info: 'ℹ️',
 		warning: '⚠️',
 		error: '❌',
-		danger: '☠️'
+		danger: '☠️',
+		quote: ''
 	};
 
 	const stripeColors = {
@@ -16,7 +17,8 @@
 		info: 'from-blue-800 to-blue-300',
 		warning: 'from-yellow-800 to-yellow-300',
 		error: 'from-red-800 to-red-300',
-		danger: 'from-red-800 to-red-300'
+		danger: 'from-red-800 to-red-300',
+		quote: 'from-zinc-900 to-zinc-800'
 	};
 
 	const titleColors = {
@@ -25,7 +27,8 @@
 		info: 'text-blue-200',
 		warning: 'text-yellow-200',
 		error: 'text-red-200',
-		danger: 'text-red-200'
+		danger: 'text-red-200',
+		quote: 'text-zinc-200'
 	};
 
 	export let type: keyof typeof icons;
