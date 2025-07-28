@@ -40,7 +40,7 @@
 			type
 		]} from-[length:0px] to-[length:5px] left-0 top-0"
 	></div>
-	<div class="flex items-center gap-2 {titleColors[type]}">
+	<div class="flex items-center gap-2 {titleColors[type]} items-start">
 		<span> {icons[type]} </span>
 		<h5 class="font-semibold">{title}</h5>
 	</div>
