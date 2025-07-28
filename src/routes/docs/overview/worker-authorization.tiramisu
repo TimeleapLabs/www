@@ -9,7 +9,7 @@ The worker sends its public key to the broker when starting up. The broker must 
 code {
   language = bash,
   content = """
-  tl-admin authorize <worker-public-key>
+  tlp admin authorize <worker-public-key>
 """
 }
 
@@ -30,7 +30,7 @@ If a worker is compromised or misbehaving, the broker can revoke access using:
 code {
   language = bash,
   content = """
-  tl-admin unauthorize <worker-public-key>
+  tlp admin unauthorize <worker-public-key>
 """
 }
 
