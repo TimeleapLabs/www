@@ -1,0 +1,105 @@
+title { Worker Node }
+
+Workers connect to a broker over WebSocket, receive signed tasks, and dispatch them to local plugins. Each plugin runs as a persistent process on the same machine. The worker handles task routing, timeout enforcement, and streaming output back to the broker.
+
+title { Responsibilities, size = 2 }
+
+list {
+  items = Connect to a broker over WebSocket and authenticate via inlineCode { secrets.yaml },
+  items = Receive signed task payloads with resource constraints and function name,
+  items = Forward tasks to matching plugin over local WebSocket,
+  items = Enforce declared CPU, RAM, and timeout limits,
+  items = Stream plugin output to the broker,
+  items = Track plugin health and interface registration
+}
+
+title { Configuration, size = 2 }
+
+Workers use two configuration files:
+
+list {
+  items = inlineCode { conf.yaml } — broker URI, plugin interfaces, hardware limits,
+  items = inlineCode { secrets.yaml } — node identity, signing keys, authorization status
+}
+
+Generate both using:
+
+code {
+  language = bash,
+  content = """
+  tlp init
+  """
+}
+
+title { Minimal Example, size = 2 }
+
+code {
+  title = conf.yaml,
+  language = yaml,
+  content = """
+  system:
+    log: info
+    name: worker-01
+
+  network:
+    broker:
+      uri: wss://broker.timeleap.network
+      publicKey: <broker-public-key>
+
+  rpc:
+    cpus: 4
+    gpus: 0
+    ram: 4096
+
+  pos:
+    rpc:
+      - https://mainnet.infura.io/v3/YOUR_KEY
+
+  plugins:
+    - name: hello-world
+      endpoint: ws://localhost:3000
+      type: websocket
+      functions:
+        - name: echo
+          cpu: 1
+          gpu: 0
+          ram: 128
+          timeout: 3000
+  """
+}
+
+title { Launch, size = 2 }
+
+code {
+  language = bash,
+  content = """
+  tlp worker start
+  """
+}
+
+title { Plugin Model, size = 2 }
+
+Plugins are standalone processes that connect to the worker over WebSocket from within the container network. The worker maintains a connection to each plugin and routes tasks to them based on the requested function.
+
+All execution happens inside the plugin. The worker enforces declared resource limits and timeouts, but does not touch the execution logic. Result payloads are streamed back to the broker as typed binary using inlineCode { @timeleap/sia }.
+
+title { Subnet Binding, size = 2 }
+
+A worker is bound to a single broker. Its subnet is determined by the broker it connects to. To switch, update inlineCode { conf.yaml } and restart the node.
+
+title { Public Network Access, size = 2 }
+
+Workers must be authorized to receive tasks on the public network. Authorization is handled by the admin subnet. A staked wallet must be linked to the worker identity using inlineCode { tlp admin }.
+
+list {
+  items = Authorized via admin subnet (TEP-5),
+  items = Linked to a wallet for payout,
+  items = Staked to the broker's subnet,
+  items = Reachable via WebSocket
+}
+
+meta {
+  description = "Timeleap worker node: broker connection, plugin dispatch, execution control, and public network access",
+  ogImageText = [Timeleap, Worker Node],
+  ogImageFontSize = 42
+}

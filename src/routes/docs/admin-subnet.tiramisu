@@ -1,0 +1,120 @@
+title { Admin Subnet }
+
+The admin subnet is a trusted coordination layer. It's used to authorize node identities, enforce subnet access rules, and route payments on the public network. Brokers query it to validate which workers are allowed to execute tasks. All logic follows TEP-5 and TEP-6.
+
+Only required for public deployments. Private subnets do not use this system.
+
+title { What It Controls, size = 2 }
+
+list {
+  items = Authorization: which identities are allowed to operate under a subnet,
+  items = Payout routing: where task rewards are sent,
+  items = Subnet metadata: stake owner and delegation rules
+}
+
+title { CLI Access, size = 2 }
+
+All interactions go through inlineCode { tl-admin }, a CLI tool that connects to the admin WebSocket service and signs requests using a local wallet key.
+
+You need:
+
+list {
+  items = inlineCode { tl-admin } binary,
+  items = Access to the admin WebSocket endpoint,
+  items = A private key with admin privileges (set via inlineCode { ADMIN_CLIENT_PRIVATE_KEY })
+}
+
+title { Commands, size = 2 }
+
+Credit a user on a specific subnet:
+
+code {
+  language = bash,
+  content = """
+  tl-admin credit \\
+    --user <user-public-key> \\
+    --currency <symbol> \\
+    --subnet <subnet-id> \\
+    --amount <value>
+  """
+}
+
+Authorize a delegate to operate in a subnet:
+
+code {
+  language = bash,
+  content = """
+  tl-admin authorize \\
+    --subnet <subnet-id> \\
+    --user <user-public-key>
+  """
+}
+
+Update staking metadata for a subnet:
+
+code {
+  language = bash,
+  content = """
+  tl-admin update-subnet \\
+    --subnet <subnet-id> \\
+    --stake-user <evm-address>
+  """
+}
+
+title { Internals, size = 2 }
+
+Delegation is public key based. A broker checks with the admin subnet to determine if a worker's identity is authorized under its subnet. Authorization is off-chain but enforced at runtime.
+
+Reward routing uses credit records scoped to inlineCode { (user, subnet, currency) }. Tokens are handled as raw strings. The admin subnet does not validate currencies, does not enforce supply, and does not perform conversions. Payout logic is handled externally by the broker or subnet operator.
+
+mermaid {
+  """
+  classDiagram
+    class Wallet {
+      - evmAddress: string
+    }
+
+    class Identity {
+      - publicKey: string
+    }
+
+    class Subnet {
+      - id: string
+      - stakeUser: Wallet
+    }
+
+    class Authorization {
+      - user: Identity
+      - subnet: Subnet
+    }
+
+    class Credit {
+      - user: Identity
+      - subnet: Subnet
+      - currency: string
+      - amount: number
+    }
+
+    Identity <|-- Wallet
+    Authorization o-- Identity
+    Authorization o-- Subnet
+    Credit o-- Identity
+    Credit o-- Subnet
+  """
+}
+
+title { When Not Required, size = 2 }
+
+The admin subnet is not needed if:
+
+list {
+  items = You're running a private or isolated subnet,
+  items = You don't handle rewards or payouts,
+  items = You're testing locally without staking or identity constraints
+}
+
+meta {
+  description = "Timeleap admin subnet: subnet authorization, payment routing, and CLI interface for permissioned operators.",
+  ogImageText = [Timeleap, Admin Subnet],
+  ogImageFontSize = 42
+}

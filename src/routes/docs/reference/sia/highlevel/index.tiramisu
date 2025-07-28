@@ -32,8 +32,8 @@ code {
   language = typescript,
   content = """
     schema Person {
-      name:   string(encoding = "ascii")
-      age:    uint8
+      name   string(encoding = "ascii")
+      age    uint8
     }
   """
 }

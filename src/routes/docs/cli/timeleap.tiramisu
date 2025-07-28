@@ -1,0 +1,79 @@
+title { tlp CLI }
+
+The inlineCode { tlp } command is the main entrypoint for running Timeleap nodes. It wraps broker and worker functionality, manages configuration, and provides developer tools for plugin integration.
+
+title { Commands, size = 2 }
+
+list {
+  items = inlineCode { tlp init } — generate conf.yaml and secrets.yaml,
+  items = inlineCode { tlp broker start } — run broker node,
+  items = inlineCode { tlp worker start } — run worker node,
+  items = inlineCode { tlp plugin register } — generate plugin config from .sia
+}
+
+title { tlp init, size = 2 }
+
+Generates both config and secrets files. Safe to run multiple times — will never overwrite existing secrets.
+
+code {
+  language = bash,
+  content = """
+  tlp init
+  """
+}
+
+title { tlp broker start, size = 2 }
+
+Starts a broker node based on the local config:
+
+code {
+  language = bash,
+  content = """
+  tlp broker start
+  """
+}
+
+title { tlp worker start, size = 2 }
+
+Starts a worker node and connects to the broker:
+
+code {
+  language = bash,
+  content = """
+  tlp worker start
+  """
+}
+
+title { tlp plugin register, size = 2 }
+
+Extracts plugin metadata from a inlineCode { .sia } file and generates the plugin block for inlineCode { conf.yaml }.
+
+code {
+  language = bash,
+  content = """
+  tlp plugin register --file ./plugin.sia --endpoint ws://plugin:3000
+  """
+}
+
+title { Optional Flags, size = 2 }
+
+list {
+  items = inlineCode { "--merge conf.yaml" } — insert directly into file,
+  items = inlineCode { --print } — output YAML block to stdout only
+}
+
+title { Future Commands, size = 2 }
+
+The inlineCode { tlp } CLI will soon support:
+
+list {
+  items = inlineCode { tlp plugin publish } — push container to public registry,
+  items = inlineCode { tlp test } — run local plugin+worker integration tests,
+  items = inlineCode { tlp config validate } — check YAML for schema issues
+}
+
+meta {
+  description = "tlp is the main CLI for running and configuring Timeleap nodes. It handles init, broker/worker startup, and plugin registration.",
+  ogImageText = [Timeleap, tlp CLI],
+  ogImageFontSize = 42
+}

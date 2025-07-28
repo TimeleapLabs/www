@@ -1,0 +1,86 @@
+title { CLI Reference }
+
+This page documents the main command-line interfaces for operating Timeleap components.
+
+title { tlp }
+
+The inlineCode { tlp } command wraps all core operations for brokers, workers, and admin tools. It replaces scattered binaries with a single interface.
+
+list {
+  items = inlineCode { tlp broker ... } — manage broker operations,
+  items = inlineCode { tlp worker ... } — manage worker execution,
+  items = inlineCode { tlp plugin ... } — register and inspect plugins,
+  items = inlineCode { tlp admin ... } — manage subnets, credits, identities
+}
+
+Use inlineCode { tlp <subcommand> --help } for available options.
+
+title { timeleap }
+
+Primary binary for launching production nodes. Used directly in inlineCode { docker-compose } and deployment targets.
+
+list {
+  items = inlineCode { timeleap broker } — production broker entrypoint,
+  items = inlineCode { timeleap worker } — production worker entrypoint,
+  items = inlineCode { timeleap generate-secrets } — create inlineCode { secrets.yaml } for node identity
+}
+
+title { tl-admin }
+
+Standalone CLI for communicating with the Admin Subnet Plugin over RPC. Requires the plugin to be running and reachable via WebSocket.
+
+Install with:
+
+code {
+  language = bash,
+  content = """npm install -g @timeleap/admin"""
+}
+
+Supported commands:
+
+list {
+  items = inlineCode { credit } — credit a user's balance in a specific subnet and currency,
+  items = inlineCode { debit } — debit a user (if authorized),
+  items = inlineCode { refund } — reverse a previous credit by UUID,
+  items = inlineCode { authorize } — authorize a signer for a subnet,
+  items = inlineCode { unauthorize } — remove a signer from a subnet,
+  items = inlineCode { stake } — stake KNS tokens for a subnet,
+  items = inlineCode { unstake } — remove staked tokens,
+  items = inlineCode { link } — link a subnet to a staking address,
+  items = inlineCode { update-subnet } — update subnet metadata and broadcast it
+}
+
+You must export the following environment variables:
+
+code {
+  language = bash,
+  content = """
+export ADMIN_CLIENT_PRIVATE_KEY=
+export ADMIN_BROKER_URI=
+export ADMIN_BROKER_PUBLIC_KEY=
+export EVM_PRIVATE_KEY=
+export EVM_RPC_ADDRESS=
+"""
+}
+
+title { Usage Examples }
+
+code {
+  language = bash,
+  content = """
+# Credit a user 1000 TST
+tl-admin credit \\
+  --user 0xabc... \\
+  --subnet dev \\
+  --currency TST \\
+  --amount 1000
+
+# Authorize a new signer
+tl-admin authorize \\
+  --user 0xsigner \\
+  --subnet dev
+
+# Link subnet to stake
+tl-admin link --subnet dev --address 0xstaker
+"""
+}

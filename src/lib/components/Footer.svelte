@@ -3,7 +3,7 @@
 		Twitter,
 		Linkedin,
 		Github,
-		Send,
+    Send,
 		MessagesSquare,
 		ArrowUpRight,
 		ArrowRight
@@ -52,7 +52,7 @@
 					<Github size={24} strokeWidth={1.5} />
 				</a>
 				<a
-					href="https://t.me/kenshi"
+					href="https://discord.com/invite/Timeleap"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"

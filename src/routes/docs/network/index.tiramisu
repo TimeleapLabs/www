@@ -1,0 +1,74 @@
+title { Network Architecture }
+
+Timeleap separates orchestration from execution using a two-role model: brokers and workers. These nodes communicate over WebSockets and coordinate task lifecycle, pricing, validation, and delivery across public or private subnets.
+
+title { Roles, size = 2 }
+
+The Timeleap Network consists of two node types:
+
+list {
+  items = inlineCode { broker } — orchestrates workloads, handles validation, pricing, and result delivery,
+  items = inlineCode { worker } — executes workloads in isolated containers and streams back results
+}
+
+title { Communication Model, size = 2 }
+
+Workers and plugins maintain persistent WebSocket connections to brokers. Brokers authenticate and dispatch tasks to the appropriate target — either a worker or a plugin.
+
+mermaid {
+  """
+  sequenceDiagram
+    participant Client
+    participant Broker
+    participant Worker
+    participant Plugin
+
+    Client->>Broker: Submit Task
+
+      Broker->>Worker: Assign Work
+      Worker->>Broker: Stream Result
+
+      Broker->>Plugin: Send Payload
+      Plugin-->>Broker: Return Output
+
+    Broker->>Client: Return Result
+  """
+}
+
+title { Subnets, size = 2 }
+
+Each broker defines its own subnet. Workers choose which broker(s) to connect to.
+
+list {
+  items = public — discoverable via the global registry bold { (comming soon!) }, 
+  items = private — isolated, permissioned, or internal-only
+}
+
+title { Payments & Credit, size = 2 }
+
+Each public subnet defines its own pricing, reward structure, and participation rules. To join a subnet, nodes must stake — this acts as a permission mechanism and signals compliance with access policies defined in TEP-5 and TEP-6.
+
+Staking is configured via the inlineCode { tlp admin } CLI. The stake is not consumed during execution. It authorizes the node to operate on the subnet and enables trustless access control.
+
+Clients pay subnets to execute workloads. Subnets distribute rewards to workers based on task completion and pricing terms.
+
+title { Plugins, size = 2 }
+
+Plugins are standalone processes that connect to a worker over WebSocket. They expose custom execution logic and respond to structured binary messages defined using inlineCode { @timeleap/sia }.
+
+Workers do not start or manage plugins. Each plugin runs independently inside the Docker network and establishes a direct, long-lived connection to the worker. When a task targets a plugin, the worker routes the request through the corresponding WebSocket and returns the response to the broker.
+
+Plugins can be used to implement models, simulators, or specialized business logic.
+
+list {
+  items = Connect to workers via WebSocket from within the container network,
+  items = Respond to task payloads with typed binary interfaces (SIA),
+  items = Fully isolated from broker and runtime scheduling,
+  items = Designed for deterministic execution and fast response cycles
+}
+
+meta {
+  description = "Timeleap network architecture: brokers, workers, plugin containers, subnets, and WebSocket-based task execution.",
+  ogImageText = [Timeleap, Network Architecture],
+  ogImageFontSize = 42
+}

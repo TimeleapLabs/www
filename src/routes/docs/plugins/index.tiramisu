@@ -1,0 +1,61 @@
+title { Plugins }
+
+Plugins extend Timeleap by allowing custom functions to be executed as isolated workloads. Each plugin runs as a separate containerized app that communicates with a worker over WebSocket.
+
+title { Overview, size = 2 }
+
+Plugins are not started or managed by the worker. They run independently and expose a WebSocket interface that the worker connects to at runtime.
+
+When a broker dispatches a job, the worker calls the appropriate plugin function with encoded input and returns the result to the broker.
+
+title { Architecture, size = 2 }
+
+mermaid {
+  """
+  sequenceDiagram
+    participant Broker
+    participant Worker
+    participant Plugin
+
+    Broker->>Worker: Dispatch workload
+    Worker->>Plugin: Call function(input)
+    Plugin-->>Worker: Return result
+    Worker->>Broker: Send output
+  """
+}
+
+title { Responsibilities, size = 2 }
+
+list {
+  items = Define WebSocket server interface with plugin manifest,
+  items = Decode input and execute function logic,
+  items = Return encoded output or error to the worker
+}
+
+title { Plugin Scope, size = 2 }
+
+Each plugin:
+
+list {
+  items = Can expose multiple functions,
+  items = Can declare resource needs per function,
+  items = Is isolated from Timeleap internals,
+  items = Can be reused across workers or deployments
+
+}
+
+title { Development Flow, size = 2 }
+
+list {
+  items = Write plugin logic in Bun (or any compatible runtime),
+  items = Use inlineCode { @timeleap/sia } to encode/decode payloads,
+  items = Run plugin in its own container,
+  items = Mount the container in inlineCode { conf.yaml } under the worker,
+  items = Use Timeleap CLI to test and invoke it
+}
+
+meta {
+  description = "Learn how Timeleap plugins work. Each plugin is an isolated app communicating over WebSocket with a worker node.",
+  ogImageText = [Timeleap, Plugins],
+  ogImageFontSize = 42
+}

@@ -144,8 +144,8 @@ const functions: {
 		const items = getParamsByName(params, 'items').map((item) => item.value);
 		const listItems = items.map((item) => `<li class="mb-3">${item}</li>`).join('');
 		return type === 'ordered'
-			? `<ol class="list-decimal">${listItems}</ol>`
-			: `<ul class="list-disc">${listItems}</ul>`;
+			? `<ol class="list-decimal list-inside">${listItems}</ol>`
+			: `<ul class="list-disc list-inside">${listItems}</ul>`;
 	},
 	toc(params, context) {
 		const unordered = getParamsByName(params, 'unordered')[0]?.value === 'Yes';

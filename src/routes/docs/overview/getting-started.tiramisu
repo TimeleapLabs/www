@@ -1,0 +1,85 @@
+title { Getting Started }
+
+This page walks you through the minimal setup required to run a Timeleap node. Whether you're deploying a broker, a worker, or both, this is where you begin.
+
+list {
+  items = Install the CLI and dependencies,
+  items = Generate your config and secrets,
+  items = Launch your node,
+  items = (Optional) Register to join the public network
+}
+
+alert {
+  type = info,
+  title = System Requirements,
+  A Unix-based OS with Docker installed is required. We recommend using a dedicated server with at least 2 GB of RAM.
+}
+
+title { 1. Install the CLI, size = 2 }
+
+title { Quick install, size = 3 }
+
+code {
+  language = bash,
+  content = """
+  curl -fsSL https://timeleap.swiss/install.sh | bash
+  """
+}
+
+title { Manual install, size = 3 }
+
+Download link { to = "https://github.com/TimeleapLabs/tools/releases" ,the latest CLI release from GitHub } and make it executable
+
+title { 2. Generate Config, size = 2 }
+
+code {
+  title = Create conf.yaml and secrets.yaml,
+  language = bash,
+  content = """
+  tlp init
+  """
+}
+
+title { 3. Launch Your Node, size = 2 }
+
+title { Run a broker, size = 3 }
+
+code {
+  title = Run a broker,
+  language = bash,
+  content = """
+  tlp broker start
+  """
+}
+
+title { Run a worker, size = 3}
+
+code {
+  title = Run a worker,
+  language = bash,
+  content = """
+  tlp worker start
+  """
+}
+
+title { Run both, size = 3 }
+
+code {
+  title = Run both,
+  language = bash,
+  content = """
+  tlp compose up
+  """
+}
+
+alert {
+  type = info,
+  title = Registering Your Node,
+  You only need to register if you're joining the public network and handling payments. For private subnets or internal use, registration is not required.
+}
+
+meta {
+  description = "Get started with Timeleap by installing the CLI, generating configuration files, and launching your node.",
+  ogImageText = [Timeleap, Getting Started],
+  ogImageFontSize = 42
+}

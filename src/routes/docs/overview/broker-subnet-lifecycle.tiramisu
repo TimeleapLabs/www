@@ -1,0 +1,26 @@
+title { Broker & Subnet Lifecycle }
+
+This page explains how a broker initializes, registers, and maintains a subnet using the provided admin tools.
+
+Subnets are broker-defined. A subnet includes the broker itself, any authorized workers, and their linked plugins. The broker is responsible for enforcing staking, access, and lifecycle rules.
+
+title { Lifecycle Steps, size = 2 }
+
+list {
+  items = Start the broker with its identity configured in inlineCode { conf.yaml },
+  items = Stake KNS using inlineCode { tlp admin stake },
+  items = Link stake to the broker's identity with inlineCode { tlp admin link },
+  items = Submit subnet metadata with inlineCode { tlp admin update-subnet },
+  items = Authorize each worker identity with inlineCode { tlp admin authorize },
+  items = Optionally assign user credit with inlineCode { tlp admin credit }
+}
+
+Each broker enforces its own policy. Timeleap only provides the tooling—usage is fully up to each subnet.
+
+Subnets can revoke access, rotate identities, and impose slashing or uptime requirements as needed.
+
+meta {
+  description = "Lifecycle of a broker and its subnet: staking, authorization, crediting, and maintenance.",
+  ogImageText = [Timeleap, Broker Lifecycle],
+  ogImageFontSize = 42
+}
