@@ -3,7 +3,7 @@
 		Twitter,
 		Linkedin,
 		Github,
-		Discord,
+    Send,
 		MessagesSquare,
 		ArrowUpRight,
 		ArrowRight
@@ -57,7 +57,7 @@
 					rel="noopener noreferrer"
 					class="hover:text-green-400 transition-colors"
 				>
-					<send size={24} strokeWidth={1.5} />
+					<Send size={24} strokeWidth={1.5} />
 				</a>
 				<a
 					href="https://forum.timeleap.swiss"
