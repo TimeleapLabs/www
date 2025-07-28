@@ -1,34 +1,34 @@
 title { Timeleap Documentation }
 
-Welcome to the official documentation of the Timeleap Network.
+Welcome to the official documentation of the bold { Timeleap Network }.
 
 Timeleap is a distributed compute protocol that lets you offload containerized workloads across a global network of nodes. Our architecture separates orchestration from execution, giving developers full control over how compute tasks are run, priced, and managed.
 
 This documentation helps you:
 
 list {
-items = Run and register your own node (broker or worker),
-items = Understand how the network works,
-items = Prepare for plugin development (coming soon)
+  items = Run and register your own node (broker or worker),
+  items = Understand how the network works,
+  items = Prepare for plugin development (coming soon)
 }
 
 toc {
-overview/index,
-overview/getting-started,
-overview/register-node,
-network/index,
-admin-subnet,
-plugins/index
+  overview/index,
+  network/index,
+  admin-subnet,
+  plugins/index,
+  reference/index,
+  tep/index
 }
 
 alert {
-type = warning,
-title = Work in Progress,
-This documentation is actively being written and may change frequently.
+  type = warning,
+  title = Work in Progress,
+  This documentation is actively being written and may change frequently.
 }
 
 meta {
-description = "Official documentation for Timeleap Network, a distributed containerized compute platform.",
-ogImageText = [Timeleap, Documentation],
-ogImageFontSize = 48
+  description = "Official documentation for Timeleap Network, a distributed containerized compute platform.",
+  ogImageText = [Timeleap, Documentation],
+  ogImageFontSize = 48
 }
