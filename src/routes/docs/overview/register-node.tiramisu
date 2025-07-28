@@ -16,7 +16,7 @@ alert {
   If you're only running a private subnet (e.g. for internal use or trusted peers), you don't need to register your node or use the admin-subnet CLI.
 }
 
-title { 1. Install the Admin CLI, size = 2 }
+title { 1. Use our Unifed CLI CLI, size = 2 }
 
 Use the inlineCode { tlp admin } CLI to manage registration, identity, and crediting.
 
@@ -27,19 +27,7 @@ code {
   """
 }
 
-title { 2. Link a Wallet, size = 2 }
-
-Each node must be linked to a wallet. This wallet serves as the node’s identity and receives payouts.
-
-code {
-  title = Link wallet to node identity,
-  language = bash,
-  content = """
-  tlp admin wallet link
-  """
-}
-
-title { 3. Stake KNS Credits, size = 2 }
+title { 2. Stake KNS Credits, size = 2 }
 
 Stake credits to allow your node to operate. Brokers and workers require KNS balance to send and execute tasks.
 
@@ -51,7 +39,7 @@ code {
   """
 }
 
-title { 4. Link Stake to Subnet, size = 2 }
+title { 3. Link Stake to Subnet, size = 2 }
 
 Link your credits to a subnet to enable reward routing based on TEP-5 and TEP-6.
 
