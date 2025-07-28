@@ -51,7 +51,7 @@ He’s also in charge of our new community subnet.
 
 If you want to test the network, deploy plugins, or run a worker, you’ll be able to join his subnet and start building right away.
 
-title { 🧪 Plugin Scaffolding is Ready, size = 2 }
+title { 🧪 Plugin Scaffolding, size = 2 }
 
 Templates will be available through the inlineCode { tlp } CLI in the next few days.  
 Hamed will walk you through it soon with examples you can run in his subnet.
