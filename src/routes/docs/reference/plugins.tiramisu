@@ -161,6 +161,11 @@ list {
 
 title { Register Plugin }
 
+alert {
+  type = warning,
+  title = Comming soon!
+}
+
 Register a plugin via CLI:
 
 code {
@@ -168,36 +173,4 @@ code {
   content = """
 tlp plugin register --path ./apps/plugin/hello-world
 """
-}
-
-title { Plugin Packet Layout }
-
-This diagram shows the structure of a Sia-encoded inlineCode { RPCRequest } sent from the worker to the plugin. Total size: 512 bits (64 bytes).
-
-mermaid {
-  """
-  packet
-  +64:  "UUID (byte8)"
-  +64:  "Plugin Name (string8)"
-  +64:  "Method Name (string8)"
-  +64:  "Timeout (uint64)"
-  +64:  "Fee (uint64)"
-  +64:  "Currency (string8)"
-  +128: "Params (partial byteN)"
-  """
-}
-
-title { Signed Packet Layout }
-
-This is the binary packet used to wrap and authenticate any RPC message across the Timeleap network. It’s signed using the node’s Ed25519 identity.
-
-mermaid {
-  """
-  packet
-  +8:   "OpCode (uint8)"
-  +64:  "AppID (uint64)"
-  +256: "Message (byteN, Sia-encoded)"
-  +256: "Signer (ed25519 public key)"
-  +512: "Signature (ed25519 signature)"
-  """
 }
