@@ -70,6 +70,7 @@ install_tlp() {
       brew install unzip || abort "Failed to install unzip"
     fi
   fi
+
   if command_exists tlp; then
     echo "✔ tlp already installed"
     return
@@ -95,9 +96,6 @@ install_tlp() {
   esac
 
   TLP_BINARY_URL="${TLP_BINARY_URL:-$GITHUB_REPO/releases/latest/download/tlp-${OS}-${ARCH_ID}.zip}"
-      abort "Failed to resolve binary URL from GitHub release"
-    fi
-  fi
 
   echo "📦 Downloading and extracting tlp binary..."
   curl --fail --progress-bar -L "$TLP_BINARY_URL" -o "$TLP_HOME/tlp.zip" || abort "Failed to download tlp zip"
@@ -122,7 +120,6 @@ install_docker_linux() {
 
   if grep -qi arch /etc/os-release; then
     echo "➔ Arch Linux detected, installing Docker via pacman..."
-
     if [[ "$EUID" -ne 0 ]]; then
       sudo pacman -Sy --noconfirm docker docker-compose unzip || abort "Failed to install Docker"
       sudo systemctl enable docker
