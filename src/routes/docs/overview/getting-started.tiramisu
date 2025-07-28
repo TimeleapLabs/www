@@ -28,15 +28,7 @@ code {
 
 title { Manual install, size = 3 }
 
-code {
-  language = bash,
-  content = """
-  git clone git@github.com:TimeleapLabs/timeleap.git
-  cd timeleap
-  
-  make timeleap
-  """
-}
+Download link { to = "https://github.com/TimeleapLabs/tools/releases" ,the latest CLI release from GitHub } and make it executable
 
 title { 2. Generate Config, size = 2 }
 
@@ -50,6 +42,8 @@ code {
 
 title { 3. Launch Your Node, size = 2 }
 
+title { Run a broker, size = 3 }
+
 code {
   title = Run a broker,
   language = bash,
@@ -58,11 +52,23 @@ code {
   """
 }
 
+title { Run a worker, size = 3}
+
 code {
   title = Run a worker,
   language = bash,
   content = """
   tlp worker start
+  """
+}
+
+title { Run both, size = 3 }
+
+code {
+  title = Run both,
+  language = bash,
+  content = """
+  tlp compose up
   """
 }
 
