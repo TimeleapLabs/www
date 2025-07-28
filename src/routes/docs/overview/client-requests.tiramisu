@@ -15,7 +15,7 @@ list {
 
 title { Credit and Billing, size = 2 }
 
-Subnets are responsible for managing credit and billing policies. Brokers can use inlineCode { tl-admin credit } to assign execution credit to users, but this mechanism is optional and implementation-specific.
+Subnets are responsible for managing credit and billing policies. Brokers can use inlineCode { tlp admin credit } to assign execution credit to users, but this mechanism is optional and implementation-specific.
 
 The broker deducts credit on each request and can reject calls if the balance is insufficient.
 
