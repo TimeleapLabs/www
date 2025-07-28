@@ -4,7 +4,6 @@ To operate on the public Timeleap Network, your node must be registered and link
 
 list {
   items = Required for all public brokers and workers,
-  items = Enables rewards, crediting, and access control,
   items = Uses the admin-subnet CLI to link, credit, and manage nodes
 }
 
@@ -27,9 +26,9 @@ code {
   """
 }
 
-title { 2. Stake KNS Credits, size = 2 }
+title { 2. Stake KNS Token, size = 2 }
 
-Stake credits to allow your node to operate. Brokers and workers require KNS balance to send and execute tasks.
+Stake KNS token to allow your node to ensure compliance and security on the network.
 
 code {
   title = Stake credits to your node,
