@@ -10,6 +10,7 @@
 
 	import { ArrowRight, Asterisk, Bitcoin, CpuIcon, Factory } from 'lucide-svelte';
 	import { useCases } from '$lib/content/use-cases';
+	import Code from '$lib/components/Code.svelte';
 
 	let filter = 'ai';
 	let scrollY = 0;
@@ -48,14 +49,17 @@
 					Timeleap provides you with all the tools you need to build high-performance, distributed
 					applications.
 				</p>
-				<div class="mt-16">
+				<div class="mt-16 flex flex-wrap items-center gap-5">
 					<Button
 						class="bg-green-400 text-black hover:bg-green-300 font-medium"
 						animate
 						href="/docs"
-					>
+					> 
 						Read the Docs <ArrowRight size={'1em'} strokeWidth={2.5} class="inline" />
 					</Button>
+          <div class="flex-1 max-w-150 hidden md:block">
+          <Code lang="bash" code="curl -fsSL https://timeleap.swiss/install | bash" /> 
+          </div>
 				</div>
 			</div>
 		</Card>
