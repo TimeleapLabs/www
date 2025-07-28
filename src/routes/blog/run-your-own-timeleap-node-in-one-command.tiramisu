@@ -1,0 +1,73 @@
+title { Run Your Own Timeleap Node in One Command }
+
+Timeleap is now easier than ever to install and run. We've rebuilt the onboarding flow, added a unified CLI, switched entirely to Docker, and bootstrapped the plugin system. All of it built with the community in mind.
+
+list {
+  items = One-line install script for macOS and Linux,
+  items = Unified CLI to manage nodes, secrets, and plugins,
+  items = Rootless Docker runtime with a 12MB footprint,
+  items = Plugin registry and community subnet live,
+  items = Full web UI coming soon
+}
+
+code {
+  language = bash,
+  content = """
+    curl -fsSL https://timeleap.swiss/install | bash
+  """
+}
+
+title { 🧰 Unified CLI, size = 2 }
+
+You no longer need to manually edit multiple files.  
+Everything is handled through inlineCode { tlp }, the new CLI that manages your nodes, secrets, and plugins from one place.
+
+title { 🐳 Full Docker Support, size = 2 }
+
+Timeleap now runs fully in Docker, with a minimal 12MB footprint.  
+Everything is isolated, rootless, and just works out of the box.
+
+This change makes it dead simple to join the network. Just install and run. We take care of the rest.
+
+And if you’re not living in the terminal like some of us, that’s fine. A full web UI is on the way to help you manage your nodes and plugins without writing a single command.
+
+title { 🔌 Plugin Registry, size = 2 }
+
+Plugins currently live in a shared repository.  
+A dedicated platform is coming, with install and search support directly from the inlineCode { tlp } CLI and browser.
+
+For now, you can share and contribute through the link { to = "https://github.com/TimeleapLabs/plugins", Github repo }
+
+title { 🙏 Thanks to the Community, size = 2 }
+
+The new onboarding flow was shaped directly by feedback and contributions from community members.  
+We’re building this with you. And because of you.
+
+title { 👋 Meet Hamed, Timeleap’s New DevRel, size = 2 }
+
+Hamed is officially stepping into the DevRel role at Timeleap.  
+He’ll be building real use cases, sharing his learning process publicly, and helping community members turn their ideas into working nodes and plugins.  
+He’s also in charge of our new community subnet.
+
+If you want to test the network, deploy plugins, or run a worker, you’ll be able to join his subnet and start building right away.
+
+title { 🧪 Plugin Scaffolding is Ready, size = 2 }
+
+Templates will be available through the inlineCode { tlp } CLI in the next few days.  
+Hamed will walk you through it soon with examples you can run in his subnet.
+
+title { 🚀 Next Steps, size = 2 }
+
+Install the CLI.  
+Get your nodes ready.  
+Embark on Hamed’s journey to ship workloads on the network.
+
+title { 💬 Need Help?, size = 2 }
+
+Join the link { to = "https://discord.com/invite/Timeleap", Discord } to ask questions, get support, or chat with the team.
+
+meta {
+  title = "Run Your Own Timeleap Node in One Command",
+  description = "Install Timeleap in seconds with a unified CLI, rootless Docker support, and the first live community subnet.",
+  ogImageText = [Run Your Own, Timeleap Node]
+}
