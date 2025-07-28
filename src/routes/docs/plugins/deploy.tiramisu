@@ -1,0 +1,105 @@
+title { Deploying Plugins }
+
+Every Timeleap plugin must run as a containerized WebSocket server. The runtime, language, and internal structure are up to you — but the final interface must match the expected protocol and be reachable by the worker.
+
+title { Requirements, size = 2 }
+
+list {
+  items = Plugin must run inside a Docker container,
+  items = Plugin must expose a WebSocket server on a fixed port,
+  items = Plugin must respond to method calls encoded via SIA,
+  items = Plugin must remain running as long as the worker is active
+}
+
+title { Example Dockerfile, size = 2 }
+
+The following example builds and runs a plugin written in Bun. You can adapt this to any runtime as long as the final container exposes a WebSocket interface.
+
+code {
+  title = Dockerfile,
+  language = docker,
+  content = """
+  FROM oven/bun:1.2-alpine AS builder
+  WORKDIR /build
+
+  COPY . .
+
+  RUN bun install
+  RUN bun run build
+
+  FROM oven/bun:1.2-alpine
+  WORKDIR /app
+
+  COPY --from=builder /build .
+
+  EXPOSE 3000
+  ENTRYPOINT ["bun", "run", "index.js"]
+  """
+}
+
+title { Build the Image, size = 2 }
+
+code {
+  language = bash,
+  content = """
+  docker build -t my-plugin .
+  """
+}
+
+title { Run the Container, size = 2 }
+
+code {
+  language = bash,
+  content = """
+  docker run --rm -p 3000:3000 my-plugin
+  """
+}
+
+title { Register with Worker, size = 2 }
+
+After the plugin is running, register it inside the worker's inlineCode { conf.yaml }:
+
+code {
+  title = conf.yaml,
+  language = yaml,
+  content = """
+  plugins:
+    - name: my-plugin
+      endpoint: ws://localhost:3000
+      type: websocket
+      functions:
+        - name: process
+          cpu: 1
+          gpu: 0
+          ram: 256
+          timeout: 5000
+  """
+}
+
+title { Plugin Lifecycle, size = 2 }
+
+list {
+  items = Plugins are managed outside of Timeleap,
+  items = Each plugin is mounted manually into the worker config,
+  items = The worker connects to the plugin when executing a task,
+  items = If the plugin crashes or is unreachable, the task fails
+}
+
+title { Publishing & Discovery, size = 2 }
+
+To list your plugin in the official Timeleap plugin directory:
+
+list {
+  items = Fork the plugins repository,
+  items = Add your plugin under inlineCode { ./plugins/<name> },
+  items = Include a README, .sia schema, and Dockerfile,
+  items = Open a pull request for review
+}
+
+In the future, Timeleap will provide a public image registry and a CLI flow for publishing via inlineCode { tlp plugin publish }.
+
+meta {
+  description = "Timeleap plugins can use any language or framework. They must be containerized, expose a WebSocket interface, and be reachable by the worker.",
+  ogImageText = [Timeleap, Plugin Deployment],
+  ogImageFontSize = 42
+}

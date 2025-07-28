@@ -1,0 +1,24 @@
+title { Admin Subnet }
+
+The admin subnet is a plugin that brokers use to manage identities, authorize workers, credit clients, and control subnet metadata.
+
+It is accessed by the broker internally, and is exposed externally through the inlineCode { tl-admin } CLI.
+
+title { Capabilities, size = 2 }
+
+list {
+  items = Stake KNS and register a broker subnet,
+  items = Link broker identities to staking keys,
+  items = Update subnet metadata (name, URL, icon, config),
+  items = Authorize or revoke worker access,
+  items = Credit or monitor client usage,
+  items = Manage federation compliance (uptime, restaking)
+}
+
+All operations are done via signed messages or through a trusted transport between inlineCode { tl-admin } and the admin plugin.
+
+meta {
+  description = "The admin-subnet plugin powers subnet registration, worker authorization, and credit management.",
+  ogImageText = [Timeleap, Admin Subnet],
+  ogImageFontSize = 42
+}

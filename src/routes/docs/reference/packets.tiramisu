@@ -1,0 +1,35 @@
+title { Packet Reference }
+
+This page documents the binary layout of Timeleap network packets. All messages exchanged between nodes, brokers, and plugins follow these signed, schema-driven structures.
+
+title { Signed Packet (outer envelope) }
+
+Every message on the Timeleap network is wrapped in a signed inlineCode { Packet } structure. This ensures authentication and integrity across nodes.
+
+mermaid {
+  """
+  packet
+  +8:   "OpCode (uint8)"
+  +64:  "AppID (uint64)"
+  +256: "Message (byteN, Sia-encoded)"
+  +256: "Signer (ed25519 public key)"
+  +512: "Signature (ed25519 signature)"
+  """
+}
+
+title { Plugin Payload (RPCRequest) }
+
+When a worker calls a plugin function, it encodes an inlineCode { RPCRequest } and sends it over WebSocket. The plugin must decode this message, then decode the inlineCode { params } field using the expected function schema.
+
+mermaid {
+  """
+  packet
+  +64:  "UUID (byte8)"
+  +64:  "Plugin Name (string8)"
+  +64:  "Method Name (string8)"
+  +64:  "Timeout (uint64)"
+  +64:  "Fee (uint64)"
+  +64:  "Currency (string8)"
+  +128: "Params (byteN, Sia-encoded)"
+  """
+}

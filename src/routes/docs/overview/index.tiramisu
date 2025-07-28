@@ -1,0 +1,30 @@
+title { Network Overview }
+
+Timeleap is a distributed compute network composed of three core roles: bold { brokers }, bold { workers }, and bold { plugins }.
+
+list {
+  items = bold { Brokers } expose the plugin interface over WebSocket, handle job orchestration, and register the subnet,
+  items = bold { Workers } are persistent compute nodes that link to one or more plugins and must be authorized by the broker,
+  items = bold { Plugins } are WebSocket services attached to a worker that expose logic callable by the broker
+}
+
+title { Subnet Architecture, size = 2 }
+
+Clients interact only with the broker. Each broker defines a bold { subnet }, composed of authorized workers and their linked plugins. When a client sends a request to a plugin, the broker routes it to a worker that has the requested plugin linked.
+
+This architecture ensures strong trust boundaries, decentralized orchestration, and horizontal scalability.
+
+toc {
+  getting-started,
+  register-node,
+  plugin-system,
+  worker-authorization,
+  client-requests,
+  broker-subnet-lifecycle
+}
+
+meta {
+  description = "High-level architecture of the Timeleap Network: brokers, workers, plugins, and subnets.",
+  ogImageText = [Timeleap, Network Overview],
+  ogImageFontSize = 42
+}

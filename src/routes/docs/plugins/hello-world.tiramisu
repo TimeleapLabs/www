@@ -1,0 +1,140 @@
+title { Hello World Plugin }
+
+The hello-world plugin is a real, production-ready example of how Timeleap plugins work. It runs a signed WebSocket interface, encodes payloads using SIA, and returns structured results to the broker through the worker.
+
+title { Architecture, size = 2 }
+
+Each plugin:
+
+list {
+  items = Runs independently using Bun + WebSocket,
+  items = Verifies broker-signed payloads with inlineCode { @timeleap/client },
+  items = Encodes/decodes RPC messages using inlineCode { @timeleap/sia },
+  items = Exposes functions declared in SIA schemas
+}
+
+title { SIA Schema, size = 2 }
+
+The plugin uses a real inlineCode { .sia } file to declare its methods, input/output types, and fee structure:
+
+code {
+  title = index.sia,
+  language = typescript,
+  content = """
+  schema Args {
+    message   string8(encoding = "ascii")
+  }
+
+  schema Fee {
+    amount     uint64
+    currency   string8(encoding = "ascii")
+  }
+
+  schema HelloWorldCall {
+    uuid    byte8
+    plugin  string8(encoding = "ascii")
+    method  string8(encoding = "ascii")
+    timeout uint64
+    fee     Fee
+    args    Args
+  }
+
+  schema HelloWorldResponse {
+    opcode    uint8
+    appId     uint64
+    uuid      byte8
+    error?    uint16
+    ok?       bool
+    message?  string8(encoding = "ascii")
+  }
+
+  plugin swiss.timeleap.helloWorld as HelloWorld {
+    method hi(timeout = 5000, fee = 1, currency = "USD") Args returns {
+      ok      bool
+      message string8(encoding = "ascii")
+    }
+  }
+  """
+}
+
+title { WebSocket Handler, size = 2 }
+
+code {
+  title = index.ts,
+  language = ts,
+  content = """
+  Bun.serve({
+    port: 80,
+    websocket: {
+      async message(ws, message) {
+        if (!(await worker.verify(message))) return
+
+        const { uuid, method, args } = decodeHelloWorldCall(new Sia(message).skip(9))
+        const output = encodeHelloWorldResponse(uuid, { ok: true, message: "hi " + args.message })
+        ws.send(output)
+      }
+    }
+  })
+  """
+}
+
+title { Dockerfile, size = 2 }
+
+code {
+  title = Dockerfile,
+  language = docker,
+  content = """
+  FROM oven/bun:1.2-alpine AS builder
+  WORKDIR /build
+
+  COPY package.json bun.lock ./
+  COPY shared/ ./shared
+  COPY apps/plugin ./apps/plugin
+
+  RUN bun install
+  RUN bun --filter './shared/*' build && bun run build
+
+  FROM oven/bun:1.2-alpine
+  WORKDIR /app
+
+  COPY --from=builder /build/apps/plugin/dist .
+
+  EXPOSE 80
+  ENTRYPOINT ["bun","run","index.js"]
+  """
+}
+
+title { Run the Plugin, size = 2 }
+
+code {
+  language = bash,
+  content = """
+  docker build -t timeleap-hello ./apps/plugin
+  docker run --rm -p 3000:80 timeleap-hello
+  """
+}
+
+title { Worker Config, size = 2 }
+
+code {
+  title = conf.yaml,
+  language = yaml,
+  content = """
+  plugins:
+    - name: hello-world
+      endpoint: ws://localhost:3000
+      type: websocket
+      functions:
+        - name: hi
+          cpu: 1
+          gpu: 0
+          ram: 128
+          timeout: 3000
+  """
+}
+
+meta {
+  description = "A complete Timeleap plugin example using Bun, SIA schema, WebSocket server, and signature validation. Powered by real code.",
+  ogImageText = [Timeleap, Hello World Plugin],
+  ogImageFontSize = 42
+}

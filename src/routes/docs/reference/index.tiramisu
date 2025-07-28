@@ -1,0 +1,17 @@
+title { Reference }
+
+This section contains detailed reference material for all core components of the Timeleap system. Use it to look up commands, configuration structures, environment variables, and plugin interfaces.
+
+list {
+  items = CLI commands inlineCode { tlp }, inlineCode { timeleap }, inlineCode { tl-admin },
+  items = Configuration files inlineCode { conf.yaml }, inlineCode { secrets.yaml },
+  items = Plugin architecture and schemas,
+  items = Environment variables and runtime behavior
+}
+
+toc {
+  cli,
+  conf-yaml,
+  plugins,
+  packets
+}

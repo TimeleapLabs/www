@@ -1,0 +1,92 @@
+title { conf.yaml Reference }
+
+This file configures the runtime behavior of a broker or worker node. It’s created by inlineCode { tlp init } and can be edited manually to customize ports, resource limits, plugins, and RPC behavior.
+
+title { System Fields, size = 2 }
+
+code {
+  title = Basic system config,
+  language = yaml,
+  content = """
+  system:
+    log: info
+    name: node-01
+  """
+}
+
+title { Network Configuration, size = 2 }
+
+Workers and brokers use different network keys:
+
+code {
+  title = Broker,
+  language = yaml,
+  content = """
+  network:
+    bind: 0.0.0.0:9123
+  """
+}
+
+code {
+  title = Worker,
+  language = yaml,
+  content = """
+  network:
+    broker:
+      uri: ws://my-broker:9123
+      publicKey: <broker-public-key>
+  """
+}
+
+title { RPC Resources, size = 2 }
+
+Defines how much compute the node advertises:
+
+code {
+  language = yaml,
+  content = """
+  rpc:
+    cpus: 4
+    gpus: 0
+    ram: 4096
+  """
+}
+
+title { Blockchain RPC, size = 2 }
+
+Used by both brokers and workers to access EVM chains:
+
+code {
+  language = yaml,
+  content = """
+  pos:
+    rpc:
+      - https://mainnet.infura.io/v3/YOUR_KEY
+  """
+}
+
+title { Plugin Declaration, size = 2 }
+
+Plugins must be reachable inside the Docker network. Never use inlineCode { localhost } — use service names.
+
+code {
+  language = yaml,
+  content = """
+  plugins:
+    - name: hello-world
+      endpoint: ws://hello-world:3000
+      type: websocket
+      functions:
+        - name: hi
+          cpu: 1
+          gpu: 0
+          ram: 128
+          timeout: 3000
+  """
+}
+
+meta {
+  description = "Detailed field reference for conf.yaml, the main configuration file used by Timeleap worker and broker nodes.",
+  ogImageText = [Timeleap, conf.yaml Reference],
+  ogImageFontSize = 42
+}

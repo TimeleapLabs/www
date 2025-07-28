@@ -1,0 +1,22 @@
+title { Plugin System }
+
+Plugins are WebSocket-based services that expose programmable logic to brokers.  
+They act as extensions of a worker and are invoked when a client makes a request through the broker.
+
+list {
+  items = Defined using inlineCode { .sia } schemas for fast binary serialization,
+  items = The worker connects to the plugin over WebSocket at startup,
+  items = The plugin is exposed to the broker through the worker’s plugin bridge
+}
+
+Plugins do not communicate directly with clients. Instead, the broker relays plugin requests, dispatches them to the appropriate worker, and returns the result to the client.
+
+Plugin interfaces are defined with inlineCode { .sia } and compiled into both plugin and client code for type-safe communication.
+
+Plugins can expose multiple methods and can be long-running services that keep internal state.
+
+meta {
+  description = "How plugins work in Timeleap: binary schema, WebSocket bridge, and broker-mediated execution.",
+  ogImageText = [Timeleap, Plugin System],
+  ogImageFontSize = 42
+}

@@ -1,0 +1,78 @@
+title { Broker Node }
+
+Brokers orchestrate task execution across the network. They receive requests, select workers, dispatch workloads, and return results. To operate on the public network, a broker must be registered, staked, and connected to the admin subnet to process payments.
+
+title { Responsibilities, size = 2 }
+
+list {
+  items = Accept task requests via RPC (HTTP or WebSocket),
+  items = Match tasks to eligible workers,
+  items = Sign and dispatch workload containers,
+  items = Validate result signatures,
+  items = Return output to clients,
+  items = Maintain worker state and availability,
+  items = Connect to the admin subnet for reward routing
+}
+
+title { Configuration, size = 2 }
+
+Every broker must be initialized with:
+
+list {
+  items = inlineCode { conf.yaml } — node role, port, resource limits, volume mounts,
+  items = inlineCode { secrets.yaml } — identity, signing key, registration status
+}
+
+Use the CLI to generate both files:
+
+code {
+  language = bash,
+  content = """
+  tlp init
+  """
+}
+
+title { Minimal Example, size = 2 }
+
+code {
+  title = conf.yaml,
+  language = yaml,
+  content = """
+  system:
+    log: info
+    name: Timeleap
+
+  network:
+    bind: 0.0.0.0:9123
+
+  rpc:
+    cpus: 1
+    gpus: 0
+    ram: 2048
+  """
+}
+
+title { Launch, size = 2 }
+
+code {
+  language = bash,
+  content = """
+  tlp broker start
+  """
+}
+
+title { Public Broker Requirements, size = 2 }
+
+If the broker is intended to serve public tasks:
+
+list {
+  items = Must be registered via inlineCode { tlp admin },
+  items = Must be linked to a valid stake per TEP-5,
+  items = Must be connected to the admin subnet to process rewards
+}
+
+meta {
+  description = "Technical breakdown of the Timeleap broker role: orchestration, task dispatch, reward processing, and public network integration.",
+  ogImageText = [Timeleap, Broker Node],
+  ogImageFontSize = 42
+}

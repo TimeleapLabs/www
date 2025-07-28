@@ -1,0 +1,51 @@
+title { Subnets }
+
+A subnet in Timeleap is a broker-scoped trust domain that encapsulates all compute orchestration, worker authorization, plugin availability, and credit policies. Subnets are defined unilaterally by brokers—there is no global registry or coordination layer.
+
+title { Architecture, size = 2 }
+
+Each subnet is rooted in a single broker identity. Workers and plugin processes are external to the broker but are logically registered to the subnet when authorized.
+
+The broker exposes its plugin surface via WebSocket. Workers attach plugins locally and present their interface to the broker through the plugin bridge.
+
+This allows subnets to expose programmable compute logic in a dynamic, decentralized way.
+
+title { Components, size = 2 }
+
+list {
+  items = inlineCode { broker }: the orchestrator and entry point of the subnet,
+  items = inlineCode { worker }: a node that registers one or more plugins,
+  items = inlineCode { plugin }: a long-running process linked to a worker,
+  items = inlineCode { tl-admin }: the CLI used to stake, link, authorize, and manage access,
+  items = inlineCode { admin-subnet }: a plugin that enforces staking and authorization logic
+}
+
+title { Identity + Staking, size = 2 }
+
+Each broker identity is linked to a staking address using:
+
+code {
+  language = bash,
+  content = """
+  tl-admin stake <amount>
+  tl-admin link <broker-id>
+  tl-admin update-subnet [...]
+"""
+}
+
+Workers do not stake directly—they must be authorized:
+
+code {
+  language = bash,
+  content = """
+  tl-admin authorize <worker-pubkey>
+"""
+}
+
+This permissioning mechanism ensures that only explicitly approved nodes can attach plugins or run jobs in a subnet.
+
+meta {
+  description = "Technical breakdown of Timeleap subnets: trust boundaries, worker registration, and staking lifecycle.",
+  ogImageText = [Timeleap, Subnets],
+  ogImageFontSize = 42
+}

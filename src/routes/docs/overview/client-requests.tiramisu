@@ -1,0 +1,26 @@
+title { Client Requests }
+
+Clients interact with the Timeleap Network by sending plugin requests to a broker over WebSocket.
+All plugin interfaces are exposed by the broker and routed to the appropriate worker.
+
+title { Request Flow, size = 2 }
+
+list {
+  items = The client connects to the broker via WebSocket,
+  items = Sends a request to a specific plugin method,
+  items = The broker finds an authorized worker with the plugin linked,
+  items = The worker executes the plugin logic and returns the result,
+  items = The broker relays the response to the client
+}
+
+title { Credit and Billing, size = 2 }
+
+Subnets are responsible for managing credit and billing policies. Brokers can use inlineCode { tl-admin credit } to assign execution credit to users, but this mechanism is optional and implementation-specific.
+
+The broker deducts credit on each request and can reject calls if the balance is insufficient.
+
+meta {
+  description = "Understand how clients send requests to brokers, how plugins are executed, and how credit is consumed.",
+  ogImageText = [Timeleap, Client Requests],
+  ogImageFontSize = 42
+}

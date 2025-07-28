@@ -1,0 +1,42 @@
+title { Message Format }
+
+All communication in Timeleap is structured around compact, binary-encoded messages defined with the inlineCode { .sia } schema language.
+
+This format ensures maximum speed, type safety, and consistent decoding across the network — from clients to brokers, brokers to workers, and workers to plugins.
+
+title { Schema Definition, size = 2 }
+
+Each plugin defines its API using a inlineCode { .sia } file. These schemas define:
+
+list {
+  items = Method names and opcodes,
+  items = Input and output payload structures,
+  items = Field-level types and constraints
+}
+
+The schema is compiled to TypeScript using inlineCode { @timeleap/sia }, which generates:
+
+list {
+  items = Inline binary encoders and decoders,
+  items = Type-safe method call signatures,
+  items = Shared types for plugin, client, and broker
+}
+
+title { Frame Layout, size = 2 }
+
+Each WebSocket message is a binary frame with this structure:
+
+code {
+  language = text,
+  content = """
+[ opcode | payload_length | payload_bytes ]
+"""
+}
+
+Brokers use the opcode to route the call, then forward the payload to a matching worker/plugin pair.
+
+meta {
+  description = "Low-level message structure and schema encoding for Timeleap communication.",
+  ogImageText = [Timeleap, Message Format],
+  ogImageFontSize = 42
+}

@@ -1,0 +1,66 @@
+title { tlp admin CLI }
+
+The inlineCode { tlp admin } command is used to register nodes, link wallets, and manage access to the public Timeleap network. Only permissioned operators can use this CLI.
+
+title { Commands, size = 2 }
+
+list {
+  items = inlineCode { tlp admin register } — register a broker or worker,
+  items = inlineCode { tlp admin wallet link } — assign wallet to node,
+  items = inlineCode { tlp admin credit add } — credit a node with funds,
+  items = inlineCode { tlp admin node status } — check registration state
+}
+
+title { Register a Node, size = 2 }
+
+Registers a broker or worker node for public subnet access:
+
+code {
+  language = bash,
+  content = """
+  tlp admin register --role worker --wallet <wallet-address>
+  """
+}
+
+title { Link a Wallet, size = 2 }
+
+Used to assign a payout address to a node identity:
+
+code {
+  language = bash,
+  content = """
+  tlp admin wallet link --address <wallet-address>
+  """
+}
+
+title { Credit a Node, size = 2 }
+
+Credits are consumed when running workloads. You must top up a node to allow execution on the public network:
+
+code {
+  language = bash,
+  content = """
+  tlp admin credit add --node-id <uuid> --amount 1000
+  """
+}
+
+title { Check Status, size = 2 }
+
+Verify whether a node is registered and funded:
+
+code {
+  language = bash,
+  content = """
+  tlp admin node status --node-id <uuid>
+  """
+}
+
+title { Access Control, size = 2 }
+
+Only trusted wallets can use this CLI. If your address isn’t authorized, commands will fail with an error.
+
+meta {
+  description = "Use tlp admin to register Timeleap nodes, credit workers or brokers, and manage public subnet permissions.",
+  ogImageText = [Timeleap, tlp admin CLI],
+  ogImageFontSize = 42
+}

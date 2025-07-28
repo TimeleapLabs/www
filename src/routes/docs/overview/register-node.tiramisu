@@ -1,0 +1,70 @@
+title { Register a Node }
+
+To operate on the public Timeleap Network, your node must be registered and linked to an identity. This enables rewards, permissioned access, and task routing across the network.
+
+list {
+  items = Required for all public brokers and workers,
+  items = Enables rewards, crediting, and access control,
+  items = Uses the admin-subnet CLI to link, credit, and manage nodes
+}
+
+title { Requirements, size = 2 }
+
+alert {
+  type = info,
+  title = Private Subnets Don’t Require Registration
+  If you're only running a private subnet (e.g. for internal use or trusted peers), you don't need to register your node or use the admin-subnet CLI.
+}
+
+title { 1. Install the Admin CLI, size = 2 }
+
+Use the inlineCode { tlp admin } CLI to manage registration, identity, and crediting.
+
+code {
+  language = bash,
+  content = """
+  tlp admin --help
+  """
+}
+
+title { 2. Link a Wallet, size = 2 }
+
+Each node must be linked to a wallet. This wallet serves as the node’s identity and receives payouts.
+
+code {
+  title = Link wallet to node identity,
+  language = bash,
+  content = """
+  tlp admin wallet link
+  """
+}
+
+title { 3. Stake KNS Credits, size = 2 }
+
+Stake credits to allow your node to operate. Brokers and workers require KNS balance to send and execute tasks.
+
+code {
+  title = Stake credits to your node,
+  language = bash,
+  content = """
+  tlp admin stake
+  """
+}
+
+title { 4. Link Stake to Subnet, size = 2 }
+
+Link your credits to a subnet to enable reward routing based on TEP-5 and TEP-6.
+
+code {
+  title = Link stake to subnet,
+  language = bash,
+  content = """
+  tlp admin link
+  """
+}
+
+meta {
+  description = "Register your Timeleap node to participate in the public network and handle rewards and permissions. Required for public brokers and workers.",
+  ogImageText = [Timeleap, Register Node],
+  ogImageFontSize = 42
+}

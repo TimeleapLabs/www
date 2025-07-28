@@ -1,0 +1,43 @@
+title { Worker Authorization }
+
+Workers must be authorized before they can join a broker's subnet. Authorization is handled by the broker using the inlineCode { admin-subnet } plugin and inlineCode { tl-admin } CLI.
+
+title { Authorization Flow, size = 2 }
+
+The worker sends its public key to the broker when starting up. The broker must explicitly approve the worker using:
+
+code {
+  language = bash,
+  content = """
+  tl-admin authorize <worker-public-key>
+"""
+}
+
+Once authorized, the worker can serve plugin requests on behalf of the broker.
+
+Workers cannot:
+
+list {
+  items = Authorize themselves,
+  items = Participate without approval,
+  items = Receive credit or run jobs without broker consent
+}
+
+title { Revocation, size = 2 }
+
+If a worker is compromised or misbehaving, the broker can revoke access using:
+
+code {
+  language = bash,
+  content = """
+  tl-admin unauthorize <worker-public-key>
+"""
+}
+
+This immediately removes the worker from the subnet.
+
+meta {
+  description = "Authorize and manage worker access to a broker subnet using tl-admin.",
+  ogImageText = [Timeleap, Worker Authorization],
+  ogImageFontSize = 42
+}

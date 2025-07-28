@@ -1,0 +1,35 @@
+title { Task Lifecycle }
+
+Tasks are the atomic units of work in Timeleap. They are initiated by clients, routed by the broker, executed by workers, and resolved back to the origin.
+
+All tasks flow through a broker and are mapped to a plugin method. The broker ensures routing, worker selection, delivery, and result propagation.
+
+title { Lifecycle Phases, size = 2 }
+
+list {
+  items = inlineCode { request }: client sends a plugin call to the broker over WebSocket,
+  items = inlineCode { dispatch }: broker selects a compatible worker with the linked plugin,
+  items = inlineCode { execution }: the worker invokes the plugin method,
+  items = inlineCode { resolve }: result is streamed or returned to the broker,
+  items = inlineCode { response }: broker sends final output back to the client
+}
+
+title { Execution Context, size = 2 }
+
+The plugin receives a task payload encoded via inlineCode { .sia } schema.
+Each method implementation can access:
+
+list {
+  items = The payload data (already parsed),
+  items = Plugin-side state (via local module scope),
+  items = RPC helpers (to stream results, fetch blobs, etc.),
+  items = Job metadata: task ID, plugin name, sender identity
+}
+
+Tasks can be synchronous or stream-based, and plugins are free to emit partial results over time.
+
+meta {
+  description = "Understand how tasks flow through Timeleap: from client to broker to worker and back.",
+  ogImageText = [Timeleap, Task Lifecycle],
+  ogImageFontSize = 42
+}

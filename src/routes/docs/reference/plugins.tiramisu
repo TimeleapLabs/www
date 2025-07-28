@@ -1,0 +1,203 @@
+title { Plugin Reference }
+
+Plugins are standalone WebSocket applications that expose compute functions to a Timeleap worker. All communication is binary and follows a strict schema contract using inlineCode { @timeleap/sia }.
+
+title { Architecture }
+
+list {
+  items = Plugins are standalone processes running in containers,
+  items = Workers connect to each plugin over WebSocket (inside Docker network),
+  items = Plugins receive binary RPC requests and return encoded binary responses,
+  items = Function metadata is declared in inlineCode { conf.yaml }
+}
+
+title { conf.yaml Declaration }
+
+Plugins must be declared inside the broker config:
+
+code {
+  language = yaml,
+  content = """
+plugins:
+  - name: hello-world
+    endpoint: ws://hello-world:3000
+    type: websocket
+    functions:
+      - name: hi
+        cpu: 1
+        gpu: 0
+        ram: 128
+        timeout: 3000
+"""
+}
+
+title { Sia Schemas }
+
+Plugins use inlineCode { @timeleap/sia } to define schemas for input/output types.
+
+Example:
+
+code {
+  language = typescript,
+  content = """
+schema Hi {
+  name string8
+}
+
+schema HiResponse {
+  message string8
+}
+"""
+}
+
+Compile them with:
+
+code {
+  language = bash,
+  content = """
+bunx @timeleap/sia compile ./sia --out ./src/sia
+"""
+}
+
+title { Worker → Plugin Payload }
+
+The worker sends this binary structure to the plugin:
+
+code {
+  language = typescript,
+  content = """
+schema RPCRequest {
+  id        byte8    // UUID v7
+  plugin    string8
+  method    string8
+  timeout   uint64
+  fee       uint64
+  currency  string8
+  params    byteN
+}
+"""
+}
+
+Plugins must decode inlineCode { RPCRequest }, then decode inlineCode { params } using the expected method schema.
+
+title { Plugin Response }
+
+Plugins respond with a binary payload matching the schema for that method:
+
+code {
+  language = typescript,
+  content = """
+HiResponse.encode({
+  message: "Hello World"
+})
+"""
+}
+
+There is no envelope. Just send the encoded inlineCode { Uint8Array } response back to the worker.
+
+title { Runtime Example }
+
+code {
+  language = typescript,
+  content = """
+import { WebSocketServer } from 'ws'
+import { RPCRequest, Hi, HiResponse } from './sia'
+
+const wss = new WebSocketServer({ port: 3000 })
+
+wss.on('connection', socket => {
+  socket.on('message', (raw: Buffer) => {
+    const request = RPCRequest.decode(raw)
+    const input = Hi.decode(request.params)
+
+    const output = HiResponse.encode({
+      message: `Hello ${input.name}`
+    })
+
+    socket.send(output)
+  })
+})
+"""
+}
+
+title { Client Example }
+
+This example shows how to call a plugin function from a Timeleap-compatible client using inlineCode { @timeleap/client } and inlineCode { @timeleap/sia }.
+
+code {
+  language = typescript,
+  content = """
+import { Client, Wallet } from '@timeleap/client'
+import { Sia } from '@timeleap/sia'
+import { MyPlugin } from './model/plugin.js'
+
+const uri = 'ws://broker:9123/1.0.0'
+const publicKey = 'broker-public-key'
+const privateKey = 'client-private-key'
+
+const wallet = await Wallet.fromBase58(privateKey)
+const client = await Client.connect(wallet, { uri, publicKey })
+const plugin = MyPlugin.connect(client)
+
+const response = await plugin.myFunction(Sia.alloc(64), {
+  name: 'Alice',
+  age: 30
+})
+
+console.log('Response:', response)
+
+client.close()
+"""
+}
+
+title { Requirements }
+
+list {
+  items = Plugins must be reachable inside the Docker network (use service names),
+  items = No JSON is allowed — all data must be encoded using inlineCode { @timeleap/sia },
+  items = Worker will reject malformed or schema-mismatched responses,
+  items = Function names in inlineCode { conf.yaml } must match the schemas used
+}
+
+title { Register Plugin }
+
+Register a plugin via CLI:
+
+code {
+  language = bash,
+  content = """
+tlp plugin register --path ./apps/plugin/hello-world
+"""
+}
+
+title { Plugin Packet Layout }
+
+This diagram shows the structure of a Sia-encoded inlineCode { RPCRequest } sent from the worker to the plugin. Total size: 512 bits (64 bytes).
+
+mermaid {
+  """
+  packet
+  +64:  "UUID (byte8)"
+  +64:  "Plugin Name (string8)"
+  +64:  "Method Name (string8)"
+  +64:  "Timeout (uint64)"
+  +64:  "Fee (uint64)"
+  +64:  "Currency (string8)"
+  +128: "Params (partial byteN)"
+  """
+}
+
+title { Signed Packet Layout }
+
+This is the binary packet used to wrap and authenticate any RPC message across the Timeleap network. It’s signed using the node’s Ed25519 identity.
+
+mermaid {
+  """
+  packet
+  +8:   "OpCode (uint8)"
+  +64:  "AppID (uint64)"
+  +256: "Message (byteN, Sia-encoded)"
+  +256: "Signer (ed25519 public key)"
+  +512: "Signature (ed25519 signature)"
+  """
+}
