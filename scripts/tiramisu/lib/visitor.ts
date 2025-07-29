@@ -323,6 +323,12 @@ const functions: {
 				<p class="text-zinc-400 text-xs">${caption}</p>
 			</div>
 		`;
+	},
+	pullQuote(params) {
+		const content = params.positional.join('');
+		return `<aside class="min-h-10 flex items-center border-l-4 border-neutral-400 pl-4 italic text-neutral-300" >
+      <p>“ ${content}</p>
+    </aside>`;
 	}
 };
 
