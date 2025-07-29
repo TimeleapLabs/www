@@ -1,15 +1,22 @@
 title { From Confusion to Clarity: How I Learned to Write Timeleap Plugins }
 
+quote {
+  I was trying to build a plugin for the Timeleap Network... but everything was chaos.
+}
+
+I set out to develop a plugin for the Timeleap Network. Just one plugin. But I found myself knee-deep in layers: the SDK, the broker, the worker, the Sia schema system, and more. Nothing was clearly separated. I was bouncing between multiple workspaces, debugging random edge cases, and trying to make sense of how all the moving parts interacted.  
+
+So we decided to stop and make a dedicated `plugins` repo — something clean, focused, and built for writing and testing plugins **without needing to understand the entire system**.
+
 title { 1. Why This Repo Exists, size = 2 }
 
-alert {
-  type = quote,
+quote {
   This repo was created to simplify the process of building plugins for the Timeleap Network.
 }
 
 This monorepo exists to make plugin development for Timeleap as straightforward as possible — without needing to understand the internals of the network.
 
-It’s a inlineCode {Dockerized} setup that abstracts the networking layer, so developers can focus entirely on their plugin logic. Whether you're writing your first plugin or adding advanced features, the heavy lifting is already done.
+It’s a dockerized setup that abstracts the networking layer, so developers can focus entirely on their plugin logic. Whether you're writing your first plugin or adding advanced features, the heavy lifting is already done.
 
 Included is a working inlineCode {Hello World} plugin, showcasing:
 
@@ -24,8 +31,7 @@ image { src = "/images/blog/Timeleap-plugins.png", alt = "How the Timeleap plugi
 
 title { 2. What Problem It Solves, size = 2 }
 
-alert {
-  type = quote,
+quote {
   Connecting a plugin or calling one on the Timeleap network shouldn’t be this hard.
 }
 
@@ -46,8 +52,7 @@ list {
 
 title { 3. What’s Inside the Repo, size = 2 }
 
-alert {
-  type = quote,
+quote {
   A fully working, minimal plugin that connects, registers, and responds.
 }
 
@@ -64,8 +69,7 @@ Everything is designed to be extendable — clone the structure and build your o
 
 title { 4. How to Use It, size = 2 }
 
-alert {
-  type = quote,
+quote {
   Clone it. Run it. Learn by tweaking.
 }
 
@@ -83,8 +87,7 @@ You don’t need to modify anything in the Timeleap Network itself — the infra
 
 title { 5. What You’ll Learn, size = 2 }
 
-alert {
-  type = quote,
+quote {
   From plugin registration to message handling — all the essentials.
 }
 
@@ -97,8 +100,7 @@ list {
 
 title { 6. Who This Is For, size = 2 }
 
-alert {
-  type = quote,
+quote {
   If you’re building on Timeleap and confused by plugin architecture — this is for you.
 }
 
@@ -111,8 +113,7 @@ list {
 
 title { 7. Next Steps, size = 2 }
 
-alert {
-  type = quote,
+quote {
   Use this as a base for your plugin or contribute to the ecosystem.
 }
 
@@ -125,8 +126,7 @@ list {
 
 title { 8. Final Thoughts, size = 2 }
 
-alert {
-  type = quote,
+quote {
   I wish I had this when I started.
 }
 

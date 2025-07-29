@@ -203,6 +203,10 @@ const functions: {
 		const content = params.positional.join(', ');
 		return `<Alert title="${title}" type="${type}"> ${content} </Alert>`;
 	},
+	quote(params) {
+		const content = params.positional.join('');
+		return `<Quote> ${content} </Quote>`;
+	},
 	card(params) {
 		const title = getParamsByName(params, 'title')[0]?.value ?? '';
 		const link = getParamsByName(params, 'link')[0]?.value ?? '';
