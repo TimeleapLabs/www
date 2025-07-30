@@ -10,6 +10,11 @@
 			name: 'Pouya Eghbali',
 			avatar: '/images/authors/pouya.jpg',
 			bio: 'Founder & CEO at Timeleap'
+		},
+		hamed: {
+			name: 'Hamed',
+			avatar: '/images/authors/developer.jpg',
+			bio: 'DevRel Engineer at Timeleap'
 		}
 	};
 
