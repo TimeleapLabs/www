@@ -325,10 +325,10 @@ const functions: {
 		`;
 	},
 	pullQuote(params) {
-		const content = params.positional.join(' ');
-		return `<aside class="min-h-10 flex items-center border-l-4 border-neutral-400 pl-4 italic text-neutral-300" >
-      <p>“ ${content}</p>
-    </aside>`;
+		const author = getParamsByName(params, 'author')[0]?.value ?? '';
+		const contentLines = params.positional;
+		const content = contentLines.join(' ').trim();
+		return `<Quote content="${content}" author="${author}" />`;
 	}
 };
 

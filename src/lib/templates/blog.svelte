@@ -3,6 +3,7 @@
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import Quote from '$lib/components/Quote.svelte';
 	import Alert from '$lib/components/Alert.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
 	import Code from '$lib/components/Code.svelte';
