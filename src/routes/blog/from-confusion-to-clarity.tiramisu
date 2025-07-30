@@ -1,14 +1,15 @@
 title { From Confusion to Clarity: Timeleap Plugins }
 
 pullQuote {
-  "Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple." – Steve Jobs
+  author = Steve Jobs,
+  Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple.
 }
 
-I remember the first time I came across the Timeleap Network — it immediately struck me as a cool and promising project. I thought, "This could be something big... I just wish it were easier to get started."
+I remember the first time I came across the Timeleap network. it immediately struck me as a cool and promising project. I thought, "This could be something big... I just wish it were easier to get started."
 
-Back then, the idea of some kind of wizard or streamlined setup felt like wishful thinking. But as time passed and I started working on a plugin myself, that early thought came full circle. We realized it wasn’t just a nice-to-have — it was a genuine need.
+Back then, the idea of some kind of wizard or streamlined setup felt like wishful thinking. But as time passed and I started working on a plugin myself, that early thought came full circle. We realized it wasn’t just a nice-to-have; it was a genuine need.
 
-That’s what led to this repo: a focused, developer-friendly space for writing and testing Timeleap plugins without needing to understand the entire system. It's built from real experience, and it's here to help others get moving faster
+That’s what led to this repo: a focused, developer-friendly space for writing and testing Timeleap plugins without needing to understand the entire system. It's built from real experience, and it's here to help others get moving faster.
 
 title { 1. Why This Repo Exists, size = 2 }
 
@@ -17,82 +18,59 @@ Included is a working inlineCode {Hello World} plugin, showcasing:
 
 list {
   items = "How to register a plugin",
-  items = "How to expose a function hi",
+  items = "How to expose a function `hi`",
   items = "How to connect and interact with the network from a client"
 }
 
-image { src = "/images/blog/Timeleap-plugins.png", alt = "How the Timeleap plugin 'hello-world' works" }
+image { src = "/images/blog/timeleap-plugins.png", alt = "How the Timeleap plugin 'hello-world' works" }
 
+title { 2. What’s Inside the Repo, size = 2 }
 
-title { 2. What Problem It Solves, size = 2 }
+To truly understand what's inside this repo, take a look at the diagram. Everything you see is enclosed within a blue circle. This represents the isolated Docker environment where the full Timeleap setup runs. As a developer, you don't need to worry about the internals; you interact only with the CLI from the outside.
+
+Once you run the CLI, it sends a request. That request enters the containerized world and is picked up by the client server, which is responsible for forwarding it. But as the red cross in the diagram clearly shows, it doesn’t talk to the plugin directly.
+
+Instead, the request is passed into a green box labeled as a “Timeleap Broker,” and that’s intentional. This green box represents an external submodule, which is the actual Timeleap codebase, added as a Git submodule. It has its own Dockerfile, and when you spin it up, it launches two key components: the broker and the worker.
+
+Here’s the magic: you don’t need to modify or understand this codebase. All you provide is the "power crystal" — a set of secrets and configuration values inside the main monorepo. That’s your recipe. The system takes care of the rest and launches a full Timeleap stack with your plugin ready to go.
+
+Here’s what happens behind the scenes:
+
+list {
+  items = "The broker receives the client request and determines which worker is responsible for the plugin the client wants to call.",
+  items = "The worker then invokes your plugin’s function.",
+  items = "The plugin responds, and the response flows back through the broker, then the client, and finally reaches you via the CLI."
+}
+
+There’s also a grey note shown in the diagram. This is the shared linter configuration, placed in a separate package inside the monorepo. It uses link {bun, to = <link to bun>} and can be referenced in both the client and plugin packages to ensure consistent linting rules across this codebase.
+
+title { 3. How to Use It, size = 2 }
 
 pullQuote {
-  Creating or using a plugin on the Timeleap network shouldn’t be this hard.
+  Clone it. Run it. Learn by tweaking., author = Hamed
 }
 
-Plugin development on Timeleap can now be a smooth and guided experience.
-With clear examples, up-to-date code, and a self-contained environment, this repo helps developers get straight to building.
-This repo is built to solve those problems:
+Clone the link {repo, to = https://github.com/TimeleapLabs/plugins}
 
-list {
-  items = "real, working, minimal plugin",
-  items = "in sync with the latest Timeleap updates",
-  items = "It saves hours of trial-and-error for new plugin authors"
-}
+Go inside the `hello-world` directory and run inlineCode {cd hello-world} and inlineCode {bun install}
 
-title { 3. What’s Inside the Repo, size = 2 }
+Follow the README to add configuration and secrets to config
 
-The monorepo includes:
+Run inlineCode {docker-compose up}
 
-list {
-  items = "A plugins folder where each plugin lives (starting with hello-world)",
-  items = "CLI and client that calls the plugin’s hi function and prints the result",
-  items = "Docker setup that spins everything up and connects to the Timeleap Network",
-  items = "(Coming soon) A growing library of community-contributed plugins"
-}
+Use the CLI to call the plugin and see how it works
 
-Everything is designed to be extendable — clone the structure and build your own.
+Modify the plugin logic to fit your needs
 
-title { 4. How to Use It, size = 2 }
+You don’t need to modify anything in the Timeleap Network itself. The infrastructure is handled for you.
 
-pullQuote {
-  Clone it. Run it. Learn by tweaking.
-}
+title { 4. Who This Is For, size = 2 }
 
-Clone the link {repo, to = https://github.com/TimeleapLabs/plugins }
+Developers building custom plugins or services for Timeleap and anyone who wants a working example to learn from.
 
-list {
-  items = "Go inside the hello-world directory cd hello-world and bun install",
-  items = "Follow the README to add configuration and secrets to config",
-  items = "Run docker-compose up",
-  items = "Use the CLI to call the plugin and see how it works",
-  items = "Modify the plugin logic to fit your needs",
-  items = "Add your own plugin in the plugins/ folder"
-}
+title { 5. Next Steps, size = 2 }
 
-You don’t need to modify anything in the Timeleap Network itself — the infrastructure is handled for you.
-
-title { 5. What You’ll Learn, size = 2 }
-
-list {
-  items = "How to structure and register a plugin",
-  items = "How to expose functions that can be called over the network",
-  items = "How to create a client that interacts with a plugin",
-  items = "How to Dockerize and test the whole setup locally"
-}
-
-title { 6. Who This Is For, size = 2 }
-
-This repo is ideal for:
-
-list {
-  items = "Developers building custom plugins or services for Timeleap",
-  items = "Anyone who wants a working example to learn from"
-}
-
-title { 7. Next Steps, size = 2 }
-
-As a Developer Relations engineer at Timeleap, my goal is to guide more developers into building with the network — not just through docs, but by sharing real examples, improving onboarding, and building in public.
+As a Developer Relations engineer at Timeleap, my goal is to guide more developers into building with the network, not just through docs, but by sharing real examples, improving onboarding, and building in public.
 
 This repo is just the beginning. It’s the foundation for a smoother plugin experience, and it will continue to grow with more plugins, guides, and best practices.
 
@@ -100,6 +78,6 @@ meta {
   description = "Developing on Timeleap is easier than ever.",
   ogImageText = [Timeleap, Plugins Repo Guide],
   ogImageFontSize = 28,
-  author = Hamed,
-  createdAt = 2025-07-25
+  author = hamed,
+  createdAt = 2025-07-30
 }
