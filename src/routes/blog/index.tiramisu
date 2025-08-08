@@ -1,14 +1,25 @@
 title { Blog }
 
-Welcome to the main blog! Here you can navigate to our latest articles or follow the developer's journey.
+Welcome to the Timeleap blogs section! Here you'll find the latest news and updates from Timeleap.
 
 toc {
-  blogs/index,
-  developer-journey/index
+  developer-journey,
+  run-your-own-timeleap-node-in-one-command,
+  timeleap-launch-and-future-plans,
+  can-you-download-more-ram,
+  timeleap-launch-plan,
+  timeleap-product-overview,
+  rebrand,
+  using-timeleap-now-easier,
+  tep-2-and-beyond,
+  tep-1-beta-how-to,
+  tep-1-timeleap-plugins,
+  shadowblade,
+  let-there-be-light
 }
 
 meta {
-  description = Discover all of Timeleap's written content, from company updates to developer insights.,
-  ogImageText = [Timeleap, Blog],
-  ogImageFontSize = 32
+  description = Stay up to date with the latest news and updates from Timeleap.,
+  ogImageText = [Timeleap, Blog],
+  ogImageFontSize = 32
 }
