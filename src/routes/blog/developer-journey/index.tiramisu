@@ -1,0 +1,13 @@
+title { A developer`s journey into Timeleap }
+
+Welcome to my journey into Timeleap! In this series, we will learn together as we explore the core concepts, build real-world use cases, and contribute to the project.
+
+toc {
+introduction-to-timeleap
+}
+
+meta {
+  description = Join me on a developer`s journey to learn, build, and contribute to the Timeleap project..,
+  ogImageText = [Timeleap, Content],
+  ogImageFontSize = 32
+}
