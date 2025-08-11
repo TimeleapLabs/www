@@ -1,8 +1,6 @@
 title { Introducing Timeleap }
 
-Building a powerful application with many different features can be a huge challenge. The code gets complicated, updates become difficult, and you end up with a big, single program that's not easy to manage.
-
-What if there was a better way to build your idea? There is! It's called Timeleap.
+Building a powerful application with many different features can be a huge challenge. The code gets complicated, updates become difficult, and you end up with a big, single program that's not easy to manage. What if there was a better way to build your idea? There is! It's called Timeleap.
 
 title { What is Timeleap? , size = 2 }
 
@@ -21,6 +19,7 @@ title { What is a Distributed App? , size = 2 }
 
 You might be wondering what we mean by a distributed app. Well, think of it this way: a traditional app is like one person trying to do everything. It works, but it can get slow and complicated.
 A distributed app, on the other hand, is a team of specialists. You have one service dedicated to handling user logins, another for processing images, and a third for sending notifications. Each service is separated, and they all work together.
+
 A great thing about this is that these services can be written in any language that benefits them most. For example, you could write your AI services in Python to take advantage of its powerful libraries.
 This approach makes your app so much more flexible and efficient. You can easily update or improve just one service without touching the rest of your app.
 It keeps everything organized. And because these services are so reusable, you could even make them available for others to use, which is something we'll get into later on.
@@ -55,7 +54,6 @@ All the hard stuff, like making sure your services can talk to each other, keepi
 title { Timeleap in Action: How It All Comes Together , size = 2 }
 
 So, how does this network of nodes get the job done?
-
 Think of the Timeleap protocol as the language that all the different parts of the network speak. Just like any language has rules for grammar and vocabulary, our protocol has rules for how messages are structured and sent. This ensures that everyone understands each other, and everything runs smoothly and securely.
 
 The protocol has a blueprint for the packets (the 'words' and 'sentences' of our network language) that travel between all the nodes, defining exactly how information is structured, secured, and sent. The protocol itself is powered by a serialization binary format called Sia, which is like a super-efficient way of encoding our 'words' to make them travel faster. We get to the details of this in another article.
