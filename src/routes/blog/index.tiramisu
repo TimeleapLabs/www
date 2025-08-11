@@ -1,8 +1,9 @@
 title { Blog }
 
-Welcome to the Timeleap blogs section! Here you'll find the latest news and updates from Timeleap.
+Welcome to the Timeleap blog! Here you'll find the latest news and updates from Timeleap.
 
 toc {
+  developer-journey/index,
   run-your-own-timeleap-node-in-one-command,
   timeleap-launch-and-future-plans,
   can-you-download-more-ram,
@@ -14,8 +15,7 @@ toc {
   tep-1-beta-how-to,
   tep-1-timeleap-plugins,
   shadowblade,
-  let-there-be-light,
-  developer-journey/index
+  let-there-be-light
   }
 
 meta {
