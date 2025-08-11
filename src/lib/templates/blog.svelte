@@ -26,7 +26,7 @@
 	('$IMPORTS');
 </script>
 
-<MetaTags title={'Timeleap — $TITLE'} description="$DESCRIPTION" $OG />
+<MetaTags title={"Timeleap — $TITLE"} description="$DESCRIPTION" $OG />
 <Navbar active="blog"></Navbar>
 
 <Section
