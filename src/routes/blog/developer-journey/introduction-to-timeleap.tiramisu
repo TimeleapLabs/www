@@ -1,95 +1,159 @@
 title { Introducing Timeleap }
 
-Building a powerful application with many different features can be a huge challenge. The code gets complicated, updates become difficult, and you end up with a big, single program that's not easy to manage.
+Building a powerful application with many different features can be a huge
+challenge. The code gets complicated, updates become difficult, and you
+end up with a big, single program that's not easy to manage.
 
-What if there was a better way? At Timeleap, we're making products to solve this problems and I'm going to walk you through them in this article. 
+What if there was a better way? At Timeleap, we're making products to solve
+this problems and I'm going to walk you through them in this article.
 
 title { What is Timeleap?, size = 2 }
 
-Timeleap is a framework that gives you both the mind and the muscle for building powerful applications.
+Timeleap is a framework that gives you both the mind and the muscle for
+building powerful applications.
 
 list {
-    items = "First, it helps you build a distributed app, an application made up of independent services, with each one doing a specific job really well.",
-    items = "Second, it provides you with the tools to create a distributed computing network, a collection of nodes that run those services."
+    items = "First, it helps you build a distributed app, an application made
+    up of independent services, with each one doing a specific job really well.",
+    items = "Second, it provides you with the tools to create a distributed
+    computing network, a collection of nodes that run those services."
 }
 
-alert { 
-  type = info,
-  title = What is a node?,
-  A node can be anything from a powerful server to a small device, a microcontroller, or even a browser. Timeleap is built to use all kinds of nodes, which is what makes the network so flexible.
+alert {
+    type = info,
+    title = What is a node?,
+    A node can be anything from a powerful server to a small device, a
+    microcontroller, or even a browser. Timeleap is built to use all kinds of
+    nodes, which is what makes the network so flexible.
 }
 
 title { What is a Distributed App?, size = 2 }
 
-You might be wondering what we mean by a distributed app. Well, think of it this way: a traditional app is like one person trying to do everything. It works, but it can get slow and complicated.
-A distributed app, on the other hand, is a team of specialists. You have one service dedicated to handling user logins, another for processing images, and a third for sending notifications. Each service is separated, and they all work together.
+You might be wondering what we mean by a distributed app. Well, think of it
+this way: a traditional app is like one person trying to do everything. It
+works, but it can get slow and complicated.
 
-A great thing about this is that these services can be written in any language that benefits them most. For example, you could write your AI services in Python to take advantage of its powerful libraries.
-This approach makes your app so much more flexible and efficient. You can easily update or improve just one service without touching the rest of your app.
-It keeps everything organized. And because these services are so reusable, you could even make them available for others to use, which is something we'll get into later on.
+A distributed app, on the other hand, is a team of specialists. You have one
+service dedicated to handling user logins, another for processing images, and
+a third for sending notifications. Each service is separated, and they all
+work together.
+
+A great thing about this is that these services can be written in any language
+that benefits them most. For example, you could write your AI services in
+Python to take advantage of its powerful libraries. This approach makes your
+app so much more flexible and efficient. You can easily update or improve
+just one service without touching the rest of your app. It keeps everything
+organized. And because these services are so reusable, you could even make
+them available for others to use, which is something we'll get into later on.
 
 image {
-  src = /images/blog/dev-journey/microservice-distributedapp.png,
-  alt = Microservice and Distributed App similiartiy meme,
-  caption = A distributed app can be one or a collection of microservices.
+    src = /images/blog/dev-journey/microservice-distributedapp.png,
+    alt = Microservice and Distributed App similiartiy meme,
+    caption = A distributed app can be one or a collection of microservices.
 }
 
 title { What is a Distributed Compute Network?, size = 2 }
 
-If a distributed app is a team of specialists, then the distributed compute network is the shared workshop where they do their work. It's a network of nodes that provides the raw power and resources needed to run all your services.
-Instead of needing one giant, expensive machine, you can use Timeleap to use a network of many nodes to offload workloads across them. Timeleap manages this whole workshop for you, ensuring that every task is assigned to the right node and everything runs smoothly.
+If a distributed app is a team of specialists, then the distributed compute
+network is the shared workshop where they do their work. It's a network of
+nodes that provides the raw power and resources needed to run all your
+services.Instead of needing one giant, expensive machine, you can use Timeleap
+to use a network of many nodes to offload workloads across them. Timeleap
+manages this whole workshop for you, ensuring that every task is assigned to
+the right node and everything runs smoothly.
 
-This power isn't just about being organized; it can make your app incredibly fast. For instance, imagine a computation task. Instead of one computer doing all the work, the network can split the job and send it to 10 different nodes at once. What would have taken an hour now takes just minutes. This kind of parallel processing is how a distributed network can give your app a massive performance boost.
+This power isn't just about being organized; it can make your app incredibly
+fast. For instance, imagine a computation task. Instead of one computer doing
+all the work, the network can split the job and send it to 10 different nodes
+at once. What would have taken an hour now takes just minutes. This kind of
+parallel processing is how a distributed network can give your app a massive
+performance boost.
 
 image {
-  src = /images/blog/dev-journey/distributed-network-example.png,
-  alt = Visual Example of a distributed computation,
-  caption = The delegation of tasks is different depending on the processing power
+    src = /images/blog/dev-journey/distributed-network-example.png,
+    alt = Visual Example of a distributed computation,
+    caption = The delegation of tasks is different depending on the processing
+    power
 }
 
 What other computation tasks can you think of that can benefit from this?
 
 title { Why Choose Timeleap?, size = 2 }
 
-Imagine you want to build a service that runs tasks, whether they're complex ones like an AI model on every frame of a video or simple ones like analyzing a dataset for a specific keyword. Instead of building one massive, complex program yourself, you can use Timeleap's framework to create both your distributed app and the custom network that it runs on.
+Imagine you want to build a service that runs tasks, whether they're complex
+ones like an AI model on every frame of a video or simple ones like analyzing
+a dataset for a specific keyword. Instead of building one massive, complex
+program yourself, you can use Timeleap's framework to create both your
+distributed app and the custom network that it runs on.
 
-All the hard stuff, like making sure your services can talk to each other, keeping everything secure, and managing all the tasks, that's our job. We handle all the complexity so you get to build powerful, clever applications without all the effort and headaches.
+All the hard stuff, like making sure your services can talk to each other,
+keeping everything secure, and managing all the tasks, that's our job. We
+handle all the complexity so you get to build powerful, clever applications
+without all the effort and headaches.
 
 title { Timeleap in Action: How It All Comes Together, size = 2 }
 
 So, how does this network of nodes get the job done?
-Think of the Timeleap protocol as the language that all the different parts of the network speak. Just like any language has rules for grammar and vocabulary, our protocol has rules for how messages are structured and sent. This ensures that everyone understands each other, and everything runs smoothly and securely.
+Think of the Timeleap protocol as the language that all the different parts
+of the network speak. Just like any language has rules for grammar and
+vocabulary, our protocol has rules for how messages are structured and sent.
+This ensures that everyone understands each other, and everything runs
+smoothly and securely.
 
-The protocol has a blueprint for the packets (the 'words' and 'sentences' of our network language) that travel between all the nodes, defining exactly how information is structured, secured, and sent. The protocol itself is powered by a serialization binary format called Sia, which is like a super-efficient way of encoding our 'words' to make them travel faster. We get to the details of this in another article.
-The good news is, you don't have to worry about implementing this protocol yourself. We've already done the work for you. Our broker-worker architecture and SDKs implements the protocol, so you can simply use it to build your distributed app:
+The protocol has a blueprint for the packets (the 'words' and 'sentences' of
+our network language) that travel between all the nodes, defining exactly how
+information is structured, secured, and sent. The protocol itself is powered
+by a serialization binary format called Sia, which is like a super-efficient
+way of encoding our 'words' to make them travel faster. We get to the details
+of this in another article.
+
+The good news is, you don't have to worry about implementing this protocol
+yourself. We've already done the work for you. Our broker-worker architecture
+and SDKs implements the protocol, so you can simply use it to build your
+distributed app:
 
 list {
-    items = "Brokers: Think of a broker as the Orchestrator. It takes a task you requested and figures out which worker should do it. It also manages things like security and task scheduling.",
-    items = "Workers: A worker is the one who actually does the work. When a broker assigns a task, the worker gets it done and sends the results back."
+    items = "Brokers: Think of a broker as the Orchestrator. It takes a task you
+    requested and figures out which worker should do it. It also manages things
+    like security and task scheduling.",
+    items = "Workers: A worker is the one who actually does the work. When a
+    broker assigns a task, the worker gets it done and sends the results back."
 }
 
-You might be asking, "Okay, the broker and worker implement the protocol, but how do I build my app on Timeleap?" That's exactly why we built plugins.
+You might be asking, 'Okay, the broker and worker implement the protocol, but
+how do I build my app on Timeleap?' That's exactly why we built plugins.
 
 title { The Power of Plugins, size = 2 }
 
-By itself, a worker simply maintains a long-lived connection to a broker, waiting for a task. It's ready to work, but it doesn't have any specific skills yet. To give a worker a specific utility or feature, you need to use plugins.
+By itself, a worker simply maintains a long-lived connection to a broker,
+waiting for a task. It's ready to work, but it doesn't have any specific
+skills yet. To give a worker a specific utility or feature, you need to use
+plugins.
 
-Think of plugins as extensions that give workers their powers. A single plugin can contain multiple functions that run alongside a worker.
+Think of plugins as extensions that give workers their powers. A single plugin
+can contain multiple functions that run alongside a worker.
 
 image {
-  src = /images/blog/dev-journey/power-of-plugins.png,
-  alt = Kadaj from Final Fantasy VII: Advent Children with glowing materia in his hand representing plugins,
-  caption = Kadaj from Final Fantasy VII: Advent Children, showcasing the power of plugins.
+    src = /images/blog/dev-journey/power-of-plugins.png,
+    alt = Kadaj from Final Fantasy VII: Advent Children with glowing materia in
+    his hand representing plugins,
+    caption = Kadaj from Final Fantasy VII: Advent Children, showcasing the
+    power of plugins.
 }
 
 title { Conclusion }
 
-So, that's the big picture of what Timeleap is all about. We built a framework for building powerful distributed applications and networks. The goal is to let you focus on what you're good at, while we do the heavy lifting for you.
+So, that's the big picture of what Timeleap is all about. We built a framework
+for building powerful distributed applications and networks. The goal is to
+let you focus on what you're good at, while we do the heavy lifting for you.
 
-Now that we have the foundation, I'm excited to share the next steps in my journey with you. My mission is to help your ideas grow in the Timeleap dev community. We're genuinely excited to see what you create.
+Now that we have the foundation, I'm excited to share the next steps in my
+journey with you. My mission is to help your ideas grow in the Timeleap dev
+community. We're genuinely excited to see what you create.
 
 meta {
-    description = The big picture of what Timeleap is all about. We built a framework for building powerful distributed applications and networks.,
+    description = The big picture of what Timeleap is all about. We built a
+    framework for building powerful distributed applications and networks.,
     ogImageText = [Introducing, Timeleap],
     ogImageFontSize = 36,
     author = hamed,
