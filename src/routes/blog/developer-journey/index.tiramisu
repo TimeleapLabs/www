@@ -1,0 +1,21 @@
+title { A developer's journey into Timeleap }
+
+Hi, I'm Hamed, and I’m beginning my journey as a DevRel Engineer at Timeleap.
+After working as a developer here for a while, my mission now is to help our
+community build on the Timeleap Network.
+
+My approach is simple: build and learn in public. That means creating real
+examples, sharing what works and how, and making the journey smoother for anyone
+starting from scratch, just like I did.
+
+To kick things off, I’ve written an article that explains my introduction and
+understanding of Timeleap's foundation: link {to = developer-journey/introduction-to-timeleap, Introduction To Timeleap}. I encourage you to check it out. Let me know what you think,
+and feel free to reach out if you're stuck.
+
+meta {
+  description = "Join me on a developer's journey to learn, build, and
+    contribute to the Timeleap project.",
+  ogImageText = [Timeleap, Content],
+  author = hamed,
+  ogImageFontSize = 32
+}
