@@ -13,8 +13,8 @@ understanding of Timeleap's foundation: link {to = developer-journey/introductio
 and feel free to reach out if you're stuck.
 
 meta {
-  description = "Join me on a developer's journey to learn, build, and contribute
-    to the Timeleap project..",
+  description = "Join me on a developer's journey to learn, build, and
+    contribute to the Timeleap project.",
   ogImageText = [Timeleap, Content],
   author = hamed,
   ogImageFontSize = 32
