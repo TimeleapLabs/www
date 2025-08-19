@@ -118,16 +118,27 @@ serialized binary itself. This is also sharable and not only within the same
 project, but with an entirely different project with a different programming
 language.
 
+Imagine an application where a Python-based AI model generates data and a
+Go-based application consumes that data. They can communicate perfectly by
+agreeing on a single Sia schema.
+
+For example, let's use a simple schema for a "UserProfile":
+
 code {
   language = sia,
   content = """
-    schema Tree {
-      color   string8
-      age?    int32
-      fruit?  string8(encoding = "ascii")[]
+    schema UserProfile {
+      username      string8
+      email         string8
+      is_verified   bool
     }
   """
 }
+
+By relying on the schema as a shared blueprint, the two applications don't need
+to worry about the complexities of data conversion or type mismatches. A Python
+application can serialize data into this structure, and a Go application can
+read it perfectly, simply by using the same schema.
 
 We will go over the details of Sia Schema in a future link {to =
 https://timeleap.swiss/blog/developer-journey/sia-the-sonic,
