@@ -93,13 +93,13 @@ list {
     speed. This also gives you the flexibility to restructure the data as needed
     when you deserialize it, as the serialization format isn't tied to a
     specific object structure.",
-    items = "Con: Flatness Can Complicate Nested Data. While a flat data format
-    is incredibly fast and efficient, it makes handling complex, nested data
-    more difficult. Unlike JSON, which uses a tree-like structure with
-    parent-child relationships, a flat format requires you to manually serialize
-    these relationships into a single sequence of bytes. This can make the code
-    harder to write, read, and maintain as your data structures become more
-    complex."
+    items = "Con: The Need for a Blueprint. Unlike a format like JSON, which has
+    inherent structure, a raw flat sequence of data doesn't contain any
+    information about what it represents. Without a separate blueprint, you
+    wouldn't know where one piece of data ends and the next one begins. Even
+    with JSON, which has a self-describing nature, you still need to know the
+    structure of the data to use it programmatically. This makes the
+    self-description redundant."
 }
 
 This is where the bold { Sia schema } comes in. The schema is that blueprint. It
