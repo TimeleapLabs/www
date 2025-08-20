@@ -4,15 +4,15 @@ As part of my journey as a Timeleap DevRel engineer, I needed to learn about
 Sia, the serialization library that powers our protocol. So, I'm sharing what
 I've learned and my experience with you all.
 
-Simply put, Sia is a bold { flat binary serialization format }. What does 'flat'
+Simply put, Sia is a bold {flat binary serialization format}. What does 'flat'
 mean? It means the data is laid out in a single, continuous block of bytes
 without any complex nesting. It's like having all the ingredients for a recipe
 laid out in a single line, rather than in different bowls and containers. You
 can imagine how that could make Sia fast and small.
 
-Let's look at a simple example. Imagine we want to represent a user with an `id`
-and a `name`. Here's how you might represent it using JSON, which has a clear
-structure:
+Let's look at a simple example. Imagine we want to represent a user with an
+inlineCode { id } and a inlineCode { name }. Here's how you might represent
+it using JSON, which has a clear structure:
 
 code {
   language = json,
@@ -35,15 +35,15 @@ code {
 }
 
 You can see how the flat format lays the data out one after the other. This lack
-of structure is what makes it incredibly fast to read and write. It also gives
-you the flexibility to interpret this flat data in different ways when you read
-it back. But don't worry, as a developer, you don't have to work with this raw
-flat binary structure directly. We provide the tools to make working with Sia as
-easy as it gets.
+of structural metadata is what makes it incredibly fast to read and write. If
+you need to go bold {ultrasonic}, you can work with this raw flat binary
+structure directly; otherwise, for convenience, you can use Sia Schema, which we
+will present in this article.
 
 title { Working with Sia: It's Simple!, size = 2 }
 
-Sia provides an API for developers. For example, with the low-level API :
+Sia provides both a low-level and high-level API for developers. For example,
+with the low-level API we serialize Hamed:
 
 code {
 language = typescript,
@@ -66,7 +66,7 @@ content = """
   """
 }
 
-and then deserialize it:
+And then deserialize him:
 
 code {
     language = typescript,
@@ -88,22 +88,22 @@ title { The Sia Schema, size = 2 }
 A flat format has some clear advantages, but it also presents a challenge.
 
 list {
-    items = "Pro: Incredible Speed. Because the data is laid out in a single
-    sequence, the computer can read and write the data directly at maximum
-    speed. This also gives you the flexibility to restructure the data as needed
-    when you deserialize it, as the serialization format isn't tied to a
-    specific object structure.",
+    items = "Pro: Incredible Speed. Sia's format strips away all unnecessary
+    metadata, so its parser only has to interpret the raw data values
+    themselves. Unlike a format like JSON, whose parser must interpret both the
+    data and its structural metadata, this lack of overhead is what makes Sia
+    incredibly fast.",
     items = "Con: The Need for a Blueprint. Unlike a format like JSON, which has
     inherent structure, a raw flat sequence of data doesn't contain any
     information about what it represents. Without a separate blueprint, you
     wouldn't know where one piece of data ends and the next one begins. Even
     with JSON, which has a self-describing nature, you still need to know the
-    structure of the data to use it programmatically. This makes the
-    self-description redundant."
+    structure of the data to use it programmatically. This prior knowledge of
+    the data structure makes the structural metadata in JSON redundant."
 }
 
-This is where the bold { Sia schema } comes in. The schema is that blueprint. It
-provides a formal definition of the data structure. 
+This is where the bold { Sia schema } comes in. The schema is that blueprint and
+it provides a formal definition of the data structure. 
 
 image {
     src = /images/blog/dev-journey/not-so-flat-sia.png,
@@ -118,40 +118,22 @@ serialized binary itself. This is also sharable and not only within the same
 project, but with an entirely different project with a different programming
 language.
 
-Imagine an application where a Python-based AI model generates data and a
-Go-based application consumes that data. They can communicate perfectly by
-agreeing on a single Sia schema.
-
-For example, let's use a simple schema for a "UserProfile":
-
-code {
-  language = sia,
-  content = """
-    schema UserProfile {
-      username      string8
-      email         string8
-      is_verified   bool
-    }
-  """
-}
-
-By relying on the schema as a shared blueprint, the two applications don't need
-to worry about the complexities of data conversion or type mismatches. A Python
-application can serialize data into this structure, and a Go application can
-read it perfectly, simply by using the same schema.
+The key value of Sia Schema is that it's a compiler. The compiler reads a single
+schema file and automatically generates the necessary code bindings for any
+programming language you need.
 
 We will go over the details of Sia Schema in a future link {to =
 https://timeleap.swiss/blog/developer-journey/sia-the-sonic,
-status = coming soon, article }
+status = coming soon, article }.
 
 title { Why is Sia so Fast?, size = 2 }
 
-Sia's speed isn't just about being binary and flat; there is much more to
-it. Sia strips away all unnecessary metadata and focuses on the essentials.
-The Sia format is designed to be fast, small, and easy to use. Compared to a
-format like JSON, which includes repetitive keys and structural characters, Sia
-delivers a smaller and faster payload by relying on a separate schema for data
-interpretation. This focus on the raw data itself is what gives Sia its speed.
+Sia's speed isn't just about being binary and flat; there is much more to it.
+Sia strips away all unnecessary metadata and focuses on the essentials. The Sia
+is designed to be fast, small, and easy to use. Compared to a format like JSON,
+which includes repetitive keys and structural characters, Sia delivers a smaller
+and faster payload by relying on a separate schema for data interpretation. This
+focus on the raw data itself is what gives Sia its speed.
 
 svelte { $lib/components/products/sia/Benchmark.svelte }
 
