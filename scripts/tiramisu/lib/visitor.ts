@@ -134,6 +134,19 @@ const functions: {
 	link(params) {
 		const href = (getParamsByName(params, 'to')[0]?.value as string) ?? '';
 		const text = params.positional.join('');
+		const status = (getParamsByName(params, 'status')[0]?.value as string)?.trim() ?? '';
+
+		if (status.toLowerCase() === 'coming soon') {
+			return `
+				<span class="inline-flex gap-1 items-center border-b border-zinc-500 text-zinc-400 cursor-not-allowed group relative">
+					<span>${text}</span>
+					<div class="absolute bottom-full left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity p-2 text-sm bg-zinc-800 text-zinc-200 rounded-md whitespace-nowrap">
+						This article exists in the future, and timeleaping is not supported yet.
+					</div>
+				</span>
+			`;
+		}
+
 		const external = href.startsWith('http') && !href.startsWith('https://timeleap.swiss');
 		const icon = external ? "<ExternalLink size={'1em'} />" : '';
 		const target = external ? 'target="_blank" rel="noopener noreferrer"' : '';
