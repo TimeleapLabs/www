@@ -3,3 +3,9 @@ title { Sia The Sonic }
 As part of my journey as a Timeleap DevRel engineer, I needed to learn about
 Sia, the serialization library that powers our protocol. So, I'm sharing what
 I've learned and my experience with you all.
+
+Simply put, Sia is a bold { flat binary serialization format }. What does flat
+mean? It means the data is laid out in a single, continuous block of bytes
+without any complex nesting. It's like having all the ingredients for a recipe
+laid out in a single line, rather than in different bowls and containers. You
+can imagine how that could make Sia fast and small.
