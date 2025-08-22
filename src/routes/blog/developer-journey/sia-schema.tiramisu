@@ -207,3 +207,11 @@ example, you may have an AI service in Python and your backend is written in
 Golang. You can use the Sia compiler to generate your Sia
 serialization/deserialization methods in both languages, and they can
 communicate with each other.
+
+The only blueprint needed is the Schema:
+
+image {
+    src = /images/blog/dev-journey/sia-compiler-sketch.png,
+    alt = A simple diagram representing how Sia compiler works,
+    caption = Sia Compiler
+}
