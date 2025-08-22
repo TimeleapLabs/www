@@ -84,3 +84,6 @@ generates the code for serializing and deserializing, and you can just use those
 methods instead of what you saw above.
 
 title { The Sia Schema, size = 2 }
+
+A flat format has some clear advantages, but it also presents a challenge.
+
