@@ -70,3 +70,6 @@ code {
     help [command]            display help for command
     """
 }
+
+For example, let's look at a schema like this:
+
