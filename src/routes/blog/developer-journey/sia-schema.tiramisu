@@ -7,3 +7,8 @@ image {
     alt = Sonic saying welcome to the next level,
     caption = ""Sia the "Sonic", get it?""
 }
+
+We know from a previous link { article, to =
+/blog/developer-journey/sia-the-sonic } about the low-level API of Sia that in
+order to serialize and deserialize your data, you have to add your fields by
+their type and length, and deserialize them in the same order.
