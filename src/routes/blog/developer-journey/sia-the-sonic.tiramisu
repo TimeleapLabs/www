@@ -39,3 +39,6 @@ of structural metadata is what makes it incredibly fast to read and write. If
 you need to go bold { ultrasonic }, you can work with this raw flat binary
 structure directly; otherwise, for convenience, you can use Sia Schema, which we
 will present in this article.
+
+title { Working with Sia: It's Simple!, size = 2 }
+
