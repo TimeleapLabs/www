@@ -199,3 +199,11 @@ code is generated, you can modify it if you want.
 
 title { "One Schema, Many Languages", size = 2 }
 
+The inlineCode { @timeleap/sia-schema } library supports code generation for
+inlineCode { python }, inlineCode { golang }, inlineCode { c++ }, and obviously
+inlineCode { typescript }. This has a great benefit other than supporting your
+favorite language. It helps distributed app and microservice developers. For
+example, you may have an AI service in Python and your backend is written in
+Golang. You can use the Sia compiler to generate your Sia
+serialization/deserialization methods in both languages, and they can
+communicate with each other.
