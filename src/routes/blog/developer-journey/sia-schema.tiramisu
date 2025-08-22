@@ -132,3 +132,21 @@ code {
 
 It even works with custom types, for example:
 
+code {
+    language = sia,
+    content = """
+    schema Person {
+        name    string8
+        age?    int32
+        email?  string(encoding = "ascii")
+        address Address
+    }
+
+    schema Address {
+        street?  string8(encoding = "utf64") = "Default Street"
+        city     string8
+        zip      int32
+    }
+    """
+}
+
