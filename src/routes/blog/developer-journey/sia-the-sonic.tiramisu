@@ -9,3 +9,7 @@ mean? It means the data is laid out in a single, continuous block of bytes
 without any complex nesting. It's like having all the ingredients for a recipe
 laid out in a single line, rather than in different bowls and containers. You
 can imagine how that could make Sia fast and small.
+
+Let's look at a simple example. Imagine we want to represent a user with an
+inlineCode { id } and a inlineCode { name }. Here's how you might represent
+it using JSON, which has a clear structure:
