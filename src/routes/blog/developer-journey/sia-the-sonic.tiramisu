@@ -44,3 +44,24 @@ title { Working with Sia: It's Simple!, size = 2 }
 
 Sia provides both a low-level and high-level API for developers. For example,
 with the low-level API we serialize Hamed:
+
+code {
+language = typescript,
+content = """
+    import { Sia } from '@timeleap/sia';
+
+    type Person = {
+        name?: string;
+        age?: number;
+    };
+
+    const sia = new Sia();
+    const person: Person = { name: 'Hamed', age: 23 };
+
+    const payload = sia
+        .addAscii(person.name ?? '')
+        .addUInt8(person.age ?? 0)
+        .toUint8ArrayReference();
+    // Returns a reference to the serialized binary data.
+  """
+}
