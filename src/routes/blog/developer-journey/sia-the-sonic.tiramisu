@@ -13,3 +13,13 @@ can imagine how that could make Sia fast and small.
 Let's look at a simple example. Imagine we want to represent a user with an
 inlineCode { id } and a inlineCode { name }. Here's how you might represent
 it using JSON, which has a clear structure:
+
+code {
+  language = json,
+  content = """
+    {
+        "id": 12345,
+        "name": "Hamed"
+    }
+  """
+}
