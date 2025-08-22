@@ -37,3 +37,6 @@ If you've ever used tools like inlineCode { protoc }, inlineCode { sqlc } or
 inlineCode { prisma } this concept will feel familiar. These tools let you
 define your data in a single schema file, and in return, they generate all the
 necessary code for you. The Sia compiler does the same thing for serialization.
+
+Sia compiler requires a schema file with inlineCode { .sia } file extension and
+uses the inlineCode { @timeleap/sia-schema } package.
