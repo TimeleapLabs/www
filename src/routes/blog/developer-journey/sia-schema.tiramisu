@@ -83,3 +83,13 @@ code {
     }
     """
 }
+
+By using this command:
+
+code {
+    language = sh,
+    content = """
+    sia compile sample.sia -o sample -e ts 
+    // -o is output and -e is the file extension
+    """
+}
