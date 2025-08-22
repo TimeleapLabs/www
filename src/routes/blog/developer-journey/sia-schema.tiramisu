@@ -129,3 +129,6 @@ code {
     }
     """
 }
+
+It even works with custom types, for example:
+
