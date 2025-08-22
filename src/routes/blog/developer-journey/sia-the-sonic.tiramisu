@@ -142,3 +142,12 @@ title { Conclusion }
 Sia is a powerful serialization and deserialization library. It's designed for
 speed and efficiency, making it a great tool for any developer who needs to
 build fast and reliable data management in their applications.
+
+meta {
+    description = "Sia is a ultra-fast serialization library that transforms
+    data into a fast and flat binary format.",
+    ogImageText = [Sia, The Sonic],
+    ogImageFontSize = 36,
+    author = hamed,
+    createdAt = 2025-08-19
+}
