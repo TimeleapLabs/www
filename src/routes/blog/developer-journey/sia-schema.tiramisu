@@ -150,3 +150,45 @@ code {
     """
 }
 
+The compiler adds this to the previous code:
+
+code {
+    language = typescript,
+    content = """
+    export interface Person {
+        address: Address; //New
+    }
+
+    export function encodePerson(sia: Sia, person: Person): Sia {
+        return encodeAddress(sia, person.address); //New
+    }
+
+    export function decodePerson(sia: Sia): Person {
+        return {
+            address: decodeAddress(sia), //New
+        };
+    }
+
+    export interface Address {
+        street?: string;
+        city: string;
+        zip: number;
+    }
+
+    export function encodeAddress(sia: Sia, address: Address): Sia {
+        sia.addString8(address.street ?? "");
+        sia.addString8(address.city);
+        sia.addInt32(address.zip);
+        return sia;
+    }
+
+    export function decodeAddress(sia: Sia): Address {
+        return {
+            street: sia.readString8(),
+            city: sia.readString8(),
+            zip: sia.readInt32(),
+        };
+    }
+    """
+}
+
