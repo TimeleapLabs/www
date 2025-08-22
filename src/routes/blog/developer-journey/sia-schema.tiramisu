@@ -40,3 +40,12 @@ necessary code for you. The Sia compiler does the same thing for serialization.
 
 Sia compiler requires a schema file with inlineCode { .sia } file extension and
 uses the inlineCode { @timeleap/sia-schema } package.
+
+Install:
+
+code {
+    language = sh,
+    content = """
+    npm install -g @timeleap/sia-schema
+    """
+}
