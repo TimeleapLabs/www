@@ -93,3 +93,11 @@ list {
     themselves. Unlike a format like JSON, whose parser must interpret both the
     data and its structural metadata, this lack of overhead is what makes Sia
     incredibly fast.",
+    items = "Con: The Need for a Blueprint. Unlike a format like JSON, which has
+    inherent structure, a raw flat sequence of data doesn't contain any
+    information about what it represents. Without a separate blueprint, you
+    wouldn't know where one piece of data ends and the next one begins. Even
+    with JSON, which has a self-describing nature, you still need to know the
+    structure of the data to use it programmatically. This prior knowledge of
+    the data structure makes the structural metadata in JSON redundant."
+}
