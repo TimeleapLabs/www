@@ -113,3 +113,7 @@ image {
     structure and depth."
 }
 
+This gives the data structure and meaning without adding any overhead to the
+serialized binary itself. This is also sharable and not only within the same
+project, but with an entirely different project with a different programming
+language.
