@@ -101,3 +101,31 @@ list {
     items = A method to serialize the inlineCode {Person},
     items = A method to deserialize the inlineCode {Person}
 }
+
+code {
+    language = typescript,
+    content = """
+    import { Sia } from "@timeleap/sia";
+
+    export interface Person {
+        name: string;
+        age?: number;
+        email?: string[];
+    }
+
+    export function encodePerson(sia: Sia, person: Person): Sia {
+        sia.addString8(person.name);
+        sia.addInt32(person.age ?? 0);
+        sia.addArray8(person.email ?? [], (s: Sia, v) => s.addAscii8(v));
+        return sia;
+    }
+
+    export function decodePerson(sia: Sia): Person {
+        return {
+            name: sia.readString8(),
+            age: sia.readInt32(),
+            email: sia.readArray8((s: Sia) => s.readAscii8()),
+        };
+    }
+    """
+}
