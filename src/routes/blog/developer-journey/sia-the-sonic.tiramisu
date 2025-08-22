@@ -1,1 +1,5 @@
 title { Sia The Sonic }
+
+As part of my journey as a Timeleap DevRel engineer, I needed to learn about
+Sia, the serialization library that powers our protocol. So, I'm sharing what
+I've learned and my experience with you all.
