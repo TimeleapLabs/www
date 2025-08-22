@@ -33,3 +33,9 @@ code {
     // In Sia, this would be represented as a sequence of bytes
   """
 }
+
+You can see how the flat format lays the data out one after the other. This lack
+of structural metadata is what makes it incredibly fast to read and write. If
+you need to go bold { ultrasonic }, you can work with this raw flat binary
+structure directly; otherwise, for convenience, you can use Sia Schema, which we
+will present in this article.
