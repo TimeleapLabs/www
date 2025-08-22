@@ -87,3 +87,9 @@ title { The Sia Schema, size = 2 }
 
 A flat format has some clear advantages, but it also presents a challenge.
 
+list {
+    items = "Pro: Incredible Speed. Sia's format strips away all unnecessary
+    metadata, so its parser only has to interpret the raw data values
+    themselves. Unlike a format like JSON, whose parser must interpret both the
+    data and its structural metadata, this lack of overhead is what makes Sia
+    incredibly fast.",
