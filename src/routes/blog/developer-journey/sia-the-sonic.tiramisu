@@ -117,3 +117,11 @@ This gives the data structure and meaning without adding any overhead to the
 serialized binary itself. This is also sharable and not only within the same
 project, but with an entirely different project with a different programming
 language.
+
+The key value of Sia Schema is that it's a compiler. The compiler reads a single
+schema file and automatically generates the necessary code bindings for any
+programming language you need.
+
+We will go over the details of Sia Schema in a future link { to =
+https://timeleap.swiss/blog/developer-journey/sia-the-sonic, status = coming
+soon, article }.
