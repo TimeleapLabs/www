@@ -25,3 +25,11 @@ code {
 }
 
 Now, here's a conceptual flat representation of the same data:
+
+code {
+  language = log,
+  content = """
+    12345Hamed
+    // In Sia, this would be represented as a sequence of bytes
+  """
+}
