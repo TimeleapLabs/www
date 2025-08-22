@@ -12,3 +12,20 @@ We know from a previous link { article, to =
 /blog/developer-journey/sia-the-sonic } about the low-level API of Sia that in
 order to serialize and deserialize your data, you have to add your fields by
 their type and length, and deserialize them in the same order.
+
+code {
+    language = typescript,
+    content = """
+    const payload = sia
+        .addAscii(person.name ?? '')
+        .addUInt8(person.age ?? 0)
+        .toUint8ArrayReference();
+
+    const desia = new Sia(payload);
+    const deserialized: Person = {
+        name: desia.readAscii(),
+        age: desia.readUInt8()
+    };
+    """
+}
+
