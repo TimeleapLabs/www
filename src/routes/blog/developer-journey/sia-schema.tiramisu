@@ -224,3 +224,13 @@ also provides a structured way to work with Sia's flat binary format. You can
 think of the schema as a blueprint that makes Sia's speed accessible and
 developer-friendly.
 
+meta {
+    description = "Sia Schema provides the compiler that automates code
+    generation from a single schema file, providing developers with a high-level
+    API to easily work with Sia's fast binary format and enabling seamless
+    cross-language communication.",
+    ogImageText = [Sia, Schema],
+    ogImageFontSize = 36,
+    author = hamed,
+    createdAt = 2025-08-20
+}
