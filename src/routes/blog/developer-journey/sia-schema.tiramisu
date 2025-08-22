@@ -32,3 +32,8 @@ code {
 While that was simple, the high-level API is even better!
 
 title { Sia Compiler, size = 2 }
+
+If you've ever used tools like inlineCode { protoc }, inlineCode { sqlc } or
+inlineCode { prisma } this concept will feel familiar. These tools let you
+define your data in a single schema file, and in return, they generate all the
+necessary code for you. The Sia compiler does the same thing for serialization.
