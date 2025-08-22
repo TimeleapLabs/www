@@ -197,3 +197,5 @@ be serialized by Sia in a schema, and the code generator creates everything you
 need. This allows you to focus on the rest of your app. Additionally, since the
 code is generated, you can modify it if you want.
 
+title { "One Schema, Many Languages", size = 2 }
+
