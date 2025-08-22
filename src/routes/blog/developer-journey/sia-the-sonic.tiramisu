@@ -136,3 +136,5 @@ and faster payload by relying on a separate schema for data interpretation. This
 focus on the raw data itself is what gives Sia its speed.
 
 svelte { $lib/components/products/sia/Benchmark.svelte }
+
+title { Conclusion }
