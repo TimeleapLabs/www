@@ -58,3 +58,15 @@ code {
     npx @timeleap/sia-schema compile sample.sia
     """
 }
+
+Add the inlineCode { --help } flag to see the available options.
+
+code {
+    language = sh,
+    content = """
+    Commands:
+    ir [options] <file>       Compile a .sia file to intermediate representation
+    compile [options] <file>  Compile a .sia file
+    help [command]            display help for command
+    """
+}
