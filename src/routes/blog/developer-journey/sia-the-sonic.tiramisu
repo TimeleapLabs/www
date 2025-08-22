@@ -134,3 +134,5 @@ is designed to be fast, small, and easy to use. Compared to a format like JSON,
 which includes repetitive keys and structural characters, Sia delivers a smaller
 and faster payload by relying on a separate schema for data interpretation. This
 focus on the raw data itself is what gives Sia its speed.
+
+svelte { $lib/components/products/sia/Benchmark.svelte }
