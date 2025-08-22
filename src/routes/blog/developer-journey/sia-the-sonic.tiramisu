@@ -101,3 +101,7 @@ list {
     structure of the data to use it programmatically. This prior knowledge of
     the data structure makes the structural metadata in JSON redundant."
 }
+
+This is where the bold { Sia schema } comes in. The schema is that blueprint and
+it provides a formal definition of the data structure. 
+
