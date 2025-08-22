@@ -93,3 +93,11 @@ code {
     // -o is output and -e is the file extension
     """
 }
+
+You get a TypeScript output with multiple things generated for you:
+
+list {
+    items = "A Person interface",
+    items = A method to serialize the inlineCode {Person},
+    items = A method to deserialize the inlineCode {Person}
+}
