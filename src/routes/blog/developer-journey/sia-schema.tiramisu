@@ -73,3 +73,13 @@ code {
 
 For example, let's look at a schema like this:
 
+code {
+    language = sia,
+    content = """
+    schema Person {
+        name    string8
+        age?    int32
+        email?  string(encoding = "ascii")
+    }
+    """
+}
