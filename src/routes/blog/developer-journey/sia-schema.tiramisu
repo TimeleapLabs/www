@@ -218,3 +218,9 @@ image {
 
 title { Conclusion }
 
+The Sia schema package saves you time by generating code based on your schema.
+This not only makes it easy to manage multiple data objects in a project but
+also provides a structured way to work with Sia's flat binary format. You can
+think of the schema as a blueprint that makes Sia's speed accessible and
+developer-friendly.
+
