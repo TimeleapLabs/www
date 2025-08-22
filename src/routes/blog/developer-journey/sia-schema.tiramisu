@@ -215,3 +215,6 @@ image {
     alt = A simple diagram representing how Sia compiler works,
     caption = Sia Compiler
 }
+
+title { Conclusion }
+
