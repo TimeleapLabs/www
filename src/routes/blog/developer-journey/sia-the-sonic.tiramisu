@@ -127,3 +127,10 @@ https://timeleap.swiss/blog/developer-journey/sia-the-sonic, status = coming
 soon, article }.
 
 title { Why is Sia so Fast?, size = 2 }
+
+Sia's speed isn't just about being binary and flat; there is much more to it.
+Sia strips away all unnecessary metadata and focuses on the essentials. The Sia
+is designed to be fast, small, and easy to use. Compared to a format like JSON,
+which includes repetitive keys and structural characters, Sia delivers a smaller
+and faster payload by relying on a separate schema for data interpretation. This
+focus on the raw data itself is what gives Sia its speed.
