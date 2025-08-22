@@ -65,3 +65,16 @@ content = """
     // Returns a reference to the serialized binary data.
   """
 }
+
+And then deserialize him:
+
+code {
+    language = typescript,
+    content = """
+    const desia = new Sia(payload);
+    const deserialized: Person = {
+        name: desia.readAscii(),
+        age: desia.readUInt8()
+    };
+  """
+}
