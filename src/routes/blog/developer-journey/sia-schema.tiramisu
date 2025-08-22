@@ -49,3 +49,12 @@ code {
     npm install -g @timeleap/sia-schema
     """
 }
+
+Or you can use inlineCode { npx }:
+
+code {
+    language = sh,
+    content = """
+    npx @timeleap/sia-schema compile sample.sia
+    """
+}
