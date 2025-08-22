@@ -42,3 +42,5 @@ will present in this article.
 
 title { Working with Sia: It's Simple!, size = 2 }
 
+Sia provides both a low-level and high-level API for developers. For example,
+with the low-level API we serialize Hamed:
