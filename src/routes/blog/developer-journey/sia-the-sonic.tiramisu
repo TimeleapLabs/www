@@ -109,7 +109,7 @@ image {
     src = /images/blog/dev-journey/not-so-flat-sia.png,
     alt = Illustration of Sia personified as a flat girl who becomes curvy after
     applying a Sia Schema,
-    caption = "Sia without a schema is flat — with a Sia Schema, it gains
+    caption = "Sia by itself is flat, but with the power of Sia schema it gains
     structure and depth."
 }
 
