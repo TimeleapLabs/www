@@ -208,7 +208,7 @@ Golang. You can use the Sia compiler to generate your Sia
 serialization/deserialization methods in both languages, and they can
 communicate with each other.
 
-The only blueprint needed is the Schema:
+The only blueprint needed is the schema:
 
 image {
     src = /images/blog/dev-journey/sia-compiler-sketch.png,
@@ -225,7 +225,7 @@ think of the schema as a blueprint that makes Sia's speed accessible and
 developer-friendly.
 
 meta {
-    description = "Sia Schema provides the compiler that automates code
+    description = "Sia schema provides the compiler that automates code
     generation from a single schema file, providing developers with a high-level
     API to easily work with Sia's fast binary format and enabling seamless
     cross-language communication.",
