@@ -5,6 +5,7 @@ Timeleap.
 
 toc {
   developer-journey/sia-schema,
+  developer-journey/sia-the-sonic,
   developer-journey/introduction-to-timeleap,
   developer-journey/index,
   run-your-own-timeleap-node-in-one-command,

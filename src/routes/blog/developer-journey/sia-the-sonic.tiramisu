@@ -1,0 +1,151 @@
+title { Sia The Sonic }
+
+As part of my journey as a Timeleap DevRel engineer, I needed to learn about
+Sia, the serialization library that powers our protocol. So, I'm sharing what
+I've learned and my experience with you all.
+
+Simply put, Sia is a bold { flat binary serialization format }. What does flat
+mean? It means the data is laid out in a single, continuous block of bytes
+without any complex nesting. It's like having all the ingredients for a recipe
+laid out in a single line, rather than in different bowls and containers. You
+can imagine how that could make Sia fast and small.
+
+Let's look at a simple example. Imagine we want to represent a user with an
+inlineCode { id } and a inlineCode { name }. Here's how you might represent
+it using JSON, which has a clear structure:
+
+code {
+  language = json,
+  content = """
+    {
+        "id": 12345,
+        "name": "Hamed"
+    }
+  """
+}
+
+Now, here's a conceptual flat representation of the same data:
+
+code {
+  language = log,
+  content = """
+    12345Hamed
+    // In Sia, this would be represented as a sequence of bytes
+  """
+}
+
+You can see how the flat format lays the data out one after the other. This lack
+of structural metadata is what makes it incredibly fast to read and write. If
+you need to go bold { ultrasonic }, you can work with this raw flat binary
+structure directly; otherwise, for convenience, you can use Sia Schema, which we
+will present in this article.
+
+title { Working with Sia: It's Simple!, size = 2 }
+
+Sia provides both a low-level and high-level API for developers. For example,
+with the low-level API we serialize Hamed:
+
+code {
+language = typescript,
+content = """
+    import { Sia } from '@timeleap/sia';
+
+    type Person = {
+        name?: string;
+        age?: number;
+    };
+
+    const sia = new Sia();
+    const person: Person = { name: 'Hamed', age: 23 };
+
+    const payload = sia
+        .addAscii(person.name ?? '')
+        .addUInt8(person.age ?? 0)
+        .toUint8ArrayReference();
+    // Returns a reference to the serialized binary data.
+  """
+}
+
+And then deserialize him:
+
+code {
+    language = typescript,
+    content = """
+    const desia = new Sia(payload);
+    const deserialized: Person = {
+        name: desia.readAscii(),
+        age: desia.readUInt8()
+    };
+  """
+}
+
+The high-level API makes it even simpler; you define the schema, and it
+generates the code for serializing and deserializing, and you can just use those
+methods instead of what you saw above.
+
+title { The Sia Schema, size = 2 }
+
+A flat format has some clear advantages, but it also presents a challenge.
+
+list {
+    items = "Pro: Incredible Speed. Sia's format strips away all unnecessary
+    metadata, so its parser only has to interpret the raw data values
+    themselves. Unlike a format like JSON, whose parser must interpret both the
+    data and its structural metadata, this lack of overhead is what makes Sia
+    incredibly fast.",
+    items = "Con: The Need for a Blueprint. Unlike a format like JSON, which has
+    inherent structure, a raw flat sequence of data doesn't contain any
+    information about what it represents. Without a separate blueprint, you
+    wouldn't know where one piece of data ends and the next one begins. Even
+    with JSON, which has a self-describing nature, you still need to know the
+    structure of the data to use it programmatically. This prior knowledge of
+    the data structure makes the structural metadata in JSON redundant."
+}
+
+This is where the bold { Sia schema } comes in. The schema is that blueprint and
+it provides a formal definition of the data structure. 
+
+image {
+    src = /images/blog/dev-journey/not-so-flat-sia.png,
+    alt = Illustration of Sia personified as a flat girl who becomes curvy after
+    applying a Sia Schema,
+    caption = "Sia by itself is flat, but with the power of Sia schema it gains
+    structure and depth."
+}
+
+This gives the data structure and meaning without adding any overhead to the
+serialized binary itself. This is also sharable and not only within the same
+project, but with an entirely different project with a different programming
+language.
+
+The key value of Sia Schema is that it's a compiler. The compiler reads a single
+schema file and automatically generates the necessary code bindings for any
+programming language you need.
+
+We will go over the details of Sia Schema in a future link { to =
+/blog/developer-journey/sia-the-sonic, status = coming soon, article }.
+
+title { Why is Sia so Fast?, size = 2 }
+
+Sia's speed isn't just about being binary and flat; there is much more to it.
+Sia strips away all unnecessary metadata and focuses on the essentials. Sia
+is designed to be fast, small, and easy to use. Compared to a format like JSON,
+which includes repetitive keys and structural characters, Sia delivers a smaller
+and faster payload by relying on a separate schema for data interpretation. This
+focus on the raw data itself is what gives Sia its speed.
+
+svelte { $lib/components/products/sia/Benchmark.svelte }
+
+title { Conclusion }
+
+Sia is a powerful serialization and deserialization library. It's designed for
+speed and efficiency, making it a great tool for any developer who needs to
+build fast and reliable data management in their applications.
+
+meta {
+    description = "Sia is a ultra-fast serialization library that transforms data into a fast and flat binary format.",
+    ogImageText = [Sia, The Sonic],
+    ogImageFontSize = 36,
+    author = hamed,
+    createdAt = 2025-08-19
+}
