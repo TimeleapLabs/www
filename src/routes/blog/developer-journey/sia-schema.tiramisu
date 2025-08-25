@@ -1,0 +1,236 @@
+title { To the next level: A Developer's Guide to Sia Schema }
+
+Now we are going to talk about the bold { high-level API } of Sia.
+
+image {
+    src = /images/blog/dev-journey/sia-next-level.png,
+    alt = Sonic saying welcome to the next level,
+    caption = ""Sia the "Sonic", get it?""
+}
+
+We know from a previous link { article, to =
+/blog/developer-journey/sia-the-sonic } about the low-level API of Sia that in
+order to serialize and deserialize your data, you have to add your fields by
+their type and length, and deserialize them in the same order.
+
+code {
+    language = typescript,
+    content = """
+    const payload = sia
+        .addAscii(person.name ?? '')
+        .addUInt8(person.age ?? 0)
+        .toUint8ArrayReference();
+
+    const desia = new Sia(payload);
+    const deserialized: Person = {
+        name: desia.readAscii(),
+        age: desia.readUInt8()
+    };
+    """
+}
+
+While that was simple, the high-level API is even better!
+
+title { Sia Compiler, size = 2 }
+
+If you've ever used tools like inlineCode { protoc }, inlineCode { sqlc } or
+inlineCode { prisma } this concept will feel familiar. These tools let you
+define your data in a single schema file, and in return, they generate all the
+necessary code for you. The Sia compiler does the same thing for serialization.
+
+Sia compiler requires a schema file with inlineCode { .sia } file extension and
+uses the inlineCode { @timeleap/sia-schema } package.
+
+Install:
+
+code {
+    language = sh,
+    content = """
+    npm install -g @timeleap/sia-schema
+    """
+}
+
+Or you can use inlineCode { npx }:
+
+code {
+    language = sh,
+    content = """
+    npx @timeleap/sia-schema compile sample.sia
+    """
+}
+
+Add the inlineCode { --help } flag to see the available options.
+
+code {
+    language = sh,
+    content = """
+    Commands:
+    ir [options] <file>       Compile a .sia file to intermediate representation
+    compile [options] <file>  Compile a .sia file
+    help [command]            display help for command
+    """
+}
+
+For example, let's look at a schema like this:
+
+code {
+    language = sia,
+    content = """
+    schema Person {
+        name    string8
+        age?    int32
+        email?  string(encoding = "ascii")
+    }
+    """
+}
+
+By using this command:
+
+code {
+    language = sh,
+    content = """
+    sia compile sample.sia -o sample -e ts 
+    // -o is output and -e is the file extension
+    """
+}
+
+You get a TypeScript output with multiple things generated for you:
+
+list {
+    items = A Person interface,
+    items = A method to serialize the inlineCode { Person },
+    items = A method to deserialize the inlineCode { Person }
+}
+
+code {
+    language = typescript,
+    content = """
+    import { Sia } from "@timeleap/sia";
+
+    export interface Person {
+        name: string;
+        age?: number;
+        email?: string[];
+    }
+
+    export function encodePerson(sia: Sia, person: Person): Sia {
+        sia.addString8(person.name);
+        sia.addInt32(person.age ?? 0);
+        sia.addArray8(person.email ?? [], (s: Sia, v) => s.addAscii8(v));
+        return sia;
+    }
+
+    export function decodePerson(sia: Sia): Person {
+        return {
+            name: sia.readString8(),
+            age: sia.readInt32(),
+            email: sia.readArray8((s: Sia) => s.readAscii8()),
+        };
+    }
+    """
+}
+
+It even works with custom types, for example:
+
+code {
+    language = sia,
+    content = """
+    schema Person {
+        name    string8
+        age?    int32
+        email?  string(encoding = "ascii")
+        address Address
+    }
+
+    schema Address {
+        street?  string8(encoding = "utf64") = "Default Street"
+        city     string8
+        zip      int32
+    }
+    """
+}
+
+The compiler adds this to the previous code:
+
+code {
+    language = typescript,
+    content = """
+    export interface Person {
+        address: Address; //New
+    }
+
+    export function encodePerson(sia: Sia, person: Person): Sia {
+        return encodeAddress(sia, person.address); //New
+    }
+
+    export function decodePerson(sia: Sia): Person {
+        return {
+            address: decodeAddress(sia), //New
+        };
+    }
+
+    export interface Address {
+        street?: string;
+        city: string;
+        zip: number;
+    }
+
+    export function encodeAddress(sia: Sia, address: Address): Sia {
+        sia.addString8(address.street ?? "");
+        sia.addString8(address.city);
+        sia.addInt32(address.zip);
+        return sia;
+    }
+
+    export function decodeAddress(sia: Sia): Address {
+        return {
+            street: sia.readString8(),
+            city: sia.readString8(),
+            zip: sia.readInt32(),
+        };
+    }
+    """
+}
+
+So you see how much simpler things get. You define all your data types that will
+be serialized by Sia in a schema, and the code generator creates everything you
+need. This allows you to focus on the rest of your app. Additionally, since the
+code is generated, you can modify it if you want.
+
+title { "One Schema, Many Languages", size = 2 }
+
+The inlineCode { @timeleap/sia-schema } library supports code generation for
+inlineCode { python }, inlineCode { golang }, inlineCode { c++ }, and obviously
+inlineCode { typescript }. This has a great benefit other than supporting your
+favorite language. It helps distributed app and microservice developers. For
+example, you may have an AI service in Python and your backend is written in
+Golang. You can use the Sia compiler to generate your Sia
+serialization/deserialization methods in both languages, and they can
+communicate with each other.
+
+The only blueprint needed is the schema:
+
+image {
+    src = /images/blog/dev-journey/sia-compiler-sketch.png,
+    alt = A simple diagram representing how Sia compiler works,
+    caption = Sia Compiler
+}
+
+title { Conclusion }
+
+The Sia schema package saves you time by generating code based on your schema.
+This not only makes it easy to manage multiple data objects in a project but
+also provides a structured way to work with Sia's flat binary format. You can
+think of the schema as a blueprint that makes Sia's speed accessible and
+developer-friendly.
+
+meta {
+    description = "Sia schema provides the compiler that automates code
+    generation from a single schema file, providing developers with a high-level
+    API to easily work with Sia's fast binary format and enabling seamless
+    cross-language communication.",
+    ogImageText = [Sia, Schema],
+    ogImageFontSize = 36,
+    author = hamed,
+    createdAt = 2025-08-20
+}
