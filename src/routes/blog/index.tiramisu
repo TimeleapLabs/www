@@ -4,6 +4,7 @@ Welcome to the Timeleap blog! Here you'll find the latest news and updates from
 Timeleap.
 
 toc {
+  developer-journey/sia-schema,
   developer-journey/sia-the-sonic,
   developer-journey/introduction-to-timeleap,
   developer-journey/index,
