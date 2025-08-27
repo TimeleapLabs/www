@@ -26,3 +26,5 @@ list {
     schema-driven structure for every packet which you can check out 
     link { to = /docs/reference/packets, here }
 }
+
+title { The Packet, size = 2 }
