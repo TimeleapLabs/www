@@ -94,3 +94,11 @@ This was just experimental; W hen we develop plugins later, we will link { to =
 https://x.com/Bluerosedev/status/1956467618887397605, Dockerize! }.
 
 title { Error and Task Management, size = 2 }
+
+The protocol also has rules for what happens when things don't go as planned.
+for example inlineCode { OpCode } is not only for determining the task type, but
+it can also determine if a task failed like inlineCode { OpCodeTaskFailed } or
+if a worker is overloaded and can't work anymore, we have inlineCode {
+OpCodeWorkerOverload }.
+
+This is one of the many error-handling and task management Timeleap does.
