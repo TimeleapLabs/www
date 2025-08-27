@@ -51,3 +51,7 @@ type of task, the protocol defines a specific packet structure i.e inlineCode {
 OpCode }. For example with plugins the protocol specifies an inlineCode {
 RPCRequest } packet that includes details like the plugin name, method, fee, and
 currency.
+
+We have a Timeleap SDK for TypeScript that handles this stuff for our dear
+Timeleap app developers. For instance, using our TypeScript SDK, you can make a
+client to call a broker like this:
