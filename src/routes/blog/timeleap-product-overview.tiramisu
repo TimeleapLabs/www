@@ -107,8 +107,8 @@ to help you along the way.
 
 meta {
   description = "Timeleap is a distributed computing platform that can solve problems for developers building IoT devices, microservices, API Gateways, and blockchain applications. Learn how Timeleap can help you build scalable and maintainable applications.",
-  ogImageText = [Timeleap, Technical, Use Cases],
-  ogImageFontSize = 36,
+  ogImageText = [Timeleap, Technical Use Cases],
+  ogImageFontSize = 24,
   author = pouya,
   createdAt = 2025-02-19
 }

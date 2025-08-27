@@ -14,6 +14,7 @@
 	import Readable from '$lib/components/Readable.svelte';
 	import Author from '$lib/components/blog/Author.svelte';
 	import TiltImage from '$lib/components/TiltImage.svelte';
+	import TocArticle from '$lib/components/blog/TocArticle.svelte';
 
 	import { getNavForPage, fullNav } from '$lib/blog/nav';
 	import { page } from '$app/stores';

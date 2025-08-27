@@ -15,9 +15,23 @@ import {
 import path from 'path';
 import slugify from 'slugify';
 
+const ogImage = (text: string, fontSize: number = 28) => {
+	const uriEncodedText = encodeURIComponent(text);
+	const uri = `https://timeleap.swiss/og.png?text=${uriEncodedText}&fontSize=${fontSize}`;
+	return uri;
+};
+
 type ParamType = {
 	named: { name: string; value: string | string[] }[];
 	positional: (string | string[])[];
+};
+
+type GridItem = {
+	href: string;
+	title: string;
+	ogImageUrl: string;
+	author: string;
+	createdAt: string;
 };
 
 export type NavEntry = { href: string; title: string; nav?: NavEntry[] };
@@ -98,7 +112,7 @@ const functions: {
 			description: (getParamsByName(params, 'description')[0]?.value as string)?.trim() ?? '',
 			ogImageText: (getParamsByName(params, 'ogImageText')[0]?.value as string[]) ?? [],
 			ogImageFontSize:
-				(getParamsByName(params, 'ogImageFontSize')[0]?.value as string)?.trim() ?? '96',
+				(getParamsByName(params, 'ogImageFontSize')[0]?.value as string)?.trim() ?? '32',
 			author: (getParamsByName(params, 'author')[0]?.value as string)?.trim() ?? '',
 			createdAt: (getParamsByName(params, 'createdAt')[0]?.value as string)?.trim() ?? ''
 		};
@@ -162,7 +176,9 @@ const functions: {
 	},
 	toc(params, context) {
 		const unordered = getParamsByName(params, 'unordered')[0]?.value === 'Yes';
-		const items: string[] = [];
+		const variant = getParamsByName(params, 'variant')[0]?.value ?? 'list';
+		const listItems: string[] = [];
+		const gridItems: GridItem[] = [];
 
 		context.flatNav ??= [];
 
@@ -187,9 +203,19 @@ const functions: {
 			compileFile({ filePath, templateFile: context.templateFile }, nextContext);
 			const href = filePathToHref(filePath);
 			const title = (nextContext.page?.title ?? nextContext.headers?.[0] ?? '').trim();
-			items.push(
+			listItems.push(
 				`<li class="pl-2"><a href="${href}" class="hover:text-green-400 transition-colors">${title}</a></li>`
 			);
+			gridItems.push({
+				href,
+				title,
+				ogImageUrl: ogImage(
+					nextContext.page?.ogImageText?.map((str) => str.trim()).join('\n') ?? title,
+					parseInt(nextContext.page?.ogImageFontSize ?? '32')
+				),
+				author: nextContext.page?.author ?? '',
+				createdAt: nextContext.page?.createdAt ?? ''
+			});
 
 			if (nextContext.nav) {
 				context.nav.nav?.push(nextContext.nav);
@@ -201,14 +227,38 @@ const functions: {
 			flatNavEntry.title = title;
 		}
 
-		const listType = unordered ? 'list-disc' : 'list-decimal';
+		if (variant === 'list') {
+			const listType = unordered ? 'list-disc' : 'list-decimal';
 
-		return `
+			return `
       <div>
         <h5 class="font-serif text-2xl mt-4">Table of Contents</h5>
-        <ul class="${listType} mt-4 pl-8">${items.join('')}</ul>
+        <ul class="${listType} mt-4 pl-8">${listItems.join('')}</ul>
       </div>
     `;
+		} else if (variant === 'grid') {
+			const gridItemsHtml = gridItems
+				.map(
+					(item) =>
+						`<TocArticle
+								href="${item.href}"
+								title="${item.title}"
+								ogImageUrl="${item.ogImageUrl}"
+								author="${item.author}"
+								createdAt="${item.createdAt}" />`
+				)
+				.join('');
+			return `
+      <div>
+        <h5 class="font-serif text-2xl mt-4">Table of Contents</h5>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+          ${gridItemsHtml}
+        </div>
+      </div>
+    `;
+		} else {
+			throw new Error(`Unknown TOC variant: ${variant}`);
+		}
 	},
 	alert(params) {
 		const title = getParamsByName(params, 'title')[0]?.value ?? '';

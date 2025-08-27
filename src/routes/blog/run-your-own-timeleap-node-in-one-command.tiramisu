@@ -69,5 +69,6 @@ Join the link { to = "https://discord.com/invite/Timeleap", Discord } to ask que
 meta {
   title = "Run Your Own Timeleap Node in One Command",
   description = "Install Timeleap in seconds with a unified CLI, rootless Docker support, and the first live community subnet.",
-  ogImageText = [Run Your Own, Timeleap Node]
+  ogImageText = [Run Your Own, Timeleap Node],
+  ogImageFontSize = "32"
 }

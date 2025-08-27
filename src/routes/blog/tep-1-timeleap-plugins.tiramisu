@@ -149,7 +149,7 @@ Timeleap Plugins, you can read link { TEP 1, to = /docs/tep/1 } on our website.
 
 meta {
   description = "TEP 1 is now accepted, let's explore its details more fully and understand what it means for the Timeleap ecosystem.",
-  ogImageText = [TEP 1:, Timeleap Plugins, What does it mean?],
+  ogImageText = [TEP 1: Timeleap Plugins, What does it mean?],
   ogImageFontSize = 24,
   author = pouya,
   createdAt = 2024-12-31
