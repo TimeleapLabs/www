@@ -125,7 +125,9 @@ code {
 """
 }
 
-We'll see all of this in action. In the next article, I'm gonna show you how our
-hello-world Timeleap app works in detail.
-
 title { Conclusion }
+
+So, that's the Timeleap protocol. It's the simple rule book that makes the
+network fast and secure. With WebSockets and Sia, messages fly. The SDK does all
+the heavy lifting for you, so you can just focus on building. Next, we'll see a
+full Timeleap app in action.
