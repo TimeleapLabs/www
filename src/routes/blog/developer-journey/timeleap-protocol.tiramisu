@@ -11,3 +11,18 @@ have to build the protocol from scratch. Our broker-worker model already
 implemented it for you.
 
 Here's a breakdown of the Timeleap protocol:
+
+list {
+    items = bold { Communication: The WebSocket }: The protocol dictates that
+    all communication on the network happens over a persistent WebSocket
+    connection (for now). This long-lived open channel allows nodes to
+    constantly talk to each other.,
+    items = bold { Serialization: Sia the Sonic }: Every message that travels
+    through these WebSocket connections is formatted using our fast
+    serialization library: Sia. The protocol standardizes this ensuring every
+    packet is as small and efficient. Sia also allows working with different
+    types"," even the custom ones more easily.,
+    items = bold { Packet Structure: The Blueprint }: The protocol defines a
+    schema-driven structure for every packet which you can check out 
+    link { to = /docs/reference/packets, here }
+}
