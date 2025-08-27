@@ -89,3 +89,6 @@ image {
   alt = Timeleap SDK client connecting to the broker,
   caption = Small demonstration of using SDK to connect to a broker.
 }
+
+This was just experimental; W hen we develop plugins later, we will link { to =
+https://x.com/Bluerosedev/status/1956467618887397605, Dockerize! }.
