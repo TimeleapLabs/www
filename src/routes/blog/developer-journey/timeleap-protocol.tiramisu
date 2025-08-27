@@ -106,3 +106,12 @@ This is one of the many error-handling and task management Timeleap does.
 title { Plugin Support, size = 2 }
 
 You can even generate your plugin's methods directly from a Sia schema:
+
+code {
+    language = sia, 
+    content = """
+    plugin swiss.timeleap.isWizard.v1 as Sorcery {
+        method isWizard(timeout = 5000) IsWizardArgs returns WizardResponse
+    }
+"""
+}
