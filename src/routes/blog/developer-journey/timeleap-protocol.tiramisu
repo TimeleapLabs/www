@@ -124,3 +124,8 @@ code {
     const response = await sorcery.isWizard({ name: "Haned", age: 23 });
 """
 }
+
+We'll see all of this in action. In the next article, I'm gonna show you how our
+hello-world Timeleap app works in detail.
+
+title { Conclusion }
