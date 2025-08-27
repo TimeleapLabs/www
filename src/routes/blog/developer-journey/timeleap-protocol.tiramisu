@@ -3,3 +3,9 @@ title { Timeleap: The Communication Protocol }
 So, we've talked about Timeleap giving you the tools to create a distributed
 computation network. In this article, we are connecting the dots: Timeleap, Sia,
 and the rules of the network. What does every “network” have? A protocol!
+
+Think of protocol as the complete rule book for every communication in the
+network. Timeleap has created its communication protocol to ensure that every
+message is reliable, secure, and fast. And as it was mentioned before, you don't
+have to build the protocol from scratch. Our broker-worker model already
+implemented it for you.
