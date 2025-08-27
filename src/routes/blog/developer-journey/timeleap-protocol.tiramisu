@@ -21,7 +21,7 @@ list {
     through these WebSocket connections is formatted using our fast
     serialization library: Sia. The protocol standardizes this ensuring every
     packet is as small and efficient. Sia also allows working with different
-    types"," even the custom ones more easily.,
+    types even the custom ones more easily.,
     items = bold { Packet Structure: The Blueprint }: The protocol defines a
     schema-driven structure for every packet which you can check out 
     link { to = /docs/reference/packets, here }
