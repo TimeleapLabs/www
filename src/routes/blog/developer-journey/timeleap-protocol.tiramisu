@@ -1,1 +1,5 @@
 title { Timeleap: The Communication Protocol }
+
+So, we've talked about Timeleap giving you the tools to create a distributed
+computation network. In this article, we are connecting the dots: Timeleap, Sia,
+and the rules of the network. What does every “network” have? A protocol!
