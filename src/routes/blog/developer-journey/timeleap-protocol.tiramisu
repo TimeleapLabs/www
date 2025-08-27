@@ -45,3 +45,9 @@ list {
     the inlineCode { Signature } is the cryptographic proof that it came from
     them and hasn't been tampered with.
 }
+
+So, how is the protocol used in the broker-worker and plugin ecosystem? For each
+type of task, the protocol defines a specific packet structure i.e inlineCode {
+OpCode }. For example with plugins the protocol specifies an inlineCode {
+RPCRequest } packet that includes details like the plugin name, method, fee, and
+currency.
