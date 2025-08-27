@@ -9,3 +9,5 @@ network. Timeleap has created its communication protocol to ensure that every
 message is reliable, secure, and fast. And as it was mentioned before, you don't
 have to build the protocol from scratch. Our broker-worker model already
 implemented it for you.
+
+Here's a breakdown of the Timeleap protocol:
