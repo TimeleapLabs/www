@@ -84,3 +84,8 @@ just used its URL and public key to connect to it, the little inlineCode { New
 client connected } means that our operation was successful, and since no worker
 or plugin is running, our operation doesn't do anything else.
 
+image {
+  src = /images/blog/dev-journey/timeleap-client-example.png,
+  alt = Timeleap SDK client connecting to the broker,
+  caption = Small demonstration of using SDK to connect to a broker.
+}
