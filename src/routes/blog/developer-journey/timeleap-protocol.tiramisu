@@ -104,3 +104,5 @@ OpCodeWorkerOverload }.
 This is one of the many error-handling and task management Timeleap does.
 
 title { Plugin Support, size = 2 }
+
+You can even generate your plugin's methods directly from a Sia schema:
