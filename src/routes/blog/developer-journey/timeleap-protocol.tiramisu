@@ -102,3 +102,5 @@ if a worker is overloaded and can't work anymore, we have inlineCode {
 OpCodeWorkerOverload }.
 
 This is one of the many error-handling and task management Timeleap does.
+
+title { Plugin Support, size = 2 }
