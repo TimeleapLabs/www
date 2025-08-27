@@ -74,3 +74,7 @@ code {
     const response = await client.send(siaPayload);
 """
 }
+
+In this example, the inlineCode { Wallet } It is not a traditional crypto or
+Web3 wallet. It's a simple key pair that provides a cryptographic identity for
+your client, allowing it to sign and authenticate messages on the network.
