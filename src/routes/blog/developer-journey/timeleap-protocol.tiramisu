@@ -78,3 +78,9 @@ code {
 In this example, the inlineCode { Wallet } It is not a traditional crypto or
 Web3 wallet. It's a simple key pair that provides a cryptographic identity for
 your client, allowing it to sign and authenticate messages on the network.
+
+So to see this in action, I cloned the Timeleap repo and started a broker, and
+just used its URL and public key to connect to it, the little inlineCode { New
+client connected } means that our operation was successful, and since no worker
+or plugin is running, our operation doesn't do anything else.
+
