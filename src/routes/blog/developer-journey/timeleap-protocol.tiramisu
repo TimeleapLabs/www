@@ -115,3 +115,12 @@ code {
     }
 """
 }
+
+Which you can use easily like this:
+
+code {
+    language = typescript, 
+    content = """
+    const response = await sorcery.isWizard({ name: "Haned", age: 23 });
+"""
+}
