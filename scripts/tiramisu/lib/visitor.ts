@@ -15,12 +15,6 @@ import {
 import path from 'path';
 import slugify from 'slugify';
 
-const ogImage = (text: string, fontSize: number = 28) => {
-	const uriEncodedText = encodeURIComponent(text);
-	const uri = `https://timeleap.swiss/og.png?text=${uriEncodedText}&fontSize=${fontSize}`;
-	return uri;
-};
-
 type ParamType = {
 	named: { name: string; value: string | string[] }[];
 	positional: (string | string[])[];
@@ -29,7 +23,6 @@ type ParamType = {
 type GridItem = {
 	href: string;
 	title: string;
-	ogImageUrl: string;
 	author: string;
 	createdAt: string;
 };
@@ -209,10 +202,6 @@ const functions: {
 			gridItems.push({
 				href,
 				title,
-				ogImageUrl: ogImage(
-					nextContext.page?.ogImageText?.map((str) => str.trim()).join('\n') ?? title,
-					parseInt(nextContext.page?.ogImageFontSize ?? '32')
-				),
 				author: nextContext.page?.author ?? '',
 				createdAt: nextContext.page?.createdAt ?? ''
 			});
@@ -243,7 +232,6 @@ const functions: {
 						`<TocArticle
 								href="${item.href}"
 								title="${item.title}"
-								ogImageUrl="${item.ogImageUrl}"
 								author="${item.author}"
 								createdAt="${item.createdAt}" />`
 				)

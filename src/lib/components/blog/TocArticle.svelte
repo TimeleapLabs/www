@@ -4,7 +4,6 @@
 
 	export let href: string;
 	export let title: string;
-	export let ogImageUrl: string;
 	export let author: string;
 	export let createdAt: string;
 </script>

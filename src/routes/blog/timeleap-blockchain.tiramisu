@@ -1,128 +1,116 @@
 title { Timeleap Blockchain }
 
-I'm sure the title of this article has got you curious. A lot has happened since
-we announced our plans for the Timeleap AI camera, and you might wonder: how did
-we go from a camera to blockchain? I'm excited to share this journey with you.
+What everyone's been waiting for is finally here! We're excited to announce our
+plans for the launch of the Timeleap Blockchain, a groundbreaking initiative
+that aims to revolutionize the way we interact with decentralized technologies.
 
-Let us start with a quick recap of what Timeleap has been up to since then.
+Walk with us through this article as we unveil the vision, features, and
+benefits of the Timeleap Blockchain.
 
-title { The AI Camera }
+title { Infrastructure, in Addition to Technology }
 
-So how goes one from an AI camera to a blockchain? One might think of a camera
-as a device that captures images and videos, and one could imagine what AI can
-do on a device like this. But how does one actually make a camera like that? It
-is not as simple as taking images from the camera and running them through an AI
-model.
+For a long time, Timeleap positioned itself as a technology company, focusing on
+cutting edge solutions for distributed computing. In the past few months, a
+number of projects have emerged that are building on top of Timeleap's
+technology, and we're excited to see how these initiatives will contribute to
+the growth of the Timeleap ecosystem.
 
-image {
-  src = /images/blog/rabbit-hole.png,
-  alt = How deep goes the rabbit hole?,
-  caption = How deep goes the rabbit hole?
+With that being said, we believe that the next step in our journey is to invest
+in the infrastructure that will support these projects and enable them to
+thrive. The infrastructure landscape as it stands today is fragmented and
+lacks the cohesion needed to drive widespread adoption of decentralized
+technologies.
+
+With the launch of link { Fren+, to = https://fren.plus }, and the development
+of our own Timeleap AI Camera and AI stack, more than ever we are seeing the
+need for a unified and robust infrastructure that can support the diverse needs
+of our growing ecosystem. The Timeleap Blockchain aims to address these
+challenges by providing solid and scalable infrastructure that can support a
+wide range of applications and use cases.
+
+title { First Steps Towards Decentralization }
+
+Timeleap is building a permissioned blockchain on top of the Timeleap network
+core stack. Each Timeleap team member is receiving a node to run at home,
+creating a decentralized network of contributors who lend their computing power
+to the network. Combined, the power of these nodes will be put to test in
+production by Fren+ a new project launching on the Timeleap network.
+
+Once fully operational and stable, we will open up the network to external
+contributors and projects, fostering a vibrant ecosystem of decentralized
+applications running on contributed infrastructure.
+
+title { What Should You Expect }
+
+We are looking forward to launching two variants of the Timeleap Blockchain: An
+enterprise network with those who will form a contract with Timeleap SA, or use
+a partner service to join the network. This will be a permissioned blockchain,
+providing enhanced security and privacy for enterprise use cases.
+
+The second variant will be a public network, open to anyone who wants to
+participate and contribute to the ecosystem. This network will prioritize
+decentralization and transparency, allowing developers to build and deploy their
+applications without the need for intermediaries.
+
+Those of you interested in participating in the Timeleap Blockchain can look
+forward to a range of opportunities, whether you're an enterprise looking to
+leverage our permissioned network or just looking to lend your unused computing
+resources to the public network.
+
+title { What Will Be There on Day One? }
+
+In addition to the core blockchain infrastructure and Fren+, we will be
+launching multiple applications designed to showcase the capabilities of the
+Timeleap Blockchain and provide real-world use cases for developers and
+enterprises. Thanks to being technology-agnostic there will be bold { 1000+ }
+applications that you can immediately run on the Timeleap Blockchain.
+
+We will also release a set of developer tools and resources to help you get
+started with building on the Timeleap Blockchain. This will include SDKs, APIs,
+a new wallet app, and documentation to streamline the development process and
+make it easier for you to create innovative applications.
+
+title { TLP Token }
+
+Once we release the Timeleap Blockchain, we will also introduce the TLP token,
+which will play a crucial role in the ecosystem. The TLP token will be used for
+various purposes, including transaction fees, staking, and governance.
+
+The conversion rate between KNS, our existing token, and TLP will be 1:1, with
+a bidirectional bridge allowing for seamless transfers between the two tokens
+between Arbitrum and Timeleap Blockchain.
+
+alert {
+  type = info,
+  title = Stay Tuned for More Updates,
+  
+  You do not need to migrate your KNS tokens immediately. We will provide more
+  information on the migration process as we get closer to the launch date.
 }
 
-Not going too deep into the technical details, a camera that processes or
-preprocesses images using AI has a complex architecture involving multiple steps
-of image acquisition, preprocessing, inference, and postprocessing. Let me give
-you an example: 
-
-First, you'd use a vision model to analyze and describe the photo in detail.
-Next, this description is passed to a logic model that understands the context
-and generates relevant metadata. With the metadata in hand, you can then combine
-it with the original image and use a text-and-image-to-image model to create
-variations or even generate entirely new images based on the provided context.
-I excluded trivial steps such as image enhancement and noise reduction for brevity.
-
-Thanks to the camera, we got the opportunity to work on a complete AI stack, from
-simple image upscaling to complex vision and logic models. Once we were there we
-took them outside the camera, generalized them, and started talking to others. We
-got a lot of people interested, we listened to their feedback, and iterated on our
-ideas.
-
-Still, what does that have to do with a blockchain?!
-
-title { The Case of Fren+ }
-
-We made a couple of announcements about link { Fren+, to = https://fren.plus }
-earlier; an AI companions app powered by Timeleap tech. The good? They could
-quickly prototype their app using our distributed application stack. Our
-technology stack is designed to be modular and flexible, allowing developers to
-easily integrate various AI capabilities into their applications. It didn't take
-long for them to release their MVP using our guidance, and tech.
-
-image {
-  src = /images/blog/good-bad-ugly.png,
-  alt = "The good, the bad, and the ugly",
-  caption = "The good, the bad, and the ugly"
-}
-
-The bad? Sourcing reliable GPUs from the cloud was a nightmare. Classic cloud
-providers have insane pricing models, and the competition for resources is fierce.
-On the other hand, specialized AI cloud providers are not mature enough to meet
-the demands of cutting-edge AI applications.
-
-The ugly? We are not providing infrastructure, only software. This means that
-while we can help developers build their applications, we can't solve the
-underlying infrastructure problems they face.
-
-And the solution? A blockchain. We've been working together with the Fren+ team,
-and we are onboarding GPU machines on premises. Early tests are positive, and
-our worker-broker model works perfect for this use case. Once we are satisfied
-with the results, we are going to scale this solution to all our users who want
-to lend their unused GPU resources to the network.
-
-title { TLP token and Testnet Rewards }
-
-TLP will be the native token of the Timeleap blockchain, used both for
-governance and as a utility token within the ecosystem. Users will be able to
-earn TLP tokens by participating in the network, whether by lending their GPU
-resources or by contributing to the development of applications on the platform.
-
-We haven't forgotten about the early supporters of the project. Those who
-participated in the initial testing and provided valuable feedback will be
-rewarded with TLP tokens as a token of our appreciation.
-
-title { Timeleap as an Incubator }
-
-Timeleap aims to be more than just a blockchain platform; we want to be an
-incubator for innovative applications. By providing developers with the tools
-and resources they need to build and scale their applications, we hope to foster
-a vibrant ecosystem of innovation.
-
-image {
-  src = /images/blog/incubator.png,
-  alt = "Timeleap Incubator",
-  caption = "Timeleap Incubator"
-}
-
-Just like we did with Fren+, we will actively seek out and support promising
-projects within the Timeleap ecosystem. By providing mentorship, resources, and
-access to our technology stack, we hope to empower developers to bring their
-innovative ideas to life.
-
-If you have a project in mind that could benefit from our support, we encourage
-you to reach out to us. Together, we can build the future of decentralized and
-distributed applications. We are not looking for a specific theme yet, all ideas
-are welcome. However, in the future, we might focus on specific areas such as AI,
-machine learning, and computer vision.
+Early participants in the Timeleap Network test may be eligible to receive TLP
+tokens when the Timeleap Blockchain goes live, in recognition of their
+contributions.
 
 title { Conclusion }
 
-Timeleap is poised to revolutionize the way we think about decentralized
-applications and AI. By leveraging the power of blockchain technology, we can
-create a more efficient, transparent, and secure ecosystem for developers and
-users alike. We are excited to embark on this journey and look forward to
-collaborating with like-minded individuals and organizations.
+The Timeleap Blockchain represents a significant step forward in the evolution
+of decentralized technologies. By providing a robust and scalable
+infrastructure, we aim to empower developers and enterprises to build innovative
+applications that leverage the full potential of blockchain technology.
 
-More details will be shared soon; we will be launching a public and an
-enterprise network. Users will be able to join any of the networks under the
-Timeleap umbrella and take advantage of the unique features and benefits each
-network offers. In the meantime, don't hesitate to reach out if you have any
-questions or ideas you'd like to discuss.
+As we move closer to the launch of the Timeleap Blockchain, we encourage you to
+stay engaged and explore the opportunities that lie ahead. Whether you're an
+enterprise looking to enhance your operations or a developer eager to create the
+next big thing, the Timeleap Blockchain will be your platform of choice.
+
+A public roadmap is coming soon, which we will announce on our link { X, to =
+https://x.com/TimeleapLabs } channel.
 
 meta {
-  description = "Timeleap is a decentralized platform that leverages blockchain technology to create a more efficient and transparent ecosystem for AI applications.",
+  description = "Timeleap is a decentralized platform that leverages blockchain technology to create a more efficient and transparent ecosystem for AI and resource intensive applications.",
   ogImageText = [Timeleap, Blockchain],
   ogImageFontSize = 28,
   author = pouya,
-  createdAt = 2025-08-25
+  createdAt = 2025-08-28
 }
