@@ -90,7 +90,7 @@ image {
   caption = Small demonstration of using SDK to connect to a broker.
 }
 
-This was just experimental; When we develop plugins later, we will link { to =
+This was just experimental; when we develop plugins later, we will link { to =
 https://x.com/Bluerosedev/status/1956467618887397605, Dockerize! }.
 
 title { Error and Task Management, size = 2 }
@@ -131,3 +131,12 @@ So, that's the Timeleap protocol. It's the simple rule book that makes the
 network fast and secure. With WebSockets and Sia, messages fly. The SDK does all
 the heavy lifting for you, so you can just focus on building. Next, we'll see a
 full Timeleap app in action.
+
+meta {
+    description = "Learn how the Timeleap protocol enables fast and secure communication using WebSockets, Sia serialization, and signed packets.",
+    ogImageText = [Timeleap, Protocol],
+    ogImageFontSize = 36,
+    author = hamed,
+    createdAt = 2025-08-28
+}
+
