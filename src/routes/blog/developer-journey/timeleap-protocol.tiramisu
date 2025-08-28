@@ -13,18 +13,18 @@ implemented it for you.
 Here's a breakdown of the Timeleap protocol:
 
 list {
-    items = bold { Communication: The WebSocket }: The protocol dictates that
-    all communication on the network happens over a persistent WebSocket
-    connection (for now). This long-lived open channel allows nodes to
-    constantly talk to each other.,
-    items = bold { Serialization: Sia the Sonic }: Every message that travels
-    through these WebSocket connections is formatted using our fast
-    serialization library: Sia. The protocol standardizes this ensuring every
-    packet is as small and efficient. Sia also allows working with different
-    types even the custom ones more easily.,
-    items = bold { Packet Structure: The Blueprint }: The protocol defines a
-    schema-driven structure for every packet which you can check out 
-    link { to = /docs/reference/packets, here }.
+    items = bold { Communication: The WebSocket }:
+    The protocol dictates that all communication on the network happens over a
+    persistent WebSocket connection (for now). This long-lived open channel
+    allows nodes to constantly talk to each other.,
+    items = bold { Serialization: Sia the Sonic }:
+    Every message that travels through these WebSocket connections is formatted
+    using our fast serialization library: Sia. The protocol standardizes this
+    ensuring every packet is as small and efficient. Sia also allows working
+    with different types even the custom ones more easily.,
+    items = bold { Packet Structure: The Blueprint }:
+    The protocol defines a schema-driven structure for every packet which you
+    can check out link { to = /docs/reference/packets, here }.
 }
 
 title { The Packet, size = 2 }
@@ -35,15 +35,16 @@ outer envelope to ensure the message's authenticity and integrity. This packet
 includes:
 
 list {
-    items = inlineCode { OpCode }: A code that tells the network what kind of
-    task or message this is.,
-    items = inlineCode { AppID }: A unique identifier of the network along
-    with other measures it helps protect against a replay attack.,
-    items = inlineCode { Signer } and inlineCode { Signature }: This is the most
-    crucial part for security. We use bold { Ed25519 } for our cryptographic
-    signatures. The inlineCode { Signer } identifies who sent the message and
-    the inlineCode { Signature } is the cryptographic proof that it came from
-    them and hasn't been tampered with.
+    items = inlineCode { OpCode }: 
+    A code that tells the network what kind of task or message this is.,
+    items = inlineCode { AppID }:
+    A unique identifier of the network along with other measures it helps
+    protect against a replay attack.,
+    items = inlineCode { Signer } and inlineCode { Signature }: 
+    This is the most crucial part for security. We use bold { Ed25519 } for our
+    cryptographic signatures. The inlineCode { Signer } identifies who sent the
+    message and the inlineCode { Signature } is the cryptographic proof that it
+    came from them and hasn't been tampered with.
 }
 
 So, how is the protocol used in the broker-worker and plugin ecosystem? For each
@@ -96,9 +97,9 @@ https://x.com/Bluerosedev/status/1956467618887397605, Dockerize! }.
 title { Error and Task Management, size = 2 }
 
 The protocol also outlines rules for what to do when things don't go as planned.
-For example, inlineCode { OpCode } is not only for determining the task type, but
-it can also determine if a task failed, like inlineCode { OpCodeTaskFailed } or
-if a worker is overloaded and can't work anymore, we have inlineCode {
+For example, inlineCode { OpCode } is not only for determining the task type,
+but it can also determine if a task failed, like inlineCode { OpCodeTaskFailed }
+or if a worker is overloaded and can't work anymore, we have inlineCode {
 OpCodeWorkerOverload }.
 
 This is one of the many error-handling and task management Timeleap does.
