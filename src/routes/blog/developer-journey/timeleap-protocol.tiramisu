@@ -24,12 +24,12 @@ list {
     types even the custom ones more easily.,
     items = bold { Packet Structure: The Blueprint }: The protocol defines a
     schema-driven structure for every packet which you can check out 
-    link { to = /docs/reference/packets, here }
+    link { to = /docs/reference/packets, here }.
 }
 
 title { The Packet, size = 2 }
 
-Every task on the network is assigned a UUID, which helps to identify and
+Every task on the network is assigned with a UUID, which helps to identify and
 track it. All messages are then wrapped in a signed packet, which acts as an
 outer envelope to ensure the message's authenticity and integrity. This packet
 includes:
@@ -38,7 +38,7 @@ list {
     items = inlineCode { OpCode }: A code that tells the network what kind of
     task or message this is.,
     items = inlineCode { AppID }: A unique identifier of the network, along
-    with other measures, helps protect against a replay attack.,
+    with other measures, it helps protect against a replay attack.,
     items = inlineCode { Signer } and inlineCode { Signature }: This is the most
     crucial part for security. We use bold { Ed25519 } for our cryptographic
     signatures. The inlineCode { Signer } identifies who sent the message and
@@ -47,8 +47,8 @@ list {
 }
 
 So, how is the protocol used in the broker-worker and plugin ecosystem? For each
-type of task, the protocol defines a specific packet structure, i.e inlineCode {
-OpCode }. For example, with plugins, the protocol specifies an inlineCode {
+type of task, i.e inlineCode { OpCode }, the protocol defines a specific packet
+structure. For example, with plugins, the protocol specifies an inlineCode {
 RPCRequest } packet that includes details like the plugin name, method, fee, and
 currency.
 
