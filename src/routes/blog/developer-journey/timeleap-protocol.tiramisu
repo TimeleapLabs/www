@@ -37,8 +37,8 @@ includes:
 list {
     items = inlineCode { OpCode }: A code that tells the network what kind of
     task or message this is.,
-    items = inlineCode { AppID }: A unique identifier of the network, along
-    with other measures, it helps protect against a replay attack.,
+    items = inlineCode { AppID }: A unique identifier of the network along
+    with other measures it helps protect against a replay attack.,
     items = inlineCode { Signer } and inlineCode { Signature }: This is the most
     crucial part for security. We use bold { Ed25519 } for our cryptographic
     signatures. The inlineCode { Signer } identifies who sent the message and
