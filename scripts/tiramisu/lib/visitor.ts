@@ -237,13 +237,13 @@ const functions: {
 				)
 				.join('');
 			return `
-      <div>
-        <h5 class="font-serif text-2xl mt-4">Table of Contents</h5>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-          ${gridItemsHtml}
-        </div>
-      </div>
-    `;
+		<div>
+		<h5 class="font-serif text-2xl mt-4">Table of Contents</h5>
+			<div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(1fr,320px))] gap-8 mt-4">
+				${gridItemsHtml}
+			</div>
+			</div>
+		`;
 		} else {
 			throw new Error(`Unknown TOC variant: ${variant}`);
 		}
