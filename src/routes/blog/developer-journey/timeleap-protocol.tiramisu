@@ -7,7 +7,7 @@ and the rules of the network. What does every network have? A protocol!
 Think of protocol as the complete rule book for every communication in the
 network. Timeleap has created its communication protocol to ensure that every
 message is reliable, secure, and fast. And as it was mentioned before, you don't
-have to build the protocol from scratch. Our broker-worker model already
+have to build the protocol from scratch. Our broker-worker model has already
 implemented it for you.
 
 Here's a breakdown of the Timeleap protocol:
@@ -47,8 +47,8 @@ list {
 }
 
 So, how is the protocol used in the broker-worker and plugin ecosystem? For each
-type of task, the protocol defines a specific packet structure i.e inlineCode {
-OpCode }. For example with plugins the protocol specifies an inlineCode {
+type of task, the protocol defines a specific packet structure, i.e inlineCode {
+OpCode }. For example, with plugins, the protocol specifies an inlineCode {
 RPCRequest } packet that includes details like the plugin name, method, fee, and
 currency.
 
@@ -75,7 +75,7 @@ code {
 """
 }
 
-In this example, the inlineCode { Wallet } It is not a traditional crypto or
+In this example, the inlineCode { Wallet } is not a traditional crypto or
 Web3 wallet. It's a simple key pair that provides a cryptographic identity for
 your client, allowing it to sign and authenticate messages on the network.
 
@@ -90,14 +90,14 @@ image {
   caption = Small demonstration of using SDK to connect to a broker.
 }
 
-This was just experimental; W hen we develop plugins later, we will link { to =
+This was just experimental; When we develop plugins later, we will link { to =
 https://x.com/Bluerosedev/status/1956467618887397605, Dockerize! }.
 
 title { Error and Task Management, size = 2 }
 
-The protocol also has rules for what happens when things don't go as planned.
-for example inlineCode { OpCode } is not only for determining the task type, but
-it can also determine if a task failed like inlineCode { OpCodeTaskFailed } or
+The protocol also outlines rules for what to do when things don't go as planned.
+For example, inlineCode { OpCode } is not only for determining the task type, but
+it can also determine if a task failed, like inlineCode { OpCodeTaskFailed } or
 if a worker is overloaded and can't work anymore, we have inlineCode {
 OpCodeWorkerOverload }.
 
