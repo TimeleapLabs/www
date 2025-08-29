@@ -5,11 +5,14 @@ computation network link { to =
 /blog/develeoper-journey/introduction-to-timeleap, here}. In this article, we
 are connecting the dots: Timeleap, Sia, and the rules of the network.
 
-Think of protocol as the complete rule book for every communication in the
-network. Timeleap has created its communication protocol to ensure that every
-message is reliable, secure, and fast. And as it was mentioned before, you don't
-have to build the protocol from scratch. Our broker-worker model has already
-implemented it for you.
+Think of Timeleap protocol as the complete rule book and blueprint to implement
+what we call a inlineCode { Timeleap App }. Timeleap has created its
+communication protocol to ensure not only that every message is reliable,
+secure, and fast, but also to ensure reproducibility and compatibility in
+different implementations. We have a reference implementation of this blueprint,
+which is our broker-worker model. Others can study the blueprint and implement
+their own, which you can check out link { to =
+https://github.com/TimeleapLabs/timeleap, here }.
 
 Here's a breakdown of the Timeleap protocol:
 
