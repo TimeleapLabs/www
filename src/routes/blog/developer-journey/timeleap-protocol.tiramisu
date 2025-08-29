@@ -1,0 +1,135 @@
+title { Timeleap: The Communication Protocol }
+
+We've talked about Timeleap giving you the tools to create a distributed
+computation network link { to =
+/blog/developer-journey/introduction-to-timeleap, here}. In this article, we
+are connecting the dots: Timeleap, Sia, and the rules of the network.
+
+Think of Timeleap protocol as the complete rule book and blueprint to implement
+what we call a inlineCode { Timeleap App }. Timeleap has created its
+communication protocol to ensure not only that every message is reliable,
+secure, and fast, but also to ensure reproducibility and compatibility in
+different implementations. We have a reference implementation of this blueprint,
+which is our broker-worker model. Others can study the blueprint and implement
+their own, which you can check out link { to =
+https://github.com/TimeleapLabs/timeleap, here }.
+
+Here's a breakdown of the Timeleap protocol:
+
+list {
+    items = bold { Communication: The WebSocket }:
+    The protocol dictates that all communication on the network happens over a
+    persistent WebSocket connection. This long-lived open channel
+    allows nodes to constantly talk to each other.,
+    items = bold { Serialization: Sia the Sonic }:
+    Every message that travels through these WebSocket connections is formatted
+    using our fast serialization library: Sia. The protocol standardizes this
+    ensuring every packet is as small and efficient. Sia also allows working
+    with different types even the custom ones more easily.,
+    items = bold { Packet Structure: The Blueprint }:
+    The protocol defines a schema-driven structure for every packet which you
+    can check out link { to = /docs/reference/packets, here }.
+}
+
+title { The Packet, size = 2 }
+
+Every request on the network is assigned a UUID, which helps to identify and
+track it. All messages are then wrapped in a signed packet, which acts as an
+outer envelope to ensure the message's authenticity and integrity. This packet
+includes:
+
+list {
+    items = inlineCode { OpCode }: 
+    A code that tells the network what kind of task or message this is.,
+    items = inlineCode { AppID }:
+    A unique identifier of the network along with other measures it helps
+    protect against a replay attack.,
+    items = inlineCode { Message }:
+    This is where the packet's data is stored which is Sia-encoded.,
+    items = inlineCode { Signer } and inlineCode { Signature }: 
+    This is the most crucial part for security. We use bold { Ed25519 } for our
+    cryptographic signatures. The inlineCode { Signer } identifies who sent the
+    message and the inlineCode { Signature } is the cryptographic proof that it
+    came from them and hasn't been tampered with.
+}
+
+The bold { OpCode } is a command for the network, a single byte that tells the
+system what kind of message it's receiving. The key is that each OpCode expects
+a different packet structure, acting as a header that tells the system how to
+read the rest of the data. For example, a inlineCode { Subscribe } OpCode
+expects the inlineCode { Message } field to contain a Sia-encoded topic name,
+while an inlineCode { RPCRequest } OpCode expects it to hold a Sia-encoded
+inlineCode { RPCRequest } DTO with details like the plugin and method. A
+inlineCode { Message } OpCode is used when the data is simply a message to be
+published, so the Message field contains the message content itself, For
+example:
+
+code {
+    language = typescript,
+    content = """
+	const myWallet = await Wallet.random(); // Identity
+	const client = await Client.connect(myWallet, {
+		uri: process.env.BROKER_URI,
+		publicKey: process.env.BROKER_PUBLIC_KEY
+	});
+
+	const siaPayload = Sia.alloc(512)
+		.addUInt8(OpCodes.Message)
+		.addUInt64(client.appId)
+		.addByteArray8(uuidv7obj().bytes)
+		.addString8('Hello from my client!');
+
+	const response = await client.send(siaPayload);
+"""
+}
+
+In this example, the inlineCode { Wallet } is not a traditional crypto or
+Web3 wallet. It's a simple key pair that provides a cryptographic identity for
+your client, allowing it to sign and authenticate messages on the network.
+
+title { Error and Task Management, size = 2 }
+
+The protocol also outlines rules for what to do when things don't go as planned.
+For example, inlineCode { OpCode } is not only for determining the task type,
+but it can also determine if a task failed, like inlineCode { OpCodeTaskFailed }
+or if a worker is overloaded and can't work anymore, we have inlineCode {
+OpCodeWorkerOverload }.
+
+title { Plugin Support, size = 2 }
+
+You can even generate your plugin's methods directly from a Sia schema:
+
+code {
+    language = sia, 
+    content = """
+    plugin swiss.timeleap.isWizard.v1 as Sorcery {
+        method isWizard(timeout = 5000) IsWizardArgs returns WizardResponse
+    }
+"""
+}
+
+When I had enough knowledge about how the protocol works under the hood, and I
+saw this, I was blown away by how simple you can send a request to the plugin
+method:
+
+code {
+    language = typescript, 
+    content = """
+    const response = await sorcery.isWizard({ name: "Haned", age: 23 });
+"""
+}
+
+title { Conclusion }
+
+That's the Timeleap protocol. It's the simple rule book that makes the
+network fast and secure. With WebSockets and Sia, messages fly. The SDK does all
+the heavy lifting for you, so you can just focus on building. Next, we'll see a
+full Timeleap app in action.
+
+meta {
+    description = "Learn how the Timeleap protocol enables fast and secure communication using WebSockets, Sia serialization, and signed packets.",
+    ogImageText = [Timeleap, Protocol],
+    ogImageFontSize = 36,
+    author = hamed,
+    createdAt = 2025-08-28
+}

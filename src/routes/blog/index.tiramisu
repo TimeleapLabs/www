@@ -7,6 +7,7 @@ toc {
   variant = grid,
   
   timeleap-blockchain,
+  developer-journey/timeleap-protocol,
   developer-journey/sia-schema,
   developer-journey/sia-the-sonic,
   developer-journey/introduction-to-timeleap,
