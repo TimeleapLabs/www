@@ -53,15 +53,16 @@ list {
     came from them and hasn't been tampered with.
 }
 
-So, how is the protocol used in the broker-worker and plugin ecosystem? For each
-type of request, i.e inlineCode { OpCode }, the protocol defines a specific
-packet structure. For example, with plugins, the protocol specifies an
-inlineCode { RPCRequest } packet that includes details like the plugin name,
-method, fee, and currency.
-
-We have a Timeleap SDK for TypeScript that handles this stuff for our dear
-Timeleap app developers. For instance, using our TypeScript SDK, you can make a
-client to call a broker like this:
+The bold { OpCode } is a command for the network, a single byte that tells the
+system what kind of message it's receiving. The key is that each OpCode expects
+a different packet structure, acting as a header that tells the system how to
+read the rest of the data. For example, a inlineCode { Subscribe } OpCode
+expects the inlineCode { Message } field to contain a Sia-encoded topic name,
+while an inlineCode { RPCRequest } OpCode expects it to hold a Sia-encoded
+inlineCode { RPCRequest } DTO with details like the plugin and method. A
+inlineCode { Message } OpCode is used when the data is simply a message to be
+published, so the Message field contains the message content itself, For
+example:
 
 code {
     language = typescript,
@@ -85,20 +86,6 @@ code {
 In this example, the inlineCode { Wallet } is not a traditional crypto or
 Web3 wallet. It's a simple key pair that provides a cryptographic identity for
 your client, allowing it to sign and authenticate messages on the network.
-
-So to see this in action, I cloned the Timeleap repo and started a broker, and
-just used its URL and public key to connect to it, the little 
-inlineCode { New client connected } means that our operation was successful, and
-since no worker or plugin is running, our operation doesn't do anything else.
-
-image {
-  src = /images/blog/dev-journey/timeleap-client-example.png,
-  alt = Timeleap SDK client connecting to the broker,
-  caption = Small demonstration of using SDK to connect to a broker.
-}
-
-This was just experimental; when we develop plugins later, we will link { to =
-https://x.com/Bluerosedev/status/1956467618887397605, Dockerize! }.
 
 title { Error and Task Management, size = 2 }
 
