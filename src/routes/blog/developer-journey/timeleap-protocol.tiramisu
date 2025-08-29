@@ -108,8 +108,6 @@ but it can also determine if a task failed, like inlineCode { OpCodeTaskFailed }
 or if a worker is overloaded and can't work anymore, we have inlineCode {
 OpCodeWorkerOverload }.
 
-This is one of the many error-handling and task management Timeleap does.
-
 title { Plugin Support, size = 2 }
 
 You can even generate your plugin's methods directly from a Sia schema:
