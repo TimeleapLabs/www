@@ -19,7 +19,7 @@ Here's a breakdown of the Timeleap protocol:
 list {
     items = bold { Communication: The WebSocket }:
     The protocol dictates that all communication on the network happens over a
-    persistent WebSocket connection (for now). This long-lived open channel
+    persistent WebSocket connection. This long-lived open channel
     allows nodes to constantly talk to each other.,
     items = bold { Serialization: Sia the Sonic }:
     Every message that travels through these WebSocket connections is formatted
