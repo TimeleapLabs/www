@@ -121,7 +121,9 @@ code {
 """
 }
 
-Which you can use easily like this:
+When I had enough knowledge about how the protocol works under the hood, and I
+saw this, I was blown away by how simple you can send a request to the plugin
+method:
 
 code {
     language = typescript, 
@@ -132,7 +134,7 @@ code {
 
 title { Conclusion }
 
-So, that's the Timeleap protocol. It's the simple rule book that makes the
+That's the Timeleap protocol. It's the simple rule book that makes the
 network fast and secure. With WebSockets and Sia, messages fly. The SDK does all
 the heavy lifting for you, so you can just focus on building. Next, we'll see a
 full Timeleap app in action.
