@@ -66,19 +66,19 @@ client to call a broker like this:
 code {
     language = typescript,
     content = """
-    const myWallet = await Wallet.random() // Identity 
-    const client = await Client.connect(myWallet, {
-        uri: process.env.BROKER_URI,
-        publicKey: process.env.BROKER_PUBLIC_KEY,
-    })
+	const myWallet = await Wallet.random(); // Identity
+	const client = await Client.connect(myWallet, {
+		uri: process.env.BROKER_URI,
+		publicKey: process.env.BROKER_PUBLIC_KEY
+	});
 
-    const siaPayload = Sia.alloc(512)
-    .addUInt8(OpCodes.Message)
-    .addUInt64(client.appId)
-    .addByteArray8(uuidv7obj().bytes)
-    .addString8("Hello from my client!");
+	const siaPayload = Sia.alloc(512)
+		.addUInt8(OpCodes.Message)
+		.addUInt64(client.appId)
+		.addByteArray8(uuidv7obj().bytes)
+		.addString8('Hello from my client!');
 
-    const response = await client.send(siaPayload);
+	const response = await client.send(siaPayload);
 """
 }
 
