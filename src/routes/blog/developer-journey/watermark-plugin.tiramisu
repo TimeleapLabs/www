@@ -6,3 +6,18 @@ watermarking plugin.
 
 This project is a perfect choice for a few reasons:
 
+list {
+    items = bold { Working with Files }: 
+    I want to learn how to handle different data types specifically image files
+    in Sia.,
+    items = bold { A Useful Function }:
+    Watermarking is a genuinely useful function that anyone from small
+    businesses to individual creators can use. A good real use case example for
+    a plugin.,
+    items = "This plugin perfectly demonstrates the purpose of Timeleap's
+    distributed network. You can create a powerful plugin, add it to a subnet,
+    and set a fee for its usage. Other developers can then tap into the
+    network's computation power to use your function for their own needs,
+    turning your code into a monetized application."
+}
+
