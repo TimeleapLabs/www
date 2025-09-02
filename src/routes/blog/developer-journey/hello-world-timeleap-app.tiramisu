@@ -110,3 +110,9 @@ code {
     }
 """
 }
+
+As you can see, this schema defines the structure of the messages, the fees, and
+the methods that our inlineCode { hello-world } plugin exposes, right down to
+the argument and return types. The client and worker both use this schema to
+ensure they are speaking the same language.
+
