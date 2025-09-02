@@ -88,3 +88,9 @@ wants to watermark to be set on. Then we just add these args and fees to the
 call, I'm thinking we can later on add this to tlp CLI. The default schema for a
 plugin should contain inlineCode { args, fee, call, response }. We will get to
 the tlp CLI later in the article.
+
+title { Building the Plugin, size = 3 }
+
+This is where the core logic will go. I'll implement the
+inlineCode { addWaterMarkToImage } function that takes the input image and text,
+applies the watermark using my chosen library, and returns the result.
