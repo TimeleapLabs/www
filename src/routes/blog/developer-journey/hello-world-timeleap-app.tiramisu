@@ -183,3 +183,11 @@ request comes in: it verifies the request, decodes it using the schema,
 processes the logic, and encodes and sends the response back.
 
 title { The Full Circle: From Client to Worker and Back, size = 3 }
+
+image {
+    src = /images/blog/dev-journey/hello-world-sketch.png ,
+    alt = A diagram-like sketch of how the flow of hello-world start froms cli,
+    goes to the client and then to broker, worker and then plugin and returns.,
+    caption = How request flows through the hello-world Timeleap App.
+}
+
