@@ -211,3 +211,6 @@ from end to end.
 
 title { Conclusion }
 
+In this article, we've broken down the core components of a Timeleap app and
+seen how they communicate to execute a simple task. We explored the roles of the
+client, broker, and worker.
