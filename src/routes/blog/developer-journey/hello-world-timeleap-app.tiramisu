@@ -24,3 +24,23 @@ is to call a specific function inside the plugin. Before it can do that, it must
 first establish a secure connection.
 
 Here is the function that handles this connection:
+
+code { 
+    language = typescript,
+    content =  """
+	import { Client, Wallet } from '@timeleap/client';
+	import { HelloWorld } from '@repo/models';
+	import { Sia } from '@timeleap/sia';
+
+	const createClient = async () => {
+		const wallet = await Wallet.random();
+		const client = await Client.connect(wallet, {
+			uri: process.env.BROKER_URI,
+			publicKey: process.env.BROKER_PUBLIC_KEY
+		});
+		const hello = HelloWorld.connect(client);
+
+		return { client, hello };
+	};
+"""
+}
