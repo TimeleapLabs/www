@@ -14,3 +14,5 @@ returns the same string. The magic happens behind the scenes, with four key
 components working together in a containerized Docker environment: a bold {
 plugin }, a bold { broker }, a bold { worker }, a bold { client } and a small
 bold { CLI app }.
+
+Let's begin with the starting point: the Client.
