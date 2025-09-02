@@ -117,3 +117,9 @@ the argument and return types. The client and worker both use this schema to
 ensure they are speaking the same language.
 
 title { The Plugin: The Application Logic, size = 3 }
+
+The plugin is where the core logic of our application lives. In our 
+inlineCode { hello-world } app, it's a simple Bun.js server that listens for a
+WebSocket message from the broker, processes it, and sends back a response.
+
+This code snippet shows how it works:
