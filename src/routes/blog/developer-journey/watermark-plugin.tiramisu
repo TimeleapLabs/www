@@ -132,3 +132,9 @@ code {
 }
 
 
+Then we need the worker's public key, which we can get from
+inlineCode { ./timeleap/secrets/worker_secrets.yaml }
+but we need to generate an identity for the plugin. To do that, we use Timeleap
+SDK once again, so I made a utils folder inside pluign directory and added this:
+
+
