@@ -111,4 +111,9 @@ code {
      "main": "index.ts"
     }
 """
+
+And added it inside the bun workspaces in the root inlineCode { package.json }.
+and put the Sia model and the generated code inside of inlineCode { models }.
+
+Did this the same for the plugin as well.
 }
