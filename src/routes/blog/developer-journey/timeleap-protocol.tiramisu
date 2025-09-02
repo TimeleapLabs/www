@@ -46,23 +46,22 @@ list {
     protect against a replay attack.,
     items = inlineCode { Message }:
     This is where the packet's data is stored which is Sia-encoded.,
-    items = inlineCode { Signer } and inlineCode { Signature }: 
-    This is the most crucial part for security. We use bold { Ed25519 } for our
-    cryptographic signatures. The inlineCode { Signer } identifies who sent the
-    message and the inlineCode { Signature } is the cryptographic proof that it
-    came from them and hasn't been tampered with.
+    items = inlineCode { Signer } and inlineCode { Signature }: This is the most
+    crucial part for security. We use bold { Ed25519 } for our cryptographic
+    signatures. The inlineCode { Signer } identifies who sent the message and
+    the inlineCode { Signature } is the cryptographic proof that it came from
+    them and hasn't been tampered with.
 }
 
 The bold { OpCode } is a command for the network, a single byte that tells the
 system what kind of message it's receiving. The key is that each OpCode expects
-a different packet structure, acting as a header that tells the system how to
-read the rest of the data. For example, a inlineCode { Subscribe } OpCode
-expects the inlineCode { Message } field to contain a Sia-encoded topic name,
-while an inlineCode { RPCRequest } OpCode expects it to hold a Sia-encoded
-inlineCode { RPCRequest } DTO with details like the plugin and method. A
-inlineCode { Message } OpCode is used when the data is simply a message to be
-published, so the Message field contains the message content itself, For
-example:
+a different inlineCode { Message } structure. For example, a inlineCode {
+Subscribe } OpCode expects the inlineCode { Message } field to contain a
+Sia-encoded topic name, while an inlineCode { RPCRequest } OpCode expects it to
+hold a Sia-encoded inlineCode { RPCRequest } DTO with details like the plugin's
+name and its method and more. A inlineCode { Message } OpCode is used when the
+data is simply a message to be published, so the Message field contains the
+message content itself, For example:
 
 code {
     language = typescript,
