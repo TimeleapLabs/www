@@ -203,3 +203,9 @@ list {
     items = The broker then delivers the response back to the client.,
     items = Finally the client returns the result to the user.
 }
+
+This entire process happens very fast, thanks to the efficiency of the Sia
+serialization library. The combination of lightweight data structures and
+cryptographic verification ensures that messages are small, fast, and secure
+from end to end.
+
