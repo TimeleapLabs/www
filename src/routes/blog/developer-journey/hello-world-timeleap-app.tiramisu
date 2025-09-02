@@ -116,3 +116,4 @@ the methods that our inlineCode { hello-world } plugin exposes, right down to
 the argument and return types. The client and worker both use this schema to
 ensure they are speaking the same language.
 
+title { The Plugin: The Application Logic, size = 3 }
