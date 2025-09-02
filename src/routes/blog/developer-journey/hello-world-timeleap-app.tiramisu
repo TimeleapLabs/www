@@ -71,3 +71,42 @@ schema, which we explained link { to = /blog/developer-journey/sia-schema, here
 }.
 
 Here is the schema for our inlineCode { hello-world } app:
+
+code {
+    type = sia,
+    content = """
+    schema Args {
+        message   string8(encoding = "ascii")
+    }
+
+    schema Fee {
+        amount     uint64
+        currency   string8(encoding = "ascii")
+    }
+
+    schema HelloWorldCall {
+        uuid    byte8
+        plugin  string8(encoding = "ascii")
+        method  string8(encoding = "ascii")
+        timeout uint64
+        fee     Fee
+        args    Args
+    }
+
+    schema HelloWorldResponse {
+        opcode    uint8
+        appId     uint64
+        uuid      byte8
+        error?    uint16
+        ok?       bool
+        message?  string8(encoding = "ascii")
+    }
+
+    plugin swiss.timeleap.helloWorld as HelloWorld {
+        method hi(timeout = 5000, fee = 1, currency = "USD") Args returns {
+            ok      bool
+            message string8(encoding = "ascii")
+        }
+    }
+"""
+}
