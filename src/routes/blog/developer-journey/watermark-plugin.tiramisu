@@ -25,3 +25,16 @@ In this article, I'll take you through my journey of building this plugin, from
 my initial learning to the final implementation.
 
 title { My Journey: A Learning Log, size = 2 }
+
+list {
+    items = bold { Understanding the Core Task }: 
+    "Before I write any code, I need to
+    understand how image watermarking works. I'm going to use Sharp js and make
+    the texts into SVG and then watermark it.",
+    items = bold { Schema Definition }:
+    "The first piece of code I'll write is the Sia schema for the plugin. This
+    is the contract that defines what the plugin does. It will need to accept
+    the image data and the watermark text as arguments and return the
+    watermarked image file. I'll share my draft schema here and explain why I
+    chose each data type."
+}
