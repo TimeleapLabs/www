@@ -38,3 +38,45 @@ list {
     watermarked image file. I'll share my draft schema here and explain why I
     chose each data type."
 }
+
+code {
+    language = sia,
+    content = """
+    schema Args {
+        text   string8(encoding = "ascii")
+        location string8(encoding = "ascii")
+        image byte32
+    }
+
+    schema Fee {
+        amount     uint64
+        currency   string8(encoding = "ascii")
+    }
+
+    schema WatermarkImageCall {
+        uuid    byte8
+        plugin  string8(encoding = "ascii")
+        method  string8(encoding = "ascii")
+        timeout uint64
+        fee     Fee
+        args    Args
+    }
+
+    schema WatermarkImageResponse {
+        opcode    uint8
+        appId     uint64
+        uuid      byte8
+        error?    uint16
+        ok?       bool
+        watermarkedImage?  byte32
+    }
+
+
+    plugin swiss.timeleap.watermarker as WatermarkImage {
+        method addWatermarkToImage(timeout = 5000, fee = 1, currency = "USD") Args returns {
+            ok bool
+            watermarkedImage byte32
+        }
+    }
+"""
+}
