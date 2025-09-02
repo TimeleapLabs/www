@@ -80,3 +80,11 @@ code {
     }
 """
 }
+
+Similar to link { to = /blog/developer-journey/hello-world-timeleap-app,
+hello-world }, we need args, fee, call, and response. We define what we expect
+to receive, the text of the watermark, the image, and the location that the user
+wants to watermark to be set on. Then we just add these args and fees to the
+call, I'm thinking we can later on add this to tlp CLI. The default schema for a
+plugin should contain inlineCode { args, fee, call, response }. We will get to
+the tlp CLI later in the article.
