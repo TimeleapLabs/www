@@ -128,52 +128,52 @@ code {
     language = typescript,
     content = """
     const worker = await Identity.fromBase58(process.env.WORKER_PUBLIC_KEY);
-	const wallet = await Wallet.fromBase58(process.env.PLUGIN_PRIVATE_KEY);
-	const appId = process.env.APP_ID ?? 0;
+    const wallet = await Wallet.fromBase58(process.env.PLUGIN_PRIVATE_KEY);
+    const appId = process.env.APP_ID ?? 0;
 
-	Bun.serve({
-		port: 80,
-		fetch(req, server) {
-			if (server.upgrade(req)) return;
+    Bun.serve({
+        port: 80,
+        fetch(req, server) {
+            if (server.upgrade(req)) return;
 
-			return new Response('upgrade failed', { status: 500 });
-		},
-		websocket: {
-			open() {
-				console.info('Broker is connected!');
-			},
-			async message(ws, message: Buffer) {
-				// 1. Verify the signature.
-				if (!(await worker.verify(message))) {
-					console.error('Invalid signature');
-					return;
-				}
+            return new Response('upgrade failed', { status: 500 });
+        },
+        websocket: {
+            open() {
+                console.info('Broker is connected!');
+            },
+            async message(ws, message: Buffer) {
+                // 1. Verify the signature.
+                if (!(await worker.verify(message))) {
+                    console.error('Invalid signature');
+                    return;
+                }
 
-				// 2. Decode the incoming message using the Sia Schema.
-				const { uuid, plugin, method, args } = decodeHelloWorldCall(
+                // 2. Decode the incoming message using the Sia Schema.
+                const { uuid, plugin, method, args } = decodeHelloWorldCall(
                     // Skipping the first 9 bytes (the opcode and appId)
-					new Sia(message).skip(9) 
-				);
-				// It also checks if the message was for this plugin and function
-				// It wasnt provided here for favor of a smaller code block
+                    new Sia(message).skip(9) 
+                );
+                // It also checks if the message was for this plugin's method
+                // It wasnt provided here for favor of a smaller code block
 
-				// 3. Sign the payload that we are sending back.
-				const response = await wallet.signSia(
-					// 4. Encode the response back using the Sia Schema.
-					encodeHelloWorldResponse(Sia.alloc(512), {
-						opcode: OpCodes.RPCResponse,
-						appId,
-						uuid,
-						ok: true,
-						message: args.message
-					})
-				);
+                // 3. Sign the payload that we are sending back.
+                const response = await wallet.signSia(
+                    // 4. Encode the response back using the Sia Schema.
+                    encodeHelloWorldResponse(Sia.alloc(512), {
+                        opcode: OpCodes.RPCResponse,
+                        appId,
+                        uuid,
+                        ok: true,
+                        message: args.message
+                    })
+                );
 
-				// 5. Send the response back to the client.
-				ws.send(response.toUint8ArrayReference());
-			}
-		}
-	});
+                // 5. Send the response back to the client.
+                ws.send(response.toUint8ArrayReference());
+            }
+        }
+    });
 """
 }
 
