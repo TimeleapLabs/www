@@ -111,6 +111,7 @@ code {
      "main": "index.ts"
     }
 """
+}
 
 And added it inside the bun workspaces in the root inlineCode { package.json }.
 and put the Sia model and the generated code inside of inlineCode { models }.
@@ -121,6 +122,13 @@ We need to think about what we need in the plugin code, First, we need to have a
 wallet and identity for our plugin, so we can sign the responses we give. To do
 that, we need to do two things:
 
-First, we need to install the SDK. I did it inside the root directory with
+First, we need to install the SDK. I did it inside the root directory with:
 
+code {
+    language = bash,
+    content = """
+    bun install @timeleap/client --dev
+    """
 }
+
+
