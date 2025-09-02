@@ -62,3 +62,12 @@ list {
 }
 
 title { The Sia Schema: The Blueprint of Communication, size = 3 }
+
+This is the most important part of the process. The entire communication between
+the client and the worker is defined and enforced by a Sia Schema. This schema
+acts as a contract, ensuring that all data sent and received is in the correct
+format. The plugin's functions themselves can be generated directly from this
+schema, which we explained link { to = /blog/developer-journey/sia-schema, here
+}.
+
+Here is the schema for our inlineCode { hello-world } app:
