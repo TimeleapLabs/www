@@ -102,3 +102,13 @@ I'm gonna use Bun and workspaces since I will implement the client myself. I'm
 gonna need the Sia generated code to be usable by both plugin and client. I made
 a shared folder and a directory for the models and added a simple package.json:
 
+code {
+    language = json,
+    content = """
+    {
+     "name": "@shared/models",
+     "version": "1.0.0",
+     "main": "index.ts"
+    }
+"""
+}
