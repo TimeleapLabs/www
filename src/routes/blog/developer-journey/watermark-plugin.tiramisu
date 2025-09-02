@@ -94,3 +94,11 @@ title { Building the Plugin, size = 3 }
 This is where the core logic will go. I'll implement the
 inlineCode { addWaterMarkToImage } function that takes the input image and text,
 applies the watermark using my chosen library, and returns the result.
+
+I used tlp cli to install and run Timeleap broker and worker in the
+inlineCode { ./timeleap } directory of my project. So next, I'm gonna need to
+implement the plugin. Getting the inspiration from plugins example repository,
+I'm gonna use Bun and workspaces since I will implement the client myself. I'm
+gonna need the Sia generated code to be usable by both plugin and client. I made
+a shared folder and a directory for the models and added a simple package.json:
+
