@@ -193,3 +193,13 @@ image {
 
 Once the client calls a function on the plugin, a series of events happen:
 
+list {
+    type = ordered,
+    items = The broker receives the client's request.,
+    items = The broker redirects the request to the worker that has the
+    requested plugin attached.,
+    items = The worker executes the function.,
+    items = The worker sends the response back to the broker.,
+    items = The broker then delivers the response back to the client.,
+    items = Finally the client returns the result to the user.
+}
