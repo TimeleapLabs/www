@@ -181,3 +181,5 @@ This code snippet is the worker's functionality that is attached to it, a
 inlineCode { Plugin }. It shows a series of steps that happen every time a
 request comes in: it verifies the request, decodes it using the schema,
 processes the logic, and encodes and sends the response back.
+
+title { The Full Circle: From Client to Worker and Back, size = 3 }
