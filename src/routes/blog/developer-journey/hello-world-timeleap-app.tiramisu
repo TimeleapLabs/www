@@ -191,3 +191,5 @@ image {
     caption = How request flows through the hello-world Timeleap App.
 }
 
+Once the client calls a function on the plugin, a series of events happen:
+
