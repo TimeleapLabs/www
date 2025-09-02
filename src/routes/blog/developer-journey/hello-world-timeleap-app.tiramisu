@@ -214,3 +214,9 @@ title { Conclusion }
 In this article, we've broken down the core components of a Timeleap app and
 seen how they communicate to execute a simple task. We explored the roles of the
 client, broker, and worker.
+
+You might be wondering, "" "How do I get started and set all of this up? the
+worker, the broker, and everything in between?" "" The good news is, you don't
+have to. Next, we'll explore the inlineCode { tlp } CLI, a tool that automates
+all these steps for you, making for a great developer experience. We'll use it
+to build our very first plugin, taking our developer journey to the next level.
