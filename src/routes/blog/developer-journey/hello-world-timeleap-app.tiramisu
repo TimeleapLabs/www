@@ -16,3 +16,5 @@ plugin }, a bold { broker }, a bold { worker }, a bold { client } and a small
 bold { CLI app }.
 
 Let's begin with the starting point: the Client.
+
+title { The Client: Making the Connection, size = 2 }
