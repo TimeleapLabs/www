@@ -8,3 +8,9 @@ app to visually demonstrate the concepts we've discussed. The full code for this
 example is available on link { to =
 https://github.com/TimeleapLabs/plugins/hello-world, Github }.
 
+Our app uses Timeleap tools for its internal communication. For the user, it's a
+straightforward command-line application: you input a text string, and it
+returns the same string. The magic happens behind the scenes, with four key
+components working together in a containerized Docker environment: a bold {
+plugin }, a bold { broker }, a bold { worker }, a bold { client } and a small
+bold { CLI app }.
