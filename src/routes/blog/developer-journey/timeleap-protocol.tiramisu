@@ -2,17 +2,17 @@ title { Timeleap: The Communication Protocol }
 
 We've talked about Timeleap giving you the tools to create a distributed
 computation network link { to =
-/blog/developer-journey/introduction-to-timeleap, here}. In this article, we
+/blog/developer-journey/introduction-to-timeleap, here }. In this article, we
 are connecting the dots: Timeleap, Sia, and the rules of the network.
 
-Think of Timeleap protocol as the complete rule book and blueprint to implement
-what we call a inlineCode { Timeleap App }. Timeleap has created its
-communication protocol to ensure not only that every message is reliable,
-secure, and fast, but also to ensure reproducibility and compatibility in
-different implementations. We have a reference implementation of this blueprint,
-which is our broker-worker model. Others can study the blueprint and implement
-their own, which you can check out link { to =
-https://github.com/TimeleapLabs/timeleap, here }.
+Think of the Timeleap protocol as a complete blueprint for building a 
+inlineCode { Timeleap App }. It defines how apps communicate, how messages are
+structured, and how nodes interact across the network.
+
+If you are interested in implementing this blueprint on your own custom
+solution, we can provide guidance and support. You can also explore our
+broker-worker model example implementation link { to =
+https://github.com/TimeleapLabs/plugins/hello-world, here }.
 
 Here's a breakdown of the Timeleap protocol:
 
