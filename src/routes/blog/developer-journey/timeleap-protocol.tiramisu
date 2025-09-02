@@ -94,30 +94,6 @@ but it can also determine if a task failed, like inlineCode { OpCodeTaskFailed }
 or if a worker is overloaded and can't work anymore, we have inlineCode {
 OpCodeWorkerOverload }.
 
-title { Plugin Support, size = 2 }
-
-You can even generate your plugin's methods directly from a Sia schema:
-
-code {
-    language = sia, 
-    content = """
-    plugin swiss.timeleap.isWizard.v1 as Sorcery {
-        method isWizard(timeout = 5000) IsWizardArgs returns WizardResponse
-    }
-"""
-}
-
-When I had enough knowledge about how the protocol works under the hood, and I
-saw this, I was blown away by how simple you can send a request to the plugin
-method:
-
-code {
-    language = typescript, 
-    content = """
-    const response = await sorcery.isWizard({ name: "Haned", age: 23 });
-"""
-}
-
 title { Conclusion }
 
 That's the Timeleap protocol. It's the simple rule book that makes the
