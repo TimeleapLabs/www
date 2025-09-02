@@ -1,1 +1,5 @@
 title { Hello World: introduction to Timeleap Apps }
+
+alert { type = info, This article assumes some familiarity with: Sia, Sia
+Schema, and the Timeleap protocol. }
+
