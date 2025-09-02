@@ -3,3 +3,8 @@ title { Hello World: introduction to Timeleap Apps }
 alert { type = info, This article assumes some familiarity with: Sia, Sia
 Schema, and the Timeleap protocol. }
 
+In this article, we'll walk through a simple inlineCode { hello-world } Timeleap
+app to visually demonstrate the concepts we've discussed. The full code for this
+example is available on link { to =
+https://github.com/TimeleapLabs/plugins/hello-world, Github }.
+
