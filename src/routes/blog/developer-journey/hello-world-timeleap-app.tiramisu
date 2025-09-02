@@ -44,3 +44,20 @@ code {
 	};
 """
 }
+
+This simple function sets up the entire foundation for our app's communication.
+It:
+
+list {
+    type = ordered,
+    items = bold { Creates a } inlineCode { Wallet }: 
+    This generates a inlineCode { Wallet } instance which is our client's
+    cryptographic identity on the network.,
+    items = bold { Connects to the } inlineCode { Broker }: 
+    It then uses that identity to securely connect to the broker which acts as
+    the central orchestrator for our network.,
+    items = bold { Connects to the Plugin }:
+    Finally it connects to the inlineCode { HelloWorld } plugin making its
+    functions available to our client.
+}
+
