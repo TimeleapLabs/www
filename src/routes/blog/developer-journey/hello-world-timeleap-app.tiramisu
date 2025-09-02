@@ -18,3 +18,9 @@ bold { CLI app }.
 Let's begin with the starting point: the Client.
 
 title { The Client: Making the Connection, size = 2 }
+
+The CLI app takes your input and sends it to the client. The client's main job
+is to call a specific function inside the plugin. Before it can do that, it must
+first establish a secure connection.
+
+Here is the function that handles this connection:
