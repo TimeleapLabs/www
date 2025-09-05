@@ -159,3 +159,11 @@ code {
 """
 }
 
+Second, we need to enable WebSocket calls to the plugin. How do we do that with
+Bun? I did a quick link { to = https://bun.com/docs/api/websockets , search }
+and followed their example. While looking into it, I got curious about the term
+inlineCode { upgrade }. In the context of WebSockets, upgrade refers to
+converting an existing HTTP connection into a WebSocket connection.
+
+For now, we'll ignore the upgrade logic.
+
