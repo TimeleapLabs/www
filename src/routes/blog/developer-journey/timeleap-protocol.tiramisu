@@ -82,3 +82,10 @@ list {
     them and hasn't been tampered with.
 }
 
+title { Conclusion }
+
+The Timeleap Protocol turns the long-standing tradeoff between speed and
+security on its head. By combining persistent communication channels, efficient
+serialization with Sia, a structured packet blueprint, and strong cryptographic
+signatures via Ed25519, it enables distributed computation that is fast, secure,
+and reliable.
