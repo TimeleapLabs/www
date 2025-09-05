@@ -315,3 +315,6 @@ code {
 """
 }
 
+There are still plenty of improvements we could make, but for now the goal is
+simple: get it working first, then refine it later.
+
