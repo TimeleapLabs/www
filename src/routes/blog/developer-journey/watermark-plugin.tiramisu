@@ -1,0 +1,426 @@
+title { Watermark Plugin }
+
+My goal as the new DevRel engineer is to learn and build in public, creating
+useful examples along the way. That's why my next project is to build an image
+watermarking plugin.
+
+This project is a perfect choice for a few reasons:
+
+list {
+    items = bold { Working with Files }: 
+    I want to learn how to handle different data types specifically image files
+    in Sia.,
+    items = bold { A Useful Function }:
+    Watermarking is a genuinely useful function that anyone from small
+    businesses to individual creators can use. A good real use case example for
+    a plugin.,
+    items = "This plugin perfectly demonstrates the purpose of Timeleap's
+    distributed network. You can create a powerful plugin, add it to a subnet,
+    and set a fee for its usage. Other developers can then tap into the
+    network's computation power to use your function for their own needs,
+    turning your code into a monetized application."
+}
+
+In this article, I'll take you through my journey of building this plugin, from
+my initial learning to the final implementation.
+
+title { My Journey: A Learning Log, size = 2 }
+
+list {
+    items = bold { Understanding the Core Task }: 
+    "Before writing any code, I need a clear picture of how image watermarking
+    works. I'll be using Sharp.js to generate text as SVGs and then apply them
+    as watermarks",
+    items = bold { Schema Definition }:
+    "The first piece of code I'll write is the Sia schema for the plugin. This
+    is the contract that defines what the plugin does. It must accept
+    the image data and the watermark text as arguments and return the
+    watermarked image file. I'll share my draft schema here and explain the
+    reasoning behind each data type."
+}
+
+code {
+    language = sia,
+    content = """
+    schema Args {
+        text   string8(encoding = "ascii")
+        location string8(encoding = "ascii")
+        image byte32
+    }
+
+    schema Fee {
+        amount     uint64
+        currency   string8(encoding = "ascii")
+    }
+
+    schema WatermarkImageCall {
+        uuid    byte8
+        plugin  string8(encoding = "ascii")
+        method  string8(encoding = "ascii")
+        timeout uint64
+        fee     Fee
+        args    Args
+    }
+
+    schema WatermarkImageResponse {
+        opcode    uint8
+        appId     uint64
+        uuid      byte8
+        error?    uint16
+        ok?       bool
+        watermarkedImage?  byte32
+    }
+
+
+    plugin swiss.timeleap.watermarker as WatermarkImage {
+        method addWatermarkToImage(timeout = 5000, fee = 1, currency = "USD") Args returns {
+            ok bool
+            watermarkedImage byte32
+        }
+    }
+"""
+}
+
+Similar to link { to = /blog/developer-journey/hello-world-timeleap-app,
+hello-world }, we need args, fee, call, and response. These define what we
+expect: the watermark text, the image, and the position where the user wants the
+watermark applied. Once defined, we add the args and fee to the call. Later on,
+we can extend this into the tlp CLI. By default, a plugin schema should contain
+inlineCode { args, fee, call, response }. We'll return to the tlp CLI later in
+the article.
+
+title { Building the Plugin, size = 3 }
+
+This is where the core logic goes. I'll implement the inlineCode {
+addWaterMarkToImage } function, which takes the input image and text, applies
+the watermark using my chosen library, and returns the result.
+
+I used tlp CLI to install and run the Timeleap broker and worker in the
+inlineCode { ./timeleap } directory of my project. Next, I need to implement the
+plugin. Following the example plugins repository, I'm using Bun and workspaces
+since I'll also be building the client. The Sia-generated code needs to be
+usable by both the plugin and the client, so I created a shared folder with a
+models directory and added a simple package.json:
+
+code {
+    language = json,
+    content = """
+    {
+     "name": "@shared/models",
+     "version": "1.0.0",
+     "main": "index.ts"
+    }
+"""
+}
+
+I added it to the Bun workspaces in the root inlineCode { package.json }, and
+placed the Sia model and the generated code inside inlineCode { models }.
+
+I did the same setup for the plugin as well.
+
+Now we need to decide what goes into the plugin code. The plugin needs a wallet
+and an identity so it can sign the responses it provides. To set this up, we
+need two steps:
+
+First, install the SDK. I did this in the root directory with:
+
+code {
+    language = bash,
+    content = """
+    bun install @timeleap/client --dev
+    """
+}
+
+Next, we need the worker's public key, which is located in inlineCode {
+./timeleap/secrets/worker_secrets.yaml }. We also need to generate an identity
+for the plugin. To handle that, I used the Timeleap SDK again. I created a utils
+folder inside the plugin directory and added this:
+
+code {
+    language = typescript,
+    content = """
+	import { Wallet } from '@timeleap/client';
+
+	const wallet = await Wallet.random();
+	const encoded = wallet.toBase58();
+
+	console.log('sk:', encoded.privateKey);
+	console.log('pk:', encoded.publicKey);
+"""
+}
+
+We also make this a script called generate:key inside the package.json. to run
+the code above.
+
+code {
+    language = json,
+    content = """
+    "generate:key": "bun run utils/ed.ts"
+"""
+}
+
+Second, we need to enable WebSocket calls to the plugin. How do we do that with
+Bun? I did a quick link { to = https://bun.com/docs/api/websockets , search }
+and followed their example. While looking into it, I got curious about the term
+inlineCode { upgrade }. In the context of WebSockets, upgrade refers to
+converting an existing HTTP connection into a WebSocket connection.
+
+For now, we'll ignore the upgrade logic.
+
+code {
+    language = typescript,
+    content = """
+    Bun.serve({
+        fetch(req, server) {}, // upgrade logic
+        websocket: {
+            message(ws, message) {}, // a message is received
+            open(ws) {}, // a socket is opened
+            close(ws, code, message) {}, // a socket is closed
+            drain(ws) {}, // the socket is ready to receive more data
+        },
+    });
+"""
+}
+
+On message, we need to extract the args from the request, take the image and
+watermark text, and combine them using Sharp. Let's implement that:
+
+code {
+    language = typescript,
+    content = """
+    Bun.serve({
+    fetch(req, server) { }, // upgrade logic
+    websocket: {
+        async message(ws, message: Buffer) {
+            if (!(await worker.verify(message))) {
+                console.error('Invalid signature')
+
+                return
+            }
+
+            const { uuid, plugin, method, args } = decodeWatermarkImageCall(
+                new Sia(message).skip(9),
+            )
+        }, // a message is received
+        open() {
+            console.info('Hey, a new connection just happend')
+        }, // a socket is opened
+        close(ws, code, message) { }, // a socket is closed
+        drain(ws) { }, // the socket is ready to receive more data
+    },
+});
+"""
+}
+
+Now we need to add SharpJS with inlineCode { bun add sharp }. From what I
+learned about inlineCode { SharpJS }, you can't apply text directly as a
+watermark, you first need to convert the text into an SVG and then use it. See:
+https://github.com/lovell/sharp/issues/1120.
+
+I added code to generate an SVG from the watermark text and added a position
+type validation based on what Sharp accepts.
+
+code {
+    language = typescript,
+    content = """
+    // previous code on message()
+    const resultImage = await sharp(args.image).toBuffer();
+    writeFileSync("debug.jpg", resultImage); // Optional debug save
+
+    const textedSVG = Buffer.from(
+        `<svg height="40" width="200"> <text x="0" y="20"  font-size="20"  fill="#fff">
+        ${args.text}
+        </text>
+        </svg>`)
+
+
+    await sharp(resultImage)
+        .composite([
+            {
+                input: textedSVG,
+                gravity: isValidPosition(args.location) ? args.location : "southeast"
+            },
+        ])
+        .toFile('watermark_result.jpg')
+"""
+}
+
+And add the position validator:
+
+code {
+    language = typescript,
+    content = """
+    const watermarkPositions = [
+        'north',
+        'northeast',
+        'east',
+        'southeast',
+        'south',
+        'southwest',
+        'west',
+        'northwest',
+        'center',
+    ]
+
+    type WatermarkPosition = typeof watermarkPositions[number]
+
+    const isValidPosition = (pos: string): pos is WatermarkPosition => {
+        return watermarkPositions.includes(pos as WatermarkPosition)
+    }
+""" 
+}
+
+Now we need to give a response back, so instead of saving the image, we make it
+inlineCode { toBuffer } and then encode it using the generated function
+inlineCode { encodeWatermarkImageResponse }:
+
+code {
+    language = typescript,
+    content = """
+    const watermarkedImageBuffer = await sharp(resultImage)
+        .composite([
+            {
+                input: textedSVG,
+                gravity: isValidPosition(args.location) ? args.location : "southeast",
+            },
+        ])
+        .toBuffer();
+
+
+    const response = await wallet.signSia(
+        encodeWatermarkImageResponse(Sia.alloc(512), {
+            opcode: OpCodes.RPCResponse,
+            appId,
+            uuid,
+            ok: true,
+            watermarkedImage: watermarkedImageBuffer
+        }),
+    )
+"""
+}
+
+Time to debug. We've run into some type issues with our environment variables.
+To resolve this, we'll create an inlineCode { env.d.ts } file:
+
+code {
+    language = typescript,
+    content = """
+    declare namespace NodeJS {
+        interface ProcessEnv {
+            WORKER_PUBLIC_KEY: string
+            PLUGIN_PRIVATE_KEY: string
+            APP_ID: number
+        }
+    }
+"""
+}
+
+There are still plenty of improvements we could make, but for now the goal is
+simple: get it working first, then refine it later.
+
+title { The Client, size = 3 }
+
+Let's add a basic client script that calls the plugin, similar to what we did in
+the hello-world example.
+
+First, create a client workspace (just like the shared and plugin workspaces)
+and run inlineCode { bun init } inside it.
+
+Next, we'll use the SDK to connect to the plugin and call its method. The SDK
+help with this process and makes the experience much smoother:
+
+code {
+    language = typescript,
+    content = """
+    import { Client, Wallet } from '@timeleap/client'
+    import { WatermarkImage } from 'shared/models/watermarker'
+
+
+    const wallet = await Wallet.random()
+    const client = await Client.connect(wallet, {
+        uri: process.env.BROKER_URI,
+        publicKey: process.env.BROKER_PUBLIC_KEY,
+    })
+    const waterMarker = WatermarkImage.connect(client)
+"""
+}
+
+First, create the inlineCode { .env } and inlineCode { env.d.ts } files just
+like in the plugin example. You can find both inlineCode { BROKER_URI } and
+inlineCode { BROKER_PUBLIC_KEY } inside the inlineCode { ./timeleap } folder.
+
+Next, add an image to the client workspace. Read the file, get its buffer, and
+pass it into args. The generated Sia code already provides the type definition,
+which makes this step easier. The function call expects a Sia buffer containing
+the args.
+
+But what exactly is a Buffer? It's simply an array of bytes, a data type used
+for reading and writing binary data.
+
+Sia requires you to allocate space in its binary container before writing data.
+In the plugins example, we allocate 64 bytes with Sia.alloc(64).
+
+Since we're working with an image file, we'll need to allocate enough space to
+hold the image buffer.
+
+code {
+    language = typescript,
+    content = """
+    const arrayBuffer = await Bun.file("debug.jpg").arrayBuffer();
+    const imageBuffer = new Uint8Array(arrayBuffer);
+
+    const args = { text: "test", location: "southwest", image: imageBuffer } as Args
+
+    const estimatedSize =
+        imageBuffer.length +
+        Buffer.byteLength(args.text, "ascii") +
+        Buffer.byteLength(args.location, "ascii") +
+        64;
+
+    const buffer = Sia.alloc(estimatedSize);
+
+    await waterMarker.addWatermarkToImage(buffer, args)
+"""
+}
+
+Next, we register our plugin in the Timeleap config and re-run Docker Compose:
+
+code {
+    language = dockerfile,
+    content = """
+    system:
+      name: Timeleap
+      log: info
+    network:
+      broker:
+        uri: ws://broker:9123
+        publicKey: 
+        timeout: 30s
+    rpc:
+      cpus: 1
+      gpus: 0
+      ram: 1024
+    plugins:
+      - type: websocket
+        name: swiss.timeleap.watermarker
+        endpoint: ws://swiss.timeleap.watermarker
+        publicKey: 
+        functions:
+          - name: addWatermarkToImage
+            fee:
+              amount: 1
+              currency: USD
+"""
+}
+
+After some debugging, I realized the plugin and client must be on the same
+Docker network as the broker and worker, so it looks like I need to dockerize
+them.
+
+image {
+  src = /images/blog/dev-journey/you-will-dockerize.png,
+  alt = Eren looking at his father telling him to dockerize, both labeled as me,
+  caption = You will Dockerize!
+}
+
+To be continuted...
