@@ -56,3 +56,6 @@ registers with the broker, advertising the plugins or tasks it can perform. When
 a request arrives, the broker selects the appropriate worker based on the
 requested functionality. The worker then executes the task and returns the
 result to the broker, which forwards it to the originating node.
+
+image { src = "/images/blog/dev-journey/docker-log.png", alt = A terminal log
+showcasing registration of a worker with its plugin }
