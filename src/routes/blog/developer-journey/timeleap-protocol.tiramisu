@@ -66,3 +66,19 @@ Every request on the network is assigned a UUID, which helps to identify and
 track it. All messages are then wrapped in a signed packet, which acts as an
 outer envelope to ensure the message's authenticity and integrity. This packet
 includes:
+
+list {
+    items = inlineCode { OpCode }: 
+    A code that tells the network what kind of task or message this is.,
+    items = inlineCode { AppID }:
+    A unique identifier of the network along with other measures it helps
+    protect against a replay attack.,
+    items = inlineCode { Message }:
+    This is where the packet's data is stored which is Sia-encoded.,
+    items = inlineCode { Signer } and inlineCode { Signature }: This is the most
+    crucial part for security. We use bold { Ed25519 } for our cryptographic
+    signatures. The inlineCode { Signer } identifies who sent the message and
+    the inlineCode { Signature } is the cryptographic proof that it came from
+    them and hasn't been tampered with.
+}
+
