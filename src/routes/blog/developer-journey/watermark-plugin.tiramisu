@@ -298,3 +298,20 @@ code {
     )
 """
 }
+
+Time to debug. We've run into some type issues with our environment variables.
+To resolve this, we'll create an inlineCode { env.d.ts } file:
+
+code {
+    language = typescript,
+    content = """
+    declare namespace NodeJS {
+        interface ProcessEnv {
+            WORKER_PUBLIC_KEY: string
+            PLUGIN_PRIVATE_KEY: string
+            APP_ID: number
+        }
+    }
+"""
+}
+
