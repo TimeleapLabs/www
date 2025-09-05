@@ -220,3 +220,27 @@ https://github.com/lovell/sharp/issues/1120.
 I added code to generate an SVG from the watermark text and added a location
 type validation based on what Sharp accepts.
 
+code {
+    language = typescript,
+    content = """
+    // previous code on message()
+    const resultImage = await sharp(args.image).toBuffer();
+    writeFileSync("debug.jpg", resultImage); // Optional debug save
+
+    const textedSVG = Buffer.from(
+        `<svg height="40" width="200"> <text x="0" y="20"  font-size="20"  fill="#fff">
+        ${args.text}
+        </text>
+        </svg>`)
+
+
+    await sharp(resultImage)
+        .composite([
+            {
+                input: textedSVG,
+                gravity: isValidPosition(args.location) ? args.location : "southeast"
+            },
+        ])
+        .toFile('watermark_result.jpg')
+"""
+}
