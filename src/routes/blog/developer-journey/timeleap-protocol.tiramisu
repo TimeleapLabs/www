@@ -2,8 +2,8 @@ title { Timeleap: The Communication Protocol }
 
 Distributed computation has always been stuck with a tradeoff: fast or secure,
 but never both. The Timeleap Protocol changes that. The Timeleap protocol was
-designed and refined around two core goals: bold { speed } and bold { security
-}. Timeleap enables nodes on a distributed network to share data and state with
+designed and refined around two core goals: bold { speed } and bold { security}.
+Timeleap enables nodes on a distributed network to share data and state with
 each other in a scalable and efficient manner. Often, this data is sensitive and
 requires security without sacrificing performance.
 
@@ -38,7 +38,7 @@ list {
     can check out link { to = /docs/reference/packets, here }.,
     items = bold { Ed25519 signature }:
     faster signing and verification equals less latency on a scale. Learn more
-    about out it here link { to = /docs/tep/2, here }. 
+    about out it link { to = /docs/tep/2, here }. 
 }
 
 title { Our Communication Model, size = 2 }
