@@ -18,3 +18,7 @@ image { src = "/images/blog/dev-journey/fitness-device.png", alt = A health
 watch showing multiple metrics. }
 
 title { Connecting The Dots, size = 2 }
+
+So how does Timeleap actually make distributed computation fast and secure? It
+comes down to four building blocks that define how nodes communicate, serialize
+data, and verify trust:
