@@ -329,3 +329,19 @@ and run inlineCode { bun init } inside it.
 Next, we'll use the SDK to connect to the plugin and call its method. The SDK
 help with this process and makes the experience much smoother:
 
+code {
+    language = typescript,
+    content = """
+    import { Client, Wallet } from '@timeleap/client'
+    import { WatermarkImage } from 'shared/models/watermarker'
+
+
+    const wallet = await Wallet.random()
+    const client = await Client.connect(wallet, {
+        uri: process.env.BROKER_URI,
+        publicKey: process.env.BROKER_PUBLIC_KEY,
+    })
+    const waterMarker = WatermarkImage.connect(client)
+"""
+}
+
