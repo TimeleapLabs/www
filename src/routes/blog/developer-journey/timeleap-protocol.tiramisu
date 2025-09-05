@@ -43,3 +43,10 @@ list {
 
 title { Our Communication Model, size = 2 }
 
+Unlike traditional peer-to-peer networks, where every node is responsible for
+forwarding messages for all others, Timeleap introduces a broker to manage
+communication efficiently. The broker acts as a central coordinator, receiving
+requests from nodes and directing them to workers capable of executing the
+requested functionality. This separation of concerns allows nodes to focus on
+computation while the broker handles message routing, verification, and
+tracking.
