@@ -217,7 +217,7 @@ learned about inlineCode { SharpJS }, you can't apply text directly as a
 watermark, you first need to convert the text into an SVG and then use it. See:
 https://github.com/lovell/sharp/issues/1120.
 
-I added code to generate an SVG from the watermark text and added a location
+I added code to generate an SVG from the watermark text and added a position
 type validation based on what Sharp accepts.
 
 code {
@@ -244,3 +244,29 @@ code {
         .toFile('watermark_result.jpg')
 """
 }
+
+And add the position validator:
+
+code {
+    language = typescript,
+    content = """
+    const watermarkPositions = [
+        'north',
+        'northeast',
+        'east',
+        'southeast',
+        'south',
+        'southwest',
+        'west',
+        'northwest',
+        'center',
+    ]
+
+    type WatermarkPosition = typeof watermarkPositions[number]
+
+    const isValidPosition = (pos: string): pos is WatermarkPosition => {
+        return watermarkPositions.includes(pos as WatermarkPosition)
+    }
+""" 
+}
+
