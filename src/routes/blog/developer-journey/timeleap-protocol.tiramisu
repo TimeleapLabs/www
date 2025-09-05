@@ -59,3 +59,10 @@ result to the broker, which forwards it to the originating node.
 
 image { src = "/images/blog/dev-journey/docker-log.png", alt = A terminal log
 showcasing registration of a worker with its plugin }
+
+title { The Packet, size = 2 }
+
+Every request on the network is assigned a UUID, which helps to identify and
+track it. All messages are then wrapped in a signed packet, which acts as an
+outer envelope to ensure the message's authenticity and integrity. This packet
+includes:
