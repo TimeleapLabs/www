@@ -345,3 +345,7 @@ code {
 """
 }
 
+First, create the inlineCode { .env } and inlineCode { env.d.ts } files just
+like in the plugin example. You can find both inlineCode { BROKER_URI } and
+inlineCode { BROKER_PUBLIC_KEY } inside the inlineCode { ./timeleap } folder.
+
