@@ -382,3 +382,33 @@ code {
     await waterMarker.addWatermarkToImage(buffer, args)
 """
 }
+
+Next, we register our plugin in the Timeleap config and re-run Docker Compose:
+
+code {
+    language = dockerfile,
+    content = """
+    system:
+      name: Timeleap
+      log: info
+    network:
+      broker:
+        uri: ws://broker:9123
+        publicKey: 
+        timeout: 30s
+    rpc:
+      cpus: 1
+      gpus: 0
+      ram: 1024
+    plugins:
+      - type: websocket
+        name: swiss.timeleap.watermarker
+        endpoint: ws://swiss.timeleap.watermarker
+        publicKey: 
+        functions:
+          - name: addWatermarkToImage
+            fee:
+              amount: 1
+              currency: USD
+"""
+}
