@@ -50,3 +50,9 @@ requests from nodes and directing them to workers capable of executing the
 requested functionality. This separation of concerns allows nodes to focus on
 computation while the broker handles message routing, verification, and
 tracking.
+
+Worker nodes serve as the execution engines of the network. Each worker
+registers with the broker, advertising the plugins or tasks it can perform. When
+a request arrives, the broker selects the appropriate worker based on the
+requested functionality. The worker then executes the task and returns the
+result to the broker, which forwards it to the originating node.
