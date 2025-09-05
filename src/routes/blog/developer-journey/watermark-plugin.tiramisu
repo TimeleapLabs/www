@@ -362,3 +362,23 @@ In the plugins example, we allocate 64 bytes with Sia.alloc(64).
 
 Since we're working with an image file, we'll need to allocate enough space to
 hold the image buffer.
+
+code {
+    language = typescript,
+    content = """
+    const arrayBuffer = await Bun.file("debug.jpg").arrayBuffer();
+    const imageBuffer = new Uint8Array(arrayBuffer);
+
+    const args = { text: "test", location: "southwest", image: imageBuffer } as Args
+
+    const estimatedSize =
+        imageBuffer.length +
+        Buffer.byteLength(args.text, "ascii") +
+        Buffer.byteLength(args.location, "ascii") +
+        64;
+
+    const buffer = Sia.alloc(estimatedSize);
+
+    await waterMarker.addWatermarkToImage(buffer, args)
+"""
+}
