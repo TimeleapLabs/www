@@ -1,0 +1,99 @@
+title { Timeleap: The Communication Protocol }
+
+Distributed computation has always been stuck with a tradeoff: fast or secure,
+but never both. The Timeleap Protocol changes that. The Timeleap protocol was
+designed and refined around two core goals: bold { speed } and bold { security}.
+Timeleap enables nodes on a distributed network to share data and state with
+each other in a scalable and efficient manner. Often, this data is sensitive and
+requires security without sacrificing performance.
+
+Picture this: a network of wearable health devices needs to process real-time
+heart rate and motion data for an AI-driven fitness coach. Each device alone is
+too limited to run the model. With Timeleap, these devices can offload parts of
+the computation to multiple nearby nodes on a secure network. The nodes work
+together to process the data quickly, sending the results back to the devices in
+seconds, while maintaining the privacy of sensitive health information.
+
+image { src = "/images/blog/dev-journey/fitness-device.png", alt = A health
+watch showing multiple metrics. }
+
+title { Connecting The Dots, size = 2 }
+
+So how does Timeleap actually make distributed computation fast and secure? It
+comes down to four building blocks that define how nodes communicate, serialize
+data, and verify trust:
+
+list {
+    items = bold { Communication: The WebSocket }:
+    Nodes never lose touch; thanks to a persistent WebSocket connection they can
+    talk continuously without costly reconnects.,
+    items = bold { Serialization: Sia the Sonic }:
+    Every message that travels through these WebSocket connections is formatted
+    using our fast serialization library: Sia. The protocol standardizes this
+    ensuring every packet is as small and efficient. Sia also allows working
+    with different types even the custom ones more easily. learn more about Sia
+    link { to = /blog/developer-journey/sia-the-sonic, here }.,
+    items = bold { Packet Structure: The Blueprint }:
+    The protocol defines a schema-driven structure for every packet which you
+    can check out link { to = /docs/reference/packets, here }.,
+    items = bold { Ed25519 signature }:
+    faster signing and verification equals less latency on a scale. Learn more
+    about out it link { to = /docs/tep/2, here }. 
+}
+
+title { Our Communication Model, size = 2 }
+
+Unlike traditional peer-to-peer networks, where every node is responsible for
+forwarding messages for all others, Timeleap introduces a broker to manage
+communication efficiently. The broker acts as a central coordinator, receiving
+requests from nodes and directing them to workers capable of executing the
+requested functionality. This separation of concerns allows nodes to focus on
+computation while the broker handles message routing, verification, and
+tracking.
+
+Worker nodes serve as the execution engines of the network. Each worker
+registers with the broker, advertising the plugins or tasks it can perform. When
+a request arrives, the broker selects the appropriate worker based on the
+requested functionality. The worker then executes the task and returns the
+result to the broker, which forwards it to the originating node.
+
+image { src = "/images/blog/dev-journey/docker-log.png", alt = A terminal log
+showcasing registration of a worker with its plugin }
+
+title { The Packet, size = 2 }
+
+Every request on the network is assigned a UUID, which helps to identify and
+track it. All messages are then wrapped in a signed packet, which acts as an
+outer envelope to ensure the message's authenticity and integrity. This packet
+includes:
+
+list {
+    items = inlineCode { OpCode }: 
+    A code that tells the network what kind of task or message this is.,
+    items = inlineCode { AppID }:
+    A unique identifier of the network along with other measures it helps
+    protect against a replay attack.,
+    items = inlineCode { Message }:
+    This is where the packet's data is stored which is Sia-encoded.,
+    items = inlineCode { Signer } and inlineCode { Signature }: This is the most
+    crucial part for security. We use bold { Ed25519 } for our cryptographic
+    signatures. The inlineCode { Signer } identifies who sent the message and
+    the inlineCode { Signature } is the cryptographic proof that it came from
+    them and hasn't been tampered with.
+}
+
+title { Conclusion }
+
+The Timeleap Protocol turns the long-standing tradeoff between speed and
+security on its head. By combining persistent communication channels, efficient
+serialization with Sia, a structured packet blueprint, and strong cryptographic
+signatures via Ed25519, it enables distributed computation that is fast, secure,
+and reliable.
+
+meta {
+    description = Timeleap protocol is a revolutionary protocol for distributed computing,
+    ogImageText = [Timeleap, Protocol],
+    ogImageFontSize = 36,
+    author = hamed,
+    createdAt = 2025-09-05
+}
