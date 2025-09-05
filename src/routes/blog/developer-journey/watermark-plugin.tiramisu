@@ -148,3 +148,14 @@ code {
 	console.log('pk:', encoded.publicKey);
 """
 }
+
+We also make this a script called generate:key inside the package.json. to run
+the code above.
+
+code {
+    language = json,
+    content = """
+    "generate:key": "bun run utils/ed.ts"
+"""
+}
+
