@@ -22,3 +22,22 @@ title { Connecting The Dots, size = 2 }
 So how does Timeleap actually make distributed computation fast and secure? It
 comes down to four building blocks that define how nodes communicate, serialize
 data, and verify trust:
+
+list {
+    items = bold { Communication: The WebSocket }:
+    Nodes never lose touch; thanks to a persistent WebSocket connection they can
+    talk continuously without costly reconnects.,
+    items = bold { Serialization: Sia the Sonic }:
+    Every message that travels through these WebSocket connections is formatted
+    using our fast serialization library: Sia. The protocol standardizes this
+    ensuring every packet is as small and efficient. Sia also allows working
+    with different types even the custom ones more easily. learn more about Sia
+    link { to = /blog/developer-journey/sia-the-sonic, here }.,
+    items = bold { Packet Structure: The Blueprint }:
+    The protocol defines a schema-driven structure for every packet which you
+    can check out link { to = /docs/reference/packets, here }.,
+    items = bold { Ed25519 signature }:
+    faster signing and verification equals less latency on a scale. Learn more
+    about out it here link { to = /docs/tep/2, here }. 
+}
+
