@@ -212,3 +212,11 @@ code {
 """
 }
 
+Now we need to add SharpJS with inlineCode { bun add sharp }. From what I
+learned about inlineCode { SharpJS }, you can't apply text directly as a
+watermark, you first need to convert the text into an SVG and then use it. See:
+https://github.com/lovell/sharp/issues/1120.
+
+I added code to generate an SVG from the watermark text and added a location
+type validation based on what Sharp accepts.
+
