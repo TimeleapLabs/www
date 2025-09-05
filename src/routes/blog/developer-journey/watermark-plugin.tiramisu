@@ -82,12 +82,12 @@ code {
 }
 
 Similar to link { to = /blog/developer-journey/hello-world-timeleap-app,
-hello-world }, we need args, fee, call, and response. We define what we expect
-to receive, the text of the watermark, the image, and the location that the user
-wants to watermark to be set on. Then we just add these args and fees to the
-call, I'm thinking we can later on add this to tlp CLI. The default schema for a
-plugin should contain inlineCode { args, fee, call, response }. We will get to
-the tlp CLI later in the article.
+hello-world }, we need args, fee, call, and response. These define what we
+expect: the watermark text, the image, and the position where the user wants the
+watermark applied. Once defined, we add the args and fee to the call. Later on,
+we can extend this into the tlp CLI. By default, a plugin schema should contain
+inlineCode { args, fee, call, response }. We'll return to the tlp CLI later in
+the article.
 
 title { Building the Plugin, size = 3 }
 
