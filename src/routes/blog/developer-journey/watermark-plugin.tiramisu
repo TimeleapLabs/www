@@ -318,3 +318,14 @@ code {
 There are still plenty of improvements we could make, but for now the goal is
 simple: get it working first, then refine it later.
 
+title { The Client, size = 3 }
+
+Let's add a basic client script that calls the plugin, similar to what we did in
+the hello-world example.
+
+First, create a client workspace (just like the shared and plugin workspaces)
+and run inlineCode { bun init } inside it.
+
+Next, we'll use the SDK to connect to the plugin and call its method. The SDK
+help with this process and makes the experience much smoother:
+
