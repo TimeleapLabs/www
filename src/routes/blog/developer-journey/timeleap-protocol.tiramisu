@@ -14,4 +14,7 @@ the computation to multiple nearby nodes on a secure network. The nodes work
 together to process the data quickly, sending the results back to the devices in
 seconds, while maintaining the privacy of sensitive health information.
 
+image { src = "/images/blog/dev-journey/fitness-coach.png", alt = A health watch
+showing multiple metrics }
+
 title { Connecting The Dots, size = 2 }
