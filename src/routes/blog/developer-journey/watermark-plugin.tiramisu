@@ -273,3 +273,28 @@ code {
 Now we need to give a response back, so instead of saving the image, we make it
 inlineCode { toBuffer } and then encode it using the generated function
 inlineCode { encodeWatermarkImageResponse }:
+
+code {
+    language = typescript,
+    content = """
+    const watermarkedImageBuffer = await sharp(resultImage)
+        .composite([
+            {
+                input: textedSVG,
+                gravity: isValidPosition(args.location) ? args.location : "southeast",
+            },
+        ])
+        .toBuffer();
+
+
+    const response = await wallet.signSia(
+        encodeWatermarkImageResponse(Sia.alloc(512), {
+            opcode: OpCodes.RPCResponse,
+            appId,
+            uuid,
+            ok: true,
+            watermarkedImage: watermarkedImageBuffer
+        }),
+    )
+"""
+}
