@@ -270,3 +270,6 @@ code {
 """ 
 }
 
+Now we need to give a response back, so instead of saving the image, we make it
+inlineCode { toBuffer } and then encode it using the generated function
+inlineCode { encodeWatermarkImageResponse }:
