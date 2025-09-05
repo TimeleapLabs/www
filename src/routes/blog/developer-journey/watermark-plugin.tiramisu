@@ -412,3 +412,15 @@ code {
               currency: USD
 """
 }
+
+After some debugging, I realized the plugin and client must be on the same
+Docker network as the broker and worker, so it looks like I need to dockerize
+them.
+
+image {
+  src = /images/blog/dev-journey/you-will-dockerize.png,
+  alt = Eren looking at his father telling him to dockerize, both labeled as me,
+  caption = You will Dockerize!
+}
+
+To be continuted...
