@@ -181,3 +181,34 @@ code {
     });
 """
 }
+
+On message, we need to extract the args from the request, take the image and
+watermark text, and combine them using Sharp. Let's implement that:
+
+code {
+    language = typescript,
+    content = """
+    Bun.serve({
+    fetch(req, server) { }, // upgrade logic
+    websocket: {
+        async message(ws, message: Buffer) {
+            if (!(await worker.verify(message))) {
+                console.error('Invalid signature')
+
+                return
+            }
+
+            const { uuid, plugin, method, args } = decodeWatermarkImageCall(
+                new Sia(message).skip(9),
+            )
+        }, // a message is received
+        open() {
+            console.info('Hey, a new connection just happend')
+        }, // a socket is opened
+        close(ws, code, message) { }, // a socket is closed
+        drain(ws) { }, // the socket is ready to receive more data
+    },
+});
+"""
+}
+
