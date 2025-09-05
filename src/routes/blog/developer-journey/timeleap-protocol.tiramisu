@@ -89,3 +89,11 @@ security on its head. By combining persistent communication channels, efficient
 serialization with Sia, a structured packet blueprint, and strong cryptographic
 signatures via Ed25519, it enables distributed computation that is fast, secure,
 and reliable.
+
+meta {
+    description = Timeleap protocol is a revolutionary protocol for distributed computing,
+    ogImageText = [Timeleap, Protocol],
+    ogImageFontSize = 36,
+    author = hamed,
+    createdAt = 2025-09-05
+}
