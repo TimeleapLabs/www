@@ -386,6 +386,15 @@ const functions: {
     </div>
     `
   },
+  imagesGrid(params){
+    const items = getParamsByName(params,'items').map((item) => item.value).join('')
+
+    return `
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
+      ${items}
+    </div>
+    `
+  },
 	pullQuote(params) {
 		const content = params.positional.join('');
 		return `<aside class="min-h-10 flex items-center border-l-4 border-neutral-400 pl-4 italic text-neutral-300" >
