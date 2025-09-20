@@ -18,7 +18,8 @@ toc {
   admin-subnet,
   plugins/index,
   reference/index,
-  tep/index
+  tep/index,
+  blockchain-roadmap
 }
 
 alert {
