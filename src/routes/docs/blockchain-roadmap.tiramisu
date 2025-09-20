@@ -19,10 +19,10 @@ mermaid {
   """
     gantt
     dateFormat YYYY-MM-DD 
-        Phase 0 — Network Bootstrapping  :a1, :2025-08-28,30d
-        Phase 1 — Proof of Authority (PoA) :a1, :2025-09-28,2025-12-31
-        Phase 2 — Proof of Stake Authority (PoSA) :a1, 2026-01-01,6M
-        Phase 3 — Proof of Stake (PoS) :a1, :2026-07-01, 2026-12-01
+        Phase 0 - Network Bootstrapping  :a1, 2025-08-28,30d
+        Phase 1 - Proof of Authority  :a1, 2025-09-28,2025-12-31
+        Phase 2 - Proof of Stake Authority :a1, 2026-01-01,6M
+        Phase 3 - Proof of Stake :a1, 2026-07-01, 2026-12-01
   """
 }
 
