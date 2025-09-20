@@ -28,14 +28,22 @@ We are currently in Phase 0 of the blockchain, where we are experimenting and
 bootstrapping the network. We are getting to the end of this phase and are ready
 to move to the next step to make it real. 
 
+alert {
+  type = info,
+  title = Roadmap Updates,
+  The roadmap will evolve. We’ll expand each phase as we reach it.  
+  For now the focus is execution and bringing the community on board  
+  as soon as possible.  
+}
+
 mermaid {
   """
     gantt
-    dateFormat YYYY-MM-DD 
-        Phase 0 - Network Bootstrapping  :a1, 2025-08-28,30d
-        Phase 1 - Proof of Authority  :a1, 2025-09-28,2025-12-31
-        Phase 2 - Proof of Stake Authority :a1, 2026-01-01,6M
-        Phase 3 - Proof of Stake :a1, 2026-07-01, 2026-12-01
+    dateFormat YYYY-MM 
+        Phase 0 - Network Bootstrapping  :a1, 2025-08,30d
+        Phase 1 - Proof of Authority  :a1, 2025-09,2025-12
+        Phase 2 - Proof of Stake Authority :a1, 2026-01,6M
+        Phase 3 - Proof of Stake :a1, 2026-07, 2026-12
   """
 }
 
