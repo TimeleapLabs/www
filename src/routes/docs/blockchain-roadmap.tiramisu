@@ -1,0 +1,123 @@
+title { Timeleap Blockchain Roadmap }
+
+This section lays out the blockchain roadmap.  
+It’s divided into four phases:  
+
+list {
+  items = Phase 0 — Network Bootstrapping: core team runs the network to test basics and secure the chain,
+  items = Phase 1 — Proof of Authority (PoA): stability phase with controlled validators and first services,
+  items = Phase 2 — Proof of Stake Authority (PoSA): add trusted partners, selected community validators, and migrate tokens 1:1,
+  items = "Phase 3 — Proof of Stake (PoS): full decentralization where anyone can join, stake, and validate"
+}
+
+title { Timeline, size = 2 }
+
+The roadmap is progressive, with each phase building on the last.  
+This timeline shows when each stage is expected to roll out.  
+
+alert {
+  type = info,
+  title = Roadmap Updates,
+  The roadmap will evolve. We’ll expand each phase as we reach it.  
+  For now the focus is execution and bringing the community on board  
+  as soon as possible.  
+}
+
+mermaid {
+  """
+    gantt
+    dateFormat YYYY-MM 
+        Phase 0 - Network Bootstrapping  :a1, 2025-08,30d
+        Phase 1 - Proof of Authority  :a1, 2025-09,2025-12
+        Phase 2 - Proof of Stake Authority :a1, 2026-01,6M
+        Phase 3 - Proof of Stake :a1, 2026-07, 2026-12
+  """
+}
+
+title { In the details, size = 2 }
+
+This section breaks down the roadmap into concrete steps.  
+Each phase has its own set of milestones, showing how the network evolves.  
+
+mermaid {
+  """
+  flowchart TB
+  %% Phase 0
+  subgraph P0[Phase 0 — Network Bootstrapping]
+    direction LR
+    A0[Hardware Acquisition]
+    A1[Genesis Nodes Online]
+    A2[Fren+ Onboarding]
+    A3[Workload Stress Test]
+    A4[Running Timeleap Engine]
+    A0 --> A1 --> A2
+    A1 --> A3
+    A1 --> A4
+  end
+
+  %% Phase 1
+  subgraph P1[Phase 1 — Proof of Authority]
+    direction TB
+    B0[Tooling]
+    B1[Wallet]
+    B2[Block Explorer]
+    B3[Artifact Registry]
+    B4[Two-way Bridge]
+    B5[Network Expansion]
+    B6[Additional Nodes Acquisition]
+
+    B0 --> B1
+    B0 --> B2
+    B0 --> B3
+    B0 --> B4
+    B5 --> B6
+  end
+
+  %% Phase 2
+  subgraph P2[Phase 2 — Proof of Stake Authority]
+    direction TB
+    C0[Network Expansion]
+    C1[Trusted Partners]
+    C2[Selected Community Validators]
+    C3[Token Migration 1:1]
+    C4[Tooling Upgrades]
+    C5[Artifact Registry + IPFS]
+    C6[Block Explorer v2]
+
+    C0 --> C1
+    C0 --> C2
+    C0 --> C3
+    C4 --> C5
+    C4 --> C6
+  end
+
+  %% Phase 3
+  subgraph P3[Phase 3 — Proof of Stake]
+    direction LR
+    D0[Network Expansion]
+    D1[Anyone can stake and participate]
+    D2[Timeleap Marketplace]
+
+    D0 --> D1
+    D0 --> D2
+  end
+
+  %% Flow between phases
+  P0 --> P1 --> P2 --> P3
+  """
+}
+
+title { Wrap-up, size = 2 }
+
+This roadmap shows the path from core-team control to full decentralization.  
+By the time we reach PoS, the network will be stable, tooling complete, and ready 
+for anyone to participate in building the Timeleap ecosystem.
+
+meta {
+  description = "The Timeleap Blockchain roadmap moves step by step: from network
+  bootstrapping to Proof of Authority, Proof of Stake Authority, and finally full
+  Proof of Stake. This page explains each phase, the timeline, and the milestones
+  that lead to decentralization.",
+  ogImageText = [Timeleap, Blockchain, Roadmap],
+  ogImageFontSize = 42
+}

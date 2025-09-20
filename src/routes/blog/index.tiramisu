@@ -6,6 +6,7 @@ Timeleap.
 toc {
   variant = grid,
   
+  genesis-nodes,
   timeleap-blockchain,
   developer-journey/sia-schema,
   developer-journey/sia-the-sonic,

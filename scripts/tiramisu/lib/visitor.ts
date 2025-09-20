@@ -375,6 +375,26 @@ const functions: {
 			</div>
 		`;
 	},
+  inlineImage(params){
+		const src = getParamsByName(params, 'src')[0]?.value ?? '';
+		const alt = getParamsByName(params, 'alt')[0]?.value ?? '';
+		const caption = getParamsByName(params, 'caption')[0]?.value ?? alt;
+    return `
+    <div class="flex flex-col items-center">
+      <img src="${src}" alt="${alt}" class="size-full object-cover rounded-lg mb-4" />
+      <p class="text-zinc-400 text-sm">${caption}</p>
+    </div>
+    `
+  },
+  imagesGrid(params){
+    const items = getParamsByName(params,'items').map((item) => item.value).join('')
+
+    return `
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
+      ${items}
+    </div>
+    `
+  },
 	pullQuote(params) {
 		const content = params.positional.join('');
 		return `<aside class="min-h-10 flex items-center border-l-4 border-neutral-400 pl-4 italic text-neutral-300" >

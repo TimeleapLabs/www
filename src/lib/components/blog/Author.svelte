@@ -15,7 +15,12 @@
 			name: 'Hamed',
 			avatar: '/images/authors/developer.jpg',
 			bio: 'DevRel Engineer at Timeleap'
-		}
+		},
+    kevin: {
+      name: 'Kevin Aguilar',
+      avatar: '/images/authors/kevin.jpg',
+      bio: 'Co-founder & CTO at Timeleap'
+    }
 	};
 
 	export let author: keyof typeof authors;
