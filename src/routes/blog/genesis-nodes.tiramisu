@@ -1,0 +1,174 @@
+title { Timeleap Genesis Nodes }
+
+A few weeks ago, we laid out the vision for the Timeleap Blockchain.Today we’re
+showing how we get there. The network is already alive, running on real machines
+in our homes. Genesis nodes are already running on the network, containers are
+pushing workloads, and Fren+ GPU jobs are running in production. 
+
+title { Behind the Scenes, size = 2 }
+
+The story begins with hardware. A lot has changed since we built our last
+systems. Back then PCIe slots were blue, motherboards had no M.2, and GPUs
+didn’t pull 600W.We’re proud to present the genesis nodes that mark the start of
+Timeleap’s future.
+
+
+imagesGrid {
+  items = inlineImage { src = /images/blog/timeleap-blockchain/kevin-node.jpeg, alt = Node running at Kevin's home },
+  items = inlineImage { src = /images/blog/timeleap-blockchain/pouya-node.jpeg, alt = Node running at Pouya's home }
+}
+
+image { src = /images/blog/timeleap-blockchain/nodes-hardware.jpeg, alt = Initial Hardware}
+
+title { Roadmap, size = 2 }
+
+With the first nodes running, here’s where we go next.
+
+We are currently in Phase 0 of the blockchain, where we are experimenting and
+bootstrapping the network. We are getting to the end of this phase and are ready
+to move to the next step to make it real. 
+mermaid {
+  """
+    gantt
+    dateFormat YYYY-MM-DD 
+        Phase 0 - Network Bootstrapping  :a1, :2025-08-28,30d
+        Phase 1 - Proof of Authority  :a1, :2025-09-28,2025-12-31
+        Phase 2 — Proof of Stake Authority :a1, 2026-01-01,6M
+        Phase 3 — Proof of Stake :a1, :2026-07-01, 2026-12-01
+  """
+}
+
+mermaid {
+  """
+    flowchart TB
+  %% Phase 0
+  subgraph P0[Phase 0 — Network Bootstrapping]
+    direction LR
+    A0[Hardware Acquisition]
+    A1[Genesis Nodes Online]
+    A2[Fren+ Onboarding]
+    A3[Workload Stress Test]
+    A4[Running Timeleap Engine]
+    A0 --> A1 --> A2
+    A1 --> A3
+    A1 --> A4
+  end
+
+  %% Phase 1
+  subgraph P1[Phase 1 — Proof of Authority]
+    direction TB
+    B0[Tooling]
+    B1[Wallet]
+    B2[Block Explorer]
+    B3[Artifact Registry]
+    B4[Two-way Bridge]
+    B5[Network Expansion]
+    B6[Additional Nodes Acquisition]
+
+    B0 --> B1
+    B0 --> B2
+    B0 --> B3
+    B0 --> B4
+    B5 --> B6
+  end
+
+  %% Phase 2
+  subgraph P2[Phase 2 — Proof of Stake Authority]
+    direction TB
+    C0[Network Expansion]
+    C1[Trusted Partners]
+    C2[Selected Community Validators]
+    C3[Token Migration 1:1]
+    C4[Tooling Upgrades]
+    C5[Artifact Registry + IPFS]
+    C6[Block Explorer v2]
+
+    C0 --> C1
+    C0 --> C2
+    C0 --> C3
+    C4 --> C5
+    C4 --> C6
+  end
+
+  %% Phase 3
+  subgraph P3[Phase 3 — Proof of Stake]
+    direction LR
+    D0[Network Expansion]
+    D1[Anyone can stake and participate]
+    D2[Timeleap Marketplace]
+
+    D0 --> D1
+    D0 --> D2
+  end
+
+  %% Flow between phases
+  P0 --> P1 --> P2 --> P3
+  """
+}
+
+title { Why These Phases, size = 2 }
+
+title { Phase 0 — Bootstrapping, size = 3 }
+
+We’re starting small, experimenting and proving the basics. The network is run
+by the core team so we can test workloads, fix issues fast, and make sure the
+chain is reliable.
+
+title { Phase 1 — Proof of Authority (PoA), size = 3 }
+This stage is about stability. The network is still limited to the team, giving
+us full control while we roll out the first services and expand hardware.
+
+title { Phase 2 — Proof of Stake Authority (PoSA), size = 3 }
+
+Here we grow responsibly. We bring in trusted partners and selected community
+members. It expands the validator set without opening the doors too wide, giving
+us more scale while keeping uptime and quality high.
+
+title { Phase 3 — Proof of Stake (PoS), size = 3 }
+
+This is full decentralization. Anyone can join, stake, and run validators. By
+then the network will be stable, tooling mature, and the ecosystem ready to
+thrive. (PoS). At this point anyone can join, stake, and run validators. By then
+the network will be stable, tooling mature, and the ecosystem ready for true
+decentralization.
+
+title { Coming next, size = 2 }
+
+These are the next building blocks we’re preparing for once the chain is
+launched. They expand the core network and give developers more room to build,
+test, and connect. In short, this is what follows after the full launch. 
+
+list {
+  items = Timeleap name service – human-readable names for wallets and services,
+  items = Sia Schema Registry – standard formats so apps can talk to the chain,
+  items = GhostFS IPFS support – distributed storage to interact with artifacts
+  and data
+}
+
+title { Conclusion, size = 2 }
+
+This is just the beginning. With Phase 0 almost complete and the first nodes
+online, the network is alive and moving fast. Each phase brings us closer to
+opening the doors wider, adding more tools, and expanding the ecosystem. We’re
+focused on building, and we’ll keep shipping step by step until Timeleap becomes
+the strongest network out there.
+
+Follow us on link { to = https://x.com/TimeleapLabs, X } for updates, progress, and community news. Phase 1 is around the
+corner. If you want to be part of the network when it opens, stay tuned.
+
+Thank You to everyone who has been with us since the start, supporting, testing,
+and trusting us to keep pushing forward. The early contributions and feedback
+are what make this network real.
+
+We’re just getting started. See you in Phase 1.
+
+meta {
+  title = "Timeleap Genesis Nodes and Blockchain Roadmap",
+  description = "The Timeleap Blockchain is live with genesis nodes running at our homes. This
+article unveils the first hardware powering the network, the phased roadmap from
+bootstrapping to full Proof of Stake, and what comes next for the ecosystem.",
+  ogImageText = [Timeleap, Genesis Nodes, Blockchain Roadmap],
+  ogImageFontSize = 28,
+  author = kevin,
+  createdAt = 2025-09-20
+}
