@@ -1,17 +1,16 @@
 title { Timeleap Genesis Nodes }
 
-A few weeks ago, we laid out the vision for the Timeleap Blockchain.Today we’re
-showing how we get there. The network is already alive, running on real machines
-in our homes. Genesis nodes are already running on the network, containers are
-pushing workloads, and Fren+ GPU jobs are running in production. 
+The Timeleap Blockchain is operational. Genesis nodes run on our hardware,  
+containers execute workloads, and Fren+ GPU jobs are live in production.
 
 title { Behind the Scenes, size = 2 }
 
 The story begins with hardware. A lot has changed since we built our last
 systems. Back then PCIe slots were blue, motherboards had no M.2, and GPUs
-didn’t pull 600W.We’re proud to present the genesis nodes that mark the start of
-Timeleap’s future.
+didn’t pull 600W.
 
+We’re proud to present the genesis nodes that mark the start of
+Timeleap’s future.
 
 imagesGrid {
   items = inlineImage { src = /images/blog/timeleap-blockchain/kevin-node.jpeg, alt = Node running at Kevin's home },
@@ -27,6 +26,7 @@ With the first nodes running, here’s where we go next.
 We are currently in Phase 0 of the blockchain, where we are experimenting and
 bootstrapping the network. We are getting to the end of this phase and are ready
 to move to the next step to make it real. 
+
 mermaid {
   """
     gantt
