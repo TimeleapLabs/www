@@ -1,0 +1,75 @@
+title { Timeleap Incubator }
+
+We are excited to announce the launch of the Timeleap Incubator, a new
+initiative to foster innovation and support early-stage projects within the
+Timeleap ecosystem. The Incubator will provide resources, mentorship,
+and operational support to help developers bring their ideas to life on
+the Timeleap network.
+
+title { What is the Timeleap Incubator?, size = 2 }
+
+The Timeleap Incubator is a program designed to support and accelerate the
+development of innovative projects that make use of the Timeleap blockchain.
+Our goal is to encourage a diverse ecosystem of applications and services
+that expand the capabilities and adoption of the Timeleap network.
+
+title { Benefits of Joining the Incubator, size = 2 }
+
+Projects accepted into the Timeleap Incubator will receive a range of benefits,
+including:
+
+list {
+  items = bold { Support }: Access to structured assistance to help begin or
+  advance development.,
+  items = bold { Mentorship }: Guidance from experienced developers and
+  industry professionals.,
+  items = bold { Resources }: "Access to development tools, decentralized
+  infrastructure, and technical support.",
+  items = bold { Networking }: "Opportunities to connect with other developers,
+  contributors, and potential collaborators within the Timeleap ecosystem".
+}
+
+title { How to Apply, size = 2 }
+
+Applications to the Timeleap Incubator will open soon. We encourage
+developers and teams with innovative ideas to prepare their proposals.
+Applications will be evaluated based on the project's potential impact,
+technical feasibility, and alignment with the Timeleap ecosystem.
+
+title { Fren+: The Incubator's First Project, size = 2 }
+
+We are thrilled to announce that Fren+ will be the first project to join the
+Timeleap Incubator. Fren+ is an AI platform that gives creators a scalable
+and authentic presence, enabling fans to experience meaningful interaction
+at any time. Fren+ leverages Timeleap's decentralized infrastructure to run
+its AI models in a transparent and secure environment.
+
+title { Program Funding and Compute Credits, size = 2 }
+
+To support the Timeleap Incubator, a portion of Timeleap's internal resources
+is being allocated to operate the program. This allocation enables the
+Incubator to provide development support and compute credits to participating
+projects.
+
+These compute credits allow incubated teams to run workloads on the Timeleap
+network. When credits are used, they are assigned to the community members who
+provide the underlying compute infrastructure — such as GPU and CPU resources —
+as part of the standard resource-allocation mechanism of the network. This
+reflects the operational cost of the compute contributed by participants and
+does not constitute a financial return or distribution.
+
+title { Looking Ahead, size = 2 }
+
+We believe the Timeleap Incubator will play a meaningful role in driving
+innovation and expanding the capabilities of the Timeleap ecosystem. We look
+forward to collaborating with the creative teams who will join this initiative
+and supporting their journey as they build the next generation of
+decentralized applications.
+
+meta {
+  description = "Discover the Timeleap Incubator, a new initiative to support innovative projects within the Timeleap ecosystem.",
+  ogImageText = [Timeleap, Incubator],
+  ogImageFontSize = 36,
+  author = pouya,
+  createdAt = 2025-11-27
+}
