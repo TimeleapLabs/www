@@ -1,6 +1,7 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
   import { Twitter, MessageCircle, Github, CheckCircle } from 'lucide-svelte';
+  import MetaTags from '$lib/components/seo/MetaTags.svelte';
 
   export let data;
   export let form;
@@ -18,10 +19,11 @@
   $: waitlistCount = form?.success ? form.position : data.waitlistCount;
 </script>
 
-<svelte:head>
-  <title>Timeleap - Compute Without Compromise</title>
-  <meta name="description" content="Instant VMs across multiple providers. Zero lock-in. Your compute, your rules. Launching soon." />
-</svelte:head>
+<MetaTags
+  title="Timeleap - Compute Without Compromise"
+  description="Instant VMs across multiple providers. Zero lock-in. Your compute, your rules. Launching soon."
+  ogImageText="Timeleap\nCompute Without\nCompromise"
+/>
 
 <div class="min-h-screen bg-black relative flex flex-col">
   <!-- Dot grid background -->
