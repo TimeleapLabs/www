@@ -19,11 +19,7 @@
   $: waitlistCount = form?.success ? form.position : data.waitlistCount;
 </script>
 
-<MetaTags
-  title="Timeleap - Compute Without Compromise"
-  description="Instant VMs across multiple providers. Zero lock-in. Your compute, your rules. Launching soon."
-  ogImageText="Timeleap\nCompute Without\nCompromise"
-/>
+<MetaTags />
 
 <div class="min-h-screen bg-black relative flex flex-col">
   <!-- Dot grid background -->
