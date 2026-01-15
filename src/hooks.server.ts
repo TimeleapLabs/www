@@ -1,11 +1,27 @@
-import type { Handle } from '@sveltejs/kit';
-import { redirects } from '$lib/redirects';
+import type { Handle } from "@sveltejs/kit";
+import { redirect } from "@sveltejs/kit";
+
+// Routes that should NOT redirect to home
+const ALLOWED_PATHS = ["/", "/tos"];
 
 export const handle: Handle = async ({ event, resolve }) => {
-	if (redirects[event.url.pathname]) {
-		return Response.redirect(new URL(redirects[event.url.pathname], event.url), 308);
-	}
+  const path = event.url.pathname;
 
-	const response = await resolve(event);
-	return response;
+  // Allow root and ToS
+  if (ALLOWED_PATHS.includes(path)) {
+    return resolve(event);
+  }
+
+  // Allow API routes
+  if (path.startsWith("/api")) {
+    return resolve(event);
+  }
+
+  // Allow static assets
+  if (path.includes(".")) {
+    return resolve(event);
+  }
+
+  // Redirect everything else to home
+  throw redirect(307, "/");
 };

@@ -1,197 +1,180 @@
 <script lang="ts">
-	import { Section, Grid, Button, Card } from '@timeleap/ui';
+  import { enhance } from '$app/forms';
+  import { Twitter, MessageCircle, Github, CheckCircle } from 'lucide-svelte';
 
-	import Footer from '$lib/components/Footer.svelte';
-	import Navbar from '$lib/components/Navbar.svelte';
-	import Subscribe from '$lib/components/Subscribe.svelte';
-	import UseCase from '$lib/components/home/UseCase.svelte';
-	import MetaTags from '$lib/components/seo/MetaTags.svelte';
-	import Carousel from '$lib/components/Carousel.svelte';
+  export let data;
+  export let form;
 
-	import { ArrowRight, Asterisk, Bitcoin, CpuIcon, Factory } from 'lucide-svelte';
-	import { useCases } from '$lib/content/use-cases';
-	import Code from '$lib/components/Code.svelte';
+  let loading = false;
 
-	let filter = 'ai';
-	let scrollY = 0;
+  const socials = [
+    { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/TimeleapLabs' },
+    { name: 'Discord', icon: MessageCircle, href: 'https://discord.gg/timeleap' },
+    { name: 'GitHub', icon: Github, href: 'https://github.com/TimeleapLabs' },
+  ];
 
-	const getFilteredUseCases = (filter: string) =>
-		filter === 'all' ? useCases : useCases.filter((useCase) => useCase.tags.includes(filter));
+  const currentYear = new Date().getFullYear();
 
-	const setFilter = (newFilter: string) => () => {
-		filter = newFilter;
-	};
+  $: waitlistCount = form?.success ? form.position : data.waitlistCount;
 </script>
 
-<svelte:window on:scroll={() => (scrollY = window.scrollY)} />
+<svelte:head>
+  <title>Timeleap - Compute Without Compromise</title>
+  <meta name="description" content="Instant VMs across multiple providers. Zero lock-in. Your compute, your rules. Launching soon." />
+</svelte:head>
 
-<MetaTags />
+<div class="min-h-screen bg-black relative flex flex-col">
+  <!-- Dot grid background -->
+  <div
+    class="absolute inset-0 bg-dots"
+  />
 
-<Navbar active="home"></Navbar>
+  <!-- Header -->
+  <header class="relative z-10 border-b border-white/5">
+    <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div class="font-mono text-sm text-white tracking-wider">
+        ~/TIMELEAP
+      </div>
+      <div class="flex items-center gap-4">
+        {#each socials as social}
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener"
+            class="text-zinc-400 hover:text-white transition-colors"
+            title={social.name}
+          >
+            <svelte:component this={social.icon} class="w-5 h-5" />
+          </a>
+        {/each}
+      </div>
+    </div>
+  </header>
 
-<Section class="w-full max-w-[1920px] mx-auto pt-12 gap-32! px-4 md:px-16 xxl:px-0">
-	<Grid
-		extraLargeScreenColumns={1}
-		largeScreenColumns={1}
-		mediumScreenColumns={1}
-		class="gap-16! pt-10 md:pt-24 max-w-full box-border px-8"
-	>
-		<Card class="relative h-[440px] md:h-[640px] overflow-hidden px-0!">
-			<div class="w-full flex flex-col justify-end h-full z-10 relative">
-				<h1 class="font-serif text-3xl md:text-6xl text-white">
-					<span class="docs-heading leading-loose"> Timeleap </span><br />
-					The Distributed<br />
-					Cloud.
-				</h1>
-				<p
-					class="mt-12 text-zinc-300 font-light w-full md:w-3/4 xl:w-1/2 xxl:w-1/2 text-xl font-sans"
-				>
-					Timeleap provides you with all the tools you need to build high-performance, distributed
-					applications.
-				</p>
-				<div class="mt-16 flex flex-wrap items-center gap-5">
-					<Button
-						class="bg-green-400 text-black hover:bg-green-300 font-medium"
-						animate
-						href="/docs"
-					> 
-						Read the Docs <ArrowRight size={'1em'} strokeWidth={2.5} class="inline" />
-					</Button>
-          <div class="flex-1 max-w-150 hidden md:block">
-          <Code lang="bash" code="curl -fsSL https://timeleap.swiss/install | bash" /> 
+  <!-- Main content -->
+  <main class="relative z-10 flex-1 flex items-center justify-center px-6 py-16">
+    <div class="max-w-2xl w-full text-center">
+
+      <!-- Launching soon badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 border border-emerald-500/30 bg-emerald-500/5 mb-6">
+        <span class="w-2 h-2 bg-emerald-400 rounded-full status-pulse" />
+        <span class="font-mono text-xs text-emerald-400 uppercase tracking-wider">
+          Launching Soon
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-mono text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight mb-6">
+        COMPUTE WITHOUT
+        <span class="block sm:inline"> COMPROMISE</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="font-mono text-base sm:text-lg text-zinc-400 max-w-xl mx-auto leading-relaxed mb-2">
+        Instant VMs &middot; Multiple providers &middot; Zero lock-in
+      </p>
+      <p class="font-mono text-base sm:text-lg text-zinc-200 max-w-xl mx-auto mb-8">
+        Your compute, your rules.
+      </p>
+
+      <!-- Email signup -->
+      <div class="max-w-md mx-auto mb-6">
+        <!-- Success state -->
+        {#if form?.success}
+          <div class="border border-emerald-500/30 bg-emerald-500/5 p-6">
+            <div class="flex items-center justify-center gap-2 text-emerald-400 mb-2">
+              <CheckCircle class="w-5 h-5" />
+              <span class="font-mono text-sm uppercase tracking-wider">You're on the list</span>
+            </div>
+            <p class="font-mono text-xs text-zinc-400">
+              Position #{form.position} - We'll notify you when we launch.
+            </p>
           </div>
-				</div>
-			</div>
-		</Card>
-	</Grid>
+        {:else}
+          <!-- Form -->
+          <form
+            method="POST"
+            action="?/signup"
+            use:enhance={() => {
+              loading = true;
+              return async ({ update }) => {
+                await update();
+                loading = false;
+              };
+            }}
+            class="space-y-3"
+          >
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+                disabled={loading}
+                value={form?.email ?? ''}
+                class="flex-1 px-4 py-3 bg-black/30 border border-white/20 font-mono text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white/40 transition-colors disabled:opacity-50"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                class="px-6 py-3 bg-white text-black font-mono text-sm uppercase tracking-wider hover:bg-zinc-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              >
+                {#if loading}
+                  ...
+                {:else}
+                  Request Access
+                {/if}
+              </button>
+            </div>
 
-	<div
-		class="absolute left-0 top-0 w-full h-full z-0 group-hover:scale-125 transition-transform ease-in-out duration-300 masked-top-down"
-	>
-		<img
-			src="/images/hero.jpg"
-			alt="Timeleap hero"
-			class="w-full h-full object-cover"
-			style="transform: translateY({-Math.min(250, scrollY * 0.5)}px);"
-		/>
-	</div>
-</Section>
+            <!-- Error message -->
+            {#if form?.error}
+              <p class="font-mono text-xs text-red-400">
+                {form.error}
+              </p>
+            {/if}
+          </form>
+        {/if}
+      </div>
 
-<div class="overflow-hidden">
-	<Section class="w-full max-w-[1920px] mx-auto pt-32 gap-32! pl-8 md:px-16 xxl:px-0">
-		<Section class="gap-4! px-0 md:px-8 xxl:px-0">
-			<div
-				class="flex md:justify-between items-center flex-wrap justify-center relative z-10 gap-8 pr-8 md:pr-0"
-			>
-				<h2
-					class="font-serif text-2xl md:text-xl leading-snug z-10 docs-heading text-center md:text-left"
-				>
-					Discover the Possibilities
-				</h2>
-				<div class="flex flex-wrap items-center justify-center md:justify-end gap-4">
-					<Button
-						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
-						animate
-						on:click={setFilter('ai')}
-					>
-						<CpuIcon size={'1em'} strokeWidth={2.5} class="inline" />
-						AI
-					</Button>
-					<Button
-						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
-						animate
-						on:click={setFilter('compute')}
-					>
-						<CpuIcon size={'1em'} strokeWidth={2.5} class="inline" />
-						Compute
-					</Button>
-					<Button
-						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
-						animate
-						on:click={setFilter('blockchain')}
-					>
-						<Bitcoin size={'1em'} strokeWidth={2.5} class="inline" />
-						Blockchain
-					</Button>
-					<Button
-						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
-						animate
-						on:click={setFilter('industry-4.0')}
-					>
-						<Factory size={'1em'} strokeWidth={2.5} class="inline" />
-						Industry 4.0
-					</Button>
-					<Button
-						class="hover:bg-zinc-900 font-medium border! border-zinc-800!"
-						animate
-						on:click={setFilter('all')}
-					>
-						<Asterisk size={'1em'} strokeWidth={2.5} class="inline" />
-						All
-					</Button>
-				</div>
-			</div>
-			<div class="relative">
-				<div class="absolute -left-[550px] -top-[240px] text-zinc-800 origin-center z-0">
-					<Asterisk size={'1100'} strokeWidth={1.75} style="transform:rotate({scrollY / 10}deg)" />
-				</div>
-				<div style="transform: translateX({Math.max(0, 720 - scrollY)}px);">
-					<Carousel class="gap-8">
-						{#each getFilteredUseCases(filter) as { src, title, body, shade }}
-							<UseCase {src} {title} {shade}>{body}</UseCase>
-						{/each}
-					</Carousel>
-				</div>
-			</div>
-		</Section>
-	</Section>
+      <!-- Social proof (only show when count >= 10) -->
+      {#if waitlistCount >= 10 && !form?.success}
+        <p class="font-mono text-xs text-zinc-500">
+          Join {waitlistCount.toLocaleString()} others on the waitlist
+        </p>
+      {/if}
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="font-mono text-xs text-zinc-500">
+        &copy; {currentYear} Timeleap SA &middot; Switzerland
+      </div>
+      <a
+        href="/tos"
+        class="font-mono text-xs text-zinc-500 hover:text-white transition-colors"
+      >
+        Terms
+      </a>
+    </div>
+  </footer>
 </div>
 
-<Section class="w-full max-w-[1920px] mx-auto pt-12 gap-32! px-0 md:px-16 xxl:px-0">
-	<Grid
-		extraLargeScreenColumns={2}
-		largeScreenColumns={2}
-		mediumScreenColumns={2}
-		smallScreenColumns={1}
-		class="gap-4! md:gap-16! grid-rows-[auto] px-4"
-	>
-		<Card class="text-white flex flex-col gap-4">
-			<div>
-				<h2 class="font-serif text-2xl leading-snug docs-heading">Build With Timeleap</h2>
-			</div>
-			<p class="text-zinc-300 flex-1">
-				Build your app with our SDK. Distribute your app to a global network of devices. Monitor
-				your app's performance in real-time.
-			</p>
-			<a href="/docs" class="text-green-400 hover:underline">
-				Discover our solutions <ArrowRight size={'1em'} strokeWidth={2.5} class="inline" />
-			</a>
-		</Card>
-		<Card class="text-white flex flex-col gap-4">
-			<div>
-				<h2 class="font-serif text-2xl leading-snug docs-heading">Join the Network</h2>
-			</div>
-			<p class="text-zinc-300 flex-1">
-				Whether you're an individual with spare computing power or a company looking to scale
-				distributed workloads, you can run a Timeleap subnet and contribute to a decentralized
-				ecosystem—on your terms.
-			</p>
-			<span class="text-zinc-400">Coming soon</span>
-			<!--a href="/docs" class="text-green-400 hover:underline">
-				Learn the benefits <ArrowRight size={'1em'} strokeWidth={2.5} class="inline" />
-			</a-->
-		</Card>
-	</Grid>
-</Section>
-
-<Section class="w-full max-w-[1920px] mx-auto pt-12 gap-16! pb-24 px-0 md:px-16 xxl:px-0">
-	<Subscribe class="mt-16"></Subscribe>
-</Section>
-
-<Footer></Footer>
-
 <style>
-	.masked-top-down {
-		mask-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-	}
+  .bg-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .status-pulse {
+    animation: status-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes status-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+  }
 </style>

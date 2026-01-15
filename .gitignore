@@ -25,3 +25,4 @@ src/routes/docs/**/*.svelte
 src/lib/docs/nav/entries.ts
 src/routes/blog/**/*.svelte
 src/lib/blog/nav/entries.ts
+.env*.local

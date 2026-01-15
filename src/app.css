@@ -26,16 +26,31 @@
 	}
 }
 
-@utility scrollbar-hidden {
-	/* Chrome, Safari and Opera */
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	scrollbar-width: none; /* Firefox */
-	-ms-overflow-style: none; /* IE and Edge */
-}
-
 @layer utilities {
+	.scrollbar-hidden {
+		/* Chrome, Safari and Opera */
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none; /* IE and Edge */
+	}
+
+	/* Dot grid background pattern */
+	.bg-dots {
+		background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+		background-size: 24px 24px;
+	}
+
+	/* Status pulse animation */
+	@keyframes status-pulse {
+		0%, 100% { opacity: 1; transform: scale(1); }
+		50% { opacity: 0.6; transform: scale(1.1); }
+	}
+
+	.status-pulse {
+		animation: status-pulse 2s ease-in-out infinite;
+	}
 	html {
 		scroll-behavior: smooth;
 		scroll-padding-top: 70px;
