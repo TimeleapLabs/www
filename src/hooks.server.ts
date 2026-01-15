@@ -2,7 +2,7 @@ import type { Handle } from "@sveltejs/kit";
 import { redirect } from "@sveltejs/kit";
 
 // Routes that should NOT redirect to home
-const ALLOWED_PATHS = ["/", "/tos"];
+const ALLOWED_PATHS = ["/", "/tos", "/og.png"];
 
 export const handle: Handle = async ({ event, resolve }) => {
   const path = event.url.pathname;
