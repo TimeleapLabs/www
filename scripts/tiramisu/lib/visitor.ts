@@ -10,7 +10,7 @@ import {
 	PureText,
 	Tiramisu,
 	type Node
-} from '@timeleap/tiramisu/dist/types/nodes';
+} from '@timeleap/tiramisu/types/nodes';
 
 import path from 'path';
 import slugify from 'slugify';

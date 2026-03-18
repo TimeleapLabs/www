@@ -553,7 +553,7 @@
 
     "@tailwindcss/vite": ["@tailwindcss/vite@4.2.2", "", { "dependencies": { "@tailwindcss/node": "4.2.2", "@tailwindcss/oxide": "4.2.2", "tailwindcss": "4.2.2" }, "peerDependencies": { "vite": "^5.2.0 || ^6 || ^7 || ^8" } }, "sha512-mEiF5HO1QqCLXoNEfXVA1Tzo+cYsrqV7w9Juj2wdUFyW07JRenqMG225MvPwr3ZD9N1bFQj46X7r33iHxLUW0w=="],
 
-    "@timeleap/tiramisu": ["@timeleap/tiramisu@1.9.1", "", { "dependencies": { "chevrotain": "^11.0.3", "commander": "^12.0.0" }, "bin": { "tiramisu": "dist/cli.js" } }, "sha512-BxASyJ9BIoTku57orj8l0vTuy2khnEo3pwIYHOCZyOWd2FiA5Fjl93vEdt6D4M5QCMVvmUOCQC/0IGvgkGj22Q=="],
+    "@timeleap/tiramisu": ["@timeleap/tiramisu@1.9.2", "", { "dependencies": { "chevrotain": "^11.0.3", "commander": "^12.0.0" }, "bin": { "tiramisu": "dist/cli.js" } }, "sha512-VM+Kra7pXDCP00O/lTmQLMz/4f10NoRl6SV8AOye0AAzbuNHbO/3MHDPQj7c7mYaOKV+0YJjpjpMmmTRvcWOhQ=="],
 
     "@timeleap/ui": ["@timeleap/ui@0.1.3", "", { "dependencies": { "geist": "^1.3.1" }, "peerDependencies": { "svelte": "^4.0.0" } }, "sha512-mDW71kBzEDFujk2clLfWfCLz1+GNB3/Qvq9smNG54K/3+EXKE0tVWDubvUkNQbZZTi5OYj+qIH5MyxlXH5RA7A=="],
 

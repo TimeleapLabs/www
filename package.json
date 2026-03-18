@@ -19,7 +19,7 @@
 		"@sveltejs/adapter-auto": "^3.3.1",
 		"@sveltejs/kit": "^2.55.0",
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
-		"@timeleap/tiramisu": "^1.9.1",
+		"@timeleap/tiramisu": "^1.9.2",
 		"@types/eslint": "^9.6.1",
 		"@types/grecaptcha": "^3.0.9",
 		"@types/howler": "^2.2.12",
